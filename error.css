@@ -4,7 +4,7 @@
   
   html {
     background: #000;
-    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-family: 'PT Mono', monospace;
   }
   
   head {
@@ -81,9 +81,8 @@
     margin-bottom: 10px;
   }
   body::after {
-    content: 'Got lost? How.....?  why.....?  Ahhhh....';
     color: #1EA7AB;
-    width: 120px;
+    width: 160px;
     font-size: 30px;
     overflow: hidden;
     display: inline-block;
@@ -155,14 +154,23 @@
       transform: translate(-1px, 1em);
     }
   }
-  @-webkit-keyframes text-show {
-    to {
-      text-indent: -373px;
-    }
-  }
-  @keyframes text-show {
-    to {
-      text-indent: -373px;
-    }
-  }
   
+  .first{
+    color: #00ff55;
+    font-size: 30px;
+  }
+
+  .second{
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: #eeeeee;
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  a{
+    text-decoration: none;
+    color: aqua;
+  }
