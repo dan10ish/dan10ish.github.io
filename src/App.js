@@ -20,8 +20,8 @@ export default function App() {
 
   useFrame((state) => {
     if (clicked) {
-      state.camera.lookAt(vec.set(0.01, 0.5, 1), 0.2);
-      state.camera.position.lerp(vec.set(0, 1, 3), 0.2);
+      state.camera.lookAt(vec.set(0.1, 0.5, 1), 0.2);
+      state.camera.position.lerp(vec.set(0, 1, 4), 0.2);
       state.camera.updateProjectionMatrix();
     }
     if (!clicked) {
