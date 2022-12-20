@@ -1,0 +1,15 @@
+{
+  "short_name": "Danish Ansari",
+  "name": "Danish's portfolio website",
+  "icons": [
+    {
+      "src": "danIcon.png",
+      "sizes": "1152x1152",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/index.html",
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff"
+}

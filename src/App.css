@@ -1,0 +1,10 @@
+.htmlScreen iframe {
+  position: absolute;
+  width: 1024px;
+  height: 670px;
+  border: none;
+  background-color: #000000;
+  overflow-y: auto;
+  border-radius: 20px;
+}
+
