@@ -1,3 +1,20 @@
+.container {
+  display: absolute;
+  flex-direction: column;
+  align-items: center;
+}
+
+.preview {
+  height: 700px;
+  width: 100vw;
+}
+
+canvas {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .htmlScreen iframe {
   position: absolute;
   width: 1024px;
@@ -8,3 +25,206 @@
   border-radius: 20px;
 }
 
+#menuToggle {
+  display: block;
+  position: absolute;
+  bottom: 6%;
+  left: 5%;
+  z-index: 1;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#menuToggle input {
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;
+  cursor: pointer;
+  opacity: 0; /* hide this */
+  z-index: 2; /* and place it over the hamburger */
+
+  -webkit-touch-callout: none;
+}
+
+/*
+ * Just a quick hamburger
+ */
+#menuToggle span {
+  display: block;
+  margin-bottom: 5px;
+  position: relative;
+  height: 6px;
+  width: 6px;
+  background: #646464;
+  border-radius: 50%;
+  z-index: 1;
+  left: 10px;
+  transform: translate(-5px, -3.5px);
+  transform-origin: 4px 0px;
+}
+
+#menuToggle span:nth-last-child(2) {
+  width: 20px;
+  height: 4px;
+  border-radius: 3px;
+  transform: rotate(-90deg);
+}
+
+#menuToggle span:nth-last-child(3) {
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+#menuToggle span:first-child {
+  transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2) {
+  transform-origin: 0% 100%;
+}
+
+/* 
+ * Transform all the slices of hamburger
+ * into a crossmark.
+ */
+#menuToggle input:checked ~ span {
+  width: 33px;
+  height: 4px;
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: #646464;
+  border-radius: 3px;
+}
+
+/*
+ * But let's hide the middle one.
+ */
+#menuToggle input:checked ~ span:nth-last-child(3) {
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+/*
+ * Ohyeah and the last one should go the other direction
+ */
+#menuToggle input:checked ~ span:nth-last-child(2) {
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+/*
+ * Make this absolute positioned
+ * at the top left of the screen
+ */
+#menu {
+  position: absolute;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  background: #d4d4d4;
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+  /* to stop flickering of text in safari */
+
+  transform-origin: 0% 0%;
+  transform: translate(-100%, 0);
+
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+}
+
+#menu li {
+  position: relative;
+  color: #646464;
+  font-size: 20px;
+  padding-left: 60px;
+  width: 300px;
+  margin-top: -9px;
+  line-height: 25px;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+/*
+ * And let's slide it in from the left
+ */
+#menuToggle input:checked ~ ul {
+  transform: none;
+}
+
+.loadStart{
+  margin-top: -200px;
+  font-size: 200px;
+  padding-bottom: 50px;
+}
+
+.loadingdot {
+  opacity: 0;
+  -webkit-animation: loadingFade 1s infinite;
+  -moz-animation: loadingFade 1s infinite;
+  animation: loadingFade 1s infinite;
+}
+
+.loadingdot:nth-child(1) {
+  -webkit-animation-delay: 0s;
+  -moz-animation-delay: 0s;
+  animation-delay: 0s;
+}
+
+.loadingdot:nth-child(2) {
+  -webkit-animation-delay: 0.1s;
+  -moz-animation-delay: 0.1s;
+  animation-delay: 0.1s;
+}
+
+.loadingdot:nth-child(3) {
+  -webkit-animation-delay: 0.2s;
+  -moz-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+}
+
+.control{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  flex-direction: column;
+}
+
+@-webkit-keyframes loadingFade {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-moz-keyframes loadingFade {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes loadingFade {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+  }
+}

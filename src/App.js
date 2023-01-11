@@ -1,71 +1,236 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import { Canvas } from "@react-three/fiber";
 import {
   Html,
   ContactShadows,
-  PresentationControls,
-  Float,
   Environment,
   useGLTF,
+  PerspectiveCamera,
+  PresentationControls,
+  Float,
+  PerformanceMonitor,
 } from "@react-three/drei";
-import "./App.css";
-import { useFrame } from "@react-three/fiber";
-import * as THREE from "three";
+import { motion } from "framer-motion-3d";
 
+// Model
+export function Laptop(props) {
+  const { nodes, materials } = useGLTF("/MacbookProDraco.gltf");
+  return (
+    <motion.group
+      {...props}
+      dispose={null}
+      scale={1}
+      initial={{ rotateX: -1, rotateZ: 1.55, z: 0, y: 0 }}
+      animate={{ rotateX: -1, rotateZ: 0, z: 0.2, y: -0.03 }}
+      transition={{
+        delay: 2,
+        duration: 1,
+      }}
+    >
+      <motion.group
+        position={[0, 0.1, 0.01]}
+        rotation={[-1.84, 0, 0]}
+        scale={0.27}
+        initial={{ rotateX: 0 }}
+        animate={{ rotateX: -2.1 }}
+        transition={{
+          delay: 2,
+          duration: 1,
+        }}
+      >
+        <mesh
+          geometry={nodes.Cube002.geometry}
+          material={materials["Black Glass"]}
+        />
+        <mesh
+          geometry={nodes.Cube002_1.geometry}
+          material={materials["Black Plastic"]}
+        />
+        <mesh geometry={nodes.Cube002_2.geometry} material={materials.Glass} />
+        <mesh
+          geometry={nodes.Cube002_4.geometry}
+          material={materials["Space Grey"]}
+        />
+        <mesh
+          geometry={nodes.Cube002_5.geometry}
+          material={materials["Space Grey.001"]}
+        />
+      </motion.group>
+      <mesh
+        geometry={nodes.Camera_Light.geometry}
+        material={materials["Camera Light"]}
+        position={[0, 0.1, 0.01]}
+        rotation={[1.95, 0, 0]}
+        scale={0.27}
+      />
+      <mesh
+        geometry={nodes.Caps_Lock_Light.geometry}
+        material={materials["Caps Lock Light"]}
+        position={[0, 0, -0.01]}
+        scale={0.27}
+      />
+      <mesh
+        geometry={nodes.Macbook_Pro.geometry}
+        material={materials["Material.001"]}
+        position={[0, 0.1, 0.01]}
+        rotation={[1.95, 0, 0]}
+        scale={0.27}
+      />
+      <group position={[0, 0, -0.01]} scale={0.27}>
+        <mesh
+          geometry={nodes.Cube005.geometry}
+          material={materials["Space Grey"]}
+        />
+        <mesh
+          geometry={nodes.Cube005_1.geometry}
+          material={materials["Black Plastic"]}
+        />
+        <mesh
+          geometry={nodes.Cube005_2.geometry}
+          material={materials["Keys.001"]}
+        />
+      </group>
+      <group position={[0, 0, -0.01]} scale={0.27}>
+        <mesh
+          geometry={nodes.Cube008.geometry}
+          material={materials["Black Plastic"]}
+        />
+        <mesh
+          geometry={nodes.Cube008_1.geometry}
+          material={materials["Black Glass"]}
+        />
+        <mesh geometry={nodes.Cube008_2.geometry} material={materials.Keys} />
+      </group>
+      <mesh
+        geometry={nodes.Touch_Bar_Shot.geometry}
+        material={materials["Touch Bar Shot 2021-04-02 at 18.13.28"]}
+        position={[0, 0, -0.01]}
+        scale={0.27}
+      />
+      <group position={[0, 0, -0.01]} scale={0.27}>
+        <mesh
+          geometry={nodes.Cube006.geometry}
+          material={materials["Black Plastic"]}
+        />
+        <mesh geometry={nodes.Cube006_1.geometry} material={materials.Keys} />
+      </group>
+      <mesh
+        geometry={nodes.Cube.geometry}
+        material={materials["Black Plastic"]}
+        position={[0, 0, -0.01]}
+      />
+    </motion.group>
+  );
+}
+
+// Main App
 export default function App() {
-  const laptop = useGLTF("./MacbookDraco.gltf");
-
-  const [clicked, setClicked] = useState(false);
-  const markerRef = useRef();
-  const vec = new THREE.Vector3();
-
-  useFrame((state) => {
-    if (clicked) {
-      state.camera.lookAt(vec.set(0.1, 0.5, 1), 0.2);
-      state.camera.position.lerp(vec.set(0, 1, 4), 0.2);
-      state.camera.updateProjectionMatrix();
-    }
-    if (!clicked) {
-      state.camera.lookAt(vec.set(0, 0, 0), 0.2);
-      state.camera.position.lerp(vec.set(-3, 1.5, 5), 0.2);
-      state.camera.updateProjectionMatrix();
-    }
-    return null;
-  });
+  const [loading, setLoading] = useState(false);
+  const [dpr, setDpr] = useState(1.5);
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 10000);
+  }, []);
 
   return (
     <>
-      <Environment preset="city" />
-
-      <PresentationControls
-        global
-        rotation={[0.13, 0.1, 0]}
-        polar={[-0.4, 0.2]}
-        azimuth={[-1, 0.75]}
-        config={{ mass: 2, tension: 400 }}
-        snap={{ mass: 4, tension: 400 }}
-      >
-        <Float rotationIntensity={0.4}>
-          <primitive
-            object={laptop.scene}
-            ref={markerRef}
-            onClick={() => setClicked(!clicked)}
-            onPointerMissed={() => setClicked(clicked)}
-            position={[0.3, -0.5, 0]}
-          />
-
-          <Html
-            transform
-            wrapperClass="htmlScreen"
-            distanceFactor={1.25}
-            position={[-1.29, 1.81, -1.9]}
-            rotation-x={-0.35}
+      {loading ? (
+        <div className="control">
+          <span class="loadStart">
+            <span class="loadingdot">.</span>
+            <span class="loadingdot">.</span>
+            <span class="loadingdot">.</span>
+          </span>
+        </div>
+      ) : (
+        <div className="container">
+          <div className="preview">
+            <Canvas dpr={dpr}>
+              <PerformanceMonitor
+                onIncline={() => setDpr(2)}
+                onDecline={() => setDpr(1.5)}
+              >
+                <Environment preset="city" />
+                <directionalLight position={[0, 5, 0]} />
+                <spotLight position={[0, 5, 0]} />
+                <PresentationControls
+                  global
+                  config={{ mass: 2, tension: 400 }}
+                  snap={{ mass: 4, tension: 400 }}
+                  polar={[-0.01, 0.01]}
+                  azimuth={[-0.01, 0.01]}
+                >
+                  <Float
+                    speed={2}
+                    floatingRange={[-0.01, 0.01]}
+                    rotationIntensity={0.1}
+                  >
+                    <Laptop />
+                    <Html
+                      transform
+                      wrapperClass="htmlScreen"
+                      distanceFactor={0.125}
+                      position={[-0.1593, 0.263, 0]}
+                      rotation-x={0}
+                    >
+                      <motion.iframe
+                        src="https://danish.dev/iframeWebsite"
+                        dispose={null}
+                        scale={1}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{
+                          delay: 4,
+                          duration: 0.1,
+                        }}
+                      ></motion.iframe>
+                    </Html>
+                  </Float>
+                </PresentationControls>
+                <ContactShadows
+                  position-y={-0.15}
+                  opacity={0.7}
+                  scale={5}
+                  blur={2.4}
+                />
+                <PerspectiveCamera
+                  makeDefault
+                  fov={50}
+                  position={[0, 0, 1]}
+                  rotation={[0, 0, 0]}
+                />
+              </PerformanceMonitor>
+            </Canvas>
+          </div>
+          <motion.group
+            dispose={null}
+            scale={1}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{
+              delay: 4,
+              duration: 0.1,
+            }}
           >
-            <iframe src="https://danish.dev/iframeWebsite"></iframe>
-          </Html>
-        </Float>
-      </PresentationControls>
+            <div id="menuToggle">
+              <input type="checkbox" />
 
-      <ContactShadows position-y={-1.4} opacity={0.4} scale={5} blur={2.4} />
+              <span></span>
+              <span></span>
+              <span></span>
+
+              <ul id="menu">
+                <li>Scroll the screen of the Laptop</li>
+              </ul>
+            </div>
+          </motion.group>
+        </div>
+      )}
     </>
   );
 }
+
+useGLTF.preload("/MacbookProDraco.gltf");

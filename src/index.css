@@ -7,11 +7,6 @@
 }
 
 #root {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   position: fixed;
   top: 0;
   left: 0;
@@ -19,20 +14,9 @@
   height: 100%;
 }
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
+html,body{
   overflow: hidden;
-  background: #ffffff;
+  background: #d4d4d4;
+  color: #000000;
 }
 
-canvas {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  touch-action: none;
-}
