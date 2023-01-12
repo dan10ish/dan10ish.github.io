@@ -18,108 +18,122 @@ export function Laptop(props) {
   const { nodes, materials } = useGLTF("/MacbookProDraco.gltf");
   return (
     <motion.group
-      {...props}
       dispose={null}
       scale={1}
-      initial={{ rotateX: -1, rotateZ: 1.55, z: 0, y: 0 }}
-      animate={{ rotateX: -1, rotateZ: 0, z: 0.2, y: -0.03 }}
+      initial={{ z: 0 }}
+      animate={{ z: 0.1 }}
       transition={{
-        delay: 2,
+        delay: 5,
         duration: 1,
       }}
     >
       <motion.group
-        position={[0, 0.1, 0.01]}
-        rotation={[-1.84, 0, 0]}
-        scale={0.27}
-        initial={{ rotateX: 0 }}
-        animate={{ rotateX: -2.1 }}
+        {...props}
+        dispose={null}
+        scale={1}
+        initial={{ rotateX: -1, rotateZ: 1.55, z: 0, y: 0 }}
+        animate={{ rotateX: -1, rotateZ: 0, z: 0.2, y: -0.03 }}
         transition={{
           delay: 2,
           duration: 1,
         }}
       >
+        <motion.group
+          position={[0, 0.1, 0.01]}
+          rotation={[-1.84, 0, 0]}
+          scale={0.27}
+          initial={{ rotateX: 0 }}
+          animate={{ rotateX: -2.1 }}
+          transition={{
+            delay: 2,
+            duration: 1,
+          }}
+        >
+          <mesh
+            geometry={nodes.Cube002.geometry}
+            material={materials["Black Glass"]}
+          />
+          <mesh
+            geometry={nodes.Cube002_1.geometry}
+            material={materials["Black Plastic"]}
+          />
+          <mesh
+            geometry={nodes.Cube002_2.geometry}
+            material={materials.Glass}
+          />
+          <mesh
+            geometry={nodes.Cube002_4.geometry}
+            material={materials["Space Grey"]}
+          />
+          <mesh
+            geometry={nodes.Cube002_5.geometry}
+            material={materials["Space Grey.001"]}
+          />
+        </motion.group>
         <mesh
-          geometry={nodes.Cube002.geometry}
-          material={materials["Black Glass"]}
+          geometry={nodes.Camera_Light.geometry}
+          material={materials["Camera Light"]}
+          position={[0, 0.1, 0.01]}
+          rotation={[1.95, 0, 0]}
+          scale={0.27}
         />
         <mesh
-          geometry={nodes.Cube002_1.geometry}
+          geometry={nodes.Caps_Lock_Light.geometry}
+          material={materials["Caps Lock Light"]}
+          position={[0, 0, -0.01]}
+          scale={0.27}
+        />
+        <mesh
+          geometry={nodes.Macbook_Pro.geometry}
+          material={materials["Material.001"]}
+          position={[0, 0.1, 0.01]}
+          rotation={[1.95, 0, 0]}
+          scale={0.27}
+        />
+        <group position={[0, 0, -0.01]} scale={0.27}>
+          <mesh
+            geometry={nodes.Cube005.geometry}
+            material={materials["Space Grey"]}
+          />
+          <mesh
+            geometry={nodes.Cube005_1.geometry}
+            material={materials["Black Plastic"]}
+          />
+          <mesh
+            geometry={nodes.Cube005_2.geometry}
+            material={materials["Keys.001"]}
+          />
+        </group>
+        <group position={[0, 0, -0.01]} scale={0.27}>
+          <mesh
+            geometry={nodes.Cube008.geometry}
+            material={materials["Black Plastic"]}
+          />
+          <mesh
+            geometry={nodes.Cube008_1.geometry}
+            material={materials["Black Glass"]}
+          />
+          <mesh geometry={nodes.Cube008_2.geometry} material={materials.Keys} />
+        </group>
+        <mesh
+          geometry={nodes.Touch_Bar_Shot.geometry}
+          material={materials["Touch Bar Shot 2021-04-02 at 18.13.28"]}
+          position={[0, 0, -0.01]}
+          scale={0.27}
+        />
+        <group position={[0, 0, -0.01]} scale={0.27}>
+          <mesh
+            geometry={nodes.Cube006.geometry}
+            material={materials["Black Plastic"]}
+          />
+          <mesh geometry={nodes.Cube006_1.geometry} material={materials.Keys} />
+        </group>
+        <mesh
+          geometry={nodes.Cube.geometry}
           material={materials["Black Plastic"]}
-        />
-        <mesh geometry={nodes.Cube002_2.geometry} material={materials.Glass} />
-        <mesh
-          geometry={nodes.Cube002_4.geometry}
-          material={materials["Space Grey"]}
-        />
-        <mesh
-          geometry={nodes.Cube002_5.geometry}
-          material={materials["Space Grey.001"]}
+          position={[0, 0, -0.01]}
         />
       </motion.group>
-      <mesh
-        geometry={nodes.Camera_Light.geometry}
-        material={materials["Camera Light"]}
-        position={[0, 0.1, 0.01]}
-        rotation={[1.95, 0, 0]}
-        scale={0.27}
-      />
-      <mesh
-        geometry={nodes.Caps_Lock_Light.geometry}
-        material={materials["Caps Lock Light"]}
-        position={[0, 0, -0.01]}
-        scale={0.27}
-      />
-      <mesh
-        geometry={nodes.Macbook_Pro.geometry}
-        material={materials["Material.001"]}
-        position={[0, 0.1, 0.01]}
-        rotation={[1.95, 0, 0]}
-        scale={0.27}
-      />
-      <group position={[0, 0, -0.01]} scale={0.27}>
-        <mesh
-          geometry={nodes.Cube005.geometry}
-          material={materials["Space Grey"]}
-        />
-        <mesh
-          geometry={nodes.Cube005_1.geometry}
-          material={materials["Black Plastic"]}
-        />
-        <mesh
-          geometry={nodes.Cube005_2.geometry}
-          material={materials["Keys.001"]}
-        />
-      </group>
-      <group position={[0, 0, -0.01]} scale={0.27}>
-        <mesh
-          geometry={nodes.Cube008.geometry}
-          material={materials["Black Plastic"]}
-        />
-        <mesh
-          geometry={nodes.Cube008_1.geometry}
-          material={materials["Black Glass"]}
-        />
-        <mesh geometry={nodes.Cube008_2.geometry} material={materials.Keys} />
-      </group>
-      <mesh
-        geometry={nodes.Touch_Bar_Shot.geometry}
-        material={materials["Touch Bar Shot 2021-04-02 at 18.13.28"]}
-        position={[0, 0, -0.01]}
-        scale={0.27}
-      />
-      <group position={[0, 0, -0.01]} scale={0.27}>
-        <mesh
-          geometry={nodes.Cube006.geometry}
-          material={materials["Black Plastic"]}
-        />
-        <mesh geometry={nodes.Cube006_1.geometry} material={materials.Keys} />
-      </group>
-      <mesh
-        geometry={nodes.Cube.geometry}
-        material={materials["Black Plastic"]}
-        position={[0, 0, -0.01]}
-      />
     </motion.group>
   );
 }
@@ -132,7 +146,7 @@ export default function App() {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 10000);
+    }, 100);
   }, []);
 
   return (
@@ -170,8 +184,8 @@ export default function App() {
                     rotationIntensity={0.1}
                   >
                     <Html
-                      distanceFactor={0.23}
-                      position={[-0.16, 0.263, 0]}
+                      distanceFactor={0.26}
+                      position={[-0.18, 0.295, 0]}
                       rotation-x={0}
                     >
                       <motion.iframe
@@ -182,7 +196,7 @@ export default function App() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{
-                          delay: 4,
+                          delay: 6,
                           duration: 0.1,
                         }}
                       />
