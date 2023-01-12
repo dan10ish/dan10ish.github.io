@@ -156,6 +156,7 @@ export default function App() {
                 <Environment preset="city" />
                 <directionalLight position={[0, 5, 0]} />
                 <spotLight position={[0, 5, 0]} />
+
                 <PresentationControls
                   global
                   config={{ mass: 2, tension: 400 }}
@@ -168,26 +169,25 @@ export default function App() {
                     floatingRange={[-0.01, 0.01]}
                     rotationIntensity={0.1}
                   >
-                    <Laptop />
                     <Html
-                      transform
-                      wrapperClass="htmlScreen"
-                      distanceFactor={0.125}
-                      position={[-0.1593, 0.263, 0]}
+                      distanceFactor={0.23}
+                      position={[-0.16, 0.263, 0]}
                       rotation-x={0}
                     >
                       <motion.iframe
-                        src="https://danish.dev/iframeWebsite"
-                        dispose={null}
                         scale={1}
+                        src="https://danish.dev/iframeWebsite"
+                        frameborder="0"
+                        dispose={null}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{
                           delay: 4,
                           duration: 0.1,
                         }}
-                      ></motion.iframe>
+                      />
                     </Html>
+                    <Laptop />
                   </Float>
                 </PresentationControls>
                 <ContactShadows

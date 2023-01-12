@@ -15,14 +15,25 @@ canvas {
   box-sizing: border-box;
 }
 
-.htmlScreen iframe {
-  position: absolute;
+.samp {
+  z-index: 100;
+  scale: 0.25;
+  position: fixed;
+  left: -350px;
+  top: -200px;
   width: 1024px;
   height: 670px;
   border: none;
   background-color: #000000;
   overflow-y: auto;
   border-radius: 20px;
+}
+
+iframe{
+  width: 1024px;
+  height: 670px;
+  position: absolute;
+  overflow-y: auto;
 }
 
 #menuToggle {
@@ -43,15 +54,12 @@ canvas {
   top: -7px;
   left: -5px;
   cursor: pointer;
-  opacity: 0; /* hide this */
-  z-index: 2; /* and place it over the hamburger */
+  opacity: 0;
+  z-index: 2;
 
   -webkit-touch-callout: none;
 }
 
-/*
- * Just a quick hamburger
- */
 #menuToggle span {
   display: block;
   margin-bottom: 5px;
@@ -62,12 +70,12 @@ canvas {
   border-radius: 50%;
   z-index: 1;
   left: 10px;
-  transform: translate(-5px, -3.5px);
+  transform: translate(-5px, 2px);
   transform-origin: 4px 0px;
 }
 
 #menuToggle span:nth-last-child(2) {
-  width: 20px;
+  width: 15px;
   height: 4px;
   border-radius: 3px;
   transform: rotate(-90deg);
@@ -86,10 +94,6 @@ canvas {
   transform-origin: 0% 100%;
 }
 
-/* 
- * Transform all the slices of hamburger
- * into a crossmark.
- */
 #menuToggle input:checked ~ span {
   width: 33px;
   height: 4px;
@@ -99,60 +103,45 @@ canvas {
   border-radius: 3px;
 }
 
-/*
- * But let's hide the middle one.
- */
 #menuToggle input:checked ~ span:nth-last-child(3) {
   opacity: 0;
   transform: rotate(0deg) scale(0.2, 0.2);
 }
 
-/*
- * Ohyeah and the last one should go the other direction
- */
 #menuToggle input:checked ~ span:nth-last-child(2) {
   transform: rotate(-45deg) translate(0, -1px);
 }
 
-/*
- * Make this absolute positioned
- * at the top left of the screen
- */
 #menu {
   position: absolute;
-  width: 100vw;
-  top: 0;
+  padding: 10px 20px;
+  top: -20px;
   left: 0;
-  background: #d4d4d4;
+  background: #eee;
   list-style-type: none;
   -webkit-font-smoothing: antialiased;
-  /* to stop flickering of text in safari */
-
   transform-origin: 0% 0%;
-  transform: translate(-100%, 0);
-
-  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+  transform: translate(-200%, 0);
+  transition: transform 0.2s cubic-bezier(0.77, 0.2, 0.05, 1);
+  border-radius: 20px;
 }
 
 #menu li {
   position: relative;
   color: #646464;
-  font-size: 20px;
+  font-size: 16px;
   padding-left: 60px;
   width: 300px;
   margin-top: -9px;
   line-height: 25px;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: "IBM Plex Mono", monospace;
 }
 
-/*
- * And let's slide it in from the left
- */
 #menuToggle input:checked ~ ul {
   transform: none;
 }
 
-.loadStart{
+.loadStart {
   margin-top: -200px;
   font-size: 200px;
   padding-bottom: 50px;
@@ -183,7 +172,7 @@ canvas {
   animation-delay: 0.2s;
 }
 
-.control{
+.control {
   display: flex;
   justify-content: center;
   text-align: center;
