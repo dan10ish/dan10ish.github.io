@@ -1,3 +1,7 @@
+.control {
+  background-color: #c4c4c4;
+}
+
 .container {
   display: absolute;
   flex-direction: column;
@@ -15,21 +19,7 @@ canvas {
   box-sizing: border-box;
 }
 
-.samp {
-  z-index: 100;
-  scale: 0.25;
-  position: fixed;
-  left: -350px;
-  top: -200px;
-  width: 1024px;
-  height: 670px;
-  border: none;
-  background-color: #000000;
-  overflow-y: auto;
-  border-radius: 20px;
-}
-
-iframe{
+iframe {
   width: 1024px;
   height: 670px;
   position: absolute;
@@ -66,7 +56,7 @@ iframe{
   position: relative;
   height: 6px;
   width: 6px;
-  background: #646464;
+  background: #010101;
   border-radius: 50%;
   z-index: 1;
   left: 10px;
@@ -99,7 +89,7 @@ iframe{
   height: 4px;
   opacity: 1;
   transform: rotate(45deg) translate(-2px, -1px);
-  background: #646464;
+  background: #000000;
   border-radius: 3px;
 }
 
@@ -142,16 +132,17 @@ iframe{
 }
 
 .loadStart {
+  color: #2f2f2f;
   margin-top: -200px;
-  font-size: 200px;
+  font-size: 100px;
   padding-bottom: 50px;
 }
 
 .loadingdot {
   opacity: 0;
-  -webkit-animation: loadingFade 1s infinite;
-  -moz-animation: loadingFade 1s infinite;
-  animation: loadingFade 1s infinite;
+  -webkit-animation: loadingFade 1.5s infinite;
+  -moz-animation: loadingFade 1.5s infinite;
+  animation: loadingFade 1.5s infinite;
 }
 
 .loadingdot:nth-child(1) {

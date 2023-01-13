@@ -23,7 +23,7 @@ export function Laptop(props) {
       initial={{ z: 0 }}
       animate={{ z: 0.1 }}
       transition={{
-        delay: 5,
+        delay: 3,
         duration: 1,
       }}
     >
@@ -175,12 +175,12 @@ export default function App() {
                   global
                   config={{ mass: 2, tension: 400 }}
                   snap={{ mass: 4, tension: 400 }}
-                  polar={[-0.01, 0.01]}
-                  azimuth={[-0.01, 0.01]}
+                  polar={[-0.02, 0.02]}
+                  azimuth={[-0.02, 0.02]}
                 >
                   <Float
                     speed={2}
-                    floatingRange={[-0.01, 0.01]}
+                    floatingRange={[-0.015, 0.015]}
                     rotationIntensity={0.1}
                   >
                     <Html
