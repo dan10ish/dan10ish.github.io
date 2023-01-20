@@ -1,5 +1,5 @@
 .control {
-  background-color: #c4c4c4;
+  background-color: #eeeeee;
 }
 
 .container {
@@ -59,7 +59,7 @@ iframe {
   background: #010101;
   border-radius: 50%;
   z-index: 1;
-  left: 10px;
+  left: 20px;
   transform: translate(-5px, 2px);
   transform-origin: 4px 0px;
 }
@@ -107,7 +107,7 @@ iframe {
   padding: 15px 20px;
   top: -22px;
   left: 0;
-  background: #eee;
+  background: rgb(201, 201, 201);
   list-style-type: none;
   -webkit-font-smoothing: antialiased;
   transform-origin: 0% 0%;
@@ -118,9 +118,9 @@ iframe {
 
 #menu li {
   position: relative;
-  color: #646464;
+  color: #000000;
   font-size: 16px;
-  padding-left: 40px;
+  padding-left: 45px;
   width: 250px;
   margin-top: -9px;
   line-height: 20px;
@@ -132,7 +132,7 @@ iframe {
 }
 
 .loadStart {
-  color: #2f2f2f;
+  color: #000000;
   margin-top: -200px;
   font-size: 100px;
   padding-bottom: 50px;

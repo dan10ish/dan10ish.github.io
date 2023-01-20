@@ -20,10 +20,7 @@ html,body{
 }
 
 body {
-	background: linear-gradient(-45deg, #5f5f5f, #818181, #adadad, #eeeeee);
-	background-size: 400% 400%;
-	animation: gradient 15s ease infinite;
-	height: 100vh;
+	background-color: #eeeeee;
 }
 
 @keyframes gradient {
