@@ -1,134 +1,17 @@
+:root {
+  --app-height: 100%;
+}
+
+/* Loading Animation */
+
 .control {
-  background-color: #eeeeee;
-}
-
-.container {
-  display: absolute;
-  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  text-align: center;
   align-items: center;
-}
-
-.preview {
-  height: 700px;
-  width: 100vw;
-}
-
-canvas {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-iframe {
-  width: 1024px;
-  height: 670px;
-  position: absolute;
-  overflow-y: auto;
-}
-
-#menuToggle {
-  display: block;
-  position: absolute;
-  bottom: 6%;
-  left: 5%;
-  z-index: 1;
-  -webkit-user-select: none;
-  user-select: none;
-}
-
-#menuToggle input {
-  display: block;
-  width: 40px;
-  height: 32px;
-  position: absolute;
-  top: -7px;
-  left: -5px;
-  cursor: pointer;
-  opacity: 0;
-  z-index: 2;
-
-  -webkit-touch-callout: none;
-}
-
-#menuToggle span {
-  display: block;
-  margin-bottom: 5px;
-  position: relative;
-  height: 6px;
-  width: 6px;
-  background: #010101;
-  border-radius: 50%;
-  z-index: 1;
-  left: 20px;
-  transform: translate(-5px, 2px);
-  transform-origin: 4px 0px;
-}
-
-#menuToggle span:nth-last-child(2) {
-  width: 15px;
-  height: 4px;
-  border-radius: 3px;
-  transform: rotate(-90deg);
-}
-
-#menuToggle span:nth-last-child(3) {
-  opacity: 0;
-  transform: rotate(0deg) scale(0.2, 0.2);
-}
-
-#menuToggle span:first-child {
-  transform-origin: 0% 0%;
-}
-
-#menuToggle span:nth-last-child(2) {
-  transform-origin: 0% 100%;
-}
-
-#menuToggle input:checked ~ span {
-  width: 33px;
-  height: 4px;
-  opacity: 1;
-  transform: rotate(45deg) translate(-2px, -1px);
-  background: #000000;
-  border-radius: 3px;
-}
-
-#menuToggle input:checked ~ span:nth-last-child(3) {
-  opacity: 0;
-  transform: rotate(0deg) scale(0.2, 0.2);
-}
-
-#menuToggle input:checked ~ span:nth-last-child(2) {
-  transform: rotate(-45deg) translate(0, -1px);
-}
-
-#menu {
-  position: absolute;
-  padding: 15px 20px;
-  top: -22px;
-  left: 0;
-  background: rgb(201, 201, 201);
-  list-style-type: none;
-  -webkit-font-smoothing: antialiased;
-  transform-origin: 0% 0%;
-  transform: translate(-200%, 0);
-  transition: transform 0.2s cubic-bezier(0.77, 0.2, 0.05, 1);
-  border-radius: 20px;
-}
-
-#menu li {
-  position: relative;
-  color: #000000;
-  font-size: 16px;
-  padding-left: 45px;
-  width: 250px;
-  margin-top: -9px;
-  line-height: 20px;
-  font-family: "IBM Plex Mono", monospace;
-}
-
-#menuToggle input:checked ~ ul {
-  transform: none;
+  width: 100%;
+  height: 100vh;
+  flex-direction: column;
 }
 
 .loadStart {
@@ -161,16 +44,6 @@ iframe {
   -webkit-animation-delay: 0.2s;
   -moz-animation-delay: 0.2s;
   animation-delay: 0.2s;
-}
-
-.control {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
-  width: 100%;
-  height: 100vh;
-  flex-direction: column;
 }
 
 @-webkit-keyframes loadingFade {
@@ -207,4 +80,206 @@ iframe {
   100% {
     opacity: 0;
   }
+}
+
+canvas {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  position: fixed;
+  height: 100vh;
+  height: var(--app-height);
+  width: 100vw;
+}
+
+iframe {
+  position: absolute;
+  overflow-y: auto;
+}
+
+.laptop iframe {
+  width: 1024px;
+  height: 670px;
+  border: none;
+  position: absolute;
+  border-radius: 20px;
+}
+
+.mobile iframe {
+  width: 323px;
+  height: 680px;
+  border: none;
+  position: absolute;
+  border-radius: 50px;
+}
+
+.buttons-container {
+  z-index: 99;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  top: 87%;
+  border-radius: 10px;
+  width: 320px;
+  align-items: center;
+}
+
+/* font-family: 'Montserrat', sans-serif;
+font-family: 'Space Mono', monospace; */
+
+.buttons {
+  text-align: center;
+  align-items: center;
+  padding: 5px;
+}
+
+.buttons-con {
+  left: 50%;
+  transform: translate(-50%);
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  align-items: center;
+  text-align: center;
+}
+
+button {
+  background-color: #ffffff;
+  border: 0 solid #e2e8f0;
+  border-radius: 1.2rem;
+  box-sizing: border-box;
+  color: #0d172a;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Space Mono", monospace;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1;
+  padding: 1rem 1rem;
+  width: 60px;
+  text-align: center;
+  text-decoration: none #0d172a solid;
+  text-decoration-thickness: auto;
+  transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0px 1px 2px rgba(166, 175, 195, 0.25);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  button:hover {
+    background-color: #1e293b;
+    color: #fff;
+  }
+  button:hover img {
+    filter: invert(1) sepia(0) saturate(1) hue-rotate(0deg) brightness(1);
+  }
+}
+
+.name {
+  position: absolute;
+  font-family: "Space Mono", monospace;
+  left: 50%;
+  transform: translate(-50%);
+  top: 30px;
+}
+
+.name .title {
+  font-size: 25px;
+  text-align: center;
+  font-weight: 500;
+  color: #000000;
+}
+
+.name .subTitle {
+  font-size: 16px;
+  text-align: center;
+  font-weight: 100;
+  color: #545454;
+}
+
+.at::before {
+  content: "@";
+  animation: at infinite 3s;
+}
+
+.exclamation::before {
+  content: "!";
+  animation: exclamation infinite 3s;
+}
+
+.dollar::before {
+  content: "$";
+  animation: dollar infinite 3s;
+}
+
+.hash::before {
+  content: "#";
+  animation: hash infinite 3s;
+}
+
+/* Animations */
+@keyframes at {
+  0% {
+    content: "@";
+  }
+
+  33% {
+    content: "A";
+  }
+
+  66% {
+    content: "a";
+  }
+}
+
+@keyframes exclamation {
+  0% {
+    content: "!";
+  }
+
+  33% {
+    content: "I";
+  }
+
+  66% {
+    content: "i";
+  }
+}
+
+@keyframes dollar {
+  0% {
+    content: "$";
+  }
+
+  33% {
+    content: "S";
+  }
+
+  66% {
+    content: "s";
+  }
+}
+
+@keyframes hash {
+  0% {
+    content: "#";
+  }
+
+  33% {
+    content: "H";
+  }
+
+  66% {
+    content: "h";
+  }
+}
+
+button img {
+  height: 25px;
+  opacity: 0.7;
 }
