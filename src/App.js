@@ -11,7 +11,7 @@ export default function App() {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 7000);
+    }, 11000);
   }, []);
   return (
     <>
