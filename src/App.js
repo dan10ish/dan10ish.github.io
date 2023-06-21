@@ -3,6 +3,7 @@ import "./index.css";
 import Home from "./components/Home";
 import Projects from "./components/Projects";
 import { Routes, Route } from "react-router-dom";
+import { useGLTF } from "@react-three/drei";
 
 export default function App() {
   //Custom Loader
@@ -49,3 +50,5 @@ export default function App() {
     </>
   );
 }
+
+useGLTF.preload("./assets/Macbook.gltf");
