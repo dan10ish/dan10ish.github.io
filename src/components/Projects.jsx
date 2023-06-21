@@ -41,7 +41,11 @@ export default function Projects() {
           <div className="body-heading gittwo">
             <h4>Projects</h4>
             <div className="git">
-              <a href="">
+              <a
+                href="https://github.com/dan10ish"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <img src={github} alt="" />
               </a>
             </div>
