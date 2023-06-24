@@ -79,7 +79,7 @@ export default function Home() {
           <div className="skull">
             <Canvas>
               <ambientLight intensity={0.5} />
-              <Mac scale={1} rotation={[0.6, 0, 0]} position={[0, -1, 1]} />
+              <Mac scale={0.02} rotation={[0.6, 0, 0]} position={[0, -1, 1]} />
               <AsciiRenderer
                 fgColor="white"
                 bgColor="transparent"
