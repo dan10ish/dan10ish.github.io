@@ -60,7 +60,7 @@ body {
 
 .load {
   position: absolute;
-  top: 50%;
+  top: 45%;
   transform: translate(0, --messageColor);
   display: flex;
   flex-direction: row;
@@ -507,7 +507,7 @@ a {
   }
 
   .message {
-    width: 350px;
+    width: 450px;
     border-radius: 20px;
   }
 
@@ -578,7 +578,7 @@ a {
   .placeholder {
     position: relative;
     width: 120px;
-    padding: 25px 0 25px 0;
+    padding: 20px 0 20px 0;
     z-index: 10;
   }
 }

@@ -6,6 +6,7 @@ import Landing from "./components/Landing.jsx";
 import { Routes, Route } from "react-router-dom";
 import About from "./components/About.jsx";
 import Projects from "./components/Projects.jsx";
+import { Link } from "react-router-dom";
 
 export default function App() {
   //Custom Loader
@@ -49,9 +50,9 @@ export default function App() {
           {/* Header */}
           <div className="headerContent">
             <div className="pic">
-              <a href="https://danishansari.co">
+              <Link to="/">
                 <img src={pic} alt="" />
-              </a>
+              </Link>
             </div>
             <div className="headerTitle">Danish Ansari</div>
             <Darkmode className="toggle" />
