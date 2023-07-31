@@ -155,7 +155,7 @@ export default function Projects() {
             <div className="messageText">
               <span className="bold">
                 <a
-                  href="https://danishansari.co/Galaxy/"
+                  href="https://danishansari.in/Galaxy/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -185,7 +185,7 @@ export default function Projects() {
             <div className="messageText">
               <span className="bold">
                 <a
-                  href="https://danish.dev/Office/"
+                  href="https://danishansari.in/Office/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

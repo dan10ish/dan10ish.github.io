@@ -37,7 +37,6 @@ export default function App() {
       {loading ? (
         <div className="control">
           <div className="load">
-            <div className="loadText">Hey! just a sec,</div>
             <div class="wrapper">
               <div class="pie spinner"></div>
               <div class="pie filler"></div>
