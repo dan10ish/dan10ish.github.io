@@ -3,11 +3,11 @@ import "./styles.css";
 import { ReactComponent as Arrow } from "../assets/pictures/Arrow.svg";
 import { Link } from "react-router-dom";
 import { ReactComponent as Shape } from "../assets/pictures/Shape.svg";
-import one from "../assets/pictures/about/1.png";
-import two from "../assets/pictures/about/2.png";
-import three from "../assets/pictures/about/3.png";
-import four from "../assets/pictures/about/4.png";
-import five from "../assets/pictures/about/5.png";
+import one from "../assets/pictures/about/1.jpg";
+import two from "../assets/pictures/about/2.jpg";
+import three from "../assets/pictures/about/3.jpg";
+import four from "../assets/pictures/about/4.jpg";
+import five from "../assets/pictures/about/5.jpg";
 
 export default function About() {
   const [showDiv, setShowDiv] = useState(true);

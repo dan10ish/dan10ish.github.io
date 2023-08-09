@@ -15,32 +15,6 @@
   --shadow: #515151;
 }
 
-/* Fonts */
-@font-face {
-  font-family: "SFPro-Light";
-  src: url("../assets/fonts/SF-Pro-Text-Light.otf") format("opentype");
-}
-
-@font-face {
-  font-family: "SFPro-Regular";
-  src: url("../assets/fonts/SF-Pro-Text-Regular.otf") format("opentype");
-}
-
-@font-face {
-  font-family: "SFPro-Medium";
-  src: url("../assets/fonts/SF-Pro-Text-Medium.otf") format("opentype");
-}
-
-@font-face {
-  font-family: "SFPro-Semibold";
-  src: url("../assets/fonts/SF-Pro-Text-Semibold.otf") format("opentype");
-}
-
-@font-face {
-  font-family: "SFPro-Bold";
-  src: url("../assets/fonts/SF-Pro-Text-Bold.otf") format("opentype");
-}
-
 body {
   background-color: var(--bodyBG);
   color: var(--textColor);
@@ -169,7 +143,8 @@ body {
 .headerTitle {
   text-align: center;
   padding-top: 7px;
-  font-family: SFPro-Regular;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
   font-size: 14px;
 }
 
@@ -183,13 +158,14 @@ body {
 .time {
   padding: 30px 0 30px 0;
   text-align: center;
-  font-family: SFPro-Regular;
+  font-family: "Inter", sans-serif;
   color: #909093;
   font-size: 10px;
 }
 
 .today {
-  font-family: SFPro-Medium;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
 }
 
 /* Dark Mode */
@@ -224,13 +200,15 @@ button {
 }
 
 .messageText {
-  font-family: SFPro-Regular;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
   font-size: 15px;
   padding: 10px 20px 15px 20px;
 }
 
 .bold {
-  font-family: SFPro-Semibold;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
   text-decoration: underline;
 }
 
@@ -351,7 +329,8 @@ a {
 
 .seen {
   position: relative;
-  font-family: SFPro-Medium;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
   font-size: 11px;
   color: #909093;
   left: 10px;
@@ -367,7 +346,8 @@ a {
 }
 
 .sb {
-  font-family: SFPro-Semibold;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
 }
 
 /*Wave animation*/
