@@ -2,7 +2,7 @@
 :root {
   --bodyBG: #ffffff;
   --headerBG: #f1f1f2;
-  --textColor: #000000;
+  --textColor: #313131;
   --messageColor: #e9e9eb;
   --shadow: #d6d6d6;
 }
@@ -10,7 +10,7 @@
 [data-theme="dark"] {
   --bodyBG: #000000;
   --headerBG: #333334;
-  --textColor: #ffffff;
+  --textColor: #d8d8d8;
   --messageColor: #26252a;
   --shadow: #515151;
 }
@@ -208,7 +208,7 @@ button {
 
 .bold {
   font-family: "Inter", sans-serif;
-  font-weight: 700;
+  font-weight: 600;
   text-decoration: underline;
 }
 
@@ -353,6 +353,7 @@ a {
 /*Wave animation*/
 
 .wave {
+  font-size: 15px;
   animation-name: wave-animation;
   animation-duration: 2.5s;
   animation-iteration-count: infinite;
@@ -480,6 +481,10 @@ a {
 
 /* Media Queries */
 @media only screen and (min-width: 600px) {
+  .wave {
+    font-size: 18px;
+  }
+
   .landing {
     row-gap: 20px;
     padding-left: 0px;
