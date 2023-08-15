@@ -15,7 +15,7 @@ export default function App() {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 6000);
+    }, 1500);
   }, []);
 
   // Fix Height Bug in IOS
@@ -36,12 +36,19 @@ export default function App() {
     <>
       {loading ? (
         <div className="control">
-          <div className="load">
-            <div class="wrapper">
-              <div class="pie spinner"></div>
-              <div class="pie filler"></div>
-              <div class="mask"></div>
-            </div>
+          <div class="spinner">
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
           </div>
         </div>
       ) : (
