@@ -48,7 +48,15 @@ export default function Projects() {
         </Link>
       </div>
       <div className="projects">
-        <div className="title">mariana</div>
+        <div className="title">
+          <a
+            href="https://marketplace.visualstudio.com/items?itemName=danish.mariana-theme"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            mariana
+          </a>
+        </div>
         <div className="subtitle">VSCode custom theme</div>
 
         <div className="title" onClick={() => setVisiblekj(true)}>
