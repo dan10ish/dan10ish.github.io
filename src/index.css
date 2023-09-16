@@ -418,8 +418,20 @@ main {
     padding: 0px 0px;
   }
 
+  .title a:hover {
+    cursor: pointer;
+    color: #a0a0a0;
+    border-radius: 5px;
+    padding: 0px 0px;
+  }
+
   .pic:hover {
     transform: scale(1.05);
+    cursor: no-drop;
+  }
+
+  .icon img:hover {
+    transform: scale(1.15);
     cursor: no-drop;
   }
 
