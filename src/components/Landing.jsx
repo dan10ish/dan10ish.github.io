@@ -1,116 +1,122 @@
-import React, { useState, useEffect } from "react";
-import "./styles.css";
-import { ReactComponent as Shape } from "../assets/pictures/Shape.svg";
+import React from "react";
+import "../index.css";
 import { Link } from "react-router-dom";
+import tf from "../assets/skills/tf.svg";
+import react from "../assets/skills/react.svg";
+import three from "../assets/skills/three.svg";
+import fusion from "../assets/skills/fusion.svg";
+import matlab from "../assets/skills/matlab.svg";
+import unity from "../assets/skills/unity.svg";
+import AnimatePage from "../AnimatePage";
 
 export default function Landing() {
-  const [showDiv, setShowDiv] = useState(true);
-
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setShowDiv(false);
-    }, 3500);
-    return () => clearTimeout(timeoutId);
-  }, []);
-
-  // Message 1
-  const [hideDiv1, setHideDiv1] = useState(false);
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setHideDiv1(true);
-    }, 1500);
-
-    return () => clearTimeout(timeoutId);
-  }, []);
-
-  // Message 2
-  const [hideDiv2, setHideDiv2] = useState(false);
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setHideDiv2(true);
-    }, 2500);
-
-    return () => clearTimeout(timeoutId);
-  }, []);
-
-  // Message 3
-  const [hideDiv3, setHideDiv3] = useState(false);
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setHideDiv3(true);
-    }, 3500);
-
-    return () => clearTimeout(timeoutId);
-  }, []);
-
   return (
     <>
-      <div className="landing">
-        {hideDiv1 && (
-          <div className="message">
-            <div
-              className="messageText"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1, duration: 0.5 }}
-            >
-              Hey <span className="wave">👋</span>, I am Danish! A senior
-              Mechatronics Engineering student based in Mumbai.
+      <AnimatePage>
+        <main>
+          {/* Header */}
+          <div className="header-content">
+            <Link to="/">
+              <div className="name">
+                <span className="highlight">
+                  <h1>Danish Ansari</h1>
+                </span>
+              </div>
+            </Link>
+            {/* Nav */}
+            <div className="nav">
+              <div className="nav-content">
+                <Link to="/about">
+                  <div className="button one">About</div>
+                </Link>
+                <Link to="/projects">
+                  <div className="button two">Projects</div>
+                </Link>
+              </div>
             </div>
           </div>
-        )}
-        {hideDiv2 && (
-          <div className="message">
-            <div className="messageText">
-              Want to know more{" "}
-              <Link to="/about">
-                <span className="bold highlight">about me</span>
-              </Link>
-              ? Or do you want to see some of my{" "}
-              <Link to="/projects">
-                <span className="bold highlight">projects</span>
-              </Link>
-              ?
+          {/* Landing */}
+          <div className="landing">
+            <div className="l-one">
+              <p>Student | Creative Enthusiast</p>
+            </div>
+
+            <div className="l-two">
+              <p>
+                I like to code, design and make creative stuff.
+                <br />
+                Currently studying Mechatronics at NMIMS.
+              </p>
+            </div>
+
+            <div className="l-links">
+              <p>I am on:</p>
+              <ul>
+                <li>
+                  <a
+                    href="https://github.com/dan10ish"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <span className="l">Github</span> 💻
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://x.com/dan10ish"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <span className="l">𝕏</span> 🐦
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://instagram.com/dan10ish"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <span className="l">Instagram</span> 📷
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://dan10ish.read.cv"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <span className="l">Read.cv</span> 📃
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div className="l-skills">
+              <p>Stuff I know :</p>
+              <div className="icons">
+                <div className="icon">
+                  <img src={tf} alt="" />
+                </div>
+                <div className="icon">
+                  <img src={react} alt="" />
+                </div>
+                <div className="icon">
+                  <img src={three} alt="" />
+                </div>
+                <div className="icon">
+                  <img src={fusion} alt="" />
+                </div>
+                <div className="icon">
+                  <img src={matlab} alt="" />
+                </div>
+                <div className="icon">
+                  <img src={unity} alt="" />
+                </div>
+              </div>
             </div>
           </div>
-        )}
-        {hideDiv3 && (
-          <div className="message">
-            <div className="messageText">
-              Say hello on{" "}
-              <a
-                href="https://x.com/dan10ish"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span className="bold highlight">𝕏 (Twitter)</span>
-              </a>{" "}
-              or{" "}
-              <a
-                href="https://instagram.com/dan10ish"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span className="bold highlight">Instagram</span>
-              </a>
-              !
-            </div>
-            <div className="last">
-              <Shape />
-            </div>
-          </div>
-        )}
-        {hideDiv1 && <div className="seen">Seen</div>}
-        {showDiv && (
-          <div className="placeholder">
-            <div className="circles">
-              <div className="circle"></div>
-              <div className="circle"></div>
-              <div className="circle"></div>
-            </div>
-          </div>
-        )}
-      </div>
+        </main>
+      </AnimatePage>
     </>
   );
 }

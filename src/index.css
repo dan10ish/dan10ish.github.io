@@ -4,20 +4,387 @@
 
 * {
   margin: 0;
-  padding: 0;
   box-sizing: border-box;
+  padding: 0;
 }
 
 html,
 body {
+  font-family: "Space Mono", monospace;
   overflow-x: hidden;
+  padding: 0 20px 0 20px;
 }
 
-html {
-  scroll-behavior: smooth;
+.header-content {
+  margin-top: 30px;
 }
 
-.headerContent {
-  position: sticky;
-  top: 0;
+.header-content a {
+  text-decoration: none;
+  color: #a8a8a8;
+}
+
+.highlight {
+  color: #000000;
+}
+
+.name h1 {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 200;
+}
+
+.l-one {
+  font-size: 16px;
+  text-align: center;
+}
+
+.landing {
+  padding-top: 60px;
+  font-size: 16px;
+}
+
+.l-two {
+  margin-top: 40px;
+}
+
+.l-links {
+  margin-top: 40px;
+}
+
+.l-links li {
+  padding-bottom: 5px;
+}
+
+.l-links a {
+  text-decoration: none;
+  color: #000000;
+}
+
+.l-links .l {
+  border-bottom: 1px dotted #000000;
+}
+
+ul {
+  padding-left: 30px;
+  list-style-type: circle;
+  line-height: 25px;
+}
+
+.l-skills {
+  margin-top: 40px;
+}
+
+.icons {
+  margin-top: 20px;
+  display: grid;
+  width: 250px;
+  grid-template-columns: auto auto auto auto auto auto;
+}
+
+.nav {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  border-bottom: solid 2px #efefef;
+}
+
+.nav-content {
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  background-color: #f3f3f3;
+  padding: 10px 20px;
+  border-radius: 15px;
+  color: #a8a8a8;
+  text-align: center;
+  width: 130px;
+}
+
+main {
+  padding-bottom: 50px;
+}
+
+.about {
+  margin-top: 50px;
+  padding-bottom: 50px;
+}
+
+.main-pic {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.pic img {
+  width: 200px;
+  border-radius: 30px;
+}
+
+.captured {
+  margin-top: 5px;
+  font-size: 13px;
+  color: #ababab;
+}
+
+.about-text {
+  margin-top: 50px;
+  font-size: 16px;
+}
+
+.project-title {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: row;
+  column-gap: 30px;
+  justify-content: center;
+  padding-bottom: 10px;
+  /* border-bottom: 2px solid #eeeeee; */
+  color: #a8a8a8;
+}
+
+.title-content {
+  background-color: #f3f3f3;
+  padding: 7px 15px;
+  border-radius: 12px;
+}
+
+.projects {
+  margin-top: 20px;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: auto auto;
+  column-gap: 25px;
+  row-gap: 10px;
+}
+
+.project-title a {
+  color: #a8a8a8;
+  text-decoration: none;
+}
+
+.title {
+  text-decoration: underline dotted #000000;
+}
+
+.three {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.three Canvas {
+  background-color: #ababab;
+  border-radius: 0px 20px 20px 20px;
+  width: 300px;
+  height: 200px;
+}
+
+.buttonThree {
+  background-color: #ff0000;
+  color: #ffffff;
+  width: 50px;
+  height: 25px;
+  border-radius: 10px 10px 0px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.button {
+  cursor: pointer;
+}
+
+.projects .title a {
+  text-decoration: underline dotted;
+  color: #000000;
+}
+
+/* Media Queries */
+@media only screen and (min-width: 600px) {
+  .header-content {
+    margin-top: 50px;
+  }
+
+  .name h1 {
+    font-size: 28px;
+  }
+
+  .l-one {
+    font-size: 20px;
+  }
+
+  .landing {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    padding-top: 90px;
+    font-size: 16px;
+  }
+
+  .l-two {
+    margin-top: 60px;
+  }
+
+  .l-links {
+    margin-top: 60px;
+  }
+
+  .l-links .l {
+    border-bottom: 2px dotted #000000;
+  }
+
+  ul {
+    padding-left: 40px;
+    line-height: 28px;
+  }
+
+  .l-skills {
+    margin-top: 60px;
+  }
+
+  .icons {
+    margin-top: 20px;
+    width: 320px;
+  }
+
+  .nav-content {
+    column-gap: 100px;
+  }
+
+  .button {
+    padding: 15px 25px;
+    border-radius: 15px;
+    width: 140px;
+  }
+
+  main {
+    padding-bottom: 70px;
+  }
+
+  .about {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60px;
+    padding-bottom: 70px;
+  }
+
+  .main-pic {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pic img {
+    width: 260px;
+    border-radius: 30px;
+  }
+
+  .captured {
+    margin-top: 5px;
+    font-size: 15px;
+    color: #ababab;
+  }
+
+  .about-text {
+    margin-top: 50px;
+    font-size: 16px;
+    width: 450px;
+  }
+
+  .project-title {
+    margin-top: 70px;
+    column-gap: 60px;
+    padding-bottom: 15px;
+  }
+
+  .projects .title a {
+    text-decoration: underline dotted;
+    color: #000000;
+  }
+
+  .projects {
+    margin-top: 25px;
+    column-gap: 40px;
+    row-gap: 15px;
+  }
+
+  .three {
+    top: 20%;
+  }
+
+  .three Canvas {
+    border-radius: 0px 30px 30px 30px;
+    width: 500px;
+    height: 350px;
+  }
+
+  .buttonThree {
+    background-color: #ff0000;
+    color: #ffffff;
+    width: 60px;
+    height: 30px;
+    border-radius: 10px 10px 0px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .button {
+    cursor: pointer;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  h1:hover {
+    transform: scale(1.05);
+    color: #848484;
+  }
+
+  .one:hover {
+    transform: scale(1.05);
+    color: #000000;
+  }
+
+  .two:hover {
+    transform: scale(1.05);
+    color: #000000;
+  }
+
+  .l-links li a .l:hover {
+    color: #848484;
+  }
+
+  .title:hover {
+    cursor: pointer;
+    color: #a0a0a0;
+    border-radius: 5px;
+    padding: 0px 0px;
+  }
+
+  .pic:hover {
+    transform: scale(1.05);
+    cursor: no-drop;
+  }
+
+  .buttonThree:hover {
+    cursor: pointer;
+    color: #000000;
+  }
+
+  .title-content:hover {
+    transform: scale(1.05);
+    color: #000000;
+  }
 }
