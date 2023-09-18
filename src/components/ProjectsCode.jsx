@@ -41,14 +41,13 @@ export default function Projects() {
       </div>
       <div className="projects">
         <div className="title">
-          {" "}
           <a
             href="https://dan10ish.github.io/Galaxy"
             target="_blank"
             rel="noopener noreferrer"
           >
             galaxy
-          </a>{" "}
+          </a>
         </div>
         <div className="subtitle">Three.js particle system</div>
 

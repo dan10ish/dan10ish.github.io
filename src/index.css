@@ -214,7 +214,13 @@ main {
 }
 
 .title {
-  text-decoration: underline dotted #000000;
+  /* text-decoration: underline dotted #000000; */
+  background-color: #f3f3f3;
+  padding: 5px 5px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 10px;
 }
 
 .three {
@@ -248,8 +254,15 @@ main {
 }
 
 .projects .title a {
-  text-decoration: underline dotted;
+  text-decoration: none;
   color: #000000;
+}
+
+.aboutfancy {
+  background-color: #efefef;
+  border-radius: 8px;
+  padding: 0px 10px;
+  cursor: no-drop;
 }
 
 /* Media Queries */
@@ -353,8 +366,12 @@ main {
   }
 
   .projects .title a {
-    text-decoration: underline dotted;
+    text-decoration: none;
     color: #000000;
+  }
+
+  .projects .title {
+    padding: 10px 10px;
   }
 
   .projects {
@@ -364,7 +381,7 @@ main {
   }
 
   .three {
-    top: 20%;
+    top: 30%;
   }
 
   .three Canvas {
@@ -411,18 +428,23 @@ main {
     color: #848484;
   }
 
-  .title:hover {
+  /* .title:hover {
     cursor: pointer;
     color: #a0a0a0;
     border-radius: 5px;
     padding: 0px 0px;
+  } */
+
+  .projects .title a:hover {
+    transform: scale(1.05);
+    text-decoration: none;
+    cursor: pointer;
   }
 
-  .title a:hover {
+  .title:hover {
+    transform: scale(1.05);
+    text-decoration: none;
     cursor: pointer;
-    color: #a0a0a0;
-    border-radius: 5px;
-    padding: 0px 0px;
   }
 
   .pic:hover {

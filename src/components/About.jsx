@@ -40,14 +40,18 @@ export default function About() {
           </div>
           <div className="about-text">
             <p>
-              Hi! I’m Danish. I’m from Mumbai, currently studying Mechatronics
-              (2024) at NMIMS. <br />
+              Hi! I’m Danish. I’m from Mumbai, currently studying{" "}
+              <span className="aboutfancy">Mechatronics</span> (2024) at NMIMS.{" "}
+              <br />
               <br />
               I'm all about combining tech and creativity for a sleek and
               functional experience. <br />
               <br />
-              In my free time, I continue to explore AI, design, automobiles and
-              tech products.
+              In my free time, I continue to explore{" "}
+              <span className="aboutfancy">
+                {" "}
+                AI, robotics, design, automobiles and tech products.
+              </span>
             </p>
           </div>
         </div>
