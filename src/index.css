@@ -167,8 +167,10 @@ main {
 }
 
 .pic img {
-  width: 200px;
-  border-radius: 30px;
+  width: 170px;
+  margin-top: -50px;
+  position: relative;
+  left: 10px;
 }
 
 .captured {
@@ -343,8 +345,11 @@ main {
   }
 
   .pic img {
-    width: 260px;
-    border-radius: 30px;
+    width: 200px;
+    /* border-radius: 30px; */
+    margin-top: -50px;
+    position: relative;
+    left: 15px;
   }
 
   .captured {

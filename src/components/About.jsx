@@ -1,6 +1,6 @@
 import React from "react";
 import "../index.css";
-import pic from "../assets/aboutPic.jpeg";
+import pic from "../assets/dan.jpeg";
 import { Link } from "react-router-dom";
 import AnimatePage from "../AnimatePage";
 
