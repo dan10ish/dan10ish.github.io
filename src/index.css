@@ -349,7 +349,7 @@ main {
     /* border-radius: 30px; */
     margin-top: -50px;
     position: relative;
-    left: 15px;
+    /* left: 15px; */
   }
 
   .captured {
@@ -410,6 +410,39 @@ main {
 
   .button {
     cursor: pointer;
+  }
+}
+
+/* Media Queries */
+@media only screen and (min-width: 750px) {
+  .about {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60px;
+    padding-bottom: 70px;
+    grid-template-columns: auto auto;
+    column-gap: 60px;
+  }
+
+  .main-pic {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pic img {
+    width: 200px;
+    margin-top: -50px;
+    position: relative;
+    left: 15px;
+  }
+
+  .about-text{
+    position: relative;
+    margin-top: -15px;
+    width: 400px;
   }
 }
 

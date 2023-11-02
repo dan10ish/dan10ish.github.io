@@ -81,6 +81,15 @@ export default function Landing() {
                 </li>
                 <li>
                   <a
+                    href="https://www.linkedin.com/in/dan10ish/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <span className="l">LinkedIn</span> 💼
+                  </a>
+                </li>
+                <li>
+                  <a
                     href="https://dan10ish.read.cv"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -92,7 +101,7 @@ export default function Landing() {
             </div>
 
             <div className="l-skills">
-              <p>Stuff I know :</p>
+              <p>Familiar tech territory :</p>
               <div className="icons">
                 <div className="icon">
                   <img src={tf} alt="" />

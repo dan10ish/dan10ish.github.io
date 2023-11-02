@@ -34,9 +34,9 @@ export default function About() {
             <div className="pic">
               <img src={pic} alt="" />
             </div>
-            <div className="captured">
+            {/* <div className="captured">
               <p>c. May 2023</p>
-            </div>
+            </div> */}
           </div>
           <div className="about-text">
             <p>
