@@ -167,10 +167,11 @@ main {
 }
 
 .pic img {
-  width: 170px;
-  margin-top: -50px;
+  width: 120px;
+  margin-top: 0px;
   position: relative;
-  left: 10px;
+  left: 0px;
+  border-radius: 20px;
 }
 
 .captured {
@@ -345,9 +346,9 @@ main {
   }
 
   .pic img {
-    width: 200px;
+    width: 120px;
     /* border-radius: 30px; */
-    margin-top: -50px;
+    margin-top: 0px;
     position: relative;
     /* left: 15px; */
   }
@@ -433,13 +434,13 @@ main {
   }
 
   .pic img {
-    width: 200px;
-    margin-top: -50px;
+    width: 120px;
+    margin-top: 0px;
     position: relative;
-    left: 15px;
+    left: 0px;
   }
 
-  .about-text{
+  .about-text {
     position: relative;
     margin-top: -15px;
     width: 400px;

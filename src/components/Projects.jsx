@@ -53,6 +53,18 @@ export default function Projects() {
           <div className="title">
             {" "}
             <a
+              href="https://dan10ish.github.io/RoboticArm"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              robotic <br /> arm
+            </a>{" "}
+          </div>
+          <div className="subtitle">3-DOF robotic arm made using r3f</div>
+
+          <div className="title">
+            {" "}
+            <a
               href="https://dan10ish.github.io/Galaxy"
               target="_blank"
               rel="noopener noreferrer"

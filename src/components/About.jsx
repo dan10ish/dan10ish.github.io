@@ -1,6 +1,6 @@
 import React from "react";
 import "../index.css";
-import pic from "../assets/dan.jpeg";
+import pic from "../assets/danlatest.jpeg";
 import { Link } from "react-router-dom";
 import AnimatePage from "../AnimatePage";
 
@@ -34,9 +34,9 @@ export default function About() {
             <div className="pic">
               <img src={pic} alt="" />
             </div>
-            {/* <div className="captured">
+            <div className="captured">
               <p>c. May 2023</p>
-            </div> */}
+            </div>
           </div>
           <div className="about-text">
             <p>
@@ -50,7 +50,7 @@ export default function About() {
               In my free time, I continue to explore{" "}
               <span className="aboutfancy">
                 {" "}
-                AI, robotics, design, automobiles and tech products.
+                AI, robotics and design.
               </span>
             </p>
           </div>

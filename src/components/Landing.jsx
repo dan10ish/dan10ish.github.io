@@ -43,6 +43,10 @@ export default function Landing() {
 
             <div className="l-two">
               <p>
+                I explore the intersection of{" "}
+                <span className="aboutfancy">AI and Robotics</span>.
+                <br />
+                <br />
                 I like to code, design and make creative stuff.
                 <br />
                 Currently studying Mechatronics at NMIMS.
@@ -86,15 +90,6 @@ export default function Landing() {
                     rel="noopener noreferrer"
                   >
                     <span className="l">LinkedIn</span> 💼
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://dan10ish.read.cv"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <span className="l">Read.cv</span> 📃
                   </a>
                 </li>
               </ul>
