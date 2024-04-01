@@ -1,9 +1,10 @@
-# https://www.robotstxt.org/robotstxt.html
+# Disallow everything.
 User-agent: *
-Disallow:
+Disallow: /
+
+# Certain social media sites are whitelisted to allow crawlers to access page markup when links to /images are shared. 
+User-agent: Twitterbot
+Allow: /images
 
 User-agent: facebookexternalhit
-Disallow:
-
-User-agent: Twitterbot
-Disallow:
+Allow: /images
