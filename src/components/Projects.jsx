@@ -3,162 +3,190 @@ import "../index.css";
 import { Link } from "react-router-dom";
 import { Canvas } from "@react-three/fiber";
 import { Environment, OrbitControls } from "@react-three/drei";
-import Knuckle from "./3dassets/Knuckle.jsx";
-import Uc from "./3dassets/Uc.jsx";
-import Fc from "./3dassets/Fc.jsx";
-import AnimatePage from "../AnimatePage";
+import Knuckle from "./Gltfjsx/Knuckle.jsx";
+import Uc from "./Gltfjsx/Uc.jsx";
+import Fc from "./Gltfjsx/Fc.jsx";
 
 export default function Projects() {
   const [visiblekj, setVisiblekj] = React.useState(false);
   const [visibleuc, setVisibleuc] = React.useState(false);
   const [visiblefc, setVisiblefc] = React.useState(false);
+
+  // Height bug fix
+  const appHeight = () => {
+    const doc = document.documentElement;
+    doc.style.setProperty("--app-height", `${window.innerHeight}px`);
+  };
+  window.addEventListener("resize", appHeight);
+  appHeight();
   return (
     <>
-      <AnimatePage>
-        {/* Header */}
-        <div className="header-content">
+      <main>
+        <div className="menu">
           <Link to="/">
-            <div className="name">
-              <h1>Danish Ansari</h1>
-            </div>
+            <div className="menu-btn">About</div>
           </Link>
-          {/* Nav */}
-          <div className="nav">
-            <div className="nav-content">
-              <Link to="/about">
-                <div className="button one">About</div>
-              </Link>
-              <Link to="/projects">
-                <div className="button two">
-                  <span className="highlight">Projects</span>
-                </div>
-              </Link>
-            </div>
-          </div>
-        </div>
-        <div className="project-title">
           <Link to="/projects">
-            <div className="title-content">
-              <span className="highlight">all</span>
-            </div>
+            <div className="menu-btn highlight">Projects</div>
           </Link>
-          <Link to="/projectsCode">
-            <div className="title-content">code</div>
-          </Link>
-          <Link to="/projectsDesign">
-            <div className="title-content">design</div>
+          <Link to="/writings">
+            <div className="menu-btn">Writing</div>
           </Link>
         </div>
-        <div className="projects">
-          <div className="title">
-            {" "}
-            <a
-              href="https://dan10ish.github.io/RoboticArm"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              robotic <br /> arm
-            </a>{" "}
-          </div>
-          <div className="subtitle">3-DOF robotic arm made using r3f</div>
-
-          <div className="title">
-            {" "}
-            <a
-              href="https://dan10ish.github.io/Galaxy"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              galaxy
-            </a>{" "}
-          </div>
-          <div className="subtitle">Three.js particle system</div>
-
-          <div className="title">
-            <a
-              href="https://dan10ish.github.io/Office"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              office
-            </a>
-          </div>
-          <div className="subtitle">r3f site and blender models</div>
-
-          <div className="title">
-            <a
-              href="https://marketplace.visualstudio.com/items?itemName=danish.mariana-theme"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              mariana
-            </a>
-          </div>
-          <div className="subtitle">VSCode custom theme</div>
-
-          <div className="title" onClick={() => setVisiblekj(true)}>
-            knuckle <br /> joint
-          </div>
-          <div className="subtitle">hinged joint b/w 2 rods</div>
-
-          <div className="title" onClick={() => setVisibleuc(true)}>
-            universal <br /> coupling
-          </div>
-          <div className="subtitle">joint b/w 2 shafts</div>
-
-          <div className="title" onClick={() => setVisiblefc(true)}>
-            flange <br /> coupling
-          </div>
-          <div className="subtitle">coupling b/w rotating shafts</div>
+        <div className="line"></div>
+        <div className="projectNav">
+          <Link to="/projects">
+            <div className="nav highlight">All</div>
+          </Link>
+          <Link to="/code">
+            <div className="nav">Code</div>
+          </Link>
+          <Link to="/design">
+            <div className="nav">Design</div>
+          </Link>
         </div>
-
-        {visiblekj && (
-          <div className="three">
-            <div className="buttonThree" onClick={() => setVisiblekj(false)}>
-              X
+        <div className="project-content">
+          <div className="table-row">
+            <div className="table-column title highlight">
+              <a
+                href="https://dan10ish.github.io/RoboticArm"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                robotic <br /> arm
+              </a>
             </div>
-            <Canvas>
-              <Knuckle
-                scale={0.03}
-                rotation={[0.5, -0.4, -0.6]}
-                position={[0, -0.5, 0]}
-              />
-              <Environment preset="warehouse" />
-              <OrbitControls />
-            </Canvas>
-          </div>
-        )}
-
-        {visibleuc && (
-          <div className="three">
-            <div className="buttonThree" onClick={() => setVisibleuc(false)}>
-              X
+            <div className="table-columns">
+              3-DOF robotic arm made using r3f
             </div>
-            <Canvas>
-              <Uc
-                scale={0.025}
-                rotation={[0.5, -0.4, 0]}
-                position={[0.6, -1, 0]}
-              />
-              <Environment preset="warehouse" />
-              <OrbitControls />
-            </Canvas>
           </div>
-        )}
 
-        {visiblefc && (
-          <div className="three">
-            <div className="buttonThree" onClick={() => setVisiblefc(false)}>
-              X
+          <div className="table-row">
+            <div className="table-column title highlight">
+              <a
+                href="https://dan10ish.github.io/Galaxy"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                galaxy
+              </a>
             </div>
-            <Canvas>
-              <Fc scale={0.02} rotation={[0, 2.2, 0]} position={[0, 0, -0.7]} />
-              <Environment preset="warehouse" />
-              <OrbitControls />
-            </Canvas>
+            <div className="table-columns">three.js particle system</div>
           </div>
-        )}
-      </AnimatePage>
+
+          <div className="table-row">
+            <div className="table-column title highlight">
+              <a
+                href="https://github.com/dan10ish/3DOF-RoboticArm-C"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                3-DOF <br /> arm
+              </a>
+            </div>
+            <div className="table-columns">
+              complete modelling of 3DOF arm in C
+            </div>
+          </div>
+
+          <div className="table-row">
+            <div className="table-column title highlight">
+              <a
+                href="https://dan10ish.github.io/Office"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                office
+              </a>
+            </div>
+            <div className="table-columns">r3f site and blender models</div>
+          </div>
+
+          <div className="table-row">
+            <div className="table-column title highlight">
+              <a
+                href="https://marketplace.visualstudio.com/items?itemName=danish.mariana-theme"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                mariana
+              </a>
+            </div>
+            <div className="table-columns">VSCode custom dark theme</div>
+          </div>
+
+          <div className="table-row">
+            <div
+              className="table-column title highlight pointer"
+              onClick={() => setVisiblekj(true)}
+            >
+              knuckle <br /> joint
+            </div>
+            <div className="table-columns">hinged joint b/w 2 rods</div>
+          </div>
+
+          <div className="table-row">
+            <div
+              className="table-column title highlight pointer"
+              onClick={() => setVisibleuc(true)}
+            >
+              universal <br /> coupling
+            </div>
+            <div className="table-columns">joint b/w 2 rigid shafts</div>
+          </div>
+
+          <div className="table-row">
+            <div
+              className="table-column title highlight pointer"
+              onClick={() => setVisiblefc(true)}
+            >
+              flange <br /> coupling
+            </div>
+            <div className="table-columns">coupling b/w rotating shafts</div>
+          </div>
+        </div>
+      </main>
+      {visiblekj && (
+        <div className="three">
+          <div className="buttonThree" onClick={() => setVisiblekj(false)}>
+            X
+          </div>
+          <Canvas>
+            <Knuckle
+              scale={0.03}
+              rotation={[0.5, -0.4, -0.6]}
+              position={[0, 0, 0]}
+            />
+            <Environment preset="warehouse" />
+            <OrbitControls />
+          </Canvas>
+        </div>
+      )}
+      {visibleuc && (
+        <div className="three">
+          <div className="buttonThree" onClick={() => setVisibleuc(false)}>
+            X
+          </div>
+          <Canvas>
+            <Uc scale={0.015} rotation={[0.5, -0.4, 0]} position={[0, 0.4, 0]} />
+            <Environment preset="warehouse" />
+            <OrbitControls />
+          </Canvas>
+        </div>
+      )}
+
+      {visiblefc && (
+        <div className="three">
+          <div className="buttonThree" onClick={() => setVisiblefc(false)}>
+            X
+          </div>
+          <Canvas>
+            <Fc scale={0.015} rotation={[0.2, 2.4, 0]} position={[0, 0, 0]} />
+            <Environment preset="warehouse" />
+            <OrbitControls />
+          </Canvas>
+        </div>
+      )}
     </>
   );
 }

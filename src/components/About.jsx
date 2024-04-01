@@ -1,61 +1,116 @@
-import React from "react";
+import { React } from "react";
 import "../index.css";
-import pic from "../assets/danlatest.jpeg";
 import { Link } from "react-router-dom";
-import AnimatePage from "../AnimatePage";
+import fusion from "../assets/fusion.svg";
+import matlab from "../assets/matlab.svg";
+import react from "../assets/react.svg";
+import tf from "../assets/tf.svg";
+import three from "../assets/three.svg";
+import unity from "../assets/unity.svg";
 
-export default function About() {
+export default function App() {
+  // Height bug fix
+  const appHeight = () => {
+    const doc = document.documentElement;
+    doc.style.setProperty("--app-height", `${window.innerHeight}px`);
+  };
+  window.addEventListener("resize", appHeight);
+  appHeight();
+
   return (
     <>
-      <AnimatePage>
-        {/* Header */}
-        <div className="header-content">
+      <main>
+        <div className="menu">
           <Link to="/">
-            <div className="name">
-              <h1>Danish Ansari</h1>
-            </div>
+            <div className="menu-btn highlight">About</div>
           </Link>
-          {/* Nav */}
-          <div className="nav">
-            <div className="nav-content">
-              <Link to="/about">
-                <div className="button one">
-                  <span className="highlight">About</span>
+          <Link to="/projects">
+            <div className="menu-btn">Projects</div>
+          </Link>
+          <Link to="/writings">
+            <div className="menu-btn">Writing</div>
+          </Link>
+        </div>
+        <div className="line"></div>
+        <div className="about-content">
+          <div className="about-one">
+            I explore the intersection of <span className="special">AI</span>{" "}
+            and <span className="special">Robotics</span>
+          </div>
+          <div className="about-two">
+            🎓 <span className="special">Mechatronics</span>, NMIMS '24
+          </div>
+          <div className="footer">
+            <span className="footer-icon">📍</span> Mumbai, IN
+          </div>
+          <div className="about-three">
+            <div className="about-three-one">Tech territory:</div>
+            <div className="about-three-two">
+              <div className="icons">
+                <div className="icon">
+                  <img src={tf} alt="" />
                 </div>
-              </Link>
-              <Link to="/projects">
-                <div className="button two">Projects</div>
-              </Link>
+                <div className="icon">
+                  <img src={react} alt="" />
+                </div>
+                <div className="icon">
+                  <img src={three} alt="" />
+                </div>
+                <div className="icon">
+                  <img src={fusion} alt="" />
+                </div>
+                <div className="icon">
+                  <img src={matlab} alt="" />
+                </div>
+                <div className="icon">
+                  <img src={unity} alt="" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="about-four">
+            <div className="about-four-one">Contact:</div>
+            <div className="about-four-two">
+              <div className="about-four-two-two">
+                <div className="about-four-two-two-one">
+                  <span className="about-lap">- </span>
+                  <a
+                    href="https://x.com/dan10ish"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    X
+                  </a>
+                </div>
+                <div className="about-four-two-two-two">
+                  <span className="about-lap">- </span>
+                  <a
+                    href="https://github.com/dan10ish"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    github
+                  </a>
+                </div>
+                <div className="about-four-two-two-three">
+                  <span className="about-lap">- </span>
+                  <a
+                    href="https://instagram.com/dan10ish"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    instagram
+                  </a>
+                </div>
+                <div className="about-four-two-two-four">
+                  <span className="about-lap">- </span>
+                  <a href="mailto:aaansaridan@gmail.com">mail</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div className="about">
-          <div className="main-pic">
-            <div className="pic">
-              <img src={pic} alt="" />
-            </div>
-            <div className="captured">
-              <p>c. May 2023</p>
-            </div>
-          </div>
-          <div className="about-text">
-            <p>
-              Hi! I’m Danish. I’m from Mumbai, currently studying{" "}
-              <span className="aboutfancy">Mechatronics</span> (2024) at NMIMS.{" "}
-              <br />
-              <br />
-              I'm all about combining tech and creativity for a sleek and
-              functional experience. <br />
-              <br />
-              In my free time, I continue to explore{" "}
-              <span className="aboutfancy">
-                {" "}
-                AI, robotics and design.
-              </span>
-            </p>
-          </div>
-        </div>
-      </AnimatePage>
+      </main>
     </>
   );
 }
