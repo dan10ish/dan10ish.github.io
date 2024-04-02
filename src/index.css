@@ -10,7 +10,7 @@
   --solNormalText: #2aa198;
   --solSpecialText: #7d9208;
   --solNotHighlighted: #757575;
-  --solHighlighted: #ffffff;
+  --solHighlighted: #d8d8d8;
   --solButton: #013745;
   --sol3DBackground: #00181e;
   --solLine: #013745;
@@ -22,12 +22,13 @@ body {
   font-family: "Space Mono", monospace;
   background-color: var(--solBackground);
   color: var(--solNormalText);
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .header {
   font-size: 22px;
-  padding-top: 30px;
+  margin-top: 30px;
+  padding: 10px;
   color: var(--solNormalText);
 }
 
@@ -47,22 +48,19 @@ a {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding-top: 30px;
+  padding-top: 20px;
   display: flex;
   flex-direction: row;
-  grid-gap: 30px;
+  grid-gap: 10px;
 }
 
 .menu-btn {
   color: var(--solNotHighlighted);
+  padding: 10px 10px;
 }
 
 .highlight {
   color: var(--solHighlighted);
-}
-
-.about-content {
-  padding-top: 50px;
 }
 
 .line {
@@ -72,7 +70,7 @@ a {
   display: flex;
   width: 300px;
   border-bottom: 3px solid var(--solLine);
-  padding-top: 20px;
+  padding-top: 25px;
 }
 
 .special {
@@ -80,6 +78,7 @@ a {
 }
 
 .about-content {
+  padding-top: 50px;
   display: flex;
   flex-direction: column;
   grid-row-gap: 20px;
@@ -105,16 +104,17 @@ a {
   justify-content: center;
   text-align: center;
   padding-top: 5px;
+  color: var(--solSpecialText);
 }
 
 .about-four-two-two a {
-  color: var(--solNormalText);
+  color: var(--solSpecialText);
   border-bottom: 2px dotted;
 }
 
 .about-four-two-two {
   padding-top: 10px;
-  /* left: 20px; */
+  left: 20px;
   position: relative;
   text-align: left;
   display: grid;
@@ -127,15 +127,16 @@ a {
 }
 
 .projectNav {
-  padding-top: 40px;
+  padding-top: 30px;
   display: flex;
   flex-direction: row;
-  grid-gap: 40px;
+  grid-gap: 30px;
   justify-content: center;
   align-items: center;
 }
 
 .nav {
+  padding: 10px;
   color: var(--solNotHighlighted);
 }
 
@@ -145,13 +146,13 @@ a {
 
 .project-content {
   text-align: center;
-  padding-top: 40px;
+  padding-top: 30px;
   justify-content: center;
   align-items: center;
   display: flex;
   flex-direction: column;
   width: 300px;
-  grid-gap: 20px;
+  grid-gap: 10px;
   font-size: 16px;
   padding-bottom: 50px;
 }
@@ -196,8 +197,9 @@ a {
 }
 
 .three {
-  position: relative;
-  top: 300px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 65%);
 }
 
 .three {
@@ -208,25 +210,29 @@ a {
 }
 
 .buttonThree {
-  position: absolute;
+  position: fixed;
   z-index: 100;
-  top: 12px;
-  left: 5px;
-  color: #ffffff;
-  width: 50px;
+  top: 1px;
+  left: 0px;
+  color: #e9e9e9;
+  background-color: #ff0000;
+  border-radius: 15px 0 0 0px;
+  padding: 2px 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 18px;
   cursor: pointer;
 }
 
 .coming-soon {
-  padding-top: 100px;
+  padding: 30px;
+  margin-top: 120px;
   display: flex;
   justify-content: center;
   align-items: center;
   grid-column-gap: 40px;
+  cursor: no-drop;
 }
 
 .dot-pulse {
@@ -301,16 +307,26 @@ a {
   }
 }
 
+.highlight {
+  border-radius: 10px;
+  background-color: #013745;
+}
+
 /* Media Queries */
 @media only screen and (min-width: 750px) {
   .header {
     font-size: 30px;
-    padding-top: 40px;
+    margin-top: 40px;
+    padding: 10px 20px;
   }
 
   .menu {
-    padding-top: 50px;
-    grid-gap: 100px;
+    padding-top: 40px;
+    grid-gap: 70px;
+  }
+
+  .menu-btn {
+    padding: 10px 20px;
   }
 
   .about-content {
@@ -319,7 +335,7 @@ a {
 
   .line {
     width: 500px;
-    padding-top: 20px;
+    padding-top: 10px;
   }
 
   .about-content {
@@ -359,7 +375,11 @@ a {
 
   .projectNav {
     padding-top: 50px;
-    grid-gap: 70px;
+    grid-gap: 60px;
+  }
+
+  .nav {
+    padding: 10px 20px;
   }
 
   .project-content {
@@ -406,7 +426,7 @@ a {
 
   .three {
     position: relative;
-    top: 300px;
+    top: 0px;
   }
 
   .three {
@@ -419,12 +439,12 @@ a {
   .buttonThree {
     position: absolute;
     z-index: 100;
-    top: 20px;
-    left: 10px;
+    top: 1px;
+    left: 0px;
     color: #ffffff;
     width: 50px;
-    height: 25px;
-    border-radius: 10px 10px 0px 0px;
+    height: 50px;
+    border-radius: 30px 0px 0px 0px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -435,5 +455,45 @@ a {
   .coming-soon {
     padding-top: 200px;
     grid-column-gap: 40px;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .menu-btn:hover {
+    border-radius: 10px;
+    background-color: #013745;
+  }
+
+  .header:hover {
+    border-radius: 10px;
+    background-color: #013745;
+    color: var(--solSpecialText);
+  }
+
+  .nav:hover {
+    border-radius: 10px;
+    background-color: #013745;
+  }
+
+  .table-column a:hover {
+    color: var(--solHighlighted);
+  }
+
+  .pointer:hover {
+    color: var(--solHighlighted);
+  }
+
+  .about-four-two-two a:hover {
+    color: var(--solHighlighted);
+    border-bottom: 2px dotted;
+  }
+
+  .icons img:hover {
+    transform: scale(1.2);
+    cursor: no-drop;
+  }
+
+  .buttonThree:hover {
+    color: #00181e;
   }
 }

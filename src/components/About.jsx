@@ -73,7 +73,7 @@ export default function App() {
             <div className="about-four-two">
               <div className="about-four-two-two">
                 <div className="about-four-two-two-one">
-                  <span className="about-lap">- </span>
+                  <span className="about-lap">• </span>
                   <a
                     href="https://x.com/dan10ish"
                     target="_blank"
@@ -83,7 +83,7 @@ export default function App() {
                   </a>
                 </div>
                 <div className="about-four-two-two-two">
-                  <span className="about-lap">- </span>
+                  <span className="about-lap">• </span>
                   <a
                     href="https://github.com/dan10ish"
                     target="_blank"
@@ -93,7 +93,7 @@ export default function App() {
                   </a>
                 </div>
                 <div className="about-four-two-two-three">
-                  <span className="about-lap">- </span>
+                  <span className="about-lap">• </span>
                   <a
                     href="https://instagram.com/dan10ish"
                     target="_blank"
@@ -103,7 +103,7 @@ export default function App() {
                   </a>
                 </div>
                 <div className="about-four-two-two-four">
-                  <span className="about-lap">- </span>
+                  <span className="about-lap">• </span>
                   <a href="mailto:aaansaridan@gmail.com">mail</a>
                 </div>
               </div>

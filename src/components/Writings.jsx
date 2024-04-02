@@ -32,7 +32,7 @@ export default function Writings() {
               <div class="dot-pulse"></div>
             </div>
           </div>
-          soon
+          coming soon
         </div>
       </main>
     </>
