@@ -62,6 +62,36 @@ export default function Projects() {
           </div>
 
           <div className="table-row">
+            <div
+              className="table-column title highlight pointer"
+              onClick={() => setVisiblekj(true)}
+            >
+              knuckle <br /> joint
+            </div>
+            <div className="table-columns">hinged joint b/w 2 rods</div>
+          </div>
+
+          <div className="table-row">
+            <div
+              className="table-column title highlight pointer"
+              onClick={() => setVisibleuc(true)}
+            >
+              universal <br /> coupling
+            </div>
+            <div className="table-columns">joint b/w 2 rigid shafts</div>
+          </div>
+
+          <div className="table-row">
+            <div
+              className="table-column title highlight pointer"
+              onClick={() => setVisiblefc(true)}
+            >
+              flange <br /> coupling
+            </div>
+            <div className="table-columns">coupling b/w rotating shafts</div>
+          </div>
+
+          <div className="table-row">
             <div className="table-column title highlight">
               <a
                 href="https://dan10ish.github.io/Galaxy"
@@ -114,36 +144,6 @@ export default function Projects() {
             </div>
             <div className="table-columns">VSCode custom dark theme</div>
           </div>
-
-          <div className="table-row">
-            <div
-              className="table-column title highlight pointer"
-              onClick={() => setVisiblekj(true)}
-            >
-              knuckle <br /> joint
-            </div>
-            <div className="table-columns">hinged joint b/w 2 rods</div>
-          </div>
-
-          <div className="table-row">
-            <div
-              className="table-column title highlight pointer"
-              onClick={() => setVisibleuc(true)}
-            >
-              universal <br /> coupling
-            </div>
-            <div className="table-columns">joint b/w 2 rigid shafts</div>
-          </div>
-
-          <div className="table-row">
-            <div
-              className="table-column title highlight pointer"
-              onClick={() => setVisiblefc(true)}
-            >
-              flange <br /> coupling
-            </div>
-            <div className="table-columns">coupling b/w rotating shafts</div>
-          </div>
         </div>
       </main>
       {visiblekj && (
@@ -168,7 +168,11 @@ export default function Projects() {
             X
           </div>
           <Canvas>
-            <Uc scale={0.015} rotation={[0.5, -0.4, 0]} position={[0, 0.4, 0]} />
+            <Uc
+              scale={0.015}
+              rotation={[0.5, -0.4, 0]}
+              position={[0, 0.4, 0]}
+            />
             <Environment preset="warehouse" />
             <OrbitControls />
           </Canvas>
