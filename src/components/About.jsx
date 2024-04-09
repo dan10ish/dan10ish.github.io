@@ -82,7 +82,7 @@ export default function App() {
                     X
                   </a>
                 </div>
-                <div className="about-four-two-two-two">
+                <div className="about-four-two-two-three">
                   <span className="about-lap">• </span>
                   <a
                     href="https://github.com/dan10ish"
@@ -92,7 +92,7 @@ export default function App() {
                     github
                   </a>
                 </div>
-                <div className="about-four-two-two-three">
+                <div className="about-four-two-two-two">
                   <span className="about-lap">• </span>
                   <a
                     href="https://instagram.com/dan10ish"

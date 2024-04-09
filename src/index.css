@@ -4,7 +4,8 @@
   box-sizing: border-box;
 }
 
-:root {
+/* Solarized Dark */
+/* :root {
   --app-height: 100%;
   --solBackground: #012b36;
   --solNormalText: #2aa198;
@@ -14,6 +15,26 @@
   --solButton: #013745;
   --sol3DBackground: #00181e;
   --solLine: #013745;
+  --solButtonHighlight: #013745;
+  --solButtonHover: #013745;
+  --solProjectLinkHover: #ffffff;
+  --solContactHover: #7d7d7d;
+} */
+
+:root {
+  --app-height: 100%;
+  --solBackground: #000000;
+  --solNormalText: #909090;
+  --solSpecialText: #ffffff;
+  --solNotHighlighted: #757575;
+  --solHighlighted: #ffffff;
+  --solButton: #1a1a1a;
+  --sol3DBackground: #0f0f0f;
+  --solLine: #1c1c1c;
+  --solButtonHighlight: #1a1a1a;
+  --solButtonHover: #1a1a1a;
+  --solProjectLinkHover: #7d7d7d;
+  --solContactHover: #7d7d7d;
 }
 
 html,
@@ -23,13 +44,18 @@ body {
   background-color: var(--solBackground);
   color: var(--solNormalText);
   font-size: 16px;
+  background-size: 40px 40px;
+  /* background-image: radial-gradient(circle, #ffffff 1px, rgba(0, 0, 0, 0) 1px); */
+  background-image: linear-gradient(to right, #171717 1px, transparent 1px),
+    linear-gradient(to bottom, #171717 1px, transparent 1px);
 }
 
 .header {
   font-size: 22px;
   margin-top: 30px;
   padding: 10px;
-  color: var(--solNormalText);
+  color: var(--solSpecialText);
+  /* font-weight: 700; */
 }
 
 main {
@@ -48,10 +74,17 @@ a {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding-top: 20px;
+  margin-top: 20px;
   display: flex;
   flex-direction: row;
   grid-gap: 10px;
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  padding: 15px;
 }
 
 .menu-btn {
@@ -71,6 +104,7 @@ a {
   width: 300px;
   border-bottom: 3px solid var(--solLine);
   padding-top: 25px;
+  display: none;
 }
 
 .special {
@@ -83,8 +117,82 @@ a {
   flex-direction: column;
   grid-row-gap: 20px;
   row-gap: 30px;
-  padding-bottom: 50px;
+  padding-bottom: 100px;
 }
+
+/* Glass Background Start */
+
+.about-one {
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  padding: 10px 20px;
+}
+
+.about-two {
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  padding: 10px 20px;
+}
+
+.about-three {
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  padding: 10px 20px;
+}
+
+.footer {
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  padding: 10px 20px;
+}
+
+.about-four-one {
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  padding: 10px 20px;
+}
+
+.projectNav {
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  padding: 10px;
+}
+
+.table-columns {
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  padding: 5px 10px;
+}
+
+/* Glass Background End */
 
 .about-three-two {
   padding-top: 15px;
@@ -114,12 +222,40 @@ a {
 
 .about-four-two-two {
   padding-top: 10px;
-  left: 20px;
   position: relative;
   text-align: left;
   display: grid;
-  grid-template-columns: auto;
+  grid-template-areas:
+    "contact-one contact-two contact-two contact-two"
+    "contact-three contact-three contact-four contact-four";
+  column-gap: 30px;
   row-gap: 10px;
+  width: 150px;
+  justify-content: center;
+  align-items: center;
+  left: 10px;
+}
+
+.about-four-two-two-one {
+  grid-area: contact-one;
+}
+
+.about-four-two-two-two {
+  grid-area: contact-two;
+  text-align: right;
+}
+
+.about-four-two-two-three {
+  grid-area: contact-three;
+}
+
+.about-four-two-two-four {
+  grid-area: contact-four;
+  text-align: right;
+}
+
+.about-lap {
+  display: none;
 }
 
 .footer-icon {
@@ -127,7 +263,7 @@ a {
 }
 
 .projectNav {
-  padding-top: 30px;
+  margin-top: 30px;
   display: flex;
   flex-direction: row;
   grid-gap: 30px;
@@ -209,7 +345,7 @@ a {
 }
 
 .three {
-  background-color: #00181e;
+  background-color: var(--sol3DBackground);
   border-radius: 15px;
   width: 300px;
   height: 300px;
@@ -316,7 +452,7 @@ a {
 
 .highlight {
   border-radius: 10px;
-  background-color: #013745;
+  background-color: var(--solButtonHighlight);
 }
 
 /* Media Queries */
@@ -439,7 +575,7 @@ a {
   }
 
   .three {
-    background-color: #00181e;
+    background-color: var(--sol3DBackground);
     border-radius: 30px;
     width: 500px;
     height: 400px;
@@ -470,30 +606,30 @@ a {
 @media (hover: hover) and (pointer: fine) {
   .menu-btn:hover {
     border-radius: 10px;
-    background-color: #013745;
+    background-color: var(--solButtonHover);
   }
 
   .header:hover {
     border-radius: 10px;
-    background-color: #013745;
+    /* background-color: var(--solButtonHover); */
     color: var(--solHighlighted);
   }
 
   .nav:hover {
     border-radius: 10px;
-    background-color: #013745;
+    background-color: var(--solButtonHover);
   }
 
   .table-column a:hover {
-    color: var(--solHighlighted);
+    color: var(--solProjectLinkHover);
   }
 
   .pointer:hover {
-    color: var(--solHighlighted);
+    color: var(--solProjectLinkHover);
   }
 
   .about-four-two-two a:hover {
-    color: var(--solHighlighted);
+    color: var(--solContactHover);
     border-bottom: 2px dotted;
   }
 
@@ -503,6 +639,6 @@ a {
   }
 
   .buttonThree:hover {
-    color: #00181e;
+    color: #000000;
   }
 }
