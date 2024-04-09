@@ -464,7 +464,7 @@ a {
   }
 
   .menu {
-    padding-top: 40px;
+    margin-top: 40px;
     grid-gap: 50px;
   }
 
@@ -473,7 +473,7 @@ a {
   }
 
   .about-content {
-    padding-top: 70px;
+    margin-top: 0px;
   }
 
   .line {
@@ -481,6 +481,7 @@ a {
     justify-content: center;
     width: 500px;
     padding-top: 30px;
+    display: none;
   }
 
   .about-content {
@@ -519,7 +520,7 @@ a {
   }
 
   .projectNav {
-    padding-top: 50px;
+    margin-top: 50px;
     grid-gap: 60px;
   }
 
@@ -567,6 +568,7 @@ a {
     justify-content: center;
     align-items: center;
     text-align: left;
+    padding: 15px 15px;
   }
 
   .three {
