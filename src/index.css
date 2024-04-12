@@ -122,58 +122,52 @@ a {
 
 /* Glass Background Start */
 
-.about-one {
-  /* From https://css.glass */
+/* .about-one {
   background: rgba(255, 255, 255, 0.04);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
   padding: 10px 20px;
-}
+} */
 
-.about-two {
-  /* From https://css.glass */
+/* .about-two {
   background: rgba(255, 255, 255, 0.04);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
   padding: 10px 20px;
-}
+} */
 
-.about-three {
-  /* From https://css.glass */
+/* .about-three {
   background: rgba(255, 255, 255, 0.04);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
   padding: 10px 20px;
-}
+} */
 
-.footer {
-  /* From https://css.glass */
+/* .footer {
   background: rgba(255, 255, 255, 0.04);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
   padding: 10px 20px;
-}
+} */
 
-.about-four-one {
-  /* From https://css.glass */
+/* .about-four-one {
   background: rgba(255, 255, 255, 0.04);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
   padding: 10px 20px;
-}
+} */
 
 .projectNav {
-  /* From https://css.glass */
   background: rgba(255, 255, 255, 0.04);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -182,15 +176,14 @@ a {
   padding: 10px;
 }
 
-.table-columns {
-  /* From https://css.glass */
+/* .table-columns {
   background: rgba(255, 255, 255, 0.04);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
   padding: 5px 10px;
-}
+} */
 
 /* Glass Background End */
 
@@ -266,7 +259,7 @@ a {
   margin-top: 30px;
   display: flex;
   flex-direction: row;
-  grid-gap: 30px;
+  grid-gap: 20px;
   justify-content: center;
   align-items: center;
 }
@@ -299,7 +292,7 @@ a {
   justify-content: center;
   display: flex;
   flex-direction: row;
-  grid-gap: 30px;
+  grid-gap: 20px;
 }
 
 .table-row .title {
@@ -473,7 +466,7 @@ a {
   }
 
   .about-content {
-    margin-top: 0px;
+    margin-top: 20px;
   }
 
   .line {
@@ -485,8 +478,8 @@ a {
   }
 
   .about-content {
-    grid-row-gap: 30px;
-    row-gap: 30px;
+    grid-row-gap: 50px;
+    row-gap: 50px;
     padding-bottom: 50px;
   }
 
@@ -536,7 +529,7 @@ a {
     display: flex;
     flex-direction: column;
     width: 500px;
-    grid-gap: 20px;
+    grid-gap: 15px;
     font-size: 16px;
     padding-bottom: 100px;
   }
@@ -547,7 +540,7 @@ a {
     justify-content: center;
     display: flex;
     flex-direction: row;
-    grid-gap: 60px;
+    grid-gap: 30px;
   }
 
   .table-row .title {
@@ -600,7 +593,7 @@ a {
   }
 
   .coming-soon {
-    padding-top: 200px;
+    padding-top: 50px;
     grid-column-gap: 40px;
   }
 }
