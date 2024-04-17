@@ -46,8 +46,8 @@ body {
   font-size: 16px;
   background-size: 40px 40px;
   /* background-image: radial-gradient(circle, #ffffff 1px, rgba(0, 0, 0, 0) 1px); */
-  background-image: linear-gradient(to right, #171717 1px, transparent 1px),
-    linear-gradient(to bottom, #171717 1px, transparent 1px);
+  background-image: linear-gradient(to right, #1717179e 1px, transparent 1px),
+    linear-gradient(to bottom, #1717179e 1px, transparent 1px);
 }
 
 .header {
@@ -79,9 +79,9 @@ a {
   flex-direction: row;
   grid-gap: 10px;
   /* From https://css.glass */
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.026);
   border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 30px rgba(255, 255, 255, 0.026);
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
   padding: 15px;
@@ -168,7 +168,7 @@ a {
 } */
 
 .projectNav {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.026);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(3px);
@@ -514,7 +514,7 @@ a {
 
   .projectNav {
     margin-top: 50px;
-    grid-gap: 60px;
+    grid-gap: 50px;
   }
 
   .nav {
@@ -528,7 +528,7 @@ a {
     align-items: center;
     display: flex;
     flex-direction: column;
-    width: 500px;
+    width: 450px;
     grid-gap: 15px;
     font-size: 16px;
     padding-bottom: 100px;
