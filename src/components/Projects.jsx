@@ -29,9 +29,9 @@ export default function Projects() {
           <Link to="/projects">
             <div className="menu-btn highlight">Projects</div>
           </Link>
-          <Link to="/writings">
+          {/* <Link to="/writings">
             <div className="menu-btn">Writing</div>
-          </Link>
+          </Link> */}
         </div>
         <div className="line"></div>
         <div className="projectNav">

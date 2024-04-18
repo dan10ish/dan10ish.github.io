@@ -21,6 +21,7 @@
   --solContactHover: #7d7d7d;
 } */
 
+/* Dark Background */
 :root {
   --app-height: 100%;
   --solBackground: #000000;
@@ -45,17 +46,18 @@ body {
   color: var(--solNormalText);
   font-size: 16px;
   background-size: 40px 40px;
-  /* background-image: radial-gradient(circle, #ffffff 1px, rgba(0, 0, 0, 0) 1px); */
   background-image: linear-gradient(to right, #1717179e 1px, transparent 1px),
     linear-gradient(to bottom, #1717179e 1px, transparent 1px);
 }
 
 .header {
-  font-size: 22px;
+  font-size: 30px;
   margin-top: 30px;
   padding: 10px;
   color: var(--solSpecialText);
   /* font-weight: 700; */
+  font-family: "Chakra Petch", sans-serif;
+  font-weight: 500;
 }
 
 main {
@@ -77,13 +79,10 @@ a {
   margin-top: 20px;
   display: flex;
   flex-direction: row;
-  grid-gap: 10px;
-  /* From https://css.glass */
-  background: rgba(255, 255, 255, 0.026);
+  grid-gap: 50px;
   border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(255, 255, 255, 0.026);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
   padding: 15px;
 }
 
@@ -118,74 +117,15 @@ a {
   grid-row-gap: 20px;
   row-gap: 30px;
   padding-bottom: 100px;
+  width: 280px;
 }
-
-/* Glass Background Start */
-
-/* .about-one {
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  padding: 10px 20px;
-} */
-
-/* .about-two {
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  padding: 10px 20px;
-} */
-
-/* .about-three {
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  padding: 10px 20px;
-} */
-
-/* .footer {
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  padding: 10px 20px;
-} */
-
-/* .about-four-one {
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  padding: 10px 20px;
-} */
 
 .projectNav {
-  background: rgba(255, 255, 255, 0.026);
   border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
   padding: 10px;
 }
-
-/* .table-columns {
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  padding: 5px 10px;
-} */
-
-/* Glass Background End */
 
 .about-three-two {
   padding-top: 15px;
@@ -256,7 +196,7 @@ a {
 }
 
 .projectNav {
-  margin-top: 30px;
+  margin-top: 20px;
   display: flex;
   flex-direction: row;
   grid-gap: 20px;
@@ -325,12 +265,6 @@ a {
   cursor: pointer;
 }
 
-/* .three {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, 65%);
-} */
-
 .three {
   position: fixed;
   left: 50%;
@@ -383,6 +317,7 @@ a {
   animation: dot-pulse 1.5s infinite linear;
   animation-delay: 0.25s;
 }
+
 .dot-pulse::before,
 .dot-pulse::after {
   content: "";
@@ -451,14 +386,14 @@ a {
 /* Media Queries */
 @media only screen and (min-width: 750px) {
   .header {
-    font-size: 30px;
+    font-size: 35px;
     margin-top: 40px;
     padding: 10px 20px;
   }
 
   .menu {
     margin-top: 40px;
-    grid-gap: 50px;
+    grid-gap: 70px;
   }
 
   .menu-btn {
@@ -466,7 +401,8 @@ a {
   }
 
   .about-content {
-    margin-top: 20px;
+    margin-top: 10px;
+    width: 500px;
   }
 
   .line {
