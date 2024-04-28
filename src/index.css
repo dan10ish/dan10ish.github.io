@@ -234,7 +234,7 @@ a {
   .three {
     position: absolute;
     left: 50%;
-    transform: translate(-50%, -120%);
+    transform: translate(-50%, 30%);
   }
 
   .three {
