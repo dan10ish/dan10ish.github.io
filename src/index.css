@@ -26,7 +26,7 @@ main {
 
 .special {
   color: var(--special-text);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .header {
@@ -160,8 +160,24 @@ a {
     left: 50%;
     transform: translate(-50%);
     font-size: 18px;
-    width: 600px;
+    width: 700px;
     padding-bottom: 50px;
+  }
+
+  .content {
+    margin-top: 70px;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-column-gap: 50px;
+    justify-content: center;
+  }
+
+  .lap-one {
+    width: 300px;
+  }
+
+  .lap-two {
+    width: 300px;
   }
 
   .header {
@@ -173,16 +189,12 @@ a {
     font-size: 36px;
   }
 
-  .content {
-    padding-top: 0px;
-  }
-
   .socials {
     grid-column-gap: 20px;
   }
 
   .subtitle {
-    margin-top: 50px;
+    margin-top: 0px;
   }
 
   .education {
@@ -190,8 +202,13 @@ a {
   }
 
   .skillsIcons {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
     grid-column-gap: 15px;
-    margin-left: 20px;
+    margin-left: 0px;
+    position: absolute;
+    left: 30px;
+    margin-top: 40px;
   }
 
   .skillsIcons img {
@@ -199,6 +216,7 @@ a {
   }
 
   .projects {
+    margin-top: 0px;
     grid-row-gap: 10px;
   }
 
@@ -259,7 +277,8 @@ a {
   }
 
   .projects a:hover {
-    color: #777777;
+    /* color: #777777; */
+    font-weight: 500;
     .arrow {
       transform: scale(1.2);
     }

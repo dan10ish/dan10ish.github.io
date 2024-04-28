@@ -70,106 +70,112 @@ export default function App() {
           </div>
         </div>
         <div className="content">
-          <div className="subtitle">
-            I explore the intersection of{" "}
-            <span className="special">Robotics</span> and{" "}
-            <span className="special">AI</span>
-          </div>
-          <div className="education">
-            {" "}
-            <span className="special">Mechatronics</span>, NMIMS '24
-          </div>
-          <div className="skills">
-            <div className="skillsTitle">Tech territory:-</div>
-            <div className="skillsIcons">
-              <div className="skillIcon">
-                <img src={TF} alt="" />
-              </div>
-              <div className="skillIcon">
-                <img src={CPP} alt="" />
-              </div>
-              <div className="skillIcon">
-                <img src={Three} alt="" />
-              </div>
-              <div className="skillIcon">
-                <img src={ReactIcon} alt="" />
-              </div>
-              <div className="skillIcon">
-                <img src={Unity} alt="" />
-              </div>
-              <div className="skillIcon">
-                <img src={Matlab} alt="" />
-              </div>
-              <div className="skillIcon">
-                <img src={Fusion} alt="" />
+          <div className="lap-one">
+            <div className="subtitle">
+              I explore the intersection of{" "}
+              <span className="special">Robotics</span> and{" "}
+              <span className="special">AI</span>
+            </div>
+            <div className="education">
+              {" "}
+              <span className="special">Mechatronics</span>, NMIMS '24
+            </div>
+            <div className="skills">
+              <div className="skillsTitle">Tech territory:-</div>
+              <div className="skillsIcons">
+                <div className="skillIcon">
+                  <img src={TF} alt="" />
+                </div>
+                <div className="skillIcon">
+                  <img src={CPP} alt="" />
+                </div>
+                <div className="skillIcon">
+                  <img src={Three} alt="" />
+                </div>
+                <div className="skillIcon">
+                  <img src={ReactIcon} alt="" />
+                </div>
+                <div className="skillIcon">
+                  <img src={Unity} alt="" />
+                </div>
+                <div className="skillIcon">
+                  <img src={Matlab} alt="" />
+                </div>
+                <div className="skillIcon">
+                  <img src={Fusion} alt="" />
+                </div>
               </div>
             </div>
           </div>
-          <div className="projects">
-            <div className="projectTitle">Projects:-</div>
-            <div className="projectlist">
-              <div className="project">
-                -{" "}
-                <a
-                  href="https://dan10ish.github.io/RoboticArm"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  3DOF robotic arm <img className="arrow" src={arrow} alt="" />
-                </a>
-              </div>
-              <div className="project">
-                -{" "}
-                <a
-                  href="https://dan10ish.github.io/Galaxy"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  galaxy <img className="arrow" src={arrow} alt="" />
-                </a>
-              </div>
-              <div className="project">
-                -{" "}
-                <a
-                  href="https://dan10ish.github.io/Office"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  office <img className="arrow" src={arrow} alt="" />
-                </a>
-              </div>
-              <div className="project subprojects">
-                - mechanical joints:-
-                <div className="subproject">
+          <div className="lap-two">
+            <div className="projects">
+              <div className="projectTitle">Projects:-</div>
+              <div className="projectlist">
+                <div className="project">
                   -{" "}
-                  <a onClick={() => setVisiblefc(true)}>
-                    flange coupling <img className="arrow" src={arrow} alt="" />
-                  </a>
-                </div>
-                <div className="subproject">
-                  -{" "}
-                  <a onClick={() => setVisiblekj(true)}>
-                    knuckle joint <img className="arrow" src={arrow} alt="" />
-                  </a>
-                </div>
-                <div className="subproject">
-                  -{" "}
-                  <a onClick={() => setVisibleuc(true)}>
-                    universal coupling{" "}
+                  <a
+                    href="https://dan10ish.github.io/RoboticArm"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    3DOF robotic arm{" "}
                     <img className="arrow" src={arrow} alt="" />
                   </a>
                 </div>
-              </div>
-              <div className="project">
-                -{" "}
-                <a
-                  href="https://github.com/dan10ish/3DOF-RoboticArm-C"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  mathematical modelling of 3DOF arm in C{" "}
-                  <img className="arrow" src={arrow} alt="" />
-                </a>
+                <div className="project">
+                  -{" "}
+                  <a
+                    href="https://dan10ish.github.io/Galaxy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    galaxy <img className="arrow" src={arrow} alt="" />
+                  </a>
+                </div>
+                <div className="project">
+                  -{" "}
+                  <a
+                    href="https://dan10ish.github.io/Office"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    office <img className="arrow" src={arrow} alt="" />
+                  </a>
+                </div>
+                <div className="project subprojects">
+                  - mechanical joints:-
+                  <div className="subproject">
+                    -{" "}
+                    <a onClick={() => setVisiblefc(true)}>
+                      flange coupling{" "}
+                      <img className="arrow" src={arrow} alt="" />
+                    </a>
+                  </div>
+                  <div className="subproject">
+                    -{" "}
+                    <a onClick={() => setVisiblekj(true)}>
+                      knuckle joint <img className="arrow" src={arrow} alt="" />
+                    </a>
+                  </div>
+                  <div className="subproject">
+                    -{" "}
+                    <a onClick={() => setVisibleuc(true)}>
+                      universal coupling{" "}
+                      <img className="arrow" src={arrow} alt="" />
+                    </a>
+                  </div>
+                </div>
+                <div className="project">
+                  -{" "}
+                  <a
+                    href="https://github.com/dan10ish/3DOF-RoboticArm-C"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    mathematical modelling of 3DOF arm in C{" "}
+                    <img className="arrow" src={arrow} alt="" />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
