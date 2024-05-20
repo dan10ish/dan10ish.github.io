@@ -24,14 +24,14 @@ export default function About() {
             <div className="menu-items">Projects</div>
           </Link>
           <Link to="/picture">
-            <div className="menu-items">Pictures</div>
+            <div className="menu-items">Photos</div>
           </Link>
         </div>
         <div className="about">
           <div className="about-one">
             My area of interest combine{" "}
             <span className="special">Robotics</span>,{" "}
-            <span className="special">Machine Learning and</span>{" "}
+            <span className="special">Machine Learning</span> and{" "}
             <span className="special">Computer Science</span>
           </div>
           <div className="about-two">🎓 Mechatronics, NMIMS ‘24</div>

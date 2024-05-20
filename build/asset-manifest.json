@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.9870ec5a.css",
-    "main.js": "/static/js/main.597b1dc4.js",
+    "main.css": "/static/css/main.393577f0.css",
+    "main.js": "/static/js/main.2907a24e.js",
     "static/media/7.jpg": "/static/media/7.99f306bef4b1b69638d1.jpg",
     "static/media/2.jpg": "/static/media/2.df315b826cc730b286ae.jpg",
     "static/media/6.jpg": "/static/media/6.5fdee19c9e71b155134e.jpg",
@@ -12,9 +12,9 @@
     "static/media/9.jpg": "/static/media/9.d61c6033b13d5ac4a33b.jpg",
     "static/media/8.jpg": "/static/media/8.e54e63c95fec08dee1c4.jpg",
     "static/media/code.jpeg": "/static/media/code.a9ed4aac2f251d876d08.jpeg",
-    "static/media/fusion.svg": "/static/media/fusion.d8ab387cc598db4ff088646435fea2ca.svg",
     "static/media/Instagram.svg": "/static/media/Instagram.966838df5f1f5f76ab89a634885fe77a.svg",
     "static/media/Github.svg": "/static/media/Github.2a5c783efdbc47e3d883d60bdac7fae9.svg",
+    "static/media/fusion.svg": "/static/media/fusion.98cbff718312bcd38529e213c7d2d4dc.svg",
     "static/media/matlab.svg": "/static/media/matlab.a2827da50ccd1bcd7ad07746c4df0b33.svg",
     "static/media/react.svg": "/static/media/react.689a8d6c64445d425592f4728ca8809e.svg",
     "index.html": "/index.html",
@@ -23,11 +23,11 @@
     "static/media/unity.svg": "/static/media/unity.e9923bda6b459f643774ccf320bfefda.svg",
     "static/media/tf.svg": "/static/media/tf.d2b349637b08d72160752241ec522132.svg",
     "static/media/X.svg": "/static/media/X.4690e6fb64459910299c047e259c8465.svg",
-    "main.9870ec5a.css.map": "/static/css/main.9870ec5a.css.map",
-    "main.597b1dc4.js.map": "/static/js/main.597b1dc4.js.map"
+    "main.393577f0.css.map": "/static/css/main.393577f0.css.map",
+    "main.2907a24e.js.map": "/static/js/main.2907a24e.js.map"
   },
   "entrypoints": [
-    "static/css/main.9870ec5a.css",
-    "static/js/main.597b1dc4.js"
+    "static/css/main.393577f0.css",
+    "static/js/main.2907a24e.js"
   ]
 }

@@ -23,7 +23,7 @@ export default function Pictures() {
             <div className="menu-items">Projects</div>
           </Link>
           <Link to="/picture">
-            <div className="menu-items box">Pictures</div>
+            <div className="menu-items box">Photos</div>
           </Link>
         </div>
         <div className="pictures">

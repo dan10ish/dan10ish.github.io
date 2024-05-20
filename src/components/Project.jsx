@@ -32,7 +32,7 @@ export default function Projects() {
             <div className="menu-items box">Projects</div>
           </Link>
           <Link to="/picture">
-            <div className="menu-items">Pictures</div>
+            <div className="menu-items">Photos</div>
           </Link>
         </div>
         <div className="project">

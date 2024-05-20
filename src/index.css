@@ -92,7 +92,7 @@ Link {
 }
 
 main {
-  padding-top: 120px;
+  padding-top: 130px;
 }
 
 .about {
@@ -181,7 +181,7 @@ main {
   text-align: center;
   grid-gap: 10px;
   font-size: 16px;
-  padding-top: 20px;
+  padding-top: 10px;
 }
 
 .table-row {
