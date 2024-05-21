@@ -7,12 +7,20 @@ import react from "../assets/react.svg";
 import tf from "../assets/tf.svg";
 import three from "../assets/three.svg";
 import unity from "../assets/unity.svg";
-import cpp from "../assets/cpp.svg";
+import cpp from "../assets/CPP.svg";
 
 import codepic from "../assets/pics/code.jpeg";
 
 export default function About() {
   const [visiblecode, setVisiblecode] = React.useState(false);
+
+  // Height bug fix
+  const appHeight = () => {
+    const doc = document.documentElement;
+    doc.style.setProperty("--app-height", `${window.innerHeight}px`);
+  };
+  window.addEventListener("resize", appHeight);
+  appHeight();
   return (
     <>
       <main>

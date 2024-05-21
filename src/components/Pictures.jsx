@@ -12,6 +12,13 @@ import eight from "../assets/pics/8.jpg";
 import nine from "../assets/pics/9.jpg";
 
 export default function Pictures() {
+  // Height bug fix
+  const appHeight = () => {
+    const doc = document.documentElement;
+    doc.style.setProperty("--app-height", `${window.innerHeight}px`);
+  };
+  window.addEventListener("resize", appHeight);
+  appHeight();
   return (
     <>
       <main>

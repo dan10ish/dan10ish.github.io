@@ -97,7 +97,6 @@ main {
 
 .about {
   font-size: 18px;
-  /* padding: 0px 30px; */
   font-family: "Space Mono", monospace;
   display: flex;
   flex-direction: column;
@@ -131,7 +130,6 @@ main {
 }
 
 .about-five {
-  /* text-align: center; */
   width: 290px;
   padding-bottom: 100px;
 }
@@ -235,23 +233,34 @@ main {
 }
 
 .code-pic {
-  position: absolute;
-  display: flex;
-  left: 50%;
-  transform: translate(-50%);
-  padding: 0px;
-  top: 45%;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
+  z-index: 1005;
 }
 
 .code-pic img {
-  width: 280px;
+  width: 80%;
   border-radius: 20px;
+  display: flex;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%);
 }
 
 .buttonCode {
+  color: #ff0000;
   position: absolute;
-  padding: 10px;
+  display: flex;
+  font-size: 30px;
   font-weight: 800;
+  left: 10%;
+  top: 5%;
+  padding: 20px;
 }
 
 .code {
@@ -259,18 +268,20 @@ main {
 }
 
 .three {
-  position: absolute;
+  position: fixed;
   left: 50%;
   transform: translate(-50%);
-  top: 40%;
+  top: 0;
   z-index: 1000;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
 }
 
 .three {
-  background-color: var(--canvasBg);
-  border-radius: 30px;
-  width: 300px;
-  height: 300px;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
+  width: 100%;
+  height: 100%;
   overflow: hidden;
 }
 
@@ -278,9 +289,11 @@ main {
   font-weight: 800;
   color: #ff0000;
   position: absolute;
-  padding: 15px 20px;
-  font-size: 20px;
-  z-index: 1001;
+  padding: 20px;
+  left: 10%;
+  top: 4%;
+  font-size: 30px;
+  z-index: 10005;
 }
 
 /* Media Queries */
@@ -426,11 +439,11 @@ main {
   }
 
   .code-pic {
-    top: 30%;
+    top: 0%;
   }
 
   .code-pic img {
-    width: 450px;
+    width: 500px;
     border-radius: 20px;
   }
 
@@ -445,22 +458,17 @@ main {
   }
 
   .three {
-    transform: translate(-50%);
-    top: 30%;
+    height: 100%;
+    width: 100%;
     z-index: 1003;
-  }
-
-  .three {
-    width: 400px;
-    height: 400px;
   }
 
   .buttonThree {
     font-weight: 800;
+    font-size: 30px;
     color: #ff0000;
     position: absolute;
     padding: 15px 20px;
-    font-size: 20px;
     z-index: 1001;
   }
 }
@@ -487,7 +495,7 @@ main {
   }
 
   .buttonCode:hover {
-    color: #ff0000;
+    transform: scale(1.2);
     cursor: pointer;
   }
 
@@ -521,5 +529,9 @@ main {
   .buttonThree:hover {
     cursor: pointer;
     transform: scale(1.2);
+  }
+
+  .code-pic img:hover {
+    cursor: no-drop;
   }
 }

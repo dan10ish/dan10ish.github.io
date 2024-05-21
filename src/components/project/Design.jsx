@@ -98,9 +98,9 @@ export default function Design() {
           </div>
           <Canvas>
             <Knuckle
-              scale={0.03}
+              scale={0.015}
               rotation={[0.5, -0.4, -0.6]}
-              position={[0, 0, 0]}
+              position={[0, -0.2, 0]}
             />
             <Environment preset="warehouse" />
             <OrbitControls />
@@ -114,9 +114,9 @@ export default function Design() {
           </div>
           <Canvas>
             <Uc
-              scale={0.015}
+              scale={0.009}
               rotation={[0.5, -0.4, 0]}
-              position={[0, 0.4, 0]}
+              position={[0, -0.1, 0]}
             />
             <Environment preset="warehouse" />
             <OrbitControls />
@@ -130,7 +130,7 @@ export default function Design() {
             X
           </div>
           <Canvas>
-            <Fc scale={0.015} rotation={[0.2, 2.4, 0]} position={[0, 0, 0]} />
+            <Fc scale={0.01} rotation={[0.2, 2.4, 0]} position={[0, -0.3, 0]} />
             <Environment preset="warehouse" />
             <OrbitControls />
           </Canvas>
