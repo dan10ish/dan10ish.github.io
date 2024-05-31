@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import fusion from "../assets/fusion.svg";
@@ -7,11 +7,13 @@ import react from "../assets/react.svg";
 import tf from "../assets/tf.svg";
 import three from "../assets/three.svg";
 import unity from "../assets/unity.svg";
+import dthree from "../assets/dark_Three.svg";
+import dunity from "../assets/dark_Unity.svg";
 import cpp from "../assets/CPP.svg";
 
 import codepic from "../assets/pics/code.jpeg";
 
-export default function About() {
+export default function About({ isDarkMode }) {
   const [visiblecode, setVisiblecode] = React.useState(false);
 
   // Height bug fix
@@ -48,10 +50,10 @@ export default function About() {
             <div className="tech-icons">
               <img src={tf} alt="" />
               <img src={react} alt="" />
-              <img src={three} alt="" />
+              <img src={isDarkMode ? dthree : three} alt="" />
               <img src={fusion} alt="" />
               <img src={matlab} alt="" />
-              <img src={unity} alt="" />
+              <img src={isDarkMode ? dunity : unity} alt="" />
               <img src={cpp} alt="" />
             </div>
           </div>

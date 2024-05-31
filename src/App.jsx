@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./index.css";
-
+import Dark from "./Dark.jsx";
 import { Routes, Route } from "react-router-dom";
 
 import X from "./assets/X.svg";
@@ -14,6 +14,37 @@ import Code from "./components/project/Code.jsx";
 import Design from "./components/project/Design.jsx";
 
 export default function App() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    const theme = document.querySelector("body").getAttribute("data-theme");
+    setIsDarkMode(theme === "dark");
+  }, []);
+
+  const toggleTheme = () => {
+    if (isDarkMode) {
+      document.querySelector("body").setAttribute("data-theme", "light");
+      setIsDarkMode(false);
+      updateMetaThemeColor("#ffffff"); // Set light mode meta theme color
+    } else {
+      document.querySelector("body").setAttribute("data-theme", "dark");
+      setIsDarkMode(true);
+      updateMetaThemeColor("#111111"); // Set dark mode meta theme color
+    }
+  };
+
+  const updateMetaThemeColor = (color) => {
+    let metaThemeColor = document.querySelector("meta[name=theme-color]");
+    if (metaThemeColor) {
+      metaThemeColor.setAttribute("content", color);
+    } else {
+      metaThemeColor = document.createElement("meta");
+      metaThemeColor.setAttribute("name", "theme-color");
+      metaThemeColor.setAttribute("content", color);
+      document.head.appendChild(metaThemeColor);
+    }
+  };
+
   // Height bug fix
   const appHeight = () => {
     const doc = document.documentElement;
@@ -21,6 +52,7 @@ export default function App() {
   };
   window.addEventListener("resize", appHeight);
   appHeight();
+
   return (
     <>
       <div className="header">
@@ -53,9 +85,12 @@ export default function App() {
             </a>
           </div>
         </div>
+        <div className="dark-mode">
+          <Dark toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
+        </div>
       </div>
       <Routes>
-        <Route path="/" element={<About />} />
+        <Route path="/" element={<About isDarkMode={isDarkMode} />} />
         <Route path="/project" element={<Project />} />
         <Route path="/picture" element={<Pictures />} />
         <Route path="/code" element={<Code />} />
