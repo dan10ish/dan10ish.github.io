@@ -10,6 +10,11 @@ import six from "../assets/pics/6.jpg";
 import seven from "../assets/pics/7.jpg";
 import eight from "../assets/pics/8.jpg";
 import nine from "../assets/pics/9.jpg";
+import ten from "../assets/pics/10.jpg";
+import eleven from "../assets/pics/11.jpg";
+import tweleve from "../assets/pics/12.jpg";
+import thirteen from "../assets/pics/13.jpg";
+import fourteen from "../assets/pics/14.jpg";
 
 export default function Pictures() {
   // Height bug fix
@@ -35,14 +40,19 @@ export default function Pictures() {
         </div>
         <div className="pictures">
           <img src={one} alt="" />
-          <img src={two} alt="" />
           <img src={three} alt="" />
           <img src={four} alt="" />
           <img src={five} alt="" />
+          <img src={two} alt="" />
           <img src={six} alt="" />
           <img src={seven} alt="" />
           <img src={eight} alt="" />
           <img src={nine} alt="" />
+          <img src={ten} alt="" />
+          <img src={eleven} alt="" />
+          <img src={tweleve} alt="" />
+          <img src={thirteen} alt="" />
+          <img src={fourteen} alt="" />
         </div>
       </main>
     </>
