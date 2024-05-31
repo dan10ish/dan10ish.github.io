@@ -17,8 +17,26 @@ export default function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
-    const theme = document.querySelector("body").getAttribute("data-theme");
-    setIsDarkMode(theme === "dark");
+    // Check the user's device preference for theme
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleChange = (e) => {
+      const isDark = e.matches;
+      setIsDarkMode(isDark);
+      document
+        .querySelector("body")
+        .setAttribute("data-theme", isDark ? "dark" : "light");
+      updateMetaThemeColor(isDark ? "#111111" : "#ffffff");
+    };
+
+    // Set the initial theme based on preference
+    handleChange(mediaQuery);
+
+    // Add event listener for changes in preference
+    mediaQuery.addListener(handleChange);
+
+    return () => {
+      mediaQuery.removeListener(handleChange);
+    };
   }, []);
 
   const toggleTheme = () => {
