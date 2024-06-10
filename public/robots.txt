@@ -8,3 +8,6 @@ Allow: /images
 
 User-agent: facebookexternalhit
 Allow: /images
+
+User-agent: Googlebot
+Allow: all
