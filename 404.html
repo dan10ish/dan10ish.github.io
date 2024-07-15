@@ -12,8 +12,18 @@
 
     <title>Danish | Error</title>
 
-    <link rel="icon" href="#" />
+    <link rel="icon" href="./assets/icon.png" />
     <link rel="stylesheet" href="/error.css" />
+
+    <script>
+      // Redirect all 404 requests to index.html
+      (function () {
+        var pathname = window.location.pathname;
+        window.location.replace(
+          window.location.origin + pathname + "index.html"
+        );
+      })();
+    </script>
   </head>
   <body>
     <div class="first">Got Lost?</div>
