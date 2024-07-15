@@ -1,17 +1,7 @@
 import { React, useEffect } from "react";
 import Blog from "./Blog";
 
-import Footer from "./Footer";
-
-import { useLocation } from "react-router-dom";
-
-import tf from "../assets/icons/TF.svg";
-import react from "../assets/icons/React.svg";
-import three from "../assets/icons/Three.svg";
-import cpp from "../assets/icons/CPP.svg";
-import unity from "../assets/icons/Unity.svg";
-import matlab from "../assets/icons/matlab.svg";
-import fusion from "../assets/icons/fusion.svg";
+import { Link, useLocation } from "react-router-dom";
 
 export default function About() {
   const location = useLocation();
@@ -29,34 +19,32 @@ export default function About() {
   }, [location]);
   return (
     <>
-      <div className="writing-section" id="writing-section">
-        <Blog />
-      </div>
       <div className="about">
         <div className="section-title">
-          <h1>About</h1>
-          <div className="borderAfter"></div>
+          <div className="name">
+            <h1>Danish</h1>
+          </div>
+          <div className="project-nav">
+            <Link to="/projects">Projects</Link>
+          </div>
         </div>
         <div className="about-content">
-          <p>
-            Hi, I am <span className="about-special">Danish</span>.
-          </p>
-          <p>
+          <div>
             I am a <span className="about-special">Mechatronics</span> Engineer
             who enjoys working at the intersection of{" "}
             <span className="about-special">robotics</span>,{" "}
             <span className="about-special">machine learning</span>, and{" "}
             <span className="about-special">computer science</span>
-          </p>
-          <p>Currently based in Mumbai, IN</p>
-          <p>
+          </div>
+          <div>Currently based in Mumbai, IN</div>
+          <div>
             The quickest way to reach me is via{" "}
             <a
               href="mailto:aaansaridan@gmail.com"
               target="_blank"
               rel="noopener noreferrer"
             >
-              email
+              Email
             </a>
             , and you can view all my projects on my{" "}
             <a
@@ -67,8 +55,8 @@ export default function About() {
               GitHub
             </a>
             .
-          </p>
-          <p>
+          </div>
+          <div>
             On other social apps, you can find me by the username{" "}
             <span className="about-special-social">@dan10ish</span>. I am most
             active on{" "}
@@ -88,44 +76,19 @@ export default function About() {
               Instagram
             </a>
             .
-          </p>
-          <p>
+          </div>
+          <div>
             In my free time, I explore new{" "}
             <span className="about-special">technologies</span>, write{" "}
             <span className="about-special">code</span>, take{" "}
             <span className="about-special">pictures</span> or play{" "}
             <span className="about-special">football</span>.
-          </p>
-        </div>
-        <div className="section-title">
-          <h1>Tech Territory</h1>
-          <div className="borderAfter"></div>
-        </div>
-        <div className="skill-content">
-          <div className="skill-img">
-            <img src={tf} alt="" />
-          </div>
-          <div className="skill-img">
-            <img src={react} alt="" />
-          </div>
-          <div className="skill-img">
-            <img src={cpp} alt="" />
-          </div>
-          <div className="skill-img">
-            <img src={three} alt="" />
-          </div>
-          <div className="skill-img">
-            <img src={unity} alt="" />
-          </div>
-          <div className="skill-img">
-            <img src={matlab} alt="" />
-          </div>
-          <div className="skill-img">
-            <img src={fusion} alt="" />
           </div>
         </div>
       </div>
-      <Footer />
+      <div className="writing-section" id="writing-section">
+        <Blog />
+      </div>
     </>
   );
 }

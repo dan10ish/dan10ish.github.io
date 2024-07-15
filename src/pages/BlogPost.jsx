@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import blogPosts from "../data/blogPosts";
 import "./BlogPost.css";
@@ -10,6 +10,8 @@ import Footer from "./Footer";
 
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneLight } from "react-syntax-highlighter/dist/esm/styles/prism";
+
+import back from "../assets/back.svg";
 
 export default function BlogPost() {
   const { fileName } = useParams();
@@ -33,6 +35,14 @@ export default function BlogPost() {
   return (
     <>
       <div className="blogPost">
+        <div className="home-nav">
+          <Link to="/">
+            <div>
+              <img src={back} alt="Back" />
+            </div>
+            <div>Home</div>
+          </Link>
+        </div>
         <div className="blogPost-title">
           <h1>{post.title}</h1>
         </div>

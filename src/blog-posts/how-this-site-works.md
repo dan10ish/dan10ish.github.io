@@ -50,10 +50,6 @@ Perhaps the [page](https://danish.bio/projects) I want to get the most reach on.
 
 I've also aimed to keep this page minimal and straightforward. It feels sufficient for now.
 
-#### Gallery
-
-Nothing complicated here—just a folder containing pictures dynamically rendered on the [Gallery page](https://danish.bio/gallery) (`pages/Gallery.jsx`).
-
 #### Source Code
 
 Find it [here](https://github.com/dan10ish/dan10ish.github.io).

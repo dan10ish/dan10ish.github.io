@@ -6,7 +6,10 @@ import Knuckle from "../components/Gltfjsx/Knuckle";
 import Uc from "../components/Gltfjsx/Uc";
 import Fc from "../components/Gltfjsx/Fc";
 
+import back from "../assets/back.svg";
+
 import Footer from "./Footer";
+import { Link } from "react-router-dom";
 
 export default function Projects() {
   const [visiblekj, setVisiblekj] = React.useState(false);
@@ -15,6 +18,14 @@ export default function Projects() {
   return (
     <>
       <div className="projects">
+        <div className="home-nav">
+          <Link to="/">
+            <div>
+              <img src={back} alt="Back" />
+            </div>
+            <div>Home</div>
+          </Link>
+        </div>
         <div className="project-content">
           <div className="plist">
             <div className="pname">

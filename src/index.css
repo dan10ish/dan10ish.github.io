@@ -14,18 +14,16 @@
     rgba(255, 255, 255, 0.9) 70%,
     rgba(255, 255, 255, 0.8) 100%
   );
-  --blog-date: #999;
-  --navNotActive: #999;
-  --active-Navlink: #eeeeee;
+  --blog-date: #aaa;
   --blog-border-bottom: #e3e3e3;
   --link-color: #0a84ff;
   --canvas-background: #ffffffab;
   --canvas-cross: #eeeeee;
+  --nav: #aaaaaa;
   /* Font sizes */
-  --navbar-nav: 16px;
-  --blog-title: 18px;
+  --blog-title: 16px;
   --blog-date-font: 12px;
-  --normal-font-size: 16px;
+  --normal-font-size: 14px;
   --footer-font: 12px;
   --about-title: 20px;
 }
@@ -44,63 +42,8 @@ body {
   overflow-x: hidden;
 }
 
-/* Navbar */
-
-.nav-bar {
-  position: fixed;
-  display: flex;
-  flex-direction: row;
-  width: 95vw;
-  justify-content: center;
-  align-items: center;
-  z-index: 100;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%);
-  padding: 20px 20px;
-}
-
-.nav-bar.open {
-  background: var(--menu-bg);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-}
-
-.nav-toggle-icon {
-  position: fixed;
-  top: 10px;
-  right: 5px;
-  padding: 10px 15px;
-}
-
-.nav-items {
-  display: none;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  column-gap: 5px;
-  font-size: var(--navbar-nav);
-  /* font-family: "Quicksand"; */
-  font-weight: 500;
-}
-
-.nav-items.open {
-  display: flex;
-}
-
-.nav-items a {
-  padding: 5px 10px;
-  border-radius: 10px;
-  color: var(--navNotActive);
-}
-
-.nav-items .active {
-  background-color: var(--active-Navlink);
-  color: var(--normalFont);
-}
-
 .main {
-  padding: 100px 25px 40px 25px;
+  padding: 30px 25px 40px 25px;
 }
 
 /* BlogPost List */
@@ -110,7 +53,24 @@ body {
   flex-direction: column;
   row-gap: 20px;
   padding: 0;
-  padding-bottom: 50px;
+  padding-bottom: 30px;
+}
+
+.home-nav {
+  padding-bottom: 10px;
+}
+
+.home-nav a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 7px;
+  color: var(--nav);
+  margin-bottom: 20px;
+  width: 100px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight: 450;
 }
 
 .blog a {
@@ -200,16 +160,25 @@ a {
 /* About */
 
 .about {
-  padding-bottom: 50px;
+  padding-bottom: 10px;
 }
 
 .section-title h1 {
   font-size: var(--about-title);
-  font-weight: 600;
+  font-weight: 500;
+}
+
+.project-nav a {
+  color: var(--nav);
+  font-size: var(--about-title);
+  font-weight: 500;
 }
 
 .section-title {
-  padding-bottom: 10px;
+  padding-bottom: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .about-content {
@@ -217,7 +186,11 @@ a {
   padding-bottom: 50px;
   margin: 0;
   font-size: var(--normal-font-size);
-  font-weight: 350;
+  font-weight: 400;
+  line-height: 24px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
 }
 
 .about-special {
@@ -231,7 +204,7 @@ a {
 
 .about-special-social {
   font-family: "Space Mono", monospace;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   padding-left: 3px;
 }
@@ -344,29 +317,12 @@ a {
 }
 
 @media (min-width: 750px) {
-  .nav-toggle-icon {
-    display: none;
-  }
-
-  .nav-bar {
-    width: 650px;
-    position: fixed;
-    padding: 30px 0px;
-    background: var(--menu-bg);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-  }
-
-  .nav-items {
-    display: flex;
-    position: absolute;
-    right: 0px;
-    padding: 30px 0px;
-    column-gap: 10px;
-  }
-
-  .nav-items.open {
-    display: flex;
+  :root {
+    --blog-title: 18px;
+    --blog-date-font: 14px;
+    --normal-font-size: 16px;
+    --footer-font: 12px;
+    --about-title: 24px;
   }
 
   .main {
@@ -374,7 +330,15 @@ a {
     left: 50%;
     transform: translate(-50%);
     width: 650px;
-    padding-top: 150px;
+    padding-top: 70px;
+  }
+
+  .about-content {
+    line-height: 26px;
+  }
+
+  .about-special-social {
+    font-size: 15px;
   }
 
   .buttonThree {
@@ -406,9 +370,9 @@ a {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .nav-items :hover {
-    background-color: var(--active-Navlink);
-    border-radius: 10px;
+  .home-nav a:hover {
+    color: var(--link-color);
+    cursor: pointer;
   }
 
   .blog-title :hover {
@@ -431,12 +395,16 @@ a {
   }
 
   .pname:hover {
-    color: #00a1f8;
-    cursor: alias;
+    color: #01c650;
+    cursor: pointer;
   }
 
   .pname a:hover {
-    color: #00a1f8;
+    color: #01c650;
     cursor: alias;
+  }
+
+  .project-nav a:hover {
+    color: var(--link-color);
   }
 }
