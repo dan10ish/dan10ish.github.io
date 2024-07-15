@@ -69,7 +69,9 @@ export default function BlogPost() {
         >
           {content}
         </ReactMarkdown>
-        <Footer />
+        <div className="blog-footer">
+          <Footer />
+        </div>
       </div>
     </>
   );
