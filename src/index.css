@@ -407,7 +407,9 @@ a {
 @media (hover: hover) and (pointer: fine) {
   .nav-items :hover {
     background-color: var(--active-Navlink);
+    border-radius: 10px;
   }
+
   .blog-title :hover {
     color: var(--link-color);
   }
