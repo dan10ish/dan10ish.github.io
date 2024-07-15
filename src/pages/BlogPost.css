@@ -1,0 +1,53 @@
+/* BlogPost.css */
+
+.blogPost-date {
+  color: var(--blog-date);
+  font-size: 14px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #000000;
+  margin-top: 0px;
+  font-family: "Sentient", sans-serif;
+}
+
+p {
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+code {
+  background-color: #f5f5f5;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+pre {
+  /* background-color: #f5f5f5; */
+  padding: 0px;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-size: 14px;
+}
+
+ul,
+ol {
+  margin-left: 20px;
+}
+
+blockquote {
+  border-left: 5px solid #ccc;
+  padding-left: 10px;
+  color: #666;
+  margin: 20px 0;
+}
+
+.blogPost {
+  margin-bottom: 100px;
+  padding: 0px 5px;
+}

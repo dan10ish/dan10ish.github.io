@@ -1,68 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./index.css";
-import Dark from "./Dark.jsx";
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import X from "./assets/X.svg";
-import Instagram from "./assets/Instagram.svg";
-import Github from "./assets/Github.svg";
+import About from "./pages/About";
+import Projects from "./pages/Projects";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
+import Gallery from "./pages/Gallery";
 
-import About from "./components/About.jsx";
-import Project from "./components/Project.jsx";
-import Pictures from "./components/Pictures.jsx";
-import Code from "./components/project/Code.jsx";
-import Design from "./components/project/Design.jsx";
+import NavBar from "./components/NavBar.jsx";
 
 export default function App() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  useEffect(() => {
-    // Check the user's device preference for theme
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleChange = (e) => {
-      const isDark = e.matches;
-      setIsDarkMode(isDark);
-      document
-        .querySelector("body")
-        .setAttribute("data-theme", isDark ? "dark" : "light");
-      updateMetaThemeColor(isDark ? "#111111" : "#ffffff");
-    };
-
-    // Set the initial theme based on preference
-    handleChange(mediaQuery);
-
-    // Add event listener for changes in preference
-    mediaQuery.addListener(handleChange);
-
-    return () => {
-      mediaQuery.removeListener(handleChange);
-    };
-  }, []);
-
-  const toggleTheme = () => {
-    if (isDarkMode) {
-      document.querySelector("body").setAttribute("data-theme", "light");
-      setIsDarkMode(false);
-      updateMetaThemeColor("#ffffff"); // Set light mode meta theme color
-    } else {
-      document.querySelector("body").setAttribute("data-theme", "dark");
-      setIsDarkMode(true);
-      updateMetaThemeColor("#111111"); // Set dark mode meta theme color
-    }
-  };
-
-  const updateMetaThemeColor = (color) => {
-    let metaThemeColor = document.querySelector("meta[name=theme-color]");
-    if (metaThemeColor) {
-      metaThemeColor.setAttribute("content", color);
-    } else {
-      metaThemeColor = document.createElement("meta");
-      metaThemeColor.setAttribute("name", "theme-color");
-      metaThemeColor.setAttribute("content", color);
-      document.head.appendChild(metaThemeColor);
-    }
-  };
-
   // Height bug fix
   const appHeight = () => {
     const doc = document.documentElement;
@@ -70,50 +18,21 @@ export default function App() {
   };
   window.addEventListener("resize", appHeight);
   appHeight();
-
   return (
     <>
-      <div className="header">
-        <a href="https://dan10ish.github.io">
-          <div className="name">Danish Ansari</div>
-        </a>
-        <div className="social">
-          <div className="social-title">@dan10ish -&gt; </div>
-          <div className="social-icons">
-            <a
-              href="https://x.com/dan10ish"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src={X} alt="" />
-            </a>
-            <a
-              href="https://www.instagram.com/dan10ish"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src={Instagram} alt="" />
-            </a>
-            <a
-              href="https://github.com/dan10ish"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src={Github} alt="" />
-            </a>
-          </div>
+      <Router>
+        <NavBar />
+        <div className="main">
+          <Routes>
+            <Route path="/" element={<About />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:fileName" element={<BlogPost />} />
+          </Routes>
         </div>
-        <div className="dark-mode">
-          <Dark toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
-        </div>
-      </div>
-      <Routes>
-        <Route path="/" element={<About isDarkMode={isDarkMode} />} />
-        <Route path="/project" element={<Project />} />
-        <Route path="/picture" element={<Pictures />} />
-        <Route path="/code" element={<Code />} />
-        <Route path="/design" element={<Design />} />
-      </Routes>
+      </Router>
     </>
   );
 }
