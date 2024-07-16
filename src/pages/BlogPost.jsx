@@ -13,6 +13,8 @@ import { oneLight } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 import back from "../assets/back.svg";
 
+import ScrollToTop from "../components/ScrollToTop";
+
 export default function BlogPost() {
   const { fileName } = useParams();
   const [content, setContent] = useState("");
@@ -79,6 +81,7 @@ export default function BlogPost() {
         >
           {content}
         </ReactMarkdown>
+        <ScrollToTop />
         <div className="blog-footer">
           <Footer />
         </div>

@@ -20,6 +20,7 @@
   --canvas-background: #ffffffab;
   --canvas-cross: #eeeeee;
   --nav: #aaaaaa;
+  --pname-hover: #f5f5f5;
   /* Font sizes */
   --blog-title: 16px;
   --blog-date-font: 12px;
@@ -43,7 +44,7 @@ body {
 }
 
 .main {
-  padding: 30px 25px 40px 25px;
+  padding: 30px 30px 40px 30px;
 }
 
 /* BlogPost List */
@@ -257,6 +258,7 @@ a {
   width: 90px;
   text-align: left;
   font-size: var(--normal-font-size);
+  font-weight: 450;
 }
 
 .pdescription {
@@ -367,6 +369,10 @@ a {
     padding-left: 30px;
     align-items: center;
   }
+
+  .scroll-to-top {
+    display: none;
+  }
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -394,17 +400,57 @@ a {
     cursor: no-drop;
   }
 
+  .pname {
+    text-align: center;
+    width: 140px;
+    padding: 5px 0px;
+    border-radius: 5px;
+  }
+
   .pname:hover {
-    color: #01c650;
+    background-color: var(--pname-hover);
     cursor: pointer;
   }
 
   .pname a:hover {
-    color: #01c650;
-    cursor: alias;
+    cursor: pointer;
   }
 
   .project-nav a:hover {
     color: var(--link-color);
   }
+
+  .pdescription:hover {
+    cursor: no-drop;
+  }
+
+  .scroll-to-top div:hover {
+    background-color: #aaaaaa;
+    transform: scale(1.05);
+  }
+}
+
+/* Scroll to top */
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.scroll-to-top div {
+  background-color: #cccccc;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.upArrow {
+  position: relative;
+  top: -1px;
 }

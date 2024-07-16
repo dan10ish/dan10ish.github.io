@@ -44,7 +44,7 @@ export default function About() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Email
+              email
             </a>
             , and you can view all my projects on my{" "}
             <a
