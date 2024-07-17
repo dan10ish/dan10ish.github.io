@@ -21,12 +21,14 @@
   --canvas-cross: #eeeeee;
   --nav: #aaaaaa;
   --pname-hover: #f5f5f5;
+
   /* Font sizes */
+
   --blog-title: 16px;
   --blog-date-font: 12px;
   --normal-font-size: 14px;
-  --footer-font: 12px;
-  --about-title: 20px;
+  --footer-font: 14px;
+  --about-title: 24px;
 }
 
 @font-face {
@@ -44,7 +46,7 @@ body {
 }
 
 .main {
-  padding: 30px 30px 40px 30px;
+  padding: 50px 30px 40px 30px;
 }
 
 /* BlogPost List */
@@ -54,7 +56,7 @@ body {
   flex-direction: column;
   row-gap: 20px;
   padding: 0;
-  padding-bottom: 30px;
+  padding-bottom: 0px;
 }
 
 .home-nav {
@@ -166,7 +168,7 @@ a {
 
 .section-title h1 {
   font-size: var(--about-title);
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .project-nav a {
@@ -191,7 +193,7 @@ a {
   line-height: 24px;
   display: flex;
   flex-direction: column;
-  row-gap: 5px;
+  row-gap: 10px;
 }
 
 .about-special {
@@ -222,10 +224,21 @@ a {
 
 .footer {
   margin-top: 50px;
-  text-align: center;
   font-size: var(--footer-font);
   padding: 0;
   font-weight: 300;
+}
+
+.socials {
+  display: flex;
+  flex-direction: row;
+  column-gap: 15px;
+  padding-bottom: 5px;
+}
+
+.socials a {
+  color: var(--link-color);
+  font-weight: 400;
 }
 
 /* Projects */
@@ -296,34 +309,12 @@ a {
   text-align: center;
 }
 
-/* Gallery */
-
-.gallery-description {
-  font-size: var(--normal-font-size);
-}
-
-.gallery-grid {
-  padding-top: 30px;
-  display: grid;
-  grid-template-columns: auto auto;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  grid-gap: 10px;
-}
-
-.gallery-grid img {
-  height: 150px;
-  width: 150px;
-  border-radius: 6px;
-}
-
 @media (min-width: 750px) {
   :root {
     --blog-title: 18px;
     --blog-date-font: 14px;
     --normal-font-size: 16px;
-    --footer-font: 12px;
+    --footer-font: 14px;
     --about-title: 24px;
   }
 
@@ -348,56 +339,28 @@ a {
     top: 100px;
   }
 
-  .gallery-grid {
-    padding-top: 50px;
-    display: grid;
-    grid-template-columns: auto auto auto;
-    grid-gap: 10px;
-  }
-
-  .gallery-grid img {
-    height: 200px;
-    width: 200px;
-    border-radius: 6px;
-  }
-
-  .skill-content {
-    display: flex;
-    flex-direction: row;
-    column-gap: 10px;
-    justify-content: left;
-    padding-left: 30px;
-    align-items: center;
-  }
-
   .scroll-to-top {
     display: none;
+  }
+
+  .footer {
+    padding-top: 40px;
   }
 }
 
 @media (hover: hover) and (pointer: fine) {
   .home-nav a:hover {
-    color: var(--link-color);
+    transform: scale(1.05);
     cursor: pointer;
   }
 
-  .blog-title :hover {
-    color: var(--link-color);
+  .blog-title a:hover {
+    border-bottom: 1px solid var(--normalFont);
   }
 
   .about-content a:hover {
     color: var(--link-color);
     border-bottom: solid 1px var(--link-color);
-  }
-
-  .skill-content img:hover {
-    transform: scale(1.2);
-    cursor: no-drop;
-  }
-
-  .gallery-grid img:hover {
-    transform: scale(1.05);
-    cursor: no-drop;
   }
 
   .pname {
@@ -416,8 +379,9 @@ a {
     cursor: pointer;
   }
 
-  .project-nav a:hover {
-    color: var(--link-color);
+  .project-nav:hover {
+    /* color: var(--link-color); */
+    transform: scale(1.05);
   }
 
   .pdescription:hover {
@@ -427,6 +391,16 @@ a {
   .scroll-to-top div:hover {
     background-color: #aaaaaa;
     transform: scale(1.05);
+  }
+
+  .buttonThree:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+  }
+
+  .socials a:hover {
+    cursor: pointer;
+    border-bottom: solid 1px var(--link-color);
   }
 }
 

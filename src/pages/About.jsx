@@ -1,7 +1,8 @@
-import { React, useEffect } from "react";
+import React, { useEffect, lazy, Suspense } from "react";
 import Blog from "./Blog";
 
 import { Link, useLocation } from "react-router-dom";
+import Footer from "./Footer";
 
 export default function About() {
   const location = useLocation();
@@ -38,46 +39,6 @@ export default function About() {
           </div>
           <div>Currently based in Mumbai, IN</div>
           <div>
-            The quickest way to reach me is via{" "}
-            <a
-              href="mailto:aaansaridan@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              email
-            </a>
-            , and you can view all my projects on my{" "}
-            <a
-              href="https://github.com/dan10ish"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GitHub
-            </a>
-            .
-          </div>
-          <div>
-            On other social apps, you can find me by the username{" "}
-            <span className="about-special-social">@dan10ish</span>. I am most
-            active on{" "}
-            <a
-              href="https://x.com/dan10ish"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              X
-            </a>{" "}
-            and occasionally on{" "}
-            <a
-              href="https://instagram.com/dan10ish"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Instagram
-            </a>
-            .
-          </div>
-          <div>
             In my free time, I explore new{" "}
             <span className="about-special">technologies</span>, write{" "}
             <span className="about-special">code</span>, take{" "}
@@ -89,6 +50,7 @@ export default function About() {
       <div className="writing-section" id="writing-section">
         <Blog />
       </div>
+      <Footer />
     </>
   );
 }
