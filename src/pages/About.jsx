@@ -1,4 +1,4 @@
-import React, { useEffect, lazy, Suspense } from "react";
+import React, { useEffect } from "react";
 import Blog from "./Blog";
 
 import { Link, useLocation } from "react-router-dom";
