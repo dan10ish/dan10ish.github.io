@@ -1,5 +1,6 @@
+/* Reset and base styles */
 * {
-  border: 0;
+  margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
@@ -10,7 +11,7 @@
   --normalFont: #000000;
   --menu-bg: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 1) 0%,
+    #ffffff 0%,
     rgba(255, 255, 255, 0.9) 70%,
     rgba(255, 255, 255, 0.8) 100%
   );
@@ -23,7 +24,6 @@
   --pname-hover: #f5f5f5;
 
   /* Font sizes */
-
   --blog-title: 16px;
   --blog-date-font: 12px;
   --normal-font-size: 14px;
@@ -31,13 +31,16 @@
   --about-title: 24px;
 }
 
+/* Font face */
 @font-face {
   font-family: "Sentient";
   src: url("./fonts/Sentient.ttf") format("truetype");
   font-weight: 100 900;
   font-style: normal;
+  font-display: swap;
 }
 
+/* Global styles */
 html,
 body {
   background-color: var(--background);
@@ -46,63 +49,66 @@ body {
 }
 
 .main {
-  padding: 50px 30px 40px 30px;
+  padding: 50px 30px 40px;
+}
+
+/* Typography */
+p,
+a {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
 }
 
 /* BlogPost List */
-
 .blog {
   display: flex;
   flex-direction: column;
-  row-gap: 20px;
-  padding: 0;
-  padding-bottom: 0px;
+  gap: 20px;
+  padding: 0 0 0;
 }
 
 .home-nav {
   padding-bottom: 10px;
 }
 
-.home-nav a {
+.home-nav a,
+.project-nav a {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  column-gap: 7px;
+  gap: 7px;
   color: var(--nav);
   margin-bottom: 20px;
   width: 100px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px 0;
   font-weight: 450;
 }
 
 .blog a {
-  text-decoration: none;
   color: var(--normalFont);
-  padding: 0;
-  margin: 0;
 }
 
 .blog-list {
   display: flex;
-  flex-direction: row;
-  width: 100%;
   justify-content: space-between;
-  padding: 0;
-  margin: 0;
-  padding-bottom: 5px;
   align-items: center;
+  width: 100%;
+  padding-bottom: 5px;
   border-bottom: 1px solid var(--blog-border-bottom);
 }
 
 .blog-title {
   width: 210px;
+  padding-bottom: 0px;
 }
 
 .blog-title h2 {
   font-size: var(--blog-title);
-  padding: 0;
-  margin: 0;
+}
+
+.blog-title h2,
+.blog-date p {
+  margin-bottom: 0px;
 }
 
 .blog-date {
@@ -111,41 +117,36 @@ body {
   font-weight: 400;
 }
 
-.blog-date p {
-  margin: 0;
-  padding: 0;
-}
-
-p,
-a {
-  margin: 0;
-  padding: 0;
-  text-decoration: none;
-}
-
+/* Loader */
 .wait {
   display: flex;
-  flex-direction: row;
   align-items: baseline;
-  column-gap: 5px;
+  gap: 5px;
   font-size: var(--normal-font-size);
   font-weight: 400;
-  padding: 0px 0px;
-  padding-left: 5px;
+  padding: 0 0 0 5px;
   color: var(--normalFont);
 }
 
 .loader {
   width: 16px;
   aspect-ratio: 2.2;
-  --_g: no-repeat
-    radial-gradient(circle closest-side, var(--normalFont) 90%, #0000);
-  background: var(--_g) 0% 50%, var(--_g) 50% 50%, var(--_g) 100% 50%;
+  background: radial-gradient(
+        circle closest-side,
+        var(--normalFont) 90%,
+        transparent
+      )
+      0% 50%,
+    radial-gradient(circle closest-side, var(--normalFont) 90%, transparent) 50%
+      50%,
+    radial-gradient(circle closest-side, var(--normalFont) 90%, transparent)
+      100% 50%;
   background-size: calc(100% / 3) 50%;
-  animation: l3 1s infinite linear;
+  background-repeat: no-repeat;
+  animation: loader 1s infinite linear;
 }
 
-@keyframes l3 {
+@keyframes loader {
   20% {
     background-position: 0% 0%, 50% 50%, 100% 50%;
   }
@@ -161,43 +162,39 @@ a {
 }
 
 /* About */
-
 .about {
   padding-bottom: 10px;
-}
-
-.section-title h1 {
-  font-size: var(--about-title);
-  font-weight: 700;
-}
-
-.project-nav a {
-  color: var(--nav);
-  font-size: var(--about-title);
-  font-weight: 500;
 }
 
 .section-title {
   padding-bottom: 30px;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
+  align-items: baseline;
+}
+
+.section-title h1 {
+  font-size: var(--about-title);
+  font-weight: 500;
+}
+
+.project-nav a {
+  font-size: var(--about-title);
+  font-weight: 400;
 }
 
 .about-content {
-  padding: 0;
   padding-bottom: 50px;
-  margin: 0;
   font-size: var(--normal-font-size);
-  font-weight: 400;
+  font-weight: 350;
   line-height: 24px;
   display: flex;
   flex-direction: column;
-  row-gap: 10px;
+  gap: 10px;
 }
 
 .about-special {
-  font-weight: 600;
+  font-weight: 550;
 }
 
 .about-content a {
@@ -214,25 +211,21 @@ a {
 
 .skill-content {
   display: flex;
-  flex-direction: row;
-  column-gap: 10px;
+  gap: 10px;
   justify-content: center;
   align-items: center;
 }
 
 /* Footer */
-
 .footer {
   margin-top: 50px;
   font-size: var(--footer-font);
-  padding: 0;
   font-weight: 300;
 }
 
 .socials {
   display: flex;
-  flex-direction: row;
-  column-gap: 15px;
+  gap: 15px;
   padding-bottom: 5px;
 }
 
@@ -242,19 +235,17 @@ a {
 }
 
 /* Projects */
-
 .project-content {
   display: flex;
   flex-direction: column;
-  row-gap: 10px;
+  gap: 10px;
   justify-content: center;
   align-items: center;
 }
 
 .plist {
   display: flex;
-  flex-direction: row;
-  column-gap: 20px;
+  gap: 20px;
   align-items: center;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--blog-border-bottom);
@@ -262,12 +253,10 @@ a {
 
 .project-content a {
   color: var(--link-color);
-  text-decoration: none;
 }
 
 .pname {
   color: var(--link-color);
-  text-decoration: none;
   width: 90px;
   text-align: left;
   font-size: var(--normal-font-size);
@@ -279,12 +268,10 @@ a {
   font-size: var(--normal-font-size);
 }
 
+/* Three.js canvas */
 .three {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  position: fixed;
+  inset: 0;
   z-index: 10000;
   background-color: var(--canvas-background);
   backdrop-filter: blur(4px);
@@ -292,7 +279,6 @@ a {
 }
 
 .buttonThree {
-  font-size: 20px;
   position: absolute;
   left: 30px;
   top: 30px;
@@ -309,19 +295,19 @@ a {
   text-align: center;
 }
 
+/* Media Queries */
 @media (min-width: 750px) {
   :root {
     --blog-title: 18px;
     --blog-date-font: 14px;
     --normal-font-size: 16px;
-    --footer-font: 14px;
     --about-title: 24px;
   }
 
   .main {
     position: relative;
     left: 50%;
-    transform: translate(-50%);
+    transform: translateX(-50%);
     width: 650px;
     padding-top: 70px;
   }
@@ -335,7 +321,6 @@ a {
   }
 
   .buttonThree {
-    left: 30px;
     top: 100px;
   }
 
@@ -348,44 +333,35 @@ a {
   }
 }
 
+/* Hover effects */
 @media (hover: hover) and (pointer: fine) {
-  .home-nav a:hover {
+  .home-nav a:hover,
+  .project-nav:hover {
     transform: scale(1.05);
     cursor: pointer;
   }
 
-  .blog-title a:hover {
-    border-bottom: 1px solid var(--normalFont);
-  }
-
-  .about-content a:hover {
-    color: var(--link-color);
-    border-bottom: solid 1px var(--link-color);
+  .blog-title a:hover,
+  .about-content a:hover,
+  .socials a:hover {
+    border-bottom: 1px solid currentColor;
   }
 
   .pname {
     text-align: center;
     width: 140px;
-    padding: 5px 0px;
+    padding: 5px 0;
     border-radius: 5px;
   }
 
-  .pname:hover {
+  .pname:hover,
+  .pname a:hover {
     background-color: var(--pname-hover);
     cursor: pointer;
   }
 
-  .pname a:hover {
-    cursor: pointer;
-  }
-
-  .project-nav:hover {
-    /* color: var(--link-color); */
-    transform: scale(1.05);
-  }
-
   .pdescription:hover {
-    cursor: no-drop;
+    cursor: not-allowed;
   }
 
   .scroll-to-top div:hover {
@@ -397,15 +373,9 @@ a {
     transform: scale(1.1);
     cursor: pointer;
   }
-
-  .socials a:hover {
-    cursor: pointer;
-    border-bottom: solid 1px var(--link-color);
-  }
 }
 
 /* Scroll to top */
-
 .scroll-to-top {
   position: fixed;
   bottom: 25px;

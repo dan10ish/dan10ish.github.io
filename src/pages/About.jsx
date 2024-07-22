@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import Blog from "./Blog";
-
+import React, { useEffect, lazy, Suspense } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Footer from "./Footer";
+
+const Blog = lazy(() => import("./Blog"));
 
 export default function About() {
   const location = useLocation();
@@ -14,10 +14,10 @@ export default function About() {
         element.scrollIntoView({ behavior: "smooth" });
       }
     } else {
-      // Scroll to top when navigating from another page
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }, [location]);
+
   return (
     <>
       <div className="about">
@@ -48,7 +48,9 @@ export default function About() {
         </div>
       </div>
       <div className="writing-section" id="writing-section">
-        <Blog />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Blog />
+        </Suspense>
       </div>
       <Footer />
     </>

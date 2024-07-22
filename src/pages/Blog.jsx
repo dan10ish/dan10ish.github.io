@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
 import blogPosts from "../data/blogPosts";
-
 import { format } from "date-fns";
 
 export default function Blog() {
-  const sortedBlogPosts = [...blogPosts].sort(
-    (a, b) => new Date(b.date) - new Date(a.date)
+  const sortedBlogPosts = useMemo(
+    () => [...blogPosts].sort((a, b) => new Date(b.date) - new Date(a.date)),
+    []
   );
+
   return (
     <>
       <div className="blog">

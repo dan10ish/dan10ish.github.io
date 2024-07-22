@@ -1,20 +1,40 @@
-import React from "react";
+import React, { useState, lazy, Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Environment, OrbitControls } from "@react-three/drei";
-
-import Knuckle from "../components/Gltfjsx/Knuckle";
-import Uc from "../components/Gltfjsx/Uc";
-import Fc from "../components/Gltfjsx/Fc";
-
 import back from "../assets/back.svg";
-
 import Footer from "./Footer";
 import { Link } from "react-router-dom";
 
+const Knuckle = lazy(() => import("../components/Gltfjsx/Knuckle"));
+const Uc = lazy(() => import("../components/Gltfjsx/Uc"));
+const Fc = lazy(() => import("../components/Gltfjsx/Fc"));
+
 export default function Projects() {
-  const [visiblekj, setVisiblekj] = React.useState(false);
-  const [visibleuc, setVisibleuc] = React.useState(false);
-  const [visiblefc, setVisiblefc] = React.useState(false);
+  const [visibleModel, setVisibleModel] = useState(null);
+
+  const renderModel = () => {
+    switch (visibleModel) {
+      case "knuckle":
+        return (
+          <Knuckle
+            scale={0.015}
+            rotation={[0.5, -0.4, -0.6]}
+            position={[0, -0.2, 0]}
+          />
+        );
+      case "uc":
+        return (
+          <Uc scale={0.009} rotation={[0.5, -0.4, 0]} position={[0, -0.1, 0]} />
+        );
+      case "fc":
+        return (
+          <Fc scale={0.01} rotation={[0.2, 2.4, 0]} position={[0, -0.3, 0]} />
+        );
+      default:
+        return null;
+    }
+  };
+
   return (
     <>
       <div className="projects">
@@ -56,21 +76,21 @@ export default function Projects() {
           </div>
 
           <div className="plist">
-            <div className="pname" onClick={() => setVisiblekj(true)}>
+            <div className="pname" onClick={() => setVisibleModel("knuckle")}>
               knuckle joint
             </div>
             <div className="pdescription">hinged joint b/w 2 rods</div>
           </div>
 
           <div className="plist">
-            <div className="pname" onClick={() => setVisibleuc(true)}>
+            <div className="pname" onClick={() => setVisibleModel("uc")}>
               universal coupling
             </div>
             <div className="pdescription">joint b/w 2 rigid shafts</div>
           </div>
 
           <div className="plist">
-            <div className="pname" onClick={() => setVisiblefc(true)}>
+            <div className="pname" onClick={() => setVisibleModel("fc")}>
               flange coupling
             </div>
             <div className="pdescription">coupling b/w rotating shafts</div>
@@ -132,46 +152,17 @@ export default function Projects() {
         </div>
       </div>
       <Footer />
-      {visiblekj && (
+      {visibleModel && (
         <div className="three">
-          <div className="buttonThree" onClick={() => setVisiblekj(false)}>
+          <div className="buttonThree" onClick={() => setVisibleModel(null)}>
             X
           </div>
           <Canvas>
-            <Knuckle
-              scale={0.015}
-              rotation={[0.5, -0.4, -0.6]}
-              position={[0, -0.2, 0]}
-            />
-            <Environment preset="warehouse" />
-            <OrbitControls />
-          </Canvas>
-        </div>
-      )}
-      {visibleuc && (
-        <div className="three">
-          <div className="buttonThree" onClick={() => setVisibleuc(false)}>
-            X
-          </div>
-          <Canvas>
-            <Uc
-              scale={0.009}
-              rotation={[0.5, -0.4, 0]}
-              position={[0, -0.1, 0]}
-            />
-            <Environment preset="warehouse" />
-            <OrbitControls />
-          </Canvas>
-        </div>
-      )}
-
-      {visiblefc && (
-        <div className="three">
-          <div className="buttonThree" onClick={() => setVisiblefc(false)}>
-            X
-          </div>
-          <Canvas>
-            <Fc scale={0.01} rotation={[0.2, 2.4, 0]} position={[0, -0.3, 0]} />
+            <Suspense
+              fallback={<div style={{ color: "white" }}>Loading...</div>}
+            >
+              {renderModel()}
+            </Suspense>
             <Environment preset="warehouse" />
             <OrbitControls />
           </Canvas>

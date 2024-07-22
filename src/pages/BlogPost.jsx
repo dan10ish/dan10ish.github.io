@@ -1,18 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Link, useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import blogPosts from "../data/blogPosts";
 import "./BlogPost.css";
-
 import { format } from "date-fns";
-
 import Footer from "./Footer";
-
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneLight } from "react-syntax-highlighter/dist/esm/styles/prism";
-
 import back from "../assets/back.svg";
-
 import ScrollToTop from "../components/ScrollToTop";
 
 export default function BlogPost() {
@@ -20,15 +15,22 @@ export default function BlogPost() {
   const [content, setContent] = useState("");
   const post = blogPosts.find((post) => post.fileName === fileName);
 
-  useEffect(() => {
+  const fetchContent = useCallback(async () => {
     if (post) {
-      import(`../blog-posts/${post.fileName}`)
-        .then((res) => fetch(res.default))
-        .then((res) => res.text())
-        .then(setContent)
-        .catch((err) => console.error(err));
+      try {
+        const module = await import(`../blog-posts/${post.fileName}`);
+        const response = await fetch(module.default);
+        const text = await response.text();
+        setContent(text);
+      } catch (err) {
+        console.error(err);
+      }
     }
   }, [post, fileName]);
+
+  useEffect(() => {
+    fetchContent();
+  }, [fetchContent]);
 
   if (!post) {
     return <h1>Post not found</h1>;

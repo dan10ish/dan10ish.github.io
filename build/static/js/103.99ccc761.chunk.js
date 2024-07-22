@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkblog=self.webpackChunkblog||[]).push([[103],{3103:(e,s,l)=>{l.r(s),l.d(s,{default:()=>a});l(5043);var t=l(8519),n=l(579);function a(e){const{nodes:s,materials:l}=(0,t.p)("./assets/knuckle.glb");return(0,n.jsx)("group",{...e,dispose:null,children:(0,n.jsx)("mesh",{geometry:s.knuckle.geometry,material:l["Steel_-_Satin"]})})}t.p.preload("./assets/knuckle.glb")}}]);
+//# sourceMappingURL=103.99ccc761.chunk.js.map

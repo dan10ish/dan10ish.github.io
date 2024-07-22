@@ -1,11 +1,11 @@
-import React from "react";
-import "./index.css";
+import React, { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./index.css";
 
-import About from "./pages/About";
-import Projects from "./pages/Projects";
-import Blog from "./pages/Blog";
-import BlogPost from "./pages/BlogPost";
+const About = lazy(() => import("./pages/About"));
+const Projects = lazy(() => import("./pages/Projects"));
+const Blog = lazy(() => import("./pages/Blog"));
+const BlogPost = lazy(() => import("./pages/BlogPost"));
 
 export default function App() {
   // Height bug fix
@@ -15,10 +15,11 @@ export default function App() {
   };
   window.addEventListener("resize", appHeight);
   appHeight();
+
   return (
-    <>
-      <Router>
-        <div className="main">
+    <Router>
+      <div className="main">
+        <Suspense fallback={<div>Loading...</div>}>
           <Routes>
             <Route path="/" element={<About />} />
             <Route path="/about" element={<About />} />
@@ -26,8 +27,8 @@ export default function App() {
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:fileName" element={<BlogPost />} />
           </Routes>
-        </div>
-      </Router>
-    </>
+        </Suspense>
+      </div>
+    </Router>
   );
 }
