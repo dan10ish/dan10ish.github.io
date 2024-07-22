@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkblog=self.webpackChunkblog||[]).push([[727],{5727:(e,s,t)=>{t.r(s),t.d(s,{default:()=>o});t(5043);var l=t(8519),a=t(579);function o(e){const{nodes:s,materials:t}=(0,l.p)("./assets/fc.glb");return(0,a.jsx)("group",{...e,dispose:null,children:(0,a.jsx)("mesh",{geometry:s.fc.geometry,material:t["Steel_-_Satin.002"],position:[-4,0,0]})})}l.p.preload("./assets/fc.glb")}}]);
-//# sourceMappingURL=727.dd174c72.chunk.js.map
