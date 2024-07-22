@@ -335,9 +335,19 @@ a {
 
 /* Hover effects */
 @media (hover: hover) and (pointer: fine) {
-  .home-nav a:hover,
-  .project-nav:hover {
-    transform: scale(1.05);
+  .project-nav a {
+    padding-bottom: 1px;
+  }
+
+  .home-text,
+  .project-nav a {
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+  }
+
+  .home-text:hover,
+  .project-nav a:hover {
+    border-bottom-color: currentColor;
     cursor: pointer;
   }
 

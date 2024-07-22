@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import blogPosts from "../data/blogPosts";
@@ -15,22 +15,15 @@ export default function BlogPost() {
   const [content, setContent] = useState("");
   const post = blogPosts.find((post) => post.fileName === fileName);
 
-  const fetchContent = useCallback(async () => {
+  useEffect(() => {
     if (post) {
-      try {
-        const module = await import(`../blog-posts/${post.fileName}`);
-        const response = await fetch(module.default);
-        const text = await response.text();
-        setContent(text);
-      } catch (err) {
-        console.error(err);
-      }
+      import(`../blog-posts/${post.fileName}`)
+        .then((res) => fetch(res.default))
+        .then((res) => res.text())
+        .then(setContent)
+        .catch((err) => console.error(err));
     }
   }, [post, fileName]);
-
-  useEffect(() => {
-    fetchContent();
-  }, [fetchContent]);
 
   if (!post) {
     return <h1>Post not found</h1>;
@@ -44,7 +37,7 @@ export default function BlogPost() {
             <div>
               <img src={back} alt="Back" />
             </div>
-            <div>Home</div>
+            <div className="home-text">Home</div>
           </Link>
         </div>
         <div className="blogPost-title">
@@ -53,36 +46,40 @@ export default function BlogPost() {
         <div className="blogPost-date">
           <p>{format(new Date(post.date), "MMMM dd, yyyy")}</p>
         </div>
-        <ReactMarkdown
-          components={{
-            a: ({ node, ...props }) => (
-              <a
-                {...props}
-                style={{ color: "#007bff" }}
-                target="_blank"
-                rel="noopener noreferrer"
-              />
-            ),
-            code({ node, inline, className, children, ...props }) {
-              const match = /language-(\w+)/.exec(className || "");
-              return !inline && match ? (
-                <SyntaxHighlighter
-                  style={oneLight}
-                  language={match[1]}
-                  PreTag="div"
-                  children={String(children).replace(/\n$/, "")}
+        {content ? (
+          <ReactMarkdown
+            components={{
+              a: ({ node, ...props }) => (
+                <a
                   {...props}
+                  style={{ color: "#007bff" }}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 />
-              ) : (
-                <code className={className} {...props}>
-                  {children}
-                </code>
-              );
-            },
-          }}
-        >
-          {content}
-        </ReactMarkdown>
+              ),
+              code({ node, inline, className, children, ...props }) {
+                const match = /language-(\w+)/.exec(className || "");
+                return !inline && match ? (
+                  <SyntaxHighlighter
+                    style={oneLight}
+                    language={match[1]}
+                    PreTag="div"
+                    children={String(children).replace(/\n$/, "")}
+                    {...props}
+                  />
+                ) : (
+                  <code className={className} {...props}>
+                    {children}
+                  </code>
+                );
+              },
+            }}
+          >
+            {content}
+          </ReactMarkdown>
+        ) : (
+          <div>Loading blog post content...</div>
+        )}
         <ScrollToTop />
         <div className="blog-footer">
           <Footer />
