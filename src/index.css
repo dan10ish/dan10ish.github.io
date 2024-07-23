@@ -24,11 +24,12 @@
   --pname-hover: #f5f5f5;
 
   /* Font sizes */
-  --blog-title: 16px;
+  --blog-title: 18px;
   --blog-date-font: 12px;
-  --normal-font-size: 14px;
+  --normal-font-size: 16px;
   --footer-font: 14px;
   --about-title: 24px;
+  --project-nav-fs: 24px;
 }
 
 /* Font face */
@@ -80,7 +81,7 @@ a {
 /* BlogPost List */
 
 .writing-section {
-  padding-bottom: 70px;
+  padding-bottom: 50px;
 }
 
 .blog {
@@ -91,18 +92,18 @@ a {
 }
 
 .home-nav {
-  padding-bottom: 10px;
+  width: 90px;
+  padding: 10px 10px 10px 0px;
+  color: var(--nav);
+  margin-bottom: 50px;
+  border-radius: 10px;
 }
 
-.home-nav a,
-.project-nav a {
+.home-nav a {
   display: flex;
   align-items: center;
   gap: 7px;
   color: var(--nav);
-  margin-bottom: 20px;
-  width: 100px;
-  padding: 10px 0;
   font-weight: 450;
 }
 
@@ -189,7 +190,7 @@ a {
 }
 
 .section-title {
-  padding-bottom: 30px;
+  padding-bottom: 50px;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -197,26 +198,27 @@ a {
 
 .section-title h1 {
   font-size: var(--about-title);
-  font-weight: 500;
+  font-weight: 450;
 }
 
 .project-nav a {
-  font-size: var(--about-title);
+  font-size: var(--project-nav-fs);
   font-weight: 400;
+  color: var(--link-color);
 }
 
 .about-content {
   padding-bottom: 50px;
   font-size: var(--normal-font-size);
-  font-weight: 400;
+  font-weight: 350;
   line-height: 24px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 16px;
 }
 
 .about-special {
-  font-weight: 650;
+  font-weight: 550;
 }
 
 .about-content a {
@@ -362,6 +364,14 @@ a {
 
   .footer {
     padding-top: 40px;
+  }
+
+  .writing-section {
+    padding-bottom: 70px;
+  }
+
+  .about-content {
+    padding-bottom: 50px;
   }
 }
 

@@ -20,9 +20,7 @@ export default function Projects() {
       <div className="projects">
         <div className="home-nav">
           <Link to="/">
-            <div>
-              <img src={back} alt="Back" />
-            </div>
+            <div>←</div>
             <div className="home-text">Home</div>
           </Link>
         </div>
