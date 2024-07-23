@@ -1,13 +1,45 @@
-# Disallow everything.
 User-agent: *
+Disallow: /admin
+Disallow: /login
+Disallow: /account
+Disallow: /private
+Disallow: /user-settings
+Disallow: /checkout
+Disallow: /cart
+
+# Allow all other crawlers to access everything else
 Allow: /
 
-# Certain social media sites are whitelisted to allow crawlers to access page markup when links to /images are shared. 
-User-agent: Twitterbot
-Allow: /images
+# Specific bots that need to preview links
+User-agent: googlebot
+Allow: /
 
 User-agent: facebookexternalhit
-Allow: /images
+Allow: /
 
-User-agent: Googlebot
+User-agent: Facebot
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: pinterest
+Allow: /
+
+User-agent: Slackbot
+Allow: /
+
+User-agent: TelegramBot
+Allow: /
+
+User-agent: Instagram
+Allow: /
+
+User-agent: Postscout
 Allow: /
