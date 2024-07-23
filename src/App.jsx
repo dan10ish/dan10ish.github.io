@@ -18,6 +18,7 @@ export default function App() {
 
   return (
     <Router>
+      <div className="top-bar"></div>
       <div className="main">
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>

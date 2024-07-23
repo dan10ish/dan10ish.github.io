@@ -29,6 +29,11 @@ export default function About() {
             <Link to="/projects">Projects</Link>
           </div>
         </div>
+        <div className="writing-section" id="writing-section">
+          <Suspense fallback={<div>Loading...</div>}>
+            <Blog />
+          </Suspense>
+        </div>
         <div className="about-content">
           <div>
             I am a <span className="about-special">Mechatronics</span> Engineer
@@ -47,11 +52,7 @@ export default function About() {
           </div>
         </div>
       </div>
-      <div className="writing-section" id="writing-section">
-        <Suspense fallback={<div>Loading...</div>}>
-          <Blog />
-        </Suspense>
-      </div>
+
       <Footer />
     </>
   );

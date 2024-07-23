@@ -34,7 +34,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="copyright">
-          Copyright <span className="copy">©</span> 2024 Danish Ansari
+          <span className="copy">©</span> 2024 Danish Ansari
         </div>
       </div>
     </>
