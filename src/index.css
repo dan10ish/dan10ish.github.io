@@ -265,6 +265,7 @@ a {
   gap: 10px;
   justify-content: center;
   align-items: center;
+  padding-bottom: 30px;
 }
 
 .plist {
