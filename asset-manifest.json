@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.d30a6f84.css",
+    "main.css": "/static/css/main.ba8e790c.css",
     "main.js": "/static/js/main.bbd9c418.js",
     "static/js/638.37de0dbc.chunk.js": "/static/js/638.37de0dbc.chunk.js",
     "static/js/779.4f7b1c9e.chunk.js": "/static/js/779.4f7b1c9e.chunk.js",
@@ -18,7 +18,7 @@
     "static/media/back.svg": "/static/media/back.08264d692e1f8a339fc1999e351de921.svg",
     "static/media/upScroll.svg": "/static/media/upScroll.a81206249daee2e3cd946c9eb33b63e2.svg",
     "static/media/how-to-make-a-computer-from-scratch.md": "/static/media/how-to-make-a-computer-from-scratch.31d6cfe0d16ae931b73c.md",
-    "main.d30a6f84.css.map": "/static/css/main.d30a6f84.css.map",
+    "main.ba8e790c.css.map": "/static/css/main.ba8e790c.css.map",
     "main.bbd9c418.js.map": "/static/js/main.bbd9c418.js.map",
     "638.37de0dbc.chunk.js.map": "/static/js/638.37de0dbc.chunk.js.map",
     "779.4f7b1c9e.chunk.js.map": "/static/js/779.4f7b1c9e.chunk.js.map",
@@ -30,7 +30,7 @@
     "737.a0bc1221.chunk.js.map": "/static/js/737.a0bc1221.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d30a6f84.css",
+    "static/css/main.ba8e790c.css",
     "static/js/main.bbd9c418.js"
   ]
 }
