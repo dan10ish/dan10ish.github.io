@@ -35,25 +35,14 @@ export default function About() {
           </Suspense>
         </div>
         <div className="about-content">
-          <div>
-            I am a <span className="about-special">Mechatronics</span> Engineer
-            who enjoys working at the intersection of{" "}
-            <span className="about-special">robotics</span>,{" "}
-            <span className="about-special">machine learning</span>, and{" "}
-            <span className="about-special">computer science</span>
-          </div>
-          <div>Currently based in Mumbai, IN</div>
-          <div>
-            In my free time, I explore new{" "}
-            <span className="about-special">technologies</span>, write{" "}
-            <span className="about-special">code</span>, take{" "}
-            <span className="about-special">pictures</span> or play{" "}
-            <span className="about-special">football</span>.
-          </div>
+          I’m a mechatronics engineer based in Mumbai, who explores the
+          intersection of robotics, computer science and machine learning.
         </div>
       </div>
 
-      <Footer />
+      <div className="about-footer">
+        <Footer />
+      </div>
     </>
   );
 }

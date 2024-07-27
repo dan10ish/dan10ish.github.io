@@ -6,8 +6,6 @@ import Knuckle from "../components/Gltfjsx/Knuckle";
 import Uc from "../components/Gltfjsx/Uc";
 import Fc from "../components/Gltfjsx/Fc";
 
-import back from "../assets/back.svg";
-
 import Footer from "./Footer";
 import { Link } from "react-router-dom";
 
@@ -20,7 +18,6 @@ export default function Projects() {
       <div className="projects">
         <div className="home-nav">
           <Link to="/">
-            <div>↵</div>
             <div className="home-text">Home</div>
           </Link>
         </div>
@@ -129,7 +126,9 @@ export default function Projects() {
           </div>
         </div>
       </div>
-      <Footer />
+      <div className="project-footer">
+        <Footer />
+      </div>
       {visiblekj && (
         <div className="three">
           <div className="buttonThree" onClick={() => setVisiblekj(false)}>

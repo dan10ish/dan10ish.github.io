@@ -7,7 +7,6 @@ import { format } from "date-fns";
 import Footer from "./Footer";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneLight } from "react-syntax-highlighter/dist/esm/styles/prism";
-import back from "../assets/back.svg";
 import ScrollToTop from "../components/ScrollToTop";
 
 export default function BlogPost() {
@@ -33,7 +32,6 @@ export default function BlogPost() {
     <>
       <div className="home-nav">
         <Link to="/">
-          <div>↵</div>
           <div className="home-text">Home</div>
         </Link>
       </div>

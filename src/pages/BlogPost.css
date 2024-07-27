@@ -29,11 +29,12 @@ p {
 
 code {
   background-color: #efefef;
-  padding: 1px 4px;
+  padding: 2px 4px;
   border-radius: 4px;
   color: #555;
-  font-family: "Space mono";
+  font-family: "Courier New", Courier, monospace;
   font-size: 13px;
+  font-weight: 400;
 }
 
 pre {
@@ -63,5 +64,13 @@ blockquote {
 .blog-footer {
   margin: 0;
   padding: 0;
-  padding-top: 50px;
+}
+
+/* Media Queries */
+@media (min-width: 750px) {
+  .blog-footer {
+    margin: 0;
+    padding: 0;
+    padding-bottom: 50px;
+  }
 }

@@ -1,104 +1,92 @@
-/* Reset and base styles */
+:root {
+  --app-height: 100%;
+  --background: #fff;
+  --normalFont: #000;
+  --menu-bg: linear-gradient(
+    180deg,
+    #fff 0%,
+    rgba(255, 255, 255, 0.9) 70%,
+    rgba(255, 255, 255, 0.8) 100%
+  );
+  --blog-date: #888;
+  --blog-border-bottom: #e3e3e3;
+  --link-color: #06f;
+  --canvas-background: #ffffffab;
+  --canvas-cross: #eee;
+  --nav: #888;
+  --pname-hover: #f5f5f5;
+  --main-padding: 60px;
+  --blog-title: 18px;
+  --blog-date-font: 12px;
+  --normal-font-size: 16px;
+  --footer-font: 16px;
+  --about-title: 22px;
+  --project-nav-fs: 22px;
+}
+
+@font-face {
+  font-family: Sentient;
+  src: url(./fonts/Sentient.ttf) format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-:root {
-  --app-height: 100%;
-  --background: #ffffff;
-  --normalFont: #000000;
-  --menu-bg: linear-gradient(
-    180deg,
-    #ffffff 0%,
-    rgba(255, 255, 255, 0.9) 70%,
-    rgba(255, 255, 255, 0.8) 100%
-  );
-  --blog-date: #aaa;
-  --blog-border-bottom: #e3e3e3;
-  --link-color: #0066ff;
-  --canvas-background: #ffffffab;
-  --canvas-cross: #eeeeee;
-  --nav: #aaaaaa;
-  --pname-hover: #f5f5f5;
-
-  /* Font sizes */
-  --blog-title: 18px;
-  --blog-date-font: 12px;
-  --normal-font-size: 16px;
-  --footer-font: 14px;
-  --about-title: 22px;
-  --project-nav-fs: 22px;
-}
-
-/* Font face */
-@font-face {
-  font-family: "Sentient";
-  src: url("./fonts/Sentient.ttf") format("truetype");
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Global styles */
 html,
 body {
   background-color: var(--background);
-  font-family: "Sentient", sans-serif;
+  font-family: Sentient, sans-serif;
   overflow-x: hidden;
 }
 
 .main {
-  padding: 50px 30px;
+  padding: 35px;
 }
 
 .top-bar {
   position: fixed;
   top: 0;
   left: 50%;
-  transform: translate(-50%);
+  transform: translateX(-50%);
   width: 94vw;
   height: 35px;
-  background: rgb(255, 255, 255);
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 1) 10%,
+    #fff 10%,
     rgba(255, 255, 255, 0.9) 40%,
     rgba(254, 254, 254, 0) 100%
   );
   z-index: 100000;
 }
 
-/* Typography */
 p,
 a {
-  margin: 0;
-  padding: 0;
   text-decoration: none;
 }
-
-/* BlogPost List */
 
 .blogPost {
   margin-top: 30px;
 }
 
 .writing-section {
-  padding-bottom: 50px;
-  padding-top: 0px;
+  padding: 0 0 var(--main-padding);
 }
 
 .blog {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 0 0 0 0;
 }
 
 .home-nav {
   width: 90px;
-  padding: 10px 10px 10px 0px;
+  padding: 10px 10px 10px 0;
   color: var(--nav);
   border-radius: 10px;
 }
@@ -126,16 +114,11 @@ a {
 
 .blog-title {
   width: 210px;
-  padding-bottom: 0px;
 }
 
 .blog-title h2 {
   font-size: var(--blog-title);
-}
-
-.blog-title h2,
-.blog-date p {
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 
 .blog-date {
@@ -144,14 +127,17 @@ a {
   font-weight: 400;
 }
 
-/* Loader */
+.blog-date p {
+  margin-bottom: 0;
+}
+
 .wait {
   display: flex;
   align-items: baseline;
   gap: 5px;
   font-size: var(--normal-font-size);
   font-weight: 400;
-  padding: 0 0 0 5px;
+  padding-left: 5px;
   color: var(--normalFont);
 }
 
@@ -175,23 +161,21 @@ a {
 
 @keyframes loader {
   20% {
-    background-position: 0% 0%, 50% 50%, 100% 50%;
+    background-position: 0 0, 50% 50%, 100% 50%;
   }
   40% {
-    background-position: 0% 100%, 50% 0%, 100% 50%;
+    background-position: 0 100%, 50% 0, 100% 50%;
   }
   60% {
-    background-position: 0% 50%, 50% 100%, 100% 0%;
+    background-position: 0 50%, 50% 100%, 100% 0;
   }
   80% {
-    background-position: 0% 50%, 50% 50%, 100% 100%;
+    background-position: 0 50%, 50% 50%, 100% 100%;
   }
 }
 
-/* About */
-
 .section-title {
-  padding-bottom: 50px;
+  margin-bottom: var(--main-padding);
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -226,13 +210,6 @@ a {
   font-weight: 500;
 }
 
-.about-special-social {
-  font-family: "Space Mono", monospace;
-  font-size: 13px;
-  font-weight: 500;
-  padding-left: 3px;
-}
-
 .skill-content {
   display: flex;
   gap: 10px;
@@ -240,37 +217,44 @@ a {
   align-items: center;
 }
 
-/* Footer */
 .footer {
-  margin-top: 100px;
+  margin-top: var(--main-padding);
   font-size: var(--footer-font);
-  font-weight: 300;
+  font-weight: 350;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-footer {
+  position: absolute;
+  bottom: 40px;
 }
 
 .socials {
   display: flex;
-  gap: 11px;
-  padding-bottom: 5px;
+  gap: 14px;
 }
 
 .socials a {
   color: var(--link-color);
-  font-weight: 450;
+  font-weight: 400;
 }
 
 .copy {
   font-weight: 400;
 }
 
-/* Projects */
-
 .project-content {
-  margin-top: 60px;
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   justify-content: center;
   align-items: center;
+}
+
+.project-footer {
+  padding-bottom: 30px;
 }
 
 .plist {
@@ -298,14 +282,12 @@ a {
   font-size: var(--normal-font-size);
 }
 
-/* Three.js canvas */
 .three {
   position: fixed;
   inset: 0;
   z-index: 10000;
   background-color: var(--background);
   backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
 }
 
 .buttonThree {
@@ -314,8 +296,8 @@ a {
   top: 30px;
   z-index: 1000000;
   padding: 10px;
-  font-family: "Quicksand", "Sentient", serif;
-  font-weight: 800;
+  font-family: system-ui, sans-serif;
+  font-weight: 500;
   color: #e40101;
   font-size: 24px;
   border-radius: 10px;
@@ -329,28 +311,49 @@ a {
 }
 
 @keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
+  to {
     opacity: 1;
   }
 }
 
-/* Media Queries */
+.scroll-to-top {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.scroll-to-top div {
+  background-color: #bbbbbbeb;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--background);
+  font-size: 14px;
+  font-family: Sentient, sans-serif;
+  font-weight: 700;
+}
+
+.upArrow {
+  position: relative;
+  top: -1px;
+}
+
 @media (min-width: 750px) {
   :root {
-    --blog-title: 18px;
+    --blog-title: 20px;
     --blog-date-font: 14px;
     --normal-font-size: 16px;
-    --about-title: 24px;
-  }
-
-  .top-bar {
-    height: 60px;
+    --about-title: 26px;
+    --project-nav-fs: 26px;
   }
 
   .main {
+    height: 100vh;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
@@ -358,13 +361,29 @@ a {
     padding-top: 70px;
   }
 
+  .about-footer {
+    bottom: 40px;
+  }
+
+  .top-bar {
+    height: 60px;
+  }
+
+  .blogPost {
+    margin-top: 50px;
+  }
+
+  .writing-section {
+    padding-bottom: 70px;
+  }
+
   .blog-title {
     width: 420px;
-    padding-bottom: 0px;
   }
 
   .about-content {
     line-height: 26px;
+    padding-bottom: 0;
   }
 
   .about-special-social {
@@ -381,18 +400,11 @@ a {
 
   .footer {
     padding-top: 40px;
-  }
-
-  .writing-section {
-    padding-bottom: 70px;
-  }
-
-  .about-content {
-    padding-bottom: 50px;
+    row-gap: 5px;
+    margin-top: 70px;
   }
 }
 
-/* Hover effects */
 @media (hover: hover) and (pointer: fine) {
   .project-nav a {
     padding-bottom: 1px;
@@ -434,7 +446,7 @@ a {
   }
 
   .scroll-to-top div:hover {
-    background-color: #aaaaaa;
+    background-color: #aaa;
     transform: scale(1.05);
   }
 
@@ -442,32 +454,4 @@ a {
     transform: scale(1.1);
     cursor: pointer;
   }
-}
-
-/* Scroll to top */
-.scroll-to-top {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  z-index: 1000;
-  cursor: pointer;
-}
-
-.scroll-to-top div {
-  background-color: #bbbbbbeb;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--background);
-  font-size: 14px;
-  font-family: "Sentient", sans-serif;
-  font-weight: 700;
-}
-
-.upArrow {
-  position: relative;
-  top: -1px;
 }
