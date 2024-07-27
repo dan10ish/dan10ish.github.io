@@ -20,7 +20,7 @@ export default function Projects() {
       <div className="projects">
         <div className="home-nav">
           <Link to="/">
-            <div>←</div>
+            <div>↵</div>
             <div className="home-text">Home</div>
           </Link>
         </div>

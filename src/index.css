@@ -17,7 +17,7 @@
   );
   --blog-date: #aaa;
   --blog-border-bottom: #e3e3e3;
-  --link-color: #0a84ff;
+  --link-color: #0066ff;
   --canvas-background: #ffffffab;
   --canvas-cross: #eeeeee;
   --nav: #aaaaaa;
@@ -28,8 +28,8 @@
   --blog-date-font: 12px;
   --normal-font-size: 16px;
   --footer-font: 14px;
-  --about-title: 24px;
-  --project-nav-fs: 24px;
+  --about-title: 22px;
+  --project-nav-fs: 22px;
 }
 
 /* Font face */
@@ -80,22 +80,26 @@ a {
 
 /* BlogPost List */
 
+.blogPost {
+  margin-top: 30px;
+}
+
 .writing-section {
   padding-bottom: 50px;
+  padding-top: 0px;
 }
 
 .blog {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 0 0 0;
+  padding: 0 0 0 0;
 }
 
 .home-nav {
   width: 90px;
   padding: 10px 10px 10px 0px;
   color: var(--nav);
-  margin-bottom: 50px;
   border-radius: 10px;
 }
 
@@ -185,9 +189,6 @@ a {
 }
 
 /* About */
-.about {
-  padding-bottom: 10px;
-}
 
 .section-title {
   padding-bottom: 50px;
@@ -198,7 +199,7 @@ a {
 
 .section-title h1 {
   font-size: var(--about-title);
-  font-weight: 450;
+  font-weight: 600;
 }
 
 .project-nav a {
@@ -208,7 +209,6 @@ a {
 }
 
 .about-content {
-  padding-bottom: 50px;
   font-size: var(--normal-font-size);
   font-weight: 350;
   line-height: 24px;
@@ -242,30 +242,35 @@ a {
 
 /* Footer */
 .footer {
-  margin-top: 50px;
+  margin-top: 100px;
   font-size: var(--footer-font);
   font-weight: 300;
 }
 
 .socials {
   display: flex;
-  gap: 15px;
+  gap: 11px;
   padding-bottom: 5px;
 }
 
 .socials a {
   color: var(--link-color);
+  font-weight: 450;
+}
+
+.copy {
   font-weight: 400;
 }
 
 /* Projects */
+
 .project-content {
+  margin-top: 60px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   justify-content: center;
   align-items: center;
-  padding-bottom: 30px;
 }
 
 .plist {
@@ -298,7 +303,6 @@ a {
   position: fixed;
   inset: 0;
   z-index: 10000;
-  /* background-color: var(--canvas-background); */
   background-color: var(--background);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
@@ -319,6 +323,18 @@ a {
   width: 50px;
   background: var(--canvas-cross);
   text-align: center;
+  animation: fadeIn 0.1s forwards;
+  animation-delay: 0.5s;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /* Media Queries */
@@ -445,6 +461,10 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: var(--background);
+  font-size: 14px;
+  font-family: "Sentient", sans-serif;
+  font-weight: 700;
 }
 
 .upArrow {

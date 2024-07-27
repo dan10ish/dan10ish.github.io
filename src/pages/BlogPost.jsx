@@ -31,13 +31,13 @@ export default function BlogPost() {
 
   return (
     <>
+      <div className="home-nav">
+        <Link to="/">
+          <div>↵</div>
+          <div className="home-text">Home</div>
+        </Link>
+      </div>
       <div className="blogPost">
-        <div className="home-nav">
-          <Link to="/">
-            <div>←</div>
-            <div className="home-text">Home</div>
-          </Link>
-        </div>
         <div className="blogPost-title">
           <h1>{post.title}</h1>
         </div>

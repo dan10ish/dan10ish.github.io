@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../index.css";
 
-import up from "../assets/upScroll.svg";
-
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -30,11 +28,7 @@ const ScrollToTop = () => {
 
   return (
     <div className="scroll-to-top">
-      {isVisible && (
-        <div onClick={scrollToTop}>
-          <img src={up} className="upArrow" />
-        </div>
-      )}
+      {isVisible && <div onClick={scrollToTop}>⇧</div>}
     </div>
   );
 };
