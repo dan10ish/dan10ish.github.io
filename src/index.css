@@ -1,27 +1,7 @@
-:root {
-  --app-height: 100%;
-  --background: #fff;
-  --normalFont: #000;
-  --menu-bg: linear-gradient(
-    180deg,
-    #fff 0%,
-    rgba(255, 255, 255, 0.9) 70%,
-    rgba(255, 255, 255, 0.8) 100%
-  );
-  --blog-date: #888;
-  --blog-border-bottom: #e3e3e3;
-  --link-color: #06f;
-  --canvas-background: #ffffffab;
-  --canvas-cross: #eee;
-  --nav: #888;
-  --pname-hover: #f5f5f5;
-  --main-padding: 60px;
-  --blog-title: 18px;
-  --blog-date-font: 12px;
-  --normal-font-size: 16px;
-  --footer-font: 16px;
-  --about-title: 22px;
-  --project-nav-fs: 22px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 @font-face {
@@ -32,30 +12,54 @@
   font-display: swap;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@font-face {
+  font-family: "Space Mono";
+  src: url(./fonts/SpaceMono.ttf) format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --background-color: #ffffff;
+  --font-color: #000000;
+  --link-color: #002bff;
+  --accent-color: #666666;
+  --dark-accent: #eeeeee;
+  --normal-font: 1rem;
+  --large-font: 1.75rem;
+  --small-font: 0.75rem;
+  --padding-normal: 80px;
+  --padding-blog: 30px;
 }
 
 html,
 body {
-  background-color: var(--background);
-  font-family: Sentient, sans-serif;
   overflow-x: hidden;
+  color: var(--font-color);
+  background-color: var(--background-color);
+  font-family: "Sentient", sans-serif;
 }
 
-.main {
-  padding: 35px;
+a,
+ul,
+li {
+  text-decoration: none;
+  list-style-type: none;
 }
 
-.top-bar {
+.app {
+  padding: 30px 30px 0px 30px;
+}
+
+/* Top Bar Effect*/
+.top-effect {
   position: fixed;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
   width: 94vw;
-  height: 35px;
+  height: 40px;
   background: linear-gradient(
     180deg,
     #fff 10%,
@@ -65,80 +69,175 @@ body {
   z-index: 100000;
 }
 
-p,
-a {
-  text-decoration: none;
+/*Homepage*/
+
+.title h1 {
+  font-size: var(--large-font);
+  color: var(--font-color);
+  font-weight: 600;
+  margin-bottom: var(--padding-normal);
 }
 
-.blogPost {
-  margin-top: 30px;
+.about-me {
+  font-size: var(--normal-font);
+  color: var(--font-color);
+  font-weight: 350;
+  margin-bottom: var(--padding-normal);
 }
 
-.writing-section {
-  padding: 0 0 var(--main-padding);
+.about-me-one {
+  margin-bottom: var(--padding-blog);
 }
 
-.blog {
+li a {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.home-nav {
-  width: 90px;
-  padding: 10px 10px 10px 0;
-  color: var(--nav);
-  border-radius: 10px;
-}
-
-.home-nav a {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  color: var(--nav);
-  font-weight: 450;
-}
-
-.blog a {
-  color: var(--normalFont);
-}
-
-.blog-list {
-  display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding-bottom: 5px;
-  border-bottom: 1px solid var(--blog-border-bottom);
+  align-items: baseline;
+  border-bottom: 0.5px solid var(--accent-color);
+  margin-bottom: 15px;
+  padding-bottom: 10px;
 }
 
-.blog-title {
-  width: 210px;
+.item-title,
+.item-title h2 {
+  font-size: var(--normal-font);
+  color: var(--font-color);
+  font-weight: 500;
+  width: 220px;
 }
 
-.blog-title h2 {
-  font-size: var(--blog-title);
-  margin-bottom: 0;
-}
-
-.blog-date {
-  color: var(--blog-date);
-  font-size: var(--blog-date-font);
+.item-rest {
+  font-size: var(--small-font);
+  color: var(--accent-color);
   font-weight: 400;
 }
 
-.blog-date p {
-  margin-bottom: 0;
+/*Footer*/
+.footer {
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: row;
+  column-gap: 30px;
 }
 
+.footer a {
+  font-size: var(--normal-font);
+  color: var(--link-color);
+}
+
+.homepage-footer {
+  position: relative;
+  padding-top: var(--padding-normal);
+}
+
+.blog-footer {
+  margin-top: 80px;
+}
+
+/* Blog */
+
+.nav-home {
+  font-size: var(--normal-font);
+  margin-bottom: var(--padding-blog);
+}
+
+.blog-post h1,
+.blog-post h2,
+.blog-post h3,
+.blog-post h4,
+.blog-post h5,
+.blog-post h6 {
+  font-weight: 600;
+  margin-bottom: var(--padding-blog);
+}
+
+.post-date {
+  margin-bottom: var(--padding-blog);
+  color: var(--accent-color);
+}
+
+.blog-post {
+  font-size: var(--normal-font);
+  font-weight: 450;
+}
+
+.blog-post p {
+  line-height: 30px;
+  margin-bottom: var(--padding-blog);
+  font-weight: 400;
+}
+
+.blog-post code {
+  background-color: var(--dark-accent);
+  padding: 1px 6px;
+  border-radius: 6px;
+  color: var(--font-color);
+  font-family: "Space Mono", monospace;
+  font-size: var(--small-font);
+}
+
+.blog-post a {
+  color: var(--link-color);
+}
+
+.blog-post pre {
+  padding: 0px;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-size: var(--small-font);
+  margin-bottom: var(--padding-blog);
+}
+
+.blog-post ul,
+.blog-post ol {
+  margin-left: 20px;
+}
+
+.blog-post blockquote {
+  border-left: 5px solid var(--accent-color);
+  padding-left: 10px;
+  color: var(--accent-color);
+  margin: 20px 0;
+}
+
+/* Scroll to top */
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  background-color: var(--dark-accent);
+  color: var(--accent-color);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: var(--normal-font);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scroll-to-top.visible {
+  display: flex;
+}
+
+.scroll-to-top:not(.visible) {
+  display: none;
+}
+
+/* Loader */
 .wait {
   display: flex;
   align-items: baseline;
   gap: 5px;
-  font-size: var(--normal-font-size);
+  font-size: var(--normal-font);
   font-weight: 400;
-  padding-left: 5px;
-  color: var(--normalFont);
+  padding: 0 0 0 5px;
+  color: var(--font-color);
+  margin-top: 30px;
 }
 
 .loader {
@@ -146,13 +245,13 @@ a {
   aspect-ratio: 2.2;
   background: radial-gradient(
         circle closest-side,
-        var(--normalFont) 90%,
+        var(--font-color) 90%,
         transparent
       )
       0% 50%,
-    radial-gradient(circle closest-side, var(--normalFont) 90%, transparent) 50%
+    radial-gradient(circle closest-side, var(--font-color) 90%, transparent) 50%
       50%,
-    radial-gradient(circle closest-side, var(--normalFont) 90%, transparent)
+    radial-gradient(circle closest-side, var(--font-color) 90%, transparent)
       100% 50%;
   background-size: calc(100% / 3) 50%;
   background-repeat: no-repeat;
@@ -161,297 +260,94 @@ a {
 
 @keyframes loader {
   20% {
-    background-position: 0 0, 50% 50%, 100% 50%;
+    background-position: 0% 0%, 50% 50%, 100% 50%;
   }
   40% {
-    background-position: 0 100%, 50% 0, 100% 50%;
+    background-position: 0% 100%, 50% 0%, 100% 50%;
   }
   60% {
-    background-position: 0 50%, 50% 100%, 100% 0;
+    background-position: 0% 50%, 50% 100%, 100% 0%;
   }
   80% {
-    background-position: 0 50%, 50% 50%, 100% 100%;
+    background-position: 0% 50%, 50% 50%, 100% 100%;
   }
 }
 
-.section-title {
-  margin-bottom: var(--main-padding);
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-}
-
-.section-title h1 {
-  font-size: var(--about-title);
-  font-weight: 600;
-}
-
-.project-nav a {
-  font-size: var(--project-nav-fs);
-  font-weight: 400;
-  color: var(--link-color);
-}
-
-.about-content {
-  font-size: var(--normal-font-size);
-  font-weight: 350;
-  line-height: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.about-special {
-  font-weight: 550;
-}
-
-.about-content a {
-  color: var(--link-color);
-  font-weight: 500;
-}
-
-.skill-content {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  align-items: center;
-}
-
-.footer {
-  margin-top: var(--main-padding);
-  font-size: var(--footer-font);
-  font-weight: 350;
-  display: flex;
-  flex-direction: column;
-}
-
-.about-footer {
-  position: absolute;
-  bottom: 40px;
-}
-
-.socials {
-  display: flex;
-  gap: 14px;
-}
-
-.socials a {
-  color: var(--link-color);
-  font-weight: 400;
-}
-
-.copy {
-  font-weight: 400;
-}
-
-.project-content {
-  margin-top: 50px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  justify-content: center;
-  align-items: center;
-}
-
-.project-footer {
-  padding-bottom: 30px;
-}
-
-.plist {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--blog-border-bottom);
-}
-
-.project-content a {
-  color: var(--link-color);
-}
-
-.pname {
-  color: var(--link-color);
-  width: 90px;
-  text-align: left;
-  font-size: var(--normal-font-size);
-  font-weight: 450;
-}
-
-.pdescription {
-  width: 180px;
-  font-size: var(--normal-font-size);
-}
-
-.three {
-  position: fixed;
-  inset: 0;
-  z-index: 10000;
-  background-color: var(--background);
-  backdrop-filter: blur(4px);
-}
-
-.buttonThree {
-  position: absolute;
-  left: 30px;
-  top: 30px;
-  z-index: 1000000;
-  padding: 10px;
-  font-family: system-ui, sans-serif;
-  font-weight: 500;
-  color: #e40101;
-  font-size: 24px;
-  border-radius: 10px;
-  height: 50px;
-  width: 50px;
-  background: var(--canvas-cross);
-  text-align: center;
-  animation: fadeIn 0.1s forwards;
-  animation-delay: 0.5s;
-  opacity: 0;
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
-}
-
-.scroll-to-top {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  z-index: 1000;
-  cursor: pointer;
-}
-
-.scroll-to-top div {
-  background-color: #bbbbbbeb;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--background);
-  font-size: 14px;
-  font-family: Sentient, sans-serif;
-  font-weight: 700;
-}
-
-.upArrow {
-  position: relative;
-  top: -1px;
-}
-
+/* Responsiveness */
 @media (min-width: 750px) {
   :root {
-    --blog-title: 20px;
-    --blog-date-font: 14px;
-    --normal-font-size: 16px;
-    --about-title: 26px;
-    --project-nav-fs: 26px;
+    --normal-font: 1rem;
+    --large-font: 2rem;
+    --small-font: 0.85rem;
+    --padding-normal: 80px;
+    --padding-blog: 30px;
   }
 
-  .main {
-    height: 100vh;
+  .app {
+    padding: 50px 30px 0px 30px;
+    width: 650px;
     position: relative;
     left: 50%;
-    transform: translateX(-50%);
-    width: 650px;
-    padding-top: 70px;
+    transform: translate(-50%);
   }
 
-  .about-footer {
-    bottom: 40px;
+  .about-me {
+    font-weight: 400;
   }
 
-  .top-bar {
-    height: 60px;
+  li a {
+    border-bottom: 1px solid var(--accent-color);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
   }
 
-  .blogPost {
-    margin-top: 50px;
-  }
-
-  .writing-section {
-    padding-bottom: 70px;
-  }
-
-  .blog-title {
-    width: 420px;
-  }
-
-  .about-content {
-    line-height: 26px;
-    padding-bottom: 0;
-  }
-
-  .about-special-social {
-    font-size: 15px;
-  }
-
-  .buttonThree {
-    top: 100px;
-  }
-
-  .scroll-to-top {
-    display: none;
+  .item-title {
+    width: 380px;
   }
 
   .footer {
-    padding-top: 40px;
-    row-gap: 5px;
-    margin-top: 70px;
+    margin-bottom: 50px;
+  }
+
+  .scroll-to-top {
+    bottom: -5px;
   }
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .project-nav a {
-    padding-bottom: 1px;
-  }
-
-  .home-text,
-  .project-nav a {
+  .title h1 {
     border-bottom: 1px solid transparent;
-    transition: border-color 0.2s ease;
   }
 
-  .home-text:hover,
-  .project-nav a:hover {
-    border-bottom-color: currentColor;
+  .title h1:hover {
+    border-bottom: 1px solid var(--accent-color);
+    cursor: pointer;
+    width: 110px;
+  }
+
+  .item-title:hover,
+  .item-title h2:hover {
+    color: var(--link-color);
     cursor: pointer;
   }
 
-  .blog-title a:hover,
-  .about-content a:hover,
-  .socials a:hover {
-    border-bottom: 1px solid currentColor;
+  .footer a {
+    border-bottom: 1px solid transparent;
   }
 
-  .pname {
-    text-align: center;
-    width: 140px;
-    padding: 5px 0;
-    border-radius: 5px;
+  .footer a:hover {
+    border-bottom: 1px solid var(--link-color);
   }
 
-  .pname:hover,
-  .pname a:hover {
-    background-color: var(--pname-hover);
-    cursor: pointer;
+  .nav-home a {
+    border-bottom: 1px solid transparent;
   }
 
-  .pdescription:hover {
-    cursor: not-allowed;
+  .nav-home a:hover {
+    border-bottom: 1px solid var(--link-color);
   }
 
-  .scroll-to-top div:hover {
-    background-color: #aaa;
+  .scroll-to-top:hover {
     transform: scale(1.05);
-  }
-
-  .buttonThree:hover {
-    transform: scale(1.1);
-    cursor: pointer;
   }
 }
