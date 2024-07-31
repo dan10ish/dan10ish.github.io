@@ -2,7 +2,6 @@ import React from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./index.css";
 
-// Directly import the components
 import HomePage from "./pages/HomePage";
 import BlogPost from "./pages/BlogPost";
 
