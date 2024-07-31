@@ -228,6 +228,11 @@ li a {
   display: none;
 }
 
+.scroll-to-top div {
+  position: relative;
+  top: -1px;
+}
+
 /* Loader */
 .wait {
   display: flex;
@@ -329,6 +334,14 @@ li a {
   .item-title h2:hover {
     color: var(--link-color);
     cursor: pointer;
+  }
+
+  .blog-post a {
+    border-bottom: 1px solid transparent;
+  }
+
+  .blog-post a:hover {
+    border-bottom: 1px solid var(--link-color);
   }
 
   .footer a {

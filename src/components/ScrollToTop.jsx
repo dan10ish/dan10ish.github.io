@@ -25,7 +25,7 @@ const ScrollToTopButton = () => {
       onClick={scrollToTop}
       aria-label="Scroll to top"
     >
-      ▲
+      <div>▲</div>
     </button>
   );
 };
