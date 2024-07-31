@@ -1,21 +1,29 @@
-import { format } from "date-fns";
-import React, { useEffect, useState } from "react";
-import ReactMarkdown from "react-markdown";
-import { Link, useParams } from "react-router-dom";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneLight } from "react-syntax-highlighter/dist/esm/styles/prism";
-import Footer from "../components/Footer.jsx";
+import React, { lazy, Suspense } from "react";
+import { Link, useParams } from "react-router-dom";
+import { format } from "date-fns";
 import { data } from "../data/data";
-import ScrollToTopButton from "../components/ScrollToTop.jsx";
+
+const ReactMarkdown = lazy(() => import("react-markdown"));
+const SyntaxHighlighter = lazy(() =>
+  import("react-syntax-highlighter").then((module) => ({
+    default: module.Prism,
+  }))
+);
+const Footer = lazy(() => import("../components/Footer.jsx"));
+const ScrollToTopButton = lazy(() => import("../components/ScrollToTop.jsx"));
 
 const BlogPost = () => {
   const { fileName } = useParams();
-  const [content, setContent] = useState("");
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const post = data.find((post) => post.fileName === fileName);
+  const [content, setContent] = React.useState("");
+  const [error, setError] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
+  const post = React.useMemo(
+    () => data.find((post) => post.fileName === fileName),
+    [fileName]
+  );
 
-  useEffect(() => {
+  React.useEffect(() => {
     import(`../blog-posts/${fileName}.md`)
       .then((res) => {
         fetch(res.default)
@@ -66,35 +74,43 @@ const BlogPost = () => {
       <div className="post-date">
         <p>{format(new Date(post.date), "MMMM dd, yyyy")}</p>
       </div>
-      <ReactMarkdown
-        children={content}
-        components={{
-          a: ({ node, ...props }) => (
-            <a {...props} target="_blank" rel="noopener noreferrer" />
-          ),
-          code({ node, inline, className, children, ...props }) {
-            const match = /language-(\w+)/.exec(className || "");
-            return !inline && match ? (
-              <SyntaxHighlighter
-                style={oneLight}
-                language={match[1]}
-                PreTag="div"
-                {...props}
-              >
-                {String(children).replace(/\n$/, "")}
-              </SyntaxHighlighter>
-            ) : (
-              <code className={className} {...props}>
-                {children}
-              </code>
-            );
-          },
-        }}
-      />
+      <Suspense fallback={<div>Loading content...</div>}>
+        <ReactMarkdown
+          children={content}
+          components={{
+            a: ({ node, ...props }) => (
+              <a {...props} target="_blank" rel="noopener noreferrer" />
+            ),
+            code({ node, inline, className, children, ...props }) {
+              const match = /language-(\w+)/.exec(className || "");
+              return !inline && match ? (
+                <Suspense fallback={<div>Loading code...</div>}>
+                  <SyntaxHighlighter
+                    style={oneLight}
+                    language={match[1]}
+                    PreTag="div"
+                    {...props}
+                  >
+                    {String(children).replace(/\n$/, "")}
+                  </SyntaxHighlighter>
+                </Suspense>
+              ) : (
+                <code className={className} {...props}>
+                  {children}
+                </code>
+              );
+            },
+          }}
+        />
+      </Suspense>
       <div className="blog-footer">
-        <Footer />
+        <Suspense fallback={<div>Loading footer...</div>}>
+          <Footer />
+        </Suspense>
       </div>
-      <ScrollToTopButton />
+      <Suspense fallback={<div>Loading scroll button...</div>}>
+        <ScrollToTopButton />
+      </Suspense>
     </div>
   );
 };

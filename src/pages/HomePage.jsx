@@ -1,13 +1,16 @@
-import { format } from "date-fns";
-import React from "react";
-import { Link } from "react-router-dom";
 import { data } from "../data/data";
-import Footer from "../components/Footer";
+import React, { lazy, Suspense } from "react";
+import { Link } from "react-router-dom";
+import { format } from "date-fns";
+
+const Footer = lazy(() => import("../components/Footer"));
 
 const HomePage = () => {
-  const sortedData = [...data].sort(
-    (a, b) => new Date(b.date) - new Date(a.date)
+  const sortedData = React.useMemo(
+    () => [...data].sort((a, b) => new Date(b.date) - new Date(a.date)),
+    []
   );
+
   return (
     <div className="homepage">
       <div className="title">
@@ -54,7 +57,9 @@ const HomePage = () => {
         <div className="wait-text">Let me cook 🧑🏼‍🍳</div>
       </div>
       <div className="homepage-footer">
-        <Footer />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Footer />
+        </Suspense>
       </div>
     </div>
   );
