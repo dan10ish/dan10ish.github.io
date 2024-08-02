@@ -29,7 +29,7 @@
   --normal-font: 1rem;
   --large-font: 1.75rem;
   --small-font: 0.75rem;
-  --padding-normal: 80px;
+  --padding-normal: 70px;
   --padding-blog: 30px;
 }
 
@@ -81,7 +81,7 @@ li {
 .about-me {
   font-size: var(--normal-font);
   color: var(--font-color);
-  font-weight: 350;
+  font-weight: 400;
   margin-bottom: var(--padding-normal);
 }
 
@@ -111,6 +111,35 @@ li a {
   font-size: var(--small-font);
   color: var(--accent-color);
   font-weight: 400;
+}
+
+/* Filter */
+.filter-container {
+  margin-bottom: var(--padding-blog);
+  display: flex;
+  flex-direction: row;
+  column-gap: 5px;
+  justify-content: right;
+}
+
+.filter-button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: var(--small-font);
+  font-family: "Sentient";
+  font-weight: 500;
+  border-radius: 5px;
+  padding: 4px 6px;
+}
+
+.filter-button:not(.active) {
+  color: var(--accent-color);
+}
+
+.filter-button.active {
+  color: var(--font-color);
+  background: var(--dark-accent);
 }
 
 /*Footer*/
@@ -362,5 +391,18 @@ li a {
 
   .scroll-to-top:hover {
     transform: scale(1.05);
+  }
+
+  .filter-container {
+    column-gap: 5px;
+  }
+
+  .filter-button {
+    padding: 5px 10px;
+  }
+
+  .filter-button:hover {
+    background: var(--dark-accent);
+    border-radius: 5px;
   }
 }
