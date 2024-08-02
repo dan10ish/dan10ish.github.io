@@ -16,19 +16,19 @@ const Filter = ({ activeFilter, onFilterChange }) => {
         active={activeFilter === "all"}
         onClick={() => onFilterChange("all")}
       >
-        All
+        [all]
       </FilterButton>
       <FilterButton
         active={activeFilter === "blog"}
         onClick={() => onFilterChange("blog")}
       >
-        Blogs
+        [blogs]
       </FilterButton>
       <FilterButton
         active={activeFilter === "project"}
         onClick={() => onFilterChange("project")}
       >
-        Projects
+        [projects]
       </FilterButton>
     </div>
   );

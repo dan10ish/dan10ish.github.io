@@ -29,7 +29,7 @@
   --normal-font: 1rem;
   --large-font: 1.75rem;
   --small-font: 0.75rem;
-  --padding-normal: 70px;
+  --padding-normal: 80px;
   --padding-blog: 30px;
 }
 
@@ -118,8 +118,10 @@ li a {
   margin-bottom: var(--padding-blog);
   display: flex;
   flex-direction: row;
-  column-gap: 5px;
+  column-gap: 3px;
   justify-content: right;
+  position: relative;
+  right: -6px;
 }
 
 .filter-button {
@@ -128,17 +130,17 @@ li a {
   border: none;
   font-size: var(--small-font);
   font-family: "Sentient";
-  font-weight: 500;
+  font-weight: 400;
   border-radius: 5px;
-  padding: 4px 6px;
+  padding: 5px 10px;
 }
 
 .filter-button:not(.active) {
-  color: var(--accent-color);
+  color: var(--font-color);
 }
 
 .filter-button.active {
-  color: var(--font-color);
+  color: var(--link-color);
   background: var(--dark-accent);
 }
 
