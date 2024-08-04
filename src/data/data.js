@@ -47,4 +47,12 @@ export const data = [
     url: "https://dan10ish.github.io/Galaxy/",
     tags: ["Three.js"],
   },
+  {
+    id: 7,
+    type: "project",
+    title: "2D Inverse Kinematics",
+    date: "2023-12-23",
+    url: "https://github.com/dan10ish/2DInverseKinematics",
+    tags: ["Robotics"],
+  },
 ];
