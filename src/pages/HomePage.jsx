@@ -37,14 +37,14 @@ const HomePage = () => {
                     <h2>{item.title}</h2>
                   </div>
                   <div className="item-rest">
-                    {tag} ~ {year}
+                    {tag} | {year}
                   </div>
                 </Link>
               ) : (
                 <a href={item.url} target="_blank" rel="noopener noreferrer">
                   <div className="item-title">{item.title}</div>
                   <div className="item-rest">
-                    {tag} ~ {year}
+                    {tag} | {year}
                   </div>
                 </a>
               )}

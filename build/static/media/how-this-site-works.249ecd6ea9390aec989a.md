@@ -4,7 +4,7 @@ Once again, as I tend to do very often, I've gone and rebuilt my website. It's s
 
 ## Why This Design?
 
-You can never go wrong with a classic serif font and a `#ffffff` background. I feel it's timeless and less distracting for the viewer.
+You can never go wrong with a classic serif font and a light background. I feel it's timeless and less distracting for the viewer.
 
 I want my website to provide information straight to the point and avoid clutter. I also aimed for easy navigation.
 

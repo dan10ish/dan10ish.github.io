@@ -21,11 +21,11 @@
 }
 
 :root {
-  --background-color: #ffffff;
-  --font-color: #000000;
+  --background-color: #dad9d2;
+  --font-color: #333333;
   --link-color: #002bff;
   --accent-color: #666666;
-  --dark-accent: #eeeeee;
+  --dark-accent: #ebeae3;
   --normal-font: 1rem;
   --large-font: 1.75rem;
   --small-font: 0.75rem;
@@ -62,9 +62,9 @@ li {
   height: 40px;
   background: linear-gradient(
     180deg,
-    #fff 10%,
-    rgba(255, 255, 255, 0.9) 40%,
-    rgba(254, 254, 254, 0) 100%
+    #dad9d2 10%,
+    #dad9d2e0 45%,
+    #dad9d200 100%
   );
   z-index: 100000;
 }
