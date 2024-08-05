@@ -5,7 +5,7 @@ export const data = [
     title: "How this site works",
     date: "2024-07-15",
     fileName: "how-this-site-works",
-    tags: ["Site"],
+    tags: ["Blog"],
   },
   {
     id: 2,

@@ -29,8 +29,8 @@
   --normal-font: 1rem;
   --large-font: 1.75rem;
   --small-font: 0.75rem;
-  --padding-normal: 80px;
-  --padding-blog: 30px;
+  --padding-normal: 60px;
+  --padding-blog: 20px;
 }
 
 html,
@@ -49,7 +49,7 @@ li {
 }
 
 .app {
-  padding: 30px 30px 0px 30px;
+  padding: 40px 30px 0px 30px;
 }
 
 /* Top Bar Effect*/
@@ -111,37 +111,6 @@ li a {
   font-size: var(--small-font);
   color: var(--accent-color);
   font-weight: 400;
-}
-
-/* Filter */
-.filter-container {
-  margin-bottom: var(--padding-blog);
-  display: flex;
-  flex-direction: row;
-  column-gap: 3px;
-  justify-content: right;
-  position: relative;
-  right: -6px;
-}
-
-.filter-button {
-  cursor: pointer;
-  background: none;
-  border: none;
-  font-size: var(--small-font);
-  font-family: "Sentient";
-  font-weight: 400;
-  border-radius: 5px;
-  padding: 5px 10px;
-}
-
-.filter-button:not(.active) {
-  color: var(--font-color);
-}
-
-.filter-button.active {
-  color: var(--link-color);
-  background: var(--dark-accent);
 }
 
 /*Footer*/
@@ -393,18 +362,5 @@ li a {
 
   .scroll-to-top:hover {
     transform: scale(1.05);
-  }
-
-  .filter-container {
-    column-gap: 5px;
-  }
-
-  .filter-button {
-    padding: 5px 10px;
-  }
-
-  .filter-button:hover {
-    background: var(--dark-accent);
-    border-radius: 5px;
   }
 }
