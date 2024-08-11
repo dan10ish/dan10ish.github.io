@@ -1,4 +1,4 @@
-import { oneLight } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import React, { lazy, Suspense } from "react";
 import { Link, useParams } from "react-router-dom";
 import { format } from "date-fns";
@@ -8,7 +8,7 @@ const ReactMarkdown = lazy(() => import("react-markdown"));
 const SyntaxHighlighter = lazy(() =>
   import("react-syntax-highlighter").then((module) => ({
     default: module.Prism,
-  }))
+  })),
 );
 const Footer = lazy(() => import("../components/Footer.jsx"));
 const ScrollToTopButton = lazy(() => import("../components/ScrollToTop.jsx"));
@@ -20,7 +20,7 @@ const BlogPost = () => {
   const [loading, setLoading] = React.useState(true);
   const post = React.useMemo(
     () => data.find((post) => post.fileName === fileName),
-    [fileName]
+    [fileName],
   );
 
   React.useEffect(() => {
@@ -86,7 +86,7 @@ const BlogPost = () => {
               return !inline && match ? (
                 <Suspense fallback={<div>Loading code...</div>}>
                   <SyntaxHighlighter
-                    style={oneLight}
+                    style={vscDarkPlus}
                     language={match[1]}
                     PreTag="div"
                     {...props}

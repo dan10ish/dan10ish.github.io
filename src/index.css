@@ -21,16 +21,16 @@
 }
 
 :root {
-  --background-color: #dad9d2;
-  --font-color: #333333;
-  --link-color: #002bff;
-  --accent-color: #666666;
-  --dark-accent: #ebeae3;
+  --background-color: #000;
+  --font-color: #fff;
+  --link-color: #3b73ff;
+  --accent-color: #777;
+  --dark-accent: #222;
   --normal-font: 1rem;
   --large-font: 1.75rem;
   --small-font: 0.75rem;
   --padding-normal: 60px;
-  --padding-blog: 20px;
+  --padding-blog: 30px;
 }
 
 html,
@@ -62,9 +62,17 @@ li {
   height: 40px;
   background: linear-gradient(
     180deg,
-    #dad9d2 10%,
-    #dad9d2e0 45%,
-    #dad9d200 100%
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.9) 10%,
+    rgba(0, 0, 0, 0.8) 20%,
+    rgba(0, 0, 0, 0.7) 30%,
+    rgba(0, 0, 0, 0.6) 40%,
+    rgba(0, 0, 0, 0.5) 50%,
+    rgba(0, 0, 0, 0.4) 60%,
+    rgba(0, 0, 0, 0.3) 70%,
+    rgba(0, 0, 0, 0.2) 80%,
+    rgba(0, 0, 0, 0.1) 90%,
+    rgba(0, 0, 0, 0) 100%
   );
   z-index: 100000;
 }
@@ -74,7 +82,7 @@ li {
 .title h1 {
   font-size: var(--large-font);
   color: var(--font-color);
-  font-weight: 600;
+  font-weight: 400;
   margin-bottom: var(--padding-normal);
 }
 
@@ -94,8 +102,7 @@ li a {
   flex-direction: row;
   justify-content: space-between;
   align-items: baseline;
-  border-bottom: 0.5px solid var(--accent-color);
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   padding-bottom: 10px;
 }
 
@@ -103,7 +110,7 @@ li a {
 .item-title h2 {
   font-size: var(--normal-font);
   color: var(--font-color);
-  font-weight: 500;
+  font-weight: 400;
   width: 220px;
 }
 
@@ -171,10 +178,14 @@ li a {
 .blog-post code {
   background-color: var(--dark-accent);
   padding: 1px 6px;
-  border-radius: 6px;
+  border-radius: 5px;
   color: var(--font-color);
   font-family: "Space Mono", monospace;
   font-size: var(--small-font);
+  position: relative;
+  top: -1px;
+  font-weight: 500;
+  letter-spacing: 1px;
 }
 
 .blog-post a {
@@ -210,7 +221,7 @@ li a {
   width: 40px;
   height: 40px;
   background-color: var(--dark-accent);
-  color: var(--accent-color);
+  color: var(--font-color);
   border: none;
   border-radius: 50%;
   cursor: pointer;
@@ -237,7 +248,7 @@ li a {
 .wait {
   display: flex;
   align-items: baseline;
-  gap: 5px;
+  gap: 7px;
   font-size: var(--normal-font);
   font-weight: 400;
   padding: 0 0 0 5px;
@@ -301,8 +312,7 @@ li a {
   }
 
   li a {
-    border-bottom: 1px solid var(--accent-color);
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     padding-bottom: 10px;
   }
 
