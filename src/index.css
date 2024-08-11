@@ -25,7 +25,7 @@
   --font-color: #fff;
   --link-color: #3b73ff;
   --accent-color: #777;
-  --dark-accent: #222;
+  --dark-accent: #1e1e1e;
   --normal-font: 1rem;
   --large-font: 1.75rem;
   --small-font: 0.75rem;
@@ -184,7 +184,7 @@ li a {
   font-size: var(--small-font);
   position: relative;
   top: -1px;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: 1px;
 }
 
