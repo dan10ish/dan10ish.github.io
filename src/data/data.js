@@ -18,10 +18,10 @@ export const data = [
   {
     id: 3,
     type: "project",
-    title: "Robotic Arm",
+    title: "3DOF Arm Visualizer",
     date: "2024-03-23",
     url: "https://dan10ish.github.io/RoboticArm/",
-    tags: ["Robotics"],
+    tags: ["Three.js"],
   },
   {
     id: 4,
@@ -34,7 +34,7 @@ export const data = [
   {
     id: 5,
     type: "project",
-    title: "3-DOF arm in C",
+    title: "3DOF Arm in C",
     date: "2024-03-22",
     url: "https://github.com/dan10ish/3DOF-RoboticArm-C",
     tags: ["Robotics"],
@@ -53,6 +53,14 @@ export const data = [
     title: "2D Inverse Kinematics",
     date: "2023-12-23",
     url: "https://github.com/dan10ish/2DInverseKinematics",
+    tags: ["Robotics"],
+  },
+  {
+    id: 8,
+    type: "project",
+    title: "4DOF Arm CAD",
+    date: "2024-05-08",
+    url: "https://gmail2052402.autodesk360.com/g/shares/SH30dd5QT870c25f12fccfae73fb2cb1df25?mode=embed",
     tags: ["Robotics"],
   },
 ];
