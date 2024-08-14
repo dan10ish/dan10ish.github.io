@@ -82,14 +82,14 @@ li {
 .title h1 {
   font-size: var(--large-font);
   color: var(--font-color);
-  font-weight: 400;
+  font-weight: 500;
   margin-bottom: var(--padding-normal);
 }
 
 .about-me {
   font-size: var(--normal-font);
   color: var(--font-color);
-  font-weight: 400;
+  font-weight: 350;
   margin-bottom: var(--padding-normal);
 }
 
@@ -110,7 +110,7 @@ li a {
 .item-title h2 {
   font-size: var(--normal-font);
   color: var(--font-color);
-  font-weight: 400;
+  font-weight: 600;
   width: 220px;
 }
 
@@ -216,8 +216,8 @@ li a {
 
 .scroll-to-top {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 30px;
+  right: 30px;
   width: 40px;
   height: 40px;
   background-color: var(--dark-accent);
@@ -250,7 +250,7 @@ li a {
   align-items: baseline;
   gap: 7px;
   font-size: var(--normal-font);
-  font-weight: 400;
+  font-weight: 300;
   padding: 0 0 0 5px;
   color: var(--font-color);
   margin-top: 30px;
@@ -330,14 +330,9 @@ li a {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .title h1 {
-    border-bottom: 1px solid transparent;
-  }
-
   .title h1:hover {
-    border-bottom: 1px solid var(--accent-color);
+    color: var(--link-color);
     cursor: pointer;
-    width: 110px;
   }
 
   .item-title:hover,
