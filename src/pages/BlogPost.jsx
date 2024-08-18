@@ -1,4 +1,4 @@
-import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { oneLight } from "react-syntax-highlighter/dist/esm/styles/prism";
 import React, { lazy, Suspense } from "react";
 import { Link, useParams } from "react-router-dom";
 import { format } from "date-fns";
@@ -66,7 +66,7 @@ const BlogPost = () => {
   return (
     <div className="blog-post">
       <div className="nav-home">
-        <Link to="/">Home</Link>
+        <Link to="/">&#8678; Home</Link>
       </div>
       <div className="post-title">
         <h1>{post.title}</h1>
@@ -86,7 +86,7 @@ const BlogPost = () => {
               return !inline && match ? (
                 <Suspense fallback={<div>Loading code...</div>}>
                   <SyntaxHighlighter
-                    style={vscDarkPlus}
+                    style={oneLight}
                     language={match[1]}
                     PreTag="div"
                     {...props}
