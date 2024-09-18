@@ -1,68 +1,66 @@
-import { data } from "../data/data";
-import React, { lazy, Suspense } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { format } from "date-fns";
+import BlogList from "./BlogList";
+import Projects from "./Projects";
 
-const Footer = lazy(() => import("../components/Footer"));
-
-const HomePage = () => {
-  const sortedData = React.useMemo(
-    () => [...data].sort((a, b) => new Date(b.date) - new Date(a.date)),
-    []
-  );
-
+export default function HomePage() {
   return (
     <div className="homepage">
-      <div className="title">
-        <a href="https://dan10ish.github.io">
+      <div className="header">
+        <Link to="/">
           <h1>Danish</h1>
-        </a>
+        </Link>
       </div>
-      <div className="about-me">
-        <div className="about-me-one">
-          I am a mechatronics engineer exploring the intersection of robotics,
-          computer science and machine learning.
+      <div className="socials">
+        <div>
+          x.com/
+          <a
+            href="https://x.com/dan10ish"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            dan10ish
+          </a>
         </div>
-        <div>This site holds my work and writings.</div>
+        <div>
+          github.com/
+          <a
+            href="https://github.com/dan10ish"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            dan10ish
+          </a>
+        </div>
+        <div>
+          <a
+            href="mailto:dan10ish@icloud.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            dan10ish@icloud.com
+          </a>
+        </div>
       </div>
-      <ul className="list">
-        {sortedData.map((item) => {
-          const year = format(new Date(item.date), "yyyy");
-          const tag = item.tags[0];
-          return (
-            <li key={item.id} className="list-item">
-              {item.type === "blog" ? (
-                <Link to={`/blog/${item.fileName}`}>
-                  <div className="item-title">
-                    <h2>{item.title}</h2>
-                  </div>
-                  <div className="item-rest">
-                    {tag} - {year}
-                  </div>
-                </Link>
-              ) : (
-                <a href={item.url} target="_blank" rel="noopener noreferrer">
-                  <div className="item-title">{item.title}</div>
-                  <div className="item-rest">
-                    {tag} - {year}
-                  </div>
-                </a>
-              )}
-            </li>
-          );
-        })}
-      </ul>
-      <div className="wait">
-        <div className="loader"></div>
-        <div className="wait-text">Let me cook 🧑🏼‍🍳</div>
+      <div className="about">
+        <div>
+          <p>
+            I'm a mechatronics engineer from Mumbai exploring robotics, machine
+            learning and computer science.
+          </p>
+        </div>
+        <div>
+          <p>This site holds my work and writings.</p>
+        </div>
       </div>
-      <div className="homepage-footer">
-        <Suspense fallback={<div>Loading...</div>}>
-          <Footer />
-        </Suspense>
+      <div className="blog-list">
+        <h2>Posts</h2>
+        <BlogList />
+      </div>
+      <div className="project-list">
+        <h2>Projects</h2>
+        <Projects />
       </div>
     </div>
   );
-};
-
-export default HomePage;
+}

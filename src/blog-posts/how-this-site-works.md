@@ -1,10 +1,10 @@
-[//]: # "How this site works"
+# How this site works
 
 Once again, as I tend to do very often, I've gone and rebuilt my website. It's something I tinker with every now and then to improve my web presence or sometimes just to freshen up the look and feel. This time around, it's a pretty big redesign with **minimalism** as the main focus while optimizing performance of the website. The hope here is that this will be the last significant update to my website for a long time.
 
 ## Why This Design?
 
-You can never go wrong with a classic serif font and a dark background. I feel it's timeless and less distracting for the viewer.
+You can never go wrong with a classic serif font and solarized background. I feel it's timeless and less distracting for the viewer.
 
 I want my website to provide information straight to the point and avoid clutter. I also aimed for easy navigation.
 
@@ -14,7 +14,7 @@ The challenge I wanted to tackle with this website is maintaining features (like
 
 ### The Stack
 
-`React` and `CSS`.. Not complicated, just opinionated.
+`React` using `Vite` and `CSS`.. Not complicated, just opinionated.
 
 #### Tools
 
@@ -40,15 +40,7 @@ The metadata file looks something like this:
     date: "2024-07-15",
     fileName: "file name",
     tags: ["Site"],
-  },
-  {
-    id: 2,
-    type: "project",
-    title: "Pathfinding Visualizer",
-    date: "2024-07-11",
-    url: "link to the project",
-    tags: ["Project"],
-  },
+  }
 ```
 
 This structure minimizes friction in my workflow, allowing me to focus more on content creation.
@@ -56,8 +48,6 @@ This structure minimizes friction in my workflow, allowing me to focus more on c
 #### Projects
 
 Perhaps the sites I want to get the most reach on. Projects have their own standalone front-end static webpages, which are linked accordingly.
-
-The **blogs** and **projects** are seemlessly shown together in the same list and are differentiated using the `type` and `tags` variables in the `data.js` file.
 
 #### Source Code
 
@@ -75,4 +65,4 @@ The photos will maintain their aspect ratio and be displayed in the form of a re
 
 I explored various ways to facilitate more flexible online writing and ultimately decided to do it in my own way.
 
-That said, there's still much work to be done to improve both the technical and content aspects of this site. Feel free to DM me on [X](https://x.com/dan10ish) or [Instagram](https://instagram.com/dan10ish) for a quick feedback.
+That said, there's still much work to be done to improve both the technical and content aspects of this site. Feel free to DM me on [X](https://x.com/dan10ish) for a quick feedback.

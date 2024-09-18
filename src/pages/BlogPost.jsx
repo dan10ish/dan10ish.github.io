@@ -1,58 +1,35 @@
-import { oneLight } from "react-syntax-highlighter/dist/esm/styles/prism";
-import React, { lazy, Suspense } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
-import { format } from "date-fns";
 import { data } from "../data/data";
+import ReactMarkdown from "react-markdown";
+import Nav from "../components/Nav";
 
-const ReactMarkdown = lazy(() => import("react-markdown"));
-const SyntaxHighlighter = lazy(() =>
-  import("react-syntax-highlighter").then((module) => ({
-    default: module.Prism,
-  })),
-);
-const Footer = lazy(() => import("../components/Footer.jsx"));
-const ScrollToTopButton = lazy(() => import("../components/ScrollToTop.jsx"));
-
-const BlogPost = () => {
+export default function BlogPost() {
   const { fileName } = useParams();
-  const [content, setContent] = React.useState("");
-  const [error, setError] = React.useState(false);
-  const [loading, setLoading] = React.useState(true);
-  const post = React.useMemo(
+  const [content, setContent] = useState("");
+  const [error, setError] = useState(false);
+
+  const post = useMemo(
     () => data.find((post) => post.fileName === fileName),
-    [fileName],
+    [fileName]
   );
 
-  React.useEffect(() => {
-    import(`../blog-posts/${fileName}.md`)
-      .then((res) => {
-        fetch(res.default)
-          .then((response) => response.text())
-          .then((text) => {
-            setContent(text);
-            setError(false);
-            setLoading(false);
-          })
-          .catch((err) => {
-            console.error(err);
-            setError(true);
-            setLoading(false);
-          });
-      })
-      .catch((err) => {
+  useEffect(() => {
+    const fetchMarkdown = async () => {
+      try {
+        const res = await import(`../blog-posts/${fileName}.md`);
+        const response = await fetch(res.default);
+        const text = await response.text();
+        setContent(text);
+        setError(false);
+      } catch (err) {
         console.error(err);
         setError(true);
-        setLoading(false);
-      });
-  }, [fileName]);
+      }
+    };
 
-  if (loading) {
-    return (
-      <div className="blog-post">
-        <h3>Loading Blog...</h3>
-      </div>
-    );
-  }
+    fetchMarkdown();
+  }, [fileName]);
 
   if (error) {
     return (
@@ -65,54 +42,19 @@ const BlogPost = () => {
 
   return (
     <div className="blog-post">
-      <div className="nav-home">
-        <Link to="/">&#8678; Home</Link>
+      <div className="return-home">
+        <Nav />
       </div>
-      <div className="post-title">
-        <h1>{post.title}</h1>
-      </div>
-      <div className="post-date">
-        <p>{format(new Date(post.date), "MMMM dd, yyyy")}</p>
-      </div>
-      <Suspense fallback={<div>Loading content...</div>}>
+      <div className="blog">
         <ReactMarkdown
           children={content}
           components={{
             a: ({ node, ...props }) => (
               <a {...props} target="_blank" rel="noopener noreferrer" />
             ),
-            code({ node, inline, className, children, ...props }) {
-              const match = /language-(\w+)/.exec(className || "");
-              return !inline && match ? (
-                <Suspense fallback={<div>Loading code...</div>}>
-                  <SyntaxHighlighter
-                    style={oneLight}
-                    language={match[1]}
-                    PreTag="div"
-                    {...props}
-                  >
-                    {String(children).replace(/\n$/, "")}
-                  </SyntaxHighlighter>
-                </Suspense>
-              ) : (
-                <code className={className} {...props}>
-                  {children}
-                </code>
-              );
-            },
           }}
         />
-      </Suspense>
-      <div className="blog-footer">
-        <Suspense fallback={<div>Loading footer...</div>}>
-          <Footer />
-        </Suspense>
       </div>
-      <Suspense fallback={<div>Loading scroll button...</div>}>
-        <ScrollToTopButton />
-      </Suspense>
     </div>
   );
-};
-
-export default BlogPost;
+}
