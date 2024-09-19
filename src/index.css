@@ -133,17 +133,26 @@ svg {
 }
 
 .darkmode-button,
-.return-home {
+.nav {
   position: fixed;
   padding: 10px;
   top: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.hide-on-scroll {
+  transform: translateY(-100%);
+}
+
+.nav.hide-on-scroll {
+  transform: translateY(-100%);
 }
 
 .darkmode-button {
   right: 10px;
 }
 
-.return-home {
+.nav {
   left: 10px;
 }
 

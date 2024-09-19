@@ -9,6 +9,7 @@ import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import Nav from "../components/Nav";
 import "katex/dist/katex.min.css";
+import useScrollDirection from "../hooks/useScrollDirection";
 
 const TableOfContents = ({ headings }) => (
   <nav className="table-of-contents">
@@ -31,6 +32,7 @@ export default function BlogPost() {
   const [content, setContent] = useState("");
   const [error, setError] = useState(false);
   const [headings, setHeadings] = useState([]);
+  const scrollDirection = useScrollDirection();
 
   const post = useMemo(
     () => data.find((post) => post.fileName === fileName),
@@ -107,7 +109,7 @@ export default function BlogPost() {
   return (
     <div className="blog-post">
       <div className="return-home">
-        <Nav />
+        <Nav isVisible={scrollDirection === "up"} />
       </div>
       <div className="blog">
         <TableOfContents headings={headings} />

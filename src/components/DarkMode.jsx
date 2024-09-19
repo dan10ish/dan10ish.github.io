@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import useScrollDirection from "../hooks/useScrollDirection";
 
 const DarkMode = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const scrollDirection = useScrollDirection();
 
   useEffect(() => {
     const currentTheme = localStorage.getItem("theme");
@@ -33,7 +35,7 @@ const DarkMode = () => {
   };
 
   return (
-    <div className="darkmode-button">
+    <div className={`darkmode-button ${scrollDirection === "down" ? "hide-on-scroll" : ""}`}>
       <button onClick={toggleDarkMode} aria-label="Toggle Dark Mode">
         {isDarkMode ? (
           <svg
