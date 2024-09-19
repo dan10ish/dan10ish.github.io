@@ -10,6 +10,7 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import Nav from "../components/Nav";
 import "katex/dist/katex.min.css";
 import useScrollDirection from "../hooks/useScrollDirection";
+import ScrollToTop from "../components/ScrollToTop";
 
 const TableOfContents = ({ headings }) => (
   <nav className="table-of-contents">
@@ -124,6 +125,7 @@ export default function BlogPost() {
           }}
         />
       </div>
+      <ScrollToTop />
     </div>
   );
 }

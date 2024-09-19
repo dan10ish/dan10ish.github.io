@@ -128,6 +128,13 @@ hr {
   font-size: 0.9rem;
 }
 
+.socials a {
+  background-color: var(--code-background-color);
+  color: var(--link-color);
+  padding: 3px 10px;
+  border-radius: 5px;
+}
+
 svg {
   fill: var(--heading-color);
 }
@@ -395,6 +402,33 @@ svg {
   color: var(--text-color);
 }
 
+.scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--heading-color);
+  color: var(--background-color);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+  opacity: 0.7;
+}
+
+.scroll-to-top.hide {
+  transform: translateY(150%);
+}
+
+.scroll-to-top svg {
+  width: 20px;
+  height: 20px;
+}
+
 /* Media Queries */
 @media (min-width: 750px) {
   :root {
@@ -455,5 +489,9 @@ svg {
   .project-link:hover,
   .source-link:hover {
     transform: scale(1.05);
+  }
+
+  .scroll-to-top:hover {
+    transform: scale(1.1);
   }
 }
