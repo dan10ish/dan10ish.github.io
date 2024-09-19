@@ -232,6 +232,14 @@ svg {
 }
 
 .projects li {
+  margin-bottom: 10px;
+}
+
+.list li {
+  margin-bottom: 5px;
+}
+
+.list h2 {
   margin-bottom: var(--normal-spacing);
 }
 
@@ -284,7 +292,8 @@ svg {
 
   .socials a:hover,
   .blog a:hover,
-  .projects a:hover {
+  .projects a:hover,
+  .list a:hover {
     text-decoration: underline;
   }
 

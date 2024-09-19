@@ -61,6 +61,51 @@ export default function HomePage() {
         <h2>Projects</h2>
         <Projects />
       </div>
+      <div className="list">
+        <h2>Impact</h2>
+        <ul>
+          <li>
+            <a
+              href="https://www.youtube.com/watch?v=3qHkcs3kG44"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              JRE #1309
+            </a>{" "}
+            - Joe & Naval
+          </li>
+          <li>
+            <a
+              href="https://jxnl.co/writing/2024/06/01/advice-to-young-people/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Advice to Young People
+            </a>{" "}
+            - Jason Liu
+          </li>
+          <li>
+            <a
+              href="https://blog.samaltman.com/how-to-be-successful"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              How to Be Successful
+            </a>{" "}
+            - Sam Altman
+          </li>
+          <li>
+            <a
+              href="https://eugeneyan.com/writing/simplicity/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Simplicity is An Advantage but Sadly Complexity Sells Better
+            </a>{" "}
+            - Eugene Yan
+          </li>
+        </ul>
+      </div>
     </div>
   );
 }
