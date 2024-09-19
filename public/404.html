@@ -1,17 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#ffffff" />
-
-    <title>Danish</title>
-
-    <link rel="icon" href="./assets/icon.png" />
-
+    <meta charset="utf-8" />
+    <title>Redirecting...</title>
     <script type="text/javascript">
-      var pathSegmentsToKeep = 0;
-
+      var segmentCount = 0;
       var l = window.location;
       l.replace(
         l.protocol +
@@ -20,13 +13,13 @@
           (l.port ? ":" + l.port : "") +
           l.pathname
             .split("/")
-            .slice(0, 1 + pathSegmentsToKeep)
+            .slice(0, 1 + segmentCount)
             .join("/") +
           "/?/" +
           l.pathname
             .slice(1)
             .split("/")
-            .slice(pathSegmentsToKeep)
+            .slice(segmentCount)
             .join("/")
             .replace(/&/g, "~and~") +
           (l.search ? "&" + l.search.slice(1).replace(/&/g, "~and~") : "") +

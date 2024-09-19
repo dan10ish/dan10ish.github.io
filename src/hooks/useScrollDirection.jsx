@@ -5,7 +5,7 @@ const useScrollDirection = () => {
   const [prevScrollY, setPrevScrollY] = useState(0);
 
   useEffect(() => {
-    const threshold = 50; // Minimum scroll distance before changing direction
+    const threshold = 50;
     let lastScrollY = window.pageYOffset;
     let ticking = false;
 
