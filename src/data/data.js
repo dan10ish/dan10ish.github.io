@@ -18,7 +18,7 @@ export const data = [
   {
     id: 3,
     type: "blog",
-    title: "Probaility",
+    title: "Probability",
     date: "2024-09-19",
     fileName: "probability",
     tags: ["Blog"],
