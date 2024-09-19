@@ -415,12 +415,11 @@ svg {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.2s ease-in-out;
   z-index: 1000;
-  opacity: 0.7;
 }
 
-.scroll-to-top.hide {
+.scroll-to-top.hide-on-scroll {
   transform: translateY(150%);
 }
 
@@ -470,7 +469,6 @@ svg {
     transform: scale(1.2);
   }
 
-  .socials a:hover,
   .blog a:hover,
   .list a:hover {
     text-decoration: underline;
@@ -484,6 +482,7 @@ svg {
 
   .tag-filter button:hover {
     background-color: var(--link-color);
+    color: var(--background-color);
   }
 
   .project-link:hover,
@@ -493,5 +492,10 @@ svg {
 
   .scroll-to-top:hover {
     transform: scale(1.1);
+  }
+
+  .socials a:hover {
+    background-color: var(--link-color);
+    color: var(--background-color);
   }
 }
