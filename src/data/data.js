@@ -13,7 +13,7 @@ export const data = [
     title: "Neural Networks",
     date: "2024-09-01",
     fileName: "neural-networks",
-    tags: ["Blog"],
+    tags: ["Machine Learning"],
   },
   {
     id: 3,
@@ -21,6 +21,6 @@ export const data = [
     title: "Probability",
     date: "2024-09-19",
     fileName: "probability",
-    tags: ["Blog"],
+    tags: ["Machine Learning"],
   },
 ];

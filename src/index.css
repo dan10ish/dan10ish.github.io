@@ -303,6 +303,43 @@ svg {
   padding: 1em 0;
 }
 
+.tag-filter {
+  margin-bottom: 20px;
+}
+
+.tag-filter button {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  background-color: var(--code-background-color);
+  border: none;
+  border-radius: 5px;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: monospace;
+  font-size: 0.8rem;
+}
+
+.tag-filter button.active {
+  background-color: var(--link-color);
+  color: var(--background-color);
+}
+
+.item-tags {
+  margin-top: 5px;
+}
+
+.tag {
+  display: inline-block;
+  margin-right: 5px;
+  padding: 2px 5px;
+  background-color: var(--code-background-color);
+  border-radius: 3px;
+  font-size: 0.8em;
+  color: var(--text-color);
+}
+
 /* Media Queries */
 @media (min-width: 750px) {
   :root {
@@ -355,5 +392,9 @@ svg {
   .list-item .item-title:hover {
     text-decoration: underline;
     text-decoration-color: var(--heading-color);
+  }
+
+  .tag-filter button:hover {
+    background-color: var(--link-color);
   }
 }
