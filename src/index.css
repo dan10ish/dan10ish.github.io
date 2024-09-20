@@ -27,7 +27,6 @@
   box-sizing: border-box;
 }
 
-/* Typography */
 @font-face {
   font-family: Sentient;
   src: url(./fonts/Sentient.ttf) format("truetype");
@@ -43,7 +42,7 @@ body {
   color: var(--text-color);
   background-color: var(--background-color);
   overflow-x: hidden;
-  padding: 30px 25px 50px 25px;
+  padding: 30px 25px 50px;
 }
 
 h1,
@@ -60,7 +59,6 @@ a {
   text-decoration: none;
 }
 
-/* Code and Pre */
 code,
 pre {
   font-family: monospace;
@@ -87,7 +85,6 @@ pre code {
   padding: 0;
 }
 
-/* Other Elements */
 blockquote {
   border-left: 4px solid var(--blockquote-color);
   margin: 1em 0;
@@ -122,17 +119,27 @@ hr {
   margin: 2em 0;
 }
 
-/* Layout and Components */
 .socials {
-  font-family: monospace;
-  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: var(--normal-spacing);
 }
 
 .socials a {
-  background-color: var(--code-background-color);
+  display: flex;
   color: var(--link-color);
-  padding: 3px 10px;
-  border-radius: 5px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.socials svg {
+  width: 24px;
+  fill: currentColor;
+}
+
+.socials a[aria-label="Twitter"] svg {
+  height: 20px;
+  width: auto;
 }
 
 svg {
@@ -148,10 +155,6 @@ svg {
 }
 
 .hide-on-scroll {
-  transform: translateY(-100%);
-}
-
-.nav.hide-on-scroll {
   transform: translateY(-100%);
 }
 
@@ -201,7 +204,6 @@ svg {
 
 .list-item a {
   display: flex;
-  flex-direction: row;
   align-items: baseline;
   margin-bottom: 5px;
 }
@@ -221,11 +223,10 @@ svg {
   margin-bottom: var(--large-spacing);
 }
 
-.socials,
 .about {
   display: flex;
   flex-direction: column;
-  row-gap: 5px;
+  gap: 5px;
 }
 
 .blog-post p,
@@ -328,8 +329,7 @@ svg {
   background-color: var(--code-background-color);
   padding: 20px;
   border-radius: 5px;
-  margin-bottom: var(--large-spacing);
-  margin-top: 50px;
+  margin: 50px 0 var(--large-spacing);
 }
 
 .table-of-contents h2 {
@@ -348,11 +348,6 @@ svg {
 
 .table-of-contents li {
   margin-bottom: 5px;
-}
-
-.table-of-contents a {
-  color: var(--link-color);
-  text-decoration: none;
 }
 
 .table-of-contents a:hover {
@@ -374,8 +369,7 @@ svg {
 }
 
 .tag-filter button {
-  margin-right: 10px;
-  margin-bottom: 10px;
+  margin: 0 10px 10px 0;
   padding: 5px 10px;
   background-color: var(--code-background-color);
   border: none;
@@ -421,7 +415,6 @@ svg {
   height: 20px;
 }
 
-/* Media Queries */
 @media (min-width: 750px) {
   :root {
     --normal-spacing: 30px;
@@ -433,7 +426,7 @@ svg {
     width: 700px;
     position: relative;
     left: 50%;
-    transform: translate(-50%);
+    transform: translateX(-50%);
   }
 
   .blog p,
@@ -468,15 +461,13 @@ svg {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  svg:hover {
+  svg:hover,
+  .socials svg:hover {
     transform: scale(1.2);
   }
 
   .blog a:hover,
-  .list a:hover {
-    text-decoration: underline;
-  }
-
+  .list a:hover,
   .header h1:hover,
   .list-item .item-title:hover {
     text-decoration: underline;
@@ -489,16 +480,8 @@ svg {
   }
 
   .project-link:hover,
-  .source-link:hover {
-    transform: scale(1.05);
-  }
-
+  .source-link:hover,
   .scroll-to-top:hover {
     transform: scale(1.1);
-  }
-
-  .socials a:hover {
-    background-color: var(--link-color);
-    color: var(--background-color);
   }
 }
