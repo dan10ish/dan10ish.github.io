@@ -247,6 +247,11 @@ svg {
   margin-top: var(--large-spacing);
 }
 
+.projects svg {
+  fill: none;
+  width: 18px;
+}
+
 .projects h2 {
   margin-bottom: var(--normal-spacing);
 }
@@ -256,54 +261,53 @@ svg {
   padding: 0;
 }
 
-.projects li {
-  margin-bottom: var(--large-spacing);
-  padding: 20px;
+.project-card {
+  margin-bottom: 20px;
+  padding: 15px;
   background-color: var(--code-background-color);
   border-radius: 5px;
 }
 
-.projects h3 {
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 10px;
-  color: var(--heading-color);
 }
 
-.projects p {
-  margin-bottom: 15px;
-  font-size: 0.9em;
+.project-header h3 {
+  margin: 0;
+  font-size: 1em;
 }
 
 .project-links {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.project-links a {
+  color: var(--link-color);
+}
+
+.project-card p {
+  font-size: 0.8em;
   margin-bottom: 15px;
 }
 
-.project-link,
-.source-link {
-  display: inline-block;
-  margin-right: 15px;
-  padding: 5px 10px;
-  background-color: var(--link-color);
-  color: var(--background-color);
-  border-radius: 3px;
-  font-size: 0.8em;
-  text-decoration: none;
-  transition: opacity 0.2s ease-in-out;
-  font-family: monospace;
-}
-
 .project-tags {
-  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
 }
 
-.project-tags code {
-  display: inline-block;
-  margin-right: 10px;
-  margin-bottom: 5px;
-  padding: 2px 5px;
-  font-size: var(--code-font-size);
+.tag {
+  font-size: 0.8em;
+  padding: 2px 6px;
   background-color: var(--background-color);
   color: var(--text-color);
   border-radius: 3px;
+  font-family: monospace;
 }
 
 .list li {
@@ -378,7 +382,6 @@ svg {
   border-radius: 5px;
   color: var(--text-color);
   cursor: pointer;
-  transition: background-color 0.3s ease;
   font-family: monospace;
   font-size: 0.8rem;
 }
@@ -390,16 +393,6 @@ svg {
 
 .item-tags {
   margin-top: 5px;
-}
-
-.tag {
-  display: inline-block;
-  margin-right: 5px;
-  padding: 2px 5px;
-  background-color: var(--code-background-color);
-  border-radius: 3px;
-  font-size: 0.8em;
-  color: var(--text-color);
 }
 
 .scroll-to-top {
@@ -461,6 +454,16 @@ svg {
 
   .return-home {
     left: 20px;
+  }
+
+  .projects ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .project-card {
+    margin-bottom: 0;
   }
 }
 
