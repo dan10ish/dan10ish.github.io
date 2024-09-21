@@ -380,6 +380,7 @@ svg {
   padding: 15px;
   background-color: var(--code-background-color);
   border-radius: 5px;
+  height: 190px;
 }
 
 .project-header {
