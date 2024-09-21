@@ -1,4 +1,11 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, {
+  useState,
+  useEffect,
+  useMemo,
+  useCallback,
+  Suspense,
+  lazy,
+} from "react";
 import { useParams } from "react-router-dom";
 import { data } from "../data/data";
 import ReactMarkdown from "react-markdown";
@@ -7,10 +14,11 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import Nav from "../components/Nav";
 import "katex/dist/katex.min.css";
 import useScrollDirection from "../hooks/useScrollDirection";
-import ScrollToTop from "../components/ScrollToTop";
+
+const Nav = lazy(() => import("../components/Nav"));
+const ScrollToTop = lazy(() => import("../components/ScrollToTop"));
 
 const TableOfContents = React.memo(({ headings }) => {
   const contentHeadings = headings.slice(1);
@@ -69,42 +77,42 @@ export default function BlogPost() {
     [fileName]
   );
 
-  useEffect(() => {
-    const fetchMarkdown = async () => {
-      try {
-        setIsLoading(true);
-        const res = await import(`../blog-posts/${fileName}.md`);
-        const response = await fetch(res.default);
-        if (!response.ok) throw new Error("Failed to fetch markdown");
-        const text = await response.text();
-        setContent(text);
-        setReadingTime(calculateReadingTime(text));
-        setError(null);
-      } catch (err) {
-        console.error(err);
-        setError(err.message);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchMarkdown();
+  const fetchMarkdown = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      const res = await import(`../blog-posts/${fileName}.md`);
+      const response = await fetch(res.default);
+      if (!response.ok) throw new Error("Failed to fetch markdown");
+      const text = await response.text();
+      setContent(text);
+      setReadingTime(calculateReadingTime(text));
+      setError(null);
+    } catch (err) {
+      console.error(err);
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
   }, [fileName]);
 
   useEffect(() => {
-    if (!content) return;
+    fetchMarkdown();
+  }, [fetchMarkdown]);
 
-    const extractHeadings = () => {
-      const headingElements = document.querySelectorAll(
-        ".blog h1, .blog h2, .blog h3, .blog h4, .blog h5, .blog h6"
-      );
-      const extractedHeadings = Array.from(headingElements).map((heading) => ({
-        id: heading.id,
-        text: heading.textContent,
-        level: parseInt(heading.tagName[1]),
-      }));
-      setHeadings(extractedHeadings);
-    };
+  const extractHeadings = useCallback(() => {
+    const headingElements = document.querySelectorAll(
+      ".blog h1, .blog h2, .blog h3, .blog h4, .blog h5, .blog h6"
+    );
+    const extractedHeadings = Array.from(headingElements).map((heading) => ({
+      id: heading.id,
+      text: heading.textContent,
+      level: parseInt(heading.tagName[1]),
+    }));
+    setHeadings(extractedHeadings);
+  }, []);
+
+  useEffect(() => {
+    if (!content) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -119,15 +127,31 @@ export default function BlogPost() {
 
     extractHeadings();
 
-    document
-      .querySelectorAll(
-        ".blog h1, .blog h2, .blog h3, .blog h4, .blog h5, .blog h6"
-      )
-      .forEach((heading) => {
-        observer.observe(heading);
-      });
+    const headingElements = document.querySelectorAll(
+      ".blog h1, .blog h2, .blog h3, .blog h4, .blog h5, .blog h6"
+    );
+
+    headingElements.forEach((heading) => {
+      observer.observe(heading);
+    });
 
     return () => observer.disconnect();
+  }, [content, extractHeadings]);
+
+  const memoizedMarkdown = useMemo(() => {
+    if (!content) return null;
+    return (
+      <ReactMarkdown
+        children={content}
+        remarkPlugins={[remarkGfm, remarkMath]}
+        rehypePlugins={[rehypeKatex, rehypeSlug, rehypeAutolinkHeadings]}
+        components={{
+          a: ({ node, ...props }) => (
+            <a {...props} target="_blank" rel="noopener noreferrer" />
+          ),
+        }}
+      />
+    );
   }, [content]);
 
   if (error) {
@@ -142,7 +166,9 @@ export default function BlogPost() {
   return (
     <div className="blog-post">
       <div className="return-home">
-        <Nav isVisible={scrollDirection === "up"} />
+        <Suspense fallback={null}>
+          <Nav isVisible={scrollDirection === "up"} />
+        </Suspense>
       </div>
       <div className="blog">
         {isLoading ? (
@@ -169,20 +195,13 @@ export default function BlogPost() {
               </div>
             </div>
             <TableOfContents headings={headings} />
-            <ReactMarkdown
-              children={content}
-              remarkPlugins={[remarkGfm, remarkMath]}
-              rehypePlugins={[rehypeKatex, rehypeSlug, rehypeAutolinkHeadings]}
-              components={{
-                a: ({ node, ...props }) => (
-                  <a {...props} target="_blank" rel="noopener noreferrer" />
-                ),
-              }}
-            />
+            {memoizedMarkdown}
           </>
         )}
       </div>
-      <ScrollToTop />
+      <Suspense fallback={null}>
+        <ScrollToTop />
+      </Suspense>
     </div>
   );
 }
