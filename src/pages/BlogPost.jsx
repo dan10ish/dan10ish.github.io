@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { data } from "../data/data";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -12,7 +12,7 @@ import "katex/dist/katex.min.css";
 import useScrollDirection from "../hooks/useScrollDirection";
 import ScrollToTop from "../components/ScrollToTop";
 
-const TableOfContents = ({ headings }) => (
+const TableOfContents = React.memo(({ headings }) => (
   <nav className="table-of-contents">
     <div className="table-heading">Table of Contents</div>
     <ul>
@@ -26,12 +26,21 @@ const TableOfContents = ({ headings }) => (
       ))}
     </ul>
   </nav>
+));
+
+const SkeletonLoader = () => (
+  <div className="skeleton-loader">
+    <div className="skeleton-line"></div>
+    <div className="skeleton-line"></div>
+    <div className="skeleton-line"></div>
+  </div>
 );
 
 export default function BlogPost() {
   const { fileName } = useParams();
   const [content, setContent] = useState("");
-  const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [headings, setHeadings] = useState([]);
   const scrollDirection = useScrollDirection();
 
@@ -43,14 +52,18 @@ export default function BlogPost() {
   useEffect(() => {
     const fetchMarkdown = async () => {
       try {
+        setIsLoading(true);
         const res = await import(`../blog-posts/${fileName}.md`);
         const response = await fetch(res.default);
+        if (!response.ok) throw new Error("Failed to fetch markdown");
         const text = await response.text();
         setContent(text);
-        setError(false);
+        setError(null);
       } catch (err) {
         console.error(err);
-        setError(true);
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -71,7 +84,6 @@ export default function BlogPost() {
     };
 
     if (content) {
-      // Use a small delay to ensure the markdown has been rendered
       setTimeout(extractHeadings, 0);
     }
 
@@ -80,7 +92,7 @@ export default function BlogPost() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const id = entry.target.id;
-            history.pushState(null, "", `#${id}`);
+            history.replaceState(null, "", `#${id}`);
           }
         });
       },
@@ -101,8 +113,8 @@ export default function BlogPost() {
   if (error) {
     return (
       <div className="blog-post">
-        <h1>Post not found</h1>
-        <p>Sorry, the blog post you are looking for does not exist.</p>
+        <h1>Error</h1>
+        <p>{error}</p>
       </div>
     );
   }
@@ -113,17 +125,21 @@ export default function BlogPost() {
         <Nav isVisible={scrollDirection === "up"} />
       </div>
       <div className="blog">
-        <TableOfContents headings={headings} />
-        <ReactMarkdown
-          children={content}
-          remarkPlugins={[remarkGfm, remarkMath]}
-          rehypePlugins={[rehypeKatex, rehypeSlug, rehypeAutolinkHeadings]}
-          components={{
-            a: ({ node, ...props }) => (
-              <a {...props} target="_blank" rel="noopener noreferrer" />
-            ),
-          }}
-        />
+        {!isLoading && <TableOfContents headings={headings} />}
+        {isLoading ? (
+          <SkeletonLoader />
+        ) : (
+          <ReactMarkdown
+            children={content}
+            remarkPlugins={[remarkGfm, remarkMath]}
+            rehypePlugins={[rehypeKatex, rehypeSlug, rehypeAutolinkHeadings]}
+            components={{
+              a: ({ node, ...props }) => (
+                <a {...props} target="_blank" rel="noopener noreferrer" />
+              ),
+            }}
+          />
+        )}
       </div>
       <ScrollToTop />
     </div>

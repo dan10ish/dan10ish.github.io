@@ -446,6 +446,33 @@ svg {
   color: var(--background-color);
 }
 
+.skeleton-loader {
+  padding: 20px;
+  margin-top: var(--large-spacing);
+}
+
+.skeleton-line {
+  height: 20px;
+  margin-bottom: 10px;
+  background: linear-gradient(
+    90deg,
+    var(--code-background-color) 25%,
+    var(--background-color) 50%,
+    var(--code-background-color) 75%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
 @media (min-width: 750px) {
   :root {
     --normal-spacing: 30px;
