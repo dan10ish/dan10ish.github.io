@@ -123,7 +123,7 @@ hr {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: var(--normal-spacing);
+  margin-top: 5px;
 }
 
 .socials a {
@@ -137,17 +137,17 @@ hr {
 }
 
 .socials a[aria-label="Twitter"] svg {
-  height: 20px;
+  height: 17px;
   width: auto;
 }
 
 .socials a[aria-label="Email"] svg {
-  height: 20px;
+  height: 17px;
   width: auto;
 }
 
 .socials a[aria-label="GitHub"] svg {
-  height: 23px;
+  height: 20px;
   width: auto;
 }
 
@@ -226,7 +226,6 @@ svg {
 
 .header,
 .socials,
-.about,
 .blog-list,
 .project-list {
   margin-bottom: var(--large-spacing);
@@ -235,7 +234,7 @@ svg {
 .about {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
 }
 
 .blog-post p,
@@ -359,10 +358,6 @@ svg {
   margin-bottom: 5px;
   font-family: monospace;
   font-size: 0.8rem;
-}
-
-.table-of-contents a:hover {
-  text-decoration: underline;
 }
 
 .katex {
@@ -563,5 +558,9 @@ svg {
   .source-link:hover,
   .scroll-to-top:hover {
     transform: scale(1.1);
+  }
+
+  .table-of-contents a:hover {
+    text-decoration: underline;
   }
 }

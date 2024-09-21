@@ -1,5 +1,3 @@
-# Neural Networks
-
 Neural networks, inspired by the human brain, are a set of algorithms that are designed to recognize patterns. They interpret sensory data through a kind of machine perception, labeling, and clustering of raw input.
 
 ## What is a Neural Network?

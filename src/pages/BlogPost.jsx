@@ -12,21 +12,30 @@ import "katex/dist/katex.min.css";
 import useScrollDirection from "../hooks/useScrollDirection";
 import ScrollToTop from "../components/ScrollToTop";
 
-const TableOfContents = React.memo(({ headings }) => (
-  <nav className="table-of-contents">
-    <div className="table-heading">Table of Contents</div>
-    <ul>
-      {headings.map((heading) => (
-        <li
-          key={heading.id}
-          style={{ marginLeft: `${(heading.level - 1) * 20}px` }}
-        >
-          <a href={`#${heading.id}`}>{heading.text}</a>
-        </li>
-      ))}
-    </ul>
-  </nav>
-));
+const TableOfContents = React.memo(({ headings }) => {
+  // Filter out the first heading (assumed to be the title)
+  const contentHeadings = headings.slice(1);
+
+  if (contentHeadings.length === 0) {
+    return null;
+  }
+
+  return (
+    <nav className="table-of-contents">
+      <div className="table-heading">Table of Contents</div>
+      <ul>
+        {contentHeadings.map((heading) => (
+          <li
+            key={heading.id}
+            style={{ marginLeft: `${(heading.level - 1) * 20}px` }}
+          >
+            <a href={`#${heading.id}`}>{heading.text}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+});
 
 const SkeletonLoader = () => (
   <div className="skeleton-loader">

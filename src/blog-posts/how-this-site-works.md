@@ -1,5 +1,3 @@
-# How this site works
-
 Once again, as I tend to do very often, I've gone and rebuilt my website. It's something I tinker with every now and then to improve my web presence or sometimes just to freshen up the look and feel. This time around, it's a pretty big redesign with **minimalism** as the main focus while optimizing performance of the website. The hope here is that this will be the last significant update to my website for a long time.
 
 ## Why This Design?
