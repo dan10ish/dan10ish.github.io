@@ -22,7 +22,7 @@ const DarkMode = () => {
       localStorage.removeItem("theme");
       document
         .querySelector('meta[name="theme-color"]')
-        .setAttribute("content", "#f5f0e5");
+        .setAttribute("content", "#ffffff");
       setIsDarkMode(false);
     } else {
       document.documentElement.setAttribute("data-theme", "dark");
@@ -35,7 +35,11 @@ const DarkMode = () => {
   };
 
   return (
-    <div className={`darkmode-button ${scrollDirection === "down" ? "hide-on-scroll" : ""}`}>
+    <div
+      className={`darkmode-button ${
+        scrollDirection === "down" ? "hide-on-scroll" : ""
+      }`}
+    >
       <button onClick={toggleDarkMode} aria-label="Toggle Dark Mode">
         {isDarkMode ? (
           <svg

@@ -7,36 +7,10 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
-import { oneLight } from "react-syntax-highlighter/dist/esm/styles/prism";
 import Nav from "../components/Nav";
 import "katex/dist/katex.min.css";
 import useScrollDirection from "../hooks/useScrollDirection";
 import ScrollToTop from "../components/ScrollToTop";
-
-// Import languages
-import js from "react-syntax-highlighter/dist/esm/languages/prism/javascript";
-import python from "react-syntax-highlighter/dist/esm/languages/prism/python";
-import jsx from "react-syntax-highlighter/dist/esm/languages/prism/jsx";
-import css from "react-syntax-highlighter/dist/esm/languages/prism/css";
-import html from "react-syntax-highlighter/dist/esm/languages/prism/markup";
-import c from "react-syntax-highlighter/dist/esm/languages/prism/c";
-import cpp from "react-syntax-highlighter/dist/esm/languages/prism/cpp";
-import csharp from "react-syntax-highlighter/dist/esm/languages/prism/csharp";
-import java from "react-syntax-highlighter/dist/esm/languages/prism/java";
-import rust from "react-syntax-highlighter/dist/esm/languages/prism/rust";
-
-// Register languages
-SyntaxHighlighter.registerLanguage("javascript", js);
-SyntaxHighlighter.registerLanguage("python", python);
-SyntaxHighlighter.registerLanguage("jsx", jsx);
-SyntaxHighlighter.registerLanguage("css", css);
-SyntaxHighlighter.registerLanguage("html", html);
-SyntaxHighlighter.registerLanguage("c", c);
-SyntaxHighlighter.registerLanguage("cpp", cpp);
-SyntaxHighlighter.registerLanguage("csharp", csharp);
-SyntaxHighlighter.registerLanguage("java", java);
-SyntaxHighlighter.registerLanguage("rust", rust);
 
 const TableOfContents = React.memo(({ headings }) => {
   const contentHeadings = headings.slice(1);
@@ -45,16 +19,18 @@ const TableOfContents = React.memo(({ headings }) => {
   return (
     <nav className="table-of-contents">
       <div className="table-heading">Table of Contents</div>
-      <ul>
-        {contentHeadings.map((heading) => (
-          <li
-            key={heading.id}
-            style={{ marginLeft: `${(heading.level - 1) * 20}px` }}
-          >
-            <a href={`#${heading.id}`}>{heading.text}</a>
-          </li>
-        ))}
-      </ul>
+      <div className="toc-content">
+        <ul>
+          {contentHeadings.map((heading) => (
+            <li
+              key={heading.id}
+              style={{ marginLeft: `${(heading.level - 1) * 20}px` }}
+            >
+              <a href={`#${heading.id}`}>{heading.text}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </nav>
   );
 });
@@ -65,28 +41,6 @@ const SkeletonLoader = () => (
     <div className="skeleton-line"></div>
     <div className="skeleton-line"></div>
   </div>
-);
-
-const CodeBlock = React.memo(
-  ({ node, inline, className, children, ...props }) => {
-    const match = /language-(\w+)/.exec(className || "");
-    return !inline && match ? (
-      <SyntaxHighlighter
-        style={oneLight}
-        language={match[1]}
-        PreTag="div"
-        className="syntax-highlighter"
-        useInlineStyles={false}
-        {...props}
-      >
-        {String(children).replace(/\n$/, "")}
-      </SyntaxHighlighter>
-    ) : (
-      <code className={className} {...props}>
-        {children}
-      </code>
-    );
-  }
 );
 
 const calculateReadingTime = (content) => {
@@ -188,7 +142,20 @@ export default function BlogPost() {
         <div className="blog-meta">
           {post && <h1>{post.title}</h1>}
           <div className="reading-time">
-            Reading time: {readingTime} minute{readingTime !== 1 ? "s" : ""}
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 14 14"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1"
+            >
+              <path d="M7 3.66667V7L8.66667 8M13 7C13 10.3137 10.3137 13 7 13C3.68629 13 1 10.3137 1 7C1 3.68629 3.68629 1 7 1C10.3137 1 13 3.68629 13 7Z" />
+            </svg>
+            {readingTime} minute{readingTime !== 1 ? "s" : ""}
           </div>
         </div>
         {!isLoading && <TableOfContents headings={headings} />}
@@ -200,7 +167,6 @@ export default function BlogPost() {
             remarkPlugins={[remarkGfm, remarkMath]}
             rehypePlugins={[rehypeKatex, rehypeSlug, rehypeAutolinkHeadings]}
             components={{
-              code: CodeBlock,
               a: ({ node, ...props }) => (
                 <a {...props} target="_blank" rel="noopener noreferrer" />
               ),

@@ -1,23 +1,31 @@
 import React, { useState, useEffect } from "react";
-import useScrollDirection from "../hooks/useScrollDirection";
 
 const ScrollToTop = () => {
-  const [shouldShow, setShouldShow] = useState(false);
-  const scrollDirection = useScrollDirection();
+  const [isVisible, setIsVisible] = useState(false);
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
 
   useEffect(() => {
-    const toggleVisibility = () => {
-      const scrollThreshold = 300; // Adjust this value as needed
-      if (window.pageYOffset > scrollThreshold) {
-        setShouldShow(scrollDirection === "up");
+    const handleScroll = () => {
+      const currentScrollPos = window.pageYOffset;
+      const scrollThreshold = 300;
+      const scrollUpThreshold = 0;
+
+      if (currentScrollPos > scrollThreshold) {
+        if (prevScrollPos - currentScrollPos > scrollUpThreshold) {
+          setIsVisible(true);
+        } else if (currentScrollPos > prevScrollPos) {
+          setIsVisible(false);
+        }
       } else {
-        setShouldShow(false);
+        setIsVisible(false);
       }
+
+      setPrevScrollPos(currentScrollPos);
     };
 
-    window.addEventListener("scroll", toggleVisibility);
-    return () => window.removeEventListener("scroll", toggleVisibility);
-  }, [scrollDirection]);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [prevScrollPos]);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -28,7 +36,7 @@ const ScrollToTop = () => {
 
   return (
     <div
-      className={`scroll-to-top ${shouldShow ? "" : "hide-on-scroll"}`}
+      className={`scroll-to-top ${!isVisible ? "hide-on-scroll" : ""}`}
       onClick={scrollToTop}
     >
       <svg
