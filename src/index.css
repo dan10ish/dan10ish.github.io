@@ -46,6 +46,61 @@ body {
   padding: 30px 25px 100px;
 }
 
+/* Skeleton Loader */
+.skeleton-loader {
+  padding: 20px;
+}
+
+.skeleton-title,
+.skeleton-meta,
+.skeleton-line {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+.skeleton-title {
+  height: 32px;
+  margin-bottom: 16px;
+  width: 70%;
+}
+
+.skeleton-meta {
+  height: 20px;
+  margin-bottom: 24px;
+  width: 40%;
+}
+
+.skeleton-line {
+  height: 16px;
+  margin-bottom: 12px;
+}
+
+.skeleton-line:nth-child(2n) {
+  width: 90%;
+}
+
+.skeleton-line:nth-child(2n + 1) {
+  width: 100%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+[data-theme="dark"] .skeleton-title,
+[data-theme="dark"] .skeleton-meta,
+[data-theme="dark"] .skeleton-line {
+  background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
+  background-size: 200% 100%;
+}
+
 /* Typography */
 h1,
 h2,

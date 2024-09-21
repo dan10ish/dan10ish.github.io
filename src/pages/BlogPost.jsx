@@ -37,9 +37,15 @@ const TableOfContents = React.memo(({ headings }) => {
 
 const SkeletonLoader = () => (
   <div className="skeleton-loader">
-    <div className="skeleton-line"></div>
-    <div className="skeleton-line"></div>
-    <div className="skeleton-line"></div>
+    <div className="skeleton-title"></div>
+    <div className="skeleton-meta"></div>
+    <div className="skeleton-content">
+      <div className="skeleton-line"></div>
+      <div className="skeleton-line"></div>
+      <div className="skeleton-line"></div>
+      <div className="skeleton-line"></div>
+      <div className="skeleton-line"></div>
+    </div>
   </div>
 );
 
@@ -139,39 +145,41 @@ export default function BlogPost() {
         <Nav isVisible={scrollDirection === "up"} />
       </div>
       <div className="blog">
-        <div className="blog-meta">
-          {post && <h1>{post.title}</h1>}
-          <div className="reading-time">
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 14 14"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1"
-            >
-              <path d="M7 3.66667V7L8.66667 8M13 7C13 10.3137 10.3137 13 7 13C3.68629 13 1 10.3137 1 7C1 3.68629 3.68629 1 7 1C10.3137 1 13 3.68629 13 7Z" />
-            </svg>
-            {readingTime} minute{readingTime !== 1 ? "s" : ""}
-          </div>
-        </div>
-        {!isLoading && <TableOfContents headings={headings} />}
         {isLoading ? (
           <SkeletonLoader />
         ) : (
-          <ReactMarkdown
-            children={content}
-            remarkPlugins={[remarkGfm, remarkMath]}
-            rehypePlugins={[rehypeKatex, rehypeSlug, rehypeAutolinkHeadings]}
-            components={{
-              a: ({ node, ...props }) => (
-                <a {...props} target="_blank" rel="noopener noreferrer" />
-              ),
-            }}
-          />
+          <>
+            <div className="blog-meta">
+              {post && <h1>{post.title}</h1>}
+              <div className="reading-time">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 14 14"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1"
+                >
+                  <path d="M7 3.66667V7L8.66667 8M13 7C13 10.3137 10.3137 13 7 13C3.68629 13 1 10.3137 1 7C1 3.68629 3.68629 1 7 1C10.3137 1 13 3.68629 13 7Z" />
+                </svg>
+                {readingTime} minute{readingTime !== 1 ? "s" : ""}
+              </div>
+            </div>
+            <TableOfContents headings={headings} />
+            <ReactMarkdown
+              children={content}
+              remarkPlugins={[remarkGfm, remarkMath]}
+              rehypePlugins={[rehypeKatex, rehypeSlug, rehypeAutolinkHeadings]}
+              components={{
+                a: ({ node, ...props }) => (
+                  <a {...props} target="_blank" rel="noopener noreferrer" />
+                ),
+              }}
+            />
+          </>
         )}
       </div>
       <ScrollToTop />
