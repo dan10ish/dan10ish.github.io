@@ -36,12 +36,20 @@ const SkeletonLoader = () => (
   </div>
 );
 
+const calculateReadingTime = (content) => {
+  const wordsPerMinute = 200;
+  const wordCount = content.split(/\s+/).length;
+  const readingTime = Math.ceil(wordCount / wordsPerMinute);
+  return readingTime;
+};
+
 export default function BlogPost() {
   const { fileName } = useParams();
   const [content, setContent] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [headings, setHeadings] = useState([]);
+  const [readingTime, setReadingTime] = useState(0);
   const scrollDirection = useScrollDirection();
 
   const post = useMemo(
@@ -58,6 +66,7 @@ export default function BlogPost() {
         if (!response.ok) throw new Error("Failed to fetch markdown");
         const text = await response.text();
         setContent(text);
+        setReadingTime(calculateReadingTime(text));
         setError(null);
       } catch (err) {
         console.error(err);
@@ -125,20 +134,29 @@ export default function BlogPost() {
         <Nav isVisible={scrollDirection === "up"} />
       </div>
       <div className="blog">
+        <div className="blog-meta">
+          {post && <h1>{post.title}</h1>}
+          <div className="reading-time">
+            Reading time: {readingTime} minute
+            {readingTime !== 1 ? "s" : ""}
+          </div>
+        </div>
         {!isLoading && <TableOfContents headings={headings} />}
         {isLoading ? (
           <SkeletonLoader />
         ) : (
-          <ReactMarkdown
-            children={content}
-            remarkPlugins={[remarkGfm, remarkMath]}
-            rehypePlugins={[rehypeKatex, rehypeSlug, rehypeAutolinkHeadings]}
-            components={{
-              a: ({ node, ...props }) => (
-                <a {...props} target="_blank" rel="noopener noreferrer" />
-              ),
-            }}
-          />
+          <>
+            <ReactMarkdown
+              children={content}
+              remarkPlugins={[remarkGfm, remarkMath]}
+              rehypePlugins={[rehypeKatex, rehypeSlug, rehypeAutolinkHeadings]}
+              components={{
+                a: ({ node, ...props }) => (
+                  <a {...props} target="_blank" rel="noopener noreferrer" />
+                ),
+              }}
+            />
+          </>
         )}
       </div>
       <ScrollToTop />

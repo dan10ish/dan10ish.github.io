@@ -338,7 +338,7 @@ svg {
   background-color: var(--code-background-color);
   padding: 20px;
   border-radius: 5px;
-  margin: 50px 0 var(--large-spacing);
+  margin: var(--normal-spacing) 0 var(--large-spacing);
 }
 
 .table-of-contents h2 {
@@ -357,6 +357,8 @@ svg {
 
 .table-of-contents li {
   margin-bottom: 5px;
+  font-family: monospace;
+  font-size: 0.8rem;
 }
 
 .table-of-contents a:hover {
@@ -471,6 +473,25 @@ svg {
   100% {
     background-position: -200% 0;
   }
+}
+
+.blog-meta {
+  margin-bottom: 2rem;
+}
+
+.blog-meta h1 {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.reading-time {
+  font-size: 0.8rem;
+  color: var(--text-color);
+  opacity: 1;
+  font-family: monospace;
+  background-color: var(--code-background-color);
+  padding: 10px;
+  border-radius: 5px;
 }
 
 @media (min-width: 750px) {
