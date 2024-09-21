@@ -7,18 +7,40 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
+import { oneLight } from "react-syntax-highlighter/dist/esm/styles/prism";
 import Nav from "../components/Nav";
 import "katex/dist/katex.min.css";
 import useScrollDirection from "../hooks/useScrollDirection";
 import ScrollToTop from "../components/ScrollToTop";
 
-const TableOfContents = React.memo(({ headings }) => {
-  // Filter out the first heading (assumed to be the title)
-  const contentHeadings = headings.slice(1);
+// Import languages
+import js from "react-syntax-highlighter/dist/esm/languages/prism/javascript";
+import python from "react-syntax-highlighter/dist/esm/languages/prism/python";
+import jsx from "react-syntax-highlighter/dist/esm/languages/prism/jsx";
+import css from "react-syntax-highlighter/dist/esm/languages/prism/css";
+import html from "react-syntax-highlighter/dist/esm/languages/prism/markup";
+import c from "react-syntax-highlighter/dist/esm/languages/prism/c";
+import cpp from "react-syntax-highlighter/dist/esm/languages/prism/cpp";
+import csharp from "react-syntax-highlighter/dist/esm/languages/prism/csharp";
+import java from "react-syntax-highlighter/dist/esm/languages/prism/java";
+import rust from "react-syntax-highlighter/dist/esm/languages/prism/rust";
 
-  if (contentHeadings.length === 0) {
-    return null;
-  }
+// Register languages
+SyntaxHighlighter.registerLanguage("javascript", js);
+SyntaxHighlighter.registerLanguage("python", python);
+SyntaxHighlighter.registerLanguage("jsx", jsx);
+SyntaxHighlighter.registerLanguage("css", css);
+SyntaxHighlighter.registerLanguage("html", html);
+SyntaxHighlighter.registerLanguage("c", c);
+SyntaxHighlighter.registerLanguage("cpp", cpp);
+SyntaxHighlighter.registerLanguage("csharp", csharp);
+SyntaxHighlighter.registerLanguage("java", java);
+SyntaxHighlighter.registerLanguage("rust", rust);
+
+const TableOfContents = React.memo(({ headings }) => {
+  const contentHeadings = headings.slice(1);
+  if (contentHeadings.length === 0) return null;
 
   return (
     <nav className="table-of-contents">
@@ -45,11 +67,32 @@ const SkeletonLoader = () => (
   </div>
 );
 
+const CodeBlock = React.memo(
+  ({ node, inline, className, children, ...props }) => {
+    const match = /language-(\w+)/.exec(className || "");
+    return !inline && match ? (
+      <SyntaxHighlighter
+        style={oneLight}
+        language={match[1]}
+        PreTag="div"
+        className="syntax-highlighter"
+        useInlineStyles={false}
+        {...props}
+      >
+        {String(children).replace(/\n$/, "")}
+      </SyntaxHighlighter>
+    ) : (
+      <code className={className} {...props}>
+        {children}
+      </code>
+    );
+  }
+);
+
 const calculateReadingTime = (content) => {
   const wordsPerMinute = 200;
   const wordCount = content.split(/\s+/).length;
-  const readingTime = Math.ceil(wordCount / wordsPerMinute);
-  return readingTime;
+  return Math.ceil(wordCount / wordsPerMinute);
 };
 
 export default function BlogPost() {
@@ -89,6 +132,8 @@ export default function BlogPost() {
   }, [fileName]);
 
   useEffect(() => {
+    if (!content) return;
+
     const extractHeadings = () => {
       const headingElements = document.querySelectorAll(
         ".blog h1, .blog h2, .blog h3, .blog h4, .blog h5, .blog h6"
@@ -101,21 +146,18 @@ export default function BlogPost() {
       setHeadings(extractedHeadings);
     };
 
-    if (content) {
-      setTimeout(extractHeadings, 0);
-    }
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const id = entry.target.id;
-            history.replaceState(null, "", `#${id}`);
+            history.replaceState(null, "", `#${entry.target.id}`);
           }
         });
       },
       { threshold: 0.5 }
     );
+
+    extractHeadings();
 
     document
       .querySelectorAll(
@@ -146,26 +188,24 @@ export default function BlogPost() {
         <div className="blog-meta">
           {post && <h1>{post.title}</h1>}
           <div className="reading-time">
-            Reading time: {readingTime} minute
-            {readingTime !== 1 ? "s" : ""}
+            Reading time: {readingTime} minute{readingTime !== 1 ? "s" : ""}
           </div>
         </div>
         {!isLoading && <TableOfContents headings={headings} />}
         {isLoading ? (
           <SkeletonLoader />
         ) : (
-          <>
-            <ReactMarkdown
-              children={content}
-              remarkPlugins={[remarkGfm, remarkMath]}
-              rehypePlugins={[rehypeKatex, rehypeSlug, rehypeAutolinkHeadings]}
-              components={{
-                a: ({ node, ...props }) => (
-                  <a {...props} target="_blank" rel="noopener noreferrer" />
-                ),
-              }}
-            />
-          </>
+          <ReactMarkdown
+            children={content}
+            remarkPlugins={[remarkGfm, remarkMath]}
+            rehypePlugins={[rehypeKatex, rehypeSlug, rehypeAutolinkHeadings]}
+            components={{
+              code: CodeBlock,
+              a: ({ node, ...props }) => (
+                <a {...props} target="_blank" rel="noopener noreferrer" />
+              ),
+            }}
+          />
         )}
       </div>
       <ScrollToTop />
