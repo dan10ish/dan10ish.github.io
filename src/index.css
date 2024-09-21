@@ -127,18 +127,27 @@ hr {
 }
 
 .socials a {
-  display: flex;
   color: var(--link-color);
   transition: transform 0.2s ease-in-out;
+  align-items: center;
 }
 
 .socials svg {
-  width: 24px;
   fill: currentColor;
 }
 
 .socials a[aria-label="Twitter"] svg {
   height: 20px;
+  width: auto;
+}
+
+.socials a[aria-label="Email"] svg {
+  height: 20px;
+  width: auto;
+}
+
+.socials a[aria-label="GitHub"] svg {
+  height: 23px;
   width: auto;
 }
 
@@ -415,6 +424,28 @@ svg {
   height: 20px;
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--large-spacing);
+}
+
+.pagination button {
+  background-color: var(--code-background-color);
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  font-size: 0.8rem;
+  margin: 0 5px;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.pagination button.active {
+  background-color: var(--link-color);
+  color: var(--background-color);
+}
+
 @media (min-width: 750px) {
   :root {
     --normal-spacing: 30px;
@@ -474,7 +505,8 @@ svg {
     text-decoration-color: var(--heading-color);
   }
 
-  .tag-filter button:hover {
+  .tag-filter button:hover,
+  .pagination button:hover:not(.active) {
     background-color: var(--link-color);
     color: var(--background-color);
   }
