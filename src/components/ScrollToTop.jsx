@@ -8,7 +8,7 @@ const ScrollToTop = () => {
     const handleScroll = () => {
       const currentScrollPos = window.pageYOffset;
       const scrollThreshold = 300;
-      const scrollUpThreshold = 0;
+      const scrollUpThreshold = 30;
 
       if (currentScrollPos > scrollThreshold) {
         if (prevScrollPos - currentScrollPos > scrollUpThreshold) {
