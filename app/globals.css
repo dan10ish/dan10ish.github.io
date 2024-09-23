@@ -1,0 +1,495 @@
+/* Font Face Declarations */
+@font-face {
+  font-family: "Geist";
+  src: url("./fonts/GeistVF.woff") format("woff-variations");
+  font-weight: 100 900;
+  font-stretch: 75% 125%;
+  font-style: oblique 0deg 12deg;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("./fonts/GeistMonoVF.woff") format("woff-variations");
+  font-weight: 100 900;
+  font-stretch: 75% 125%;
+  font-style: oblique 0deg 12deg;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Sentient";
+  src: url(./fonts/Sentient.ttf) format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Root Variables */
+:root {
+  --font-normal: "Geist Mono";
+  --font-heading: "Sentient", sans-serif;
+
+  --color-bg: #ffffff;
+  --color-text: #333333;
+  --color-link: #0070f3;
+  --code-background-color: #eee;
+  --blockquote-color: #6c757d;
+  --code-color: #666666;
+
+  --padding-small: 0.5rem;
+  --padding-medium: 1rem;
+  --padding-large: 2rem;
+  --max-width: 700px;
+  --border-radius: 4px;
+}
+
+/* Dark Mode */
+.dark-mode {
+  --color-bg: #001219;
+  --color-text: #cfd1d2;
+  --color-link: #2782eb;
+  --code-background-color: #01222c;
+  --blockquote-color: #93a1a1;
+  --code-color: #fdf6e3;
+}
+
+/* Base Styles */
+html {
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: var(--font-normal);
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  margin: 0;
+  padding: 0 20px 50px;
+  font-size: 0.9rem;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 2em;
+  margin-bottom: 1em;
+  line-height: 1.3;
+  font-family: var(--font-heading);
+}
+
+h1 {
+  font-size: 2.5em;
+}
+h2 {
+  font-size: 2em;
+}
+h3 {
+  font-size: 1.75em;
+}
+h4 {
+  font-size: 1.5em;
+}
+h5 {
+  font-size: 1.25em;
+}
+h6 {
+  font-size: 1em;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+}
+
+/* Code Blocks */
+code {
+  font-family: var(--font-normal);
+  font-size: 0.8rem;
+  padding: 0.2em 0.4em;
+  background-color: var(--code-background-color);
+  border-radius: var(--border-radius);
+  color: var(--code-color) !important;
+}
+
+pre {
+  background-color: var(--code-background-color);
+  padding: var(--padding-medium);
+  overflow-x: auto;
+  border-radius: var(--border-radius);
+  font-size: 0.8rem;
+  color: var(--code-color) !important;
+}
+
+pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+/* Lists */
+ul,
+ol {
+  padding-left: var(--padding-large);
+  margin-bottom: 1em;
+}
+
+li {
+  margin-bottom: 0.5em;
+}
+
+/* Blockquote */
+blockquote {
+  margin: 1em 0;
+  padding-left: var(--padding-large);
+  border-left: 4px solid var(--color-link);
+  color: var(--blockquote-color);
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1em;
+}
+
+th,
+td {
+  border: 1px solid var(--code-background-color);
+  padding: var(--padding-small);
+  text-align: left;
+}
+
+th {
+  background-color: var(--code-background-color);
+  font-weight: bold;
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1em auto;
+}
+
+/* LaTeX Content */
+.latex-content {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+.katex-display {
+  overflow-x: auto;
+  max-width: 100%;
+  padding: var(--padding-small) 0;
+}
+
+.katex-inline {
+  display: inline-block;
+  max-width: 100%;
+  overflow-x: auto;
+  vertical-align: middle;
+  padding: 0.2em 0;
+  font-size: 0.9rem;
+}
+
+.katex {
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+/* Blog Post */
+.blog-post {
+  margin-bottom: var(--padding-large);
+}
+
+/* Tags */
+.tag {
+  display: inline-block;
+  background-color: var(--code-background-color);
+  color: var(--color-text);
+  padding: 0.2em 0.5em;
+  margin-right: 0.5em;
+  border-radius: var(--border-radius);
+  font-size: 0.8em;
+  border: none;
+  cursor: pointer;
+  outline: inherit;
+  user-select: none;
+}
+
+/* Navigation Buttons */
+.dark-mode-toggle,
+.return-home {
+  position: fixed;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--color-text);
+  z-index: 1000;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.dark-mode-toggle svg,
+.return-home svg {
+  width: 20px;
+  fill: var(--color-text);
+}
+
+.dark-mode-toggle {
+  top: 20px;
+  right: 0px;
+}
+
+.return-home {
+  top: 20px;
+  left: 20px;
+}
+
+.dark-mode-toggle.hidden,
+.return-home.hidden {
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+}
+
+/* Table of Contents */
+.toc {
+  background-color: var(--code-background-color);
+  padding: 0;
+  margin-bottom: var(--padding-large);
+  border-radius: var(--border-radius);
+  margin-top: var(--padding-large);
+}
+
+.toc h2 {
+  padding: 15px 20px;
+  font-size: 1rem;
+  margin: 0;
+  border-bottom: 1px solid var(--color-bg);
+}
+
+.toc ul {
+  list-style-type: none;
+  padding-left: var(--padding-medium);
+}
+
+.toc-content {
+  height: 280px;
+  overflow-y: auto;
+  font-size: 0.75rem;
+  padding: 0px 10px;
+}
+
+/* Scroll to Top Button */
+.scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 15px;
+  background-color: var(--color-text);
+  color: var(--color-bg);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.2s ease-out;
+  border: none;
+}
+
+.scroll-to-top:hover {
+  opacity: 1;
+}
+
+.scroll-to-top.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scroll-to-top svg {
+  fill: none;
+  width: 20px;
+  height: 20px;
+}
+
+/* Social Icons */
+.socials {
+  display: flex;
+  gap: var(--padding-medium);
+  justify-content: center;
+  align-items: center;
+  margin-top: 60px;
+}
+
+.socials svg {
+  fill: var(--color-link);
+}
+
+.github svg {
+  fill: none;
+}
+
+/* Blog List */
+.blog-list li {
+  display: flex;
+  gap: var(--padding-medium);
+  margin: 0;
+  padding: 0;
+  align-items: baseline;
+}
+
+.blog-list ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  margin: 0;
+  padding: 0;
+}
+
+.blog-list ul a {
+  font-family: "Sentient";
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+/* Tag Filter */
+.tag-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--padding-small);
+  margin-bottom: var(--padding-large);
+}
+
+.tag-filter .tag {
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 0.75rem;
+}
+
+.tag-filter button {
+  font-family: "Geist Mono";
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--padding-small);
+  margin-bottom: var(--padding-large);
+}
+
+.tags .tag {
+  padding: 5px 10px;
+}
+
+.tag-filter .tag.selected {
+  background-color: var(--color-link);
+  color: var(--color-bg);
+}
+
+.tag {
+  color: var(--code-color);
+}
+
+/* About Section */
+.about {
+  font-weight: 400;
+}
+
+.about a {
+  font-size: 1.2rem;
+  font-weight: 400;
+  font-family: "Sentient";
+}
+
+/* Title Link */
+.title-link a {
+  color: var(--color-text);
+  font-size: 0.75rem;
+}
+
+/* Media Queries */
+@media (min-width: 700px) {
+  body {
+    font-size: 14px;
+  }
+
+  .container {
+    padding: var(--padding-small);
+  }
+
+  .dark-mode-toggle {
+    top: 20px;
+    right: 30px;
+  }
+
+  .return-home {
+    top: 20px;
+    left: 30px;
+  }
+
+  .scroll-to-top {
+    right: 20px;
+    bottom: 20px;
+    height: 35px;
+    width: 35px;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .scroll-to-top:hover {
+    opacity: 1;
+  }
+
+  .dark-mode-toggle:hover,
+  .return-home:hover {
+    color: var(--color-link);
+  }
+
+  .tag:hover {
+    background-color: var(--color-link);
+    color: var(--color-bg);
+  }
+
+  .tags .tag:hover {
+    background-color: var(--code-background-color);
+    color: var(--color-text);
+    cursor: default;
+  }
+
+  .dark-mode-toggle:hover,
+  .return-home:hover,
+  .scroll-to-top:hover,
+  .socials svg:hover {
+    transform: scale(1.2);
+  }
+}
