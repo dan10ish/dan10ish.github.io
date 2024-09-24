@@ -6,14 +6,12 @@ import Link from "next/link";
 export default function BlogList({ posts }) {
   const [selectedTag, setSelectedTag] = useState(null);
 
-  // Get unique tags from all posts
   const allTags = useMemo(() => {
     const tags = new Set();
     posts.forEach((post) => post.tags.forEach((tag) => tags.add(tag)));
     return Array.from(tags);
   }, [posts]);
 
-  // Filter posts based on selected tag
   const filteredPosts = useMemo(() => {
     if (!selectedTag) return posts;
     return posts.filter((post) => post.tags.includes(selectedTag));
@@ -39,9 +37,13 @@ export default function BlogList({ posts }) {
       </div>
       <ul>
         {filteredPosts.map((post) => (
-          <li key={post.slug}>
-            <p>{post.date}</p>
-            <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+          <li key={post.slug} className="list-item">
+            <div>
+              <p>{post.date}</p>
+            </div>
+            <div>
+              <Link href={`/post/${post.slug}`}>{post.title}</Link>
+            </div>
           </li>
         ))}
       </ul>

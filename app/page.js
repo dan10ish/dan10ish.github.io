@@ -14,8 +14,8 @@ export default function Home() {
         </a>
       </div>
       <AboutMe />
-      <BlogList posts={posts} />
       <SocialIcons />
+      <BlogList posts={posts} />
     </main>
   );
 }

@@ -28,15 +28,7 @@ export default async function BlogPost({ params }) {
     <article className="blog-post markdown-body">
       <ReturnToHome />
       <h1>{post.title}</h1>
-      <p>{post.date}</p>
-      <div className="tags">
-        {post.tags &&
-          post.tags.map((tag) => (
-            <span key={tag} className="tag">
-              {tag}
-            </span>
-          ))}
-      </div>
+      <p className="blog-date">{post.date}</p>
       <TableOfContents content={contentHtml} />
       <div className="mark">
         <LatexRenderer content={contentHtml} />
