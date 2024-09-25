@@ -8,16 +8,18 @@ export default function TableOfContents() {
   useEffect(() => {
     const generateTOC = () => {
       const headers = document.querySelectorAll("h2, h3, h4, h5, h6");
-      const tocItems = Array.from(headers).map((header, index) => {
-        if (!header.id) {
-          header.id = `heading-${index}`;
-        }
-        return {
-          id: header.id,
-          text: header.textContent,
-          level: parseInt(header.tagName.charAt(1)),
-        };
-      });
+      const tocItems = Array.from(headers)
+        .map((header, index) => {
+          if (!header.id) {
+            header.id = `heading-${index}`;
+          }
+          return {
+            id: header.id,
+            text: header.textContent,
+            level: parseInt(header.tagName.charAt(1)),
+          };
+        })
+        .filter((item) => item.text.toLowerCase() !== "table of contents");
       setToc(tocItems);
     };
 
@@ -36,6 +38,10 @@ export default function TableOfContents() {
       window.scrollTo({ top: y, behavior: "smooth" });
     }
   };
+
+  if (toc.length === 0) {
+    return null;
+  }
 
   return (
     <nav className="toc">

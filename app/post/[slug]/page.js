@@ -23,17 +23,33 @@ export default async function BlogPost({ params }) {
   }
 
   const contentHtml = await markdownToHtml(post.content);
+  const currentYear = new Date().getFullYear();
 
   return (
     <article className="blog-post markdown-body">
       <ReturnToHome />
       <h1>{post.title}</h1>
-      <p className="blog-date">{post.date}</p>
+      <div className="blog-meta">
+        <div>
+          <p className="blog-date">{post.date}</p>
+        </div>
+        <div>|</div>
+        <div>
+          <a
+            href="https://x.com/dan10ish"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            @dan10ish
+          </a>
+        </div>
+      </div>
       <TableOfContents content={contentHtml} />
       <div className="mark">
         <LatexRenderer content={contentHtml} />
       </div>
       <ScrollToTop />
+      <div className="copyright">&copy; {currentYear} Danish</div>
     </article>
   );
 }

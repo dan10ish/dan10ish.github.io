@@ -73,7 +73,7 @@ body {
   color: var(--color-text);
   background-color: var(--color-bg);
   margin: 0;
-  padding: 0 20px 50px;
+  padding: 0 20px 20px;
   font-size: 0.9rem;
 }
 
@@ -276,10 +276,6 @@ img {
   pointer-events: none;
 }
 
-.blog-date {
-  margin-bottom: 40px;
-}
-
 /* Table of Contents */
 .toc {
   background-color: var(--code-background-color);
@@ -385,6 +381,16 @@ img {
   font-weight: 450;
 }
 
+/* Blog Meta */
+.blog-meta {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 0;
+  gap: var(--padding-small);
+  color: var(--blockquote-color);
+}
+
 /* Tag Filter */
 .tag-filter {
   display: flex;
@@ -438,6 +444,15 @@ img {
 .title-link a {
   color: var(--color-text);
   font-size: 0.75rem;
+}
+
+/* Copyright */
+.copyright {
+  margin-top: var(--padding-large);
+  display: flex;
+  text-align: center;
+  color: var(--code-color);
+  padding: 0;
 }
 
 /* Media Queries */
