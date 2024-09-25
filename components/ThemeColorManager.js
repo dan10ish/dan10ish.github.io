@@ -7,7 +7,7 @@ export default function ThemeColorManager() {
     const updateThemeColor = () => {
       const isDarkMode =
         document.documentElement.classList.contains("dark-mode");
-      const themeColor = isDarkMode ? "#001219" : "#ffffff";
+      const themeColor = isDarkMode ? "#1a1a1a" : "#ffffff";
       document
         .querySelector('meta[name="theme-color"]')
         .setAttribute("content", themeColor);

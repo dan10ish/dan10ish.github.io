@@ -23,26 +23,37 @@
   --color-bg: #ffffff;
   --color-text: #333333;
   --color-link: #0070f3;
+  /* --code-background-color: #eee; */
   --code-background-color: #eee;
   --blockquote-color: #6c757d;
-  --code-color: #555555;
+  --code-color: #666;
 
   --padding-small: 0.5rem;
   --padding-medium: 1rem;
   --padding-large: 2rem;
   --max-width: 700px;
-  --border-radius: 4px;
+  --border-radius: 6px;
 }
 
 /* Dark Mode */
 .dark-mode {
+  --color-bg: #1a1a1a;
+  --color-text: #eeeeee;
+  --color-link: #1f88ff;
+  --code-background-color: #333;
+  --blockquote-color: #93a1a1;
+  --code-color: #aaa;
+}
+
+/* Solarized Dark Mode */
+/* .dark-mode {
   --color-bg: #001219;
   --color-text: #cfd1d2;
   --color-link: #2782eb;
   --code-background-color: #01222c;
   --blockquote-color: #93a1a1;
   --code-color: #aaaaaa;
-}
+} */
 
 /* Base Styles */
 html {
@@ -273,7 +284,7 @@ img {
 .toc {
   background-color: var(--code-background-color);
   padding: 0;
-  margin-bottom: var(--padding-medium);
+  margin-bottom: var(--padding-large);
   border-radius: var(--border-radius);
   margin-top: var(--padding-large);
 }
@@ -291,10 +302,10 @@ img {
 }
 
 .toc-content {
-  height: 250px;
   overflow-y: auto;
   font-size: 0.75rem;
-  padding: 0px 10px;
+  padding: 0px 10px 0px;
+  max-height: 250px;
 }
 
 /* Scroll to Top Button */
@@ -371,7 +382,7 @@ img {
 .blog-list ul a {
   font-family: "Sentient", Verdana, Geneva, Tahoma, sans-serif;
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 450;
 }
 
 /* Tag Filter */
