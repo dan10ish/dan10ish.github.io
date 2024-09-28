@@ -21,6 +21,15 @@ const LatexRenderer = ({ content }) => {
         });
         elem.classList.add("katex-rendered");
       });
+
+      // Modify external links to open in new tabs
+      const links = containerRef.current.querySelectorAll("a");
+      links.forEach((link) => {
+        if (!link.getAttribute("href").startsWith("#")) {
+          link.setAttribute("target", "_blank");
+          link.setAttribute("rel", "noopener noreferrer");
+        }
+      });
     }
   }, [content]);
 
