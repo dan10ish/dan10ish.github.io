@@ -6,16 +6,20 @@ import Link from "next/link";
 export default function BlogList({ posts }) {
   const [selectedTag, setSelectedTag] = useState(null);
 
-  const allTags = useMemo(() => {
-    const tags = new Set();
-    posts.forEach((post) => post.tags.forEach((tag) => tags.add(tag)));
-    return Array.from(tags);
+  const sortedPosts = useMemo(() => {
+    return [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
   }, [posts]);
 
+  const allTags = useMemo(() => {
+    const tags = new Set();
+    sortedPosts.forEach((post) => post.tags.forEach((tag) => tags.add(tag)));
+    return Array.from(tags);
+  }, [sortedPosts]);
+
   const filteredPosts = useMemo(() => {
-    if (!selectedTag) return posts;
-    return posts.filter((post) => post.tags.includes(selectedTag));
-  }, [posts, selectedTag]);
+    if (!selectedTag) return sortedPosts;
+    return sortedPosts.filter((post) => post.tags.includes(selectedTag));
+  }, [sortedPosts, selectedTag]);
 
   const handleTagClick = (tag) => {
     setSelectedTag(tag === selectedTag ? null : tag);
