@@ -204,6 +204,7 @@ img {
   overflow-x: auto;
   max-width: 100%;
   padding: var(--padding-small) 0;
+  font-size: 0.85rem !important;
 }
 
 .katex-inline {
@@ -212,11 +213,11 @@ img {
   overflow-x: auto;
   vertical-align: middle;
   padding: 0.2em 0;
-  font-size: 0.9rem;
+  font-size: 0.85rem !important;
 }
 
 .katex {
-  font-size: 0.9rem;
+  font-size: 0.85rem !important;
   white-space: nowrap;
 }
 
@@ -280,7 +281,6 @@ img {
 .toc {
   background-color: var(--code-background-color);
   padding: 0;
-  margin-bottom: var(--padding-large);
   border-radius: var(--border-radius);
   margin-top: var(--padding-large);
 }
@@ -342,7 +342,7 @@ img {
 /* Social Icons */
 .socials {
   display: flex;
-  gap: var(--padding-small);
+  gap: var(--padding-medium);
   justify-content: left;
   align-items: center;
 }
@@ -350,6 +350,12 @@ img {
 .socials svg {
   fill: var(--color-link);
   height: 20px;
+  width: auto;
+}
+
+a[aria-label="readcv"] svg {
+  color: var(--color-link);
+  fill: none;
 }
 
 /* Blog List */
@@ -488,17 +494,33 @@ img {
 
   .socials svg {
     fill: var(--color-link);
-    height: 30px;
+    height: 24px;
   }
 
   .blog-list li {
     margin-bottom: -5px;
+  }
+
+  .katex-display {
+    font-size: 1rem !important;
+  }
+
+  .katex-inline {
+    font-size: 1rem !important;
+  }
+
+  .katex {
+    font-size: 1rem !important;
   }
 }
 
 @media (hover: hover) and (pointer: fine) {
   a:hover {
     text-decoration: underline;
+  }
+
+  .title-link a:hover {
+    text-decoration: none;
   }
 
   .scroll-to-top:hover {
