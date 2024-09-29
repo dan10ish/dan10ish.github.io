@@ -19,7 +19,7 @@ export const metadata = {
     type: "website",
     siteName: "Danish",
     title: "Danish",
-    description: "Danish's website containing writings and projects.",
+    description: "Danish's website containing his writings and projects",
     url: "https://danish.bio",
     images: [
       {
