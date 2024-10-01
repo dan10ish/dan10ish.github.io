@@ -23,7 +23,6 @@
   --color-bg: #ffffff;
   --color-text: #333333;
   --color-link: #0070f3;
-  /* --code-background-color: #eee; */
   --code-background-color: #eee;
   --blockquote-color: #6c757d;
   --code-color: #666;
@@ -45,16 +44,6 @@
   --code-color: #aaa;
 }
 
-/* Solarized Dark Mode */
-/* .dark-mode {
-  --color-bg: #001219;
-  --color-text: #cfd1d2;
-  --color-link: #2782eb;
-  --code-background-color: #01222c;
-  --blockquote-color: #93a1a1;
-  --code-color: #aaaaaa;
-} */
-
 /* Base Styles */
 html {
   font-size: 16px;
@@ -73,13 +62,14 @@ body {
   color: var(--color-text);
   background-color: var(--color-bg);
   margin: 0;
-  padding: 0 20px 20px;
+  padding: 0 25px 20px;
   font-size: 0.9rem;
 }
 
 .container {
   max-width: var(--max-width);
   margin: 0 auto;
+  padding: 0;
 }
 
 /* Typography */
