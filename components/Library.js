@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { getBooks } from "../lib/api";
+import { getBooks } from "../lib/books";
 
 const Library = () => {
   const books = getBooks();
