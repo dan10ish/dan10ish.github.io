@@ -25,7 +25,7 @@
   --color-link: #0070f3;
   --code-background-color: #eee;
   --blockquote-color: #6c757d;
-  --code-color: #666;
+  --code-color: #505050;
 
   --padding-small: 0.5rem;
   --padding-medium: 1rem;
@@ -36,12 +36,12 @@
 
 /* Dark Mode */
 .dark-mode {
-  --color-bg: #1a1a1a;
-  --color-text: #eeeeee;
-  --color-link: #1f88ff;
-  --code-background-color: #333;
+  --color-bg: #000000;
+  --color-text: #ffffff;
+  --color-link: #0096fa;
+  --code-background-color: #303030;
   --blockquote-color: #93a1a1;
-  --code-color: #aaa;
+  --code-color: #cccccc;
 }
 
 /* Base Styles */
@@ -251,13 +251,13 @@ img {
 }
 
 .dark-mode-toggle {
-  top: 20px;
-  right: 0px;
+  top: 10px;
+  right: 5px;
 }
 
 .return-home {
-  top: 20px;
-  left: 20px;
+  top: 10px;
+  left: 25px;
 }
 
 .dark-mode-toggle.hidden,
@@ -335,7 +335,7 @@ img {
 .scroll-to-top {
   position: fixed;
   bottom: 20px;
-  right: 15px;
+  right: 20px;
   background-color: var(--color-text);
   color: var(--color-bg);
   width: 40px;
@@ -486,6 +486,11 @@ a[aria-label="ReadCV"] svg {
   text-align: center;
   color: var(--code-color);
   padding: 0;
+}
+
+.at {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 0.8rem;
 }
 
 /* Media Queries */

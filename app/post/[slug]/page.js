@@ -40,7 +40,7 @@ export default async function BlogPost({ params }) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            @dan10ish
+            <span className="at">@</span>dan10ish
           </a>
         </div>
       </div>
