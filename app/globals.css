@@ -268,7 +268,6 @@ img {
 }
 
 /* Table of Contents */
-/* Table of Contents */
 .toc {
   background-color: var(--code-background-color);
   padding: 0;
@@ -327,10 +326,6 @@ img {
   display: inline-block;
 }
 
-.toc-content a:hover {
-  text-decoration: underline;
-}
-
 /* Scroll to Top Button */
 .scroll-to-top {
   position: fixed;
@@ -349,10 +344,6 @@ img {
   opacity: 1;
   transition: opacity 0.3s ease, transform 0.3s ease;
   border: none;
-}
-
-.scroll-to-top:hover {
-  opacity: 1;
 }
 
 .scroll-to-top.hidden {
@@ -493,6 +484,83 @@ a[aria-label="ReadCV"] svg {
   font-size: 0.8rem;
 }
 
+/* Projects Section */
+.projects-section {
+  margin-top: var(--padding-large);
+  margin-bottom: var(--padding-large);
+}
+
+.projects-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.projects-container::-webkit-scrollbar {
+  display: none;
+}
+
+.project-card {
+  flex: 0 0 auto;
+  width: 300px;
+  height: 260px;
+  margin-right: 12px;
+  padding: 20px;
+  border-radius: 12px;
+  scroll-snap-align: center;
+  color: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.project-card h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.project-card p {
+  font-size: 0.8rem;
+  margin: 10px 0;
+}
+
+.project-links {
+  display: flex;
+  gap: 10px;
+}
+
+.project-links a {
+  color: var(--color-bg);
+  text-decoration: none;
+  font-size: 0.8rem;
+  padding: 5px 10px;
+  border: 1px solid var(--color-bg);
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.project-tag {
+  font-size: 0.7rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+
 /* Library */
 .library {
   margin-top: var(--padding-large);
@@ -506,46 +574,39 @@ a[aria-label="ReadCV"] svg {
   align-items: flex-end;
   scrollbar-width: thin;
   scrollbar-color: var(--color-link) transparent;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.book-shelf::-webkit-scrollbar {
+  height: 6px;
+}
+
+.book-shelf::-webkit-scrollbar-thumb {
+  background-color: var(--color-link);
+  border-radius: 3px;
 }
 
 .book-container {
-  margin-right: 6px;
+  margin-right: 10px;
+  scroll-snap-align: center;
 }
 
 .book {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 6px 3px;
-  color: #ffffff;
+  padding: 8px 4px;
+  color: var(--color-bg);
   border-radius: 0 4px 4px 0;
-  box-shadow: -1px 1px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.2);
   cursor: default;
-  transition: transform 0.15s ease;
+  transition: transform 0.2s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .book:hover {
-    transform: translateY(-4px);
-  }
-}
-
-@media (hover: none) and (pointer: coarse) {
-  .book:active {
-    animation: touchPulse 0.4s ease;
-  }
-}
-
-@keyframes touchPulse {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-4px);
-  }
-  100% {
-    transform: translateY(0);
-  }
+.book:hover {
+  transform: translateY(-5px);
 }
 
 .book-title {
@@ -558,24 +619,24 @@ a[aria-label="ReadCV"] svg {
   text-overflow: ellipsis;
   flex-grow: 1;
   font-weight: bold;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 10px 0;
 }
 
 .book-author {
-  font-size: 0.45rem;
+  font-size: 0.6rem;
   opacity: 0.9;
   width: 100%;
   text-align: center;
-  padding: 3px 0;
+  padding: 5px 0;
   font-weight: 700;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 24px;
 }
 
 .book-author span {
@@ -584,33 +645,19 @@ a[aria-label="ReadCV"] svg {
   overflow: hidden;
   text-overflow: ellipsis;
   width: 100%;
-  line-height: 1.1;
+  line-height: 1.2;
 }
 
-@media (max-width: 700px) {
-  .book-shelf {
-    padding-bottom: var(--padding-medium);
-  }
+/* Dark mode adjustments */
+.dark-mode .project-card,
+.dark-mode .book {
+  color: var(--color-text);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-@media (hover: none) and (pointer: coarse) {
-  .book-shelf::after {
-    content: "";
-    padding-right: 16px;
-  }
-}
-
-@media (max-width: 700px) {
-  .book-shelf {
-    padding-bottom: var(--padding-medium);
-  }
-}
-
-@media (hover: none) and (pointer: coarse) {
-  .book-shelf::after {
-    content: "";
-    padding-right: 16px;
-  }
+.dark-mode .project-links a {
+  color: var(--color-text);
+  border-color: var(--color-text);
 }
 
 /* Media Queries */
@@ -700,5 +747,25 @@ a[aria-label="ReadCV"] svg {
   .scroll-to-top:hover,
   .socials svg:hover {
     transform: scale(1.2);
+  }
+
+  .project-links a:hover {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .dark-mode .project-links a:hover {
+    background-color: var(--color-text);
+    color: var(--color-bg);
+    text-decoration: none;
+  }
+
+  .toc-content a:hover {
+    text-decoration: underline;
+  }
+
+  .scroll-to-top:hover {
+    opacity: 1;
   }
 }
