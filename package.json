@@ -12,7 +12,7 @@
     "deploy": "next build && next export && touch out/.nojekyll && gh-pages -d out -t true"
   },
   "dependencies": {
-    "@million/lint": "^1.0.0",
+    "@million/lint": "^1.0.9",
     "gray-matter": "^4.0.3",
     "katex": "^0.16.11",
     "next": "13.4.4",

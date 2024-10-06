@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 export default function TableOfContents() {
   const [toc, setToc] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const generateTOC = () => {
@@ -39,14 +40,36 @@ export default function TableOfContents() {
     }
   };
 
+  const toggleTOC = () => {
+    setIsOpen(!isOpen);
+  };
+
   if (toc.length === 0) {
     return null;
   }
 
   return (
     <nav className="toc">
-      <h2>Table of Contents</h2>
-      <div className="toc-content">
+      <h2 onClick={toggleTOC}>
+        Table of Contents
+        <svg
+          className={`arrow ${isOpen ? "open" : ""}`}
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M5 7.5L10 12.5L15 7.5"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </h2>
+      <div className={`toc-content ${isOpen ? "open" : ""}`}>
         <ul>
           {toc.map((item, index) => (
             <li

@@ -1,9 +1,18 @@
-import DarkModeToggle from "../components/DarkModeToggle";
-import ThemeColorManager from "../components/ThemeColorManager";
+import { Suspense } from "react";
+import dynamic from "next/dynamic";
 import Script from "next/script";
 import "./globals.css";
 
+const DarkModeToggle = dynamic(() => import("../components/DarkModeToggle"), {
+  ssr: false,
+});
+const ThemeColorManager = dynamic(
+  () => import("../components/ThemeColorManager"),
+  { ssr: false }
+);
+
 export const metadata = {
+  metadataBase: new URL("https://danish.bio"),
   title: "Danish",
   description: "Danish's website containing his writings and projects",
   robots: "index,follow,nocache",
@@ -47,15 +56,17 @@ export default function RootLayout({ children }) {
           type="font/ttf"
           crossOrigin="anonymous"
         />
-        <link rel="manifest" href="./manifest.json" />
+        <link rel="manifest" href="/manifest.json" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="theme-color" content="#ffffff" />
       </head>
       <body>
-        <ThemeColorManager />
-        <DarkModeToggle />
+        <Suspense fallback={null}>
+          <ThemeColorManager />
+          <DarkModeToggle />
+        </Suspense>
         <main className="container">{children}</main>
-        <Script id="location-handler">
+        <Script id="location-handler" strategy="afterInteractive">
           {`
             (function (l) {
               if (l.search[1] === "/") {
