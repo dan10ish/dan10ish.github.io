@@ -65,41 +65,35 @@ const ProjectsSection = () => {
   const projects = getProjects();
   const scrollContainerRef = useRef(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [isAtStart, setIsAtStart] = useState(true);
+  const [isAtEnd, setIsAtEnd] = useState(false);
   const [cardWidth, setCardWidth] = useState(0);
-  const [isScrolling, setIsScrolling] = useState(false);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
-  const [isSmallDevice, setIsSmallDevice] = useState(false);
+  const [isLargeDevice, setIsLargeDevice] = useState(false);
 
-  const dragRef = useRef({
+  const dragState = useRef({
     isMouseDown: false,
     startX: 0,
     scrollLeft: 0,
-    lastPageX: 0,
-    velocity: 0,
-    lastTimestamp: 0,
-  });
+  }).current;
 
   useEffect(() => {
     const darkModeMediaQuery = window.matchMedia(
       "(prefers-color-scheme: dark)"
     );
-    const smallDeviceMediaQuery = window.matchMedia("(max-width: 768px)");
+    const largeDeviceMediaQuery = window.matchMedia("(min-width: 769px)");
 
     setIsDarkMode(darkModeMediaQuery.matches);
-    setIsSmallDevice(smallDeviceMediaQuery.matches);
+    setIsLargeDevice(largeDeviceMediaQuery.matches);
 
     const handleDarkModeChange = (e) => setIsDarkMode(e.matches);
-    const handleDeviceSizeChange = (e) => setIsSmallDevice(e.matches);
+    const handleDeviceSizeChange = (e) => setIsLargeDevice(e.matches);
 
     darkModeMediaQuery.addEventListener("change", handleDarkModeChange);
-    smallDeviceMediaQuery.addEventListener("change", handleDeviceSizeChange);
+    largeDeviceMediaQuery.addEventListener("change", handleDeviceSizeChange);
 
     return () => {
       darkModeMediaQuery.removeEventListener("change", handleDarkModeChange);
-      smallDeviceMediaQuery.removeEventListener(
+      largeDeviceMediaQuery.removeEventListener(
         "change",
         handleDeviceSizeChange
       );
@@ -113,147 +107,133 @@ const ProjectsSection = () => {
     const updateCardWidth = () => {
       const firstCard = scrollContainer.querySelector(".project-card");
       if (firstCard) {
-        setCardWidth(firstCard.offsetWidth + 12);
+        setCardWidth(firstCard.offsetWidth + 20);
       }
+    };
+
+    const handleScroll = () => {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollContainer;
+      setIsAtStart(scrollLeft <= 1);
+      setIsAtEnd(scrollLeft + clientWidth >= scrollWidth - 1);
     };
 
     updateCardWidth();
+    handleScroll();
+
     window.addEventListener("resize", updateCardWidth);
-
-    const handleScroll = () => {
-      if (!isScrolling) {
-        const scrollLeft = scrollContainer.scrollLeft;
-        const newIndex = Math.round(scrollLeft / cardWidth);
-        setActiveIndex(newIndex);
-      }
-    };
-
     scrollContainer.addEventListener("scroll", handleScroll);
 
     return () => {
       window.removeEventListener("resize", updateCardWidth);
       scrollContainer.removeEventListener("scroll", handleScroll);
     };
-  }, [cardWidth, isScrolling]);
+  }, []);
 
-  const scrollToCard = useCallback(
-    (index) => {
+  const scrollProjects = useCallback(
+    (direction) => {
       if (scrollContainerRef.current && cardWidth) {
-        setIsScrolling(true);
-        const maxScroll =
-          scrollContainerRef.current.scrollWidth -
-          scrollContainerRef.current.clientWidth;
-        const targetScroll = Math.min(index * cardWidth, maxScroll);
+        const container = scrollContainerRef.current;
+        const scrollAmount = direction === "left" ? -cardWidth : cardWidth;
+        const newScrollLeft = container.scrollLeft + scrollAmount;
 
-        scrollContainerRef.current.scrollTo({
-          left: targetScroll,
-          behavior: "smooth",
+        container.scrollTo({
+          left: Math.max(
+            0,
+            Math.min(
+              newScrollLeft,
+              container.scrollWidth - container.clientWidth
+            )
+          ),
+          behavior: isLargeDevice ? "auto" : "smooth",
         });
-
-        setActiveIndex(index);
-
-        setTimeout(() => {
-          setIsScrolling(false);
-        }, 300);
       }
     },
-    [cardWidth]
+    [cardWidth, isLargeDevice]
   );
 
   const handleMouseDown = (e) => {
-    const drag = dragRef.current;
-    drag.isMouseDown = true;
-    drag.startX = e.pageX - scrollContainerRef.current.offsetLeft;
-    drag.scrollLeft = scrollContainerRef.current.scrollLeft;
-    drag.lastPageX = e.pageX;
-    drag.lastTimestamp = performance.now();
-    drag.velocity = 0;
-
-    setIsDragging(true);
-    document.body.classList.add("is-dragging");
-  };
-
-  const handleMouseLeave = () => {
-    endDrag();
-  };
-
-  const handleMouseUp = () => {
-    endDrag();
-  };
-
-  const endDrag = () => {
-    const drag = dragRef.current;
-    drag.isMouseDown = false;
-    setIsDragging(false);
-    document.body.classList.remove("is-dragging");
-
-    if (isSmallDevice) {
-      snapToNearestCard();
-    } else {
-      // Apply momentum scrolling for larger devices
-      const decay = 0.95;
-      const animate = () => {
-        drag.velocity *= decay;
-        if (Math.abs(drag.velocity) > 0.5) {
-          scrollContainerRef.current.scrollLeft += drag.velocity;
-          requestAnimationFrame(animate);
-        }
-      };
-      requestAnimationFrame(animate);
-    }
+    if (!isLargeDevice) return;
+    dragState.isMouseDown = true;
+    dragState.startX = e.pageX - scrollContainerRef.current.offsetLeft;
+    dragState.scrollLeft = scrollContainerRef.current.scrollLeft;
+    document.body.style.cursor = "grabbing";
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseup", handleMouseUp);
   };
 
   const handleMouseMove = (e) => {
-    const drag = dragRef.current;
-    if (!drag.isMouseDown) return;
+    if (!isLargeDevice || !dragState.isMouseDown) return;
     e.preventDefault();
-
     const x = e.pageX - scrollContainerRef.current.offsetLeft;
-    const walk = (x - drag.startX) * 2;
-    const newScrollLeft = drag.scrollLeft - walk;
-    scrollContainerRef.current.scrollLeft = newScrollLeft;
-
-    const now = performance.now();
-    const dt = now - drag.lastTimestamp;
-    const dx = e.pageX - drag.lastPageX;
-    drag.velocity = (dx / dt) * 16.67; // Scaled for 60fps
-
-    drag.lastPageX = e.pageX;
-    drag.lastTimestamp = now;
+    const walk = (x - dragState.startX) * 2;
+    const newScrollLeft = dragState.scrollLeft - walk;
+    scrollContainerRef.current.scrollLeft = Math.max(
+      0,
+      Math.min(
+        newScrollLeft,
+        scrollContainerRef.current.scrollWidth -
+          scrollContainerRef.current.clientWidth
+      )
+    );
   };
 
-  const snapToNearestCard = () => {
-    if (scrollContainerRef.current && isSmallDevice) {
-      const scrollLeft = scrollContainerRef.current.scrollLeft;
-      const nearestCardIndex = Math.round(scrollLeft / cardWidth);
-      scrollToCard(nearestCardIndex);
-    }
+  const handleMouseUp = () => {
+    if (!isLargeDevice) return;
+    dragState.isMouseDown = false;
+    document.body.style.cursor = "default";
+    document.removeEventListener("mousemove", handleMouseMove);
+    document.removeEventListener("mouseup", handleMouseUp);
   };
 
   return (
     <section className="projects-section">
       <h2>Projects</h2>
       <div
-        className="projects-container"
+        className={`projects-container ${isLargeDevice ? "draggable" : ""}`}
         ref={scrollContainerRef}
         onMouseDown={handleMouseDown}
-        onMouseLeave={handleMouseLeave}
-        onMouseUp={handleMouseUp}
-        onMouseMove={handleMouseMove}
       >
         {projects.map((project, index) => (
           <ProjectCard key={index} project={project} isDarkMode={isDarkMode} />
         ))}
       </div>
-      <div className="card-dots">
-        {projects.map((_, index) => (
-          <button
-            key={index}
-            className={`card-dot ${index === activeIndex ? "active" : ""}`}
-            onClick={() => scrollToCard(index)}
-            aria-label={`Go to project ${index + 1}`}
-          ></button>
-        ))}
+      <div className="projects-navigation">
+        <button
+          className={`nav-arrow left ${isAtStart ? "disabled" : ""}`}
+          onClick={() => scrollProjects("left")}
+          aria-label="Previous project"
+          disabled={isAtStart}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+        <button
+          className={`nav-arrow right ${isAtEnd ? "disabled" : ""}`}
+          onClick={() => scrollProjects("right")}
+          aria-label="Next project"
+          disabled={isAtEnd}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
       </div>
     </section>
   );

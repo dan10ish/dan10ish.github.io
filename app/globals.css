@@ -499,8 +499,17 @@ a[aria-label="ReadCV"] svg {
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  padding-bottom: 54px;
+  padding: 20px 0;
   scroll-behavior: smooth;
+}
+
+.projects-container.draggable {
+  cursor: grab;
+  scroll-behavior: auto;
+}
+
+.projects-container.draggable:active {
+  cursor: grabbing;
 }
 
 .projects-container::-webkit-scrollbar {
@@ -511,7 +520,7 @@ a[aria-label="ReadCV"] svg {
   flex: 0 0 auto;
   width: 300px;
   height: 260px;
-  margin-right: 16px;
+  margin-right: 20px;
   padding: 20px;
   border-radius: 12px;
   scroll-snap-align: start;
@@ -569,39 +578,37 @@ body.is-dragging .projects-container {
   cursor: grabbing;
 }
 
-/* Card Dots */
-.card-dots {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+.projects-navigation {
   display: flex;
   justify-content: center;
-  gap: 8px;
-  padding: 10px 0;
+  align-items: center;
+  margin-top: 18px;
 }
 
-.card-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: var(--color-text);
-  opacity: 0.3;
-  transition: all 0.3s ease;
+.nav-arrow {
+  width: 40px;
+  height: 40px;
   border: none;
-  padding: 0;
+  background: var(--code-background-color);
+  color: var(--color-text);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+  margin: 0 10px;
+  transition: transform 0.3s ease;
 }
 
-.card-dot.active {
-  opacity: 1;
-  transform: scale(1.3);
-  background-color: var(--color-link);
+.nav-arrow svg {
+  width: 40px;
+  stroke-width: 3px;
 }
 
-.card-dot:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px var(--color-link);
+.nav-arrow.disabled {
+  opacity: 0.5;
+  background: var(--color-bg);
+  cursor: not-allowed;
 }
 
 .dark-mode .project-card {
@@ -612,20 +619,6 @@ body.is-dragging .projects-container {
 .dark-mode .project-links a {
   color: var(--color-text);
   border-color: var(--color-text);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .project-links a:hover {
-    background-color: var(--color-bg);
-    color: var(--color-text);
-    text-decoration: none;
-  }
-
-  .dark-mode .project-links a:hover {
-    background-color: var(--color-text);
-    color: var(--color-bg);
-    text-decoration: none;
-  }
 }
 
 /* Library */
@@ -788,6 +781,21 @@ body.is-dragging .projects-container {
     padding: 28px;
     border-radius: 12px;
   }
+
+  .projects-navigation {
+    margin-top: 20px;
+  }
+
+  .nav-arrow {
+    width: 40px;
+    height: 40px;
+  }
+
+  .nav-arrow svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 2px;
+  }
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -854,12 +862,26 @@ body.is-dragging .projects-container {
     transform: translateY(-5px);
   }
 
-  .card-dot:hover {
-    opacity: 0.7;
+  .project-links a:hover {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    text-decoration: none;
   }
 
-  .card-dot.active:hover {
-    opacity: 1;
+  .dark-mode .project-links a:hover {
+    background-color: var(--color-text);
+    color: var(--color-bg);
+    text-decoration: none;
+  }
+
+  .nav-arrow:hover {
+    transform: scale(1.2);
+  }
+
+  .nav-arrow.disabled:hover {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    transform: scale(1);
   }
 }
 
