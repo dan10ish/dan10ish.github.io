@@ -1,0 +1,15 @@
+- [ ] Sunset Vibes: `linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%)`
+- [ ] Ocean Breeze: `linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%)`
+- [ ] Forest Mist: `linear-gradient(135deg, #00b09b 0%, #96c93d 100%)`
+- [ ] Berry Bliss: `linear-gradient(135deg, #5ee7df 0%, #b490ca 100%)`
+- [ ] Citrus Zest: `linear-gradient(135deg, #f6d365 0%, #fda085 100%)`
+- [ ] Lavender Dream: `linear-gradient(135deg, #cc208e 0%, #6713d2 100%)`
+- [ ] Mint Cocktail: `linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)`
+- [x] Cosmic Fusion: `linear-gradient(135deg, #f093fb 0%, #f5576c 100%)`
+- [ ] Sahara Sand: `linear-gradient(135deg, #fad0c4 0%, #ffd1ff 100%)`
+- [ ] Arctic Aurora: `linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)`
+- [ ] Tropical Sunset: `linear-gradient(135deg, #ff8008 0%, #ffc837 100%)`
+- [ ] Deep Ocean: `linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)`
+- [ ] Cherry Blossom: `linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)`
+- [ ] Electric Violet: `linear-gradient(135deg, #8EC5FC 0%, #E0C3FC 100%)`
+- [ ] Lemon Lime: `linear-gradient(135deg, #79F1A4 0%, #0E5CAD 100%)`

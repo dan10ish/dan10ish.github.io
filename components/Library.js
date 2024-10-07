@@ -24,9 +24,9 @@ const Library = () => {
       case "s":
         return { height: "200px", width: "45px" };
       case "m":
-        return { height: "240px", width: "45px" };
+        return { height: "240px", width: "50px" };
       case "l":
-        return { height: "280px", width: "45px" };
+        return { height: "280px", width: "55px" };
       default:
         return { height: "240px", width: "45px" };
     }
