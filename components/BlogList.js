@@ -28,16 +28,18 @@ export default function BlogList({ posts }) {
   return (
     <section className="blog-list">
       <h2>Posts</h2>
-      <div className="tag-filter">
-        {allTags.map((tag) => (
-          <button
-            key={tag}
-            onClick={() => handleTagClick(tag)}
-            className={`tag ${selectedTag === tag ? "selected" : ""}`}
-          >
-            {tag}
-          </button>
-        ))}
+      <div className="tag-filter-container">
+        <div className="tag-filter">
+          {allTags.map((tag) => (
+            <button
+              key={tag}
+              onClick={() => handleTagClick(tag)}
+              className={`tag ${selectedTag === tag ? "selected" : ""}`}
+            >
+              {tag}
+            </button>
+          ))}
+        </div>
       </div>
       <ul>
         {filteredPosts.map((post) => (

@@ -80,7 +80,7 @@ const ProjectsSection = () => {
     const darkModeMediaQuery = window.matchMedia(
       "(prefers-color-scheme: dark)"
     );
-    const largeDeviceMediaQuery = window.matchMedia("(min-width: 769px)");
+    const largeDeviceMediaQuery = window.matchMedia("(min-width: 700px)");
 
     setIsDarkMode(darkModeMediaQuery.matches);
     setIsLargeDevice(largeDeviceMediaQuery.matches);
