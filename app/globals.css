@@ -672,7 +672,7 @@ a[aria-label="ReadCV"] svg {
 }
 
 .book-container {
-  margin-right: 10px;
+  margin-right: 4px;
   scroll-snap-align: center;
 }
 
@@ -682,7 +682,7 @@ a[aria-label="ReadCV"] svg {
   justify-content: space-between;
   padding: 8px 4px;
   color: var(--color-bg);
-  border-radius: 0 4px 4px 0;
+  border-radius: 0 5px 5px 0;
   box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.2);
   cursor: default;
   transition: transform 0.3s ease;
@@ -699,7 +699,7 @@ a[aria-label="ReadCV"] svg {
   text-overflow: ellipsis;
   flex-grow: 1;
   font-weight: bold;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -707,7 +707,7 @@ a[aria-label="ReadCV"] svg {
 }
 
 .book-author {
-  font-size: 0.6rem;
+  font-size: 0.5rem;
   opacity: 0.9;
   width: 100%;
   text-align: center;
@@ -813,6 +813,22 @@ a[aria-label="ReadCV"] svg {
     width: 20px;
     height: 20px;
     stroke-width: 2px;
+  }
+
+  .book-container {
+    margin-right: 6px;
+  }
+
+  .book {
+    border-radius: 0 5px 5px 0;
+  }
+
+  .book-title {
+    font-size: 0.7rem;
+  }
+
+  .book-author {
+    font-size: 0.55rem;
   }
 }
 
