@@ -504,44 +504,33 @@ a[aria-label="ReadCV"] svg {
 .projects-container {
   display: flex;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
+  overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  padding: 20px 0;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-scroll-snap-type: x mandatory;
 }
 
 .projects-container::-webkit-scrollbar {
   display: none;
 }
 
-.projects-container.draggable {
-  cursor: default;
-  scroll-behavior: auto;
-}
-
-.projects-container.draggable:active {
-  cursor: grabbing;
-  scroll-behavior: auto;
-}
-
 .project-card {
   flex: 0 0 auto;
   width: 300px;
-  margin-right: 20px;
+  margin-right: 12px;
   padding: 20px 20px 30px;
   border-radius: 12px;
-  scroll-snap-align: start;
   color: var(--color-bg);
   display: flex;
   flex-direction: column;
-  gap: 26px;
+  gap: 22px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
 }
 
 .project-header {
@@ -592,43 +581,9 @@ a[aria-label="ReadCV"] svg {
 
 .project-tag {
   background-color: rgba(255, 255, 255, 0.2);
-  padding: 0.2em 0.5em;
+  padding: 3px 10px;
   border-radius: 4px;
   font-size: 0.8rem;
-}
-
-.projects-navigation {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: var(--padding-medium);
-}
-
-.nav-arrow {
-  width: 40px;
-  height: 40px;
-  border: none;
-  background: var(--code-background-color);
-  color: var(--color-text);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  margin: 0 10px;
-  transition: transform 0.3s ease;
-}
-
-.nav-arrow svg {
-  width: 20px;
-  height: 20px;
-  stroke-width: 2px;
-}
-
-.nav-arrow.disabled {
-  opacity: 0.5;
-  background: var(--color-bg);
-  cursor: not-allowed;
 }
 
 .dark-mode .project-card {

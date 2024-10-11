@@ -11,5 +11,5 @@
 - [ ] Tropical Sunset: `linear-gradient(135deg, #ff8008 0%, #ffc837 100%)`
 - [ ] Deep Ocean: `linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)`
 - [ ] Cherry Blossom: `linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)`
-- [ ] Electric Violet: `linear-gradient(135deg, #8EC5FC 0%, #E0C3FC 100%)`
-- [ ] Lemon Lime: `linear-gradient(135deg, #79F1A4 0%, #0E5CAD 100%)`
+- [x] Electric Violet: `linear-gradient(135deg, #8EC5FC 0%, #E0C3FC 100%)`
+- [x] Lemon Lime: `linear-gradient(135deg, #79F1A4 0%, #0E5CAD 100%)`
