@@ -695,6 +695,99 @@ a[aria-label="ReadCV"] svg {
   border-color: var(--color-text);
 }
 
+/* Pictures Section */
+.pictures-section {
+  margin-top: var(--padding-large);
+  margin-bottom: var(--padding-large);
+}
+
+.masonry-grid-container {
+  position: relative;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+}
+
+.masonry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-gap: 12px;
+  grid-auto-rows: 0;
+}
+
+.masonry-item {
+  break-inside: avoid;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.masonry-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.masonry-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  image-orientation: from-image;
+}
+
+.blur-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    var(--color-bg) 90%
+  );
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 20px;
+  transition: opacity 0.3s ease;
+}
+
+.blurred .masonry-grid {
+  max-height: 400px;
+  overflow: hidden;
+}
+
+.see-more-button,
+.see-less-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background-color: transparent;
+  color: var(--color-text);
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+  font-family: "Geist Mono", monospace;
+}
+
+.see-more-button svg,
+.see-less-button svg {
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+}
+
+.see-less-button svg {
+  transform: rotate(180deg);
+}
+
+.see-less-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
 /* Media Queries */
 @media (min-width: 700px) {
   body {
@@ -784,6 +877,22 @@ a[aria-label="ReadCV"] svg {
 
   .book-author {
     font-size: 0.55rem;
+  }
+
+  .masonry-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+
+  .blurred .masonry-grid {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .blur-overlay,
+  .see-more-button,
+  .see-less-button,
+  .see-less-container {
+    display: none;
   }
 }
 
@@ -875,6 +984,11 @@ a[aria-label="ReadCV"] svg {
     background-color: var(--color-bg);
     color: var(--color-text);
     transform: scale(1);
+  }
+
+  .see-more-button:hover,
+  .see-less-button:hover {
+    color: var(--color-link);
   }
 }
 
