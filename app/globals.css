@@ -213,6 +213,7 @@ img {
 
 /* Blog Post */
 .blog-post {
+  padding-top: var(--padding-small);
   margin-bottom: var(--padding-large);
 }
 
@@ -227,6 +228,9 @@ img {
   color: var(--color-text);
   z-index: 1000;
   transition: opacity 0.3s ease, transform 0.3s ease;
+  padding: 0;
+  margin: 0;
+  top: 20px;
 }
 
 .dark-mode-toggle svg,
@@ -235,15 +239,15 @@ img {
   align-items: center;
   display: flex;
   fill: var(--color-text);
+  padding: 0;
+  margin: 0;
 }
 
 .dark-mode-toggle {
-  top: 10px;
-  right: 10px;
+  right: 25px;
 }
 
 .return-home {
-  top: 10px;
   left: 25px;
 }
 
@@ -252,6 +256,8 @@ img {
   opacity: 0;
   transform: translateY(-10px);
   pointer-events: none;
+  padding: 0;
+  margin: 0;
 }
 
 /* Table of Contents */
@@ -486,13 +492,23 @@ a[aria-label="ReadCV"] svg {
 .copyright {
   margin-top: var(--padding-large);
   display: flex;
-  text-align: center;
   color: var(--code-color);
   padding: 0;
+  font-family: "Sentient";
+  align-items: baseline;
 }
 
 .at {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 0.8rem;
+}
+
+.at-copy {
+  margin-right: 4px;
+}
+
+.at-year {
+  font-family: "Geist Mono", monospace;
   font-size: 0.8rem;
 }
 

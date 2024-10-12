@@ -49,7 +49,10 @@ export default async function BlogPost({ params }) {
         <LatexRenderer content={contentHtml} />
       </div>
       <ScrollToTop />
-      <div className="copyright">&copy; {currentYear} Danish</div>
+      <div className="copyright">
+        <span className="at at-copy">&copy;</span>
+        <span className="at-year">{currentYear}</span>, Danish
+      </div>
     </article>
   );
 }
