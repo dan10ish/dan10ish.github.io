@@ -2,24 +2,28 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
+import Image from "next/image";
+
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  const month = date.toLocaleString("default", { month: "short" });
+  const day = date.getDate();
+  return `${month} ${day}`;
+}
 
 export default function BlogList({ posts }) {
   const [selectedTag, setSelectedTag] = useState(null);
 
-  const sortedPosts = useMemo(() => {
-    return [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
-  }, [posts]);
-
   const allTags = useMemo(() => {
     const tags = new Set();
-    sortedPosts.forEach((post) => post.tags.forEach((tag) => tags.add(tag)));
+    posts.forEach((post) => post.tags.forEach((tag) => tags.add(tag)));
     return Array.from(tags);
-  }, [sortedPosts]);
+  }, [posts]);
 
   const filteredPosts = useMemo(() => {
-    if (!selectedTag) return sortedPosts;
-    return sortedPosts.filter((post) => post.tags.includes(selectedTag));
-  }, [sortedPosts, selectedTag]);
+    if (!selectedTag) return posts;
+    return posts.filter((post) => post.tags.includes(selectedTag));
+  }, [posts, selectedTag]);
 
   const handleTagClick = (tag) => {
     setSelectedTag(tag === selectedTag ? null : tag);
@@ -43,13 +47,29 @@ export default function BlogList({ posts }) {
       </div>
       <ul>
         {filteredPosts.map((post) => (
-          <li key={post.slug} className="list-item">
-            <div>
-              <p>{post.date}</p>
-            </div>
-            <div>
-              <Link href={`/post/${post.slug}`}>{post.title}</Link>
-            </div>
+          <li key={post.slug} className="blog-list-item">
+            <Link href={`/post/${post.slug}`} className="blog-card-link">
+              <div className="blog-list-content">
+                <h3>{post.title}</h3>
+                <div className="blog-list-meta">
+                  <span>{formatDate(post.date)}</span>
+                  <span className="dot">•</span>
+                  <span>{post.readingTime} read</span>
+                </div>
+              </div>
+              <div className="blog-list-image">
+                <Image
+                  src={post.headerImage}
+                  alt={post.title}
+                  width={1200}
+                  height={630}
+                  style={{
+                    maxWidth: "100%",
+                    height: "auto",
+                  }}
+                />
+              </div>
+            </Link>
           </li>
         ))}
       </ul>

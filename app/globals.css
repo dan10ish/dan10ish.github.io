@@ -370,7 +370,7 @@ a[aria-label="ReadCV"] svg {
 }
 
 /* Blog List */
-.blog-list li {
+/* .blog-list li {
   display: flex;
   gap: var(--padding-medium);
   margin: 0;
@@ -396,7 +396,7 @@ a[aria-label="ReadCV"] svg {
   font-family: "Sentient", Verdana, Geneva, Tahoma, sans-serif;
   font-size: 1rem;
   font-weight: 450;
-}
+} */
 
 /* Blog Meta */
 .blog-meta {
@@ -494,7 +494,7 @@ a[aria-label="ReadCV"] svg {
   display: flex;
   color: var(--code-color);
   padding: 0;
-  font-family: "Sentient";
+  font-family: "Geist Mono", monospace;
   align-items: baseline;
 }
 
@@ -505,11 +505,6 @@ a[aria-label="ReadCV"] svg {
 
 .at-copy {
   margin-right: 4px;
-}
-
-.at-year {
-  font-family: "Geist Mono", monospace;
-  font-size: 0.8rem;
 }
 
 /* Projects Section */
@@ -806,6 +801,64 @@ a[aria-label="ReadCV"] svg {
   margin-top: 20px;
 }
 
+/* Blog List */
+.blog-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.blog-list-item {
+  margin-bottom: 0rem;
+  padding-bottom: 0rem;
+}
+
+.blog-card-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+.blog-list-content {
+  flex: 1;
+  padding-right: 1rem;
+}
+
+.blog-list-content h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: var(--color-text);
+  transition: color 0.3s ease;
+}
+
+.blog-list-meta {
+  font-size: 0.8rem;
+  color: var(--blockquote-color);
+}
+
+.blog-list-meta .dot {
+  margin: 0 0.3rem;
+}
+
+.blog-list-image {
+  flex-shrink: 0;
+  width: 140px;
+  height: auto;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.blog-list-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+  border-radius: var(--border-radius);
+}
+
 /* Media Queries */
 @media (min-width: 700px) {
   body {
@@ -912,6 +965,14 @@ a[aria-label="ReadCV"] svg {
   .see-less-container {
     display: none;
   }
+
+  .blog-list-image {
+    width: 200px;
+  }
+
+  .blog-list-image img {
+    width: 100%;
+  }
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -1007,6 +1068,18 @@ a[aria-label="ReadCV"] svg {
   .see-more-button:hover,
   .see-less-button:hover {
     color: var(--color-link);
+  }
+
+  .blog-card-link:hover {
+    text-decoration: none;
+  }
+
+  .blog-card-link:hover .blog-list-content h3 {
+    color: var(--color-link);
+  }
+
+  .blog-card-link:hover .blog-list-image img {
+    transform: scale(1.03);
   }
 }
 

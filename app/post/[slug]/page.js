@@ -4,6 +4,7 @@ import ReturnToHome from "../../../components/ReturnToHome";
 import ScrollToTop from "../../../components/ScrollToTop";
 import LatexRenderer from "../../../components/LatexRenderer";
 import { markdownToHtml } from "../../../lib/mdxutils";
+import Image from "next/image";
 import "katex/dist/katex.min.css";
 import "prismjs/themes/prism-tomorrow.css";
 
@@ -12,6 +13,33 @@ export async function generateStaticParams() {
   return posts.map((post) => ({
     slug: post.slug,
   }));
+}
+
+export async function generateMetadata({ params }) {
+  const { slug } = params;
+  const post = await getBlogPost(slug);
+
+  if (!post) {
+    return {
+      title: "Post not found",
+    };
+  }
+
+  return {
+    title: post.title,
+    description: `${post.title} - A blog post by Danish`,
+    openGraph: {
+      title: post.title,
+      description: `${post.title} - A blog post by Danish`,
+      images: [{ url: post.headerImage, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: `${post.title} - A blog post by Danish`,
+      images: [post.headerImage],
+    },
+  };
 }
 
 export default async function BlogPost({ params }) {
@@ -49,10 +77,19 @@ export default async function BlogPost({ params }) {
         <LatexRenderer content={contentHtml} />
       </div>
       <ScrollToTop />
-      <div className="copyright">
-        <span className="at at-copy">&copy;</span>
-        <span className="at-year">{currentYear}</span>, Danish
-      </div>
+      {/* <div className="blog-header">
+        <Image
+          src={post.headerImage}
+          alt={post.title}
+          width={1200}
+          height={630}
+          style={{
+            maxWidth: "100%",
+            height: "auto",
+            objectFit: "contain",
+          }}
+        />
+      </div> */}
     </article>
   );
 }
