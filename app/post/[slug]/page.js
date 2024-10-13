@@ -25,19 +25,33 @@ export async function generateMetadata({ params }) {
     };
   }
 
+  const baseUrl = "https://dan10ish.github.io";
+  const imageUrl = post.headerImage.startsWith("http")
+    ? post.headerImage
+    : `${baseUrl}${post.headerImage}`;
+
   return {
     title: post.title,
     description: `${post.title} - A blog post by Danish`,
     openGraph: {
       title: post.title,
       description: `${post.title} - A blog post by Danish`,
-      images: [{ url: post.headerImage, width: 1200, height: 630 }],
+      type: "article",
+      url: `${baseUrl}/post/${post.slug}`,
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: `${post.title} - A blog post by Danish`,
-      images: [post.headerImage],
+      images: [imageUrl],
     },
   };
 }
@@ -77,19 +91,6 @@ export default async function BlogPost({ params }) {
         <LatexRenderer content={contentHtml} />
       </div>
       <ScrollToTop />
-      {/* <div className="blog-header">
-        <Image
-          src={post.headerImage}
-          alt={post.title}
-          width={1200}
-          height={630}
-          style={{
-            maxWidth: "100%",
-            height: "auto",
-            objectFit: "contain",
-          }}
-        />
-      </div> */}
     </article>
   );
 }
