@@ -7,7 +7,7 @@ import Image from "next/image";
 function formatDate(dateString) {
   const date = new Date(dateString);
   const month = date.toLocaleString("default", { month: "short" });
-  const day = date.getDate();
+  const day = date.getDate().toString().padStart(2, "0"); // Add leading zero
   return `${month} ${day}`;
 }
 
@@ -20,10 +20,15 @@ export default function BlogList({ posts }) {
     return Array.from(tags);
   }, [posts]);
 
+  // Sort posts by date (latest first)
+  const sortedPosts = useMemo(() => {
+    return [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
+  }, [posts]);
+
   const filteredPosts = useMemo(() => {
-    if (!selectedTag) return posts;
-    return posts.filter((post) => post.tags.includes(selectedTag));
-  }, [posts, selectedTag]);
+    if (!selectedTag) return sortedPosts;
+    return sortedPosts.filter((post) => post.tags.includes(selectedTag));
+  }, [sortedPosts, selectedTag]);
 
   const handleTagClick = (tag) => {
     setSelectedTag(tag === selectedTag ? null : tag);
