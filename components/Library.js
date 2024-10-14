@@ -100,6 +100,10 @@ const Library = () => {
                 <div className="book-author">
                   {formatAuthorName(book.author)}
                 </div>
+                <div className="book-spine-lines">
+                  <div className="spine-line"></div>
+                  <div className="spine-line"></div>
+                </div>
               </div>
             </div>
           );

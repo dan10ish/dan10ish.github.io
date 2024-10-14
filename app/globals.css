@@ -369,35 +369,6 @@ a[aria-label="ReadCV"] svg {
   fill: none;
 }
 
-/* Blog List */
-/* .blog-list li {
-  display: flex;
-  gap: var(--padding-medium);
-  margin: 0;
-  padding: 0;
-  align-items: baseline;
-  margin-bottom: -5px;
-}
-
-.list-item a {
-  margin: 0;
-  padding: 0;
-}
-
-.blog-list ul {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  display: flex;
-  flex-direction: column;
-}
-
-.blog-list ul a {
-  font-family: "Sentient", Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 1rem;
-  font-weight: 450;
-} */
-
 /* Blog Meta */
 .blog-meta {
   display: flex;
@@ -608,94 +579,6 @@ a[aria-label="ReadCV"] svg {
   color: var(--color-text);
 }
 
-/* Library */
-.library {
-  margin-top: var(--padding-large);
-  margin-bottom: var(--padding-large);
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-}
-
-.book-shelf {
-  display: flex;
-  overflow-x: auto;
-  padding: var(--padding-medium) 0;
-  align-items: flex-end;
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-link) transparent;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-}
-
-.book-shelf::-webkit-scrollbar {
-  height: 6px;
-  display: none;
-}
-
-.book-shelf::-webkit-scrollbar-thumb {
-  background-color: var(--color-link);
-  border-radius: 3px;
-}
-
-.book-container {
-  margin-right: 4px;
-  scroll-snap-align: center;
-}
-
-.book {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 8px 4px;
-  color: var(--color-bg);
-  border-radius: 0 5px 5px 0;
-  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.2);
-  cursor: default;
-  transition: transform 0.3s ease;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-.book-title {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  transform: rotate(180deg);
-  width: 100%;
-  text-align: center;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  flex-grow: 1;
-  font-weight: bold;
-  font-size: 0.7rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 0;
-}
-
-.book-author {
-  font-size: 0.5rem;
-  opacity: 0.9;
-  width: 100%;
-  text-align: center;
-  padding: 5px 0;
-  font-weight: 700;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.book-author span {
-  display: block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 100%;
-  line-height: 1.2;
-}
-
 /* Dark mode adjustments */
 .dark-mode .project-card,
 .dark-mode .book {
@@ -723,7 +606,7 @@ a[aria-label="ReadCV"] svg {
 .masonry-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  grid-gap: 12px;
+  grid-gap: 10px;
   grid-auto-rows: 0;
 }
 
@@ -731,7 +614,7 @@ a[aria-label="ReadCV"] svg {
   break-inside: avoid;
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition: opacity 0.5s ease, transform 0.3s ease;
 }
 
 .masonry-item.visible {
@@ -808,8 +691,8 @@ a[aria-label="ReadCV"] svg {
 }
 
 .blog-list-item {
-  margin-bottom: 0rem;
-  padding-bottom: 0rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
 }
 
 .blog-card-link {
@@ -857,6 +740,145 @@ a[aria-label="ReadCV"] svg {
   display: block;
   transition: transform 0.3s ease;
   border-radius: var(--border-radius);
+}
+
+.show-more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.show-more-button {
+  background: none;
+  border: none;
+  color: var(--color-text);
+  cursor: pointer;
+  font-family: var(--font-normal);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  transition: color 0.3s ease;
+}
+
+.show-more-button svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.show-more-button svg.rotated {
+  transform: rotate(180deg);
+}
+
+/* Library */
+.library {
+  margin-top: var(--padding-large);
+  margin-bottom: var(--padding-large);
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.book-shelf {
+  display: flex;
+  overflow-x: auto;
+  padding: var(--padding-medium) 0;
+  align-items: flex-end;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-link) transparent;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.book-shelf::-webkit-scrollbar {
+  height: 6px;
+  display: none;
+}
+
+.book-shelf::-webkit-scrollbar-thumb {
+  background-color: var(--color-link);
+  border-radius: 3px;
+}
+
+.book-container {
+  margin-right: 4px;
+  scroll-snap-align: center;
+}
+
+.book {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 8px 4px;
+  color: var(--color-bg);
+  border-radius: 0 5px 5px 0;
+  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.2);
+  cursor: default;
+  transition: transform 0.3s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.book-title {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  width: 100%;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 1;
+  font-weight: bold;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.book-author {
+  font-size: 0.5rem;
+  opacity: 0.9;
+  width: 100%;
+  text-align: center;
+  padding: 5px 0;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.book-author span {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  line-height: 1.2;
+}
+
+.book-spine-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 6px 0;
+  pointer-events: none;
+}
+
+.spine-line {
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.3);
+  margin: 0 4px;
 }
 
 /* Media Queries */
@@ -1078,8 +1100,17 @@ a[aria-label="ReadCV"] svg {
     color: var(--color-link);
   }
 
-  .blog-card-link:hover .blog-list-image img {
+  .blog-card-link:hover .blog-list-image {
     transform: scale(1.03);
+  }
+
+  .show-more-button:hover {
+    color: var(--color-link);
+  }
+
+  .masonry-item:hover {
+    cursor: no-drop;
+    transform: scale(1.02);
   }
 }
 

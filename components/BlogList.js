@@ -7,12 +7,13 @@ import Image from "next/image";
 function formatDate(dateString) {
   const date = new Date(dateString);
   const month = date.toLocaleString("default", { month: "short" });
-  const day = date.getDate().toString().padStart(2, "0"); // Add leading zero
+  const day = date.getDate().toString().padStart(2, "0");
   return `${month} ${day}`;
 }
 
 export default function BlogList({ posts }) {
   const [selectedTag, setSelectedTag] = useState(null);
+  const [showAll, setShowAll] = useState(false);
 
   const allTags = useMemo(() => {
     const tags = new Set();
@@ -20,7 +21,6 @@ export default function BlogList({ posts }) {
     return Array.from(tags);
   }, [posts]);
 
-  // Sort posts by date (latest first)
   const sortedPosts = useMemo(() => {
     return [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
   }, [posts]);
@@ -30,8 +30,14 @@ export default function BlogList({ posts }) {
     return sortedPosts.filter((post) => post.tags.includes(selectedTag));
   }, [sortedPosts, selectedTag]);
 
+  const displayedPosts = showAll ? filteredPosts : filteredPosts.slice(0, 3);
+
   const handleTagClick = (tag) => {
     setSelectedTag(tag === selectedTag ? null : tag);
+  };
+
+  const toggleShowAll = () => {
+    setShowAll(!showAll);
   };
 
   return (
@@ -51,7 +57,7 @@ export default function BlogList({ posts }) {
         </div>
       </div>
       <ul>
-        {filteredPosts.map((post) => (
+        {displayedPosts.map((post) => (
           <li key={post.slug} className="blog-list-item">
             <Link href={`/post/${post.slug}`} className="blog-card-link">
               <div className="blog-list-content">
@@ -78,6 +84,29 @@ export default function BlogList({ posts }) {
           </li>
         ))}
       </ul>
+      {filteredPosts.length > 3 && (
+        <div className="show-more-container">
+          <button onClick={toggleShowAll} className="show-more-button">
+            {showAll ? "Less" : "More"}
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className={showAll ? "rotated" : ""}
+            >
+              <path
+                d="M6 9L12 15L18 9"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+      )}
     </section>
   );
 }
