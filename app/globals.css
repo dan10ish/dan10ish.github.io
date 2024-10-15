@@ -690,11 +690,6 @@ a[aria-label="ReadCV"] svg {
   padding: 0;
 }
 
-.blog-list-item {
-  margin-bottom: 1rem;
-  padding-bottom: 1rem;
-}
-
 .blog-card-link {
   display: flex;
   justify-content: space-between;

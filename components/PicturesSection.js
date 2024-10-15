@@ -84,8 +84,7 @@ const PicturesSection = ({ images }) => {
                 alt={`Image ${index + 1}`}
                 width={300}
                 height={300}
-                layout="responsive"
-                objectFit="contain"
+                style={{ width: "100%", height: "auto", objectFit: "contain" }}
                 loading="lazy"
                 placeholder="blur"
                 blurDataURL={`/images/${image}?w=10&q=10`}
