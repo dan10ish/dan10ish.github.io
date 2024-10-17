@@ -6,7 +6,12 @@ import LatexRenderer from "../../../components/LatexRenderer";
 import { markdownToHtml } from "../../../lib/mdxutils";
 import Image from "next/image";
 import "katex/dist/katex.min.css";
-import "prismjs/themes/prism-tomorrow.css";
+import dynamic from "next/dynamic";
+
+const HighlightCode = dynamic(
+  () => import("../../../components/HighlightCode"),
+  { ssr: false }
+);
 
 export async function generateStaticParams() {
   const posts = getBlogPosts();
@@ -65,7 +70,6 @@ export default async function BlogPost({ params }) {
   }
 
   const contentHtml = await markdownToHtml(post.content);
-  const currentYear = new Date().getFullYear();
 
   return (
     <article className="blog-post markdown-body">
@@ -90,6 +94,7 @@ export default async function BlogPost({ params }) {
       <div className="mark">
         <LatexRenderer content={contentHtml} />
       </div>
+      <HighlightCode />
       <ScrollToTop />
     </article>
   );

@@ -2,14 +2,11 @@ import { Suspense } from "react";
 import dynamic from "next/dynamic";
 import Script from "next/script";
 import "./globals.css";
+import "highlight.js/styles/github.css";
 
-const DarkModeToggle = dynamic(() => import("../components/DarkModeToggle"), {
+const ThemeSelector = dynamic(() => import("../components/ThemeSelector"), {
   ssr: false,
 });
-const ThemeColorManager = dynamic(
-  () => import("../components/ThemeColorManager"),
-  { ssr: false }
-);
 
 export const metadata = {
   metadataBase: new URL("https://danish.bio"),
@@ -62,8 +59,7 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <Suspense fallback={null}>
-          <ThemeColorManager />
-          <DarkModeToggle />
+          <ThemeSelector />
         </Suspense>
         <main className="container">{children}</main>
         <Script id="location-handler" strategy="afterInteractive">
