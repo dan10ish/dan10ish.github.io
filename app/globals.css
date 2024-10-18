@@ -45,6 +45,7 @@
   --syntax-symbol: #005cc5;
   --syntax-builtin: #6f42c1;
   --syntax-meta: #6a737d;
+  --color-text-rgb: 51, 51, 51;
 }
 
 /* Dark theme */
@@ -66,6 +67,7 @@
   --syntax-symbol: #d4d4d4;
   --syntax-builtin: #4ec9b0;
   --syntax-meta: #9cdcfe;
+  --color-text-rgb: 255, 255, 255;
 }
 
 /* Solarized Dark theme */
@@ -87,11 +89,12 @@
   --syntax-symbol: #dc5f29;
   --syntax-builtin: #91b347;
   --syntax-meta: #827dbb;
+  --color-text-rgb: 161, 181, 189;
 }
 
 .theme-selector {
   position: fixed;
-  top: 20px;
+  top: 18px;
   right: 25px;
   z-index: 1000;
   transition: opacity 0.3s ease, transform 0.3s ease;
@@ -107,7 +110,7 @@
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  border: 2px solid var(--code-color);
+  border: 2px solid rgba(var(--color-text-rgb), 0.3);
   cursor: pointer;
   transition: transform 0.3s ease;
   background-color: var(--color-bg);
@@ -116,10 +119,11 @@
 .theme-selector-menu {
   position: absolute;
   top: 35px;
-  right: 0;
-  background-color: var(--code-background-color);
+  right: -13px;
+  background-color: var(--color-bg);
+  border: 2px solid rgba(var(--color-text-rgb), 0.3);
   border-radius: var(--border-radius);
-  padding: 5px;
+  padding: 6px;
   display: flex;
   opacity: 0;
   transform: translateY(-10px);
@@ -134,10 +138,10 @@
 }
 
 .theme-option {
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
-  border: 2px solid var(--code-color);
+  border: 2px solid rgba(var(--color-text-rgb), 0.3);
   margin: 0 5px;
   cursor: pointer;
   transition: transform 0.3s ease;
@@ -559,6 +563,7 @@ a[aria-label="GitHub"] svg {
 a[aria-label="ReadCV"] svg {
   color: var(--color-link);
   fill: none;
+  width: 22px;
 }
 
 /* Blog Meta */

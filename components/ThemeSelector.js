@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const themes = [
   { name: "dark", color: "#000000" },
@@ -12,6 +12,7 @@ const ThemeSelector = () => {
   const [currentTheme, setCurrentTheme] = useState("light");
   const [isOpen, setIsOpen] = useState(false);
   const [visible, setVisible] = useState(true);
+  const menuRef = useRef(null);
   let lastScrollY = 0;
 
   useEffect(() => {
@@ -26,8 +27,21 @@ const ThemeSelector = () => {
       lastScrollY = currentScrollY;
     };
 
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
   }, []);
 
   const changeTheme = (theme) => {
@@ -53,7 +67,7 @@ const ThemeSelector = () => {
   };
 
   return (
-    <div className={`theme-selector ${visible ? "" : "hidden"}`}>
+    <div className={`theme-selector ${visible ? "" : "hidden"}`} ref={menuRef}>
       <button
         className="theme-selector-toggle"
         onClick={toggleMenu}
