@@ -22,11 +22,11 @@ const Library = () => {
   const getBookDimensions = (size) => {
     switch (size) {
       case "s":
-        return { height: "200px", width: "45px" };
+        return { height: "200px", width: "40px" };
       case "m":
-        return { height: "220px", width: "50px" };
+        return { height: "220px", width: "45px" };
       case "l":
-        return { height: "240px", width: "55px" };
+        return { height: "240px", width: "50px" };
       default:
         return { height: "240px", width: "45px" };
     }

@@ -74,7 +74,7 @@
 [data-theme="solarized-dark"] {
   --color-bg: #00212b;
   --color-text: #bfc9cc;
-  --color-link: #5ac1e0;
+  --color-link: #2ebdff;
   --blockquote-color: #7a8a8f;
   --code-background-color: #002a36;
   --code-color: #bfc9cc;
@@ -110,7 +110,7 @@ body {
   color: var(--color-text);
   background-color: var(--color-bg);
   margin: 0;
-  padding: 0 15px 100px;
+  padding: 0 20px 100px;
   font-size: 0.9rem;
 }
 
@@ -149,7 +149,7 @@ body {
   top: 35px;
   right: -4px;
   background-color: var(--color-bg);
-  border: 2px solid rgba(var(--color-text-rgb), 0.3);
+  border: 2px solid rgba(var(--color-text-rgb), 0.15);
   border-radius: var(--border-radius);
   padding: 0px;
   display: flex;
@@ -196,7 +196,7 @@ h6 {
 }
 
 h1 {
-  font-size: 2.5em;
+  font-size: 2.2em;
 }
 h2 {
   font-size: 2em;
@@ -411,6 +411,10 @@ img {
   margin-bottom: var(--padding-large);
 }
 
+.blogpost-title h1 {
+  margin-bottom: var(--padding-medium);
+}
+
 /* Navigation Buttons */
 .return-home {
   position: fixed;
@@ -452,7 +456,7 @@ img {
   background-color: var(--code-background-color);
   padding: 0;
   border-radius: var(--border-radius);
-  margin-top: var(--padding-large);
+  margin-top: var(--padding-medium);
 }
 
 .toc h2 {
@@ -872,11 +876,12 @@ a[aria-label="ReadCV"] svg {
 .blog-list ul {
   list-style-type: none;
   padding: 0;
+  margin: 0;
 }
 
 .blog-list li {
-  padding: 0;
-  margin: 0;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 .blog-card-link {

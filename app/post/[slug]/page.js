@@ -74,7 +74,9 @@ export default async function BlogPost({ params }) {
   return (
     <article className="blog-post markdown-body">
       <ReturnToHome />
-      <h1>{post.title}</h1>
+      <div className="blogpost-title">
+        <h1>{post.title}</h1>
+      </div>
       <div className="blog-meta">
         <div>
           <p className="blog-date">{post.date}</p>
