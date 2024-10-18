@@ -9,7 +9,7 @@
 
 @font-face {
   font-family: "Sentient";
-  src: url(./fonts/Sentient.ttf) format("truetype");
+  src: url("./fonts/Sentient.ttf") format("truetype");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -92,10 +92,38 @@
   --color-text-rgb: 161, 181, 189;
 }
 
+/* Base Styles */
+html {
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: "Geist Mono", monospace;
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  margin: 0;
+  padding: 0 15px 100px;
+  font-size: 0.9rem;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0;
+}
+
 .theme-selector {
   position: fixed;
   top: 18px;
-  right: 25px;
+  right: 15px;
   z-index: 1000;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
@@ -119,16 +147,17 @@
 .theme-selector-menu {
   position: absolute;
   top: 35px;
-  right: -13px;
+  right: -4px;
   background-color: var(--color-bg);
   border: 2px solid rgba(var(--color-text-rgb), 0.3);
   border-radius: var(--border-radius);
-  padding: 6px;
+  padding: 0px;
   display: flex;
   opacity: 0;
   transform: translateY(-10px);
   transition: opacity 0.3s ease, transform 0.3s ease;
   pointer-events: none;
+  z-index: -1;
 }
 
 .theme-selector-menu.open {
@@ -142,7 +171,7 @@
   height: 25px;
   border-radius: 50%;
   border: 2px solid rgba(var(--color-text-rgb), 0.3);
-  margin: 0 5px;
+  margin: 4px 2px;
   cursor: pointer;
   transition: transform 0.3s ease;
 }
@@ -151,34 +180,6 @@
 .theme-option {
   aspect-ratio: 1 / 1;
   height: auto;
-}
-
-/* Base Styles */
-html {
-  font-size: 16px;
-  box-sizing: border-box;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
-
-body {
-  font-family: "Geist Mono", monospace;
-  line-height: 1.6;
-  color: var(--color-text);
-  background-color: var(--color-bg);
-  margin: 0;
-  padding: 0 25px 100px;
-  font-size: 0.9rem;
-}
-
-.container {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0;
 }
 
 /* Typography */
@@ -238,6 +239,8 @@ code {
   font-size: 0.8rem;
   background-color: var(--code-background-color) !important;
   color: var(--code-color) !important;
+  padding: 3px 6px;
+  border-radius: 4px;
 }
 
 pre code {
@@ -409,7 +412,6 @@ img {
 }
 
 /* Navigation Buttons */
-.dark-mode-toggle,
 .return-home {
   position: fixed;
   background: none;
@@ -424,7 +426,6 @@ img {
   top: 20px;
 }
 
-.dark-mode-toggle svg,
 .return-home svg {
   height: 20px;
   align-items: center;
@@ -434,15 +435,10 @@ img {
   margin: 0;
 }
 
-.dark-mode-toggle {
-  right: 25px;
-}
-
 .return-home {
-  left: 25px;
+  left: 15px;
 }
 
-.dark-mode-toggle.hidden,
 .return-home.hidden {
   opacity: 0;
   transform: translateY(-10px);
@@ -514,7 +510,7 @@ img {
 .scroll-to-top {
   position: fixed;
   bottom: 20px;
-  right: 20px;
+  right: 8px;
   background-color: var(--color-text);
   color: var(--color-bg);
   width: 40px;
@@ -657,6 +653,10 @@ a[aria-label="ReadCV"] svg {
   font-size: 0.75rem;
 }
 
+.title-link h1 {
+  margin-top: var(--padding-large) !important;
+}
+
 .at {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 0.8rem;
@@ -687,7 +687,7 @@ a[aria-label="ReadCV"] svg {
 
 .project-card {
   flex: 0 0 auto;
-  width: 300px;
+  width: 80vw;
   margin-right: 12px;
   padding: 20px 20px 30px;
   border-radius: 12px;
@@ -874,6 +874,11 @@ a[aria-label="ReadCV"] svg {
   padding: 0;
 }
 
+.blog-list li {
+  padding: 0;
+  margin: 0;
+}
+
 .blog-card-link {
   display: flex;
   justify-content: space-between;
@@ -907,7 +912,7 @@ a[aria-label="ReadCV"] svg {
 
 .blog-list-image {
   flex-shrink: 0;
-  width: 140px;
+  width: 120px;
   height: auto;
   overflow: hidden;
   transition: transform 0.3s ease;
@@ -1070,11 +1075,6 @@ a[aria-label="ReadCV"] svg {
     padding: var(--padding-small);
   }
 
-  .dark-mode-toggle {
-    top: 18px;
-    right: 30px;
-  }
-
   .return-home {
     top: 20px;
     left: 30px;
@@ -1189,7 +1189,6 @@ a[aria-label="ReadCV"] svg {
     opacity: 1;
   }
 
-  .dark-mode-toggle:hover,
   .return-home:hover {
     color: var(--color-link);
   }
@@ -1205,7 +1204,6 @@ a[aria-label="ReadCV"] svg {
     cursor: default;
   }
 
-  .dark-mode-toggle:hover,
   .return-home:hover,
   .scroll-to-top:hover,
   .socials svg:hover {
