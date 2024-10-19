@@ -27,7 +27,6 @@ export default function Home() {
       <ProjectsSection />
       <BlogList posts={posts} />
       <Library />
-      <PicturesSection images={imageFilenames} />
       <ScrollToTop />
     </main>
   );
