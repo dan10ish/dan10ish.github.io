@@ -658,8 +658,7 @@ a[aria-label="ReadCV"] svg {
 }
 
 .title-link h1 {
-  margin-top: var(--padding-large) !important;
-  padding-top: var(--padding-medium);
+  margin-top: 3rem;
 }
 
 .at {
