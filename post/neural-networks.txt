@@ -1,17 +1,116 @@
-1:HL["/_next/static/css/fde530ea030ae495.css",{"as":"style"}]
-0:[[["",{"children":["post",{"children":[["slug","neural-networks","d"],{"children":["__PAGE__?{\"slug\":\"neural-networks\"}",{}]}]}]},"$undefined","$undefined",true],"$L2",[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/fde530ea030ae495.css","precedence":"next"}]],["$L3",null]]]]
-4:HL["/_next/static/css/9f5495ee5a25f1b1.css",{"as":"style"}]
-5:"$Sreact.suspense"
-6:I{"id":"7069","chunks":["659:static/chunks/80c5adb7-6a674fe552f95640.js","8:static/chunks/8-fbdf7c5851b58363.js","605:static/chunks/app/post/[slug]/page-23625d7348a77acf.js"],"name":"NoSSR","async":false}
-7:I{"id":"9551","chunks":["185:static/chunks/app/layout-eba41eb70ab47092.js"],"name":"","async":false}
-8:I{"id":"4463","chunks":["272:static/chunks/webpack-53b3add97eace4e7.js","667:static/chunks/2443530c-e2fecfd51bad6275.js","488:static/chunks/488-4127b40280000088.js"],"name":"","async":false}
-9:I{"id":"1010","chunks":["272:static/chunks/webpack-53b3add97eace4e7.js","667:static/chunks/2443530c-e2fecfd51bad6275.js","488:static/chunks/488-4127b40280000088.js"],"name":"","async":false}
-b:I{"id":"1273","chunks":["185:static/chunks/app/layout-eba41eb70ab47092.js"],"name":"","async":false}
-2:[["$","html",null,{"lang":"en","children":[["$","head",null,{"children":[["$","link",null,{"rel":"icon","href":"https://i.ibb.co/vYPYQd1/favicon.jpg"}],["$","link",null,{"rel":"preload","href":"/fonts/Sentient.ttf","as":"font","type":"font/ttf","crossOrigin":"anonymous"}],["$","link",null,{"rel":"manifest","href":"/manifest.json"}],["$","meta",null,{"name":"viewport","content":"width=device-width, initial-scale=1.0"}],["$","meta",null,{"name":"theme-color","content":"#ffffff"}]]}],["$","body",null,{"children":[["$","$5",null,{"fallback":null,"children":["$","$5",null,{"fallback":null,"children":["$","$L6",null,{"children":["$","$L7",null,{}]}]}]}],["$","main",null,{"className":"container","children":["$","$L8",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","loading":"$undefined","loadingStyles":"$undefined","hasLoading":false,"template":["$","$L9",null,{}],"templateStyles":"$undefined","notFound":["$","div",null,{"style":{"display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center","height":"100vh","textAlign":"center"},"children":[["$","h1",null,{"children":"404 - Page Not Found"}],["$","p",null,{"children":"Sorry, the page you are looking for does not exist."}],["$","a",null,{"href":"https://dan10ish.github.io","children":"Go back to homepage"}]]}],"notFoundStyles":[],"childProp":{"current":["$","$L8",null,{"parallelRouterKey":"children","segmentPath":["children","post","children"],"error":"$undefined","errorStyles":"$undefined","loading":"$undefined","loadingStyles":"$undefined","hasLoading":false,"template":["$","$L9",null,{}],"templateStyles":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined","childProp":{"current":["$","$L8",null,{"parallelRouterKey":"children","segmentPath":["children","post","children",["slug","neural-networks","d"],"children"],"error":"$undefined","errorStyles":"$undefined","loading":"$undefined","loadingStyles":"$undefined","hasLoading":false,"template":["$","$L9",null,{}],"templateStyles":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined","childProp":{"current":["$La",null],"segment":"__PAGE__?{\"slug\":\"neural-networks\"}"},"styles":[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/9f5495ee5a25f1b1.css","precedence":"next"}]]}],"segment":["slug","neural-networks","d"]},"styles":[]}],"segment":"post"},"styles":[]}]}],["$","$Lb",null,{"id":"location-handler","strategy":"afterInteractive","children":"\n            (function (l) {\n              if (l.search[1] === \"/\") {\n                var decoded = l.search\n                  .slice(1)\n                  .split(\"&\")\n                  .map(function (s) {\n                    return s.replace(/~and~/g, \"&\");\n                  })\n                  .join(\"?\");\n                window.history.replaceState(\n                  null,\n                  null,\n                  l.pathname.slice(0, -1) + decoded + l.hash\n                );\n              }\n            })(window.location);\n          "}]]}]]}],null]
-c:I{"id":"9122","chunks":["659:static/chunks/80c5adb7-6a674fe552f95640.js","8:static/chunks/8-fbdf7c5851b58363.js","605:static/chunks/app/post/[slug]/page-23625d7348a77acf.js"],"name":"","async":false}
-d:I{"id":"4114","chunks":["659:static/chunks/80c5adb7-6a674fe552f95640.js","8:static/chunks/8-fbdf7c5851b58363.js","605:static/chunks/app/post/[slug]/page-23625d7348a77acf.js"],"name":"","async":false}
-e:I{"id":"1865","chunks":["659:static/chunks/80c5adb7-6a674fe552f95640.js","8:static/chunks/8-fbdf7c5851b58363.js","605:static/chunks/app/post/[slug]/page-23625d7348a77acf.js"],"name":"","async":false}
-f:I{"id":"5889","chunks":["659:static/chunks/80c5adb7-6a674fe552f95640.js","8:static/chunks/8-fbdf7c5851b58363.js","605:static/chunks/app/post/[slug]/page-23625d7348a77acf.js"],"name":"","async":false}
-10:I{"id":"706","chunks":["659:static/chunks/80c5adb7-6a674fe552f95640.js","8:static/chunks/8-fbdf7c5851b58363.js","605:static/chunks/app/post/[slug]/page-23625d7348a77acf.js"],"name":"","async":false}
-a:["$","article",null,{"className":"blog-post markdown-body","children":[["$","$Lc",null,{}],["$","div",null,{"className":"blogpost-title","children":["$","h1",null,{"children":"Neural Networks"}]}],["$","div",null,{"className":"blog-meta","children":[["$","div",null,{"children":["$","p",null,{"className":"blog-date","children":"Sep 01, 2024"}]}],["$","div",null,{"children":"|"}],["$","div",null,{"children":["$","a",null,{"href":"https://x.com/dan10ish","target":"_blank","rel":"noopener noreferrer","children":[["$","span",null,{"className":"at","children":"@"}],"dan10ish"]}]}]]}],["$","$Ld",null,{"content":"<h2>Introduction</h2>\n<p>Neural networks, inspired by the human brain, are a set of algorithms that are designed to recognize patterns. They interpret sensory data through a kind of machine perception, labeling, and clustering of raw input.</p>\n<h2>What is a Neural Network?</h2>\n<p>A neural network consists of:</p>\n<ol>\n<li><strong>Input Layer</strong>: Takes the initial data.</li>\n<li><strong>Hidden Layers</strong>: Processes data and extracts features.</li>\n<li><strong>Output Layer</strong>: Provides the final output.</li>\n</ol>\n<h3>Basic Neural Network Structure</h3>\n<pre><code class=\"language-plaintext\">Input Layer -> Hidden Layer -> Output Layer\n</code></pre>\n<h3>How Neural Networks Learn</h3>\n<p>Neural networks learn using a method called <strong>backpropagation</strong>, where they adjust the weights of connections based on the error of the output. The goal is to minimize this error through a process called <strong>gradient descent</strong>.</p>\n<h3>A Simple Example in Python</h3>\n<pre><code class=\"language-python\">import numpy as np\n\n# Define the activation function\ndef sigmoid(x):\n    return 1 / (1 + np.exp(-x))\n\n# Initialize weights randomly\nweights = np.random.rand(2, 1)\n\n# Input data\ninputs = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])\n\n# Output data\noutputs = np.array([[0], [1], [1], [0]])\n\n# Simple forward pass\nlayer1 = np.dot(inputs, weights)\nlayer1_output = sigmoid(layer1)\nprint(layer1_output)\n</code></pre>\n<h3>Applications of Neural Networks</h3>\n<ul>\n<li><strong>Image Recognition</strong>: Used in identifying objects and faces.</li>\n<li><strong>Natural Language Processing</strong>: Understanding and generating human language.</li>\n<li><strong>Robotics</strong>: Helping robots to see and navigate.</li>\n</ul>\n<h3>Learn More</h3>\n<p>To dive deeper into neural networks, check out these resources:</p>\n<ul>\n<li><a href=\"http://neuralnetworksanddeeplearning.com/\">Neural Networks and Deep Learning</a></li>\n<li><a href=\"https://en.wikipedia.org/wiki/Artificial_neural_network\">Understanding Neural Networks</a></li>\n</ul>\n<h3>Conclusion</h3>\n<p>Neural networks have revolutionized the field of artificial intelligence by enabling machines to perform tasks that require human-like thinking. As technology advances, their potential applications continue to grow, making them an essential tool for the future.</p>\n"}],["$","div",null,{"className":"mark","children":["$","$Le",null,{"content":"<h2>Introduction</h2>\n<p>Neural networks, inspired by the human brain, are a set of algorithms that are designed to recognize patterns. They interpret sensory data through a kind of machine perception, labeling, and clustering of raw input.</p>\n<h2>What is a Neural Network?</h2>\n<p>A neural network consists of:</p>\n<ol>\n<li><strong>Input Layer</strong>: Takes the initial data.</li>\n<li><strong>Hidden Layers</strong>: Processes data and extracts features.</li>\n<li><strong>Output Layer</strong>: Provides the final output.</li>\n</ol>\n<h3>Basic Neural Network Structure</h3>\n<pre><code class=\"language-plaintext\">Input Layer -> Hidden Layer -> Output Layer\n</code></pre>\n<h3>How Neural Networks Learn</h3>\n<p>Neural networks learn using a method called <strong>backpropagation</strong>, where they adjust the weights of connections based on the error of the output. The goal is to minimize this error through a process called <strong>gradient descent</strong>.</p>\n<h3>A Simple Example in Python</h3>\n<pre><code class=\"language-python\">import numpy as np\n\n# Define the activation function\ndef sigmoid(x):\n    return 1 / (1 + np.exp(-x))\n\n# Initialize weights randomly\nweights = np.random.rand(2, 1)\n\n# Input data\ninputs = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])\n\n# Output data\noutputs = np.array([[0], [1], [1], [0]])\n\n# Simple forward pass\nlayer1 = np.dot(inputs, weights)\nlayer1_output = sigmoid(layer1)\nprint(layer1_output)\n</code></pre>\n<h3>Applications of Neural Networks</h3>\n<ul>\n<li><strong>Image Recognition</strong>: Used in identifying objects and faces.</li>\n<li><strong>Natural Language Processing</strong>: Understanding and generating human language.</li>\n<li><strong>Robotics</strong>: Helping robots to see and navigate.</li>\n</ul>\n<h3>Learn More</h3>\n<p>To dive deeper into neural networks, check out these resources:</p>\n<ul>\n<li><a href=\"http://neuralnetworksanddeeplearning.com/\">Neural Networks and Deep Learning</a></li>\n<li><a href=\"https://en.wikipedia.org/wiki/Artificial_neural_network\">Understanding Neural Networks</a></li>\n</ul>\n<h3>Conclusion</h3>\n<p>Neural networks have revolutionized the field of artificial intelligence by enabling machines to perform tasks that require human-like thinking. As technology advances, their potential applications continue to grow, making them an essential tool for the future.</p>\n"}]}],["$","$5",null,{"fallback":null,"children":["$","$L6",null,{"children":["$","$Lf",null,{}]}]}],["$","$L10",null,{}]]}]
-3:[[["$","meta",null,{"charSet":"utf-8"}],["$","title",null,{"children":"Neural Networks"}],["$","meta",null,{"name":"description","content":"Neural Networks - A blog post by Danish"}],null,null,null,null,null,null,null,null,["$","meta",null,{"name":"viewport","content":"width=device-width, initial-scale=1"}],null,null,["$","meta",null,{"name":"robots","content":"index,follow,nocache"}],null,null,null,null,null,null,null,[["$","meta",null,{"name":"profile:username","content":"dan10ish"}]]],[null,null,null,null],null,null,[null,null,null,null,null],null,[null,["$","meta",null,{"property":"og:title","content":"Neural Networks"}],["$","meta",null,{"property":"og:description","content":"Neural Networks - A blog post by Danish"}],["$","meta",null,{"property":"og:url","content":"https://dan10ish.github.io/post/neural-networks"}],null,null,null,null,[[["$","meta",null,{"property":"og:image","content":"https://dan10ish.github.io/header-images/neural-networks.jpg"}],["$","meta",null,{"property":"og:image:width","content":"1200"}],["$","meta",null,{"property":"og:image:height","content":"630"}],["$","meta",null,{"property":"og:image:alt","content":"Neural Networks"}]]],null,null,null,null,null,null,[["$","meta",null,{"property":"og:type","content":"article"}],null,null,null,null,null,null]],[["$","meta",null,{"name":"twitter:card","content":"summary_large_image"}],null,null,null,null,["$","meta",null,{"name":"twitter:title","content":"Neural Networks"}],["$","meta",null,{"name":"twitter:description","content":"Neural Networks - A blog post by Danish"}],[[["$","meta",null,{"name":"twitter:image","content":"https://dan10ish.github.io/header-images/neural-networks.jpg"}]]],null,null],null,null]
+3:I[4707,[],""]
+5:I[6423,[],""]
+6:"$Sreact.suspense"
+7:I[1523,["954","static/chunks/d3ac728e-eb201e790c6b4bea.js","869","static/chunks/869-eb83a1673d1dd80d.js","951","static/chunks/951-5935e214e023f422.js","605","static/chunks/app/post/%5Bslug%5D/page-b9ace3417377b467.js"],"BailoutToCSR"]
+9:I[8003,["185","static/chunks/app/layout-8f8d792fbf52a7ba.js"],""]
+4:["slug","neural-networks","d"]
+0:["Z34KjJvYuP3y1GwcEcORV",[[["",{"children":["post",{"children":[["slug","neural-networks","d"],{"children":["__PAGE__?{\"slug\":\"neural-networks\"}",{}]}]}]},"$undefined","$undefined",true],["",{"children":["post",{"children":[["slug","neural-networks","d"],{"children":["__PAGE__",{},[["$L1","$L2",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/9f5495ee5a25f1b1.css","precedence":"next","crossOrigin":"$undefined"}]]],null],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","post","children","$4","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","post","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/3e21107ec599f383.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"en","children":[["$","head",null,{"children":[["$","link",null,{"rel":"icon","href":"https://i.ibb.co/vYPYQd1/favicon.jpg"}],["$","link",null,{"rel":"preload","href":"/fonts/Sentient.ttf","as":"font","type":"font/ttf","crossOrigin":"anonymous"}],["$","link",null,{"rel":"manifest","href":"/manifest.json"}],["$","meta",null,{"name":"viewport","content":"width=device-width, initial-scale=1.0"}],["$","meta",null,{"name":"theme-color","content":"#ffffff"}]]}],["$","body",null,{"children":[["$","$6",null,{"fallback":null,"children":["$","$6",null,{"fallback":null,"children":["$","$L7",null,{"reason":"next/dynamic","children":"$L8"}]}]}],["$","main",null,{"className":"container","children":["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":["$","div",null,{"style":{"display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center","height":"100vh","textAlign":"center"},"children":[["$","h1",null,{"children":"404 - Page Not Found"}],["$","p",null,{"children":"Sorry, the page you are looking for does not exist."}],["$","a",null,{"href":"https://dan10ish.github.io","children":"Go back to homepage"}]]}],"notFoundStyles":[]}]}],["$","$L9",null,{"id":"location-handler","strategy":"afterInteractive","children":"\n            (function (l) {\n              if (l.search[1] === \"/\") {\n                var decoded = l.search\n                  .slice(1)\n                  .split(\"&\")\n                  .map(function (s) {\n                    return s.replace(/~and~/g, \"&\");\n                  })\n                  .join(\"?\");\n                window.history.replaceState(\n                  null,\n                  null,\n                  l.pathname.slice(0, -1) + decoded + l.hash\n                );\n              }\n            })(window.location);\n          "}]]}]]}]],null],null],["$La",null]]]]
+b:I[729,["185","static/chunks/app/layout-8f8d792fbf52a7ba.js"],"default"]
+8:["$","$Lb",null,{}]
+c:I[5568,["954","static/chunks/d3ac728e-eb201e790c6b4bea.js","869","static/chunks/869-eb83a1673d1dd80d.js","951","static/chunks/951-5935e214e023f422.js","605","static/chunks/app/post/%5Bslug%5D/page-b9ace3417377b467.js"],"default"]
+d:I[4102,["954","static/chunks/d3ac728e-eb201e790c6b4bea.js","869","static/chunks/869-eb83a1673d1dd80d.js","951","static/chunks/951-5935e214e023f422.js","605","static/chunks/app/post/%5Bslug%5D/page-b9ace3417377b467.js"],"default"]
+f:I[716,["954","static/chunks/d3ac728e-eb201e790c6b4bea.js","869","static/chunks/869-eb83a1673d1dd80d.js","951","static/chunks/951-5935e214e023f422.js","605","static/chunks/app/post/%5Bslug%5D/page-b9ace3417377b467.js"],"default"]
+12:I[1557,["954","static/chunks/d3ac728e-eb201e790c6b4bea.js","869","static/chunks/869-eb83a1673d1dd80d.js","951","static/chunks/951-5935e214e023f422.js","605","static/chunks/app/post/%5Bslug%5D/page-b9ace3417377b467.js"],"default"]
+e:T931,<h2>Introduction</h2>
+<p>Neural networks, inspired by the human brain, are a set of algorithms that are designed to recognize patterns. They interpret sensory data through a kind of machine perception, labeling, and clustering of raw input.</p>
+<h2>What is a Neural Network?</h2>
+<p>A neural network consists of:</p>
+<ol>
+<li><strong>Input Layer</strong>: Takes the initial data.</li>
+<li><strong>Hidden Layers</strong>: Processes data and extracts features.</li>
+<li><strong>Output Layer</strong>: Provides the final output.</li>
+</ol>
+<h3>Basic Neural Network Structure</h3>
+<pre><code class="language-plaintext">Input Layer -> Hidden Layer -> Output Layer
+</code></pre>
+<h3>How Neural Networks Learn</h3>
+<p>Neural networks learn using a method called <strong>backpropagation</strong>, where they adjust the weights of connections based on the error of the output. The goal is to minimize this error through a process called <strong>gradient descent</strong>.</p>
+<h3>A Simple Example in Python</h3>
+<pre><code class="language-python">import numpy as np
+
+# Define the activation function
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
+
+# Initialize weights randomly
+weights = np.random.rand(2, 1)
+
+# Input data
+inputs = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
+
+# Output data
+outputs = np.array([[0], [1], [1], [0]])
+
+# Simple forward pass
+layer1 = np.dot(inputs, weights)
+layer1_output = sigmoid(layer1)
+print(layer1_output)
+</code></pre>
+<h3>Applications of Neural Networks</h3>
+<ul>
+<li><strong>Image Recognition</strong>: Used in identifying objects and faces.</li>
+<li><strong>Natural Language Processing</strong>: Understanding and generating human language.</li>
+<li><strong>Robotics</strong>: Helping robots to see and navigate.</li>
+</ul>
+<h3>Learn More</h3>
+<p>To dive deeper into neural networks, check out these resources:</p>
+<ul>
+<li><a href="http://neuralnetworksanddeeplearning.com/">Neural Networks and Deep Learning</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Artificial_neural_network">Understanding Neural Networks</a></li>
+</ul>
+<h3>Conclusion</h3>
+<p>Neural networks have revolutionized the field of artificial intelligence by enabling machines to perform tasks that require human-like thinking. As technology advances, their potential applications continue to grow, making them an essential tool for the future.</p>
+10:T931,<h2>Introduction</h2>
+<p>Neural networks, inspired by the human brain, are a set of algorithms that are designed to recognize patterns. They interpret sensory data through a kind of machine perception, labeling, and clustering of raw input.</p>
+<h2>What is a Neural Network?</h2>
+<p>A neural network consists of:</p>
+<ol>
+<li><strong>Input Layer</strong>: Takes the initial data.</li>
+<li><strong>Hidden Layers</strong>: Processes data and extracts features.</li>
+<li><strong>Output Layer</strong>: Provides the final output.</li>
+</ol>
+<h3>Basic Neural Network Structure</h3>
+<pre><code class="language-plaintext">Input Layer -> Hidden Layer -> Output Layer
+</code></pre>
+<h3>How Neural Networks Learn</h3>
+<p>Neural networks learn using a method called <strong>backpropagation</strong>, where they adjust the weights of connections based on the error of the output. The goal is to minimize this error through a process called <strong>gradient descent</strong>.</p>
+<h3>A Simple Example in Python</h3>
+<pre><code class="language-python">import numpy as np
+
+# Define the activation function
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
+
+# Initialize weights randomly
+weights = np.random.rand(2, 1)
+
+# Input data
+inputs = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
+
+# Output data
+outputs = np.array([[0], [1], [1], [0]])
+
+# Simple forward pass
+layer1 = np.dot(inputs, weights)
+layer1_output = sigmoid(layer1)
+print(layer1_output)
+</code></pre>
+<h3>Applications of Neural Networks</h3>
+<ul>
+<li><strong>Image Recognition</strong>: Used in identifying objects and faces.</li>
+<li><strong>Natural Language Processing</strong>: Understanding and generating human language.</li>
+<li><strong>Robotics</strong>: Helping robots to see and navigate.</li>
+</ul>
+<h3>Learn More</h3>
+<p>To dive deeper into neural networks, check out these resources:</p>
+<ul>
+<li><a href="http://neuralnetworksanddeeplearning.com/">Neural Networks and Deep Learning</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Artificial_neural_network">Understanding Neural Networks</a></li>
+</ul>
+<h3>Conclusion</h3>
+<p>Neural networks have revolutionized the field of artificial intelligence by enabling machines to perform tasks that require human-like thinking. As technology advances, their potential applications continue to grow, making them an essential tool for the future.</p>
+2:["$","article",null,{"className":"blog-post markdown-body","children":[["$","$Lc",null,{}],["$","div",null,{"className":"blogpost-title","children":["$","h1",null,{"children":"Neural Networks"}]}],["$","div",null,{"className":"blog-meta","children":[["$","div",null,{"children":["$","p",null,{"className":"blog-date","children":"Sep 01, 2024"}]}],["$","div",null,{"children":"|"}],["$","div",null,{"children":["$","a",null,{"href":"https://x.com/dan10ish","target":"_blank","rel":"noopener noreferrer","children":[["$","span",null,{"className":"at","children":"@"}],"dan10ish"]}]}]]}],["$","$Ld",null,{"content":"$e"}],["$","div",null,{"className":"mark","children":["$","$Lf",null,{"content":"$10"}]}],["$","$6",null,{"fallback":null,"children":["$","$L7",null,{"reason":"next/dynamic","children":"$L11"}]}],["$","$L12",null,{}]]}]
+a:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"Neural Networks"}],["$","meta","3",{"name":"description","content":"Neural Networks - A blog post by Danish"}],["$","meta","4",{"name":"robots","content":"index,follow,nocache"}],["$","meta","5",{"name":"profile:username","content":"dan10ish"}],["$","meta","6",{"property":"og:title","content":"Neural Networks"}],["$","meta","7",{"property":"og:description","content":"Neural Networks - A blog post by Danish"}],["$","meta","8",{"property":"og:url","content":"https://dan10ish.github.io/post/neural-networks"}],["$","meta","9",{"property":"og:image","content":"https://dan10ish.github.io/header-images/neural-networks.jpg"}],["$","meta","10",{"property":"og:image:width","content":"1200"}],["$","meta","11",{"property":"og:image:height","content":"630"}],["$","meta","12",{"property":"og:image:alt","content":"Neural Networks"}],["$","meta","13",{"property":"og:type","content":"article"}],["$","meta","14",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","15",{"name":"twitter:title","content":"Neural Networks"}],["$","meta","16",{"name":"twitter:description","content":"Neural Networks - A blog post by Danish"}],["$","meta","17",{"name":"twitter:image","content":"https://dan10ish.github.io/header-images/neural-networks.jpg"}]]
+1:null
+13:I[2590,["954","static/chunks/d3ac728e-eb201e790c6b4bea.js","869","static/chunks/869-eb83a1673d1dd80d.js","951","static/chunks/951-5935e214e023f422.js","605","static/chunks/app/post/%5Bslug%5D/page-b9ace3417377b467.js"],"default"]
+11:["$","$L13",null,{}]
