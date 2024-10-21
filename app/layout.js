@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import Script from "next/script";
 import "./globals.css";
 import "highlight.js/styles/github.css";
+import HamburgerMenu from "@/components/HamburgerMenu";
 
 const ThemeSelector = dynamic(() => import("../components/ThemeSelector"), {
   ssr: false,
@@ -59,7 +60,8 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <Suspense fallback={null}>
-          <ThemeSelector />
+          {/* <ThemeSelector /> */}
+          <HamburgerMenu />
         </Suspense>
         <main className="container">{children}</main>
         <Script id="location-handler" strategy="afterInteractive">

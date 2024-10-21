@@ -67,20 +67,14 @@ const ThemeSelector = () => {
   };
 
   return (
-    <div className={`theme-selector ${visible ? "" : "hidden"}`} ref={menuRef}>
-      <button
-        className="theme-selector-toggle"
-        onClick={toggleMenu}
-        style={{
-          backgroundColor: themes.find((t) => t.name === currentTheme).color,
-        }}
-        aria-label="Toggle theme selector"
-      />
-      <div className={`theme-selector-menu ${isOpen ? "open" : ""}`}>
+    <div className="theme-selector" ref={menuRef}>
+      <div className="theme-selector-menu">
         {themes.map((theme) => (
           <button
             key={theme.name}
-            className="theme-option"
+            className={`theme-option ${
+              currentTheme === theme.name ? "active" : ""
+            }`}
             style={{ backgroundColor: theme.color }}
             onClick={() => changeTheme(theme.name)}
             aria-label={`Select ${theme.name} theme`}

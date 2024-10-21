@@ -1,10 +1,8 @@
 import { getBlogPost, getBlogPosts } from "../../../lib/api";
 import TableOfContents from "../../../components/TableOfContents";
-import ReturnToHome from "../../../components/ReturnToHome";
 import ScrollToTop from "../../../components/ScrollToTop";
 import LatexRenderer from "../../../components/LatexRenderer";
 import { markdownToHtml } from "../../../lib/mdxutils";
-import Image from "next/image";
 import "katex/dist/katex.min.css";
 import dynamic from "next/dynamic";
 
@@ -73,7 +71,6 @@ export default async function BlogPost({ params }) {
 
   return (
     <article className="blog-post markdown-body">
-      <ReturnToHome />
       <div className="blogpost-title">
         <h1>{post.title}</h1>
       </div>
