@@ -32,7 +32,7 @@
   --color-text: #333333;
   --color-link: #0070f3;
   --blockquote-color: #6c757d;
-  --code-background-color: #f4f4f4;
+  --code-background-color: #eeeeee;
   --code-color: #333333;
   --syntax-comment: #6a737d;
   --syntax-keyword: #d73a49;
@@ -76,7 +76,7 @@
   --color-text: #bfc9cc;
   --color-link: #2ebdff;
   --blockquote-color: #7a8a8f;
-  --code-background-color: #002a36;
+  --code-background-color: #003240;
   --code-color: #bfc9cc;
   --syntax-comment: #5f737c;
   --syntax-keyword: #91b347;
@@ -651,6 +651,10 @@ a[aria-label="ReadCV"] svg {
   font-family: "Geist Mono", monospace;
 }
 
+.about p {
+  line-height: 2;
+}
+
 /* Title Link */
 .title-link a {
   color: var(--color-text);
@@ -793,7 +797,9 @@ a[aria-label="ReadCV"] svg {
 
 .masonry-container {
   display: flex;
-  gap: 8px;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
 }
 
 .masonry-item img {
@@ -812,8 +818,9 @@ a[aria-label="ReadCV"] svg {
 }
 
 .blog-list li {
-  padding: 0 !important;
-  margin: 0 !important;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 20px;
 }
 
 .blog-card-link {
@@ -849,7 +856,7 @@ a[aria-label="ReadCV"] svg {
 
 .blog-list-image {
   flex-shrink: 0;
-  width: 120px;
+  width: 110px;
   height: auto;
   overflow: hidden;
   transition: transform 0.3s ease;
@@ -861,6 +868,8 @@ a[aria-label="ReadCV"] svg {
   display: block;
   transition: transform 0.3s ease;
   border-radius: var(--border-radius);
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .show-more-container {
@@ -1003,7 +1012,7 @@ a[aria-label="ReadCV"] svg {
 }
 
 /* Media Queries */
-@media (min-width: 700px) {
+@media (min-width: 768px) {
   body {
     font-size: 14px;
   }
@@ -1017,11 +1026,22 @@ a[aria-label="ReadCV"] svg {
     left: 30px;
   }
 
+  .theme-selector {
+    top: 18px;
+    right: 30px;
+  }
+
+  .theme-selector-menu {
+    top: 35px;
+    right: -4px;
+  }
+
   .scroll-to-top {
-    right: 20px;
+    right: 25px;
     bottom: 20px;
     height: 35px;
     width: 35px;
+    z-index: 1;
   }
 
   .socials {
