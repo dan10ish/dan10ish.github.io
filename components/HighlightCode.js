@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import hljs from "highlight.js/lib/core";
+import dynamic from "next/dynamic";
 
 import javascript from "highlight.js/lib/languages/javascript";
 import python from "highlight.js/lib/languages/python";
@@ -20,6 +21,8 @@ import rust from "highlight.js/lib/languages/rust";
 import sql from "highlight.js/lib/languages/sql";
 import bash from "highlight.js/lib/languages/bash";
 import typescript from "highlight.js/lib/languages/typescript";
+
+const CopyButton = dynamic(() => import("./CopyButton"), { ssr: false });
 
 hljs.registerLanguage("javascript", javascript);
 hljs.registerLanguage("python", python);
@@ -44,6 +47,29 @@ export default function HighlightCode() {
   useEffect(() => {
     hljs.configure({ ignoreUnescapedHTML: true });
     hljs.highlightAll();
+
+    const codeBlocks = document.querySelectorAll("pre");
+    codeBlocks.forEach((pre) => {
+      if (pre.querySelector(".copy-code-button")) return;
+
+      const code = pre.querySelector("code");
+      if (!code) return;
+
+      const codeText = code.innerText.trim();
+      const lineCount = codeText.split("\n").length;
+
+      if (lineCount > 1) {
+        const root = document.createElement("div");
+        root.setAttribute(
+          "id",
+          `copy-button-${Math.random().toString(36).substr(2, 9)}`
+        );
+        pre.appendChild(root);
+
+        const ReactDOMClient = require("react-dom/client");
+        ReactDOMClient.createRoot(root).render(<CopyButton code={codeText} />);
+      }
+    });
   }, []);
 
   return null;

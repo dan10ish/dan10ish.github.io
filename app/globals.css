@@ -92,6 +92,8 @@
   --color-text-rgb: 161, 181, 189;
 }
 
+/* Base Styles */
+
 html,
 body {
   overscroll-behavior: none;
@@ -102,7 +104,6 @@ body {
   -webkit-touch-callout: none;
 }
 
-/* Base Styles */
 html {
   font-size: 16px;
   box-sizing: border-box;
@@ -117,12 +118,12 @@ html {
 
 body {
   font-family: "Geist Mono", monospace;
-  line-height: 1.6;
+  line-height: 1.8;
   color: var(--color-text);
   background-color: var(--color-bg);
   margin: 0;
   padding: 0 20px 100px;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 .container {
@@ -301,7 +302,8 @@ a {
   text-decoration: none;
 }
 
-/* Code Blocks */
+/* Code block Stylings */
+
 pre {
   background-color: var(--code-background-color) !important;
   border-radius: var(--border-radius);
@@ -309,6 +311,7 @@ pre {
   overflow-x: auto;
   margin: 1em 0;
   padding: 0 !important;
+  position: relative !important;
 }
 
 code {
@@ -325,6 +328,44 @@ pre code {
   padding: 1rem !important;
   display: block;
   overflow-x: auto;
+}
+
+.code-block {
+  position: relative;
+}
+
+.copy-code-button {
+  position: absolute !important;
+  top: 0.5rem !important;
+  right: 0.5rem !important;
+  padding: 0.375rem !important;
+  border-radius: 0.375rem !important;
+  background-color: var(--code-color) !important;
+  opacity: 0.2;
+  border: none !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  z-index: 10 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 28px !important;
+  height: 28px !important;
+}
+
+.copy-code-button:hover {
+  opacity: 0.4;
+}
+
+.copy-icon {
+  width: 1rem !important;
+  height: 1rem !important;
+  color: var(--code-background-color) !important;
+}
+
+.copy-code-button:has(.lucide-check) {
+  background-color: #22c55e !important;
+  opacity: 1;
 }
 
 /* Syntax highlighting styles */
