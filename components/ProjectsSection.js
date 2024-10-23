@@ -95,6 +95,7 @@ const ProjectCard = ({ project }) => {
 const ProjectsSection = () => {
   const projects = getProjects();
   const [showAll, setShowAll] = useState(false);
+  const [selectedTag, setSelectedTag] = useState(null);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
   useEffect(() => {
@@ -108,22 +109,50 @@ const ProjectsSection = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const allTags = useMemo(() => {
+    const tags = new Set();
+    projects.forEach((project) => project.tags.forEach((tag) => tags.add(tag)));
+    return Array.from(tags);
+  }, [projects]);
+
+  const filteredProjects = useMemo(() => {
+    if (!selectedTag) return projects;
+    return projects.filter((project) => project.tags.includes(selectedTag));
+  }, [projects, selectedTag]);
+
   const displayedProjects =
-    isSmallScreen && !showAll ? projects.slice(0, 4) : projects;
+    isSmallScreen && !showAll ? filteredProjects.slice(0, 4) : filteredProjects;
 
   const toggleShowAll = () => {
     setShowAll(!showAll);
   };
 
+  const handleTagClick = (tag) => {
+    setSelectedTag(tag === selectedTag ? null : tag);
+  };
+
   return (
     <section className="projects-section">
       <h2>Projects</h2>
+      <div className="tag-filter-container">
+        <div className="tag-filter">
+          {allTags.map((tag) => (
+            <button
+              key={tag}
+              onClick={() => handleTagClick(tag)}
+              className={`tag ${selectedTag === tag ? "selected" : ""}`}
+            >
+              {tag}
+            </button>
+          ))}
+        </div>
+      </div>
       <div className="projects-container">
         {displayedProjects.map((project, index) => (
           <ProjectCard key={`${project.title}-${index}`} project={project} />
         ))}
       </div>
-      {projects.length > 4 && isSmallScreen && (
+      {filteredProjects.length > 4 && isSmallScreen && (
         <div className="show-more-container">
           <button onClick={toggleShowAll} className="show-more-button">
             {showAll ? "See less" : "See more"}

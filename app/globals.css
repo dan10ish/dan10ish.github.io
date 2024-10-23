@@ -895,11 +895,11 @@ a[aria-label="ReadCV"] svg {
   align-items: baseline;
   text-decoration: none;
   color: inherit;
-  transition: all 0.3s ease;
   border: 2px solid var(--code-background-color);
   padding: 14px 20px;
   border-radius: 10px;
   font-weight: 500;
+  transition: background-color 0.3s ease;
 }
 
 .blog-list-title {
@@ -907,7 +907,7 @@ a[aria-label="ReadCV"] svg {
   font-size: 1rem;
   line-height: 1.5;
   color: var(--color-text);
-  transition: all 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 .blog-list-meta {
