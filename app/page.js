@@ -4,6 +4,7 @@ import AboutMe from "../components/AboutMe";
 import SocialIcons from "../components/SocialIcons";
 import Library from "../components/Library";
 import ProjectsSection from "../components/ProjectsSection";
+import GitHubStar from "@/components/GithubStar";
 
 export default function Home() {
   const posts = getBlogPosts();
@@ -30,6 +31,7 @@ export default function Home() {
       <div id="library">
         <Library />
       </div>
+      <GitHubStar />
     </main>
   );
 }

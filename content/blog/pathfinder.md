@@ -33,14 +33,14 @@ Pathfinding algorithms are fundamental in computer science, powering application
 
 1. Initialize distances: set start node to 0, all others to infinity
 2. While unvisited nodes exist:
-   a. Select unvisited node with smallest distance
-   b. Mark it as visited
-   c. Update distances to its unvisited neighbors
+   1. Select unvisited node with smallest distance
+   2. Mark it as visited
+   3. Update distances to its unvisited neighbors
 3. Terminate when end node is reached or all reachable nodes are visited
 
 **Visualization**:
 
-```
+```markdown
 Initial Grid       Step 1           Step 2           Final Path
 S 0 ∞ ∞ ∞ ∞       S 0 1 ∞ ∞ ∞      S 0 1 2 ∞ ∞      S 0 1 2 3 4
 ∞ ∞ ∞ # ∞ ∞       1 2 2 # ∞ ∞      1 2 2 # 3 ∞      1 2 3 # 3 4
@@ -65,17 +65,17 @@ Numbers represent distance from start node
 1. Maintain open list (nodes to be evaluated) and closed list (evaluated nodes)
 2. Start with initial node in open list
 3. While open list is not empty:
-   a. Choose node with lowest f_score (f = g + h)
-   b. If it's the goal, return the path
-   c. Move it to closed list
-   d. For each neighbor:
+   1. Choose node with lowest f_score (f = g + h)
+   2. If it's the goal, return the path
+   3. Move it to closed list
+   4. For each neighbor:
    - If in closed list, ignore
    - If not in open list, add it
    - If in open list, update if this path is better
 
 **Visualization**:
 
-```
+```markdown
 Initial Grid       Step 1           Step 2           Final Path
 S 0 ∞ ∞ ∞ ∞       S 0 1 2 3 4      S 0 1 2 3 4      S 0 1 2 3 4
 ∞ ∞ ∞ # ∞ ∞       1 2 2 # 4 5      1 2 2 # 4 5      1 2 3 # 4 5
@@ -104,7 +104,7 @@ Numbers represent f_score (g_score + heuristic)
 
 **Visualization**:
 
-```
+```markdown
 Initial Grid       Step 1           Step 2           Final Path
 S ∞ ∞ ∞ ∞ ∞       S 1 1 1 1 1      S 1 1 1 1 1      S→→→→→→
 ∞ ∞ ∞ # ∞ ∞       1 1 1 # 1 1      1 1 1 # 1 1      ↓↑←←#↓↑
@@ -133,7 +133,7 @@ Numbers represent levels of exploration
 
 **Visualization**:
 
-```
+```markdown
 Initial Grid          DFS Exploration          Final Path
 
 S · · · · ·           S 1-2-3-4 ·              S-→-→-→-→ ·
@@ -160,13 +160,13 @@ Numbers: Exploration order    -→↓←↑: DFS path
 
 1. Start with an empty grid
 2. Recursively:
-   a. Choose a random point to create a wall
-   b. Create a passage in the wall
-   c. Recursively apply to sub-chambers
+   1. Choose a random point to create a wall
+   2. Create a passage in the wall
+   3. Recursively apply to sub-chambers
 
 **Visualization**:
 
-```
+```markdown
 Initial Grid       Step 1           Step 2           Final Maze
 □□□□□□□□□□       □□□□□□□□□□       □□□□□□□□□□       □□□□■□□□□□
 □□□□□□□□□□       □□□□□□□□□□       ■■■■□■■■■■       ■■■■□■■■■■
@@ -196,7 +196,7 @@ Initial Grid       Step 1           Step 2           Final Maze
 
 **Visualization**:
 
-```
+```markdown
 Initial Grid       Step 1           Step 2           Final Maze
 □□□□□□□□□□       ■□■□■□■□■□       ■□■□■□■□■□       S□■□■□■□■□
 □□□□□□□□□□       □■□■□■□■□■       □■□■□■□■□■       □■□■□■□■□■
