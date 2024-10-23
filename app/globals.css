@@ -774,10 +774,6 @@ a[aria-label="ReadCV"] svg {
   row-gap: 10px;
 }
 
-.projects-container::-webkit-scrollbar {
-  display: none;
-}
-
 .project-card {
   padding: 14px 20px;
   border-radius: 12px;
@@ -808,7 +804,6 @@ a[aria-label="ReadCV"] svg {
   text-decoration: none;
   padding: 3px;
   border-radius: 4px;
-  transition: transform 0.3s ease;
 }
 
 .project-links a svg {
@@ -909,10 +904,10 @@ a[aria-label="ReadCV"] svg {
 
 .blog-list-title {
   font-family: "Sentient", Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: 1.5;
   color: var(--color-text);
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .blog-list-meta {
@@ -1090,10 +1085,6 @@ a[aria-label="ReadCV"] svg {
     height: 24px;
   }
 
-  .blog-list li {
-    margin-bottom: -5px;
-  }
-
   .katex-display {
     font-size: 1rem !important;
   }
@@ -1153,7 +1144,7 @@ a[aria-label="ReadCV"] svg {
   }
 
   .blog-list ul {
-    row-gap: 20px;
+    row-gap: 14px;
   }
 
   .blog-list-meta .dot {
