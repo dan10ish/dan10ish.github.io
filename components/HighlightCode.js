@@ -48,26 +48,34 @@ export default function HighlightCode() {
     hljs.configure({ ignoreUnescapedHTML: true });
     hljs.highlightAll();
 
-    const codeBlocks = document.querySelectorAll("pre");
-    codeBlocks.forEach((pre) => {
-      if (pre.querySelector(".copy-code-button")) return;
+    document.querySelectorAll("pre").forEach((pre) => {
+      if (pre.parentElement?.classList.contains("code-block-container")) return;
 
       const code = pre.querySelector("code");
       if (!code) return;
 
       const codeText = code.innerText.trim();
-      const lineCount = codeText.split("\n").length;
+      if (codeText.includes("\n")) {
+        const container = document.createElement("div");
+        container.className = "code-block-container";
 
-      if (lineCount > 1) {
-        const root = document.createElement("div");
-        root.setAttribute(
-          "id",
-          `copy-button-${Math.random().toString(36).substr(2, 9)}`
-        );
-        pre.appendChild(root);
+        const header = document.createElement("div");
+        header.className = "code-block-header";
 
-        const ReactDOMClient = require("react-dom/client");
-        ReactDOMClient.createRoot(root).render(<CopyButton code={codeText} />);
+        const language = code.className.match(/language-(\w+)/)?.[1] || "text";
+        header.innerHTML = `<span class="code-language">${language}</span>`;
+
+        const buttonContainer = document.createElement("div");
+        buttonContainer.id = `copy-${Math.random().toString(36).slice(2)}`;
+        header.appendChild(buttonContainer);
+
+        pre.parentNode.insertBefore(container, pre);
+        container.appendChild(header);
+        container.appendChild(pre);
+
+        require("react-dom/client")
+          .createRoot(buttonContainer)
+          .render(<CopyButton code={codeText} />);
       }
     });
   }, []);
