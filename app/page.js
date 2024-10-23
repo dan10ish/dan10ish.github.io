@@ -22,11 +22,11 @@ export default function Home() {
       <div id="social">
         <SocialIcons />
       </div>
-      <div id="projects">
-        <ProjectsSection />
-      </div>
       <div id="blog">
         <BlogList posts={posts} />
+      </div>
+      <div id="projects">
+        <ProjectsSection />
       </div>
       <div id="library">
         <Library />

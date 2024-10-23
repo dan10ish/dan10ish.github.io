@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Star, Github } from "lucide-react";
 
 export default function StarButton() {
-  const [stars, setStars] = useState(null);
+  const [stars, setStars] = useState(0); 
   const [isHovered, setIsHovered] = useState(false);
   const repoUrl = "https://github.com/dan10ish/dan10ish.github.io";
 
@@ -15,10 +15,12 @@ export default function StarButton() {
           "https://api.github.com/repos/dan10ish/dan10ish.github.io"
         );
         const data = await response.json();
-        setStars(data.stargazers_count);
+        if (data && typeof data.stargazers_count === "number") {
+          setStars(data.stargazers_count);
+        }
       } catch (error) {
         console.error("Error fetching stars:", error);
-        setStars(0);
+        setStars(0); 
       }
     };
 
@@ -50,9 +52,7 @@ export default function StarButton() {
           size={16}
           className={`star-icon ${isHovered ? "star-hover" : ""}`}
         />
-        {stars !== null && (
-          <span className="star-count">{stars.toLocaleString()}</span>
-        )}
+        <span className="star-count">{stars.toLocaleString()}</span>
       </a>
     </div>
   );

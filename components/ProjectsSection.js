@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { getProjects } from "../lib/projects";
 
 const ProjectCard = ({ project }) => {
@@ -30,8 +30,15 @@ const ProjectCard = ({ project }) => {
 
   return (
     <div className="project-card" style={{ background: backgroundGradient }}>
-      <div className="project-header">
-        <h3>{project.title}</h3>
+      <div className="project-header">{project.title}</div>
+      <div className="project-meta">
+        <div className="project-tags">
+          {project.tags.map((tag, index) => (
+            <span key={index} className="project-tag">
+              {tag}
+            </span>
+          ))}
+        </div>
         <div className="project-links">
           {project.sourceLink && (
             <a
@@ -75,19 +82,11 @@ const ProjectCard = ({ project }) => {
               >
                 <circle cx="12" cy="12" r="10"></circle>
                 <line x1="2" y1="12" x2="22" y2="12"></line>
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10z"></path>
               </svg>
             </a>
           )}
         </div>
-      </div>
-      <p>{project.description}</p>
-      <div className="project-tags">
-        {project.tags.map((tag, index) => (
-          <span key={index} className="project-tag">
-            {tag}
-          </span>
-        ))}
       </div>
     </div>
   );
@@ -95,45 +94,58 @@ const ProjectCard = ({ project }) => {
 
 const ProjectsSection = () => {
   const projects = getProjects();
-  const [selectedTag, setSelectedTag] = React.useState(null);
-  const scrollContainerRef = React.useRef(null);
+  const [showAll, setShowAll] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
 
-  const allTags = React.useMemo(() => {
-    const tags = new Set();
-    projects.forEach((project) => project.tags.forEach((tag) => tags.add(tag)));
-    return Array.from(tags);
-  }, [projects]);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth < 768);
+    };
 
-  const filteredProjects = React.useMemo(() => {
-    if (!selectedTag) return projects;
-    return projects.filter((project) => project.tags.includes(selectedTag));
-  }, [projects, selectedTag]);
+    handleResize();
+    window.addEventListener("resize", handleResize);
 
-  const handleTagClick = (tag) => {
-    setSelectedTag(tag === selectedTag ? null : tag);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const displayedProjects =
+    isSmallScreen && !showAll ? projects.slice(0, 4) : projects;
+
+  const toggleShowAll = () => {
+    setShowAll(!showAll);
   };
 
   return (
     <section className="projects-section">
       <h2>Projects</h2>
-      <div className="tag-filter-container">
-        <div className="tag-filter">
-          {allTags.map((tag) => (
-            <button
-              key={tag}
-              onClick={() => handleTagClick(tag)}
-              className={`tag ${selectedTag === tag ? "selected" : ""}`}
-            >
-              {tag}
-            </button>
-          ))}
-        </div>
-      </div>
-      <div className="projects-container" ref={scrollContainerRef}>
-        {filteredProjects.map((project, index) => (
+      <div className="projects-container">
+        {displayedProjects.map((project, index) => (
           <ProjectCard key={`${project.title}-${index}`} project={project} />
         ))}
       </div>
+      {projects.length > 4 && isSmallScreen && (
+        <div className="show-more-container">
+          <button onClick={toggleShowAll} className="show-more-button">
+            {showAll ? "See less" : "See more"}
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className={showAll ? "rotated" : ""}
+            >
+              <path
+                d="M6 9L12 15L18 9"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+      )}
     </section>
   );
 };

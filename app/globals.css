@@ -770,14 +770,8 @@ a[aria-label="ReadCV"] svg {
 
 .projects-container {
   display: flex;
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  -webkit-scroll-snap-type: x mandatory;
+  flex-direction: column;
+  row-gap: 10px;
 }
 
 .projects-container::-webkit-scrollbar {
@@ -785,37 +779,21 @@ a[aria-label="ReadCV"] svg {
 }
 
 .project-card {
-  flex: 0 0 auto;
-  width: 80vw;
-  margin-right: 12px;
-  padding: 20px 20px 30px;
+  padding: 14px 20px;
   border-radius: 12px;
   color: #ffffff !important;
   display: flex;
-  flex-direction: column;
-  gap: 22px;
+  flex-direction: row;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  scroll-snap-align: center;
-  scroll-snap-stop: always;
-}
-
-.project-header {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 }
 
-.project-card h3 {
-  margin: 0;
-  flex: 1;
-  font-size: 1rem;
-  font-weight: 500;
-}
-
-.project-card p {
-  margin: 0;
-  font-size: 0.8rem;
+.project-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .project-links {
@@ -848,9 +826,9 @@ a[aria-label="ReadCV"] svg {
 
 .project-tag {
   background-color: rgba(255, 255, 255, 0.2);
-  padding: 3px 10px;
+  padding: 2px 8px;
   border-radius: 4px;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
 }
 
 .dark-mode .project-card {
@@ -906,30 +884,31 @@ a[aria-label="ReadCV"] svg {
   list-style-type: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
 }
 
 .blog-list li {
   padding: 0;
   margin: 0;
-  margin-bottom: 20px;
-}
-
-.blog-card-link {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  text-decoration: none;
-  color: inherit;
-  transition: all 0.3s ease;
 }
 
 .blog-list-content {
-  flex: 1;
-  padding-right: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+  border: 2px solid var(--code-background-color);
+  padding: 14px 20px;
+  border-radius: 10px;
+  font-weight: 500;
 }
 
-.blog-list-content h3 {
-  margin: 0 0 0.5rem 0;
+.blog-list-title {
+  font-family: "Sentient", Verdana, Geneva, Tahoma, sans-serif;
   font-size: 1.1rem;
   line-height: 1.5;
   color: var(--color-text);
@@ -943,24 +922,6 @@ a[aria-label="ReadCV"] svg {
 
 .blog-list-meta .dot {
   margin: 0 0.3rem;
-}
-
-.blog-list-image {
-  flex-shrink: 0;
-  width: 110px;
-  height: auto;
-  overflow: hidden;
-  transition: transform 0.3s ease;
-}
-
-.blog-list-image img {
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: transform 0.3s ease;
-  border-radius: var(--border-radius);
-  margin: 0 !important;
-  padding: 0 !important;
 }
 
 .show-more-container {
@@ -1145,11 +1106,14 @@ a[aria-label="ReadCV"] svg {
     font-size: 1rem !important;
   }
 
+  .projects-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
   .project-card {
-    flex: 0 0 auto;
-    width: 460px;
-    margin-right: 20px;
-    padding: 20px 30px 30px;
+    width: 335px;
+    padding: 20px 20px;
     border-radius: 12px;
   }
 
@@ -1188,18 +1152,12 @@ a[aria-label="ReadCV"] svg {
     margin-top: var(--padding-large);
   }
 
-  .blog-list-image {
-    width: 160px;
+  .blog-list ul {
+    row-gap: 20px;
   }
 
-  .blog-list-image img {
-    width: 100%;
-  }
-
-  .blog-list li {
-    padding: 0;
-    margin: 0;
-    margin-bottom: 20px;
+  .blog-list-meta .dot {
+    margin: 0 0.6rem;
   }
 
   .menu-toggle {
@@ -1242,18 +1200,6 @@ a[aria-label="ReadCV"] svg {
     transform: scale(1.2);
   }
 
-  .project-links a:hover {
-    background-color: var(--color-bg);
-    color: var(--color-text);
-    text-decoration: none;
-  }
-
-  .dark-mode .project-links a:hover {
-    background-color: var(--color-text);
-    color: var(--color-bg);
-    text-decoration: none;
-  }
-
   .toc-content a:hover {
     text-decoration: underline;
   }
@@ -1270,15 +1216,17 @@ a[aria-label="ReadCV"] svg {
     transform: translateY(-5px);
   }
 
-  .project-links a:hover {
+  .project-links a:hover,
+  .project-links a:hover svg {
     background-color: var(--color-bg);
-    color: var(--color-text);
+    color: var(--color-link);
     text-decoration: none;
+    stroke: var(--color-link);
   }
 
   .dark-mode .project-links a:hover {
     background-color: var(--color-text);
-    color: var(--color-bg);
+    color: var(--color-link);
     text-decoration: none;
   }
 
@@ -1305,12 +1253,12 @@ a[aria-label="ReadCV"] svg {
     text-decoration: none;
   }
 
-  .blog-card-link:hover .blog-list-content h3 {
-    color: var(--color-link);
+  .blog-list-content:hover {
+    background-color: var(--code-background-color);
   }
 
-  .blog-card-link:hover .blog-list-image {
-    transform: scale(1.03);
+  .blog-list-content:hover .blog-list-title {
+    color: var(--color-link);
   }
 
   .show-more-button:hover {

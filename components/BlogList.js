@@ -61,24 +61,12 @@ export default function BlogList({ posts }) {
           <li key={post.slug} className="blog-list-item">
             <Link href={`/post/${post.slug}`} className="blog-card-link">
               <div className="blog-list-content">
-                <h3>{post.title}</h3>
+                <div className="blog-list-title">{post.title}</div>
                 <div className="blog-list-meta">
                   <span>{formatDate(post.date)}</span>
                   <span className="dot">•</span>
-                  <span>{post.readingTime} read</span>
+                  <span>{post.readingTime}</span>
                 </div>
-              </div>
-              <div className="blog-list-image">
-                <Image
-                  src={post.headerImage}
-                  alt={post.title}
-                  width={1200}
-                  height={630}
-                  style={{
-                    maxWidth: "100%",
-                    height: "auto",
-                  }}
-                />
               </div>
             </Link>
           </li>
