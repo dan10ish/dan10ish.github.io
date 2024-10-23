@@ -15,7 +15,6 @@ const Navigation = ({ children }) => {
   const searchParams = useSearchParams();
   let lastScrollY = useRef(0);
 
-  // Handle initial mount
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -116,20 +115,36 @@ const Navigation = ({ children }) => {
       >
         <ul>
           <li>
-            <Link href="/" onClick={() => setIsOpen(false)}>
+            <Link
+              href="/"
+              tabIndex={!isOpen ? -1 : 0}
+              onClick={() => setIsOpen(false)}
+            >
               Home
             </Link>
           </li>
           <li>
-            <button onClick={() => handleNavigation("projects")}>
+            <button
+              tabIndex={!isOpen ? -1 : 0}
+              onClick={() => handleNavigation("projects")}
+            >
               Projects
             </button>
           </li>
           <li>
-            <button onClick={() => handleNavigation("blog")}>Posts</button>
+            <button
+              tabIndex={!isOpen ? -1 : 0}
+              onClick={() => handleNavigation("blog")}
+            >
+              Posts
+            </button>
           </li>
           <li>
-            <Link href="/pics" onClick={() => setIsOpen(false)}>
+            <Link
+              href="/pics"
+              tabIndex={!isOpen ? -1 : 0}
+              onClick={() => setIsOpen(false)}
+            >
               Pictures
             </Link>
           </li>
