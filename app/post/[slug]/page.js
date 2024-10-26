@@ -1,10 +1,9 @@
 import { getBlogPost, getBlogPosts } from "../../../lib/api";
-import TableOfContents from "../../../components/TableOfContents";
 import ScrollToTop from "../../../components/ScrollToTop";
 import LatexRenderer from "../../../components/LatexRenderer";
 import { markdownToHtml } from "../../../lib/mdxutils";
-import "katex/dist/katex.min.css";
 import dynamic from "next/dynamic";
+import "katex/dist/katex.min.css";
 
 const HighlightCode = dynamic(
   () => import("../../../components/HighlightCode"),
@@ -89,7 +88,6 @@ export default async function BlogPost({ params }) {
           </a>
         </div>
       </div>
-      <TableOfContents content={contentHtml} />
       <div className="mark">
         <LatexRenderer content={contentHtml} />
       </div>
