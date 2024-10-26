@@ -140,7 +140,7 @@ body {
 
 .fixed-nav {
   position: fixed;
-  top: 15px;
+  top: 10px;
   right: 10px;
   z-index: 1001;
   transition: transform 0.3s ease, opacity 0.3s ease;
@@ -155,7 +155,7 @@ body {
 .nav-content {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   padding: 6px;
   border-radius: 8px;
   position: relative;
@@ -166,7 +166,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px;
+  padding: 6px;
   border-radius: 6px;
   cursor: pointer;
   color: var(--color-text);
