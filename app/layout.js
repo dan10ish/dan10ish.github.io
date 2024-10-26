@@ -3,11 +3,7 @@ import dynamic from "next/dynamic";
 import Script from "next/script";
 import "./globals.css";
 import "highlight.js/styles/github.css";
-import HamburgerMenu from "@/components/HamburgerMenu";
-
-const ThemeSelector = dynamic(() => import("../components/ThemeSelector"), {
-  ssr: false,
-});
+import HamburgerMenu from "@/components/Navigation";
 
 export const metadata = {
   metadataBase: new URL("https://danish.bio"),
