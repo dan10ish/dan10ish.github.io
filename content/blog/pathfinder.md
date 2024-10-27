@@ -40,7 +40,7 @@ Pathfinding algorithms are fundamental in computer science, powering application
 
 **Visualization**:
 
-```markdown
+```plaintext
 Initial Grid       Step 1           Step 2           Final Path
 S 0 ∞ ∞ ∞ ∞       S 0 1 ∞ ∞ ∞      S 0 1 2 ∞ ∞      S 0 1 2 3 4
 ∞ ∞ ∞ # ∞ ∞       1 2 2 # ∞ ∞      1 2 2 # 3 ∞      1 2 3 # 3 4
@@ -75,7 +75,7 @@ Numbers represent distance from start node
 
 **Visualization**:
 
-```markdown
+```plaintext
 Initial Grid       Step 1           Step 2           Final Path
 S 0 ∞ ∞ ∞ ∞       S 0 1 2 3 4      S 0 1 2 3 4      S 0 1 2 3 4
 ∞ ∞ ∞ # ∞ ∞       1 2 2 # 4 5      1 2 2 # 4 5      1 2 3 # 4 5
@@ -104,7 +104,7 @@ Numbers represent f_score (g_score + heuristic)
 
 **Visualization**:
 
-```markdown
+```plaintext
 Initial Grid       Step 1           Step 2           Final Path
 S ∞ ∞ ∞ ∞ ∞       S 1 1 1 1 1      S 1 1 1 1 1      S→→→→→→
 ∞ ∞ ∞ # ∞ ∞       1 1 1 # 1 1      1 1 1 # 1 1      ↓↑←←#↓↑
@@ -133,7 +133,7 @@ Numbers represent levels of exploration
 
 **Visualization**:
 
-```markdown
+```plaintext
 Initial Grid          DFS Exploration          Final Path
 
 S · · · · ·           S 1-2-3-4 ·              S-→-→-→-→ ·
@@ -166,7 +166,7 @@ Numbers: Exploration order    -→↓←↑: DFS path
 
 **Visualization**:
 
-```markdown
+```plaintext
 Initial Grid       Step 1           Step 2           Final Maze
 □□□□□□□□□□       □□□□□□□□□□       □□□□□□□□□□       □□□□■□□□□□
 □□□□□□□□□□       □□□□□□□□□□       ■■■■□■■■■■       ■■■■□■■■■■
@@ -196,7 +196,7 @@ Initial Grid       Step 1           Step 2           Final Maze
 
 **Visualization**:
 
-```markdown
+```plaintext
 Initial Grid       Step 1           Step 2           Final Maze
 □□□□□□□□□□       ■□■□■□■□■□       ■□■□■□■□■□       S□■□■□■□■□
 □□□□□□□□□□       □■□■□■□■□■       □■□■□■□■□■       □■□■□■□■□■

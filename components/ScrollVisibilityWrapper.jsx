@@ -5,26 +5,23 @@ import { useState, useEffect, useRef } from "react";
 const ScrollVisibilityWrapper = ({ children }) => {
   const [isVisible, setIsVisible] = useState(true);
   const lastScrollY = useRef(0);
-  const scrollTimeout = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+      const currentScrollY = window.scrollY;
+      const scrollDelta = lastScrollY.current - currentScrollY;
 
-      scrollTimeout.current = setTimeout(() => {
-        const currentScrollY = window.scrollY;
-        const scrollingDown = currentScrollY > lastScrollY.current;
+      if (scrollDelta > 10 || currentScrollY < 20) {
+        setIsVisible(true);
+      } else if (scrollDelta < 0 && currentScrollY > 20) {
+        setIsVisible(false);
+      }
 
-        setIsVisible(!scrollingDown || currentScrollY < 30);
-        lastScrollY.current = currentScrollY;
-      }, 20);
+      lastScrollY.current = currentScrollY;
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return children(isVisible);

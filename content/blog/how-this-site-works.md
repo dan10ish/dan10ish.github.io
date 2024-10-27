@@ -1,66 +1,176 @@
-Once again, as I tend to do very often, I've gone and rebuilt my website. It's something I tinker with every now and then to improve my web presence or sometimes just to freshen up the look and feel. This time around, it's a pretty big redesign with **minimalism** as the main focus while optimizing performance of the website. The hope here is that this will be the last significant update to my website for a long time.
+# Introduction
 
-## Why This Design?
+I rebuilt my website with `Next.js 14`, focusing on minimalism and performance while keeping powerful features like math rendering, syntax highlighting, and dynamic theming. Let me walk you through how everything works.
 
-You can never go wrong with a classic serif font and solarized background. I feel it's timeless and less distracting for the viewer.
+## File Structure
 
-I want my website to provide information straight to the point and avoid clutter. I also aimed for easy navigation.
+Here's the simplified structure of the project:
 
-The challenge I wanted to tackle with this website is maintaining features (like the blog, project links, etc.) while keeping it _minimalist_. I believe I've done a decent job here.
-
-## How I Built This Site
-
-### The Stack
-
-`React` using `Vite` and `CSS`.. Not complicated, just opinionated.
-
-#### Tools
-
-Posts are all presented in `markdown` files and rendered with custom styling using the `react-markdown` library. Each article has its own file, and images are rendered within the articles.
-
-#### Hosting
-
-Hosted on `GitHub Pages` because of my familiarity with it. It's mainly for ease of bug fixing and publishing new articles.
-
-### Features
-
-#### Blog
-
-A metadata file assigns a slug to each article, located in the `data` folder. Each article's metadata includes details such as title, date, filename, and tags, facilitating a seamless workflow for writing and updating blogs in markdown.
-
-The metadata file looks something like this:
-
-```js
-{
-    id: 1,
-    type: "blog",
-    title: "How this site works",
-    date: "2024-07-15",
-    fileName: "file name",
-    tags: ["Site"],
-  }
+```plaintext
+├── app/
+│   ├── page.js                 # Homepage
+│   ├── layout.js              # Root layout
+│   └── post/[slug]/page.js    # Blog post pages
+├── components/
+│   ├── BlogList.js            # Blog listing
+│   ├── Navigation.js          # Navigation menu
+│   ├── ProjectsSection.js     # Projects grid
+│   ├── LatexRenderer.js       # Math rendering
+│   └── HighlightCode.js       # Code highlighting
+├── lib/
+│   ├── api.js                # Data handling
+│   └── mdxutils.js           # Markdown processing
+├── content/
+│   └── blog/                 # Markdown blog posts
+└── public/
+    ├── fonts/               # Custom fonts
+    └── images/              # Static images
 ```
 
-This structure minimizes friction in my workflow, allowing me to focus more on content creation.
+## Core Technologies
 
-#### Projects
+The site is built using `Next.js 14` with React Server Components for better performance and SEO. Instead of using a CSS framework like Tailwind, I opted for pure CSS with variables for maximum control over styling and animations. All content is written in Markdown and processed using a combination of remark and rehype plugins for features like math equations and syntax highlighting.
 
-Perhaps the sites I want to get the most reach on. Projects have their own standalone front-end static webpages, which are linked accordingly.
+For typography, I'm using a combination of Geist Mono (for code and general text) and Sentient (for headings) to create a clean, readable interface that works well for both articles and code.
 
-#### Source Code
+## Blog System
 
-Find it [here](https://github.com/dan10ish/dan10ish.github.io).
+The blog system is built around markdown files with a robust processing pipeline. Each post is processed through remark and rehype, which handle various transformations. Here's how posts are defined:
 
-## Future
+```javascript
+// lib/api.js
+const blogPosts = [
+  {
+    slug: "probability",
+    title: "Probability",
+    date: new Date("2024-09-19"),
+    tags: ["machine learning", "math"],
+    headerImage: "/header-images/probability.jpg",
+    estimatedWordCount: 3000,
+  },
+];
+```
 
-I will be adding standalone pages to display collective photos I have taken from various locations.
+## Theme System
 
-The plan is integrate this also in the list in the [homepage](https://dan10ish.github.io).
+The site supports three carefully chosen themes: light, dark, and solarized dark. The system uses CSS variables for instant theme switching:
 
-The photos will maintain their aspect ratio and be displayed in the form of a responsive grid.
+```css
+[data-theme="light"] {
+  --color-bg: #ffffff;
+  --color-text: #333333;
+  --color-link: #0070f3;
+}
 
-## Conclusion
+[data-theme="dark"] {
+  --color-bg: #000000;
+  --color-text: #ffffff;
+  --color-link: #0096fa;
+}
 
-I explored various ways to facilitate more flexible online writing and ultimately decided to do it in my own way.
+[data-theme="solarized-dark"] {
+  --color-bg: #00212b;
+  --color-text: #bfc9cc;
+  --color-link: #2ebdff;
+}
+```
 
-That said, there's still much work to be done to improve both the technical and content aspects of this site. Feel free to DM me on [X](https://x.com/dan10ish) for a quick feedback.
+## Navigation System
+
+The navigation is designed to be unobtrusive yet accessible. It includes a smart navbar that automatically hides when scrolling down:
+
+```javascript
+const handleScroll = () => {
+  const currentScrollY = window.scrollY;
+  const scrollDelta = lastScrollY.current - currentScrollY;
+
+  if (scrollDelta > 10 || currentScrollY < 20) {
+    setIsVisible(true);
+  } else if (scrollDelta < 0 && currentScrollY > 20) {
+    setIsVisible(false);
+  }
+};
+```
+
+## Project Showcase
+
+Projects are displayed in a responsive grid layout. Each project is defined with metadata:
+
+```javascript
+const projects = [
+  {
+    title: "Pathfinder",
+    description: "Visualize path algorithms",
+    sourceLink: "github-url",
+    projectLink: "demo-url",
+    tags: ["web"],
+    gradient: "linear-gradient(...)",
+  },
+];
+```
+
+## Special Features
+
+### Mathematics Support
+
+The site uses `KaTeX` for rendering math equations. The `LaTeX` content is processed during markdown conversion and styled to match the current theme.
+
+### Code Highlighting
+
+Code blocks use `highlight.js` with theme-aware styling. Each block includes language detection and a copy button for better user experience.
+
+### Dynamic Table of Contents
+
+The TOC component automatically generates a navigation menu from the post's headings:
+
+```javascript
+const generateTOC = () => {
+  const headers = document.querySelectorAll("h2, h3, h4, h5, h6");
+  return Array.from(headers).map((header) => ({
+    id: header.id,
+    text: header.textContent,
+    level: parseInt(header.tagName.charAt(1)),
+  }));
+};
+```
+
+### Performance Optimizations
+
+Several techniques keep the site fast and responsive:
+
+1. Server Components for improved initial load times
+2. Dynamic imports for features not needed immediately
+3. Font optimization with preloading and subsetting
+4. Responsive images with lazy loading
+5. Code splitting to reduce initial bundle size
+
+## Development and Deployment
+
+To run the site locally:
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Deploy to GitHub Pages
+npm run deploy
+```
+
+## Future Plans
+
+I'm working on several improvements:
+
+- Improved image optimization with next/image
+- Full-text search functionality
+- Reading progress indicator
+- Theme-specific images for dark/light modes
+
+## Contributing
+
+The site is open source and available on GitHub. Feel free to explore the source code or reach out with questions or suggestions!

@@ -2,7 +2,6 @@ import { getBlogPosts } from "../lib/api";
 import BlogList from "../components/BlogList";
 import AboutMe from "../components/AboutMe";
 import SocialIcons from "../components/SocialIcons";
-import Library from "../components/Library";
 import ProjectsSection from "../components/ProjectsSection";
 import GitHubStar from "@/components/GithubStar";
 
@@ -27,9 +26,6 @@ export default function Home() {
       </div>
       <div id="projects">
         <ProjectsSection />
-      </div>
-      <div id="library">
-        <Library />
       </div>
       <GitHubStar />
     </main>
