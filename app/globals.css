@@ -948,11 +948,34 @@ a[aria-label="ReadCV"] svg {
   align-items: baseline;
   text-decoration: none;
   color: inherit;
-  border: 2px solid var(--code-background-color);
-  padding: 14px 20px;
-  border-radius: 10px;
-  font-weight: 500;
-  transition: background-color 0.3s ease;
+  padding: 16px 24px;
+  border-radius: 12px;
+  background: var(--color-bg);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme="light"] .blog-list-content {
+  background: linear-gradient(145deg, #ffffff, #f0f0f0);
+  box-shadow: 6px 6px 12px #d9d9d9, -6px -6px 12px #ffffff,
+    inset 1px 1px 2px rgba(255, 255, 255, 0.3),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] .blog-list-content {
+  background: linear-gradient(145deg, #0a0a0a, #000000);
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.9),
+    -6px -6px 12px rgba(30, 30, 30, 0.7),
+    inset 1px 1px 1px rgba(30, 30, 30, 0.5),
+    inset -1px -1px 1px rgba(0, 0, 0, 0.7);
+}
+
+[data-theme="solarized-dark"] .blog-list-content {
+  background: linear-gradient(145deg, #002733, #001e29);
+  box-shadow: 6px 6px 12px rgba(0, 15, 20, 0.9),
+    -6px -6px 12px rgba(0, 45, 60, 0.7), inset 1px 1px 1px rgba(0, 45, 60, 0.5),
+    inset -1px -1px 1px rgba(0, 15, 20, 0.7);
 }
 
 .blog-list-title {
@@ -966,6 +989,7 @@ a[aria-label="ReadCV"] svg {
 .blog-list-meta {
   font-size: 0.8rem;
   color: var(--blockquote-color);
+  opacity: 0.9;
 }
 
 .blog-list-meta .dot {
@@ -1387,8 +1411,30 @@ a[aria-label="ReadCV"] svg {
     text-decoration: none;
   }
 
-  .blog-list-content:hover {
-    background-color: var(--code-background-color);
+  [data-theme="light"] .blog-list-content:hover {
+    background: linear-gradient(145deg, #f0f0f0, #ffffff);
+    box-shadow: 8px 8px 16px #d9d9d9, -8px -8px 16px #ffffff,
+      inset 1px 1px 2px rgba(255, 255, 255, 0.5),
+      inset -1px -1px 2px rgba(0, 0, 0, 0.05);
+    transform: translateY(-2px);
+  }
+
+  [data-theme="dark"] .blog-list-content:hover {
+    background: linear-gradient(145deg, #000000, #0a0a0a);
+    box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.95),
+      -8px -8px 16px rgba(30, 30, 30, 0.8),
+      inset 1px 1px 1px rgba(30, 30, 30, 0.6),
+      inset -1px -1px 1px rgba(0, 0, 0, 0.8);
+    transform: translateY(-2px);
+  }
+
+  [data-theme="solarized-dark"] .blog-list-content:hover {
+    background: linear-gradient(145deg, #001e29, #002733);
+    box-shadow: 8px 8px 16px rgba(0, 15, 20, 0.95),
+      -8px -8px 16px rgba(0, 45, 60, 0.8),
+      inset 1px 1px 1px rgba(0, 45, 60, 0.6),
+      inset -1px -1px 1px rgba(0, 15, 20, 0.8);
+    transform: translateY(-2px);
   }
 
   .blog-list-content:hover .blog-list-title {
