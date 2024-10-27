@@ -137,6 +137,7 @@ const Navigation = () => {
     localStorage.setItem("theme", theme);
     updateMetaThemeColor(theme);
     setThemeOpen(false);
+    setIsOpen(false);
   };
 
   return (

@@ -520,7 +520,7 @@ img {
 
 /* Blog Post */
 .blog-post {
-  padding-top: var(--padding-large);
+  padding-top: 50px;
   margin-bottom: var(--padding-large);
 }
 
@@ -574,10 +574,26 @@ img {
 .toc-header {
   padding: 10px 16px;
   text-align: center;
-  font-weight: 550;
+  font-weight: 600;
   border-bottom: 1px solid rgba(var(--color-text-rgb), 0.1);
   font-family: var(--font-heading);
   font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toc-close {
+  background: transparent;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s ease;
 }
 
 .toc-content {
@@ -595,7 +611,7 @@ img {
 
 .toc-content li {
   margin: 0;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   white-space: normal;
 }
 
@@ -605,7 +621,7 @@ img {
   display: block;
   padding: 4px 0;
   opacity: 1;
-  font-weight: 450;
+  font-weight: 500;
   transition: opacity 0.2s ease;
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -1283,6 +1299,10 @@ a[aria-label="ReadCV"] svg {
   .toc-content {
     max-height: 500px;
   }
+
+  .blog-post {
+    padding-top: var(--padding-large);
+  }
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -1441,6 +1461,11 @@ a[aria-label="ReadCV"] svg {
   .toc-content a:hover {
     opacity: 1;
     color: var(--color-link);
+  }
+
+  .toc-close:hover {
+    color: var(--color-link);
+    transform: scale(1.1);
   }
 }
 
