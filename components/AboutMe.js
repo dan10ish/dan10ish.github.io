@@ -7,6 +7,13 @@ export default function AboutMe() {
         A mechatronics engineer exploring machine learning, robotics and
         computer science.
       </p>
+      <p>
+        View some of my{" "}
+        <Link href="/pics" className="photo-link">
+          captures
+        </Link>
+        .
+      </p>
     </section>
   );
 }

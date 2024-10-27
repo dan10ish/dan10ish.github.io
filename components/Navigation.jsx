@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import ScrollVisibilityWrapper from "@/components/ScrollVisibilityWrapper";
 import dynamic from "next/dynamic";
 
@@ -17,62 +17,43 @@ const HomeIcon = () => (
   </svg>
 );
 
-const MenuIcon = ({ isOpen }) => (
-  <svg
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    {isOpen ? (
-      <path d="M18 6L6 18M6 6l12 12" />
-    ) : (
-      <path d="M4 6h16M4 12h16M4 18h16" />
-    )}
-  </svg>
-);
-
 const ThemeIcon = () => (
-  <svg width="25" height="24" viewBox="0 0 25 24" fill="currentColor">
-    <path d="M12.1006 0C11.5006 0 11.1006 0.4 11.1006 1V2C11.1006 2.6 11.5006 3 12.1006 3C12.7006 3 13.1006 2.6 13.1006 2V1C13.1006 0.4 12.7006 0 12.1006 0ZM4.2998 3.19922C4.0498 3.19922 3.80059 3.3 3.60059 3.5C3.20059 3.9 3.20059 4.50039 3.60059 4.90039L4.2998 5.59961C4.6998 5.99961 5.3002 5.99961 5.7002 5.59961C6.1002 5.19961 6.1002 4.59922 5.7002 4.19922L5.00098 3.5C4.80098 3.3 4.5498 3.19922 4.2998 3.19922ZM19.9014 3.19922C19.6514 3.19922 19.4002 3.3 19.2002 3.5L18.501 4.19922C18.101 4.59922 18.101 5.19961 18.501 5.59961C18.901 5.99961 19.5014 5.99961 19.9014 5.59961L20.6006 4.90039C21.0006 4.50039 21.0006 3.9 20.6006 3.5C20.4006 3.3 20.1514 3.19922 19.9014 3.19922ZM12.1006 5C10.2441 5 8.46359 5.7375 7.15084 7.05025C5.83808 8.36301 5.10059 10.1435 5.10059 12C5.10059 13.8565 5.83808 15.637 7.15084 16.9497C8.46359 18.2625 10.2441 19 12.1006 19C13.9571 19 15.7376 18.2625 17.0503 16.9497C18.3631 15.637 19.1006 13.8565 19.1006 12C19.1006 10.1435 18.3631 8.36301 17.0503 7.05025C15.7376 5.7375 13.9571 5 12.1006 5ZM1.10059 11C0.500586 11 0.100586 11.4 0.100586 12C0.100586 12.6 0.500586 13 1.10059 13H2.10059C2.70059 13 3.10059 12.6 3.10059 12C3.10059 11.4 2.70059 11 2.10059 11H1.10059ZM22.1006 11C21.5006 11 21.1006 11.4 21.1006 12C21.1006 12.6 21.5006 13 22.1006 13H23.1006C23.7006 13 24.1006 12.6 24.1006 12C24.1006 11.4 23.7006 11 23.1006 11H22.1006ZM5.00098 18.0996C4.75098 18.0996 4.4998 18.2004 4.2998 18.4004L3.60059 19.0996C3.20059 19.4996 3.20059 20.1 3.60059 20.5C4.00059 20.9 4.60098 20.9 5.00098 20.5L5.7002 19.8008C6.1002 19.4008 6.1002 18.8004 5.7002 18.4004C5.5002 18.2004 5.25098 18.0996 5.00098 18.0996ZM19.2002 18.0996C18.9502 18.0996 18.701 18.2004 18.501 18.4004C18.101 18.8004 18.101 19.4008 18.501 19.8008L19.2002 20.5C19.6002 20.9 20.2006 20.9 20.6006 20.5C21.0006 20.1 21.0006 19.4996 20.6006 19.0996L19.9014 18.4004C19.7014 18.2004 19.4502 18.0996 19.2002 18.0996ZM12.1006 21C11.5006 21 11.1006 21.4 11.1006 22V23C11.1006 23.6 11.5006 24 12.1006 24C12.7006 24 13.1006 23.6 13.1006 23V22C13.1006 21.4 12.7006 21 12.1006 21Z" />
-  </svg>
-);
-
-const PicturesIcon = () => (
   <svg
-    width="24"
+    width="25"
     height="24"
-    viewBox="0 0 24 24"
+    viewBox="0 0 25 24"
     fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
+    xmlns="http://www.w3.org/2000/svg"
   >
-    <rect x="3" y="3" width="18" height="18" rx="2" />
-    <circle cx="9" cy="9" r="2" />
-    <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
-    <path d="m3 12.5 4.5-4.5a2 2 0 0 1 3 0L15 12" />
+    <path
+      d="M12.1006 0C11.5006 0 11.1006 0.4 11.1006 1V2C11.1006 2.6 11.5006 3 12.1006 3C12.7006 3 13.1006 2.6 13.1006 2V1C13.1006 0.4 12.7006 0 12.1006 0ZM4.2998 3.19922C4.0498 3.19922 3.80059 3.3 3.60059 3.5C3.20059 3.9 3.20059 4.50039 3.60059 4.90039L4.2998 5.59961C4.6998 5.99961 5.3002 5.99961 5.7002 5.59961C6.1002 5.19961 6.1002 4.59922 5.7002 4.19922L5.00098 3.5C4.80098 3.3 4.5498 3.19922 4.2998 3.19922ZM19.9014 3.19922C19.6514 3.19922 19.4002 3.3 19.2002 3.5L18.501 4.19922C18.101 4.59922 18.101 5.19961 18.501 5.59961C18.901 5.99961 19.5014 5.99961 19.9014 5.59961L20.6006 4.90039C21.0006 4.50039 21.0006 3.9 20.6006 3.5C20.4006 3.3 20.1514 3.19922 19.9014 3.19922ZM12.1006 5C10.2441 5 8.46359 5.7375 7.15084 7.05025C5.83808 8.36301 5.10059 10.1435 5.10059 12C5.10059 13.8565 5.83808 15.637 7.15084 16.9497C8.46359 18.2625 10.2441 19 12.1006 19C13.9571 19 15.7376 18.2625 17.0503 16.9497C18.3631 15.637 19.1006 13.8565 19.1006 12C19.1006 10.1435 18.3631 8.36301 17.0503 7.05025C15.7376 5.7375 13.9571 5 12.1006 5ZM1.10059 11C0.500586 11 0.100586 11.4 0.100586 12C0.100586 12.6 0.500586 13 1.10059 13H2.10059C2.70059 13 3.10059 12.6 3.10059 12C3.10059 11.4 2.70059 11 2.10059 11H1.10059ZM22.1006 11C21.5006 11 21.1006 11.4 21.1006 12C21.1006 12.6 21.5006 13 22.1006 13H23.1006C23.7006 13 24.1006 12.6 24.1006 12C24.1006 11.4 23.7006 11 23.1006 11H22.1006ZM5.00098 18.0996C4.75098 18.0996 4.4998 18.2004 4.2998 18.4004L3.60059 19.0996C3.20059 19.4996 3.20059 20.1 3.60059 20.5C4.00059 20.9 4.60098 20.9 5.00098 20.5L5.7002 19.8008C6.1002 19.4008 6.1002 18.8004 5.7002 18.4004C5.5002 18.2004 5.25098 18.0996 5.00098 18.0996ZM19.2002 18.0996C18.9502 18.0996 18.701 18.2004 18.501 18.4004C18.101 18.8004 18.101 19.4008 18.501 19.8008L19.2002 20.5C19.6002 20.9 20.2006 20.9 20.6006 20.5C21.0006 20.1 21.0006 19.4996 20.6006 19.0996L19.9014 18.4004C19.7014 18.2004 19.4502 18.0996 19.2002 18.0996ZM12.1006 21C11.5006 21 11.1006 21.4 11.1006 22V23C11.1006 23.6 11.5006 24 12.1006 24C12.7006 24 13.1006 23.6 13.1006 23V22C13.1006 21.4 12.7006 21 12.1006 21Z"
+      fill="currentColor"
+    />
   </svg>
 );
 
 const Navigation = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [themeOpen, setThemeOpen] = useState(false);
-  const menuRef = useRef(null);
+  const [currentTheme, setCurrentTheme] = useState("light");
   const themeRef = useRef(null);
-  const router = useRouter();
   const pathname = usePathname();
   const isBlogPost = pathname.startsWith("/post/");
+  const isHomePage = pathname === "/";
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") || "light";
+    const savedTheme = window.localStorage.getItem("theme") || "light";
+    setCurrentTheme(savedTheme);
     document.documentElement.setAttribute("data-theme", savedTheme);
     updateMetaThemeColor(savedTheme);
+
+    const handleClickOutside = (event) => {
+      if (themeRef.current && !themeRef.current.contains(event.target)) {
+        setThemeOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const updateMetaThemeColor = (theme) => {
@@ -85,137 +66,70 @@ const Navigation = () => {
     meta?.setAttribute("content", colors[theme]);
   };
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (!menuRef.current?.contains(event.target)) setIsOpen(false);
-      if (!themeRef.current?.contains(event.target)) setThemeOpen(false);
-    };
-
-    const handleEscape = (event) => {
-      if (event.key === "Escape") {
-        setIsOpen(false);
-        setThemeOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("keydown", handleEscape);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleEscape);
-    };
-  }, []);
-
-  useEffect(() => {
-    setIsOpen(false);
-    setThemeOpen(false);
-  }, [pathname]);
-
-  const handleNavigation = (section) => {
-    setIsOpen(false);
-    setThemeOpen(false);
-
-    if (section === "pictures") {
-      router.push("/pics");
-      return;
-    }
-
-    if (pathname !== "/") {
-      router.push(`/?section=${section}`);
-    } else {
-      const target = document.getElementById(section);
-      if (target) {
-        const targetPosition =
-          target.getBoundingClientRect().top + window.pageYOffset - 80;
-        window.scrollTo({ top: targetPosition, behavior: "smooth" });
-      }
-    }
-  };
-
   const changeTheme = (theme) => {
+    setCurrentTheme(theme);
     document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
+    window.localStorage.setItem("theme", theme);
     updateMetaThemeColor(theme);
     setThemeOpen(false);
-    setIsOpen(false);
   };
 
   return (
     <ScrollVisibilityWrapper>
       {(isVisible) => (
-        <nav
-          ref={menuRef}
-          className={`fixed-nav ${!isVisible ? "nav-hidden" : ""}`}
-        >
+        <nav className={`fixed-nav ${!isVisible ? "nav-hidden" : ""}`}>
           <div className="nav-content">
-            <Link
-              href="/"
-              className="nav-button home-icon-btn"
-              aria-label="Home"
-            >
-              <HomeIcon />
-            </Link>
+            {!isHomePage && (
+              <Link
+                href="/"
+                className="nav-button home-icon-btn"
+                aria-label="Home"
+              >
+                <HomeIcon />
+              </Link>
+            )}
 
             {isBlogPost && (
-              <div className="mobile-toc">
+              <div className="toc-wrapper">
                 <TOCButton />
               </div>
             )}
 
-            <div className="menu-separator mobile-only" />
-
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="nav-button menu-toggle-btn mobile-only"
-              aria-label="Toggle menu"
-            >
-              <MenuIcon isOpen={isOpen} />
-            </button>
-
-            <div className={`menu-items ${isOpen ? "open" : ""}`}>
-              {isBlogPost && (
-                <div className="desktop-toc">
-                  <TOCButton />
-                </div>
-              )}
-              <div ref={themeRef} className="theme-dropdown">
-                <button
-                  onClick={() => setThemeOpen(!themeOpen)}
-                  className="nav-button theme-icon-btn"
-                  aria-label="Theme"
-                >
-                  <ThemeIcon />
-                </button>
-
-                <div className={`theme-options ${themeOpen ? "open" : ""}`}>
-                  <button
-                    onClick={() => changeTheme("light")}
-                    className="theme-option"
-                    style={{ background: "#ffffff" }}
-                    aria-label="Light theme"
-                  />
-                  <button
-                    onClick={() => changeTheme("dark")}
-                    className="theme-option"
-                    style={{ background: "#000000" }}
-                    aria-label="Dark theme"
-                  />
-                  <button
-                    onClick={() => changeTheme("solarized-dark")}
-                    className="theme-option"
-                    style={{ background: "#00212b" }}
-                    aria-label="Solarized dark theme"
-                  />
-                </div>
-              </div>
-
+            <div ref={themeRef} className="theme-dropdown">
               <button
-                onClick={() => handleNavigation("pictures")}
-                className="nav-button pictures-icon-btn"
-                aria-label="Pictures"
+                onClick={() => setThemeOpen(!themeOpen)}
+                className="nav-button theme-icon-btn"
+                aria-label="Theme"
               >
-                <PicturesIcon />
+                <ThemeIcon />
               </button>
+
+              <div className={`theme-options ${themeOpen ? "open" : ""}`}>
+                <button
+                  onClick={() => changeTheme("light")}
+                  className={`theme-option ${
+                    currentTheme === "light" ? "active" : ""
+                  }`}
+                  style={{ background: "#ffffff" }}
+                  aria-label="Light theme"
+                />
+                <button
+                  onClick={() => changeTheme("dark")}
+                  className={`theme-option ${
+                    currentTheme === "dark" ? "active" : ""
+                  }`}
+                  style={{ background: "#000000" }}
+                  aria-label="Dark theme"
+                />
+                <button
+                  onClick={() => changeTheme("solarized-dark")}
+                  className={`theme-option ${
+                    currentTheme === "solarized-dark" ? "active" : ""
+                  }`}
+                  style={{ background: "#00212b" }}
+                  aria-label="Solarized dark theme"
+                />
+              </div>
             </div>
           </div>
         </nav>
