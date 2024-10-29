@@ -875,31 +875,6 @@ th {
   transform: rotate(180deg);
 }
 
-/* Social Icons */
-.socials {
-  display: flex;
-  gap: var(--padding-medium);
-  justify-content: left;
-  align-items: center;
-}
-
-.socials svg {
-  fill: var(--color-link);
-  height: 24px !important;
-  width: auto;
-}
-
-a[aria-label="GitHub"] svg {
-  color: var(--color-link);
-  fill: none;
-}
-
-a[aria-label="ReadCV"] svg {
-  color: var(--color-link);
-  fill: none;
-  width: 22px;
-}
-
 /* About Section */
 .about {
   font-weight: 400;
@@ -914,6 +889,51 @@ a[aria-label="ReadCV"] svg {
 
 .about p {
   line-height: 2;
+}
+
+/* Socials  */
+
+.social-cards {
+  display: flex;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.social-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  color: var(--color-text);
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="light"] .social-card {
+  background: #ffffff;
+  box-shadow: 6px 6px 12px rgba(163, 177, 198, 0.6),
+    -6px -6px 12px rgba(255, 255, 255, 0.8),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="dark"] .social-card {
+  background: #1a1a1a;
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.8),
+    -6px -6px 12px rgba(85, 85, 85, 0.2),
+    inset 1px 1px 1px rgba(85, 85, 85, 0.2);
+}
+
+[data-theme="solarized-dark"] .social-card {
+  background: #002b36;
+  box-shadow: 6px 6px 12px rgba(0, 21, 27, 0.8),
+    -6px -6px 12px rgba(0, 54, 66, 0.3), inset 1px 1px 1px rgba(0, 54, 66, 0.2);
+}
+
+.social-card svg {
+  width: 20px;
+  height: 20px;
 }
 
 /* Title Link */
@@ -955,73 +975,6 @@ a[aria-label="ReadCV"] svg {
   height: auto;
   border-radius: var(--border-radius);
   transition: transform 0.2s ease;
-}
-
-/* GitHub Star Button */
-.github-button-container {
-  display: inline-flex;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
-    sans-serif;
-  margin-top: 60px;
-  position: relative;
-  left: 50%;
-  transform: translate(-50%);
-}
-
-.github-main-button {
-  display: inline-flex;
-  align-items: center;
-  padding: 5px 12px;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 20px;
-  color: var(--color-text);
-  background-color: var(--color-bg);
-  border: 1px solid rgba(var(--color-text-rgb), 0.15);
-  border-radius: 6px 0 0 6px;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  gap: 6px;
-}
-
-.github-star-button {
-  display: inline-flex;
-  align-items: center;
-  padding: 5px 12px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--color-text);
-  background-color: var(--color-bg);
-  border: 1px solid rgba(var(--color-text-rgb), 0.15);
-  border-left: 0;
-  border-radius: 0 6px 6px 0;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  gap: 6px;
-}
-
-.github-icon,
-.star-icon {
-  color: currentColor;
-  transition: transform 0.2s ease;
-}
-
-.github-text {
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-.star-count {
-  min-width: 16px;
-  padding: 2px 5px;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 18px;
-  text-align: center;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  background-color: var(--code-background-color);
-  color: var(--color-text);
 }
 
 /* Desktop Media Queries */
@@ -1258,22 +1211,6 @@ a[aria-label="ReadCV"] svg {
     transform: scale(1.1);
   }
 
-  /* GitHub Button Hovers */
-  .github-main-button:hover,
-  .github-star-button:hover {
-    background-color: var(--code-background-color);
-    color: var(--color-link);
-    border-color: rgba(var(--color-text-rgb), 0.2);
-    text-decoration: none;
-    transition-duration: 0.1s;
-  }
-
-  .github-main-button:focus,
-  .github-star-button:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.3);
-  }
-
   /* Show More Button Hover */
   .show-more-button:hover {
     color: var(--color-link);
@@ -1283,5 +1220,283 @@ a[aria-label="ReadCV"] svg {
   .masonry-item img:hover {
     cursor: no-drop;
     transform: scale(1.02);
+  }
+
+  [data-theme="light"] .social-card:hover {
+    background: linear-gradient(145deg, #f0f0f0, #ffffff);
+    box-shadow: 6px 6px 12px #d9d9d9, -6px -6px 12px #ffffff,
+      inset 1px 1px 2px rgba(255, 255, 255, 0.5);
+    transform: translateY(-1px);
+  }
+
+  [data-theme="dark"] .social-card:hover {
+    background: linear-gradient(145deg, #000000, #0a0a0a);
+    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.95),
+      -6px -6px 12px rgba(30, 30, 30, 0.8),
+      inset 1px 1px 1px rgba(30, 30, 30, 0.6);
+    transform: translateY(-1px);
+  }
+
+  [data-theme="solarized-dark"] .social-card:hover {
+    background: linear-gradient(145deg, #001e29, #002733);
+    box-shadow: 6px 6px 12px rgba(0, 15, 20, 0.95),
+      -6px -6px 12px rgba(0, 45, 60, 0.8),
+      inset 1px 1px 1px rgba(0, 45, 60, 0.6);
+    transform: translateY(-1px);
+  }
+
+  .social-card:hover {
+    color: var(--color-link);
+  }
+
+  [data-theme="light"] .stat-card:hover {
+    background: #ffffff;
+    box-shadow: 8px 8px 16px rgba(163, 177, 198, 0.7),
+      -8px -8px 16px rgba(255, 255, 255, 0.9),
+      inset 1px 1px 1px rgba(255, 255, 255, 0.4);
+  }
+
+  [data-theme="dark"] .stat-card:hover {
+    background: #1a1a1a;
+    box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.9),
+      -8px -8px 16px rgba(85, 85, 85, 0.3),
+      inset 1px 1px 1px rgba(85, 85, 85, 0.3);
+  }
+
+  [data-theme="solarized-dark"] .stat-card:hover {
+    background: #002b36;
+    box-shadow: 8px 8px 16px rgba(0, 21, 27, 0.9),
+      -8px -8px 16px rgba(0, 54, 66, 0.4),
+      inset 1px 1px 1px rgba(0, 54, 66, 0.3);
+  }
+
+  .like-button:not(.liked):hover svg {
+    color: #ff0000;
+    transform: scale(1.1);
+  }
+
+  .like-button:not(.liked):not(:disabled):hover {
+    color: inherit;
+  }
+
+  .github-button:hover {
+    background-color: var(--github-hover-bg);
+    text-decoration: none;
+  }
+
+  .star-hover {
+    transform: scale(1.15);
+    fill: #ffd700;
+    stroke: #ffd700;
+  }
+}
+
+/* Base Footer Structure */
+.footer {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(var(--color-text-rgb), 0.1);
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+/* Stats Cards */
+.stats-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--color-text);
+  user-select: none;
+  white-space: nowrap;
+}
+
+/* Theme-Specific Card Styles */
+[data-theme="light"] .stat-card {
+  background: #ffffff;
+  box-shadow: 6px 6px 12px rgba(163, 177, 198, 0.6),
+    -6px -6px 12px rgba(255, 255, 255, 0.8),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="dark"] .stat-card {
+  background: #1a1a1a;
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.8),
+    -6px -6px 12px rgba(85, 85, 85, 0.2),
+    inset 1px 1px 1px rgba(85, 85, 85, 0.2);
+}
+
+[data-theme="solarized-dark"] .stat-card {
+  background: #002b36;
+  box-shadow: 6px 6px 12px rgba(0, 21, 27, 0.8),
+    -6px -6px 12px rgba(0, 54, 66, 0.3), inset 1px 1px 1px rgba(0, 54, 66, 0.2);
+}
+
+/* Like Button */
+.like-button {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform 0.2s ease;
+}
+
+.like-button:disabled {
+  cursor: default;
+  opacity: 0.7;
+}
+
+.like-button.liked svg {
+  fill: #ff0000;
+  color: #ff0000;
+}
+
+.likes-card {
+  transition: all 0.3s ease;
+}
+
+.like-button {
+  transition: all 0.3s ease;
+}
+
+.like-button svg {
+  transition: all 0.3s ease;
+}
+
+/* Weather Card */
+.weather-time-card span {
+  color: var(--color-text);
+  opacity: 0.9;
+}
+
+/* GitHub Card */
+.github-card-container {
+  display: inline-flex;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+    sans-serif;
+  font-size: 0.85rem;
+  margin-top: -0.5rem;
+}
+
+/* GitHub Theme Colors */
+[data-theme="light"] {
+  --github-bg: #f6f8fa;
+  --github-border: rgba(31, 35, 40, 0.15);
+  --github-hover-bg: #edf1f5;
+  --github-text: #24292f;
+}
+
+[data-theme="dark"] {
+  --github-bg: rgba(45, 51, 59, 0.4);
+  --github-border: rgba(240, 246, 252, 0.1);
+  --github-hover-bg: rgba(45, 51, 59, 0.8);
+  --github-text: #e6edf3;
+}
+
+[data-theme="solarized-dark"] {
+  --github-bg: rgba(7, 54, 66, 0.4);
+  --github-border: rgba(147, 161, 161, 0.1);
+  --github-hover-bg: rgba(7, 54, 66, 0.8);
+  --github-text: #93a1a1;
+}
+
+/* GitHub Button */
+.github-button {
+  display: flex;
+  align-items: center;
+  padding: 5px 16px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  background-color: var(--github-bg);
+  border: 1px solid var(--github-border);
+  border-radius: 6px;
+  color: var(--github-text);
+  transition: all 0.2s ease;
+  gap: 12px;
+}
+
+.github-button-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.github-stars {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-left: 12px;
+  border-left: 1px solid var(--github-border);
+}
+
+.star-icon {
+  transition: transform 0.15s cubic-bezier(0.2, 0, 0.13, 2);
+}
+
+/* Copyright */
+.copyright {
+  font-size: 0.8rem;
+  color: var(--blockquote-color);
+  margin-top: -0.5rem;
+}
+
+.copyright-symbol {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 500;
+}
+
+@media (max-width: 640px) {
+  .footer {
+    margin-top: 3rem;
+  }
+
+  .footer-content {
+    gap: 1.5rem;
+  }
+
+  .stats-cards {
+    gap: 1rem;
+  }
+
+  .stat-card {
+    padding: 0.45rem 0.9rem;
+    font-size: 0.8rem;
+  }
+
+  .weather-time-card span {
+    font-size: 0.75rem;
+  }
+
+  .github-card-container {
+    font-size: 0.8rem;
+  }
+
+  .github-button {
+    padding: 4px 12px;
+  }
+
+  .copyright {
+    margin-top: 10px;
+    font-size: 0.8rem;
   }
 }

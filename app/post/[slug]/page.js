@@ -4,6 +4,7 @@ import LatexRenderer from "../../../components/LatexRenderer";
 import { markdownToHtml } from "../../../lib/mdxutils";
 import dynamic from "next/dynamic";
 import "katex/dist/katex.min.css";
+import Footer from "@/components/Footer";
 
 const HighlightCode = dynamic(
   () => import("../../../components/HighlightCode"),
@@ -93,6 +94,7 @@ export default async function BlogPost({ params }) {
       </div>
       <HighlightCode />
       <ScrollToTop />
+      <Footer blogSlug={slug} />
     </article>
   );
 }

@@ -8,7 +8,7 @@ Here's the simplified structure of the project:
 
 ```plaintext
 ├── app/
-│   ├── page.js                 # Homepage
+│   ├── page.js                # Homepage
 │   ├── layout.js              # Root layout
 │   └── post/[slug]/page.js    # Blog post pages
 ├── components/
@@ -18,13 +18,13 @@ Here's the simplified structure of the project:
 │   ├── LatexRenderer.js       # Math rendering
 │   └── HighlightCode.js       # Code highlighting
 ├── lib/
-│   ├── api.js                # Data handling
-│   └── mdxutils.js           # Markdown processing
+│   ├── api.js                 # Data handling
+│   └── mdxutils.js            # Markdown processing
 ├── content/
-│   └── blog/                 # Markdown blog posts
+│   └── blog/                  # Markdown blog posts
 └── public/
-    ├── fonts/               # Custom fonts
-    └── images/              # Static images
+    ├── fonts/                 # Custom fonts
+    └── images/                # Static images
 ```
 
 ## Core Technologies
@@ -161,6 +161,34 @@ npm run build
 # Deploy to GitHub Pages
 npm run deploy
 ```
+
+## Footer
+
+The footer features neumorphic stat cards that display various metrics. Each card has a subtle shadow effect that adapts to the current theme:
+
+```css
+[data-theme="light"] .stat-card {
+  background: #ffffff;
+  box-shadow: 6px 6px 12px rgba(163, 177, 198, 0.6),
+              -6px -6px 12px rgba(255, 255, 255, 0.8);
+}
+```
+<br>
+Each blog post has a like button that stores engagement data. The likes are tracked with a simple counter that persists across sessions:
+
+
+```javascript
+const handleLike = async () => {
+  // Production uses CountAPI, development uses localStorage
+  const response = await fetch(`/api/likes/${postId}`);
+  const { likes } = await response.json();
+  setLikes(likes);
+  setHasLiked(true);
+  localStorage.setItem(`liked-${postId}`, 'true');
+};
+```
+<br>
+The footer displays my current location's (user specified) local time and weather info in real-time. For the homepage, it shows the GitHub repository's star count, while blog posts show a link to view the source markdown file.
 
 ## Future Plans
 
