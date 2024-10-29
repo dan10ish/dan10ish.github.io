@@ -1422,7 +1422,7 @@ th {
 .github-button {
   display: flex;
   align-items: center;
-  padding: 5px 16px;
+  padding: 0.5rem 1rem;
   font-weight: 500;
   text-decoration: none;
   white-space: nowrap;
@@ -1455,7 +1455,7 @@ th {
 
 /* Copyright */
 .copyright {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: var(--blockquote-color);
   margin-top: -0.5rem;
 }
@@ -1492,7 +1492,7 @@ th {
   }
 
   .github-button {
-    padding: 4px 12px;
+    padding: 0.45rem 0.9rem;
   }
 
   .copyright {
