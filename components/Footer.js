@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import {
   Eye,
   Heart,
@@ -11,14 +11,16 @@ import {
   Moon,
   Star,
 } from "lucide-react";
+import { getStats, incrementStat } from "@/lib/supabase";
 
 const LOCATION = {
   city: "Mumbai",
   timezone: "Asia/Kolkata",
 };
+
 const REPO_URL = "https://github.com/dan10ish/dan10ish.github.io";
 
-const WeatherIcon = ({ type, isNight }) => {
+const WeatherIcon = memo(({ type, isNight }) => {
   if (isNight) return <Moon size={18} />;
   switch (type) {
     case "rainy":
@@ -28,86 +30,72 @@ const WeatherIcon = ({ type, isNight }) => {
     default:
       return <Sun size={18} />;
   }
-};
+});
+
+WeatherIcon.displayName = "WeatherIcon";
 
 const Footer = ({ blogSlug = null }) => {
-  const [visits, setVisits] = useState(0);
-  const [likes, setLikes] = useState(0);
+  const [stats, setStats] = useState({ views: 0, likes: 0 });
   const [hasLiked, setHasLiked] = useState(false);
-  const [weather, setWeather] = useState({ type: "sunny", temp: 25 });
+  const [weather] = useState({ type: "sunny", temp: 25 });
   const [time, setTime] = useState("");
   const [stars, setStars] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
   const [isGithubHovered, setIsGithubHovered] = useState(false);
   const [isNight, setIsNight] = useState(false);
 
+  // Initialize stats immediately from localStorage
   useEffect(() => {
-    const initializeCounters = async () => {
-      try {
-        const pageId = blogSlug ? `post-${blogSlug}` : "home";
+    const pageId = blogSlug ? `post-${blogSlug}` : "home";
+    const cachedStats = localStorage.getItem(`stats-${pageId}`);
+    if (cachedStats) {
+      setStats(JSON.parse(cachedStats));
+    }
 
-        // Get initial stats
-        const res = await fetch(`/api/stats?id=${pageId}`);
-        const data = await res.json();
-        setVisits(data.views || 0);
-
-        if (blogSlug) {
-          setLikes(data.likes || 0);
-          const hasLiked = localStorage.getItem(`liked-${blogSlug}`);
-          setHasLiked(!!hasLiked);
-        }
-
-        // Increment view count only if not viewed in this session
-        const viewedKey = `viewed-${pageId}`;
-        if (!sessionStorage.getItem(viewedKey)) {
-          await fetch("/api/stats", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ id: pageId, type: "view" }),
-          });
-          sessionStorage.setItem(viewedKey, "true");
-        }
-      } catch (error) {
-        console.error("Error initializing counters:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    initializeCounters();
+    if (blogSlug) {
+      const hasLiked = localStorage.getItem(`liked-${blogSlug}`);
+      setHasLiked(!!hasLiked);
+    }
   }, [blogSlug]);
 
+  // Then fetch and update from server
   useEffect(() => {
-    const fetchStars = async () => {
-      if (blogSlug) return;
+    const initializeStats = async () => {
+      const pageId = blogSlug ? `post-${blogSlug}` : "home";
+      const viewedKey = `viewed-${pageId}-${new Date().toDateString()}`;
 
       try {
-        const response = await fetch(
-          "https://api.github.com/repos/dan10ish/dan10ish.github.io"
-        );
-        const data = await response.json();
-        if (data?.stargazers_count) setStars(data.stargazers_count);
+        // Get current stats
+        const currentStats = await getStats(pageId);
+        setStats(currentStats);
+
+        // Increment view if not viewed today
+        if (!sessionStorage.getItem(viewedKey)) {
+          const updatedStats = await incrementStat(pageId, "views");
+          if (updatedStats) {
+            setStats(updatedStats);
+            sessionStorage.setItem(viewedKey, "true");
+          }
+        }
       } catch (error) {
-        console.error("Error fetching stars:", error);
+        console.error("Error initializing stats:", error);
       }
     };
 
-    fetchStars();
+    initializeStats();
   }, [blogSlug]);
 
   useEffect(() => {
     const updateDateTime = () => {
       const now = new Date();
-      const hour = now.getHours();
-      setIsNight(hour >= 18 || hour < 6);
-
-      const options = {
-        hour: "numeric",
-        minute: "numeric",
-        hour12: true,
-        timeZone: LOCATION.timezone,
-      };
-      setTime(new Intl.DateTimeFormat("en-US", options).format(now));
+      setIsNight(now.getHours() >= 18 || now.getHours() < 6);
+      setTime(
+        new Intl.DateTimeFormat("en-US", {
+          hour: "numeric",
+          minute: "numeric",
+          hour12: true,
+          timeZone: LOCATION.timezone,
+        }).format(now)
+      );
     };
 
     updateDateTime();
@@ -115,20 +103,41 @@ const Footer = ({ blogSlug = null }) => {
     return () => clearInterval(timeInterval);
   }, []);
 
+  useEffect(() => {
+    if (!blogSlug) {
+      const cachedStars = localStorage.getItem("github-stars");
+      if (cachedStars) {
+        setStars(JSON.parse(cachedStars));
+      }
+
+      fetch("https://api.github.com/repos/dan10ish/dan10ish.github.io")
+        .then((res) => res.json())
+        .then((data) => {
+          if (data?.stargazers_count) {
+            setStars(data.stargazers_count);
+            localStorage.setItem(
+              "github-stars",
+              JSON.stringify(data.stargazers_count)
+            );
+          }
+        })
+        .catch(console.error);
+    }
+  }, [blogSlug]);
+
   const handleLike = async () => {
     if (hasLiked || !blogSlug) return;
 
     try {
       const pageId = `post-${blogSlug}`;
-      const res = await fetch("/api/stats", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: pageId, type: "like" }),
-      });
-      const data = await res.json();
-      setLikes(data.likes);
       setHasLiked(true);
+      setStats((prev) => ({ ...prev, likes: prev.likes + 1 }));
       localStorage.setItem(`liked-${blogSlug}`, "true");
+
+      const updatedStats = await incrementStat(pageId, "likes");
+      if (updatedStats) {
+        setStats(updatedStats);
+      }
     } catch (error) {
       console.error("Error liking post:", error);
     }
@@ -141,22 +150,23 @@ const Footer = ({ blogSlug = null }) => {
     return num;
   };
 
-  if (isLoading) return null;
-
   return (
     <footer className="footer">
       <div className="footer-content">
         <div className="stats-cards">
           <div
             className="stat-card views-card"
-            title={`${visits} total visits`}
+            title={`${stats.views} total visits`}
           >
             <Eye size={18} />
-            <span>{formatNumber(visits)}</span>
+            <span>{formatNumber(stats.views)}</span>
           </div>
 
           {blogSlug && (
-            <div className="stat-card likes-card" title={`${likes} likes`}>
+            <div
+              className="stat-card likes-card"
+              title={`${stats.likes} likes`}
+            >
               <button
                 onClick={handleLike}
                 className={`like-button ${hasLiked ? "liked" : ""}`}
@@ -164,7 +174,7 @@ const Footer = ({ blogSlug = null }) => {
                 aria-label={hasLiked ? "Already liked" : "Like this post"}
               >
                 <Heart size={18} className={hasLiked ? "fill-current" : ""} />
-                <span>{formatNumber(likes)}</span>
+                <span>{formatNumber(stats.likes)}</span>
               </button>
             </div>
           )}
@@ -220,4 +230,4 @@ const Footer = ({ blogSlug = null }) => {
   );
 };
 
-export default Footer;
+export default memo(Footer);
