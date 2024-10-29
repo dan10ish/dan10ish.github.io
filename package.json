@@ -9,7 +9,7 @@
     "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "npm run build && next-sitemap && touch out/.nojekyll && gh-pages -d out -t true"
+    "deploy": "npm run build && npm run postbuild && touch out/.nojekyll && gh-pages -d out -t true"
   },
   "dependencies": {
     "@million/lint": "^1.0.9",
