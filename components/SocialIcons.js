@@ -1,38 +1,18 @@
 import { memo } from "react";
+import { Github, Instagram, Mail, FileText } from "lucide-react";
 
 const SocialIcons = memo(() => (
-  <div className="social-cards">
-    <a
-      href="mailto:aaansaridan@gmail.com"
-      className="social-card"
-      aria-label="Email"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <rect width="20" height="16" x="2" y="4" rx="2" />
-        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-      </svg>
-    </a>
-
+  <div className="social-icons">
     <a
       href="https://x.com/dan10ish"
       target="_blank"
       rel="noopener noreferrer"
-      className="social-card"
+      className="social-icon"
       aria-label="Twitter"
     >
       <svg
-        width="20"
-        height="20"
+        width="22"
+        height="22"
         viewBox="0 0 22 25"
         fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
@@ -45,66 +25,38 @@ const SocialIcons = memo(() => (
       href="https://github.com/dan10ish"
       target="_blank"
       rel="noopener noreferrer"
-      className="social-card"
+      className="social-icon"
       aria-label="GitHub"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-      </svg>
+      <Github strokeWidth={1.5} />
+    </a>
+
+    <a
+      href="https://instagram.com/dan10ish"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="social-icon"
+      aria-label="Instagram"
+    >
+      <Instagram strokeWidth={1.5} />
+    </a>
+
+    <a
+      href="mailto:aaansaridan@gmail.com"
+      className="social-icon"
+      aria-label="Email"
+    >
+      <Mail strokeWidth={1.5} />
     </a>
 
     <a
       href="https://dan10ish.read.cv"
       target="_blank"
       rel="noopener noreferrer"
-      className="social-card"
+      className="social-icon"
       aria-label="ReadCV"
     >
-      <svg
-        width="21"
-        height="23"
-        viewBox="0 0 21 23"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <rect
-          x="1"
-          y="1"
-          width="19"
-          height="21"
-          rx="3"
-          stroke="currentColor"
-          strokeWidth="2"
-        />
-        <path
-          d="M5 6H15"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-        />
-        <path
-          d="M5 10H15"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-        />
-        <path
-          d="M5 14H12"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-        />
-      </svg>
+      <FileText strokeWidth={1.5} />
     </a>
   </div>
 ));
