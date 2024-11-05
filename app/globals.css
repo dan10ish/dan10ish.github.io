@@ -950,10 +950,17 @@ th {
 .social-icon svg {
   width: 22px;
   height: 22px;
+  margin: 0;
+  padding: 0;
 }
 
-.social-icon[aria-label="Twitter"] svg {
-  height: 20px;
+.social-icon[aria-label="LinkedIn"] svg {
+  fill: var(--color-text);
+  stroke-width: 0;
+}
+
+.social-icon[aria-label="LeetCode"] svg {
+  stroke-width: 2 !important;
 }
 
 /* Desktop Media Queries */
@@ -1240,6 +1247,10 @@ th {
   .social-icon:hover {
     opacity: 1;
     color: var(--color-link);
+  }
+
+  .social-icon[aria-label="LinkedIn"]:hover svg {
+    fill: var(--color-link);
   }
 }
 
