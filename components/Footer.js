@@ -9,6 +9,9 @@ import {
   Cloud,
   Sun,
   Moon,
+  CloudLightning,
+  Snowflake,
+  CloudFog,
   Star,
 } from "lucide-react";
 import { getStats, incrementStat, subscribeToStats } from "@/lib/supabase";
@@ -16,16 +19,27 @@ import { getStats, incrementStat, subscribeToStats } from "@/lib/supabase";
 const LOCATION = {
   city: "Mumbai",
   timezone: "Asia/Kolkata",
+  lat: "19.0760",
+  lon: "72.8777",
 };
 
 const REPO_URL = "https://github.com/dan10ish/dan10ish.github.io";
 
-const WeatherIcon = memo(({ type, isNight }) => {
+const WeatherIcon = memo(({ weatherCode, isNight }) => {
   if (isNight) return <Moon size={18} />;
-  switch (type) {
-    case "rainy":
+
+  switch (true) {
+    case weatherCode >= 95:
+      return <CloudLightning size={18} />;
+    case weatherCode >= 80:
       return <CloudRain size={18} />;
-    case "cloudy":
+    case weatherCode >= 71 && weatherCode <= 77:
+      return <Snowflake size={18} />;
+    case weatherCode >= 45 && weatherCode <= 48:
+      return <CloudFog size={18} />;
+    case weatherCode === 0:
+      return <Sun size={18} />;
+    case weatherCode >= 1 && weatherCode <= 3:
       return <Cloud size={18} />;
     default:
       return <Sun size={18} />;
@@ -37,31 +51,47 @@ WeatherIcon.displayName = "WeatherIcon";
 const Footer = ({ blogSlug = null }) => {
   const [stats, setStats] = useState({ views: 0, likes: 0 });
   const [hasLiked, setHasLiked] = useState(false);
-  const [weather] = useState({ type: "sunny", temp: 25 });
+  const [weather, setWeather] = useState({ temp: null, code: null });
   const [time, setTime] = useState("");
   const [stars, setStars] = useState(0);
   const [isGithubHovered, setIsGithubHovered] = useState(false);
   const [isNight, setIsNight] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
 
-  // Initialize stats and set up real-time subscription
+  useEffect(() => {
+    const fetchWeather = async () => {
+      try {
+        const response = await fetch(
+          `https://api.open-meteo.com/v1/forecast?latitude=${LOCATION.lat}&longitude=${LOCATION.lon}&current=temperature_2m,weather_code&timezone=${LOCATION.timezone}`
+        );
+        const data = await response.json();
+        if (data.current) {
+          setWeather({
+            temp: Math.round(data.current.temperature_2m),
+            code: data.current.weather_code,
+          });
+        }
+      } catch (error) {
+        console.error("Error fetching weather:", error);
+      }
+    };
+
+    fetchWeather();
+    const weatherInterval = setInterval(fetchWeather, 3600000);
+    return () => clearInterval(weatherInterval);
+  }, []);
+
   useEffect(() => {
     const pageId = blogSlug ? `post-${blogSlug}` : "home";
-
-    // Check if liked from session storage
     if (blogSlug) {
       const likedKey = `liked-${pageId}`;
-      const hasLiked = sessionStorage.getItem(likedKey);
-      setHasLiked(!!hasLiked);
+      setHasLiked(!!sessionStorage.getItem(likedKey));
     }
 
     const initializeStats = async () => {
       try {
-        // Get initial stats
         const initialStats = await getStats(pageId);
         setStats(initialStats);
-
-        // Check if viewed today
         const viewedKey = `viewed-${pageId}-${new Date().toDateString()}`;
         if (!sessionStorage.getItem(viewedKey)) {
           setIsUpdating(true);
@@ -78,57 +108,44 @@ const Footer = ({ blogSlug = null }) => {
       }
     };
 
-    // Set up real-time subscription
     const unsubscribe = subscribeToStats(pageId, (newStats) => {
-      if (!isUpdating) {
-        setStats(newStats);
-      }
+      if (!isUpdating) setStats(newStats);
     });
 
     initializeStats();
+    return () => unsubscribe();
+  }, [blogSlug, isUpdating]);
 
-    return () => {
-      unsubscribe();
-    };
-  }, [blogSlug]);
-
-  // Update time and night status
   useEffect(() => {
     const updateDateTime = () => {
       const now = new Date();
-      const hour = now.getHours();
-      setIsNight(hour >= 18 || hour < 6);
-
-      const options = {
-        hour: "numeric",
-        minute: "numeric",
-        hour12: true,
-        timeZone: LOCATION.timezone,
-      };
-      setTime(new Intl.DateTimeFormat("en-US", options).format(now));
+      setIsNight(now.getHours() >= 18 || now.getHours() < 6);
+      setTime(
+        new Intl.DateTimeFormat("en-US", {
+          hour: "numeric",
+          minute: "numeric",
+          hour12: true,
+          timeZone: LOCATION.timezone,
+        }).format(now)
+      );
     };
 
     updateDateTime();
     const timeInterval = setInterval(updateDateTime, 60000);
-
     return () => clearInterval(timeInterval);
   }, []);
 
-  // Fetch GitHub stars
   useEffect(() => {
     if (!blogSlug) {
-      // Try to get cached stars first
       const cachedStars = sessionStorage.getItem("github-stars");
       const cacheTime = sessionStorage.getItem("github-stars-time");
       const now = Date.now();
 
-      // Use cached stars if they're less than 1 hour old
       if (cachedStars && cacheTime && now - parseInt(cacheTime) < 3600000) {
         setStars(parseInt(cachedStars));
         return;
       }
 
-      // Fetch fresh stars count
       fetch("https://api.github.com/repos/dan10ish/dan10ish.github.io")
         .then((res) => res.json())
         .then((data) => {
@@ -147,18 +164,15 @@ const Footer = ({ blogSlug = null }) => {
 
   const handleLike = useCallback(async () => {
     if (hasLiked || !blogSlug || isUpdating) return;
-
     try {
       const pageId = `post-${blogSlug}`;
       setIsUpdating(true);
       setHasLiked(true);
-
       const updatedStats = await incrementStat(pageId, "likes");
       if (updatedStats) {
         setStats(updatedStats);
         sessionStorage.setItem(`liked-${pageId}`, "true");
       } else {
-        // Revert if update failed
         setHasLiked(false);
       }
     } catch (error) {
@@ -205,14 +219,14 @@ const Footer = ({ blogSlug = null }) => {
             </div>
           )}
 
-          {!blogSlug && (
+          {!blogSlug && weather.temp !== null && (
             <div
               className="stat-card weather-time-card"
               title={`Local time in ${LOCATION.city}`}
             >
-              <WeatherIcon type={weather.type} isNight={isNight} />
+              <WeatherIcon weatherCode={weather.code} isNight={isNight} />
               <span>
-                {Math.round(weather.temp)}° • {LOCATION.city} • {time}
+                {weather.temp}° • {LOCATION.city} • {time}
               </span>
             </div>
           )}
