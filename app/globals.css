@@ -326,10 +326,10 @@ li {
 .toc-header {
   padding: 10px 16px;
   text-align: center;
-  font-weight: 600;
+  font-weight: 500;
   border-bottom: 1px solid rgba(var(--color-text-rgb), 0.1);
   font-family: var(--font-heading);
-  font-size: 1rem;
+  font-size: 1.1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -340,7 +340,7 @@ li {
   border: none;
   padding: 4px;
   cursor: pointer;
-  color: var(--color-text);
+  color: #ff0000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -363,7 +363,7 @@ li {
 
 .toc-content li {
   margin: 0;
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   white-space: normal;
 }
 
@@ -371,7 +371,7 @@ li {
   color: var(--color-link);
   text-decoration: none;
   display: block;
-  padding: 4px 0;
+  padding: 1.5px 0;
   opacity: 1;
   font-weight: 500;
   transition: opacity 0.2s ease;
@@ -954,15 +954,6 @@ th {
   padding: 0;
 }
 
-.social-icon[aria-label="LinkedIn"] svg {
-  fill: var(--color-text);
-  stroke-width: 0;
-}
-
-.social-icon[aria-label="LeetCode"] svg {
-  stroke-width: 2 !important;
-}
-
 /* Desktop Media Queries */
 @media (min-width: 768px) {
   body {
@@ -1188,8 +1179,7 @@ th {
   }
 
   .toc-close:hover {
-    color: var(--color-link);
-    transform: scale(1.1);
+    transform: scale(1.2);
   }
 
   /* Show More Button Hover */
@@ -1247,10 +1237,6 @@ th {
   .social-icon:hover {
     opacity: 1;
     color: var(--color-link);
-  }
-
-  .social-icon[aria-label="LinkedIn"]:hover svg {
-    fill: var(--color-link);
   }
 }
 
