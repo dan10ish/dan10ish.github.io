@@ -10,8 +10,8 @@ import {
   Sun,
   Moon,
   CloudLightning,
-  Snowflake,
   CloudFog,
+  Snowflake,
   Star,
 } from "lucide-react";
 import { getStats, incrementStat, subscribeToStats } from "@/lib/supabase";
@@ -57,6 +57,31 @@ const Footer = ({ blogSlug = null }) => {
   const [isGithubHovered, setIsGithubHovered] = useState(false);
   const [isNight, setIsNight] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
+  const [currentTheme, setCurrentTheme] = useState("light");
+
+  useEffect(() => {
+    const savedTheme = window.localStorage.getItem("theme") || "light";
+    setCurrentTheme(savedTheme);
+    document.documentElement.setAttribute("data-theme", savedTheme);
+    updateMetaThemeColor(savedTheme);
+  }, []);
+
+  const updateMetaThemeColor = (theme) => {
+    const colors = {
+      light: "#ffffff",
+      dark: "#000000",
+      "solarized-dark": "#00212b",
+    };
+    const meta = document.querySelector('meta[name="theme-color"]');
+    meta?.setAttribute("content", colors[theme]);
+  };
+
+  const changeTheme = (theme) => {
+    setCurrentTheme(theme);
+    document.documentElement.setAttribute("data-theme", theme);
+    window.localStorage.setItem("theme", theme);
+    updateMetaThemeColor(theme);
+  };
 
   useEffect(() => {
     const fetchWeather = async () => {
@@ -230,6 +255,33 @@ const Footer = ({ blogSlug = null }) => {
               </span>
             </div>
           )}
+        </div>
+
+        <div className="theme-circles">
+          <button
+            onClick={() => changeTheme("light")}
+            className={`theme-circle ${
+              currentTheme === "light" ? "active" : ""
+            }`}
+            style={{ background: "#ffffff" }}
+            aria-label="Light theme"
+          />
+          <button
+            onClick={() => changeTheme("dark")}
+            className={`theme-circle ${
+              currentTheme === "dark" ? "active" : ""
+            }`}
+            style={{ background: "#000000" }}
+            aria-label="Dark theme"
+          />
+          <button
+            onClick={() => changeTheme("solarized-dark")}
+            className={`theme-circle ${
+              currentTheme === "solarized-dark" ? "active" : ""
+            }`}
+            style={{ background: "#00212b" }}
+            aria-label="Solarized dark theme"
+          />
         </div>
 
         <div className="github-card-container">

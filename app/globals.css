@@ -223,35 +223,36 @@ li {
 }
 
 /* Theme Controls */
-.theme-dropdown {
-  position: relative;
-}
-
-.theme-options {
-  position: absolute;
-  top: calc(100% + 8px);
-  right: 0;
-  background: var(--code-background-color);
-  padding: 6px;
-  border-radius: 6px;
+.theme-circles {
   display: flex;
+  align-items: center;
   gap: 8px;
-  visibility: hidden;
-  opacity: 0;
-  transform: translateY(-10px);
-  transition: all 0.2s ease;
-  pointer-events: none;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 0.5rem;
+  padding: 8px;
+  border-radius: 10px;
 }
 
-.theme-options.open {
-  visibility: visible;
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: all;
+[data-theme="light"] .theme-circles {
+  background: #ffffff;
+  box-shadow: 6px 6px 12px rgba(163, 177, 198, 0.6),
+    -6px -6px 12px rgba(255, 255, 255, 0.8),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.3);
 }
 
-.theme-option {
+[data-theme="dark"] .theme-circles {
+  background: #1a1a1a;
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.8),
+    -6px -6px 12px rgba(85, 85, 85, 0.2),
+    inset 1px 1px 1px rgba(85, 85, 85, 0.2);
+}
+
+[data-theme="solarized-dark"] .theme-circles {
+  background: #002b36;
+  box-shadow: 6px 6px 12px rgba(0, 21, 27, 0.8),
+    -6px -6px 12px rgba(0, 54, 66, 0.3), inset 1px 1px 1px rgba(0, 54, 66, 0.2);
+}
+
+.theme-circle {
   width: 20px;
   height: 20px;
   border: none;
@@ -263,22 +264,9 @@ li {
   position: relative;
 }
 
-.theme-option::after {
-  content: "";
-  position: absolute;
-  inset: -3px;
-  border: 2px solid transparent;
-  border-radius: 50%;
-  transition: all 0.2s ease;
-}
-
-.theme-option.active::after {
-  border-color: var(--color-link);
-}
-
-.theme-icon-btn svg {
-  height: 21px;
-  width: auto;
+.theme-circle.active {
+  transform: scale(1.15);
+  box-shadow: 0 0 0 2px var(--color-link);
 }
 
 /* Table of Contents */
@@ -1093,8 +1081,7 @@ th {
   }
 
   .home-icon-btn:hover svg,
-  .pictures-icon-btn:hover svg,
-  .theme-icon-btn:hover svg {
+  .pictures-icon-btn:hover svg {
     color: var(--color-link);
   }
 
@@ -1102,13 +1089,8 @@ th {
     stroke-width: 2.2;
   }
 
-  .theme-icon-btn:hover svg {
-    transform: rotate(90deg);
-  }
-
-  .theme-option:hover {
+  .theme-circle:not(.active):hover {
     transform: scale(1.1);
-    border-color: var(--color-link);
   }
 
   /* Project Card Hovers */
