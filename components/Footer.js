@@ -14,48 +14,24 @@ const Footer = ({ blogSlug = null }) => {
   const [isUpdating, setIsUpdating] = useState(false);
   const [currentTheme, setCurrentTheme] = useState("light");
 
-  // Updated useEffect for theme initialization
   useEffect(() => {
-    const getInitialTheme = () => {
-      const savedTheme = window.localStorage.getItem("theme");
-      if (savedTheme) return savedTheme;
+    const savedTheme = localStorage.getItem("theme") || "light";
+    setCurrentTheme(savedTheme);
+    document.documentElement.setAttribute("data-theme", savedTheme);
 
-      return window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light";
-    };
-
-    const initialTheme = getInitialTheme();
-    setCurrentTheme(initialTheme);
-    document.documentElement.setAttribute("data-theme", initialTheme);
-    updateMetaThemeColor(initialTheme);
-
-    // Listen for system theme changes
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleChange = (e) => {
-      if (!window.localStorage.getItem("theme")) {
-        const newTheme = e.matches ? "dark" : "light";
-        setCurrentTheme(newTheme);
-        document.documentElement.setAttribute("data-theme", newTheme);
-        updateMetaThemeColor(newTheme);
-      }
-    };
-
-    mediaQuery.addListener(handleChange);
-    return () => mediaQuery.removeListener(handleChange);
-  }, []);
-
-  const updateMetaThemeColor = (theme) => {
-    const colors = {
-      light: "#ffffff",
-      dark: "#000000",
-      "solarized-dark": "#00212b",
-    };
+    // Always ensure meta theme-color exists and is correct
     const meta = document.querySelector('meta[name="theme-color"]');
+    const color = savedTheme === "dark" ? "#000000" : "#ffffff";
+
     if (meta) {
-      meta.setAttribute("content", colors[theme]);
+      meta.content = color;
+    } else {
+      const newMeta = document.createElement("meta");
+      newMeta.name = "theme-color";
+      newMeta.content = color;
+      document.head.appendChild(newMeta);
     }
-  };
+  }, []);
 
   useEffect(() => {
     const pageId = blogSlug ? `post-${blogSlug}` : "home";
@@ -150,8 +126,20 @@ const Footer = ({ blogSlug = null }) => {
   const changeTheme = (theme) => {
     setCurrentTheme(theme);
     document.documentElement.setAttribute("data-theme", theme);
-    window.localStorage.setItem("theme", theme);
-    updateMetaThemeColor(theme);
+    localStorage.setItem("theme", theme);
+
+    // Update meta theme-color
+    const color = theme === "dark" ? "#000000" : "#ffffff";
+    const meta = document.querySelector('meta[name="theme-color"]');
+
+    if (meta) {
+      meta.content = color;
+    } else {
+      const newMeta = document.createElement("meta");
+      newMeta.name = "theme-color";
+      newMeta.content = color;
+      document.head.appendChild(newMeta);
+    }
   };
 
   return (

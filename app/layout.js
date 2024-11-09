@@ -52,33 +52,12 @@ export default function RootLayout({ children }) {
         />
         <link rel="manifest" href="/manifest.json" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="theme-color" content="#ffffff" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              (function() {
-                function getInitialTheme() {
-                  const persistedTheme = window.localStorage.getItem('theme');
-                  const hasPersistedTheme = typeof persistedTheme === 'string';
-                  if (hasPersistedTheme) {
-                    return persistedTheme;
-                  }
-                  const mql = window.matchMedia('(prefers-color-scheme: dark)');
-                  const hasMediaQueryPreference = typeof mql.matches === 'boolean';
-                  if (hasMediaQueryPreference) {
-                    return mql.matches ? 'dark' : 'light';
-                  }
-                  return 'light';
-                }
-                const theme = getInitialTheme();
-                document.documentElement.setAttribute('data-theme', theme);
-                const colors = {
-                  light: '#ffffff',
-                  dark: '#000000',
-                  'solarized-dark': '#00212b'
-                };
-                document.querySelector('meta[name="theme-color"]').setAttribute('content', colors[theme]);
-              })();
+              const savedTheme = localStorage.getItem('theme') || 'light';
+              document.documentElement.setAttribute('data-theme', savedTheme);
+              document.head.innerHTML += '<meta name="theme-color" content="' + (savedTheme === 'dark' ? '#000000' : '#ffffff') + '">';
             `,
           }}
         />
