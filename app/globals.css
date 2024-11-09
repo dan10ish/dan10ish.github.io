@@ -67,6 +67,52 @@
   --color-text-rgb: 255, 255, 255;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --color-bg: #000000;
+    --color-text: #ffffff;
+    --color-link: #0096fa;
+    --blockquote-color: #93a1a1;
+    --code-background-color: #1e1e1e;
+    --code-color: #d4d4d4;
+    --syntax-comment: #6a9955;
+    --syntax-keyword: #569cd6;
+    --syntax-number: #b5cea8;
+    --syntax-string: #ce9178;
+    --syntax-title: #dcdcaa;
+    --syntax-type: #4ec9b0;
+    --syntax-tag: #569cd6;
+    --syntax-regexp: #d16969;
+    --syntax-symbol: #d4d4d4;
+    --syntax-builtin: #4ec9b0;
+    --syntax-meta: #9cdcfe;
+    --color-text-rgb: 255, 255, 255;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    --color-bg: #ffffff;
+    --color-text: #333333;
+    --color-link: #0070f3;
+    --blockquote-color: #6c757d;
+    --code-background-color: #eeeeee;
+    --code-color: #333333;
+    --syntax-comment: #6a737d;
+    --syntax-keyword: #d73a49;
+    --syntax-number: #005cc5;
+    --syntax-string: #032f62;
+    --syntax-title: #6f42c1;
+    --syntax-type: #d73a49;
+    --syntax-tag: #22863a;
+    --syntax-regexp: #032f62;
+    --syntax-symbol: #005cc5;
+    --syntax-builtin: #6f42c1;
+    --syntax-meta: #6a737d;
+    --color-text-rgb: 51, 51, 51;
+  }
+}
+
 html,
 body {
   overscroll-behavior: none;
@@ -194,7 +240,7 @@ li {
   border-radius: 6px;
   cursor: pointer;
   color: var(--color-text);
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
 .home-icon-btn svg {
@@ -265,7 +311,7 @@ li {
   justify-content: center;
   cursor: pointer;
   color: var(--color-text);
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease;
   padding: 6px;
 }
 
@@ -635,7 +681,6 @@ th {
   padding: 16px 24px;
   border-radius: 12px;
   background: var(--color-bg);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
 }
@@ -660,7 +705,7 @@ th {
   font-size: 1rem;
   line-height: 1.5;
   color: var(--color-text);
-  transition: color 0.3s ease;
+  transition: transform 0.3s ease;
   font-weight: 500;
 }
 
@@ -693,7 +738,7 @@ th {
   border: 1px solid rgba(var(--color-text-rgb), 0.1);
   border-radius: 8px;
   background: var(--color-bg);
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
 .project-content {
@@ -704,6 +749,7 @@ th {
 }
 
 .project-title {
+  font-family: "Geist Mono";
   font-size: 0.85rem;
   margin: 0;
   font-weight: 500;
@@ -735,7 +781,7 @@ th {
 /* Tag Filter */
 .tag-filter-container {
   overflow-x: auto;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
   padding-bottom: 4px;
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -753,7 +799,7 @@ th {
 .tag {
   background-color: var(--code-background-color);
   color: var(--color-text);
-  padding: 4px 12px;
+  padding: 6px 12px;
   border-radius: 6px;
   font-size: 0.75rem;
   border: none;
@@ -787,7 +833,7 @@ th {
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
-  transition: color 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .show-more-button svg {
@@ -832,7 +878,6 @@ th {
 }
 
 /* Socials  */
-
 .social-icons {
   display: flex;
   gap: 1rem;
@@ -1166,18 +1211,6 @@ th {
   color: #ff0000;
 }
 
-.likes-card {
-  transition: all 0.3s ease;
-}
-
-.like-button {
-  transition: all 0.3s ease;
-}
-
-.like-button svg {
-  transition: all 0.3s ease;
-}
-
 /* Weather Card */
 .weather-time-card span {
   color: var(--color-text);
@@ -1219,7 +1252,7 @@ th {
   border: 1px solid var(--github-border);
   border-radius: 6px;
   color: var(--github-text);
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease;
   gap: 12px;
 }
 

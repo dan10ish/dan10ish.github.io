@@ -14,11 +14,35 @@ const Footer = ({ blogSlug = null }) => {
   const [isUpdating, setIsUpdating] = useState(false);
   const [currentTheme, setCurrentTheme] = useState("light");
 
+  // Updated useEffect for theme initialization
   useEffect(() => {
-    const savedTheme = window.localStorage.getItem("theme") || "light";
-    setCurrentTheme(savedTheme);
-    document.documentElement.setAttribute("data-theme", savedTheme);
-    updateMetaThemeColor(savedTheme);
+    const getInitialTheme = () => {
+      const savedTheme = window.localStorage.getItem("theme");
+      if (savedTheme) return savedTheme;
+
+      return window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+    };
+
+    const initialTheme = getInitialTheme();
+    setCurrentTheme(initialTheme);
+    document.documentElement.setAttribute("data-theme", initialTheme);
+    updateMetaThemeColor(initialTheme);
+
+    // Listen for system theme changes
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleChange = (e) => {
+      if (!window.localStorage.getItem("theme")) {
+        const newTheme = e.matches ? "dark" : "light";
+        setCurrentTheme(newTheme);
+        document.documentElement.setAttribute("data-theme", newTheme);
+        updateMetaThemeColor(newTheme);
+      }
+    };
+
+    mediaQuery.addListener(handleChange);
+    return () => mediaQuery.removeListener(handleChange);
   }, []);
 
   const updateMetaThemeColor = (theme) => {
@@ -28,14 +52,9 @@ const Footer = ({ blogSlug = null }) => {
       "solarized-dark": "#00212b",
     };
     const meta = document.querySelector('meta[name="theme-color"]');
-    meta?.setAttribute("content", colors[theme]);
-  };
-
-  const changeTheme = (theme) => {
-    setCurrentTheme(theme);
-    document.documentElement.setAttribute("data-theme", theme);
-    window.localStorage.setItem("theme", theme);
-    updateMetaThemeColor(theme);
+    if (meta) {
+      meta.setAttribute("content", colors[theme]);
+    }
   };
 
   useEffect(() => {
@@ -127,6 +146,13 @@ const Footer = ({ blogSlug = null }) => {
     if (num >= 1000) return (num / 1000).toFixed(1) + "k";
     return num;
   }, []);
+
+  const changeTheme = (theme) => {
+    setCurrentTheme(theme);
+    document.documentElement.setAttribute("data-theme", theme);
+    window.localStorage.setItem("theme", theme);
+    updateMetaThemeColor(theme);
+  };
 
   return (
     <footer className="footer">

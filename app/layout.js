@@ -40,7 +40,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="icon" href="https://i.ibb.co/vYPYQd1/favicon.jpg" />
         <link
@@ -53,12 +53,44 @@ export default function RootLayout({ children }) {
         <link rel="manifest" href="/manifest.json" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="theme-color" content="#ffffff" />
+
+        {/* Script for preventing FOUC and handling system theme */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                function getInitialTheme() {
+                  const persistedTheme = window.localStorage.getItem('theme');
+                  const hasPersistedTheme = typeof persistedTheme === 'string';
+                  if (hasPersistedTheme) {
+                    return persistedTheme;
+                  }
+                  const mql = window.matchMedia('(prefers-color-scheme: dark)');
+                  const hasMediaQueryPreference = typeof mql.matches === 'boolean';
+                  if (hasMediaQueryPreference) {
+                    return mql.matches ? 'dark' : 'light';
+                  }
+                  return 'light';
+                }
+                const theme = getInitialTheme();
+                document.documentElement.setAttribute('data-theme', theme);
+                const colors = {
+                  light: '#ffffff',
+                  dark: '#000000',
+                  'solarized-dark': '#00212b'
+                };
+                document.querySelector('meta[name="theme-color"]').setAttribute('content', colors[theme]);
+              })();
+            `,
+          }}
+        />
+
         {/* Google Analytics */}
         <Script
-          strategy="beforeInteractive"
+          strategy="afterInteractive"
           src="https://www.googletagmanager.com/gtag/js?id=G-LFVKYT7HBL"
         />
-        <Script id="google-analytics" strategy="beforeInteractive">
+        <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -69,21 +101,20 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <Suspense fallback={null}>
-          {/* <ThemeSelector /> */}
           <HamburgerMenu />
         </Suspense>
         <main className="container">{children}</main>
         <Script id="location-handler" strategy="afterInteractive">
           {`
             (function (l) {
-              if (l.search[1] === "/") {
+              if (l.search[1] === '/') {
                 var decoded = l.search
                   .slice(1)
-                  .split("&")
+                  .split('&')
                   .map(function (s) {
-                    return s.replace(/~and~/g, "&");
+                    return s.replace(/~and~/g, '&');
                   })
-                  .join("?");
+                  .join('?');
                 window.history.replaceState(
                   null,
                   null,
