@@ -1,0 +1,16 @@
+{
+  "name": "Danish",
+  "short_name": "Danish",
+  "description": "Danish's personal website",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64",
+      "type": "image/x-icon"
+    }
+  ]
+}

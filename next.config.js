@@ -9,24 +9,20 @@ const nextConfig = {
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
     NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
   },
-  webpack: (config) => {
-    // Enable filesystem caching
-    config.cache = {
-      type: "filesystem",
-      buildDependencies: {
-        config: [__filename],
-      },
-    };
-
-    // Keep your existing markdown loader
+  webpack: (config, { dev }) => {
+    // Add markdown loader
     config.module.rules.push({
       test: /\.md$/,
       use: "raw-loader",
     });
 
+    // Disable caching in development
+    if (dev) {
+      config.cache = false;
+    }
+
     return config;
   },
-  // Safe optimizations that won't affect functionality
   swcMinify: true,
   poweredByHeader: false,
 };
