@@ -1,4 +1,4 @@
-import { getBlogPost, getBlogPosts } from "../../../lib/api";
+import { getBlogPost, getBlogPosts } from "../../../lib/posts";
 import ScrollToTop from "../../../components/ScrollToTop";
 import LatexRenderer from "../../../components/LatexRenderer";
 import { markdownToHtml } from "../../../lib/mdxutils";

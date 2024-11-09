@@ -52,15 +52,7 @@ export default function RootLayout({ children }) {
         />
         <link rel="manifest" href="/manifest.json" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              const savedTheme = localStorage.getItem('theme') || 'light';
-              document.documentElement.setAttribute('data-theme', savedTheme);
-              document.head.innerHTML += '<meta name="theme-color" content="' + (savedTheme === 'dark' ? '#000000' : '#ffffff') + '">';
-            `,
-          }}
-        />
+        <meta name="theme-color" content="#ffffff" />
       </head>
       <body>
         <Suspense fallback={null}>

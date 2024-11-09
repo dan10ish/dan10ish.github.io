@@ -4,6 +4,40 @@ import React, { useState, useEffect, memo, useCallback } from "react";
 import { Eye, Heart, Github, Star } from "lucide-react";
 import { getStats, incrementStat, subscribeToStats } from "@/lib/supabase";
 
+const ThemeInitializer = () => {
+  useEffect(() => {
+    const initializeTheme = () => {
+      const savedTheme = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+      const theme = savedTheme || (prefersDark ? "dark" : "light");
+
+      document.documentElement.setAttribute("data-theme", theme);
+      localStorage.setItem("theme", theme);
+
+      const meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) {
+        meta.content = theme === "dark" ? "#000000" : "#ffffff";
+      }
+    };
+
+    initializeTheme();
+
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleChange = () => {
+      if (!localStorage.getItem("theme")) {
+        initializeTheme();
+      }
+    };
+
+    mediaQuery.addListener(handleChange);
+    return () => mediaQuery.removeListener(handleChange);
+  }, []);
+
+  return null;
+};
+
 const REPO_URL = "https://github.com/dan10ish/dan10ish.github.io";
 
 const Footer = ({ blogSlug = null }) => {
@@ -15,22 +49,12 @@ const Footer = ({ blogSlug = null }) => {
   const [currentTheme, setCurrentTheme] = useState("light");
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") || "light";
-    setCurrentTheme(savedTheme);
-    document.documentElement.setAttribute("data-theme", savedTheme);
-
-    // Always ensure meta theme-color exists and is correct
-    const meta = document.querySelector('meta[name="theme-color"]');
-    const color = savedTheme === "dark" ? "#000000" : "#ffffff";
-
-    if (meta) {
-      meta.content = color;
-    } else {
-      const newMeta = document.createElement("meta");
-      newMeta.name = "theme-color";
-      newMeta.content = color;
-      document.head.appendChild(newMeta);
-    }
+    const theme =
+      localStorage.getItem("theme") ||
+      (window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light");
+    setCurrentTheme(theme);
   }, []);
 
   useEffect(() => {
@@ -128,104 +152,101 @@ const Footer = ({ blogSlug = null }) => {
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
 
-    // Update meta theme-color
-    const color = theme === "dark" ? "#000000" : "#ffffff";
     const meta = document.querySelector('meta[name="theme-color"]');
-
     if (meta) {
-      meta.content = color;
-    } else {
-      const newMeta = document.createElement("meta");
-      newMeta.name = "theme-color";
-      newMeta.content = color;
-      document.head.appendChild(newMeta);
+      meta.content = theme === "dark" ? "#000000" : "#ffffff";
     }
   };
 
   return (
-    <footer className="footer">
-      <div className="footer-content">
-        <div className="stats-cards">
-          <div
-            className={`stat-card views-card ${isUpdating ? "updating" : ""}`}
-            title={`${stats.views} total visits`}
-          >
-            <Eye size={18} />
-            <span>{formatNumber(stats.views)}</span>
-          </div>
-
-          {blogSlug && (
+    <>
+      <ThemeInitializer />
+      <footer className="footer">
+        <div className="footer-content">
+          <div className="stats-cards">
             <div
-              className={`stat-card likes-card ${isUpdating ? "updating" : ""}`}
-              title={`${stats.likes} likes`}
+              className={`stat-card views-card ${isUpdating ? "updating" : ""}`}
+              title={`${stats.views} total visits`}
             >
-              <button
-                onClick={handleLike}
-                className={`like-button ${hasLiked ? "liked" : ""}`}
-                disabled={hasLiked || isUpdating}
-                aria-label={hasLiked ? "Already liked" : "Like this post"}
+              <Eye size={18} />
+              <span>{formatNumber(stats.views)}</span>
+            </div>
+
+            {blogSlug && (
+              <div
+                className={`stat-card likes-card ${
+                  isUpdating ? "updating" : ""
+                }`}
+                title={`${stats.likes} likes`}
               >
-                <Heart size={18} className={hasLiked ? "fill-current" : ""} />
-                <span>{formatNumber(stats.likes)}</span>
-              </button>
-            </div>
-          )}
-        </div>
-
-        <div className="theme-circles">
-          <button
-            onClick={() => changeTheme("light")}
-            className={`theme-circle ${
-              currentTheme === "light" ? "active" : ""
-            }`}
-            style={{ background: "#ffffff" }}
-            aria-label="Light theme"
-          />
-          <button
-            onClick={() => changeTheme("dark")}
-            className={`theme-circle ${
-              currentTheme === "dark" ? "active" : ""
-            }`}
-            style={{ background: "#000000" }}
-            aria-label="Dark theme"
-          />
-        </div>
-
-        <div className="github-card-container">
-          <a
-            href={
-              blogSlug
-                ? `${REPO_URL}/blob/main/content/blog/${blogSlug}.md`
-                : REPO_URL
-            }
-            target="_blank"
-            rel="noopener noreferrer"
-            className="github-button"
-            onMouseEnter={() => setIsGithubHovered(true)}
-            onMouseLeave={() => setIsGithubHovered(false)}
-          >
-            <div className="github-button-content">
-              <Github size={16} />
-              <span>{blogSlug ? "View Source" : "View on GitHub"}</span>
-            </div>
-            {!blogSlug && (
-              <div className="github-stars">
-                <Star
-                  size={16}
-                  className={isGithubHovered ? "star-hover" : ""}
-                />
-                <span>{stars}</span>
+                <button
+                  onClick={handleLike}
+                  className={`like-button ${hasLiked ? "liked" : ""}`}
+                  disabled={hasLiked || isUpdating}
+                  aria-label={hasLiked ? "Already liked" : "Like this post"}
+                >
+                  <Heart size={18} className={hasLiked ? "fill-current" : ""} />
+                  <span>{formatNumber(stats.likes)}</span>
+                </button>
               </div>
             )}
-          </a>
-        </div>
+          </div>
 
-        <div className="copyright">
-          <span className="copyright-symbol">©</span> {new Date().getFullYear()}{" "}
-          Danish
+          <div className="theme-circles">
+            <button
+              onClick={() => changeTheme("light")}
+              className={`theme-circle ${
+                currentTheme === "light" ? "active" : ""
+              }`}
+              style={{ background: "#ffffff" }}
+              aria-label="Light theme"
+            />
+            <button
+              onClick={() => changeTheme("dark")}
+              className={`theme-circle ${
+                currentTheme === "dark" ? "active" : ""
+              }`}
+              style={{ background: "#000000" }}
+              aria-label="Dark theme"
+            />
+          </div>
+
+          <div className="github-card-container">
+            <a
+              href={
+                blogSlug
+                  ? `${REPO_URL}/blob/main/content/blog/${blogSlug}.md`
+                  : REPO_URL
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+              className="github-button"
+              onMouseEnter={() => setIsGithubHovered(true)}
+              onMouseLeave={() => setIsGithubHovered(false)}
+            >
+              <div className="github-button-content">
+                <Github size={16} />
+                <span>{blogSlug ? "View Source" : "View on GitHub"}</span>
+              </div>
+              {!blogSlug && (
+                <div className="github-stars">
+                  <Star
+                    size={16}
+                    className={isGithubHovered ? "star-hover" : ""}
+                  />
+                  <span>{stars}</span>
+                </div>
+              )}
+            </a>
+          </div>
+
+          <div className="copyright">
+            <span className="copyright-symbol">©</span>{" "}
+            {new Date().getFullYear()} Danish
+          </div>
         </div>
-      </div>
-    </footer>
+      </footer>
+    </>
   );
 };
 

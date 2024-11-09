@@ -1,6 +1,7 @@
 "use client";
 import { useState, useMemo } from "react";
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 
 function formatDate(dateString) {
   const date = new Date(dateString);
@@ -32,6 +33,7 @@ export default function BlogList({ posts }) {
 
   const handleTagClick = (tag) => {
     setSelectedTag(tag === selectedTag ? null : tag);
+    setShowAll(false); // Reset showAll when changing tags
   };
 
   const toggleShowAll = () => {
@@ -55,17 +57,30 @@ export default function BlogList({ posts }) {
         </div>
       </div>
       <ul>
-        {displayedPosts.map((post) => (
-          <li key={post.slug} className="blog-list-item">
-            <Link href={`/post/${post.slug}`} className="blog-card-link">
-              <div className="blog-list-content">
-                <div className="blog-list-title">{post.title}</div>
-                <div className="blog-list-meta">
-                  <span>{formatDate(post.date)}</span>
-                  <span className="dot">•</span>
-                  <span>{post.readingTime}</span>
+        {displayedPosts.map((post, index) => (
+          <li
+            key={post.slug}
+            className={`blog-item ${
+              (!showAll && index >= Math.min(2, filteredPosts.length - 1)) ||
+              (showAll && index === filteredPosts.length - 1)
+                ? "last-item"
+                : ""
+            }`}
+          >
+            <Link href={`/post/${post.slug}`} className="blog-card">
+              <article className="blog-card-inner">
+                <div className="post-content">
+                  <h3 className="post-title">
+                    {post.title}
+                    <ArrowUpRight size={18} className="arrow-icon" />
+                  </h3>
+                  <div className="post-meta">
+                    <span className="post-date">{formatDate(post.date)}</span>
+                    <span className="dot">•</span>
+                    <span className="read-time">{post.readingTime}</span>
+                  </div>
                 </div>
-              </div>
+              </article>
             </Link>
           </li>
         ))}
@@ -73,7 +88,7 @@ export default function BlogList({ posts }) {
       {filteredPosts.length > 3 && (
         <div className="show-more-container">
           <button onClick={toggleShowAll} className="show-more-button">
-            {showAll ? "Less" : "More"}
+            {showAll ? "Show Less" : "Show More"}
             <svg
               width="24"
               height="24"
