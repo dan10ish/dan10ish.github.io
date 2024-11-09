@@ -742,14 +742,14 @@ th {
 }
 
 .project-content {
-  padding: 12px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
 .project-title {
-  font-family: "Geist Mono";
+  font-family: "Geist Mono", monospace;
   font-size: 0.85rem;
   margin: 0;
   font-weight: 500;
@@ -776,6 +776,7 @@ th {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 4px;
 }
 
 /* Tag Filter */

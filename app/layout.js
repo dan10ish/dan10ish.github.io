@@ -53,8 +53,6 @@ export default function RootLayout({ children }) {
         <link rel="manifest" href="/manifest.json" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="theme-color" content="#ffffff" />
-
-        {/* Script for preventing FOUC and handling system theme */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -84,20 +82,6 @@ export default function RootLayout({ children }) {
             `,
           }}
         />
-
-        {/* Google Analytics */}
-        <Script
-          strategy="afterInteractive"
-          src="https://www.googletagmanager.com/gtag/js?id=G-LFVKYT7HBL"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-LFVKYT7HBL');
-          `}
-        </Script>
       </head>
       <body>
         <Suspense fallback={null}>

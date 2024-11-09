@@ -19,7 +19,7 @@ const ProjectCard = ({ project }) => {
                 className="project-link"
                 aria-label="View source code"
               >
-                <Github size={16} />
+                <Github size={20} />
               </a>
             )}
             {project.projectLink && (
@@ -30,7 +30,7 @@ const ProjectCard = ({ project }) => {
                 className="project-link"
                 aria-label="View live project"
               >
-                <Globe size={16} />
+                <Globe size={20} />
               </a>
             )}
           </div>
