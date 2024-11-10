@@ -655,7 +655,7 @@ th {
 .blog-card-inner {
   display: flex;
   align-items: flex-start;
-  padding: 1rem 0;
+  padding: 0.8rem 0;
   position: relative;
 }
 
@@ -771,7 +771,7 @@ th {
 /* Mobile Adjustments */
 @media (max-width: 640px) {
   .blog-card-inner {
-    padding: 1rem 0;
+    padding: 0.6rem 0;
   }
 
   .post-title {
@@ -810,6 +810,7 @@ th {
 
 .project-row.filtered {
   opacity: 0.15;
+  pointer-events: none;
 }
 
 .project-row:not(:last-child)::after {
