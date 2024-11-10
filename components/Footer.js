@@ -163,86 +163,95 @@ const Footer = ({ blogSlug = null }) => {
       <ThemeInitializer />
       <footer className="footer">
         <div className="footer-content">
-          <div className="stats-cards">
-            <div
-              className={`stat-card views-card ${isUpdating ? "updating" : ""}`}
-              title={`${stats.views} total visits`}
-            >
-              <Eye size={18} />
-              <span>{formatNumber(stats.views)}</span>
-            </div>
-
-            {blogSlug && (
+          <div className="footer-row">
+            <div className="stats-cards">
               <div
-                className={`stat-card likes-card ${
+                className={`stat-card views-card ${
                   isUpdating ? "updating" : ""
                 }`}
-                title={`${stats.likes} likes`}
+                title={`${stats.views} total visits`}
               >
-                <button
-                  onClick={handleLike}
-                  className={`like-button ${hasLiked ? "liked" : ""}`}
-                  disabled={hasLiked || isUpdating}
-                  aria-label={hasLiked ? "Already liked" : "Like this post"}
+                <Eye size={18} />
+                <span>{formatNumber(stats.views)}</span>
+              </div>
+
+              {blogSlug && (
+                <div
+                  className={`stat-card likes-card ${
+                    isUpdating ? "updating" : ""
+                  }`}
+                  title={`${stats.likes} likes`}
                 >
-                  <Heart size={18} className={hasLiked ? "fill-current" : ""} />
-                  <span>{formatNumber(stats.likes)}</span>
-                </button>
-              </div>
-            )}
-          </div>
-
-          <div className="theme-circles">
-            <button
-              onClick={() => changeTheme("light")}
-              className={`theme-circle ${
-                currentTheme === "light" ? "active" : ""
-              }`}
-              style={{ background: "#ffffff" }}
-              aria-label="Light theme"
-            />
-            <button
-              onClick={() => changeTheme("dark")}
-              className={`theme-circle ${
-                currentTheme === "dark" ? "active" : ""
-              }`}
-              style={{ background: "#000000" }}
-              aria-label="Dark theme"
-            />
-          </div>
-
-          <div className="github-card-container">
-            <a
-              href={
-                blogSlug
-                  ? `${REPO_URL}/blob/main/content/blog/${blogSlug}.md`
-                  : REPO_URL
-              }
-              target="_blank"
-              rel="noopener noreferrer"
-              className="github-button"
-              onMouseEnter={() => setIsGithubHovered(true)}
-              onMouseLeave={() => setIsGithubHovered(false)}
-            >
-              <div className="github-button-content">
-                <Github size={16} />
-                <span>{blogSlug ? "View Source" : "View on GitHub"}</span>
-              </div>
-              {!blogSlug && (
-                <div className="github-stars">
-                  <Star
-                    size={16}
-                    className={isGithubHovered ? "star-hover" : ""}
-                  />
-                  <span>{stars}</span>
+                  <button
+                    onClick={handleLike}
+                    className={`like-button ${hasLiked ? "liked" : ""}`}
+                    disabled={hasLiked || isUpdating}
+                    aria-label={hasLiked ? "Already liked" : "Like this post"}
+                  >
+                    <Heart
+                      size={18}
+                      className={hasLiked ? "fill-current" : ""}
+                    />
+                    <span>{formatNumber(stats.likes)}</span>
+                  </button>
                 </div>
               )}
-            </a>
+            </div>
+
+            <div className="github-card-container">
+              <a
+                href={
+                  blogSlug
+                    ? `${REPO_URL}/blob/main/content/blog/${blogSlug}.md`
+                    : REPO_URL
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+                className="github-button"
+                onMouseEnter={() => setIsGithubHovered(true)}
+                onMouseLeave={() => setIsGithubHovered(false)}
+              >
+                <div className="github-button-content">
+                  <Github size={16} />
+                  <span>{blogSlug ? "View Source" : "View on GitHub"}</span>
+                </div>
+                {!blogSlug && (
+                  <div className="github-stars">
+                    <Star
+                      size={16}
+                      className={isGithubHovered ? "star-hover" : ""}
+                    />
+                    <span>{stars}</span>
+                  </div>
+                )}
+              </a>
+            </div>
           </div>
 
-          <div className="copyright">
-            <span className="copyright-symbol">©</span>{" "}
-            {new Date().getFullYear()} Danish
+          <div className="footer-row">
+            <div className="copyright">
+              <span className="copyright-symbol">©</span>{" "}
+              {new Date().getFullYear()} Danish
+            </div>
+
+            <div className="theme-circles">
+              <button
+                onClick={() => changeTheme("light")}
+                className={`theme-circle ${
+                  currentTheme === "light" ? "active" : ""
+                }`}
+                style={{ background: "#ffffff" }}
+                aria-label="Light theme"
+              />
+              <button
+                onClick={() => changeTheme("dark")}
+                className={`theme-circle ${
+                  currentTheme === "dark" ? "active" : ""
+                }`}
+                style={{ background: "#000000" }}
+                aria-label="Dark theme"
+              />
+            </div>
           </div>
         </div>
       </footer>

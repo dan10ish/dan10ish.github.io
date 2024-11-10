@@ -4,36 +4,37 @@ import React, { useState, useMemo } from "react";
 import { getProjects } from "../lib/projects";
 import { Github, Globe } from "lucide-react";
 
-const ProjectCard = ({ project }) => {
+const ProjectCard = ({ project, isFiltered }) => {
   return (
-    <div className="project-card">
-      <div className="project-content">
-        <h3 className="project-title">{project.title}</h3>
-        <div className="project-footer">
-          <div className="project-links">
-            {project.sourceLink && (
-              <a
-                href={project.sourceLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="project-link"
-                aria-label="View source code"
-              >
-                <Github size={20} />
-              </a>
-            )}
-            {project.projectLink && (
-              <a
-                href={project.projectLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="project-link"
-                aria-label="View live project"
-              >
-                <Globe size={20} />
-              </a>
-            )}
-          </div>
+    <div className={`project-row ${isFiltered ? "filtered" : ""}`}>
+      <div className="project-title">{project.title}</div>
+      <div className="project-meta">
+        <div className="project-tag">{project.tags[0]}</div>
+        <div className="project-links">
+          {project.projectLink && (
+            <a
+              href={project.projectLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="project-link"
+              aria-label="View live project"
+              style={{ willChange: "transform" }}
+            >
+              <Globe size={20} />
+            </a>
+          )}
+          {project.sourceLink && (
+            <a
+              href={project.sourceLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="project-link"
+              aria-label="View source code"
+              style={{ willChange: "transform" }}
+            >
+              <Github size={20} />
+            </a>
+          )}
         </div>
       </div>
     </div>
@@ -49,11 +50,6 @@ const ProjectsSection = () => {
     projects.forEach((project) => project.tags.forEach((tag) => tags.add(tag)));
     return Array.from(tags);
   }, [projects]);
-
-  const filteredProjects = useMemo(() => {
-    if (!selectedTag) return projects;
-    return projects.filter((project) => project.tags.includes(selectedTag));
-  }, [projects, selectedTag]);
 
   const handleTagClick = (tag) => {
     setSelectedTag(tag === selectedTag ? null : tag);
@@ -75,9 +71,13 @@ const ProjectsSection = () => {
           ))}
         </div>
       </div>
-      <div className="projects-grid">
-        {filteredProjects.map((project, index) => (
-          <ProjectCard key={`${project.title}-${index}`} project={project} />
+      <div className="projects-table">
+        {projects.map((project, index) => (
+          <ProjectCard
+            key={`${project.title}-${index}`}
+            project={project}
+            isFiltered={selectedTag && !project.tags.includes(selectedTag)}
+          />
         ))}
       </div>
     </section>
