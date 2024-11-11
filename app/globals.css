@@ -202,12 +202,11 @@ li {
 }
 
 /* Theme Controls */
-
 .theme-circles {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px;
+  padding: 8px 10px;
   border-radius: 10px;
   margin: 0;
 }
@@ -725,7 +724,7 @@ th {
   border: none;
   cursor: pointer;
   white-space: nowrap;
-  opacity: 0.8;
+  opacity: 1;
   font-family: var(--font-normal);
 }
 
@@ -792,7 +791,6 @@ th {
 
 .projects-table {
   margin-top: 1.5rem;
-  border: 1.5px solid var(--code-background-color);
   border-radius: 8px;
   overflow: hidden;
 }
@@ -841,7 +839,7 @@ th {
 
 .project-tag {
   font-size: 0.75rem;
-  color: var(--color-text);
+  color: var(--code-color);
   background-color: var(--code-background-color);
   padding: 4px 8px;
   border-radius: 4px;
@@ -988,6 +986,14 @@ th {
   height: 22px;
   margin: 0;
   padding: 0;
+}
+
+.social-icon[aria-label="Twitter"] {
+  width: 18px;
+}
+
+.social-icon[aria-label="ReadCV"] {
+  margin-left: -6px;
 }
 
 /* Desktop Media Queries */

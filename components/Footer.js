@@ -230,7 +230,7 @@ const Footer = ({ blogSlug = null }) => {
 
           <div className="footer-row">
             <div className="copyright">
-              <span className="copyright-symbol">©</span>{" "}
+              Copyright <span className="copyright-symbol">©</span>{" "}
               {new Date().getFullYear()} Danish
             </div>
 
