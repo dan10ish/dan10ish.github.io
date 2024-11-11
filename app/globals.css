@@ -390,6 +390,7 @@ pre {
   overflow-x: auto;
   margin: 0 !important;
   position: relative;
+  margin-bottom: var(--padding-medium) !important;
 }
 
 code {
