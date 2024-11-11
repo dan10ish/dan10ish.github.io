@@ -799,7 +799,7 @@ th {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 16px;
+  padding: 12px 0px;
   position: relative;
   transition: opacity 0.3s ease;
   background-color: var(--color-bg);
@@ -815,8 +815,8 @@ th {
   content: "";
   position: absolute;
   bottom: 0;
-  left: 16px;
-  right: 16px;
+  left: 0px;
+  right: 0px;
   height: 1px;
   background-color: rgba(var(--color-text-rgb), 0.1);
 }
@@ -993,7 +993,7 @@ th {
 }
 
 .social-icon[aria-label="ReadCV"] {
-  margin-left: -6px;
+  margin-left: -4px;
 }
 
 /* Desktop Media Queries */
@@ -1095,12 +1095,12 @@ th {
   }
 
   .project-row {
-    padding: 16px 20px;
+    padding: 16px 6px;
   }
 
   .project-row:not(:last-child)::after {
-    left: 20px;
-    right: 20px;
+    left: 6px;
+    right: 6px;
   }
 
   .project-title {
