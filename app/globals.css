@@ -23,6 +23,8 @@
   --padding-large: 2rem;
   --max-width: 700px;
   --border-radius: 6px;
+  --color-bg-rgb: 255, 255, 255;
+  --color-text-rgb: 51, 51, 51;
 }
 
 [data-theme="light"] {
@@ -64,6 +66,7 @@
   --syntax-symbol: #d4d4d4;
   --syntax-builtin: #4ec9b0;
   --syntax-meta: #9cdcfe;
+  --color-bg-rgb: 0, 0, 0;
   --color-text-rgb: 255, 255, 255;
 }
 
@@ -274,19 +277,23 @@ li {
 }
 
 .toc-menu {
-  position: absolute;
-  top: calc(100% + 8px);
-  right: 6px;
-  width: 280px;
-  background: var(--code-background-color);
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  width: min(90vw, 400px);
+  background: rgba(var(--color-bg-rgb), 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(var(--color-text-rgb), 0.1);
+  border-radius: 16px;
   overflow: hidden;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.3s ease;
 }
 
 .toc-header {
-  padding: 10px 16px;
-  text-align: center;
+  padding: 16px 20px;
+  text-align: left;
   font-weight: 500;
   border-bottom: 1px solid rgba(var(--color-text-rgb), 0.1);
   font-family: var(--font-heading);
@@ -294,26 +301,43 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: rgba(var(--color-bg-rgb), 0.9);
 }
 
 .toc-close {
   background: transparent;
   border: none;
-  padding: 4px;
+  padding: 6px;
   cursor: pointer;
   color: #ff0000;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
+  border-radius: 8px;
   transition: all 0.2s ease;
+  opacity: 0.7;
 }
 
 .toc-content {
   overflow-x: hidden;
   overflow-y: auto;
-  max-height: 350px;
-  padding: 12px 16px;
+  max-height: calc(90vh - 180px);
+  padding: 16px 20px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(var(--color-text-rgb), 0.3) transparent;
+}
+
+.toc-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.toc-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.toc-content::-webkit-scrollbar-thumb {
+  background-color: rgba(var(--color-text-rgb), 0.3);
+  border-radius: 3px;
 }
 
 .toc-content ul {
@@ -323,8 +347,7 @@ li {
 }
 
 .toc-content li {
-  margin: 0;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   white-space: normal;
 }
 
@@ -332,23 +355,39 @@ li {
   color: var(--color-link);
   text-decoration: none;
   display: block;
-  padding: 1.5px 0;
-  opacity: 1;
-  font-weight: 500;
-  transition: opacity 0.2s ease;
+  border-radius: 8px;
+  opacity: 0.8;
+  font-weight: 400;
+  transition: all 0.2s ease;
   word-wrap: break-word;
   overflow-wrap: break-word;
   hyphens: auto;
 }
 
-.mobile-toc {
-  display: flex;
-  align-items: center;
-  margin-left: 4px;
+/* Add animation keyframes */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-.desktop-toc {
-  display: none;
+/* Update mobile styles */
+@media (max-width: 768px) {
+  .toc-menu {
+    top: 70px;
+    right: 16px;
+    width: calc(100vw - 32px);
+    max-width: none;
+  }
+
+  .toc-content {
+    max-height: calc(80vh - 150px);
+  }
 }
 
 /* Scroll to Top Button */
@@ -1002,16 +1041,6 @@ th {
     display: none;
   }
 
-  .mobile-toc {
-    display: none;
-  }
-
-  .desktop-toc {
-    display: flex;
-    align-items: center;
-    margin-right: 4px;
-  }
-
   .fixed-nav:has(.theme-options.open) {
     transform: translateY(0);
     opacity: 1;
@@ -1020,16 +1049,6 @@ th {
 
   .toc-button {
     right: 20px;
-  }
-
-  .toc-menu {
-    width: 450px;
-    right: 0px;
-  }
-
-  .toc-content {
-    max-height: 500px;
-    padding: 20px;
   }
 
   .blog-post {
@@ -1231,6 +1250,24 @@ th {
     color: var(--color-bg);
     transform: translateY(-1px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .toc-content a {
+    border-radius: 6px !important;
+    padding: 0px 16px;
+    margin: 0 !important;
+  }
+
+  .toc-content a:hover {
+    background: rgba(var(--color-text-rgb), 0.1);
+    opacity: 1;
+    text-decoration: none;
+  }
+
+  .toc-close:hover {
+    background: rgba(var(--color-text-rgb), 0.1);
+    opacity: 1;
+    transform: scale(1.1);
   }
 }
 
