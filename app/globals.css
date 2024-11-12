@@ -615,6 +615,7 @@ th {
   padding: 0;
   gap: var(--padding-small);
   color: var(--blockquote-color);
+  margin-bottom: 1rem !important;
 }
 
 /* Blog List */
@@ -744,8 +745,6 @@ th {
 .show-more-container {
   display: flex;
   justify-content: center;
-  margin-top: 1rem;
-  padding-top: 1rem;
 }
 
 .show-more-button {
@@ -915,7 +914,7 @@ th {
 .show-more-container {
   display: flex;
   justify-content: center;
-  margin-top: 1rem;
+  margin-top: 0.6rem;
 }
 
 .show-more-button {
