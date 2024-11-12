@@ -356,7 +356,7 @@ li {
   text-decoration: none;
   display: block;
   border-radius: 8px;
-  opacity: 0.8;
+  opacity: 1;
   font-weight: 400;
   transition: all 0.2s ease;
   word-wrap: break-word;
