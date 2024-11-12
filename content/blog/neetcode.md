@@ -1,8 +1,3 @@
-<hr>
-🚧🚧🚧🚧🚧 This post is under development 🚧🚧🚧🚧🚧
-<hr>
-<br>
-
 I have decided to implement the [neetcode roadmap](https://neetcode.io/roadmap) in two languages, `cpp` and `python`.
 
 ## Arrays and Hashing

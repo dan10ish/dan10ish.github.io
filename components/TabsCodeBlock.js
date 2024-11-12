@@ -1,81 +1,100 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, memo } from "react";
 import { Check, Copy } from "lucide-react";
 import hljs from "highlight.js";
 
-const TabsCodeBlock = ({ blocks }) => {
-  const [activeTab, setActiveTab] = useState(0);
+const CodeTab = memo(({ language, isActive, onClick }) => (
+  <button className={`code-tab ${isActive ? "active" : ""}`} onClick={onClick}>
+    {language}
+  </button>
+));
+CodeTab.displayName = "CodeTab";
+
+const CodeContent = memo(({ code, language, isActive }) => {
+  useEffect(() => {
+    if (isActive) {
+      const codeElement = document.getElementById(`code-${language}`);
+      if (codeElement) {
+        hljs.highlightElement(codeElement);
+      }
+    }
+  }, [isActive, language]);
+
+  if (!isActive) return null;
+
+  return (
+    <pre className="code-tab-content">
+      <code id={`code-${language}`} className={`language-${language}`}>
+        {code}
+      </code>
+    </pre>
+  );
+});
+CodeContent.displayName = "CodeContent";
+
+const CopyButton = memo(({ code }) => {
   const [copied, setCopied] = useState(false);
 
-  useEffect(() => {
-    // Highlight all code blocks initially and after tab change
-    document.querySelectorAll(".tabs-code-content code").forEach((block) => {
-      hljs.highlightElement(block);
-    });
-  }, [activeTab]);
-
-  const copyToClipboard = async () => {
-    const code = blocks[activeTab].code;
+  const copyToClipboard = useCallback(async () => {
     try {
       await navigator.clipboard.writeText(code);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
-      const textArea = document.createElement("textarea");
-      textArea.value = code;
-      document.body.appendChild(textArea);
-      textArea.select();
-      try {
-        document.execCommand("copy");
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-      } finally {
-        document.body.removeChild(textArea);
-      }
+      console.error("Failed to copy:", err);
     }
-  };
+  }, [code]);
+
+  return (
+    <button
+      onClick={copyToClipboard}
+      className="copy-code-button"
+      aria-label={copied ? "Copied!" : "Copy code"}
+      title={copied ? "Copied!" : "Copy code"}
+    >
+      {copied ? (
+        <Check className="copy-icon" strokeWidth={2.5} />
+      ) : (
+        <Copy className="copy-icon" strokeWidth={2.5} />
+      )}
+    </button>
+  );
+});
+CopyButton.displayName = "CopyButton";
+
+const TabsCodeBlock = memo(({ blocks }) => {
+  const [activeTab, setActiveTab] = useState(0);
 
   return (
     <div className="code-block-container tabs-code-container">
       <div className="tabs-code-header">
         <div className="code-tabs">
           {blocks.map((block, index) => (
-            <button
+            <CodeTab
               key={block.language}
-              className={`code-tab ${activeTab === index ? "active" : ""}`}
+              language={block.language}
+              isActive={activeTab === index}
               onClick={() => setActiveTab(index)}
-            >
-              {block.language}
-            </button>
+            />
           ))}
         </div>
-        <button
-          onClick={copyToClipboard}
-          className="copy-code-button"
-          aria-label={copied ? "Copied!" : "Copy code"}
-          title={copied ? "Copied!" : "Copy code"}
-        >
-          {copied ? (
-            <Check className="copy-icon" strokeWidth={2.5} />
-          ) : (
-            <Copy className="copy-icon" strokeWidth={2.5} />
-          )}
-        </button>
+        <CopyButton code={blocks[activeTab].code} />
       </div>
       <div className="tabs-code-content">
         {blocks.map((block, index) => (
-          <pre
+          <CodeContent
             key={block.language}
-            style={{ display: activeTab === index ? "block" : "none" }}
-            className="code-tab-content"
-          >
-            <code className={`language-${block.language}`}>{block.code}</code>
-          </pre>
+            code={block.code}
+            language={block.language}
+            isActive={activeTab === index}
+          />
         ))}
       </div>
     </div>
   );
-};
+});
+
+TabsCodeBlock.displayName = "TabsCodeBlock";
 
 export default TabsCodeBlock;

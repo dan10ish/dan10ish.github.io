@@ -742,34 +742,46 @@ th {
 }
 
 /* Show More Button */
+
 .show-more-container {
   display: flex;
   justify-content: center;
+  margin-top: 2rem;
+  perspective: 1000px;
 }
 
 .show-more-button {
-  background: none;
+  background: var(--code-background-color);
   border: none;
-  color: var(--color-text);
-  cursor: pointer;
-  font-family: var(--font-normal);
-  font-size: 0.9rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  opacity: 0.8;
-  transition: all 0.3s ease;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.show-more-button svg {
+.show-more-button:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgba(var(--color-text-rgb), 0.1);
+  pointer-events: none;
+}
+
+.show-more-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 20px;
   height: 20px;
-  transition: transform 0.3s ease;
-}
-
-.show-more-button svg.rotated {
-  transform: rotate(180deg);
+  color: var(--color-text);
+  will-change: transform;
 }
 
 /* Mobile Adjustments */
@@ -1287,6 +1299,18 @@ th {
     opacity: 0.9;
     background-color: rgba(var(--color-text-rgb), 0.05);
   }
+
+  .show-more-button:hover {
+    background-color: var(--color-link);
+  }
+
+  .show-more-button:hover .show-more-icon {
+    color: var(--color-bg);
+  }
+
+  .blog-item.development:hover .blog-card-inner:before {
+    opacity: 0.8;
+  }
 }
 
 /* Base Footer Structure */
@@ -1581,4 +1605,54 @@ th {
 
 .code-tab-content code {
   border-radius: 0;
+}
+
+/* Status Badges */
+.development-badge,
+.draft-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.7rem;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-left: 12px;
+  font-weight: 500;
+  font-family: var(--font-normal);
+  vertical-align: middle;
+  transform: translateY(-2px);
+}
+
+.development-badge {
+  background-color: var(--color-link);
+  color: var(--color-bg);
+}
+
+.draft-badge {
+  background-color: var(--blockquote-color);
+  color: var(--color-bg);
+}
+
+/* Dark Theme Adjustments */
+[data-theme="dark"] .show-more-button {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .development-badge,
+  .draft-badge {
+    font-size: 0.65rem;
+    padding: 3px 6px;
+    margin-left: 8px;
+  }
+
+  .show-more-button {
+    width: 32px;
+    height: 32px;
+  }
+
+  .show-more-icon {
+    width: 18px;
+    height: 18px;
+  }
 }

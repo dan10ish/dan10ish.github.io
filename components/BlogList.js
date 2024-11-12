@@ -1,7 +1,9 @@
 "use client";
+
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ChevronDown } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 function formatDate(dateString) {
   const date = new Date(dateString);
@@ -9,6 +11,29 @@ function formatDate(dateString) {
   const day = date.getDate().toString().padStart(2, "0");
   return `${month} ${day}`;
 }
+
+const BlogCard = ({ post }) => (
+  <Link href={`/post/${post.slug}`} className="blog-card">
+    <article className="blog-card-inner">
+      <div className="post-content">
+        <div>
+          <h3 className="post-title">
+            {post.title}
+            {post.status === "development" && (
+              <span className="development-badge">In Development</span>
+            )}
+            <ArrowUpRight size={18} className="arrow-icon" />
+          </h3>
+          <div className="post-meta">
+            <span className="post-date">{post.date}</span>
+            <span className="dot">•</span>
+            <span className="read-time">{post.readingTime}</span>
+          </div>
+        </div>
+      </div>
+    </article>
+  </Link>
+);
 
 export default function BlogList({ posts }) {
   const [selectedTag, setSelectedTag] = useState(null);
@@ -33,11 +58,7 @@ export default function BlogList({ posts }) {
 
   const handleTagClick = (tag) => {
     setSelectedTag(tag === selectedTag ? null : tag);
-    setShowAll(false); // Reset showAll when changing tags
-  };
-
-  const toggleShowAll = () => {
-    setShowAll(!showAll);
+    setShowAll(false);
   };
 
   return (
@@ -56,57 +77,52 @@ export default function BlogList({ posts }) {
           ))}
         </div>
       </div>
-      <ul>
-        {displayedPosts.map((post, index) => (
-          <li
-            key={post.slug}
-            className={`blog-item ${
-              (!showAll && index >= Math.min(2, filteredPosts.length - 1)) ||
-              (showAll && index === filteredPosts.length - 1)
-                ? "last-item"
-                : ""
-            }`}
-          >
-            <Link href={`/post/${post.slug}`} className="blog-card">
-              <article className="blog-card-inner">
-                <div className="post-content">
-                  <h3 className="post-title">
-                    {post.title}
-                    <ArrowUpRight size={18} className="arrow-icon" />
-                  </h3>
-                  <div className="post-meta">
-                    <span className="post-date">{formatDate(post.date)}</span>
-                    <span className="dot">•</span>
-                    <span className="read-time">{post.readingTime}</span>
-                  </div>
-                </div>
-              </article>
-            </Link>
-          </li>
-        ))}
-      </ul>
-      {filteredPosts.length > 3 && (
-        <div className="show-more-container">
-          <button onClick={toggleShowAll} className="show-more-button">
-            {showAll ? "Show Less" : "Show More"}
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className={showAll ? "rotated" : ""}
+      <motion.ul layout>
+        <AnimatePresence>
+          {displayedPosts.map((post, index) => (
+            <motion.li
+              key={post.slug}
+              layout
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.2, delay: index * 0.05 }}
+              className={`blog-item ${
+                post.status === "development" ? "development" : ""
+              } ${
+                (!showAll && index >= Math.min(2, filteredPosts.length - 1)) ||
+                (showAll && index === filteredPosts.length - 1)
+                  ? "last-item"
+                  : ""
+              }`}
             >
-              <path
-                d="M6 9L12 15L18 9"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
-        </div>
+              <BlogCard post={post} />
+            </motion.li>
+          ))}
+        </AnimatePresence>
+      </motion.ul>
+      {filteredPosts.length > 3 && (
+        <motion.div className="show-more-container" initial={false}>
+          <motion.button
+            onClick={() => setShowAll(!showAll)}
+            className="show-more-button"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            title={showAll ? "Show less" : "Show more"}
+          >
+            <motion.span
+              animate={{ rotate: showAll ? 180 : 0 }}
+              transition={{
+                type: "spring",
+                stiffness: 300,
+                damping: 20,
+              }}
+              className="show-more-icon"
+            >
+              <ChevronDown strokeWidth={2.5} />
+            </motion.span>
+          </motion.button>
+        </motion.div>
       )}
     </section>
   );
