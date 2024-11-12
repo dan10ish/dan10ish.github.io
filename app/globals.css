@@ -541,6 +541,11 @@ pre code {
   background: none !important;
 }
 
+[data-theme="dark"] .hljs-attr,
+[data-theme="dark"] .hljs-property {
+  color: #89ddff !important;
+}
+
 /* LaTeX Content */
 .latex-content {
   overflow-x: hidden;
@@ -1278,6 +1283,11 @@ th {
   .project-row:hover {
     background-color: rgba(var(--color-text-rgb), 0.03);
   }
+
+  .code-tab:hover:not(.active) {
+    opacity: 0.9;
+    background-color: rgba(var(--color-text-rgb), 0.05);
+  }
 }
 
 /* Base Footer Structure */
@@ -1489,4 +1499,87 @@ th {
     margin-top: 10px;
     font-size: 0.8rem;
   }
+}
+
+/* Tabbed Code Blocks */
+.tabs-code-container {
+  margin: 1.5rem 0;
+}
+
+.code-block-container .tabs-code-header {
+  border-bottom: none !important;
+}
+
+.tabs-code-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: var(--code-background-color);
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+  border-bottom: 1px solid rgba(var(--color-text-rgb), 0.1);
+  position: relative;
+  padding: 0.5rem 3rem 0.5rem 0.5rem;
+}
+
+.tabs-code-header .copy-code-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  margin: 0;
+  padding: 0.25rem;
+}
+
+.code-tabs {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 2px;
+  width: 100%;
+}
+
+.code-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.code-tab {
+  padding: 0.25rem 0.75rem;
+  border: none;
+  background: none;
+  color: var(--code-color);
+  cursor: pointer;
+  font-family: var(--font-normal);
+  font-size: 0.8rem;
+  opacity: 0.7;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.code-tab.active {
+  background-color: rgba(var(--color-text-rgb), 0.1);
+  opacity: 1;
+}
+
+.tabs-code-content {
+  background-color: var(--code-background-color);
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+}
+
+.tabs-code-content pre {
+  margin: 0 !important;
+  border-radius: 0 !important;
+}
+
+.code-tab-content {
+  margin: 0;
+  border-radius: 0;
+}
+
+.code-tab-content code {
+  border-radius: 0;
 }
