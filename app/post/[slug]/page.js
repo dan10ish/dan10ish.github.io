@@ -72,15 +72,11 @@ export default async function BlogPost({ params }) {
   return (
     <article className="blog-post markdown-body">
       <div className="blogpost-title">
-        <h1>
-          {post.title}
-          {post.status === "development" && (
-            <span className="development-badge">In Development</span>
-          )}
-          {post.status === "draft" && (
-            <span className="draft-badge">Draft</span>
-          )}
-        </h1>
+        <h1>{post.title}</h1>
+        {post.status === "development" && (
+          <span className="development-badge">In Development</span>
+        )}
+        {post.status === "draft" && <span className="draft-badge">Draft</span>}
       </div>
       <div className="blog-meta">
         <div>

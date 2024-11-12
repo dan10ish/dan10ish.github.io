@@ -22,6 +22,9 @@ const BlogCard = ({ post }) => (
             {post.status === "development" && (
               <span className="development-badge">In Development</span>
             )}
+            {post.status === "draft" && (
+              <span className="draft-badge">Draft</span>
+            )}
             <ArrowUpRight size={18} className="arrow-icon" />
           </h3>
           <div className="post-meta">
@@ -77,52 +80,43 @@ export default function BlogList({ posts }) {
           ))}
         </div>
       </div>
-      <motion.ul layout>
-        <AnimatePresence>
-          {displayedPosts.map((post, index) => (
-            <motion.li
-              key={post.slug}
-              layout
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.2, delay: index * 0.05 }}
-              className={`blog-item ${
-                post.status === "development" ? "development" : ""
-              } ${
-                (!showAll && index >= Math.min(2, filteredPosts.length - 1)) ||
-                (showAll && index === filteredPosts.length - 1)
-                  ? "last-item"
-                  : ""
-              }`}
-            >
-              <BlogCard post={post} />
-            </motion.li>
-          ))}
-        </AnimatePresence>
-      </motion.ul>
+      <ul className="blog-list-items">
+        {displayedPosts.map((post, index) => (
+          <motion.li
+            key={post.slug}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.15 }}
+            className={`blog-item ${
+              post.status === "development" ? "development" : ""
+            } ${
+              (!showAll && index >= Math.min(2, filteredPosts.length - 1)) ||
+              (showAll && index === filteredPosts.length - 1)
+                ? "last-item"
+                : ""
+            }`}
+          >
+            <BlogCard post={post} />
+          </motion.li>
+        ))}
+      </ul>
       {filteredPosts.length > 3 && (
-        <motion.div className="show-more-container" initial={false}>
-          <motion.button
+        <div className="show-more-container">
+          <button
             onClick={() => setShowAll(!showAll)}
             className="show-more-button"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            title={showAll ? "Show less" : "Show more"}
+            aria-label={showAll ? "Show less posts" : "Show more posts"}
           >
-            <motion.span
-              animate={{ rotate: showAll ? 180 : 0 }}
-              transition={{
-                type: "spring",
-                stiffness: 300,
-                damping: 20,
-              }}
+            <span className="show-more-text">
+              {showAll ? "Show Less" : "Show More"}
+            </span>
+            <ChevronDown
+              size={16}
               className="show-more-icon"
-            >
-              <ChevronDown strokeWidth={2.5} />
-            </motion.span>
-          </motion.button>
-        </motion.div>
+              style={{ transform: showAll ? "rotate(180deg)" : "rotate(0deg)" }}
+            />
+          </button>
+        </div>
       )}
     </section>
   );
