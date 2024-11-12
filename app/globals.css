@@ -1580,21 +1580,6 @@ th {
   position: relative;
 }
 
-.show-more-container::before {
-  content: "";
-  position: absolute;
-  top: -1rem;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(var(--color-text-rgb), 0.1) 50%,
-    transparent
-  );
-}
-
 .show-more-button {
   display: flex;
   align-items: center;
