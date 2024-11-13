@@ -1464,7 +1464,7 @@ th {
 
 .post-row {
   display: grid;
-  grid-template-columns: 80px 1fr auto;
+  grid-template-columns: 70px 1fr auto;
   align-items: baseline;
   gap: 10px;
   padding: 12px 6px;
@@ -1503,7 +1503,9 @@ th {
 
 .post-title {
   font-family: var(--font-normal);
-  font-size: 0.85rem;
+  font-size: 1rem;
+  font-family: "Sentient";
+  font-weight: 450;
 }
 
 .post-meta {
@@ -1541,13 +1543,17 @@ th {
 /* Mobile adjustments */
 @media (max-width: 640px) {
   .post-row {
-    grid-template-columns: 60px 1fr auto;
+    grid-template-columns: 50px 1fr auto;
     gap: 0px;
     padding: 10px 4px;
   }
 
   .post-year {
     font-size: 0.75rem;
+  }
+
+  .post-meta {
+    gap: 0;
   }
 }
 
