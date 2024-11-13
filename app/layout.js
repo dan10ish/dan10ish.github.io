@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import Script from "next/script";
 import "./globals.css";
 import "highlight.js/styles/github.css";
-import HamburgerMenu from "@/components/Navigation";
+import HamburgerMenu from "@/components/ButtonsContainer";
 
 export const metadata = {
   metadataBase: new URL("https://danish.bio"),

@@ -2,23 +2,16 @@
 
 import { useState, useEffect } from "react";
 
-export default function ScrollToTop() {
+const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [isHidden, setIsHidden] = useState(false);
-  let lastScrollY = 0;
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      if (currentScrollY > 300) {
+      if (window.scrollY > 300) {
         setIsVisible(true);
-        setIsHidden(currentScrollY > lastScrollY);
       } else {
         setIsVisible(false);
       }
-
-      lastScrollY = currentScrollY;
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -37,7 +30,7 @@ export default function ScrollToTop() {
   return (
     <button
       onClick={scrollToTop}
-      className={`scroll-to-top ${isHidden ? "hidden" : ""}`}
+      className="scroll-to-top"
       aria-label="Scroll to top"
     >
       <svg
@@ -53,4 +46,6 @@ export default function ScrollToTop() {
       </svg>
     </button>
   );
-}
+};
+
+export default ScrollToTop;
