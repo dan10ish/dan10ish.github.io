@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Github, ExternalLink } from "lucide-react";
+import { Github, Globe } from "lucide-react";
 import { getProjects } from "@/lib/projects";
 
 export default function ProjectsSection() {
@@ -58,6 +58,17 @@ export default function ProjectsSection() {
             <div className="project-meta">
               <div className="project-tag">{project.tags[0]}</div>
               <div className="project-links">
+                {project.projectLink && (
+                  <a
+                    href={project.projectLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="project-link"
+                    aria-label="Live demo"
+                  >
+                    <Globe size={18} />
+                  </a>
+                )}
                 {project.sourceLink && (
                   <a
                     href={project.sourceLink}
@@ -67,17 +78,6 @@ export default function ProjectsSection() {
                     aria-label="Source code"
                   >
                     <Github size={18} />
-                  </a>
-                )}
-                {project.projectLink && (
-                  <a
-                    href={project.projectLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="project-link"
-                    aria-label="Live demo"
-                  >
-                    <ExternalLink size={18} />
                   </a>
                 )}
               </div>
