@@ -213,7 +213,7 @@ const Footer = ({ blogSlug = null }) => {
               >
                 <div className="github-button-content">
                   <Github size={16} />
-                  <span>{blogSlug ? "View Source" : "View on GitHub"}</span>
+                  <span>{blogSlug ? "View Source" : "View Source"}</span>
                 </div>
                 {!blogSlug && (
                   <div className="github-stars">
@@ -230,8 +230,15 @@ const Footer = ({ blogSlug = null }) => {
 
           <div className="footer-row">
             <div className="copyright">
-              Copyright <span className="copyright-symbol">©</span>{" "}
-              {new Date().getFullYear()} Danish
+              Danish (
+              <a
+                href="https://x.com/dan10ish"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="copyright-symbol">@</span>dan10ish
+              </a>
+              )
             </div>
 
             <div className="theme-circles">

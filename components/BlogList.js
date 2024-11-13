@@ -27,11 +27,11 @@ const BlogCard = ({ post }) => (
             )}
             <ArrowUpRight size={18} className="arrow-icon" />
           </h3>
-          <div className="post-meta">
-            <span className="post-date">{post.date}</span>
-            <span className="dot">•</span>
-            <span className="read-time">{post.readingTime}</span>
-          </div>
+        </div>
+        <div className="post-meta">
+          <span className="post-date">{post.date}</span>
+          <span className="dot">•</span>
+          <span className="read-time">{post.readingTime}</span>
         </div>
       </div>
     </article>
