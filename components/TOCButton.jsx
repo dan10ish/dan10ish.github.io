@@ -6,6 +6,48 @@ const TOCButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [toc, setToc] = useState([]);
   const menuRef = useRef(null);
+  const isLargeScreen = useRef(false);
+  const scrollPosition = useRef(0);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      isLargeScreen.current = window.innerWidth >= 768;
+    };
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+
+    if (isOpen) {
+      // Handle mobile scroll lock
+      if (!isLargeScreen.current) {
+        scrollPosition.current = window.scrollY;
+        document.body.style.position = "fixed";
+        document.body.style.top = `-${scrollPosition.current}px`;
+        document.body.style.width = "100%";
+      }
+
+      // Handle desktop scroll close
+      if (isLargeScreen.current) {
+        const handleScroll = () => setIsOpen(false);
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        return () => window.removeEventListener("scroll", handleScroll);
+      }
+    } else {
+      // Restore scroll position on mobile
+      if (!isLargeScreen.current) {
+        document.body.style.position = "";
+        document.body.style.top = "";
+        document.body.style.width = "";
+        window.scrollTo(0, scrollPosition.current);
+      }
+    }
+
+    return () => {
+      window.removeEventListener("resize", checkScreenSize);
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+    };
+  }, [isOpen]);
 
   useEffect(() => {
     const generateTOC = () => {
@@ -50,14 +92,25 @@ const TOCButton = () => {
   const handleClick = (e, id) => {
     e.preventDefault();
     setIsOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
-      const offsetPosition = element.offsetTop - 80;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
+    // Restore scroll position before scrolling to element on mobile
+    if (!isLargeScreen.current) {
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      window.scrollTo(0, scrollPosition.current);
     }
+
+    // Small delay to ensure scroll position is restored
+    setTimeout(() => {
+      const element = document.getElementById(id);
+      if (element) {
+        const offsetPosition = element.offsetTop - 80;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      }
+    }, 0);
   };
 
   return (
