@@ -209,41 +209,41 @@ th {
   margin-top: 3rem;
 }
 
+.title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.social-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.social-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 6px;
+  color: var(--color-text);
+  font-size: 0.8rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.social-button svg {
+  height: 20px !important;
+  width: auto;
+  stroke-width: 2;
+}
+
 .about {
   font-weight: 400;
-  padding: var(--padding-medium) 0;
+  padding: var(--padding-medium) 0 0;
 }
 
 .about p {
   line-height: 2;
-}
-
-.social-icons {
-  display: flex;
-  gap: 1rem;
-}
-
-.social-icon {
-  color: var(--color-text);
-  opacity: 0.7;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.social-icon svg {
-  width: auto;
-  height: 22px;
-  margin: 0;
-  padding: 0;
-}
-
-.social-icon[aria-label="Twitter"] {
-  width: 18px;
-}
-
-.social-icon[aria-label="ReadCV"] {
-  margin-left: -4px;
 }
 
 .at {
@@ -749,24 +749,10 @@ th {
   padding: 0.45rem 0.9rem;
   border-radius: 10px;
   font-size: 0.8rem;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   color: var(--color-text);
   user-select: none;
   white-space: nowrap;
-}
-
-[data-theme="light"] .stat-card {
-  background: #ffffff;
-  box-shadow: 6px 6px 12px rgba(163, 177, 198, 0.6),
-    -6px -6px 12px rgba(255, 255, 255, 0.8),
-    inset 1px 1px 1px rgba(255, 255, 255, 0.3);
-}
-
-[data-theme="dark"] .stat-card {
-  background: #1a1a1a;
-  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.8),
-    -6px -6px 12px rgba(85, 85, 85, 0.2),
-    inset 1px 1px 1px rgba(85, 85, 85, 0.2);
+  background-color: var(--code-background-color);
 }
 
 /* Like Button */
@@ -797,20 +783,7 @@ th {
   padding: 8px 10px;
   border-radius: 10px;
   margin: 0;
-}
-
-[data-theme="light"] .theme-circles {
-  background: #ffffff;
-  box-shadow: 6px 6px 12px rgba(163, 177, 198, 0.6),
-    -6px -6px 12px rgba(255, 255, 255, 0.8),
-    inset 1px 1px 1px rgba(255, 255, 255, 0.3);
-}
-
-[data-theme="dark"] .theme-circles {
-  background: #1a1a1a;
-  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.8),
-    -6px -6px 12px rgba(85, 85, 85, 0.2),
-    inset 1px 1px 1px rgba(85, 85, 85, 0.2);
+  background-color: var(--code-background-color);
 }
 
 .theme-circle {
@@ -1279,12 +1252,6 @@ pre code {
     color: var(--color-bg);
   }
 
-  .social-icon:hover {
-    opacity: 1;
-    color: var(--color-link);
-    transform: scale(1.1);
-  }
-
   .github-profile-button:hover {
     background-color: var(--color-text);
     color: var(--color-bg);
@@ -1346,17 +1313,9 @@ pre code {
     background-color: rgba(var(--color-text-rgb), 0.1);
   }
 
-  [data-theme="light"] .stat-card:hover {
-    background: #ffffff;
-    box-shadow: 8px 8px 16px rgba(163, 177, 198, 0.7),
-      -8px -8px 16px rgba(255, 255, 255, 0.9),
-      inset 1px 1px 1px rgba(255, 255, 255, 0.4);
-  }
-
-  [data-theme="dark"] .stat-card:hover {
-    background: #1a1a1a;
-    box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.9),
-      -8px -8px 16px rgba(85, 85, 85, 0.3),
-      inset 1px 1px 1px rgba(85, 85, 85, 0.3);
+  .social-button:hover {
+    color: var(--color-link);
+    transform: scale(1.1);
+    text-decoration: none;
   }
 }
