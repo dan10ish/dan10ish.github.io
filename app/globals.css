@@ -474,7 +474,8 @@ th {
 
 .project-title {
   font-family: var(--font-normal);
-  font-size: 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 400;
   color: var(--color-text);
   width: 180px;
   line-height: 1.4;
@@ -483,7 +484,7 @@ th {
 .project-meta {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   transform: translateZ(0);
   backface-visibility: hidden;
 }
@@ -498,7 +499,7 @@ th {
 
 .project-links {
   display: flex;
-  gap: 2px;
+  gap: 4px;
   transform: translateZ(0);
 }
 
