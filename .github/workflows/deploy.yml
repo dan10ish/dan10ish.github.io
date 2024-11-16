@@ -18,9 +18,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 1 # Shallow clone for faster checkout
+          fetch-depth: 1
 
-      # Advanced caching
       - uses: actions/cache@v3
         with:
           path: |
@@ -37,16 +36,15 @@ jobs:
           node-version: "18"
           cache: "npm"
 
-      # Use install instead of ci for better caching
       - name: Install dependencies
         run: npm install --prefer-offline --no-audit
 
-      # Combine env file creation and build
-      - name: Build
+      - name: Build and Generate Sitemap
         run: |
           echo "NEXT_PUBLIC_SUPABASE_URL=${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}" >> .env.production
           echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}" >> .env.production
           npm run build
+          npm run postbuild
           touch out/.nojekyll
 
       - name: Deploy

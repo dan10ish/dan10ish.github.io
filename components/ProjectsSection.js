@@ -13,6 +13,25 @@ export default function ProjectsSection() {
     setSelectedTag(selectedTag === tag ? null : tag);
   };
 
+  const LinkIcon = ({ href, icon: Icon, label }) => {
+    const baseClasses = "project-link";
+    const noLinkClass = !href ? "project-no-link" : "";
+    const Component = href ? "a" : "span";
+    const props = href
+      ? { href, target: "_blank", rel: "noopener noreferrer" }
+      : {};
+
+    return (
+      <Component
+        className={`${baseClasses} ${noLinkClass}`}
+        {...props}
+        aria-label={label}
+      >
+        <Icon size={18} />
+      </Component>
+    );
+  };
+
   return (
     <section
       className={`projects-section ${selectedTag ? "tag-selected" : ""}`}
@@ -45,7 +64,7 @@ export default function ProjectsSection() {
       </div>
 
       <div className="projects-table">
-        {projects.map((project, index) => (
+        {projects.map((project) => (
           <div
             key={project.title}
             className={`project-row ${
@@ -54,34 +73,20 @@ export default function ProjectsSection() {
                 : ""
             }`}
           >
-            <div className="project-title">{project.title}</div>
-            <div className="project-meta">
-              <div className="project-tag">{project.tags[0]}</div>
-              <div className="project-links">
-                {project.projectLink && (
-                  <a
-                    href={project.projectLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="project-link"
-                    aria-label="Live demo"
-                  >
-                    <Globe size={18} />
-                  </a>
-                )}
-                {project.sourceLink && (
-                  <a
-                    href={project.sourceLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="project-link"
-                    aria-label="Source code"
-                  >
-                    <Github size={18} />
-                  </a>
-                )}
-              </div>
+            <div className="project-links">
+              <LinkIcon
+                href={project.sourceLink}
+                icon={Github}
+                label="Source code"
+              />
+              <LinkIcon
+                href={project.projectLink}
+                icon={Globe}
+                label="Live demo"
+              />
             </div>
+            <div className="project-title">{project.title}</div>
+            <div className="project-tag">{project.tags[0]}</div>
           </div>
         ))}
       </div>
