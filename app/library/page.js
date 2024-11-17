@@ -272,19 +272,18 @@ const ResourceCard = ({ resource }) => (
     target="_blank"
     rel="noopener noreferrer"
     className="resource-card"
+    data-category={resource.category}
   >
-    <div className="resource-icon">
-      <ResourceIcon category={resource.category} />
+    <div className="resource-header">
+      <div>
+        <h3 className="resource-title">{resource.title}</h3>
+        <p className="resource-creator">{resource.creator}</p>
+      </div>
+      <div className="resource-icon">
+        <ResourceIcon category={resource.category} />
+      </div>
     </div>
-    <div className="resource-content">
-      <h3 className="resource-title">{resource.title}</h3>
-      <p className="resource-creator">
-        {resource.creator}
-        {resource.year ? ` (${resource.year})` : ""}
-      </p>
-      <p className="resource-description">{resource.description}</p>
-      <span className="resource-category">{resource.category}</span>
-    </div>
+    <p className="resource-description">{resource.description}</p>
   </a>
 );
 
