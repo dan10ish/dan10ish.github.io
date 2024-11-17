@@ -462,7 +462,7 @@ th {
 
 .project-row {
   display: grid;
-  grid-template-columns: 90px 1fr auto;
+  grid-template-columns: 80px 1fr auto;
   align-items: center;
   padding: 12px 0px;
   position: relative;
@@ -483,7 +483,7 @@ th {
 
 .project-title {
   font-family: var(--font-normal);
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: 400;
   color: var(--color-text);
   width: 180px;
@@ -502,8 +502,8 @@ th {
   font-size: 0.75rem;
   color: var(--code-color);
   background-color: var(--code-background-color);
-  padding: 4px 8px;
-  border-radius: 4px;
+  padding: 4px 12px;
+  border-radius: 6px;
 }
 
 .project-links {
@@ -525,9 +525,10 @@ th {
 }
 
 .project-no-link {
-  opacity: 0.3;
+  opacity: 0.15;
   cursor: not-allowed;
   pointer-events: none;
+  color: var(--color-text) !important;
 }
 
 .project-link svg {
@@ -538,6 +539,10 @@ th {
 
 .tag-selected .project-row:not(.filtered):not(:last-child)::after {
   opacity: 0.1;
+}
+
+.globe-icon-class {
+  color: var(--color-link);
 }
 
 /* Github Card */

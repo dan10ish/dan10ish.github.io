@@ -13,7 +13,7 @@ export default function ProjectsSection() {
     setSelectedTag(selectedTag === tag ? null : tag);
   };
 
-  const LinkIcon = ({ href, icon: Icon, label }) => {
+  const LinkIcon = ({ href, icon: Icon, label, className = "" }) => {
     const baseClasses = "project-link";
     const noLinkClass = !href ? "project-no-link" : "";
     const Component = href ? "a" : "span";
@@ -23,7 +23,7 @@ export default function ProjectsSection() {
 
     return (
       <Component
-        className={`${baseClasses} ${noLinkClass}`}
+        className={`${baseClasses} ${noLinkClass} ${className}`}
         {...props}
         aria-label={label}
       >
@@ -83,6 +83,7 @@ export default function ProjectsSection() {
                 href={project.projectLink}
                 icon={Globe}
                 label="Live demo"
+                className="globe-icon-class"
               />
             </div>
             <div className="project-title">{project.title}</div>
