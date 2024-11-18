@@ -18,7 +18,12 @@ const ThemeInitializer = () => {
 
       const meta = document.querySelector('meta[name="theme-color"]');
       if (meta) {
-        meta.content = theme === "dark" ? "#000000" : "#ffffff";
+        meta.content =
+          theme === "dark"
+            ? "#000000"
+            : theme === "light"
+            ? "#ffffff"
+            : "#00212b";
       }
     };
 
@@ -154,7 +159,12 @@ const Footer = ({ blogSlug = null }) => {
 
     const meta = document.querySelector('meta[name="theme-color"]');
     if (meta) {
-      meta.content = theme === "dark" ? "#000000" : "#ffffff";
+      meta.content =
+        theme === "dark"
+          ? "#000000"
+          : theme === "light"
+          ? "#ffffff"
+          : "#00212b";
     }
   };
 
@@ -257,6 +267,14 @@ const Footer = ({ blogSlug = null }) => {
                 }`}
                 style={{ background: "#000000" }}
                 aria-label="Dark theme"
+              />
+              <button
+                onClick={() => changeTheme("solarized-dark")}
+                className={`theme-circle ${
+                  currentTheme === "solarized-dark" ? "active" : ""
+                }`}
+                style={{ background: "#00212b" }}
+                aria-label="Solarized dark theme"
               />
             </div>
           </div>

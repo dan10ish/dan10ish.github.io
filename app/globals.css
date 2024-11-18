@@ -78,6 +78,32 @@
   --github-text: #e6edf3;
 }
 
+[data-theme="solarized-dark"] {
+  --color-bg: #00212b;
+  --color-text: #bfc9cc;
+  --color-link: #2ebdff;
+  --blockquote-color: #93a1a1;
+  --code-background-color: #002f3a;
+  --code-color: #839496;
+  --syntax-comment: #586e75;
+  --syntax-keyword: #cb4b16;
+  --syntax-number: #2aa198;
+  --syntax-string: #859900;
+  --syntax-title: #268bd2;
+  --syntax-type: #b58900;
+  --syntax-tag: #859900;
+  --syntax-regexp: #dc322f;
+  --syntax-symbol: #2aa198;
+  --syntax-builtin: #b58900;
+  --syntax-meta: #93a1a1;
+  --color-bg-rgb: 0, 33, 43;
+  --color-text-rgb: 191, 201, 204;
+  --github-bg: rgba(0, 43, 54, 0.4);
+  --github-border: rgba(147, 161, 161, 0.1);
+  --github-hover-bg: rgba(0, 43, 54, 0.8);
+  --github-text: #93a1a1;
+}
+
 html,
 body {
   overscroll-behavior: none;
