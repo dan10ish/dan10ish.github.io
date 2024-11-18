@@ -1241,7 +1241,7 @@ pre code {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 12px;
+  border-radius: 10px;
 }
 
 .book-info {
