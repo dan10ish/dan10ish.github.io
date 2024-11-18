@@ -6,7 +6,6 @@ import {
   Youtube,
   FileText,
   Globe,
-  BookOpen,
   Mail,
   Graduation,
 } from "lucide-react";
@@ -29,8 +28,7 @@ const books = [
   {
     title: "Hands-On Machine Learning",
     author: "Aurélien Géron",
-    cover:
-      "https://m.media-amazon.com/images/I/81R5BmGtv-L._AC_UF1000,1000_QL80_.jpg",
+    coverColor: "#ffffff",
     tags: ["Machine Learning"],
     description:
       "Comprehensive guide to ML with scikit-learn, Keras, and TensorFlow",
@@ -38,87 +36,77 @@ const books = [
   {
     title: "Introduction to Algorithms",
     author: "Thomas H. Cormen",
-    cover:
-      "https://m.media-amazon.com/images/I/61ZYxrQEpCL._AC_UF350,350_QL50_.jpg",
+    coverColor: "#1e71f7",
     tags: ["Computer Science"],
     description: "The essential guide to computer algorithms",
   },
   {
     title: "Modern Robotics",
     author: "Kevin M. Lynch",
-    cover:
-      "https://rukminim2.flixcart.com/image/850/1000/kjvrdzk0/book/y/y/f/modern-robotics-original-imafzcqxjjpfyytf.jpeg?q=20&crop=false",
+    coverColor: "#7d7a7a",
     tags: ["Robotics"],
-    description: "Mechanics, Planning, and Control",
+    description: "Kinematics, Dynamics, Planning, and Control",
   },
   {
     title: "Fundamentals of Robotics",
     author: "Robert J. Schilling",
-    cover:
-      "https://m.media-amazon.com/images/I/81EUesHBzhL._AC_UF1000,1000_QL80_.jpg",
+    coverColor: "#9333ea",
     tags: ["Robotics"],
     description: "Analysis and control of robot manipulators",
   },
   {
     title: "Sell Like Crazy",
     author: "Sabri Suby",
-    cover:
-      "https://m.media-amazon.com/images/I/71oxg2zBdTL._UF1000,1000_QL80_.jpg",
+    coverColor: "#ea580c",
     tags: ["Business"],
     description: "How to get more customers and clients",
   },
   {
     title: "A Random Walk Down Wall Street",
     author: "Burton Malkiel",
-    cover:
-      "https://m.media-amazon.com/images/I/61YEPc3XWlL._AC_UF1000,1000_QL80_.jpg",
+    coverColor: "#059669",
     tags: ["Finance"],
     description: "The time-tested strategy for successful investing",
   },
   {
     title: "Steal Like an Artist",
     author: "Austin Kleon",
-    cover:
-      "https://m.media-amazon.com/images/I/81VvqDdHEFL._AC_UF894,1000_QL80_.jpg",
+    coverColor: "#6366f1",
     tags: ["Creativity"],
     description: "10 things nobody told you about being creative",
   },
   {
     title: "The Creative Act",
     author: "Rick Rubin",
-    cover:
-      "https://m.media-amazon.com/images/I/71dUSlTVOwL._AC_UF1000,1000_QL80_.jpg",
+    coverColor: "#0891b2",
     tags: ["Creativity"],
     description: "A way of being",
   },
   {
     title: "The 48 Laws of Power",
     author: "Robert Greene",
-    cover: "https://m.media-amazon.com/images/I/61J3Uu4jOLL.jpg",
+    coverColor: "#4b5563",
     tags: ["Psychology"],
-    description: "The definitive manual for anyone interested in gaining power",
+    description: "Manipulative tactics",
   },
   {
     title: "The Almanack of Naval Ravikant",
     author: "Eric Jorgenson",
-    cover:
-      "https://mphonline.com/cdn/shop/products/the-almanack-of-naval-ravikant.jpg?v=1660113474",
+    coverColor: "#0f766e",
     tags: ["Philosophy"],
     description: "A guide to wealth and happiness",
   },
   {
     title: "Algorithms",
     author: "Jeff Erickson",
-    cover:
-      "https://archive.org/services/img/Algorithms-Jeff-Erickson/full/pct:200/0/default.jpg",
+    coverColor: "#7c3aed",
     tags: ["Computer Science"],
     description: "Comprehensive guide to algorithm design and analysis",
   },
   {
     title: "Open Data Structures",
     author: "Pat Morin",
-    cover:
-      "https://m.media-amazon.com/images/I/51YgRGbu4bL._AC_UF1000,1000_QL80_.jpg",
+    coverColor: "#be185d",
     tags: ["Computer Science"],
     description: "An introduction to data structures and algorithms",
   },
@@ -221,45 +209,36 @@ const ResourceIcon = ({ category }) => {
     Blogs: Globe,
     Newsletters: Mail,
     Courses: Graduation,
-    Tools: FileText,
   };
   const Icon = icons[category] || Globe;
   return <Icon size={18} />;
 };
 
 const BookCard = ({ book }) => {
-  const [imgError, setImgError] = useState(false);
+  const shouldUseWhiteText = (hexColor) => {
+    const r = parseInt(hexColor.slice(1, 3), 16);
+    const g = parseInt(hexColor.slice(3, 5), 16);
+    const b = parseInt(hexColor.slice(5, 7), 16);
+    return (0.299 * r + 0.587 * g + 0.114 * b) / 255 < 0.5;
+  };
+
+  const textColor = shouldUseWhiteText(book.coverColor) ? "white" : "black";
 
   return (
     <div className="book-card">
-      <div className="book-cover">
-        {imgError ? (
-          <div className="book-cover-fallback">
-            <BookOpen size={32} />
-          </div>
-        ) : (
-          <img
-            src={book.cover}
-            alt={book.title}
-            onError={() => setImgError(true)}
-            loading="lazy"
-          />
-        )}
-        <div className="book-cover-overlay">
-          <div className="book-info">
-            <p className="book-description">{book.description}</p>
-          </div>
+      <div
+        className="book-cover"
+        style={{ backgroundColor: book.coverColor, color: textColor }}
+      >
+        <div className="book-cover-content">
+          <h3 className="book-cover-title">{book.title}</h3>
+          <p className="book-cover-author">{book.author}</p>
+          <div className="book-cover-tag">{book.tags[0]}</div>
         </div>
       </div>
-      <div className="book-details">
-        <h3 className="book-title">{book.title}</h3>
-        <p className="book-author">{book.author}</p>
-        <div className="book-tags">
-          {book.tags.map((tag) => (
-            <span key={tag} className="book-tag">
-              {tag}
-            </span>
-          ))}
+      <div className="book-cover-overlay">
+        <div className="book-info">
+          <p className="book-description">{book.description}</p>
         </div>
       </div>
     </div>
@@ -381,7 +360,6 @@ export default function LibraryPage() {
           </div>
         </div>
       </div>
-
       <Footer />
       <ButtonsContainer />
     </main>
