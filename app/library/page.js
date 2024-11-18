@@ -116,13 +116,6 @@ const resourceCategories = ["All", "YouTube", "Papers"];
 
 const resources = [
   {
-    title: "Boris Meinardus",
-    creator: "Boris Meinardus",
-    link: "https://www.youtube.com/@borismeinardus/",
-    category: "YouTube",
-    description: "Machine Learning researcher",
-  },
-  {
     title: "Bridges",
     creator: "Bridges",
     link: "https://www.youtube.com/@bridgesyt",
@@ -142,13 +135,6 @@ const resources = [
     link: "https://www.youtube.com/@AndrejKarpathy/",
     category: "YouTube",
     description: "Deep learning and AI concepts explained",
-  },
-  {
-    title: "Easy Actually",
-    creator: "Easy Actually",
-    link: "https://www.youtube.com/@easyactually",
-    category: "YouTube",
-    description: "Stuff explained with fewer words and more pictures",
   },
   {
     title: "Horses",
