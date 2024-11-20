@@ -243,7 +243,7 @@ th {
 
 .social-buttons {
   display: flex;
-  gap: 20px;
+  gap: 14px;
 }
 
 .social-button {
@@ -1295,7 +1295,7 @@ pre code {
   border: 1.5px solid var(--code-background-color);
   border-radius: 12px;
   padding: 1rem;
-  transition: all 0.2s ease;
+  transition: all 0.1s ease;
   display: flex;
   gap: 1rem;
   align-items: flex-start;
@@ -1632,7 +1632,6 @@ pre code {
   }
 
   .resource-card:hover {
-    transform: translateY(-2px);
     background: var(--color-text);
     color: var(--color-bg);
     text-decoration: none;
@@ -1646,5 +1645,10 @@ pre code {
 
   .resource-card:hover .resource-icon-wrapper {
     color: var(--color-bg);
+  }
+
+  .github-icon-class:hover {
+    opacity: 1;
+    color: var(--color-text) !important;
   }
 }

@@ -78,6 +78,7 @@ export default function ProjectsSection() {
                 href={project.sourceLink}
                 icon={Github}
                 label="Source code"
+                className="github-icon-class"
               />
               <LinkIcon
                 href={project.projectLink}
