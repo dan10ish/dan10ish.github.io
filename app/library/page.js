@@ -7,7 +7,7 @@ import {
   FileText,
   Globe,
   Mail,
-  Graduation,
+  GraduationCap,
 } from "lucide-react";
 import Footer from "@/components/Footer";
 import ButtonsContainer from "@/components/ButtonsContainer";
@@ -155,35 +155,35 @@ const resources = [
     creator: "Terence Parr, Jeremy Howard",
     link: "https://arxiv.org/abs/1802.01528",
     category: "Papers",
-    description: "Essential matrix calculus for deep learning",
+    description: "Matrix calculus for deep learning",
   },
   {
     title: "Competitive Programmer's Handbook",
     creator: "Antti Laaksonen",
     link: "https://cses.fi/book/book.pdf",
     category: "Papers",
-    description: "Comprehensive guide to competitive programming",
+    description: "Competitive programming guide",
   },
   {
     title: "Data Science and Machine Learning",
     creator: "Dirk P. Kroese",
     link: "https://people.smp.uq.edu.au/DirkKroese/DSML/DSML.pdf",
     category: "Papers",
-    description: "Mathematical and Statistical Methods",
+    description: "Math and statistical methods",
   },
   {
     title: "Machine Learning Cheat Sheet",
     creator: "soulmachine",
     link: "https://github.com/soulmachine/machine-learning-cheat-sheet",
     category: "Papers",
-    description: "Comprehensive ML algorithms cheat sheet",
+    description: "ML algorithms cheat sheet",
   },
   {
     title: "Mathematics for Computer Science",
     creator: "MIT",
     link: "https://people.csail.mit.edu/meyer/mcs.pdf",
     category: "Papers",
-    description: "Essential mathematics for CS",
+    description: "Mathematics for CS",
   },
 ];
 
@@ -194,7 +194,7 @@ const ResourceIcon = ({ category }) => {
     Papers: FileText,
     Blogs: Globe,
     Newsletters: Mail,
-    Courses: Graduation,
+    Courses: GraduationCap,
   };
   const Icon = icons[category] || Globe;
   return <Icon size={18} />;
@@ -239,16 +239,14 @@ const ResourceCard = ({ resource }) => (
     className="resource-card"
     data-category={resource.category}
   >
-    <div className="resource-header">
-      <div>
-        <h3 className="resource-title">{resource.title}</h3>
-        <p className="resource-creator">{resource.creator}</p>
-      </div>
-      <div className="resource-icon">
-        <ResourceIcon category={resource.category} />
-      </div>
+    <div className="resource-icon-wrapper">
+      <ResourceIcon category={resource.category} />
     </div>
-    <p className="resource-description">{resource.description}</p>
+    <div className="resource-content">
+      <h3 className="resource-title">{resource.title}</h3>
+      <p className="resource-creator">{resource.creator}</p>
+      <p className="resource-description">{resource.description}</p>
+    </div>
   </a>
 );
 

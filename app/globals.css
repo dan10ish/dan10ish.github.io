@@ -1284,30 +1284,6 @@ pre code {
 
 /* Resources */
 
-.resource-title {
-  font-size: 1rem;
-  font-family: var(--font-heading);
-  padding-right: 30px;
-  margin: 0 0 0.5rem;
-  background: var(--text-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  line-height: 1.4;
-}
-
-.resource-creator {
-  font-size: 0.75rem;
-  color: var(--blockquote-color);
-  margin: 0;
-}
-
-.resource-description {
-  font-size: 0.8rem;
-  line-height: 1.5;
-  margin: 0.75rem 0;
-  color: var(--color-text);
-}
-
 .resources-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -1316,81 +1292,63 @@ pre code {
 }
 
 .resource-card {
-  position: relative;
-  padding: 1.2rem 1.75rem 1.2rem;
-  border-radius: 20px;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  background: var(--color-bg);
-  isolation: isolate;
-}
-
-.resource-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  opacity: 1;
-}
-
-.resource-card[data-category="YouTube"]::before {
-  background: linear-gradient(135deg, #ff0000 0%, #ff8c8c 100%);
-}
-
-.resource-card[data-category="Papers"]::before {
-  background: linear-gradient(135deg, #4caf50 0%, #8bc34a 100%);
-}
-
-.resource-card[data-category="Course"]::before {
-  background: linear-gradient(135deg, #2196f3 0%, #03a9f4 100%);
-}
-
-.resource-card::after {
-  content: "";
-  position: absolute;
-  inset: 1px;
-  background: var(--color-bg);
-  border-radius: inherit;
-  z-index: -1;
-}
-
-.resource-header {
+  border: 1.5px solid var(--code-background-color);
+  border-radius: 12px;
+  padding: 1rem;
+  transition: all 0.2s ease;
   display: flex;
+  gap: 1rem;
   align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: 1.25rem;
+  text-decoration: none;
+  position: relative;
 }
 
-.resource-icon {
-  padding: 10px;
-  border-radius: 14px;
-  color: var(--color-bg);
-  display: grid;
-  place-items: center;
+.resource-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  flex-shrink: 0;
 }
 
-.resource-card[data-category="YouTube"] .resource-icon {
-  background: linear-gradient(135deg, #ff0000 0%, #ff8c8c 100%);
+.resource-card[data-category="YouTube"] .resource-icon-wrapper {
+  color: #ff0000;
 }
 
-.resource-card[data-category="Papers"] .resource-icon {
-  background: linear-gradient(135deg, #4caf50 0%, #8bc34a 100%);
+.resource-card[data-category="Papers"] .resource-icon-wrapper {
+  color: #4caf50;
 }
 
-.resource-card[data-category="Course"] .resource-icon {
-  background: linear-gradient(135deg, #2196f3 0%, #03a9f4 100%);
+.resource-card[data-category="Course"] .resource-icon-wrapper {
+  color: #2196f3;
 }
 
-.resource-card[data-category="YouTube"] {
-  --text-gradient: linear-gradient(135deg, #ff0000, #ff8c8c);
+.resource-content {
+  flex: 1;
+  min-width: 0;
 }
 
-.resource-card[data-category="Papers"] {
-  --text-gradient: linear-gradient(135deg, #4caf50, #8bc34a);
+.resource-title {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  color: var(--color-text);
+  margin: 0 0 0.25rem;
+  font-weight: 500;
 }
 
-.resource-card[data-category="Course"] {
-  --text-gradient: linear-gradient(135deg, #2196f3, #03a9f4);
+.resource-creator {
+  font-size: 0.75rem;
+  color: var(--blockquote-color);
+  margin: 0 0 0.5rem;
+}
+
+.resource-description {
+  font-size: 0.8rem;
+  color: var(--blockquote-color);
+  margin: 0;
+  line-height: 1.5;
 }
 
 /* Desktop Media Queries */
@@ -1674,12 +1632,19 @@ pre code {
   }
 
   .resource-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-2px);
+    background: var(--color-text);
+    color: var(--color-bg);
     text-decoration: none;
   }
 
-  .resource-card:hover .resource-arrow {
-    opacity: 1;
-    transform: translateX(0);
+  .resource-card:hover .resource-title,
+  .resource-card:hover .resource-description,
+  .resource-card:hover .resource-creator {
+    color: var(--color-bg);
+  }
+
+  .resource-card:hover .resource-icon-wrapper {
+    color: var(--color-bg);
   }
 }
