@@ -1286,21 +1286,18 @@ pre code {
 
 .resources-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1rem;
   padding: 1rem 0;
 }
 
 .resource-card {
-  border: 1.5px solid var(--code-background-color);
+  border: 1px solid var(--code-background-color);
   border-radius: 12px;
-  padding: 1rem;
-  transition: all 0.1s ease;
+  padding: 0.75rem 1rem;
+  transition: all 0.15s ease;
   display: flex;
-  gap: 1rem;
-  align-items: flex-start;
-  text-decoration: none;
-  position: relative;
+  gap: 0.75rem;
+  align-items: center;
 }
 
 .resource-icon-wrapper {
@@ -1326,29 +1323,30 @@ pre code {
 }
 
 .resource-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   flex: 1;
-  min-width: 0;
 }
 
 .resource-title {
   font-family: var(--font-heading);
   font-size: 0.9rem;
   color: var(--color-text);
-  margin: 0 0 0.25rem;
-  font-weight: 500;
-}
-
-.resource-creator {
-  font-size: 0.75rem;
-  color: var(--blockquote-color);
-  margin: 0 0 0.5rem;
-}
-
-.resource-description {
-  font-size: 0.8rem;
-  color: var(--blockquote-color);
   margin: 0;
-  line-height: 1.5;
+  padding: 0;
+  font-weight: 450;
+}
+
+.resource-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  color: var(--color-text);
+  background: var(--code-background-color);
+  padding: 4px 12px;
+  border-radius: 6px;
+  margin-left: auto;
 }
 
 /* Desktop Media Queries */
@@ -1513,6 +1511,10 @@ pre code {
   .book-cover-title {
     font-size: 1.1rem;
   }
+
+  .resources-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
 }
 
 /* Hover Effects */
@@ -1632,19 +1634,17 @@ pre code {
   }
 
   .resource-card:hover {
-    background: var(--color-text);
-    color: var(--color-bg);
+    background: var(--code-background-color);
+    color: var(--color-text);
     text-decoration: none;
   }
 
-  .resource-card:hover .resource-title,
-  .resource-card:hover .resource-description,
-  .resource-card:hover .resource-creator {
-    color: var(--color-bg);
+  .resource-card:hover .resource-title {
+    color: var(--color-text);
   }
 
-  .resource-card:hover .resource-icon-wrapper {
-    color: var(--color-bg);
+  .resource-card:hover .resource-tag {
+    background: var(--color-bg);
   }
 
   .github-icon-class:hover {

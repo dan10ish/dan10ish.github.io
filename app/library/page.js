@@ -117,73 +117,63 @@ const resourceCategories = ["All", "YouTube", "Papers"];
 const resources = [
   {
     title: "Bridges",
-    creator: "Bridges",
-    link: "https://www.youtube.com/@bridgesyt",
+    tag: "Philosophy",
     category: "YouTube",
-    description: "Philosophical insights",
+    link: "https://www.youtube.com/@bridgesyt",
   },
   {
     title: "The Cherno",
-    creator: "Yan Chernikov",
-    link: "https://www.youtube.com/@TheCherno",
+    tag: "C++",
     category: "YouTube",
-    description: "Game engine development and C++ programming",
+    link: "https://www.youtube.com/@TheCherno",
   },
   {
     title: "Andrej Karpathy",
-    creator: "Andrej Karpathy",
-    link: "https://www.youtube.com/@AndrejKarpathy/",
+    tag: "ML",
     category: "YouTube",
-    description: "Deep learning and AI concepts explained",
+    link: "https://www.youtube.com/@AndrejKarpathy/",
   },
   {
     title: "Horses",
-    creator: "Horses",
-    link: "https://www.youtube.com/@HorsesOnYT",
+    tag: "Essays",
     category: "YouTube",
-    description: "Essays by Michael Sorensen",
+    link: "https://www.youtube.com/@HorsesOnYT",
   },
   {
     title: "b001",
-    creator: "b001",
-    link: "https://www.youtube.com/@b001",
+    tag: "Python",
     category: "YouTube",
-    description: "Python programming",
+    link: "https://www.youtube.com/@b001",
   },
   {
-    title: "The Matrix Calculus You Need For Deep Learning",
-    creator: "Terence Parr, Jeremy Howard",
+    title: "Matrix Calculus",
+    tag: "ML",
+    category: "Papers",
     link: "https://arxiv.org/abs/1802.01528",
-    category: "Papers",
-    description: "Matrix calculus for deep learning",
   },
   {
-    title: "Competitive Programmer's Handbook",
-    creator: "Antti Laaksonen",
+    title: "CP Handbook",
+    tag: "Algo",
+    category: "Papers",
     link: "https://cses.fi/book/book.pdf",
-    category: "Papers",
-    description: "Competitive programming guide",
   },
   {
-    title: "Data Science and Machine Learning",
-    creator: "Dirk P. Kroese",
+    title: "Data Science ML",
+    tag: "Stats",
+    category: "Papers",
     link: "https://people.smp.uq.edu.au/DirkKroese/DSML/DSML.pdf",
-    category: "Papers",
-    description: "Math and statistical methods",
   },
   {
-    title: "Machine Learning Cheat Sheet",
-    creator: "soulmachine",
+    title: "ML Cheat Sheet",
+    tag: "ML",
+    category: "Papers",
     link: "https://github.com/soulmachine/machine-learning-cheat-sheet",
-    category: "Papers",
-    description: "ML algorithms cheat sheet",
   },
   {
-    title: "Mathematics for Computer Science",
-    creator: "MIT",
-    link: "https://people.csail.mit.edu/meyer/mcs.pdf",
+    title: "Math for CS",
+    tag: "Math",
     category: "Papers",
-    description: "Mathematics for CS",
+    link: "https://people.csail.mit.edu/meyer/mcs.pdf",
   },
 ];
 
@@ -242,11 +232,8 @@ const ResourceCard = ({ resource }) => (
     <div className="resource-icon-wrapper">
       <ResourceIcon category={resource.category} />
     </div>
-    <div className="resource-content">
-      <h3 className="resource-title">{resource.title}</h3>
-      <p className="resource-creator">{resource.creator}</p>
-      <p className="resource-description">{resource.description}</p>
-    </div>
+    <h3 className="resource-title">{resource.title}</h3>
+    <span className="resource-tag">{resource.tag}</span>
   </a>
 );
 
