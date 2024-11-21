@@ -229,6 +229,7 @@ th {
 .title-link a {
   color: var(--color-text);
   font-size: 0.75rem;
+  transition: all 0.15s ease;
 }
 
 .title-link h1 {
@@ -1525,6 +1526,7 @@ pre code {
 
   .title-link a:hover {
     text-decoration: none;
+    color: var(--color-link);
   }
 
   .post-row:hover {
