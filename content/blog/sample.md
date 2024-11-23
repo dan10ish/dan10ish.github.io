@@ -122,19 +122,15 @@ Here are some typical issues developers encounter:
 
 ```tabs
 python
-# Common mistake - infinite loop
 def binary_search_wrong(arr, target):
-    left, right = 0, len(arr)  # Wrong: should be len(arr) - 1
+    left, right = 0, len(arr)
     while left <= right:
         mid = (left + right) // 2
-        # ... rest of code
 ---python
-# Correct implementation
 def binary_search_correct(arr, target):
-    left, right = 0, len(arr) - 1  # Correct: proper boundary
+    left, right = 0, len(arr) - 1
     while left <= right:
         mid = (left + right) // 2
-        # ... rest of code
 ```
 
 ## Real-World Applications

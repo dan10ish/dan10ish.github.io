@@ -1531,8 +1531,8 @@ a[data-footnote-ref] {
     position: fixed;
     top: auto;
     left: auto;
-    bottom: 20px;
-    right: 100px;
+    top: 50px;
+    right: 20px;
     width: 500px;
     height: auto;
     max-height: 600px;
