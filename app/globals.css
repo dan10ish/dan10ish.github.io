@@ -714,6 +714,12 @@ th {
   opacity: 1;
 }
 
+.toc-content a.active {
+  background: rgba(var(--color-text-rgb), 0.1);
+  color: var(--color-link);
+  font-weight: 500;
+}
+
 .toc-close {
   background: transparent;
   border: none;
@@ -1332,6 +1338,98 @@ pre code {
   margin-left: auto;
 }
 
+/* Footnotes */
+
+.footnotes {
+  margin-top: 2.5rem;
+  font-size: 0.8rem;
+  color: var(--blockquote-color);
+  counter-reset: footnote;
+}
+
+.footnotes > h2,
+.footnotes > hr {
+  display: none;
+}
+
+.footnotes ol {
+  list-style: none;
+  padding-left: 0;
+}
+
+.footnotes li {
+  position: relative;
+  padding-left: 1.8rem;
+  margin-bottom: 1rem;
+  scroll-margin-top: 100px;
+}
+
+.footnotes li:last-child {
+  margin-bottom: 0;
+}
+
+.footnotes li::before {
+  counter-increment: footnote;
+  content: counter(footnote) ".";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 0.75rem;
+  font-weight: 500;
+  width: 1.4rem;
+  height: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footnotes li p {
+  display: inline;
+}
+
+a[data-footnote-ref] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  font-size: 0.7rem;
+  background: var(--code-background-color);
+  color: var(--color-link);
+  border-radius: 4px;
+  text-decoration: none;
+  vertical-align: super;
+  font-weight: 500;
+  margin: 0 2px;
+  transition: transform 0.15s ease;
+  outline: none;
+  scroll-margin-top: 100px;
+}
+
+.footnotes .data-footnote-backref,
+.footnotes .footnote-backref {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  font-size: 0.8rem;
+  background: var(--code-background-color);
+  color: var(--color-link);
+  border-radius: 4px;
+  text-decoration: none;
+  vertical-align: baseline;
+  font-weight: 500;
+  transition: transform 0.15s ease;
+  outline: none;
+}
+
+:target {
+  scroll-margin-top: 150px;
+}
+
 /* Desktop Media Queries */
 @media (min-width: 768px) {
   body {
@@ -1499,6 +1597,21 @@ pre code {
   .resources-grid {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   }
+
+  .footnotes {
+    margin-top: 3rem;
+    font-size: 0.85rem;
+  }
+
+  .footnotes li {
+    padding-left: 2rem;
+  }
+
+  .footnotes li::before {
+    font-size: 0.8rem;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
 }
 
 /* Hover Effects */
@@ -1635,5 +1748,13 @@ pre code {
   .github-icon-class:hover {
     opacity: 1;
     color: var(--color-text) !important;
+  }
+
+  a[data-footnote-ref]:hover,
+  .footnotes .data-footnote-backref:hover,
+  .footnotes .footnote-backref:hover {
+    background: var(--color-link);
+    color: var(--color-bg);
+    text-decoration: none !important;
   }
 }

@@ -1,13 +1,13 @@
-"use client";
-
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 const TOCButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [toc, setToc] = useState([]);
+  const [activeId, setActiveId] = useState("");
   const menuRef = useRef(null);
   const isLargeScreen = useRef(false);
   const scrollPosition = useRef(0);
+  const observerRef = useRef(null);
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -17,7 +17,6 @@ const TOCButton = () => {
     window.addEventListener("resize", checkScreenSize);
 
     if (isOpen) {
-      // Handle mobile scroll lock
       if (!isLargeScreen.current) {
         scrollPosition.current = window.scrollY;
         document.body.style.position = "fixed";
@@ -25,14 +24,12 @@ const TOCButton = () => {
         document.body.style.width = "100%";
       }
 
-      // Handle desktop scroll close
       if (isLargeScreen.current) {
         const handleScroll = () => setIsOpen(false);
         window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
       }
     } else {
-      // Restore scroll position on mobile
       if (!isLargeScreen.current) {
         document.body.style.position = "";
         document.body.style.top = "";
@@ -49,6 +46,34 @@ const TOCButton = () => {
     };
   }, [isOpen]);
 
+  const createObserver = useCallback(() => {
+    if (observerRef.current) {
+      observerRef.current.disconnect();
+    }
+
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            setActiveId(entry.target.id);
+          }
+        });
+      },
+      {
+        rootMargin: "-20% 0% -35% 0%",
+        threshold: 0.5,
+      }
+    );
+
+    document.querySelectorAll("h2, h3, h4, h5, h6").forEach((heading) => {
+      if (heading.id) {
+        observerRef.current.observe(heading);
+      }
+    });
+
+    return () => observerRef.current.disconnect();
+  }, []);
+
   useEffect(() => {
     const generateTOC = () => {
       const headers = document.querySelectorAll("h2, h3, h4, h5, h6");
@@ -64,10 +89,18 @@ const TOCButton = () => {
           if (!header.id) header.id = id;
           return { id, text, level: parseInt(header.tagName.charAt(1)) };
         })
-        .filter((item) => item.text.toLowerCase() !== "table of contents");
+        .filter(
+          (item) =>
+            item.text.toLowerCase() !== "table of contents" &&
+            item.text.toLowerCase() !== "footnotes"
+        );
     };
 
-    const updateTOC = () => setToc(generateTOC());
+    const updateTOC = () => {
+      setToc(generateTOC());
+      createObserver();
+    };
+
     updateTOC();
 
     const observer = new MutationObserver(updateTOC);
@@ -84,15 +117,15 @@ const TOCButton = () => {
     return () => {
       observer.disconnect();
       document.removeEventListener("mousedown", handleClickOutside);
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
     };
-  }, []);
-
-  if (!toc.length) return null;
+  }, [createObserver]);
 
   const handleClick = (e, id) => {
     e.preventDefault();
     setIsOpen(false);
-    // Restore scroll position before scrolling to element on mobile
     if (!isLargeScreen.current) {
       document.body.style.position = "";
       document.body.style.top = "";
@@ -100,7 +133,6 @@ const TOCButton = () => {
       window.scrollTo(0, scrollPosition.current);
     }
 
-    // Small delay to ensure scroll position is restored
     setTimeout(() => {
       const element = document.getElementById(id);
       if (element) {
@@ -112,6 +144,8 @@ const TOCButton = () => {
       }
     }, 0);
   };
+
+  if (!toc.length) return null;
 
   return (
     <div className="toc-button-wrapper" ref={menuRef}>
@@ -170,6 +204,7 @@ const TOCButton = () => {
                   <a
                     href={`#${item.id}`}
                     onClick={(e) => handleClick(e, item.id)}
+                    className={activeId === item.id ? "active" : ""}
                   >
                     {item.text}
                   </a>
