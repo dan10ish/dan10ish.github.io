@@ -8,6 +8,7 @@ import {
   Globe,
   Mail,
   GraduationCap,
+  Hammer,
 } from "lucide-react";
 import Footer from "@/components/Footer";
 import ButtonsContainer from "@/components/ButtonsContainer";
@@ -112,18 +113,11 @@ const books = [
   },
 ];
 
-const resourceCategories = ["All", "YouTube", "Papers"];
+const resourceCategories = ["All", "YouTube", "Papers", "Tools"];
 
 const resources = [
   {
-    title: "Bridges",
-    tag: "Philosophy",
-    category: "YouTube",
-    link: "https://www.youtube.com/@bridgesyt",
-  },
-  {
     title: "The Cherno",
-    tag: "C++",
     category: "YouTube",
     link: "https://www.youtube.com/@TheCherno",
   },
@@ -135,45 +129,58 @@ const resources = [
   },
   {
     title: "Horses",
-    tag: "Essays",
     category: "YouTube",
     link: "https://www.youtube.com/@HorsesOnYT",
   },
   {
     title: "b001",
-    tag: "Python",
     category: "YouTube",
     link: "https://www.youtube.com/@b001",
   },
   {
     title: "Matrix Calculus",
-    tag: "ML",
     category: "Papers",
     link: "https://arxiv.org/abs/1802.01528",
   },
   {
     title: "CP Handbook",
-    tag: "Algo",
     category: "Papers",
     link: "https://cses.fi/book/book.pdf",
   },
   {
     title: "Data Science ML",
-    tag: "Stats",
     category: "Papers",
     link: "https://people.smp.uq.edu.au/DirkKroese/DSML/DSML.pdf",
   },
   {
     title: "ML Cheat Sheet",
-    tag: "ML",
     category: "Papers",
     link: "https://github.com/soulmachine/machine-learning-cheat-sheet",
   },
   {
     title: "Math for CS",
-    tag: "Math",
     category: "Papers",
     link: "https://people.csail.mit.edu/meyer/mcs.pdf",
+  },
+  {
+    title: "Sketch",
+    category: "Tools",
+    link: "https://www.sketch.com",
+  },
+  {
+    title: "Zed",
+    category: "Tools",
+    link: "https://www.zed.dev",
+  },
+  {
+    title: "MATLAB",
+    category: "Tools",
+    link: "https://in.mathworks.com/products/matlab.html",
+  },
+  {
+    title: "Fusion 360",
+    category: "Tools",
+    link: "https://www.autodesk.com/in/products/fusion-360/overview",
   },
 ];
 
@@ -185,6 +192,7 @@ const ResourceIcon = ({ category }) => {
     Blogs: Globe,
     Newsletters: Mail,
     Courses: GraduationCap,
+    Tools: Hammer,
   };
   const Icon = icons[category] || Globe;
   return <Icon size={18} />;
@@ -233,7 +241,6 @@ const ResourceCard = ({ resource }) => (
       <ResourceIcon category={resource.category} />
     </div>
     <h3 className="resource-title">{resource.title}</h3>
-    <span className="resource-tag">{resource.tag}</span>
   </a>
 );
 

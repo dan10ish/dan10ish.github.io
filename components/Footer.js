@@ -20,7 +20,7 @@ const ThemeInitializer = () => {
       if (meta) {
         meta.content =
           theme === "dark"
-            ? "#000000"
+            ? "#212121"
             : theme === "light"
             ? "#ffffff"
             : "#00212b";
@@ -161,7 +161,7 @@ const Footer = ({ blogSlug = null }) => {
     if (meta) {
       meta.content =
         theme === "dark"
-          ? "#000000"
+          ? "#212121"
           : theme === "light"
           ? "#ffffff"
           : "#00212b";
@@ -265,7 +265,7 @@ const Footer = ({ blogSlug = null }) => {
                 className={`theme-circle ${
                   currentTheme === "dark" ? "active" : ""
                 }`}
-                style={{ background: "#000000" }}
+                style={{ background: "#212121" }}
                 aria-label="Dark theme"
               />
               <button
