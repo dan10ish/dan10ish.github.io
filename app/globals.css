@@ -1438,7 +1438,6 @@ a[data-footnote-ref] {
   position: relative;
   margin: 2rem auto;
   padding: 1rem;
-
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
