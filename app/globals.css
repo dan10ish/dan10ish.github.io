@@ -1430,6 +1430,106 @@ a[data-footnote-ref] {
   scroll-margin-top: 150px;
 }
 
+/* Github Contributions */
+
+.contributions-wrapper {
+  width: 100%;
+  max-width: 900px;
+  position: relative;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.contributions-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--week-count), 1fr);
+  gap: 4px;
+  width: 100%;
+}
+
+.contribution-week {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.contribution-cell {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 2px;
+  transition: transform 0.15s ease;
+}
+
+.contribution-tooltip {
+  position: fixed;
+  background: var(--color-bg);
+  border: 1px solid var(--github-border);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  pointer-events: none;
+  z-index: 1000;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: var(--color-text);
+  max-width: calc(100vw - 32px);
+  margin-top: -6px;
+}
+
+[data-theme="light"] .contribution-cell {
+  background-color: #ebedf0;
+}
+[data-theme="light"] .contribution-cell.level-1 {
+  background-color: #9be9a8;
+}
+[data-theme="light"] .contribution-cell.level-2 {
+  background-color: #40c463;
+}
+[data-theme="light"] .contribution-cell.level-3 {
+  background-color: #30a14e;
+}
+[data-theme="light"] .contribution-cell.level-4 {
+  background-color: #216e39;
+}
+
+[data-theme="dark"] .contribution-cell {
+  background-color: #161b22;
+}
+[data-theme="dark"] .contribution-cell.level-1 {
+  background-color: #0e4429;
+}
+[data-theme="dark"] .contribution-cell.level-2 {
+  background-color: #006d32;
+}
+[data-theme="dark"] .contribution-cell.level-3 {
+  background-color: #26a641;
+}
+[data-theme="dark"] .contribution-cell.level-4 {
+  background-color: #39d353;
+}
+
+[data-theme="solarized-dark"] .contribution-cell {
+  background-color: #002b36;
+}
+[data-theme="solarized-dark"] .contribution-cell.level-1 {
+  background-color: #164846;
+}
+[data-theme="solarized-dark"] .contribution-cell.level-2 {
+  background-color: #1e6b68;
+}
+[data-theme="solarized-dark"] .contribution-cell.level-3 {
+  background-color: #2aa198;
+}
+[data-theme="solarized-dark"] .contribution-cell.level-4 {
+  background-color: #38d2c7;
+}
+
+@media (max-width: 767px) {
+  .contributions-grid {
+    --week-count: 20;
+  }
+}
+
 /* Desktop Media Queries */
 @media (min-width: 768px) {
   body {
@@ -1612,6 +1712,16 @@ a[data-footnote-ref] {
     width: 1.5rem;
     height: 1.5rem;
   }
+
+  .contribution-cell {
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+  }
+
+  .contributions-grid {
+    --week-count: 26;
+  }
 }
 
 /* Hover Effects */
@@ -1756,5 +1866,9 @@ a[data-footnote-ref] {
     background: var(--color-link);
     color: var(--color-bg);
     text-decoration: none !important;
+  }
+
+  .contribution-cell:hover {
+    transform: scale(1.3);
   }
 }

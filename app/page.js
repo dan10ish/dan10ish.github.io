@@ -4,6 +4,7 @@ import AboutMe from "../components/AboutMe";
 import ProjectsSection from "../components/ProjectsSection";
 import Footer from "@/components/Footer";
 import { FileText } from "lucide-react";
+import GithubContributions from "@/components/GithubContributions";
 
 export default function Home() {
   const posts = getBlogPosts();
@@ -68,6 +69,7 @@ export default function Home() {
       </div>
       <div id="projects">
         <ProjectsSection />
+        <GithubContributions />
       </div>
       <Footer />
     </main>
