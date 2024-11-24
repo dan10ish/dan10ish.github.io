@@ -27,33 +27,39 @@ const GithubContributions = () => {
         const lastYear = new Date(today);
         lastYear.setFullYear(today.getFullYear() - 1);
 
-        const response = await fetch("https://api.github.com/graphql", {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            query: `query {
-              user(login: "dan10ish") {
-                contributionsCollection(from: "${lastYear.toISOString()}", to: "${today.toISOString()}") {
-                  contributionCalendar {
-                    weeks {
-                      contributionDays {
-                        contributionCount
-                        date
-                      }
-                    }
+        const query = `query {
+          user(login: "dan10ish") {
+            contributionsCollection(from: "${lastYear.toISOString()}", to: "${today.toISOString()}") {
+              contributionCalendar {
+                totalContributions
+                weeks {
+                  contributionDays {
+                    contributionCount
+                    date
                   }
                 }
               }
-            }`,
-          }),
+            }
+          }
+        }`;
+
+        const response = await fetch("https://api.github.com/graphql", {
+          method: "POST",
+          headers: {
+            Authorization: `token ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ query }),
         });
 
-        const data = await response.json();
+        const { data } = await response.json();
+
+        if (!data?.user?.contributionsCollection?.contributionCalendar?.weeks) {
+          throw new Error("No data received");
+        }
+
         const allDays =
-          data.data.user.contributionsCollection.contributionCalendar.weeks.flatMap(
+          data.user.contributionsCollection.contributionCalendar.weeks.flatMap(
             (week) => week.contributionDays
           );
 
@@ -71,6 +77,7 @@ const GithubContributions = () => {
           setContributions(recentDays);
         }
       } catch (error) {
+        console.error("Failed to fetch contributions:", error);
         const daysToShow =
           DAYS_IN_WEEK * (isMobile ? MOBILE_WEEKS : DESKTOP_WEEKS);
         const emptyDays = Array(daysToShow).fill({
@@ -82,13 +89,15 @@ const GithubContributions = () => {
     };
 
     fetchContributions();
+    const interval = setInterval(fetchContributions, 3600000);
+    return () => clearInterval(interval);
   }, [isMobile]);
 
   const getContributionLevel = useCallback((count) => {
     if (count === 0) return 0;
-    if (count <= 1) return 1;
-    if (count <= 4) return 2;
-    if (count <= 8) return 3;
+    if (count === 1) return 1;
+    if (count <= 3) return 2;
+    if (count <= 5) return 3;
     return 4;
   }, []);
 
@@ -106,7 +115,6 @@ const GithubContributions = () => {
     const tooltipHeight = 40;
     const padding = 22;
     const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
 
     let x = rect.left + rect.width / 2;
     let y = rect.top;
