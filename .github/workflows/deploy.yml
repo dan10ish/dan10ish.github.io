@@ -10,16 +10,14 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
     env:
       NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
       NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
-
+      NEXT_PUBLIC_GITHUB_TOKEN: ${{ secrets.NEXT_PUBLIC_GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 1
-
       - uses: actions/cache@v3
         with:
           path: |
@@ -30,23 +28,20 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
             ${{ runner.os }}-nextjs-
-
       - uses: actions/setup-node@v3
         with:
           node-version: "18"
           cache: "npm"
-
       - name: Install dependencies
         run: npm install --prefer-offline --no-audit
-
       - name: Build and Generate Sitemap
         run: |
           echo "NEXT_PUBLIC_SUPABASE_URL=${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}" >> .env.production
           echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}" >> .env.production
+          echo "NEXT_PUBLIC_GITHUB_TOKEN=${{ secrets.NEXT_PUBLIC_GITHUB_TOKEN }}" >> .env.production
           npm run build
           npm run postbuild
           touch out/.nojekyll
-
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
