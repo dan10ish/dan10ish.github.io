@@ -23,49 +23,23 @@ const GithubContributions = () => {
   useEffect(() => {
     const fetchContributions = async () => {
       try {
-        const today = new Date();
-        const lastYear = new Date(today);
-        lastYear.setFullYear(today.getFullYear() - 1);
+        const response = await fetch(
+          "https://github-contributions-api.jogruber.de/v4/dan10ish?y=last"
+        );
+        const data = await response.json();
 
-        const query = `query {
-          user(login: "dan10ish") {
-            contributionsCollection(from: "${lastYear.toISOString()}", to: "${today.toISOString()}") {
-              contributionCalendar {
-                totalContributions
-                weeks {
-                  contributionDays {
-                    contributionCount
-                    date
-                  }
-                }
-              }
-            }
-          }
-        }`;
-
-        const response = await fetch("https://api.github.com/graphql", {
-          method: "POST",
-          headers: {
-            Authorization: `token ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ query }),
-        });
-
-        const { data } = await response.json();
-
-        if (!data?.user?.contributionsCollection?.contributionCalendar?.weeks) {
-          throw new Error("No data received");
+        if (!data?.contributions) {
+          throw new Error("No contribution data found");
         }
 
-        const allDays =
-          data.user.contributionsCollection.contributionCalendar.weeks.flatMap(
-            (week) => week.contributionDays
-          );
+        const contributionData = data.contributions.map((day) => ({
+          date: day.date,
+          contributionCount: day.count,
+        }));
 
         const daysToShow =
           DAYS_IN_WEEK * (isMobile ? MOBILE_WEEKS : DESKTOP_WEEKS);
-        const recentDays = allDays.slice(-daysToShow);
+        const recentDays = contributionData.slice(-daysToShow);
 
         if (recentDays.length < daysToShow) {
           const emptyDays = Array(daysToShow - recentDays.length).fill({
@@ -77,7 +51,6 @@ const GithubContributions = () => {
           setContributions(recentDays);
         }
       } catch (error) {
-        console.error("Failed to fetch contributions:", error);
         const daysToShow =
           DAYS_IN_WEEK * (isMobile ? MOBILE_WEEKS : DESKTOP_WEEKS);
         const emptyDays = Array(daysToShow).fill({
