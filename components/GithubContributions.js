@@ -1,10 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-
-const DAYS_IN_WEEK = 7;
-const MOBILE_WEEKS = 20;
-const DESKTOP_WEEKS = 26;
+import { GITHUB_CONFIG, CONTRIBUTION_CONFIG } from "@/lib/github";
 
 const GithubContributions = () => {
   const [contributions, setContributions] = useState([]);
@@ -24,7 +21,7 @@ const GithubContributions = () => {
     const fetchContributions = async () => {
       try {
         const query = `query {
-          user(login: "dan10ish") {
+          user(login: "${GITHUB_CONFIG.USERNAME}") {
             contributionsCollection {
               contributionCalendar {
                 weeks {
@@ -41,7 +38,7 @@ const GithubContributions = () => {
         const response = await fetch("https://api.github.com/graphql", {
           method: "POST",
           headers: {
-            Authorization: `bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
+            Authorization: `bearer ${GITHUB_CONFIG.TOKEN}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ query }),
@@ -51,7 +48,14 @@ const GithubContributions = () => {
         const days =
           data.user.contributionsCollection.contributionCalendar.weeks
             .flatMap((week) => week.contributionDays)
-            .slice(-(DAYS_IN_WEEK * (isMobile ? MOBILE_WEEKS : DESKTOP_WEEKS)));
+            .slice(
+              -(
+                CONTRIBUTION_CONFIG.DAYS_IN_WEEK *
+                (isMobile
+                  ? CONTRIBUTION_CONFIG.MOBILE_WEEKS
+                  : CONTRIBUTION_CONFIG.DESKTOP_WEEKS)
+              )
+            );
 
         setContributions(days);
       } catch (error) {
@@ -95,39 +99,45 @@ const GithubContributions = () => {
     setTooltip(null);
   }, []);
 
-  const weeksToShow = isMobile ? MOBILE_WEEKS : DESKTOP_WEEKS;
+  const weeksToShow = isMobile
+    ? CONTRIBUTION_CONFIG.MOBILE_WEEKS
+    : CONTRIBUTION_CONFIG.DESKTOP_WEEKS;
 
   return (
     <div className="contributions-wrapper">
       <div className="contributions-grid">
         {Array.from({ length: weeksToShow }).map((_, weekIndex) => (
           <div key={weekIndex} className="contribution-week">
-            {Array.from({ length: DAYS_IN_WEEK }).map((_, dayIndex) => {
-              const contribution =
-                contributions[weekIndex * DAYS_IN_WEEK + dayIndex];
-              return (
-                <div
-                  key={dayIndex}
-                  className={`contribution-cell ${
-                    contribution
-                      ? `level-${Math.min(4, contribution.contributionCount)}`
-                      : "level-0"
-                  }`}
-                  onMouseEnter={(e) =>
-                    contribution && showTooltip(e, contribution)
-                  }
-                  onMouseLeave={hideTooltip}
-                  onTouchStart={(e) => {
-                    e.preventDefault();
-                    contribution && showTooltip(e, contribution);
-                  }}
-                  onTouchEnd={(e) => {
-                    e.preventDefault();
-                    hideTooltip();
-                  }}
-                />
-              );
-            })}
+            {Array.from({ length: CONTRIBUTION_CONFIG.DAYS_IN_WEEK }).map(
+              (_, dayIndex) => {
+                const contribution =
+                  contributions[
+                    weekIndex * CONTRIBUTION_CONFIG.DAYS_IN_WEEK + dayIndex
+                  ];
+                return (
+                  <div
+                    key={dayIndex}
+                    className={`contribution-cell ${
+                      contribution
+                        ? `level-${Math.min(4, contribution.contributionCount)}`
+                        : "level-0"
+                    }`}
+                    onMouseEnter={(e) =>
+                      contribution && showTooltip(e, contribution)
+                    }
+                    onMouseLeave={hideTooltip}
+                    onTouchStart={(e) => {
+                      e.preventDefault();
+                      contribution && showTooltip(e, contribution);
+                    }}
+                    onTouchEnd={(e) => {
+                      e.preventDefault();
+                      hideTooltip();
+                    }}
+                  />
+                );
+              }
+            )}
           </div>
         ))}
       </div>

@@ -1,5 +1,7 @@
 .DS_Store
 
+lib/github.js
+
 .idea
 
 .env
