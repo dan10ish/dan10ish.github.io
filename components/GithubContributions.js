@@ -12,7 +12,9 @@ const GithubContributions = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
     checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
@@ -20,12 +22,6 @@ const GithubContributions = () => {
 
   useEffect(() => {
     const fetchContributions = async () => {
-      const token = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
-      if (!token) {
-        console.error("GitHub token not found");
-        return;
-      }
-
       try {
         const today = new Date();
         const lastYear = new Date(today);
@@ -34,43 +30,30 @@ const GithubContributions = () => {
         const response = await fetch("https://api.github.com/graphql", {
           method: "POST",
           headers: {
-            Authorization: `bearer ${token}`,
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            query: `
-              query UserContributions($username: String!, $from: DateTime!, $to: DateTime!) {
-                user(login: $username) {
-                  contributionsCollection(from: $from, to: $to) {
-                    contributionCalendar {
-                      totalContributions
-                      weeks {
-                        contributionDays {
-                          contributionCount
-                          date
-                        }
+            query: `query {
+              user(login: "dan10ish") {
+                contributionsCollection(from: "${lastYear.toISOString()}", to: "${today.toISOString()}") {
+                  contributionCalendar {
+                    weeks {
+                      contributionDays {
+                        contributionCount
+                        date
                       }
                     }
                   }
                 }
               }
-            `,
-            variables: {
-              username: "dan10ish",
-              from: lastYear.toISOString(),
-              to: today.toISOString(),
-            },
+            }`,
           }),
         });
 
-        const { data } = await response.json();
-
-        if (!data?.user?.contributionsCollection?.contributionCalendar?.weeks) {
-          throw new Error("No contribution data found");
-        }
-
+        const data = await response.json();
         const allDays =
-          data.user.contributionsCollection.contributionCalendar.weeks.flatMap(
+          data.data.user.contributionsCollection.contributionCalendar.weeks.flatMap(
             (week) => week.contributionDays
           );
 
@@ -88,7 +71,6 @@ const GithubContributions = () => {
           setContributions(recentDays);
         }
       } catch (error) {
-        console.error("Error fetching contributions:", error);
         const daysToShow =
           DAYS_IN_WEEK * (isMobile ? MOBILE_WEEKS : DESKTOP_WEEKS);
         const emptyDays = Array(daysToShow).fill({
@@ -100,15 +82,13 @@ const GithubContributions = () => {
     };
 
     fetchContributions();
-    const interval = setInterval(fetchContributions, 3600000);
-    return () => clearInterval(interval);
   }, [isMobile]);
 
   const getContributionLevel = useCallback((count) => {
     if (count === 0) return 0;
-    if (count <= 3) return 1;
-    if (count <= 6) return 2;
-    if (count <= 9) return 3;
+    if (count <= 1) return 1;
+    if (count <= 4) return 2;
+    if (count <= 8) return 3;
     return 4;
   }, []);
 
@@ -124,8 +104,7 @@ const GithubContributions = () => {
 
     const tooltipWidth = 200;
     const tooltipHeight = 40;
-    const padding = 25;
-
+    const padding = 22;
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
 
@@ -134,9 +113,6 @@ const GithubContributions = () => {
 
     const wouldGoOffRight = x + tooltipWidth / 2 > viewportWidth - padding;
     const wouldGoOffLeft = x - tooltipWidth / 2 < padding;
-    const wouldGoOffTop = y - tooltipHeight - 10 < padding;
-    const wouldGoOffBottom =
-      rect.bottom + tooltipHeight + 10 > viewportHeight - padding;
 
     if (wouldGoOffRight) {
       x = viewportWidth - tooltipWidth / 2 - padding;
@@ -144,18 +120,14 @@ const GithubContributions = () => {
       x = tooltipWidth / 2 + padding;
     }
 
-    if (wouldGoOffTop && !wouldGoOffBottom) {
+    if (y - tooltipHeight < padding) {
       y = rect.bottom + 10;
-    } else {
-      y = rect.top - 10;
     }
 
-    const contributionText = `${day.contributionCount} ${
-      day.contributionCount === 1 ? "contribution" : "contributions"
-    } on ${formattedDate.split(" ").reverse().join(" ")}`;
-
     setTooltip({
-      text: contributionText,
+      text: `${day.contributionCount} ${
+        day.contributionCount === 1 ? "contribution" : "contributions"
+      } on ${formattedDate.split(" ").reverse().join(" ")}`,
       x,
       y,
       position: y === rect.bottom + 10 ? "bottom" : "top",
