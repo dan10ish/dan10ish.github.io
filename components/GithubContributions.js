@@ -68,27 +68,24 @@ const GithubContributions = () => {
     const formattedDate = date.toLocaleDateString("en-GB", {
       day: "numeric",
       month: "long",
-      year: "numeric",
     });
 
-    const contributionText =
-      day.contributionCount === 1 ? "contribution" : "contributions";
+    const contributionText = `${day.contributionCount} ${
+      day.contributionCount === 1 ? "contribution" : "contributions"
+    } on ${formattedDate.split(" ").reverse().join(" ")}`;
 
     const x = rect.left + rect.width / 2;
     const y = rect.top;
 
     const viewportWidth = window.innerWidth;
-    const tooltipWidth = 250;
+    const viewportPadding = 16;
+    const minX = viewportPadding;
+    const maxX = viewportWidth - viewportPadding;
 
-    let adjustedX = x;
-    if (x - tooltipWidth / 2 < 0) {
-      adjustedX = tooltipWidth / 2;
-    } else if (x + tooltipWidth / 2 > viewportWidth) {
-      adjustedX = viewportWidth - tooltipWidth / 2;
-    }
+    let adjustedX = Math.min(Math.max(x, minX), maxX);
 
     setTooltip({
-      text: `${day.contributionCount} ${contributionText} on ${formattedDate}`,
+      text: contributionText,
       x: adjustedX,
       y: y,
     });
