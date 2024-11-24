@@ -78,32 +78,6 @@
   --github-text: #e6edf3;
 }
 
-[data-theme="solarized-dark"] {
-  --color-bg: #00212b;
-  --color-text: #bfc9cc;
-  --color-link: #2ebdff;
-  --blockquote-color: #93a1a1;
-  --code-background-color: #002f3a;
-  --code-color: #839496;
-  --syntax-comment: #586e75;
-  --syntax-keyword: #cb4b16;
-  --syntax-number: #2aa198;
-  --syntax-string: #859900;
-  --syntax-title: #268bd2;
-  --syntax-type: #b58900;
-  --syntax-tag: #859900;
-  --syntax-regexp: #dc322f;
-  --syntax-symbol: #2aa198;
-  --syntax-builtin: #b58900;
-  --syntax-meta: #93a1a1;
-  --color-bg-rgb: 0, 33, 43;
-  --color-text-rgb: 191, 201, 204;
-  --github-bg: rgba(0, 43, 54, 0.4);
-  --github-border: rgba(147, 161, 161, 0.1);
-  --github-hover-bg: rgba(0, 43, 54, 0.8);
-  --github-text: #93a1a1;
-}
-
 html,
 body {
   overscroll-behavior: none;
@@ -131,7 +105,7 @@ body {
   color: var(--color-text);
   background-color: var(--color-bg);
   margin: 0;
-  padding: 0 20px 60px;
+  padding: 0 20px 40px;
   font-size: 0.85rem;
 }
 
@@ -342,9 +316,6 @@ th {
 }
 
 /* Blog Post */
-.blog-post {
-  margin-bottom: var(--padding-large);
-}
 
 .blogpost-title {
   margin-bottom: var(--padding-medium);
@@ -747,9 +718,8 @@ th {
 
 /* Footer */
 .footer {
-  margin-top: 3rem;
+  margin-top: 4rem;
   padding-top: 2rem;
-  border-top: 1px solid rgba(var(--color-text-rgb), 0.1);
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
@@ -808,45 +778,6 @@ th {
 .like-button.liked svg {
   fill: #ff0000;
   color: #ff0000;
-}
-
-/* Theme Controls */
-.theme-circles {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 10px;
-  border-radius: 10px;
-  margin: 0;
-  background-color: var(--code-background-color);
-}
-
-.theme-circle {
-  width: 20px;
-  height: 20px;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  padding: 0;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: relative;
-}
-
-.theme-circle.active {
-  transform: scale(1.15);
-  box-shadow: 0 0 0 2px var(--color-link);
-}
-
-/* Copyright */
-.copyright {
-  margin-top: 10px;
-  font-size: 0.8rem;
-  margin: 0;
-}
-
-.copyright a {
-  color: var(--blockquote-color);
 }
 
 /* Code Blocks */
@@ -1436,7 +1367,7 @@ a[data-footnote-ref] {
   width: 100%;
   max-width: 900px;
   position: relative;
-  margin: 2rem auto;
+  margin: 1rem auto;
   padding: 1rem;
 }
 
@@ -1506,22 +1437,6 @@ a[data-footnote-ref] {
 }
 [data-theme="dark"] .contribution-cell.level-4 {
   background-color: #39d353;
-}
-
-[data-theme="solarized-dark"] .contribution-cell {
-  background-color: #002b36;
-}
-[data-theme="solarized-dark"] .contribution-cell.level-1 {
-  background-color: #164846;
-}
-[data-theme="solarized-dark"] .contribution-cell.level-2 {
-  background-color: #1e6b68;
-}
-[data-theme="solarized-dark"] .contribution-cell.level-3 {
-  background-color: #2aa198;
-}
-[data-theme="solarized-dark"] .contribution-cell.level-4 {
-  background-color: #38d2c7;
 }
 
 @media (max-width: 767px) {
