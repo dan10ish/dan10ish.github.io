@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Github, Globe, ChevronDown, ChevronUp } from "lucide-react";
 import { getProjects } from "@/lib/projects";
 
@@ -8,13 +8,19 @@ export default function ProjectsSection() {
   const [selectedTag, setSelectedTag] = useState(null);
   const [showAll, setShowAll] = useState(false);
   const projects = getProjects();
-  const tags = [...new Set(projects.flatMap((project) => project.tags))];
 
-  const displayedProjects = showAll ? projects : projects.slice(0, 5);
+  const tags = useMemo(() => {
+    return [...new Set(projects.flatMap((project) => project.tags))];
+  }, [projects]);
 
-  const handleTagClick = (tag) => {
-    setSelectedTag(selectedTag === tag ? null : tag);
-  };
+  const filteredProjects = useMemo(() => {
+    if (!selectedTag) return projects;
+    return projects.filter((project) => project.tags.includes(selectedTag));
+  }, [selectedTag, projects]);
+
+  const displayedProjects = showAll
+    ? filteredProjects
+    : filteredProjects.slice(0, 5);
 
   const LinkIcon = ({ href, icon: Icon, label, className = "" }) => {
     const baseClasses = "project-link";
@@ -57,7 +63,7 @@ export default function ProjectsSection() {
           {tags.map((tag) => (
             <button
               key={tag}
-              onClick={() => handleTagClick(tag)}
+              onClick={() => setSelectedTag(selectedTag === tag ? null : tag)}
               className={`tag ${selectedTag === tag ? "selected" : ""}`}
             >
               {tag}
@@ -68,14 +74,7 @@ export default function ProjectsSection() {
 
       <div className="projects-table">
         {displayedProjects.map((project) => (
-          <div
-            key={project.title}
-            className={`project-row ${
-              selectedTag && !project.tags.includes(selectedTag)
-                ? "filtered"
-                : ""
-            }`}
-          >
+          <div key={project.title} className="project-row">
             <div className="project-links">
               <LinkIcon
                 href={project.sourceLink}
@@ -95,7 +94,7 @@ export default function ProjectsSection() {
           </div>
         ))}
       </div>
-      {projects.length > 5 && (
+      {filteredProjects.length > 5 && (
         <button
           className="show-more-button"
           onClick={() => setShowAll(!showAll)}

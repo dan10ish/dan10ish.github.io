@@ -23,11 +23,12 @@ export default function BlogList({ posts }) {
     return [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
   }, [posts]);
 
-  const displayedPosts = showAll ? sortedPosts : sortedPosts.slice(0, 3);
+  const filteredPosts = useMemo(() => {
+    if (!selectedTag) return sortedPosts;
+    return sortedPosts.filter((post) => post.tags.includes(selectedTag));
+  }, [selectedTag, sortedPosts]);
 
-  const handleTagClick = (tag) => {
-    setSelectedTag(selectedTag === tag ? null : tag);
-  };
+  const displayedPosts = showAll ? filteredPosts : filteredPosts.slice(0, 3);
 
   return (
     <section className={`blog-list ${selectedTag ? "tag-selected" : ""}`}>
@@ -37,7 +38,7 @@ export default function BlogList({ posts }) {
           {allTags.map((tag) => (
             <button
               key={tag}
-              onClick={() => handleTagClick(tag)}
+              onClick={() => setSelectedTag(selectedTag === tag ? null : tag)}
               className={`tag ${selectedTag === tag ? "selected" : ""}`}
             >
               {tag}
@@ -50,9 +51,7 @@ export default function BlogList({ posts }) {
           <Link
             href={`/post/${post.slug}`}
             key={post.slug}
-            className={`post-row ${
-              selectedTag && !post.tags.includes(selectedTag) ? "filtered" : ""
-            }`}
+            className="post-row"
           >
             <div className="post-year">{formatDate(post.date)}</div>
             <div className="post-title">{post.title}</div>
@@ -68,7 +67,7 @@ export default function BlogList({ posts }) {
           </Link>
         ))}
       </div>
-      {sortedPosts.length > 3 && (
+      {filteredPosts.length > 3 && (
         <button
           className="show-more-button"
           onClick={() => setShowAll(!showAll)}
