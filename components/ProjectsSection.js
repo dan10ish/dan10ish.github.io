@@ -1,13 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { Github, Globe } from "lucide-react";
+import { Github, Globe, ChevronDown, ChevronUp } from "lucide-react";
 import { getProjects } from "@/lib/projects";
 
 export default function ProjectsSection() {
   const [selectedTag, setSelectedTag] = useState(null);
+  const [showAll, setShowAll] = useState(false);
   const projects = getProjects();
   const tags = [...new Set(projects.flatMap((project) => project.tags))];
+
+  const displayedProjects = showAll ? projects : projects.slice(0, 5);
 
   const handleTagClick = (tag) => {
     setSelectedTag(selectedTag === tag ? null : tag);
@@ -64,7 +67,7 @@ export default function ProjectsSection() {
       </div>
 
       <div className="projects-table">
-        {projects.map((project) => (
+        {displayedProjects.map((project) => (
           <div
             key={project.title}
             className={`project-row ${
@@ -92,6 +95,15 @@ export default function ProjectsSection() {
           </div>
         ))}
       </div>
+      {projects.length > 5 && (
+        <button
+          className="show-more-button"
+          onClick={() => setShowAll(!showAll)}
+        >
+          <span>{showAll ? "Less" : "More"}</span>
+          {showAll ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+        </button>
+      )}
     </section>
   );
 }

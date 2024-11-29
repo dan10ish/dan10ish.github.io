@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ChevronDown, ChevronUp } from "lucide-react";
 
 function formatDate(dateString) {
   const date = new Date(dateString);
@@ -11,6 +11,7 @@ function formatDate(dateString) {
 
 export default function BlogList({ posts }) {
   const [selectedTag, setSelectedTag] = useState(null);
+  const [showAll, setShowAll] = useState(false);
 
   const allTags = useMemo(() => {
     const tags = new Set();
@@ -21,6 +22,8 @@ export default function BlogList({ posts }) {
   const sortedPosts = useMemo(() => {
     return [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
   }, [posts]);
+
+  const displayedPosts = showAll ? sortedPosts : sortedPosts.slice(0, 3);
 
   const handleTagClick = (tag) => {
     setSelectedTag(selectedTag === tag ? null : tag);
@@ -43,7 +46,7 @@ export default function BlogList({ posts }) {
         </div>
       </div>
       <div className="posts-table">
-        {sortedPosts.map((post) => (
+        {displayedPosts.map((post) => (
           <Link
             href={`/post/${post.slug}`}
             key={post.slug}
@@ -65,6 +68,15 @@ export default function BlogList({ posts }) {
           </Link>
         ))}
       </div>
+      {sortedPosts.length > 3 && (
+        <button
+          className="show-more-button"
+          onClick={() => setShowAll(!showAll)}
+        >
+          <span>{showAll ? "Less" : "More"}</span>
+          {showAll ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+        </button>
+      )}
     </section>
   );
 }

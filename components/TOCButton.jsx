@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect, useRef, useCallback } from "react";
 
 const TOCButton = () => {
@@ -6,7 +8,6 @@ const TOCButton = () => {
   const [activeId, setActiveId] = useState("");
   const menuRef = useRef(null);
   const isLargeScreen = useRef(false);
-  const scrollPosition = useRef(0);
   const observerRef = useRef(null);
 
   useEffect(() => {
@@ -17,32 +18,19 @@ const TOCButton = () => {
     window.addEventListener("resize", checkScreenSize);
 
     if (isOpen) {
-      if (!isLargeScreen.current) {
-        scrollPosition.current = window.scrollY;
-        document.body.style.position = "fixed";
-        document.body.style.top = `-${scrollPosition.current}px`;
-        document.body.style.width = "100%";
-      }
-
+      document.body.style.overflow = "hidden";
       if (isLargeScreen.current) {
         const handleScroll = () => setIsOpen(false);
         window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
       }
     } else {
-      if (!isLargeScreen.current) {
-        document.body.style.position = "";
-        document.body.style.top = "";
-        document.body.style.width = "";
-        window.scrollTo(0, scrollPosition.current);
-      }
+      document.body.style.overflow = "";
     }
 
     return () => {
       window.removeEventListener("resize", checkScreenSize);
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.width = "";
+      document.body.style.overflow = "";
     };
   }, [isOpen]);
 
@@ -125,24 +113,18 @@ const TOCButton = () => {
 
   const handleClick = (e, id) => {
     e.preventDefault();
-    setIsOpen(false);
-    if (!isLargeScreen.current) {
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.width = "";
-      window.scrollTo(0, scrollPosition.current);
-    }
+    const element = document.getElementById(id);
+    const headerOffset = 80;
+    const elementPosition = element.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-    setTimeout(() => {
-      const element = document.getElementById(id);
-      if (element) {
-        const offsetPosition = element.offsetTop - 80;
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth",
-        });
-      }
-    }, 0);
+    setIsOpen(false);
+    document.body.style.overflow = "";
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth",
+    });
   };
 
   if (!toc.length) return null;
