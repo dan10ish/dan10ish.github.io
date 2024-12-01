@@ -99,7 +99,7 @@ export default function ProjectsSection() {
           className="show-more-button"
           onClick={() => setShowAll(!showAll)}
         >
-          <span>{showAll ? "Less" : "More"}</span>
+          <span className="show-text">{showAll ? "Less" : "More"}</span>
           {showAll ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
         </button>
       )}

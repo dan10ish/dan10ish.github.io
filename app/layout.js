@@ -60,7 +60,7 @@ export default function RootLayout({ children }) {
         <meta
           name="theme-color"
           media="(prefers-color-scheme: dark)"
-          content="#212121"
+          content="#1c1c1e"
         />
       </head>
       <body>
