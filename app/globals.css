@@ -538,10 +538,9 @@ th {
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
-  background-color: var(--github-bg);
-  border: 1px solid var(--github-border);
-  border-radius: 6px;
-  color: var(--github-text);
+  background-color: var(--code-background-color);
+  border-radius: 10px;
+  color: var(--color-text);
   transition: transform 0.2s ease;
   gap: 12px;
 }
