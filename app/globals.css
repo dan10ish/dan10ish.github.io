@@ -243,6 +243,10 @@ th {
   line-height: 2;
 }
 
+.about a {
+  font-weight: 550;
+}
+
 .at {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 0.8rem;
@@ -529,7 +533,7 @@ th {
 .github-button {
   display: flex;
   align-items: center;
-  padding: 0.5rem 1rem;
+  padding: 0.45rem 0.9rem;
   font-weight: 400;
   text-decoration: none;
   white-space: nowrap;
@@ -552,7 +556,7 @@ th {
   align-items: center;
   gap: 6px;
   padding-left: 12px;
-  border-left: 1px solid var(--github-border);
+  border-left: 1px solid rgba(var(--color-text-rgb), 0.3);
 }
 
 .star-icon {
@@ -1403,7 +1407,8 @@ a[data-footnote-ref] {
 }
 
 [data-theme="light"] .contribution-cell {
-  background-color: #ebedf0;
+  background-color: var(--code-background-color);
+  /* #ebedf0 */
 }
 [data-theme="light"] .contribution-cell.level-1 {
   background-color: #9be9a8;
@@ -1419,7 +1424,8 @@ a[data-footnote-ref] {
 }
 
 [data-theme="dark"] .contribution-cell {
-  background-color: #1b222a;
+  background-color: var(--code-background-color);
+  /* #1e2831 */
 }
 [data-theme="dark"] .contribution-cell.level-1 {
   background-color: #0e4429;
@@ -1450,7 +1456,7 @@ a[data-footnote-ref] {
   align-items: center;
   gap: 0.5rem;
   background: none;
-  border: 1px solid rgba(var(--color-text-rgb), 0.1);
+  border: 1px solid rgba(var(--color-text-rgb), 0.15);
   border-radius: 20px;
   color: var(--color-text);
   font-family: var(--font-normal);
@@ -1741,11 +1747,11 @@ a[data-footnote-ref] {
 
   .like-button:not(.liked):hover svg {
     color: #ff0000;
-    transform: scale(1.1);
   }
 
   .github-button:hover {
-    background-color: var(--github-hover-bg);
+    background-color: var(--color-text);
+    color: var(--color-bg);
     text-decoration: none;
   }
 
