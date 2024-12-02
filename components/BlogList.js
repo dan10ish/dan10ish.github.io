@@ -28,9 +28,9 @@ export default function BlogList({ posts, showAll = false }) {
   }, [selectedTag, sortedPosts]);
 
   const displayedPosts = useMemo(() => {
-    if (showAll) return filteredPosts;
-    return filteredPosts.slice(0, 3); // Show only first 3 on homepage
-  }, [filteredPosts, showAll]);
+    if (showAll || selectedTag) return filteredPosts;
+    return filteredPosts.slice(0, 3);
+  }, [filteredPosts, showAll, selectedTag]);
 
   return (
     <section className={`blog-list ${selectedTag ? "tag-selected" : ""}`}>
@@ -69,7 +69,7 @@ export default function BlogList({ posts, showAll = false }) {
           </Link>
         ))}
       </div>
-      {!showAll && filteredPosts.length > 3 && (
+      {!showAll && !selectedTag && filteredPosts.length > 3 && (
         <Link href="/posts" className="show-more-button">
           <span className="show-text">View All Posts</span>
           <ChevronRight size={16} />

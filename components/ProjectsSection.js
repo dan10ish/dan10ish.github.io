@@ -18,9 +18,10 @@ export default function ProjectsSection({ showAll = false }) {
     return projects.filter((project) => project.tags.includes(selectedTag));
   }, [selectedTag, projects]);
 
-  const displayedProjects = showAll
-    ? filteredProjects
-    : filteredProjects.filter((p) => p.home);
+  const displayedProjects = useMemo(() => {
+    if (showAll || selectedTag) return filteredProjects;
+    return filteredProjects.filter((p) => p.home);
+  }, [filteredProjects, showAll, selectedTag]);
 
   const LinkIcon = ({ href, icon: Icon, label, className = "" }) => {
     const baseClasses = "project-link";
@@ -94,7 +95,7 @@ export default function ProjectsSection({ showAll = false }) {
           </div>
         ))}
       </div>
-      {!showAll && filteredProjects.length > 0 && (
+      {!showAll && !selectedTag && filteredProjects.length > 0 && (
         <Link href="/projects" className="show-more-button">
           <span className="show-text">View All Projects</span>
           <ChevronRight size={16} />
