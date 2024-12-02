@@ -40,6 +40,7 @@
     "remark-math": "^5.1.1"
   },
   "devDependencies": {
-    "gh-pages": "^6.1.1"
+    "gh-pages": "^6.1.1",
+    "raw-loader": "^4.0.2"
   }
 }

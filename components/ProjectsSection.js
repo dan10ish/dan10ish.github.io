@@ -1,12 +1,12 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { Github, Globe, ChevronDown, ChevronUp } from "lucide-react";
+import Link from "next/link";
+import { Github, Globe, ChevronRight } from "lucide-react";
 import { getProjects } from "@/lib/projects";
 
-export default function ProjectsSection() {
+export default function ProjectsSection({ showAll = false }) {
   const [selectedTag, setSelectedTag] = useState(null);
-  const [showAll, setShowAll] = useState(false);
   const projects = getProjects();
 
   const tags = useMemo(() => {
@@ -20,7 +20,7 @@ export default function ProjectsSection() {
 
   const displayedProjects = showAll
     ? filteredProjects
-    : filteredProjects.slice(0, 5);
+    : filteredProjects.filter((p) => p.home);
 
   const LinkIcon = ({ href, icon: Icon, label, className = "" }) => {
     const baseClasses = "project-link";
@@ -94,14 +94,11 @@ export default function ProjectsSection() {
           </div>
         ))}
       </div>
-      {filteredProjects.length > 5 && (
-        <button
-          className="show-more-button"
-          onClick={() => setShowAll(!showAll)}
-        >
-          <span className="show-text">{showAll ? "Less" : "More"}</span>
-          {showAll ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-        </button>
+      {!showAll && filteredProjects.length > 0 && (
+        <Link href="/projects" className="show-more-button">
+          <span className="show-text">View All Projects</span>
+          <ChevronRight size={16} />
+        </Link>
       )}
     </section>
   );

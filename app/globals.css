@@ -46,10 +46,8 @@
   --syntax-builtin: #6f42c1;
   --syntax-meta: #6a737d;
   --color-text-rgb: 51, 51, 51;
-  --github-bg: #f6f8fa;
   --github-border: rgba(31, 35, 40, 0.15);
   --github-hover-bg: #edf1f5;
-  --github-text: #24292f;
 }
 
 [data-theme="dark"] {
@@ -72,10 +70,8 @@
   --syntax-meta: #73d8ff;
   --color-bg-rgb: 33, 33, 33;
   --color-text-rgb: 255, 255, 255;
-  --github-bg: rgba(45, 51, 59, 0.4);
   --github-border: rgba(240, 246, 252, 0.1);
   --github-hover-bg: rgba(45, 51, 59, 0.8);
-  --github-text: #e6edf3;
 }
 
 html,
@@ -1461,6 +1457,7 @@ a[data-footnote-ref] {
   font-size: 0.75rem;
   cursor: pointer;
   transition: all 0.2s ease;
+  text-decoration: none;
 }
 
 .show-text {
@@ -1470,7 +1467,6 @@ a[data-footnote-ref] {
 .show-more-button svg {
   width: 14px;
   height: 14px;
-  transition: transform 0.2s ease;
   opacity: 0.7;
 }
 
@@ -1835,9 +1831,14 @@ a[data-footnote-ref] {
   .show-more-button:hover {
     border-color: var(--color-link);
     color: var(--color-link);
+    text-decoration: none;
   }
 
   .show-more-button:hover svg {
     color: var(--color-link);
   }
+}
+
+.noFooter {
+  display: none;
 }

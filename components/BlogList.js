@@ -2,16 +2,15 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { ArrowUpRight, ChevronDown, ChevronUp } from "lucide-react";
+import { ArrowUpRight, ChevronRight } from "lucide-react";
 
 function formatDate(dateString) {
   const date = new Date(dateString);
   return date.getFullYear().toString();
 }
 
-export default function BlogList({ posts }) {
+export default function BlogList({ posts, showAll = false }) {
   const [selectedTag, setSelectedTag] = useState(null);
-  const [showAll, setShowAll] = useState(false);
 
   const allTags = useMemo(() => {
     const tags = new Set();
@@ -28,7 +27,10 @@ export default function BlogList({ posts }) {
     return sortedPosts.filter((post) => post.tags.includes(selectedTag));
   }, [selectedTag, sortedPosts]);
 
-  const displayedPosts = showAll ? filteredPosts : filteredPosts.slice(0, 3);
+  const displayedPosts = useMemo(() => {
+    if (showAll) return filteredPosts;
+    return filteredPosts.slice(0, 3); // Show only first 3 on homepage
+  }, [filteredPosts, showAll]);
 
   return (
     <section className={`blog-list ${selectedTag ? "tag-selected" : ""}`}>
@@ -67,14 +69,11 @@ export default function BlogList({ posts }) {
           </Link>
         ))}
       </div>
-      {filteredPosts.length > 3 && (
-        <button
-          className="show-more-button"
-          onClick={() => setShowAll(!showAll)}
-        >
-          <span className="show-text">{showAll ? "Less" : "More"}</span>
-          {showAll ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-        </button>
+      {!showAll && filteredPosts.length > 3 && (
+        <Link href="/posts" className="show-more-button">
+          <span className="show-text">View All Posts</span>
+          <ChevronRight size={16} />
+        </Link>
       )}
     </section>
   );

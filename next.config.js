@@ -1,3 +1,4 @@
+// next.config.js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -9,15 +10,11 @@ const nextConfig = {
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
     NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
   },
-  webpack: (config, { dev }) => {
+  webpack: (config) => {
     config.module.rules.push({
       test: /\.md$/,
       use: "raw-loader",
     });
-    if (dev) {
-      config.cache = false;
-    }
-
     return config;
   },
   swcMinify: true,
