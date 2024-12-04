@@ -278,11 +278,6 @@ export default function LibraryPage() {
       <div className="title-container">
         <div className="title-link">
           <h1>Library</h1>
-          <p className="library-description">
-            A regularly updated collection of books I've read and resources I
-            frequently reference in machine learning, computer science, and
-            related fields.
-          </p>
         </div>
       </div>
 
@@ -338,7 +333,9 @@ export default function LibraryPage() {
           </div>
         </div>
       </div>
-      <Footer />
+      <div className="noFooter">
+        <Footer />
+      </div>
       <ButtonsContainer />
     </main>
   );

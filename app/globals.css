@@ -1050,13 +1050,6 @@ pre code {
 
 /* Library Page */
 
-.library-description {
-  color: var(--blockquote-color);
-  font-size: 0.85rem;
-  line-height: 1.6;
-  margin: 3rem 0;
-}
-
 .library-container {
   max-width: var(--max-width);
   margin: 0 auto;
@@ -1066,12 +1059,12 @@ pre code {
 .library-navigation {
   display: flex;
   justify-content: center;
-  margin-bottom: 3rem;
+  margin: 0.5rem 0 3rem;
 }
 
 .library-tabs {
   display: flex;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
 .library-tab {
