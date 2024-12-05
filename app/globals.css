@@ -450,7 +450,7 @@ th {
 
 .project-row {
   display: grid;
-  grid-template-columns: 85px 1fr auto;
+  grid-template-columns: 85px 1fr 80px;
   align-items: center;
   padding: 12px 8px;
   position: relative;
@@ -482,6 +482,8 @@ th {
   background-color: var(--code-background-color);
   padding: 4px 12px;
   border-radius: 6px;
+  justify-self: end;
+  margin-left: auto;
 }
 
 .project-links {
@@ -556,7 +558,7 @@ th {
   align-items: center;
   gap: 6px;
   padding-left: 12px;
-  border-left: 1px solid rgba(var(--color-text-rgb), 0.3);
+  border-left: 1px solid rgba(var(--color-text-rgb), 0.1);
 }
 
 .star-icon {
@@ -1467,6 +1469,8 @@ a[data-footnote-ref] {
   width: 14px;
   height: 14px;
   opacity: 0.7;
+  position: relative;
+  top: 1px;
 }
 
 .post-row,
@@ -1676,6 +1680,10 @@ a[data-footnote-ref] {
 
   .contributions-grid {
     --week-count: 26;
+  }
+
+  .show-more-button svg {
+    top: -1px;
   }
 }
 
