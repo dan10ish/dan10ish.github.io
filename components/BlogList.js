@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import { ArrowUpRight, ChevronRight } from "lucide-react";
+import FilterComponent from "./FilterComponent";
 
 function formatDate(dateString) {
   const date = new Date(dateString);
@@ -10,7 +11,7 @@ function formatDate(dateString) {
 }
 
 export default function BlogList({ posts, showAll = false }) {
-  const [selectedTag, setSelectedTag] = useState(null);
+  const [selectedTags, setSelectedTags] = useState([]);
 
   const allTags = useMemo(() => {
     const tags = new Set();
@@ -18,36 +19,29 @@ export default function BlogList({ posts, showAll = false }) {
     return Array.from(tags);
   }, [posts]);
 
-  const sortedPosts = useMemo(() => {
-    return [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
-  }, [posts]);
-
   const filteredPosts = useMemo(() => {
-    if (!selectedTag) return sortedPosts;
-    return sortedPosts.filter((post) => post.tags.includes(selectedTag));
-  }, [selectedTag, sortedPosts]);
+    if (selectedTags.length === 0) return posts;
+    return posts.filter((post) =>
+      selectedTags.some((tag) => post.tags.includes(tag))
+    );
+  }, [selectedTags, posts]);
 
   const displayedPosts = useMemo(() => {
-    if (showAll || selectedTag) return filteredPosts;
+    if (showAll || selectedTags.length > 0) return filteredPosts;
     return filteredPosts.slice(0, 3);
-  }, [filteredPosts, showAll, selectedTag]);
+  }, [filteredPosts, showAll, selectedTags]);
 
   return (
-    <section className={`blog-list ${selectedTag ? "tag-selected" : ""}`}>
+    <section className="blog-list">
       <h2>Posts</h2>
-      <div className="tag-filter-container">
-        <div className="tag-filter">
-          {allTags.map((tag) => (
-            <button
-              key={tag}
-              onClick={() => setSelectedTag(selectedTag === tag ? null : tag)}
-              className={`tag ${selectedTag === tag ? "selected" : ""}`}
-            >
-              {tag}
-            </button>
-          ))}
-        </div>
-      </div>
+
+      <FilterComponent
+        options={allTags}
+        activeFilters={selectedTags}
+        onFilterChange={setSelectedTags}
+        placeholder="Filter by tag"
+      />
+
       <div className="posts-table">
         {displayedPosts.map((post) => (
           <Link
@@ -69,7 +63,8 @@ export default function BlogList({ posts, showAll = false }) {
           </Link>
         ))}
       </div>
-      {!showAll && !selectedTag && filteredPosts.length > 3 && (
+
+      {!showAll && !selectedTags.length && filteredPosts.length > 3 && (
         <Link href="/posts" className="show-more-button">
           <span className="show-text">View All Posts</span>
           <ChevronRight size={16} />

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import {
   Podcast,
   Youtube,
@@ -12,9 +12,9 @@ import {
 } from "lucide-react";
 import Footer from "@/components/Footer";
 import ButtonsContainer from "@/components/ButtonsContainer";
+import FilterComponent from "@/components/FilterComponent";
 
 const bookCategories = [
-  "All",
   "Machine Learning",
   "Computer Science",
   "Robotics",
@@ -113,7 +113,7 @@ const books = [
   },
 ];
 
-const resourceCategories = ["All", "YouTube", "Papers", "Tools"];
+const resourceCategories = ["YouTube", "Papers", "Tools"];
 
 const resources = [
   {
@@ -123,7 +123,6 @@ const resources = [
   },
   {
     title: "Andrej Karpathy",
-    tag: "ML",
     category: "YouTube",
     link: "https://www.youtube.com/@AndrejKarpathy/",
   },
@@ -186,12 +185,8 @@ const resources = [
 
 const ResourceIcon = ({ category }) => {
   const icons = {
-    Podcasts: Podcast,
     YouTube: Youtube,
     Papers: FileText,
-    Blogs: Globe,
-    Newsletters: Mail,
-    Courses: GraduationCap,
     Tools: Hammer,
   };
   const Icon = icons[category] || Globe;
@@ -241,37 +236,28 @@ const ResourceCard = ({ resource }) => (
       <ResourceIcon category={resource.category} />
     </div>
     <h3 className="resource-title">{resource.title}</h3>
+    <span className="resource-tag">{resource.category}</span>
   </a>
-);
-
-const CategoryFilter = ({ categories, activeCategory, onCategoryChange }) => (
-  <div className="category-filter">
-    {categories.map((category) => (
-      <button
-        key={category}
-        onClick={() => onCategoryChange(category)}
-        className={`category-btn ${
-          activeCategory === category ? "active" : ""
-        }`}
-      >
-        {category}
-      </button>
-    ))}
-  </div>
 );
 
 export default function LibraryPage() {
   const [activeSection, setActiveSection] = useState("books");
-  const [activeCategory, setActiveCategory] = useState("All");
+  const [selectedCategories, setSelectedCategories] = useState([]);
 
-  const filteredContent =
-    activeSection === "books"
-      ? activeCategory === "All"
-        ? books
-        : books.filter((book) => book.tags.includes(activeCategory))
-      : activeCategory === "All"
-      ? resources
-      : resources.filter((resource) => resource.category === activeCategory);
+  const currentCategories =
+    activeSection === "books" ? bookCategories : resourceCategories;
+
+  const filteredContent = useMemo(() => {
+    if (selectedCategories.length === 0) {
+      return activeSection === "books" ? books : resources;
+    }
+
+    return (activeSection === "books" ? books : resources).filter((item) => {
+      const itemCategories =
+        activeSection === "books" ? item.tags : [item.category];
+      return selectedCategories.some((cat) => itemCategories.includes(cat));
+    });
+  }, [activeSection, selectedCategories]);
 
   return (
     <main>
@@ -287,7 +273,7 @@ export default function LibraryPage() {
             <button
               onClick={() => {
                 setActiveSection("books");
-                setActiveCategory("All");
+                setSelectedCategories([]);
               }}
               className={`library-tab ${
                 activeSection === "books" ? "active" : ""
@@ -298,7 +284,7 @@ export default function LibraryPage() {
             <button
               onClick={() => {
                 setActiveSection("resources");
-                setActiveCategory("All");
+                setSelectedCategories([]);
               }}
               className={`library-tab ${
                 activeSection === "resources" ? "active" : ""
@@ -309,12 +295,13 @@ export default function LibraryPage() {
           </div>
         </div>
 
-        <CategoryFilter
-          categories={
-            activeSection === "books" ? bookCategories : resourceCategories
-          }
-          activeCategory={activeCategory}
-          onCategoryChange={setActiveCategory}
+        <FilterComponent
+          options={currentCategories}
+          activeFilters={selectedCategories}
+          onFilterChange={setSelectedCategories}
+          placeholder={`Filter by ${
+            activeSection === "books" ? "category" : "type"
+          }`}
         />
 
         <div className="library-content">

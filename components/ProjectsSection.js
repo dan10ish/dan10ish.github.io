@@ -4,9 +4,10 @@ import { useState, useMemo } from "react";
 import Link from "next/link";
 import { Github, Globe, ChevronRight } from "lucide-react";
 import { getProjects } from "@/lib/projects";
+import FilterComponent from "./FilterComponent";
 
 export default function ProjectsSection({ showAll = false }) {
-  const [selectedTag, setSelectedTag] = useState(null);
+  const [selectedTags, setSelectedTags] = useState([]);
   const projects = getProjects();
 
   const tags = useMemo(() => {
@@ -14,38 +15,19 @@ export default function ProjectsSection({ showAll = false }) {
   }, [projects]);
 
   const filteredProjects = useMemo(() => {
-    if (!selectedTag) return projects;
-    return projects.filter((project) => project.tags.includes(selectedTag));
-  }, [selectedTag, projects]);
+    if (selectedTags.length === 0) return projects;
+    return projects.filter((project) =>
+      selectedTags.some((tag) => project.tags.includes(tag))
+    );
+  }, [selectedTags, projects]);
 
   const displayedProjects = useMemo(() => {
-    if (showAll || selectedTag) return filteredProjects;
+    if (showAll || selectedTags.length > 0) return filteredProjects;
     return filteredProjects.filter((p) => p.home);
-  }, [filteredProjects, showAll, selectedTag]);
-
-  const LinkIcon = ({ href, icon: Icon, label, className = "" }) => {
-    const baseClasses = "project-link";
-    const noLinkClass = !href ? "project-no-link" : "";
-    const Component = href ? "a" : "span";
-    const props = href
-      ? { href, target: "_blank", rel: "noopener noreferrer" }
-      : {};
-
-    return (
-      <Component
-        className={`${baseClasses} ${noLinkClass} ${className}`}
-        {...props}
-        aria-label={label}
-      >
-        <Icon size={18} />
-      </Component>
-    );
-  };
+  }, [filteredProjects, showAll, selectedTags]);
 
   return (
-    <section
-      className={`projects-section ${selectedTag ? "tag-selected" : ""}`}
-    >
+    <section className="projects-section">
       <div className="section-header">
         <h2>Projects</h2>
         <a
@@ -59,43 +41,47 @@ export default function ProjectsSection({ showAll = false }) {
         </a>
       </div>
 
-      <div className="tag-filter-container">
-        <div className="tag-filter">
-          {tags.map((tag) => (
-            <button
-              key={tag}
-              onClick={() => setSelectedTag(selectedTag === tag ? null : tag)}
-              className={`tag ${selectedTag === tag ? "selected" : ""}`}
-            >
-              {tag}
-            </button>
-          ))}
-        </div>
-      </div>
+      <FilterComponent
+        options={tags}
+        activeFilters={selectedTags}
+        onFilterChange={setSelectedTags}
+        placeholder="Filter by tag"
+      />
 
       <div className="projects-table">
         {displayedProjects.map((project) => (
           <div key={project.title} className="project-row">
             <div className="project-links">
-              <LinkIcon
+              <a
                 href={project.sourceLink}
-                icon={Github}
-                label="Source code"
-                className="github-icon-class"
-              />
-              <LinkIcon
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`project-link github-icon-class ${
+                  !project.sourceLink ? "project-no-link" : ""
+                }`}
+                aria-label="Source code"
+              >
+                <Github size={18} />
+              </a>
+              <a
                 href={project.projectLink}
-                icon={Globe}
-                label="Live demo"
-                className="globe-icon-class"
-              />
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`project-link globe-icon-class ${
+                  !project.projectLink ? "project-no-link" : ""
+                }`}
+                aria-label="Live demo"
+              >
+                <Globe size={18} />
+              </a>
             </div>
             <div className="project-title">{project.title}</div>
             <div className="project-tag">{project.tags[0]}</div>
           </div>
         ))}
       </div>
-      {!showAll && !selectedTag && filteredProjects.length > 0 && (
+
+      {!showAll && !selectedTags.length && filteredProjects.length > 0 && (
         <Link href="/projects" className="show-more-button">
           <span className="show-text">View All Projects</span>
           <ChevronRight size={16} />
