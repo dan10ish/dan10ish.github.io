@@ -1872,7 +1872,11 @@ a[data-footnote-ref] {
 
   .remove-filter:hover {
     opacity: 1;
-    background: var(--color-bg);
+    background: #ff0000;
+  }
+
+  .remove-filter:hover svg{
+    color: #ffffff;
   }
 
   .filter-option:hover {

@@ -39,7 +39,7 @@ export default function BlogList({ posts, showAll = false }) {
         options={allTags}
         activeFilters={selectedTags}
         onFilterChange={setSelectedTags}
-        placeholder="Filter by tag"
+        placeholder="by tag"
       />
 
       <div className="posts-table">

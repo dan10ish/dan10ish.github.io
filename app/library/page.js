@@ -299,7 +299,7 @@ export default function LibraryPage() {
           options={currentCategories}
           activeFilters={selectedCategories}
           onFilterChange={setSelectedCategories}
-          placeholder={`Filter by ${
+          placeholder={`by ${
             activeSection === "books" ? "category" : "type"
           }`}
         />

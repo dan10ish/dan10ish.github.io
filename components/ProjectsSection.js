@@ -45,7 +45,7 @@ export default function ProjectsSection({ showAll = false }) {
         options={tags}
         activeFilters={selectedTags}
         onFilterChange={setSelectedTags}
-        placeholder="Filter by tag"
+        placeholder="by tag"
       />
 
       <div className="projects-table">
