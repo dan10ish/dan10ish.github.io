@@ -1034,8 +1034,8 @@ pre code {
 }
 
 .library-tab.active {
-  background: var(--color-link);
-  color: #ffffff;
+  background: var(--color-text);
+  color: var(--color-bg);
 }
 
 .library-content {
@@ -1046,7 +1046,7 @@ pre code {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   gap: 1rem;
-  padding: 3rem 0;
+  padding: 1rem 0;
 }
 
 .book-card {
@@ -1126,7 +1126,7 @@ pre code {
 
 .resources-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 1rem;
   padding: 1rem 0;
 }
@@ -1812,8 +1812,8 @@ a[data-footnote-ref] {
   }
 
   .library-tab:not(.active):hover {
-    background: var(--color-link);
-    color: #ffffff;
+    background: var(--color-text);
+    color: var(--color-bg);
   }
 
   .book-card:hover {
