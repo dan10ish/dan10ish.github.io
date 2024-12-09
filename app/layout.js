@@ -1,9 +1,8 @@
 import { Suspense } from "react";
-import dynamic from "next/dynamic";
 import Script from "next/script";
+import ButtonsContainer from "@/components/ButtonsContainer";
 import "./globals.css";
 import "highlight.js/styles/github.css";
-import HamburgerMenu from "@/components/ButtonsContainer";
 
 export const metadata = {
   metadataBase: new URL("https://danish.bio"),
@@ -38,11 +37,29 @@ export const metadata = {
   },
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="icon" href="https://i.ibb.co/vYPYQd1/favicon.jpg" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/GeistMonoVF.woff"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
         <link
           rel="preload"
           href="/fonts/Sentient.ttf"
@@ -65,29 +82,12 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <Suspense fallback={null}>
-          <HamburgerMenu />
+          <ButtonsContainer />
         </Suspense>
         <main className="container">{children}</main>
-        <Script id="location-handler" strategy="afterInteractive">
-          {`
-            (function (l) {
-              if (l.search[1] === '/') {
-                var decoded = l.search
-                  .slice(1)
-                  .split('&')
-                  .map(function (s) {
-                    return s.replace(/~and~/g, '&');
-                  })
-                  .join('?');
-                window.history.replaceState(
-                  null,
-                  null,
-                  l.pathname.slice(0, -1) + decoded + l.hash
-                );
-              }
-            })(window.location);
-          `}
-        </Script>
+        <Script id="location-handler" strategy="afterInteractive">{`
+          (function(l){if(l.search[1]==='/'){var decoded=l.search.slice(1).split('&').map(function(s){return s.replace(/~and~/g,'&')}).join('?');window.history.replaceState(null,null,l.pathname.slice(0,-1)+decoded+l.hash)}}(window.location))
+        `}</Script>
       </body>
     </html>
   );

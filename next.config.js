@@ -1,10 +1,18 @@
-// next.config.js
-/** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   output: "export",
   images: {
     unoptimized: true,
+  },
+  experimental: {
+    optimizePackageImports: [
+      "lucide-react",
+      "@react-three/drei",
+      "framer-motion",
+    ],
+  },
+  compiler: {
+    removeConsole: process.env.NODE_ENV === "production",
   },
   env: {
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -15,6 +23,16 @@ const nextConfig = {
       test: /\.md$/,
       use: "raw-loader",
     });
+
+    config.optimization = {
+      ...config.optimization,
+      splitChunks: {
+        chunks: "all",
+        minSize: 20000,
+        maxSize: 70000,
+      },
+    };
+
     return config;
   },
   swcMinify: true,

@@ -2,11 +2,21 @@
 
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import HomeButton from "./HomeButton";
-import ScrollToTop from "./ScrollToTop";
-import TOCButton from "./TOCButton";
+import dynamic from "next/dynamic";
 
-const ButtonsContainer = () => {
+const HomeButton = dynamic(() => import("./HomeButton"), {
+  loading: () => null,
+});
+
+const ScrollToTop = dynamic(() => import("./ScrollToTop"), {
+  loading: () => null,
+});
+
+const TOCButton = dynamic(() => import("./TOCButton"), {
+  loading: () => null,
+});
+
+export default function ButtonsContainer() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const pathname = usePathname();
@@ -38,6 +48,4 @@ const ButtonsContainer = () => {
       <ScrollToTop />
     </div>
   );
-};
-
-export default ButtonsContainer;
+}
