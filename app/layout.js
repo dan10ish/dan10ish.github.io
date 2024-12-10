@@ -2,7 +2,6 @@ import { Suspense } from "react";
 import Script from "next/script";
 import ButtonsContainer from "@/components/ButtonsContainer";
 import "./globals.css";
-import "highlight.js/styles/github.css";
 
 export const metadata = {
   metadataBase: new URL("https://danish.bio"),
@@ -65,7 +64,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="https://i.ibb.co/vYPYQd1/favicon.jpg" />
         <link
           rel="preconnect"
           href="https://fonts.gstatic.com"
@@ -80,12 +78,19 @@ export default function RootLayout({ children }) {
         />
         <link
           rel="preload"
-          href="/fonts/Sentient.ttf"
+          href="/fonts/Sentient.woff2"
           as="font"
-          type="font/ttf"
+          type="font/woff2"
           crossOrigin="anonymous"
         />
+        <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
+        <link
+          rel="preload"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/github.css"
+          as="style"
+        />
         <link rel="manifest" href="/manifest.json" />
+        <meta httpEquiv="x-dns-prefetch-control" content="on" />
       </head>
       <body>
         <Suspense fallback={null}>

@@ -315,9 +315,10 @@ th {
 
 .arrow-icon {
   opacity: 0;
-  transform: translateX(-8px);
   transition: all 0.2s ease;
   color: var(--color-link);
+  position: relative;
+  top: 0px;
 }
 
 @media (max-width: 768px) {
@@ -1490,6 +1491,8 @@ a[data-footnote-ref] {
   top: calc(100% + 0.5rem);
   left: 0;
   width: max-content;
+  max-height: 220px;
+  overflow-y: auto;
   min-width: 200px;
   background: var(--color-bg);
   border: 1px solid var(--code-background-color);
@@ -1863,7 +1866,6 @@ a[data-footnote-ref] {
 
   .show-more-button:hover {
     border-color: var(--color-link);
-    color: var(--color-link);
     text-decoration: none;
   }
 
