@@ -1,45 +1,6 @@
 User-agent: *
-Disallow: /admin
-Disallow: /login
-Disallow: /account
-Disallow: /private
-Disallow: /user-settings
-Disallow: /checkout
-Disallow: /cart
-
-# Allow all other crawlers to access everything else
 Allow: /
 
-# Specific bots that need to preview links
-User-agent: googlebot
-Allow: /
+Sitemap: https://danish.bio/sitemap.xml
 
-User-agent: facebookexternalhit
-Allow: /
-
-User-agent: Facebot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: LinkedInBot
-Allow: /
-
-User-agent: WhatsApp
-Allow: /
-
-User-agent: pinterest
-Allow: /
-
-User-agent: Slackbot
-Allow: /
-
-User-agent: TelegramBot
-Allow: /
-
-User-agent: Instagram
-Allow: /
-
-User-agent: Postscout
-Allow: /
+Host: https://danish.bio
