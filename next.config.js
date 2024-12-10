@@ -30,6 +30,13 @@ const nextConfig = {
         chunks: "all",
         minSize: 20000,
         maxSize: 70000,
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: "vendor",
+            enforce: true,
+          },
+        },
       },
     };
 

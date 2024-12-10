@@ -8,7 +8,18 @@ export const metadata = {
   metadataBase: new URL("https://danish.bio"),
   title: "Danish",
   description: "Danish's website containing his writings and projects",
-  robots: "index,follow,nocache",
+  robots: {
+    index: true,
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   twitter: {
     card: "summary_large_image",
     site: "@dan10ish",
@@ -40,7 +51,14 @@ export const metadata = {
 export const viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
+  minimumScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#1c1c1e" },
+  ],
+  viewportFit: "cover",
 };
 
 export default function RootLayout({ children }) {
@@ -55,7 +73,7 @@ export default function RootLayout({ children }) {
         />
         <link
           rel="preload"
-          href="/fonts/GeistMonoVF.woff"
+          href="/fonts/GeistMonoVF.woff2"
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
@@ -68,26 +86,15 @@ export default function RootLayout({ children }) {
           crossOrigin="anonymous"
         />
         <link rel="manifest" href="/manifest.json" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta
-          name="theme-color"
-          media="(prefers-color-scheme: light)"
-          content="#ffffff"
-        />
-        <meta
-          name="theme-color"
-          media="(prefers-color-scheme: dark)"
-          content="#1c1c1e"
-        />
       </head>
       <body>
         <Suspense fallback={null}>
           <ButtonsContainer />
         </Suspense>
         <main className="container">{children}</main>
-        <Script id="location-handler" strategy="afterInteractive">{`
-          (function(l){if(l.search[1]==='/'){var decoded=l.search.slice(1).split('&').map(function(s){return s.replace(/~and~/g,'&')}).join('?');window.history.replaceState(null,null,l.pathname.slice(0,-1)+decoded+l.hash)}}(window.location))
-        `}</Script>
+        <Script id="location-handler" strategy="afterInteractive">
+          {`(function(l){if(l.search[1]==='/'){var decoded=l.search.slice(1).split('&').map(function(s){return s.replace(/~and~/g,'&')}).join('?');window.history.replaceState(null,null,l.pathname.slice(0,-1)+decoded+l.hash)}}(window.location))`}
+        </Script>
       </body>
     </html>
   );
