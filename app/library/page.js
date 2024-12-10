@@ -27,6 +27,14 @@ const bookCategories = [
 
 const books = [
   {
+    title: "Think and Grow Rich",
+    author: "Napolean Hill",
+    coverColor: "#07000c",
+    tags: ["Philosophy"],
+    description:
+      "Guide to achieving success through desire, faith, and persistence.",
+  },
+  {
     title: "Hands-On Machine Learning",
     author: "Aurélien Géron",
     coverColor: "#ffffff",
@@ -117,49 +125,9 @@ const resourceCategories = ["YouTube", "Papers", "Tools"];
 
 const resources = [
   {
-    title: "The Cherno",
-    category: "YouTube",
-    link: "https://www.youtube.com/@TheCherno",
-  },
-  {
     title: "Andrej Karpathy",
     category: "YouTube",
     link: "https://www.youtube.com/@AndrejKarpathy/",
-  },
-  {
-    title: "Horses",
-    category: "YouTube",
-    link: "https://www.youtube.com/@HorsesOnYT",
-  },
-  {
-    title: "b001",
-    category: "YouTube",
-    link: "https://www.youtube.com/@b001",
-  },
-  {
-    title: "Matrix Calculus",
-    category: "Papers",
-    link: "https://arxiv.org/abs/1802.01528",
-  },
-  {
-    title: "CP Handbook",
-    category: "Papers",
-    link: "https://cses.fi/book/book.pdf",
-  },
-  {
-    title: "Data Science ML",
-    category: "Papers",
-    link: "https://people.smp.uq.edu.au/DirkKroese/DSML/DSML.pdf",
-  },
-  {
-    title: "ML Cheat Sheet",
-    category: "Papers",
-    link: "https://github.com/soulmachine/machine-learning-cheat-sheet",
-  },
-  {
-    title: "Math for CS",
-    category: "Papers",
-    link: "https://people.csail.mit.edu/meyer/mcs.pdf",
   },
   {
     title: "Sketch",
@@ -167,9 +135,49 @@ const resources = [
     link: "https://www.sketch.com",
   },
   {
-    title: "Zed",
+    title: "Fusion 360",
     category: "Tools",
-    link: "https://www.zed.dev",
+    link: "https://www.autodesk.com/in/products/fusion-360/overview",
+  },
+  {
+    title: "Horses",
+    category: "YouTube",
+    link: "https://www.youtube.com/@HorsesOnYT",
+  },
+  {
+    title: "ML Cheat Sheet",
+    category: "Papers",
+    link: "https://github.com/soulmachine/machine-learning-cheat-sheet",
+  },
+  {
+    title: "Data Science ML",
+    category: "Papers",
+    link: "https://people.smp.uq.edu.au/DirkKroese/DSML/DSML.pdf",
+  },
+  {
+    title: "The Cherno",
+    category: "YouTube",
+    link: "https://www.youtube.com/@TheCherno",
+  },
+  {
+    title: "Matrix Calculus",
+    category: "Papers",
+    link: "https://arxiv.org/abs/1802.01528",
+  },
+  {
+    title: "Math for CS",
+    category: "Papers",
+    link: "https://people.csail.mit.edu/meyer/mcs.pdf",
+  },
+  {
+    title: "CP Handbook",
+    category: "Papers",
+    link: "https://cses.fi/book/book.pdf",
+  },
+  {
+    title: "b001",
+    category: "YouTube",
+    link: "https://www.youtube.com/@b001",
   },
   {
     title: "MATLAB",
@@ -177,9 +185,9 @@ const resources = [
     link: "https://in.mathworks.com/products/matlab.html",
   },
   {
-    title: "Fusion 360",
+    title: "Zed",
     category: "Tools",
-    link: "https://www.autodesk.com/in/products/fusion-360/overview",
+    link: "https://www.zed.dev",
   },
 ];
 
@@ -299,9 +307,7 @@ export default function LibraryPage() {
           options={currentCategories}
           activeFilters={selectedCategories}
           onFilterChange={setSelectedCategories}
-          placeholder={`by ${
-            activeSection === "books" ? "category" : "type"
-          }`}
+          placeholder={`by ${activeSection === "books" ? "category" : "type"}`}
         />
 
         <div className="library-content">

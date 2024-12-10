@@ -1816,10 +1816,6 @@ a[data-footnote-ref] {
     color: var(--color-bg);
   }
 
-  .book-card:hover {
-    transform: translateY(-4px);
-  }
-
   .book-card:hover .book-cover-overlay {
     opacity: 1;
   }
@@ -1875,7 +1871,7 @@ a[data-footnote-ref] {
     background: #ff0000;
   }
 
-  .remove-filter:hover svg{
+  .remove-filter:hover svg {
     color: #ffffff;
   }
 
