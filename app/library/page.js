@@ -29,7 +29,7 @@ const books = [
   {
     title: "Think and Grow Rich",
     author: "Napolean Hill",
-    coverColor: "#07000c",
+    coverColor: "#111111",
     tags: ["Philosophy"],
     description:
       "Guide to achieving success through desire, faith, and persistence.",

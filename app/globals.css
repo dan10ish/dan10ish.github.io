@@ -318,7 +318,6 @@ th {
   transition: all 0.2s ease;
   color: var(--color-link);
   position: relative;
-  top: 0px;
 }
 
 @media (max-width: 768px) {
@@ -360,18 +359,18 @@ th {
   opacity: 1;
   position: relative;
   top: -3px;
+  text-transform: uppercase;
 }
 
 .development-badge {
-  background-color: var(--color-link);
-  color: #ffffff;
+  background: rgba(20, 128, 237, 0.2);
+  color: #1480ed;
 }
 
 .draft-badge {
-  background-color: var(--blockquote-color);
-  color: var(--color-bg);
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.6);
 }
-
 /* Projects Section */
 .projects-section {
   margin-top: var(--padding-large);
@@ -1866,6 +1865,7 @@ a[data-footnote-ref] {
 
   .show-more-button:hover {
     border-color: var(--color-link);
+    color: var(--color-link);
     text-decoration: none;
   }
 
