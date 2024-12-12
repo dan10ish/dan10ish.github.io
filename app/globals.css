@@ -29,49 +29,49 @@
 
 [data-theme="light"] {
   --color-bg: #ffffff;
-  --color-text: #333333;
-  --color-link: #0070f3;
-  --blockquote-color: #6c757d;
-  --code-background-color: #eeeeee;
-  --code-color: #333333;
-  --syntax-comment: #6a737d;
-  --syntax-keyword: #d73a49;
-  --syntax-number: #005cc5;
-  --syntax-string: #032f62;
-  --syntax-title: #6f42c1;
-  --syntax-type: #d73a49;
-  --syntax-tag: #22863a;
-  --syntax-regexp: #032f62;
-  --syntax-symbol: #005cc5;
-  --syntax-builtin: #6f42c1;
-  --syntax-meta: #6a737d;
-  --color-text-rgb: 51, 51, 51;
-  --github-border: rgba(31, 35, 40, 0.15);
-  --github-hover-bg: #edf1f5;
+  --color-text: #18181b;
+  --color-link: #2563eb;
+  --blockquote-color: #64748b;
+  --code-background-color: #f1f5f9;
+  --code-color: #1e293b;
+  --syntax-comment: #64748b;
+  --syntax-keyword: #2563eb;
+  --syntax-number: #0891b2;
+  --syntax-string: #059669;
+  --syntax-title: #6d28d9;
+  --syntax-type: #be123c;
+  --syntax-tag: #16a34a;
+  --syntax-regexp: #ea580c;
+  --syntax-symbol: #2563eb;
+  --syntax-builtin: #6d28d9;
+  --syntax-meta: #64748b;
+  --color-text-rgb: 24, 24, 27;
+  --github-border: rgba(24, 24, 27, 0.1);
+  --github-hover-bg: #f8fafc;
 }
 
 [data-theme="dark"] {
-  --color-bg: #1c1c1e;
-  --color-text: #ffffff;
-  --color-link: #1480ed;
-  --blockquote-color: #93a1a1;
-  --code-background-color: #2c2c2e;
-  --code-color: #d4d4d4;
-  --syntax-comment: #8c9a7a;
-  --syntax-keyword: #61afef;
-  --syntax-number: #d7ffbf;
-  --syntax-string: #f4a272;
-  --syntax-title: #f4f99d;
-  --syntax-type: #5de9a5;
-  --syntax-tag: #5caeff;
-  --syntax-regexp: #e06c75;
-  --syntax-symbol: #ffffff;
-  --syntax-builtin: #56d6c0;
-  --syntax-meta: #73d8ff;
-  --color-bg-rgb: 33, 33, 33;
-  --color-text-rgb: 255, 255, 255;
-  --github-border: rgba(240, 246, 252, 0.1);
-  --github-hover-bg: rgba(45, 51, 59, 0.8);
+  --color-bg: #09090b;
+  --color-text: #fafafa;
+  --color-link: #3b82f6;
+  --blockquote-color: #94a3b8;
+  --code-background-color: #18181b;
+  --code-color: #e2e8f0;
+  --syntax-comment: #94a3b8;
+  --syntax-keyword: #60a5fa;
+  --syntax-number: #22d3ee;
+  --syntax-string: #34d399;
+  --syntax-title: #c084fc;
+  --syntax-type: #fb7185;
+  --syntax-tag: #4ade80;
+  --syntax-regexp: #fb923c;
+  --syntax-symbol: #60a5fa;
+  --syntax-builtin: #c084fc;
+  --syntax-meta: #94a3b8;
+  --color-bg-rgb: 9, 9, 11;
+  --color-text-rgb: 250, 250, 250;
+  --github-border: rgba(250, 250, 250, 0.1);
+  --github-hover-bg: #27272a;
 }
 
 html,
