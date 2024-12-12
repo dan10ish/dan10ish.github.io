@@ -1173,6 +1173,18 @@ pre code {
   color: #2196f3;
 }
 
+.resource-card[data-category="YouTube"] {
+  background: rgba(255, 0, 0, 0.2);
+}
+
+.resource-card[data-category="Papers"] {
+  background: rgba(76, 175, 80, 0.2);
+}
+
+.resource-card[data-category="Tools"] {
+  background: rgba(33, 150, 243, 0.2);
+}
+
 .resource-content {
   display: flex;
   flex-direction: row;
@@ -1832,10 +1844,23 @@ a[data-footnote-ref] {
     opacity: 1;
   }
 
-  .resource-card:hover {
-    background: var(--code-background-color);
-    color: var(--color-text);
+  .resource-card[data-category="YouTube"]:hover {
+    background: rgba(255, 0, 0, 0.5);
     text-decoration: none;
+  }
+
+  .resource-card[data-category="Papers"]:hover {
+    background: rgba(76, 175, 80, 0.5);
+    text-decoration: none;
+  }
+
+  .resource-card[data-category="Tools"]:hover {
+    background: rgba(33, 150, 243, 0.5);
+    text-decoration: none;
+  }
+
+  .resource-card:hover svg{
+    stroke: var(--color-text);
   }
 
   .resource-card:hover .resource-title {
