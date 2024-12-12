@@ -371,6 +371,7 @@ th {
   background: rgba(255, 255, 255, 0.1);
   color: rgba(255, 255, 255, 0.6);
 }
+
 /* Projects Section */
 .projects-section {
   margin-top: var(--padding-large);
@@ -392,18 +393,20 @@ th {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 4px 8px;
-  border-radius: 6px;
+  padding: 6px 12px;
+  border-radius: 100px;
   background-color: var(--code-background-color);
   color: var(--color-text);
   font-size: 0.8rem;
   text-decoration: none;
   transition: all 0.2s ease;
+  border: 1.5px solid transparent;
 }
 
 .github-profile-button svg {
   width: 16px;
   height: 16px;
+  transition: transform 0.2s ease;
 }
 
 .projects-table {
@@ -498,16 +501,18 @@ th {
 .github-button {
   display: flex;
   align-items: center;
-  padding: 0.45rem 0.9rem;
+  padding: 10px 18px;
   font-weight: 400;
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
   background-color: var(--code-background-color);
-  border-radius: 10px;
+  border-radius: 100px;
   color: var(--color-text);
-  transition: transform 0.2s ease;
+  transition: all 0.2s ease;
   gap: 12px;
+  border: 1.5px solid transparent;
+  height: 40px;
 }
 
 .github-button-content {
@@ -516,16 +521,16 @@ th {
   gap: 8px;
 }
 
+.github-button svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s ease;
+}
+
 .github-stars {
   display: flex;
   align-items: center;
   gap: 6px;
-  padding-left: 12px;
-  border-left: 1px solid rgba(var(--color-text-rgb), 0.1);
-}
-
-.star-icon {
-  transition: transform 0.15s cubic-bezier(0.2, 0, 0.13, 2);
 }
 
 /* Navigation and Buttons */
@@ -707,21 +712,30 @@ th {
 /* Stats Cards */
 .stats-cards {
   display: flex;
-  gap: 1rem;
+  gap: 0.5rem;
   margin: 0;
 }
 
 .stat-card {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.45rem 0.9rem;
-  border-radius: 10px;
+  gap: 0.4rem;
+  padding: 10px 18px;
+  border-radius: 100px;
   font-size: 0.8rem;
   color: var(--color-text);
   user-select: none;
   white-space: nowrap;
   background-color: var(--code-background-color);
+  transition: all 0.2s ease;
+  border: 1.5px solid transparent;
+  height: 40px;
+}
+
+.stat-card svg {
+  width: 17px;
+  height: 17px;
+  opacity: 1;
 }
 
 /* Like Button */
@@ -730,13 +744,13 @@ th {
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
   transition: transform 0.2s ease;
 }
 
 .like-button:disabled {
   cursor: default;
-  opacity: 0.7;
+  opacity: 1;
 }
 
 .like-button.liked svg {
@@ -1030,22 +1044,29 @@ pre code {
 .library-tabs {
   display: flex;
   gap: 1rem;
+  padding: 4px;
+  background: var(--code-background-color);
+  border-radius: 12px;
 }
 
 .library-tab {
-  padding: 0.4rem 1rem;
-  border-radius: var(--border-radius);
-  background: var(--code-background-color);
+  padding: 0.6rem 1.5rem;
+  border-radius: 8px;
+  background: transparent;
   color: var(--color-text);
   border: none;
   font-family: var(--font-normal);
   font-size: 0.8rem;
   cursor: pointer;
+  transition: all 0.2s ease;
+  opacity: 0.6;
 }
 
 .library-tab.active {
-  background: var(--color-text);
-  color: var(--color-bg);
+  background: var(--color-bg);
+  color: var(--color-text);
+  opacity: 1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .library-content {
@@ -1594,13 +1615,13 @@ a[data-footnote-ref] {
   }
 
   .github-profile-button {
-    padding: 6px 12px;
+    padding: 7px 14px;
     font-size: 0.85rem;
   }
 
   .github-profile-button svg {
-    width: 18px;
-    height: 18px;
+    width: 17px;
+    height: 17px;
   }
 
   .buttons-container {
@@ -1631,9 +1652,19 @@ a[data-footnote-ref] {
     gap: 2rem;
   }
 
+  .stats-cards{
+    gap: 1rem;
+  }
+
   .stat-card {
-    padding: 0.5rem 1rem;
+    padding: 8px 16px;
     font-size: 0.85rem;
+    height: 42px;
+  }
+
+  .github-button {
+    padding: 8px 16px;
+    height: 42px;
   }
 
   .katex-display,
@@ -1769,8 +1800,8 @@ a[data-footnote-ref] {
   }
 
   .github-profile-button:hover {
-    background-color: var(--color-text);
-    color: var(--color-bg);
+    background-color: var(--color-link);
+    color: #ffffff;
     text-decoration: none;
   }
 
@@ -1797,17 +1828,17 @@ a[data-footnote-ref] {
   }
 
   .like-button:not(.liked):hover svg {
+    transform: scale(1.1);
     color: #ff0000;
   }
 
   .github-button:hover {
-    background-color: var(--color-text);
-    color: var(--color-bg);
+    background-color: var(--color-link);
+    color: #ffffff;
     text-decoration: none;
   }
 
   .star-hover {
-    transform: scale(1.15);
     fill: #ffd700;
     stroke: #ffd700;
   }
@@ -1836,8 +1867,9 @@ a[data-footnote-ref] {
   }
 
   .library-tab:not(.active):hover {
-    background: var(--color-text);
-    color: var(--color-bg);
+    opacity: 0.8;
+    background: transparent;
+    color: var(--color-text);
   }
 
   .book-card:hover .book-cover-overlay {
@@ -1859,7 +1891,7 @@ a[data-footnote-ref] {
     text-decoration: none;
   }
 
-  .resource-card:hover svg{
+  .resource-card:hover svg {
     stroke: var(--color-text);
   }
 
