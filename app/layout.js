@@ -64,6 +64,21 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+                      (function() {
+                        function getTheme() {
+                          if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                            return 'dark';
+                          }
+                          return 'light';
+                        }
+                        document.documentElement.setAttribute('data-theme', getTheme());
+                      })()
+                    `,
+          }}
+        />
         <link
           rel="preconnect"
           href="https://fonts.gstatic.com"

@@ -12,20 +12,6 @@ const Footer = ({ blogSlug = null }) => {
   const [isUpdating, setIsUpdating] = useState(false);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const setTheme = (e) => {
-      document.documentElement.setAttribute(
-        "data-theme",
-        e.matches ? "dark" : "light",
-      );
-    };
-
-    setTheme(mediaQuery);
-    mediaQuery.addListener(setTheme);
-    return () => mediaQuery.removeListener(setTheme);
-  }, []);
-
-  useEffect(() => {
     const pageId = blogSlug ? `post-${blogSlug}` : "home";
     if (blogSlug) {
       const likedKey = `liked-${pageId}`;
