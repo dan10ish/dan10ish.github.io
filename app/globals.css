@@ -542,7 +542,9 @@ th {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
 }
 
 .buttons-container.hidden {
@@ -1094,7 +1096,8 @@ pre code {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 -2px 4px -2px rgba(0, 0, 0, 0.1);
 }
 
@@ -1652,7 +1655,7 @@ a[data-footnote-ref] {
     gap: 2rem;
   }
 
-  .stats-cards{
+  .stats-cards {
     gap: 1rem;
   }
 
@@ -1951,4 +1954,61 @@ a[data-footnote-ref] {
 
 .noFooter {
   display: none;
+}
+
+.icon-cloud-container {
+  position: relative;
+  width: 100%;
+  max-width: 32rem;
+  aspect-ratio: 1;
+  margin: 3rem auto;
+  border-radius: var(--border-radius);
+  background: var(--color-bg);
+  overflow: hidden;
+  cursor: grab;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-cloud-container:active {
+  cursor: grabbing;
+}
+
+.icon-cloud {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  touch-action: none;
+}
+
+.icon-item {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform-origin: 50% 50%;
+  transition: transform 0.1s ease;
+  will-change: transform, opacity, filter;
+}
+
+.icon-svg {
+  width: 28px;
+  height: 28px;
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s ease;
+}
+
+@media (min-width: 768px) {
+  .icon-cloud {
+    width: 500px;
+    height: 500px;
+  }
+
+  .icon-svg {
+    width: 36px;
+    height: 36px;
+  }
 }

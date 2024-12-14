@@ -17,7 +17,7 @@ export default function ProjectsSection({ showAll = false }) {
   const filteredProjects = useMemo(() => {
     if (selectedTags.length === 0) return projects;
     return projects.filter((project) =>
-      selectedTags.some((tag) => project.tags.includes(tag))
+      selectedTags.some((tag) => project.tags.includes(tag)),
     );
   }, [selectedTags, projects]);
 

@@ -16,7 +16,7 @@ const Footer = ({ blogSlug = null }) => {
     const setTheme = (e) => {
       document.documentElement.setAttribute(
         "data-theme",
-        e.matches ? "dark" : "light"
+        e.matches ? "dark" : "light",
       );
     };
 
@@ -78,7 +78,7 @@ const Footer = ({ blogSlug = null }) => {
             setStars(data.stargazers_count);
             sessionStorage.setItem(
               "github-stars",
-              data.stargazers_count.toString()
+              data.stargazers_count.toString(),
             );
             sessionStorage.setItem("github-stars-time", now.toString());
           }
@@ -110,8 +110,8 @@ const Footer = ({ blogSlug = null }) => {
 
   const formatNumber = useCallback((num) => {
     if (!num) return 0;
-    if (num >= 1000000) return (num / 1000000).toFixed(1) + "M";
-    if (num >= 1000) return (num / 1000).toFixed(1) + "k";
+    if (num >= 1000000) return (num / 1000000).toFixed(3) + "M";
+    if (num >= 1000) return (num / 1000).toFixed(2) + "K";
     return num;
   }, []);
 

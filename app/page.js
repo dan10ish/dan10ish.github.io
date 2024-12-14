@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import { FileText } from "lucide-react";
 import { getBlogPosts } from "../lib/posts";
 import AboutMe from "../components/AboutMe";
+import { IconCloudDemo } from "@/components/IconCloudDemo";
 
 const BlogList = dynamic(() => import("../components/BlogList"));
 const ProjectsSection = dynamic(() => import("../components/ProjectsSection"));
@@ -11,7 +12,7 @@ const GithubContributions = dynamic(
   {
     ssr: false,
     loading: () => <div style={{ height: "200px" }} />,
-  }
+  },
 );
 
 export default function Home() {
@@ -89,6 +90,7 @@ export default function Home() {
       <div id="projects">
         <ProjectsSection />
         <GithubContributions />
+        <IconCloudDemo />
       </div>
       <Footer />
     </main>

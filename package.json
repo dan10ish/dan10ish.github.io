@@ -12,6 +12,7 @@
     "deploy": "npm run build && npm run postbuild && touch out/.nojekyll && gh-pages -d out -t true"
   },
   "dependencies": {
+    "@frank-mayer/react-tag-cloud": "^1.2.1",
     "@million/lint": "^1.0.9",
     "@react-three/drei": "^9.117.3",
     "@react-three/fiber": "^8.17.10",
@@ -38,7 +39,8 @@
     "remark": "^14.0.3",
     "remark-footnotes": "^4.0.1",
     "remark-html": "^15.0.2",
-    "remark-math": "^5.1.1"
+    "remark-math": "^5.1.1",
+    "simple-icons": "^13.20.0"
   },
   "devDependencies": {
     "gh-pages": "^6.1.1",
