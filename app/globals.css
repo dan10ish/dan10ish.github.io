@@ -55,7 +55,7 @@
   --color-text: #fafafa;
   --color-link: #3b82f6;
   --blockquote-color: #94a3b8;
-  --code-background-color: #18181b;
+  --code-background-color: #222222;
   --code-color: #e2e8f0;
   --syntax-comment: #94a3b8;
   --syntax-keyword: #60a5fa;
@@ -1157,7 +1157,6 @@ pre code {
 }
 
 /* Resources */
-
 .resources-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -1166,7 +1165,6 @@ pre code {
 }
 
 .resource-card {
-  border: 1.5px solid var(--code-background-color);
   border-radius: 12px;
   padding: 0.75rem 1rem;
   transition: all 0.15s ease;
@@ -1185,6 +1183,18 @@ pre code {
   flex-shrink: 0;
 }
 
+.resource-card[data-category="YouTube"] .resource-title {
+  color: #ff0000 !important;
+}
+
+.resource-card[data-category="Papers"] .resource-title {
+  color: #4caf50 !important;
+}
+
+.resource-card[data-category="Tools"] .resource-title {
+  color: #2196f3 !important;
+}
+
 .resource-card[data-category="YouTube"] .resource-icon-wrapper {
   color: #ff0000;
 }
@@ -1193,20 +1203,20 @@ pre code {
   color: #4caf50;
 }
 
-.resource-card[data-category="Course"] .resource-icon-wrapper {
+.resource-card[data-category="Tools"] .resource-icon-wrapper {
   color: #2196f3;
 }
 
 .resource-card[data-category="YouTube"] {
-  background: rgba(255, 0, 0, 0.2);
+  background: rgba(255, 0, 0, 0.15);
 }
 
 .resource-card[data-category="Papers"] {
-  background: rgba(76, 175, 80, 0.2);
+  background: rgba(76, 175, 80, 0.15);
 }
 
 .resource-card[data-category="Tools"] {
-  background: rgba(33, 150, 243, 0.2);
+  background: rgba(33, 150, 243, 0.15);
 }
 
 .resource-content {
@@ -1899,7 +1909,7 @@ a[data-footnote-ref] {
   }
 
   .resource-card:hover .resource-title {
-    color: var(--color-text);
+    color: #ffffff !important;
   }
 
   .resource-card:hover .resource-tag {
