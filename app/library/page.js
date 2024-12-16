@@ -202,6 +202,8 @@ const ResourceIcon = ({ category }) => {
 };
 
 const BookCard = ({ book }) => {
+  const [isActive, setIsActive] = useState(false);
+
   const shouldUseWhiteText = (hexColor) => {
     const r = parseInt(hexColor.slice(1, 3), 16);
     const g = parseInt(hexColor.slice(3, 5), 16);
@@ -209,24 +211,34 @@ const BookCard = ({ book }) => {
     return (0.299 * r + 0.587 * g + 0.114 * b) / 255 < 0.5;
   };
 
-  const textColor = shouldUseWhiteText(book.coverColor) ? "white" : "black";
+  const textColor = shouldUseWhiteText(book.coverColor) ? "#ffffff" : "#000000";
 
   return (
-    <div className="book-card">
+    <div
+      className={`book-card ${isActive ? "touch-active" : ""}`}
+      onTouchStart={() => setIsActive(true)}
+      onTouchEnd={() => setIsActive(false)}
+      onTouchCancel={() => setIsActive(false)}
+    >
       <div
         className="book-cover"
-        style={{ backgroundColor: book.coverColor, color: textColor }}
+        style={{
+          backgroundColor: book.coverColor,
+          color: textColor,
+        }}
       >
-        <div className="book-cover-content">
-          <h3 className="book-cover-title">{book.title}</h3>
-          <p className="book-cover-author">{book.author}</p>
-          <div className="book-cover-tag">{book.tags[0]}</div>
+        <div
+          className="book-spine"
+          style={{
+            backgroundColor: book.coverColor,
+          }}
+        ></div>
+        <div className="book-spine-edge"></div>
+        <div className="book-content">
+          <h3 className="book-title">{book.title}</h3>
+          <p className="book-author">{book.author}</p>
         </div>
-      </div>
-      <div className="book-cover-overlay">
-        <div className="book-info">
-          <p className="book-description">{book.description}</p>
-        </div>
+        <div className="book-right-edge"></div>
       </div>
     </div>
   );
@@ -244,7 +256,7 @@ const ResourceCard = ({ resource }) => (
       <ResourceIcon category={resource.category} />
     </div>
     <h3 className="resource-title">{resource.title}</h3>
-    <span className="resource-tag">{resource.category}</span>
+    <span className="resource-category">{resource.category}</span>
   </a>
 );
 
@@ -321,7 +333,7 @@ export default function LibraryPage() {
                 <BookCard key={item.title} book={item} />
               ) : (
                 <ResourceCard key={item.title} resource={item} />
-              )
+              ),
             )}
           </div>
         </div>
