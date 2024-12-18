@@ -29,7 +29,7 @@ const books = [
   {
     title: "Think and Grow Rich",
     author: "Napolean Hill",
-    coverColor: "#1c1c1e",
+    coverColor: "#1e293b",
     tags: ["Philosophy"],
     description:
       "Guide to achieving success through desire, faith, and persistence.",
@@ -37,7 +37,7 @@ const books = [
   {
     title: "Hands-On Machine Learning",
     author: "Aurélien Géron",
-    coverColor: "#ffffff",
+    coverColor: "#0891b2",
     tags: ["Machine Learning"],
     description:
       "Comprehensive guide to ML with scikit-learn, Keras, and TensorFlow",
@@ -45,21 +45,21 @@ const books = [
   {
     title: "Introduction to Algorithms",
     author: "Thomas H. Cormen",
-    coverColor: "#1e71f7",
+    coverColor: "#0f766e",
     tags: ["Computer Science"],
     description: "The essential guide to computer algorithms",
   },
   {
     title: "Modern Robotics",
     author: "Kevin M. Lynch",
-    coverColor: "#7d7a7a",
+    coverColor: "#dc2626",
     tags: ["Robotics"],
     description: "Kinematics, Dynamics, Planning, and Control",
   },
   {
     title: "Fundamentals of Robotics",
     author: "Robert J. Schilling",
-    coverColor: "#9333ea",
+    coverColor: "#7c3aed",
     tags: ["Robotics"],
     description: "Analysis and control of robot manipulators",
   },
@@ -80,35 +80,35 @@ const books = [
   {
     title: "Steal Like an Artist",
     author: "Austin Kleon",
-    coverColor: "#6366f1",
+    coverColor: "#4338ca",
     tags: ["Creativity"],
     description: "10 things nobody told you about being creative",
   },
   {
     title: "The Creative Act",
     author: "Rick Rubin",
-    coverColor: "#0891b2",
+    coverColor: "#475569",
     tags: ["Creativity"],
     description: "A way of being",
   },
   {
     title: "The 48 Laws of Power",
     author: "Robert Greene",
-    coverColor: "#4b5563",
+    coverColor: "#b91c1c",
     tags: ["Psychology"],
     description: "Manipulative tactics",
   },
   {
     title: "The Almanack of Naval Ravikant",
     author: "Eric Jorgenson",
-    coverColor: "#0f766e",
+    coverColor: "#2563eb",
     tags: ["Philosophy"],
     description: "A guide to wealth and happiness",
   },
   {
     title: "Algorithms",
     author: "Jeff Erickson",
-    coverColor: "#7c3aed",
+    coverColor: "#6d28d9",
     tags: ["Computer Science"],
     description: "Comprehensive guide to algorithm design and analysis",
   },
@@ -223,7 +223,7 @@ const BookCard = ({ book }) => {
       <div
         className="book-cover"
         style={{
-          backgroundColor: book.coverColor,
+          "--book-color": book.coverColor,
           color: textColor,
         }}
       >

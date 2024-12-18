@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Library } from "lucide-react";
 
 export default function AboutMe() {
   return (
@@ -8,8 +9,12 @@ export default function AboutMe() {
         computer science.
       </p>
       <p>
-        Check out my <Link href="/library">library</Link> for resources I
-        frequently reference.
+        Check out my{" "}
+        <Link href="/library" className="library-link">
+          <Library size={14} />
+          <span>Library</span>
+        </Link>{" "}
+        for resources I frequently reference.
       </p>
     </section>
   );

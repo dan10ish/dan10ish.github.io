@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import Script from "next/script";
 import ButtonsContainer from "@/components/ButtonsContainer";
+import ThemeHandler from "@/components/ThemeHandler";
 import "./globals.css";
 
 export const metadata = {
@@ -67,16 +68,14 @@ export default function RootLayout({ children }) {
         <script
           dangerouslySetInnerHTML={{
             __html: `
-                      (function() {
-                        function getTheme() {
-                          if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                            return 'dark';
-                          }
-                          return 'light';
-                        }
-                        document.documentElement.setAttribute('data-theme', getTheme());
-                      })()
-                    `,
+              (function() {
+                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                  document.documentElement.setAttribute('data-theme', 'dark');
+                  document.documentElement.style.backgroundColor = '#09090b';
+                  document.documentElement.style.color = '#fafafa';
+                }
+              })();
+            `,
           }}
         />
         <link
@@ -108,6 +107,7 @@ export default function RootLayout({ children }) {
         <meta httpEquiv="x-dns-prefetch-control" content="on" />
       </head>
       <body>
+        <ThemeHandler />
         <Suspense fallback={null}>
           <ButtonsContainer />
         </Suspense>

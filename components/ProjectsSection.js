@@ -89,7 +89,7 @@ export default function ProjectsSection({ showAll = false }) {
 
       {!showAll && !selectedTags.length && filteredProjects.length > 0 && (
         <Link href="/projects" className="show-more-button">
-          <span className="show-text">View All Projects</span>
+          <span className="show-text">All</span>
           <ChevronRight size={16} />
         </Link>
       )}

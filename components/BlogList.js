@@ -22,7 +22,7 @@ export default function BlogList({ posts, showAll = false }) {
   const filteredPosts = useMemo(() => {
     if (selectedTags.length === 0) return posts;
     return posts.filter((post) =>
-      selectedTags.some((tag) => post.tags.includes(tag))
+      selectedTags.some((tag) => post.tags.includes(tag)),
     );
   }, [selectedTags, posts]);
 
@@ -66,7 +66,7 @@ export default function BlogList({ posts, showAll = false }) {
 
       {!showAll && !selectedTags.length && filteredPosts.length > 3 && (
         <Link href="/posts" className="show-more-button">
-          <span className="show-text">View All Posts</span>
+          <span className="show-text">All</span>
           <ChevronRight size={16} />
         </Link>
       )}
