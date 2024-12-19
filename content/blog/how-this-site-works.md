@@ -1,204 +1,379 @@
-# Introduction
+I rebuilt my website using `Next.js 14` with React Server Components, focusing on performance, minimalism, and user experience while incorporating powerful features. Here's a detailed breakdown of how everything works.
 
-I rebuilt my website with `Next.js 14`, focusing on minimalism and performance while keeping powerful features like math rendering, syntax highlighting, and dynamic theming. Let me walk you through how everything works.
+## Core Architecture
 
-## File Structure
-
-Here's the simplified structure of the project:
+### File Structure
 
 ```plaintext
-├── app/
-│   ├── page.js                # Homepage
-│   ├── layout.js              # Root layout
-│   └── post/[slug]/page.js    # Blog post pages
-├── components/
-│   ├── BlogList.js            # Blog listing
-│   ├── Navigation.js          # Navigation menu
-│   ├── ProjectsSection.js     # Projects grid
-│   ├── LatexRenderer.js       # Math rendering
-│   └── HighlightCode.js       # Code highlighting
-├── lib/
-│   ├── api.js                 # Data handling
-│   └── mdxutils.js            # Markdown processing
-├── content/
-│   └── blog/                  # Markdown blog posts
-└── public/
-    ├── fonts/                 # Custom fonts
-    └── images/                # Static images
+├── app/                  # Next.js 14 app directory
+│   ├── page.js           # Homepage
+│   ├── layout.js         # Root layout
+│   ├── post/[slug]/      # Dynamic blog routes
+│   ├── library/          # Library section
+│   └── projects/         # Projects section
+├── components/           # React components
+├── lib/                  # Utilities and data
+├── content/              # Markdown content
+└── public/               # Static assets
 ```
 
-## Core Technologies
+### Core Technologies
 
-The site is built using `Next.js 14` with React Server Components for better performance and SEO. Instead of using a CSS framework like Tailwind, I opted for pure CSS with variables for maximum control over styling and animations. All content is written in Markdown and processed using a combination of remark and rehype plugins for features like math equations and syntax highlighting.
+- Next.js 14 with React Server Components
+- Pure CSS with CSS Variables (no frameworks)
+- Supabase for real-time features
+- Custom fonts (Geist Mono & Sentient)
 
-For typography, I'm using a combination of Geist Mono (for code and general text) and Sentient (for headings) to create a clean, readable interface that works well for both articles and code.
+## Feature Implementations
 
-## Blog System
+### 1. Dynamic Theming
 
-The blog system is built around markdown files with a robust processing pipeline. Each post is processed through remark and rehype, which handle various transformations. Here's how posts are defined:
+Automatically detects system preferences and applies themes using CSS variables:
 
 ```javascript
-// lib/api.js
-const blogPosts = [
-  {
-    slug: "probability",
-    title: "Probability",
-    date: new Date("2024-09-19"),
-    tags: ["machine learning", "math"],
-    headerImage: "/header-images/probability.jpg",
-    estimatedWordCount: 3000,
-  },
-];
+// ThemeHandler.jsx
+export default function ThemeHandler() {
+  useEffect(() => {
+    const setTheme = (e) => {
+      document.documentElement.setAttribute(
+        "data-theme",
+        e.matches ? "dark" : "light",
+      );
+    };
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    setTheme(mediaQuery);
+    mediaQuery.addEventListener("change", setTheme);
+    return () => mediaQuery.removeEventListener("change", setTheme);
+  }, []);
+}
 ```
 
-## Theme System
-
-The site supports three carefully chosen themes: light, dark, and solarized dark. The system uses CSS variables for instant theme switching:
+Theme variables:
 
 ```css
 [data-theme="light"] {
   --color-bg: #ffffff;
-  --color-text: #333333;
-  --color-link: #0070f3;
+  --color-text: #18181b;
+  --color-link: #2563eb;
 }
 
 [data-theme="dark"] {
-  --color-bg: #000000;
-  --color-text: #ffffff;
-  --color-link: #0096fa;
-}
-
-[data-theme="solarized-dark"] {
-  --color-bg: #00212b;
-  --color-text: #bfc9cc;
-  --color-link: #2ebdff;
+  --color-bg: #09090b;
+  --color-text: #fafafa;
+  --color-link: #3b82f6;
 }
 ```
 
-## Navigation System
+### 2. Real-time Statistics
 
-The navigation is designed to be unobtrusive yet accessible. It includes a smart navbar that automatically hides when scrolling down:
+Each page tracks views and likes with efficient caching:
 
 ```javascript
-const handleScroll = () => {
-  const currentScrollY = window.scrollY;
-  const scrollDelta = lastScrollY.current - currentScrollY;
-
-  if (scrollDelta > 10 || currentScrollY < 20) {
-    setIsVisible(true);
-  } else if (scrollDelta < 0 && currentScrollY > 20) {
-    setIsVisible(false);
+// supabase.js
+export async function getStats(pageId) {
+  const cached = statsCache.get(pageId);
+  if (cached && Date.now() - cached.timestamp < CACHE_TIME) {
+    return cached.data;
   }
+
+  try {
+    const { data } = await supabase
+      .from("page_stats")
+      .select("views, likes")
+      .eq("id", pageId)
+      .single();
+
+    // Cache and return results
+    const result = data || { views: 0, likes: 0 };
+    statsCache.set(pageId, { data: result, timestamp: Date.now() });
+    return result;
+  } catch {
+    return { views: 0, likes: 0 };
+  }
+}
+```
+
+### 3. Library System
+
+Interactive book showcase with 3D effects:
+
+```javascript
+const BookCard = ({ book }) => {
+  const [isActive, setIsActive] = useState(false);
+
+  return (
+    <div
+      className={`book-card ${isActive ? "touch-active" : ""}`}
+      onTouchStart={() => setIsActive(true)}
+      onTouchEnd={() => setIsActive(false)}
+    >
+      <div
+        className="book-cover"
+        style={{
+          "--book-color": book.coverColor,
+          color: shouldUseWhiteText(book.coverColor) ? "#fff" : "#000",
+        }}
+      >
+        <div className="book-content">
+          <h3 className="book-title">{book.title}</h3>
+          <p className="book-author">{book.author}</p>
+        </div>
+      </div>
+    </div>
+  );
 };
 ```
 
-## Project Showcase
+### 4. Code Block System
 
-Projects are displayed in a responsive grid layout. Each project is defined with metadata:
+Multi-language support with syntax highlighting:
 
 ```javascript
-const projects = [
+const TabsCodeBlock = memo(({ blocks }) => {
+  const [activeTab, setActiveTab] = useState(0);
+
+  return (
+    <div className="code-block-container">
+      <div className="tabs-code-header">
+        <div className="code-tabs">
+          {blocks.map((block, index) => (
+            <CodeTab
+              key={block.language}
+              language={block.language}
+              isActive={activeTab === index}
+              onClick={() => setActiveTab(index)}
+            />
+          ))}
+        </div>
+        <CopyButton code={blocks[activeTab].code} />
+      </div>
+      {/* Content rendering logic */}
+    </div>
+  );
+});
+```
+
+### 5. LaTeX Support
+
+Mathematics rendering with KaTeX:
+
+```javascript
+const LatexRenderer = ({ content }) => {
+  useEffect(() => {
+    const mathElements = containerRef.current.querySelectorAll(
+      ".math:not(.katex-rendered)",
+    );
+
+    mathElements.forEach((elem) => {
+      katex.render(elem.textContent, elem, {
+        displayMode: elem.classList.contains("math-display"),
+        throwOnError: false,
+      });
+    });
+  }, [content]);
+};
+```
+
+### 6. Dynamic Table of Contents
+
+Smart TOC with scroll tracking:
+
+```javascript
+const TOCButton = () => {
+  const [activeId, setActiveId] = useState("");
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-20% 0% -35% 0%" },
+    );
+
+    // Observe headings
+    document.querySelectorAll("h2, h3, h4").forEach((heading) => {
+      if (heading.id) observer.observe(heading);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+};
+```
+
+### 7. Project Showcase
+
+Filterable project grid:
+
+```javascript
+export default function ProjectsSection({ showAll = false }) {
+  const [selectedTags, setSelectedTags] = useState([]);
+
+  const filteredProjects = useMemo(() => {
+    if (selectedTags.length === 0) return projects;
+    return projects.filter((project) =>
+      selectedTags.some((tag) => project.tags.includes(tag)),
+    );
+  }, [selectedTags]);
+
+  return (
+    <section className="projects-section">
+      <FilterComponent
+        options={tags}
+        activeFilters={selectedTags}
+        onFilterChange={setSelectedTags}
+      />
+      <div className="projects-table">
+        {filteredProjects.map((project) => (
+          <ProjectRow key={project.title} project={project} />
+        ))}
+      </div>
+    </section>
+  );
+}
+```
+
+## Workflows
+
+### Adding a New Blog Post
+
+1. Create markdown file in `/content/blog/your-post.md`:
+
+```markdown
+[Demo](demo-link) | [Source Code](source-code-link)
+
+# Title
+
+## Introduction
+
+Content here...
+```
+
+2. Register in `/lib/posts.js`:
+
+```javascript
+const blogPosts = [
   {
-    title: "Pathfinder",
-    description: "Visualize path algorithms",
-    sourceLink: "github-url",
-    projectLink: "demo-url",
-    tags: ["web"],
-    gradient: "linear-gradient(...)",
+    slug: "your-post",
+    title: "Your Post Title",
+    date: new Date("2024-12-19"),
+    tags: ["tag1", "tag2"],
+    headerImage: "/header-images/your-image.jpg",
+    estimatedWordCount: 1000,
+    status: "completed", // or "development" or "draft"
+    home: false,
   },
 ];
 ```
 
-## Special Features
+### Adding a New Project
 
-### Mathematics Support
-
-The site uses `KaTeX` for rendering math equations. The `LaTeX` content is processed during markdown conversion and styled to match the current theme.
-
-### Code Highlighting
-
-Code blocks use `highlight.js` with theme-aware styling. Each block includes language detection and a copy button for better user experience.
-
-### Dynamic Table of Contents
-
-The TOC component automatically generates a navigation menu from the post's headings:
+Update `/lib/projects.js`:
 
 ```javascript
-const generateTOC = () => {
-  const headers = document.querySelectorAll("h2, h3, h4, h5, h6");
-  return Array.from(headers).map((header) => ({
-    id: header.id,
-    text: header.textContent,
-    level: parseInt(header.tagName.charAt(1)),
-  }));
-};
+const projects = [
+  {
+    title: "Your Project",
+    description: "Project description",
+    sourceLink: "https://github.com/username/project",
+    projectLink: "https://demo-link.com",
+    tags: ["web"],
+    home: true,
+  },
+];
 ```
 
-### Performance Optimizations
+### Adding Library Resources
 
-Several techniques keep the site fast and responsive:
+Update `/app/library/page.js`:
 
-1. Server Components for improved initial load times
-2. Dynamic imports for features not needed immediately
-3. Font optimization with preloading and subsetting
-4. Responsive images with lazy loading
-5. Code splitting to reduce initial bundle size
+```javascript
+const books = [
+  {
+    title: "Book Title",
+    author: "Author Name",
+    coverColor: "#hex-color",
+    tags: ["Category"],
+    description: "Description",
+  },
+];
 
-## Development and Deployment
+const resources = [
+  {
+    title: "Resource Name",
+    category: "YouTube", // or "Papers" or "Tools"
+    link: "https://resource-link.com",
+  },
+];
+```
 
-To run the site locally:
+## Development Workflow
+
+1. **Local Development**
 
 ```bash
-# Install dependencies
-npm install
-
-# Start development server
 npm run dev
+npm run build && npm run start # Preview production
+```
 
-# Build for production
-npm run build
+2. **Deployment**
 
-# Deploy to GitHub Pages
+```bash
 npm run deploy
 ```
 
-## Footer
+3. **Testing Checklist**
 
-The footer features neumorphic stat cards that display various metrics. Each card has a subtle shadow effect that adapts to the current theme:
+- Verify markdown rendering
+- Test in both themes
+- Check mobile responsiveness
+- Verify real-time features
+- Run performance audits
+- Test with slow network
 
-```css
-[data-theme="light"] .stat-card {
-  background: #ffffff;
-  box-shadow: 6px 6px 12px rgba(163, 177, 198, 0.6),
-              -6px -6px 12px rgba(255, 255, 255, 0.8);
-}
-```
-<br>
-Each blog post has a like button that stores engagement data. The likes are tracked with a simple counter that persists across sessions:
+## Performance Optimizations
 
+1. Dynamic Imports
 
 ```javascript
-const handleLike = async () => {
-  // Production uses CountAPI, development uses localStorage
-  const response = await fetch(`/api/likes/${postId}`);
-  const { likes } = await response.json();
-  setLikes(likes);
-  setHasLiked(true);
-  localStorage.setItem(`liked-${postId}`, 'true');
-};
+const HighlightCode = dynamic(() => import("./HighlightCode"), {
+  ssr: false,
+});
 ```
-<br>
-The footer displays my current location's (user specified) local time and weather info in real-time. For the homepage, it shows the GitHub repository's star count, while blog posts show a link to view the source markdown file.
+
+2. Asset Optimization
+
+```javascript
+<link
+  rel="preload"
+  href="/fonts/GeistMonoVF.woff2"
+  as="font"
+  type="font/woff2"
+  crossOrigin="anonymous"
+/>
+```
+
+3. Efficient Caching
+
+```javascript
+const cached = statsCache.get(pageId);
+if (cached && now - cached.timestamp < CACHE_TIME) {
+  return cached.data;
+}
+```
 
 ## Future Plans
 
-I'm working on several improvements:
+1. Full-text search implementation
+2. Enhanced image optimization
+3. Advanced animation system
+4. Expanded interactive visualizations
+5. PWA features
+6. Advanced caching strategies
 
-- Improved image optimization with next/image
-- Full-text search functionality
-- Reading progress indicator
-- Theme-specific images for dark/light modes
+<br>
 
-## Contributing
-
-The site is open source and available on GitHub. Feel free to explore the source code or reach out with questions or suggestions!
+The site remains open source and continuously evolving. Feel free to explore the [source code](https://github.com/dan10ish/dan10ish.github.io) or reach out with suggestions!
