@@ -1232,44 +1232,86 @@ pre code {
 }
 
 .resource-card[data-category="YouTube"] {
+  background: rgba(255, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .resource-card[data-category="YouTube"] {
   background: rgba(255, 0, 0, 0.5);
 }
 
 .resource-card[data-category="YouTube"] .resource-category {
+  background: #ffeded;
+  color: #b91c1c;
+}
+
+[data-theme="dark"] .resource-card[data-category="YouTube"] .resource-category {
   background: #4f2424;
+  color: #ffc7c7;
 }
 
 .resource-card[data-category="YouTube"] .resource-title,
-.resource-card[data-category="YouTube"] .resource-category,
 .resource-card[data-category="YouTube"] svg {
+  color: #b91c1c;
+}
+
+[data-theme="dark"] .resource-card[data-category="YouTube"] .resource-title,
+[data-theme="dark"] .resource-card[data-category="YouTube"] svg {
   color: #ffc7c7;
 }
 
 .resource-card[data-category="Papers"] {
+  background: rgba(76, 175, 80, 0.3);
+}
+
+[data-theme="dark"] .resource-card[data-category="Papers"] {
   background: rgba(76, 175, 80, 0.5);
 }
 
 .resource-card[data-category="Papers"] .resource-category {
+  background: #ecfdf5;
+  color: #15803d;
+}
+
+[data-theme="dark"] .resource-card[data-category="Papers"] .resource-category {
   background: #244f2f;
+  color: #c7ffd8;
 }
 
 .resource-card[data-category="Papers"] .resource-title,
-.resource-card[data-category="Papers"] .resource-category,
 .resource-card[data-category="Papers"] svg {
+  color: #15803d;
+}
+
+[data-theme="dark"] .resource-card[data-category="Papers"] .resource-title,
+[data-theme="dark"] .resource-card[data-category="Papers"] svg {
   color: #c7ffd8;
 }
 
 .resource-card[data-category="Tools"] {
+  background: rgba(33, 150, 243, 0.1);
+}
+
+[data-theme="dark"] .resource-card[data-category="Tools"] {
   background: rgba(33, 150, 243, 0.5);
 }
 
 .resource-card[data-category="Tools"] .resource-category {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+[data-theme="dark"] .resource-card[data-category="Tools"] .resource-category {
   background: #24374f;
+  color: #c7e5ff;
 }
 
 .resource-card[data-category="Tools"] .resource-title,
-.resource-card[data-category="Tools"] .resource-category,
 .resource-card[data-category="Tools"] svg {
+  color: #1d4ed8;
+}
+
+[data-theme="dark"] .resource-card[data-category="Tools"] .resource-title,
+[data-theme="dark"] .resource-card[data-category="Tools"] svg {
   color: #c7e5ff;
 }
 
@@ -1990,33 +2032,6 @@ a[data-footnote-ref] {
     color: var(--color-text);
   }
 
-  .resource-card[data-category="YouTube"]:hover {
-    background: rgba(255, 0, 0, 0.3);
-    text-decoration: none;
-  }
-
-  .resource-card[data-category="Papers"]:hover {
-    background: rgba(76, 175, 80, 0.3);
-    text-decoration: none;
-  }
-
-  .resource-card[data-category="Tools"]:hover {
-    background: rgba(33, 150, 243, 0.3);
-    text-decoration: none;
-  }
-
-  .resource-card:hover svg {
-    stroke: var(--color-text);
-  }
-
-  .resource-card:hover .resource-title {
-    color: #ffffff !important;
-  }
-
-  .resource-card:hover .resource-tag {
-    background: var(--color-bg);
-  }
-
   .github-icon-class:hover {
     opacity: 1;
     color: var(--color-text) !important;
@@ -2063,9 +2078,10 @@ a[data-footnote-ref] {
   }
 
   .library-link:hover {
-    color: var(--color-text);
+    color: #ffffff;
     background: var(--color-link);
     text-decoration: none;
+    cursor: pointer;
   }
 
   .book-card:hover .book-cover {
@@ -2074,5 +2090,33 @@ a[data-footnote-ref] {
 
   .book-card:hover .book-right-edge {
     opacity: 1;
+  }
+
+  .resource-card:hover {
+    text-decoration: none;
+  }
+
+  .resource-card[data-category="YouTube"]:hover {
+    background: rgba(255, 0, 0, 0.2);
+  }
+
+  [data-theme="dark"] .resource-card[data-category="YouTube"]:hover {
+    background: rgba(255, 0, 0, 0.3);
+  }
+
+  .resource-card[data-category="Papers"]:hover {
+    background: rgba(76, 175, 80, 0.2);
+  }
+
+  [data-theme="dark"] .resource-card[data-category="Papers"]:hover {
+    background: rgba(76, 175, 80, 0.3);
+  }
+
+  .resource-card[data-category="Tools"]:hover {
+    background: rgba(33, 150, 243, 0.2);
+  }
+
+  [data-theme="dark"] .resource-card[data-category="Tools"]:hover {
+    background: rgba(33, 150, 243, 0.3);
   }
 }
