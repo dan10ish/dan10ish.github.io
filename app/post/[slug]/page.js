@@ -83,7 +83,7 @@ export default async function BlogPost({ params }) {
             <span className="draft-badge">Draft</span>
           )}
         </div>
-        <div className="blog-meta">
+        <div className="blogpost-meta">
           <div>
             <p className="blog-date">{post.date}</p>
           </div>

@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { Github, Globe, ChevronRight } from "lucide-react";
+import { Github, Globe, ArrowUpRight } from "lucide-react";
 import { getProjects } from "@/lib/projects";
 import FilterComponent from "./FilterComponent";
 
@@ -45,7 +45,7 @@ export default function ProjectsSection({ showAll = false }) {
         options={tags}
         activeFilters={selectedTags}
         onFilterChange={setSelectedTags}
-        placeholder="by tag"
+        placeholder=""
       />
 
       <div className="projects-table">
@@ -88,9 +88,9 @@ export default function ProjectsSection({ showAll = false }) {
       </div>
 
       {!showAll && !selectedTags.length && filteredProjects.length > 0 && (
-        <Link href="/projects" className="show-more-button">
-          <span className="show-text">All</span>
-          <ChevronRight size={16} />
+        <Link href="/projects" className="show-more">
+          <span>All</span>
+          <ArrowUpRight size={14} />
         </Link>
       )}
     </section>

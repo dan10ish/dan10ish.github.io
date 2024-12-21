@@ -2,12 +2,15 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { ArrowUpRight, ChevronRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import FilterComponent from "./FilterComponent";
 
 function formatDate(dateString) {
   const date = new Date(dateString);
-  return date.getFullYear().toString();
+  const day = date.getDate().toString().padStart(2, "0");
+  const month = date.toLocaleString("default", { month: "short" });
+  const year = date.getFullYear();
+  return `${day} ${month}, ${year}`;
 }
 
 export default function BlogList({ posts, showAll = false }) {
@@ -32,42 +35,44 @@ export default function BlogList({ posts, showAll = false }) {
   }, [filteredPosts, showAll, selectedTags]);
 
   return (
-    <section className="blog-list">
+    <section>
       <h2>Posts</h2>
 
       <FilterComponent
         options={allTags}
         activeFilters={selectedTags}
         onFilterChange={setSelectedTags}
-        placeholder="by tag"
+        placeholder=""
       />
 
-      <div className="posts-table">
+      <div className="blog-grid">
         {displayedPosts.map((post) => (
           <Link
             href={`/post/${post.slug}`}
             key={post.slug}
-            className="post-row"
+            className="blog-card"
           >
-            <div className="post-year">{formatDate(post.date)}</div>
-            <div className="post-title">{post.title}</div>
-            <div className="post-meta">
-              {post.status === "development" && (
-                <span className="development-badge">Development</span>
-              )}
-              {post.status === "draft" && (
-                <span className="draft-badge">Draft</span>
-              )}
-              <ArrowUpRight size={18} className="arrow-icon" />
+            <div
+              className="blog-preview"
+              style={{ backgroundImage: `url(${post.headerImage})` }}
+            />
+            <div className="blog-content">
+              <h3 className="blog-title">{post.title}</h3>
+              <div className="blog-meta">
+                {formatDate(post.date)}
+                {post.status === "development" && (
+                  <div className="blog-status">DEVELOPMENT</div>
+                )}
+              </div>
             </div>
           </Link>
         ))}
       </div>
 
       {!showAll && !selectedTags.length && filteredPosts.length > 3 && (
-        <Link href="/posts" className="show-more-button">
-          <span className="show-text">All</span>
-          <ChevronRight size={16} />
+        <Link href="/posts" className="show-more">
+          <span>All</span>
+          <ArrowUpRight size={14} />
         </Link>
       )}
     </section>
