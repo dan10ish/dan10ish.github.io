@@ -5,14 +5,6 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import FilterComponent from "./FilterComponent";
 
-function formatDate(dateString) {
-  const date = new Date(dateString);
-  const day = date.getDate().toString().padStart(2, "0");
-  const month = date.toLocaleString("default", { month: "short" });
-  const year = date.getFullYear();
-  return `${day} ${month}, ${year}`;
-}
-
 export default function BlogList({ posts, showAll = false }) {
   const [selectedTags, setSelectedTags] = useState([]);
 
@@ -47,23 +39,19 @@ export default function BlogList({ posts, showAll = false }) {
 
       <div className="blog-grid">
         {displayedPosts.map((post) => (
-          <Link
-            href={`/post/${post.slug}`}
-            key={post.slug}
+          <Link 
+            href={`/post/${post.slug}`} 
+            key={post.slug} 
             className="blog-card"
+            data-status={post.status}
           >
-            <div
-              className="blog-preview"
-              style={{ backgroundImage: `url(${post.headerImage})` }}
-            />
-            <div className="blog-content">
-              <h3 className="blog-title">{post.title}</h3>
-              <div className="blog-meta">
-                {formatDate(post.date)}
-                {post.status === "development" && (
-                  <div className="blog-status">DEVELOPMENT</div>
-                )}
-              </div>
+            <div className="blog-year">{post.year}</div>
+            <h3 className="blog-title">{post.title}</h3>
+            <div className="blog-meta">
+              {post.status !== "completed" && (
+                <div className="blog-status">{post.status.toUpperCase()}</div>
+              )}
+              <ArrowUpRight className="blog-arrow" size={16} />
             </div>
           </Link>
         ))}
