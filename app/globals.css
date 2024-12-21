@@ -307,7 +307,7 @@ th {
 
 .blog-title {
   color: var(--color-text);
-  font-size: 0.95rem;
+  font-size: 1rem;
   margin: 0;
   line-height: 1.4;
   font-weight: 450;
@@ -1552,8 +1552,7 @@ a[data-footnote-ref] {
   background: var(--code-background-color);
   border: none;
   border-radius: 10px !important;
-  color: rgba(var(--color-text-rgb), 1);
-
+  color: rgba(var(--color-text-rgb), 0.8);
   transition: all 0.2s ease;
   vertical-align: middle;
   font-weight: 400 !important;
@@ -1564,6 +1563,7 @@ a[data-footnote-ref] {
 
 .filter-pill {
   cursor: default;
+  color: rgba(var(--color-text-rgb), 1);
 }
 
 .remove-filter {
@@ -1919,7 +1919,7 @@ a[data-footnote-ref] {
 
   .blog-card {
     padding: 18px 10px;
-    grid-template-columns: 70px 1fr auto;
+    grid-template-columns: 65px 1fr auto;
   }
 
   .blog-title {
@@ -1938,6 +1938,7 @@ a[data-footnote-ref] {
   .blog-status {
     font-size: 0.7rem;
     right: 26px;
+    top: -3.5px;
   }
 }
 
@@ -2116,7 +2117,7 @@ a[data-footnote-ref] {
   [data-theme="dark"] .resource-card[data-category="Tools"]:hover {
     background: rgba(33, 150, 243, 0.3);
   }
-  
+
   .blog-card:hover {
     background-color: rgba(var(--color-text-rgb), 0.03);
     text-decoration: none;
