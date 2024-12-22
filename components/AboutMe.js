@@ -14,7 +14,7 @@ export default function AboutMe() {
           <Library size={14} />
           <span>Library</span>
         </Link>{" "}
-        for resources I frequently reference.
+        for my notes & resources I frequently reference.
       </p>
     </section>
   );

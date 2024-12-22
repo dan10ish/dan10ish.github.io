@@ -125,7 +125,7 @@ const books = [
 
 const notes = [
   {
-    title: "Artificial Intelligence and Machine Learning",
+    title: "AI & ML",
     author: "Semester 6",
     coverColor: "#B22222",
     tags: ["AI", "Semester 6"],
@@ -142,7 +142,7 @@ const notes = [
     title: "Industrial Robotics Motion Control",
     author: "Semester 7",
     coverColor: "#4682B4",
-    tags: ["Mechatronics", "Semester 7"],
+    tags: ["Robotics", "Semester 7"],
     file: "/notes/semester7/IRMC.pdf",
   },
   {
@@ -177,7 +177,7 @@ const notes = [
     title: "Design of Machine Elements",
     author: "Semester 5",
     coverColor: "#8B0000",
-    tags: ["Mechanical Design", "Semester 5"],
+    tags: ["Mechatronics", "Semester 5"],
     file: "/notes/semester5/DME.pdf",
   },
   {
@@ -191,7 +191,7 @@ const notes = [
     title: "Signals and Systems",
     author: "Semester 5",
     coverColor: "#556B2F",
-    tags: ["Electronics", "Semester 5"],
+    tags: ["Control Systems", "Semester 5"],
     file: "/notes/semester5/SAS.pdf",
   },
   {
@@ -426,8 +426,8 @@ function LibraryContent() {
       activeSection === "books"
         ? books
         : activeSection === "notes"
-        ? notes
-        : resources;
+          ? notes
+          : resources;
 
     return content.filter((item) => {
       const itemCategories =
@@ -493,8 +493,8 @@ function LibraryContent() {
               activeSection === "resources"
                 ? "resources-grid"
                 : activeSection === "notes"
-                ? "notes-grid"
-                : "books-grid"
+                  ? "notes-grid"
+                  : "books-grid"
             }
           >
             {filteredContent.map((item) => {
