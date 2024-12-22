@@ -24,6 +24,20 @@ const nextConfig = {
       use: "raw-loader",
     });
 
+    config.resolve = {
+      ...config.resolve,
+      alias: {
+        ...config.resolve.alias,
+        canvas: false,
+      },
+      fallback: {
+        fs: false,
+        path: false,
+        os: false,
+        canvas: false,
+      },
+    };
+
     config.optimization = {
       ...config.optimization,
       splitChunks: {

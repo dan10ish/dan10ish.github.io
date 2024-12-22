@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Geist Mono";
-  src: url("./fonts/GeistMonoVF.woff") format("woff-variations");
+  src: url("/fonts/GeistMonoVF.woff") format("woff-variations");
   font-weight: 100 900;
   font-stretch: 75% 125%;
   font-style: oblique 0deg 12deg;
@@ -9,7 +9,7 @@
 
 @font-face {
   font-family: "Sentient";
-  src: url("./fonts/Sentient.ttf") format("truetype");
+  src: url("/fonts/Sentient.ttf") format("truetype");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -1114,20 +1114,20 @@ pre code {
 .books-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 1.5rem;
-  padding: 1rem 0;
+  gap: 1rem;
+  padding: 0.75rem 0;
 }
 
 .book-card {
   position: relative;
-  perspective: 2000px;
+  perspective: 1500px;
 }
 
 .book-cover {
   position: relative;
   aspect-ratio: 5/6;
   border-radius: 2px;
-  padding: 1rem 1.5rem 1rem 1.8rem;
+  padding: 0.75rem 1.25rem 0.75rem 1.5rem;
   transform-style: preserve-3d;
   transform-origin: 0% 50%;
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1559,6 +1559,11 @@ a[data-footnote-ref] {
   font-size: 0.8rem;
   height: 28px;
   cursor: pointer;
+}
+
+.add-filter-btn,
+.filter-pill {
+  height: 32px;
 }
 
 .filter-pill {
@@ -2131,5 +2136,20 @@ a[data-footnote-ref] {
   .show-more:hover {
     border-color: var(--color-link);
     text-decoration: none;
+  }
+}
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem 0;
+}
+
+@media (min-width: 768px) {
+  .notes-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
   }
 }

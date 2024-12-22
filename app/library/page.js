@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import {
   Podcast,
   Youtube,
@@ -13,6 +14,7 @@ import {
 import Footer from "@/components/Footer";
 import ButtonsContainer from "@/components/ButtonsContainer";
 import FilterComponent from "@/components/FilterComponent";
+import dynamic from "next/dynamic";
 
 const bookCategories = [
   "Machine Learning",
@@ -121,6 +123,86 @@ const books = [
   },
 ];
 
+const notes = [
+  {
+    title: "Artificial Intelligence and Machine Learning",
+    author: "Semester 6",
+    coverColor: "#B22222",
+    tags: ["AI", "Semester 6"],
+    file: "/notes/semester6/AIML.pdf",
+  },
+  {
+    title: "Robotics System Design",
+    author: "Semester 7",
+    coverColor: "#B8860B",
+    tags: ["Robotics", "Semester 7"],
+    file: "/notes/semester7/RSD.pdf",
+  },
+  {
+    title: "Industrial Robotics Motion Control",
+    author: "Semester 7",
+    coverColor: "#4682B4",
+    tags: ["Mechatronics", "Semester 7"],
+    file: "/notes/semester7/IRMC.pdf",
+  },
+  {
+    title: "Mechatronics System Design",
+    author: "Semester 7",
+    coverColor: "#006400",
+    tags: ["Mechatronics", "Semester 7"],
+    file: "/notes/semester7/MSD.pdf",
+  },
+  {
+    title: "Modern Control Systems",
+    author: "Semester 6",
+    coverColor: "#CD5C5C",
+    tags: ["Control Systems", "Semester 6"],
+    file: "/notes/semester6/MCS.pdf",
+  },
+  {
+    title: "Graph Theory and Applications",
+    author: "Semester 6",
+    coverColor: "#6A5ACD",
+    tags: ["Mathematics", "Semester 6"],
+    file: "/notes/semester6/GTA.pdf",
+  },
+  {
+    title: "Programmable Logic Controller",
+    author: "Semester 6",
+    coverColor: "#2F4F4F",
+    tags: ["Mechatronics", "Semester 6"],
+    file: "/notes/semester6/PLC.pdf",
+  },
+  {
+    title: "Design of Machine Elements",
+    author: "Semester 5",
+    coverColor: "#8B0000",
+    tags: ["Mechanical Design", "Semester 5"],
+    file: "/notes/semester5/DME.pdf",
+  },
+  {
+    title: "Dynamic System Modelling",
+    author: "Semester 5",
+    coverColor: "#008B8B",
+    tags: ["Control Systems", "Semester 5"],
+    file: "/notes/semester5/DSM.pdf",
+  },
+  {
+    title: "Signals and Systems",
+    author: "Semester 5",
+    coverColor: "#556B2F",
+    tags: ["Electronics", "Semester 5"],
+    file: "/notes/semester5/SAS.pdf",
+  },
+  {
+    title: "Rough",
+    author: "Semester 5",
+    coverColor: "#8B4513",
+    tags: ["Miscellaneous", "Semester 5"],
+    file: "/notes/semester5/Rough.pdf",
+  },
+];
+
 const resourceCategories = ["YouTube", "Papers", "Tools"];
 
 const resources = [
@@ -201,9 +283,8 @@ const ResourceIcon = ({ category }) => {
   return <Icon size={18} />;
 };
 
-const BookCard = ({ book }) => {
+const BookCard = ({ book, onClick }) => {
   const [isActive, setIsActive] = useState(false);
-
   const shouldUseWhiteText = (hexColor) => {
     const r = parseInt(hexColor.slice(1, 3), 16);
     const g = parseInt(hexColor.slice(3, 5), 16);
@@ -219,26 +300,55 @@ const BookCard = ({ book }) => {
       onTouchStart={() => setIsActive(true)}
       onTouchEnd={() => setIsActive(false)}
       onTouchCancel={() => setIsActive(false)}
+      onClick={onClick}
     >
       <div
         className="book-cover"
         style={{
           "--book-color": book.coverColor,
           color: textColor,
+          cursor: onClick ? "pointer" : "default",
         }}
       >
         <div
           className="book-spine"
-          style={{
-            backgroundColor: book.coverColor,
-          }}
-        ></div>
-        <div className="book-spine-edge"></div>
+          style={{ backgroundColor: book.coverColor }}
+        />
+        <div className="book-spine-edge" />
         <div className="book-content">
           <h3 className="book-title">{book.title}</h3>
           <p className="book-author">{book.author}</p>
         </div>
-        <div className="book-right-edge"></div>
+        <div className="book-right-edge" />
+      </div>
+    </div>
+  );
+};
+
+const NotesCard = ({ note }) => {
+  const handleOpenNote = () => {
+    window.open(note.file, "_blank");
+  };
+
+  return (
+    <div className="book-card" onClick={handleOpenNote}>
+      <div
+        className="book-cover"
+        style={{
+          "--book-color": note.coverColor,
+          cursor: "pointer",
+        }}
+      >
+        <div
+          className="book-spine"
+          style={{ backgroundColor: note.coverColor }}
+        />
+        <div className="book-spine-edge" />
+        <div className="book-content">
+          <h3 className="book-title">{note.title}</h3>
+          <p className="book-author">{note.author}</p>
+        </div>
+        <div className="book-right-edge" />
       </div>
     </div>
   );
@@ -261,23 +371,76 @@ const ResourceCard = ({ resource }) => (
 );
 
 export default function LibraryPage() {
-  const [activeSection, setActiveSection] = useState("books");
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const initialSection = searchParams.get("section") || "notes";
+  const [activeSection, setActiveSection] = useState(initialSection);
   const [selectedCategories, setSelectedCategories] = useState([]);
 
-  const currentCategories =
-    activeSection === "books" ? bookCategories : resourceCategories;
+  useEffect(() => {
+    const section = searchParams.get("section");
+
+    if (
+      section !== activeSection &&
+      ["books", "notes", "resources"].includes(section)
+    ) {
+      setActiveSection(section);
+    }
+  }, [searchParams, activeSection]);
+
+  const updateURL = (section) => {
+    const params = new URLSearchParams(searchParams);
+    params.set("section", section);
+    router.push(`/library?${params.toString()}`, { scroll: false });
+  };
+
+  const currentCategories = useMemo(() => {
+    switch (activeSection) {
+      case "books":
+        return bookCategories;
+      case "notes":
+        return [...new Set(notes.flatMap((note) => note.tags))];
+      case "resources":
+        return resourceCategories;
+      default:
+        return [];
+    }
+  }, [activeSection]);
 
   const filteredContent = useMemo(() => {
     if (selectedCategories.length === 0) {
-      return activeSection === "books" ? books : resources;
+      switch (activeSection) {
+        case "books":
+          return books;
+        case "notes":
+          return notes;
+        case "resources":
+          return resources;
+        default:
+          return [];
+      }
     }
 
-    return (activeSection === "books" ? books : resources).filter((item) => {
+    const content =
+      activeSection === "books"
+        ? books
+        : activeSection === "notes"
+          ? notes
+          : resources;
+
+    return content.filter((item) => {
       const itemCategories =
-        activeSection === "books" ? item.tags : [item.category];
+        activeSection === "resources" ? [item.category] : item.tags;
       return selectedCategories.some((cat) => itemCategories.includes(cat));
     });
   }, [activeSection, selectedCategories]);
+
+  const handleSectionChange = (section) => {
+    setActiveSection(section);
+    setSelectedCategories([]);
+    updateURL(section);
+  };
 
   return (
     <main>
@@ -291,24 +454,20 @@ export default function LibraryPage() {
         <div className="library-navigation">
           <div className="library-tabs">
             <button
-              onClick={() => {
-                setActiveSection("books");
-                setSelectedCategories([]);
-              }}
-              className={`library-tab ${
-                activeSection === "books" ? "active" : ""
-              }`}
+              onClick={() => handleSectionChange("notes")}
+              className={`library-tab ${activeSection === "notes" ? "active" : ""}`}
+            >
+              Notes
+            </button>
+            <button
+              onClick={() => handleSectionChange("books")}
+              className={`library-tab ${activeSection === "books" ? "active" : ""}`}
             >
               Books
             </button>
             <button
-              onClick={() => {
-                setActiveSection("resources");
-                setSelectedCategories([]);
-              }}
-              className={`library-tab ${
-                activeSection === "resources" ? "active" : ""
-              }`}
+              onClick={() => handleSectionChange("resources")}
+              className={`library-tab ${activeSection === "resources" ? "active" : ""}`}
             >
               Resources
             </button>
@@ -325,16 +484,22 @@ export default function LibraryPage() {
         <div className="library-content">
           <div
             className={
-              activeSection === "books" ? "books-grid" : "resources-grid"
+              activeSection === "resources"
+                ? "resources-grid"
+                : activeSection === "notes"
+                  ? "notes-grid"
+                  : "books-grid"
             }
           >
-            {filteredContent.map((item) =>
-              activeSection === "books" ? (
-                <BookCard key={item.title} book={item} />
-              ) : (
-                <ResourceCard key={item.title} resource={item} />
-              ),
-            )}
+            {filteredContent.map((item) => {
+              if (activeSection === "resources") {
+                return <ResourceCard key={item.title} resource={item} />;
+              }
+              if (activeSection === "notes") {
+                return <NotesCard key={item.title} note={item} />;
+              }
+              return <BookCard key={item.title} book={item} />;
+            })}
           </div>
         </div>
       </div>
