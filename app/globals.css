@@ -577,9 +577,7 @@ th {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  transition:
-    transform 0.3s ease,
-    opacity 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .buttons-container.hidden {
@@ -1191,6 +1189,13 @@ pre code {
   width: 1px;
   background: rgba(0, 0, 0, 0.3);
   box-shadow: 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem 0;
 }
 
 @media (hover: none) {
@@ -1945,6 +1950,12 @@ a[data-footnote-ref] {
     right: 26px;
     top: -3.5px;
   }
+
+  .notes-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+  }
 }
 
 /* Hover Effects */
@@ -2136,20 +2147,5 @@ a[data-footnote-ref] {
   .show-more:hover {
     border-color: var(--color-link);
     text-decoration: none;
-  }
-}
-
-.notes-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 1.5rem;
-  padding: 1rem 0;
-}
-
-@media (min-width: 768px) {
-  .notes-grid {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 2rem;
-    padding: 2rem 0;
   }
 }
