@@ -2,8 +2,12 @@ const nextConfig = {
   reactStrictMode: true,
   output: "export",
   images: {
-    unoptimized: true,
+    unoptimized: false,
+    domains: ["danish.bio"],
   },
+  compress: true,
+  swcMinify: true,
+  reactStrictMode: true,
   experimental: {
     optimizePackageImports: [
       "lucide-react",
