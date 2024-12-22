@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
   Podcast,
@@ -370,7 +370,7 @@ const ResourceCard = ({ resource }) => (
   </a>
 );
 
-export default function LibraryPage() {
+function LibraryContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -426,8 +426,8 @@ export default function LibraryPage() {
       activeSection === "books"
         ? books
         : activeSection === "notes"
-          ? notes
-          : resources;
+        ? notes
+        : resources;
 
     return content.filter((item) => {
       const itemCategories =
@@ -455,19 +455,25 @@ export default function LibraryPage() {
           <div className="library-tabs">
             <button
               onClick={() => handleSectionChange("notes")}
-              className={`library-tab ${activeSection === "notes" ? "active" : ""}`}
+              className={`library-tab ${
+                activeSection === "notes" ? "active" : ""
+              }`}
             >
               Notes
             </button>
             <button
               onClick={() => handleSectionChange("books")}
-              className={`library-tab ${activeSection === "books" ? "active" : ""}`}
+              className={`library-tab ${
+                activeSection === "books" ? "active" : ""
+              }`}
             >
               Books
             </button>
             <button
               onClick={() => handleSectionChange("resources")}
-              className={`library-tab ${activeSection === "resources" ? "active" : ""}`}
+              className={`library-tab ${
+                activeSection === "resources" ? "active" : ""
+              }`}
             >
               Resources
             </button>
@@ -487,8 +493,8 @@ export default function LibraryPage() {
               activeSection === "resources"
                 ? "resources-grid"
                 : activeSection === "notes"
-                  ? "notes-grid"
-                  : "books-grid"
+                ? "notes-grid"
+                : "books-grid"
             }
           >
             {filteredContent.map((item) => {
@@ -508,5 +514,13 @@ export default function LibraryPage() {
       </div>
       <ButtonsContainer />
     </main>
+  );
+}
+
+export default function LibraryPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <LibraryContent />
+    </Suspense>
   );
 }
