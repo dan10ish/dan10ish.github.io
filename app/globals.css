@@ -254,8 +254,25 @@ th {
   line-height: 2;
 }
 
-.about a {
-  font-weight: 550;
+.about-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.about-link {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 6px 12px;
+  background: var(--code-background-color);
+  border-radius: 100px;
+  color: rgba(var(--color-text-rgb), 0.85);
+  font-weight: 400 !important;
+  transition: all 0.2s ease;
+  font-size: 0.8rem;
+  height: 32px;
 }
 
 .at {
@@ -1064,52 +1081,7 @@ pre code {
   white-space: nowrap;
 }
 
-/* Library Page */
-
-.library-container {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0;
-}
-
-.library-navigation {
-  display: flex;
-  justify-content: center;
-  margin: 0.5rem 0 3rem;
-}
-
-.library-tabs {
-  display: flex;
-  gap: 0.4rem;
-  padding: 4px;
-  background: var(--code-background-color);
-  border-radius: 12px;
-}
-
-.library-tab {
-  padding: 0.6rem 1rem;
-  border-radius: 8px;
-  background: transparent;
-  color: var(--color-text);
-  border: none;
-  font-family: var(--font-normal);
-  font-size: 0.8rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  opacity: 0.6;
-}
-
-.library-tab.active {
-  background: var(--color-bg);
-  color: var(--color-text);
-  opacity: 1;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  font-weight: 600;
-}
-
-.library-content {
-  min-height: 300px;
-}
+/* Books */
 
 .books-grid {
   display: grid;
@@ -1549,7 +1521,6 @@ a[data-footnote-ref] {
   align-items: center;
 }
 
-.library-link,
 .add-filter-btn,
 .filter-pill {
   display: inline-flex;
@@ -1560,7 +1531,7 @@ a[data-footnote-ref] {
   background: var(--code-background-color);
   border: none;
   border-radius: 10px !important;
-  color: rgba(var(--color-text-rgb), 0.8);
+  color: rgba(var(--color-text-rgb), 1);
   transition: all 0.2s ease;
   vertical-align: middle;
   font-weight: 400 !important;
@@ -1694,6 +1665,64 @@ a[data-footnote-ref] {
   transition: transform 0.2s ease;
 }
 
+/* Photos */
+
+.photo-grid {
+  display: flex;
+  margin-left: -1rem;
+  width: auto;
+}
+
+.photo-grid-column {
+  padding-left: 1rem;
+  background-clip: padding-box;
+}
+
+.photo-card {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  border-radius: var(--border-radius);
+  background: rgba(var(--color-text-rgb), 0.07);
+  overflow: hidden;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.photo-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.photo-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0;
+}
+
+.photo-meta {
+  padding: 0.75rem 0.5rem;
+  font-size: 0.65rem;
+  color: var(--blockquote-color);
+}
+
+.meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+  align-items: center;
+}
+
+.meta-row:last-child {
+  margin-bottom: 0;
+}
+
+.meta-row span {
+  white-space: nowrap;
+}
+
 /* Desktop Media Queries */
 @media (min-width: 768px) {
   body {
@@ -1716,6 +1745,16 @@ a[data-footnote-ref] {
 
   .post-year {
     font-size: 0.8rem;
+  }
+
+  .about-link {
+    padding: 7px 14px;
+    font-size: 0.85rem;
+    height: 32px;
+  }
+
+  .about-links {
+    gap: 0.75rem;
   }
 
   .development-badge,
@@ -1843,16 +1882,6 @@ a[data-footnote-ref] {
     }
   }
 
-  .library-description {
-    font-size: 0.9rem;
-    max-width: 600px;
-  }
-
-  .library-tab {
-    padding: 0.5rem 1.5rem;
-    font-size: 0.85rem;
-  }
-
   .category-btn {
     padding: 0.4rem 1rem;
     font-size: 0.8rem;
@@ -1960,6 +1989,24 @@ a[data-footnote-ref] {
     gap: 2rem;
     padding: 2rem 0;
   }
+
+  .photo-grid {
+    margin-left: -1.5rem;
+  }
+
+  .photo-grid-column {
+    padding-left: 1.5rem;
+  }
+
+  .photo-meta {
+    padding: 1rem;
+    font-size: 0.75rem;
+  }
+
+  .meta-row {
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
 }
 
 /* Hover Effects */
@@ -2054,12 +2101,6 @@ a[data-footnote-ref] {
     text-decoration: none;
   }
 
-  .library-tab:not(.active):hover {
-    opacity: 0.8;
-    background: rgba(var(--color-bg-rgb), 1);
-    color: var(--color-text);
-  }
-
   .github-icon-class:hover {
     opacity: 1;
     color: var(--color-text) !important;
@@ -2150,6 +2191,28 @@ a[data-footnote-ref] {
 
   .show-more:hover {
     border-color: var(--color-link);
+    text-decoration: none;
+  }
+
+  .photo-card {
+    transition: transform 0.2s ease;
+  }
+
+  .photo-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .photo-container img {
+    transition: transform 0.3s ease;
+  }
+
+  .photo-card:hover .photo-container img {
+    transform: scale(1.02);
+  }
+
+  .about-link:hover {
+    color: #ffffff;
+    background: var(--color-link);
     text-decoration: none;
   }
 }

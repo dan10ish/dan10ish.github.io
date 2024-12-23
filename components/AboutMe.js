@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Library } from "lucide-react";
+import { BookText, Library, Camera, FileText, Hammer } from "lucide-react";
 
 export default function AboutMe() {
   return (
@@ -8,14 +8,24 @@ export default function AboutMe() {
         A mechatronics engineer exploring machine learning, robotics and
         computer science.
       </p>
-      <p>
-        Check out my{" "}
-        <Link href="/library" className="library-link">
-          <Library size={14} />
-          <span>Library</span>
-        </Link>{" "}
-        for my notes & resources I frequently reference.
-      </p>
+      <div className="about-links">
+        <Link href="/notes" className="about-link">
+          <FileText size={16} />
+          <span>Notes</span>
+        </Link>
+        <Link href="/photos" className="about-link">
+          <Camera size={16} />
+          <span>Photos</span>
+        </Link>
+        <Link href="/books" className="about-link">
+          <BookText size={16} />
+          <span>Books</span>
+        </Link>
+        <Link href="/resources" className="about-link">
+          <Hammer size={16} />
+          <span>Resources</span>
+        </Link>
+      </div>
     </section>
   );
 }
