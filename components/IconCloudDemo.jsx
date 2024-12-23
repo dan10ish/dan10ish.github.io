@@ -1,6 +1,7 @@
 "use client";
 
-import IconCloud from "./magicui/icon-cloud";
+import { lazy, Suspense } from "react";
+const IconCloud = lazy(() => import("./magicui/icon-cloud"));
 
 const slugs = [
   "python",
@@ -33,10 +34,10 @@ const slugs = [
 
 export function IconCloudDemo() {
   return (
-    <>
-      <div className="icon-cloud-container">
+    <div className="icon-cloud-container">
+      <Suspense fallback={<div className="icon-cloud" />}>
         <IconCloud iconSlugs={slugs} />
-      </div>
-    </>
+      </Suspense>
+    </div>
   );
 }

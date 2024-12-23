@@ -22,7 +22,7 @@ const IconCloud = ({ iconSlugs }) => {
 
     const icons = cloudRef.current?.children || [];
     const SPEED = 0.2;
-    const RADIUS = window.innerWidth > 768 ? 180 : 130;
+    const RADIUS = window.innerWidth > 768 ? 100 : 130;
     const SMOOTHING = 0.15;
 
     const lerp = (start, end, factor) => start + (end - start) * factor;

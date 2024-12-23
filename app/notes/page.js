@@ -6,8 +6,16 @@ import FilterComponent from "@/components/FilterComponent";
 import Footer from "@/components/Footer";
 import ButtonsContainer from "@/components/ButtonsContainer";
 
+const shouldUseWhiteText = (hexColor) => {
+  const r = parseInt(hexColor.slice(1, 3), 16);
+  const g = parseInt(hexColor.slice(3, 5), 16);
+  const b = parseInt(hexColor.slice(5, 7), 16);
+  return (0.299 * r + 0.587 * g + 0.114 * b) / 255 < 0.5;
+};
+
 export default function NotesPage() {
   const [selectedTags, setSelectedTags] = useState([]);
+  const [touchedNote, setTouchedNote] = useState(null);
   const tags = [...new Set(notes.flatMap((note) => note.tags))];
 
   const filteredNotes =
@@ -16,6 +24,11 @@ export default function NotesPage() {
       : notes.filter((note) =>
           selectedTags.some((tag) => note.tags.includes(tag)),
         );
+
+  const handleNoteClick = (file) => {
+    window.open(file, "_blank");
+    setTouchedNote(null);
+  };
 
   return (
     <main>
@@ -36,12 +49,19 @@ export default function NotesPage() {
         {filteredNotes.map((note) => (
           <div
             key={note.title}
-            className="book-card"
-            onClick={() => window.open(note.file, "_blank")}
+            className={`book-card ${touchedNote === note.title ? "touch-active" : ""}`}
+            onClick={() => handleNoteClick(note.file)}
+            onTouchStart={() => setTouchedNote(note.title)}
+            onTouchEnd={() => setTouchedNote(null)}
           >
             <div
               className="book-cover"
-              style={{ "--book-color": note.coverColor }}
+              style={{
+                "--book-color": note.coverColor,
+                color: shouldUseWhiteText(note.coverColor)
+                  ? "#ffffff"
+                  : "#000000",
+              }}
             >
               <div
                 className="book-spine"

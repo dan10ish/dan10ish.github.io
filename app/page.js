@@ -89,8 +89,10 @@ export default function Home() {
       </div>
       <div id="projects">
         <ProjectsSection />
-        <GithubContributions />
-        <IconCloudDemo />
+        <div className="contributions-icons-container">
+          <GithubContributions />
+          <IconCloudDemo />
+        </div>
       </div>
       <Footer />
     </main>

@@ -15,6 +15,7 @@ const shouldUseWhiteText = (hexColor) => {
 
 export default function BooksPage() {
   const [selectedTags, setSelectedTags] = useState([]);
+  const [touchedBook, setTouchedBook] = useState(null);
   const tags = [...new Set(books.flatMap((book) => book.tags))];
 
   const filteredBooks =
@@ -41,7 +42,12 @@ export default function BooksPage() {
 
       <div className="books-grid">
         {filteredBooks.map((book) => (
-          <div key={book.title} className="book-card">
+          <div
+            key={book.title}
+            className={`book-card ${touchedBook === book.title ? "touch-active" : ""}`}
+            onTouchStart={() => setTouchedBook(book.title)}
+            onTouchEnd={() => setTouchedBook(null)}
+          >
             <div
               className="book-cover"
               style={{

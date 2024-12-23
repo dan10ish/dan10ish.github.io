@@ -14,7 +14,7 @@ const PhotoSkeleton = () => {
       className="photo-grid"
       columnClassName="photo-grid-column"
     >
-      {[...Array(6)].map((_, index) => (
+      {[...Array(16)].map((_, index) => (
         <div key={index} className="photo-card skeleton">
           <div className="photo-container">
             <div className="skeleton-img"></div>

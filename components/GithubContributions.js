@@ -3,8 +3,8 @@
 import { useState, useEffect, useCallback } from "react";
 
 const DAYS_IN_WEEK = 7;
-const MOBILE_WEEKS = 20;
-const DESKTOP_WEEKS = 26;
+const MOBILE_WEEKS = 16;
+const DESKTOP_WEEKS = 16;
 
 const GithubContributions = () => {
   const [contributions, setContributions] = useState([]);

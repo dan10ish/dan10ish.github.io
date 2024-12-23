@@ -268,13 +268,55 @@ th {
   align-items: center;
   gap: 0.65rem;
   padding: 6px 12px;
-  background: var(--code-background-color);
   border-radius: 100px;
-  color: rgba(var(--color-text-rgb), 0.85);
   font-weight: 400 !important;
   transition: all 0.2s ease;
   font-size: 0.8rem;
   height: 32px;
+}
+
+.about-link[href="/notes"] {
+  background: rgba(59, 130, 246, 0.15);
+  color: rgb(29, 78, 216);
+  font-weight: 400 !important;
+}
+
+[data-theme="dark"] .about-link[href="/notes"] {
+  background: rgba(59, 130, 246, 0.2);
+  color: rgb(147, 197, 253);
+}
+
+.about-link[href="/photos"] {
+  background: rgba(34, 197, 94, 0.15);
+  color: rgb(21, 128, 61);
+  font-weight: 400 !important;
+}
+
+[data-theme="dark"] .about-link[href="/photos"] {
+  background: rgba(34, 197, 94, 0.2);
+  color: rgb(134, 239, 172);
+}
+
+.about-link[href="/books"] {
+  background: rgba(245, 158, 11, 0.15);
+  color: rgb(180, 83, 9);
+  font-weight: 400 !important;
+}
+
+[data-theme="dark"] .about-link[href="/books"] {
+  background: rgba(245, 158, 11, 0.2);
+  color: rgb(253, 224, 71);
+}
+
+.about-link[href="/resources"] {
+  background: rgba(168, 85, 247, 0.15);
+  color: rgb(126, 34, 206);
+  font-weight: 400 !important;
+}
+
+[data-theme="dark"] .about-link[href="/resources"] {
+  background: rgba(168, 85, 247, 0.2);
+  color: rgb(216, 180, 254);
 }
 
 .at {
@@ -1132,7 +1174,7 @@ pre code {
   flex-direction: column;
   position: relative;
   z-index: 1;
-  opacity: 0.85;
+  opacity: 1;
 }
 
 .book-title {
@@ -1412,7 +1454,7 @@ a[data-footnote-ref] {
 
 .contributions-wrapper {
   width: 100%;
-  max-width: 900px;
+  max-width: 400px;
   position: relative;
   margin: 1rem auto;
   padding: 1rem;
@@ -1421,7 +1463,7 @@ a[data-footnote-ref] {
 .contributions-grid {
   display: grid;
   grid-template-columns: repeat(var(--week-count), 1fr);
-  gap: 4px;
+  gap: 6px;
   width: 100%;
 }
 
@@ -1456,7 +1498,6 @@ a[data-footnote-ref] {
 
 [data-theme="light"] .contribution-cell {
   background-color: var(--code-background-color);
-  /* #ebedf0 */
 }
 [data-theme="light"] .contribution-cell.level-1 {
   background-color: #9be9a8;
@@ -1485,12 +1526,6 @@ a[data-footnote-ref] {
 }
 [data-theme="dark"] .contribution-cell.level-4 {
   background-color: #39d353;
-}
-
-@media (max-width: 767px) {
-  .contributions-grid {
-    --week-count: 20;
-  }
 }
 
 .post-row,
@@ -1989,10 +2024,6 @@ a[data-footnote-ref] {
     border-radius: 3px;
   }
 
-  .contributions-grid {
-    --week-count: 26;
-  }
-
   .books-grid {
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     gap: 2rem;
@@ -2010,16 +2041,6 @@ a[data-footnote-ref] {
 
   .book-author {
     font-size: 0.8rem;
-  }
-
-  .icon-cloud {
-    width: 500px;
-    height: 500px;
-  }
-
-  .icon-svg {
-    width: 36px;
-    height: 36px;
   }
 
   .blog-card {
@@ -2068,6 +2089,46 @@ a[data-footnote-ref] {
   .meta-row {
     gap: 0.75rem;
     margin-bottom: 0.5rem;
+  }
+
+  .contributions-wrapper {
+    max-width: 380px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .icon-cloud-container {
+    max-width: 380px;
+    margin: 0;
+    height: 260px;
+    aspect-ratio: unset;
+  }
+
+  .icon-cloud {
+    width: 380px;
+    height: 260px;
+  }
+
+  .icon-svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .icon-item {
+    transform-origin: 50% 50%;
+  }
+
+  .contributions-icons-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .contribution-cell {
+    width: 16px;
+    height: 16px;
   }
 }
 
@@ -2257,9 +2318,47 @@ a[data-footnote-ref] {
   }
 
   .about-link:hover {
-    color: #ffffff;
-    background: var(--color-link);
     text-decoration: none;
+  }
+
+  .about-link[href="/notes"]:hover {
+    background: rgba(59, 130, 246, 0.45);
+    color: rgb(29, 78, 216);
+  }
+
+  .about-link[href="/photos"]:hover {
+    background: rgba(34, 197, 94, 0.45);
+    color: rgb(21, 128, 61);
+  }
+
+  .about-link[href="/books"]:hover {
+    background: rgba(245, 158, 11, 0.45);
+    color: rgb(180, 83, 9);
+  }
+
+  .about-link[href="/resources"]:hover {
+    background: rgba(168, 85, 247, 0.45);
+    color: rgb(126, 34, 206);
+  }
+
+  [data-theme="dark"] .about-link[href="/notes"]:hover {
+    background: rgba(59, 130, 246, 0.4);
+    color: rgb(147, 197, 253);
+  }
+
+  [data-theme="dark"] .about-link[href="/photos"]:hover {
+    background: rgba(34, 197, 94, 0.4);
+    color: rgb(134, 239, 172);
+  }
+
+  [data-theme="dark"] .about-link[href="/books"]:hover {
+    background: rgba(245, 158, 11, 0.4);
+    color: rgb(253, 224, 71);
+  }
+
+  [data-theme="dark"] .about-link[href="/resources"]:hover {
+    background: rgba(168, 85, 247, 0.4);
+    color: rgb(216, 180, 254);
   }
 
   .photo-card:hover .photo-container img {
