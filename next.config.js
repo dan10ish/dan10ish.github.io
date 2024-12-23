@@ -2,21 +2,20 @@ const nextConfig = {
   reactStrictMode: true,
   output: "export",
   images: {
-    unoptimized: false,
+    unoptimized: true,
     domains: ["danish.bio"],
   },
   compress: true,
-  swcMinify: true,
-  reactStrictMode: true,
+  compiler: {
+    removeConsole: process.env.NODE_ENV === "production",
+  },
   experimental: {
+    optimizeCss: true,
     optimizePackageImports: [
       "lucide-react",
       "@react-three/drei",
       "framer-motion",
     ],
-  },
-  compiler: {
-    removeConsole: process.env.NODE_ENV === "production",
   },
   env: {
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -25,7 +24,7 @@ const nextConfig = {
   webpack: (config) => {
     config.module.rules.push({
       test: /\.md$/,
-      use: "raw-loader",
+      type: "asset/source",
     });
 
     config.optimization = {
@@ -38,15 +37,22 @@ const nextConfig = {
           vendor: {
             test: /[\\/]node_modules[\\/]/,
             name: "vendor",
+            chunks: "all",
+            priority: 10,
             enforce: true,
+          },
+          common: {
+            minChunks: 2,
+            priority: -10,
+            reuseExistingChunk: true,
           },
         },
       },
+      moduleIds: "deterministic",
     };
 
     return config;
   },
-  swcMinify: true,
   poweredByHeader: false,
 };
 

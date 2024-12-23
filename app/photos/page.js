@@ -1,12 +1,12 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import Footer from "@/components/Footer";
 import ButtonsContainer from "@/components/ButtonsContainer";
+import PhotoSkeleton from "@/components/PhotoSkeleton";
 
 const PhotoGrid = dynamic(() => import("@/components/PhotoGrid"), {
+  loading: () => <PhotoSkeleton />,
   ssr: false,
-  loading: () => <div style={{ height: "100vh" }} />,
 });
 
 export default function PhotosPage() {

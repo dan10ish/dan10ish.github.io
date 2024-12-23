@@ -16,8 +16,10 @@
 }
 
 :root {
-  --font-normal: "Geist Mono";
-  --font-heading: "Sentient", sans-serif;
+  --font-normal: "Geist Mono", ui-monospace, "Cascadia Code", "SF Mono", Menlo,
+    Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-heading: "Sentient", system-ui, ui-sans-serif, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Verdana, Arial, sans-serif;
   --padding-small: 0.5rem;
   --padding-medium: 1rem;
   --padding-large: 2rem;
@@ -258,7 +260,7 @@ th {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 
 .about-link {
@@ -1670,6 +1672,7 @@ a[data-footnote-ref] {
 .photo-grid {
   display: flex;
   margin-left: -1rem;
+  margin-top: 1rem;
   width: auto;
 }
 
@@ -1683,10 +1686,12 @@ a[data-footnote-ref] {
   flex-direction: column;
   margin-bottom: 1rem;
   border-radius: var(--border-radius);
-  background: rgba(var(--color-text-rgb), 0.07);
+  background: rgba(var(--color-text-rgb), 0.04);
   overflow: hidden;
   transform: translateZ(0);
   backface-visibility: hidden;
+  transform-origin: center;
+  transition: transform 0.2s ease;
 }
 
 .photo-container {
@@ -1699,11 +1704,12 @@ a[data-footnote-ref] {
   height: auto;
   display: block;
   margin: 0;
+  transition: transform 0.3s ease;
 }
 
 .photo-meta {
-  padding: 0.75rem 0.5rem;
-  font-size: 0.65rem;
+  padding: 0.75rem;
+  font-size: 0.7rem;
   color: var(--blockquote-color);
 }
 
@@ -1721,6 +1727,62 @@ a[data-footnote-ref] {
 
 .meta-row span {
   white-space: nowrap;
+}
+
+@keyframes pulseLoading {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.skeleton {
+  background: var(--code-background-color);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.skeleton .photo-container {
+  margin: 0;
+}
+
+.skeleton-img {
+  width: 100%;
+  aspect-ratio: 3/2;
+  background-color: rgba(var(--color-text-rgb), 0.04);
+  border-radius: var(--border-radius);
+  animation: pulseLoading 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.skeleton .photo-meta {
+  padding: 1rem;
+}
+
+.skeleton-text {
+  height: 0.8rem;
+  width: 70%;
+  background-color: rgba(var(--color-text-rgb), 0.04);
+  border-radius: 4px;
+  animation: pulseLoading 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.skeleton .meta-row {
+  margin-bottom: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.skeleton-stat {
+  height: 0.8rem;
+  flex: 1;
+  background-color: rgba(var(--color-text-rgb), 0.04);
+  border-radius: 4px;
+  animation: pulseLoading 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 /* Desktop Media Queries */
@@ -2194,25 +2256,13 @@ a[data-footnote-ref] {
     text-decoration: none;
   }
 
-  .photo-card {
-    transition: transform 0.2s ease;
-  }
-
-  .photo-card:hover {
-    transform: translateY(-2px);
-  }
-
-  .photo-container img {
-    transition: transform 0.3s ease;
-  }
-
-  .photo-card:hover .photo-container img {
-    transform: scale(1.02);
-  }
-
   .about-link:hover {
     color: #ffffff;
     background: var(--color-link);
     text-decoration: none;
+  }
+
+  .photo-card:hover .photo-container img {
+    transform: scale(1.02);
   }
 }
