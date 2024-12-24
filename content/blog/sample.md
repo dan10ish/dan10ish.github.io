@@ -67,11 +67,11 @@ $$
 
 When discussing algorithm performance, tables provide clear comparisons:
 
-| Algorithm     | Time Complexity | Space Complexity | Use Case         |
-| ------------- | --------------- | ---------------- | ---------------- |
-| Binary Search | $O(\log n)$     | $O(1)$           | Sorted arrays    |
-| Linear Search | $O(n)$          | $O(1)$           | Small datasets   |
-| Hash Table    | $O(1)$ average  | $O(n)$           | Frequent lookups |
+| Algorithm | Time Complexity | Space Complexity | Use Case |
+|-----------|----------------|------------------|-----------|
+| Binary Search | $O(\log n)$ | $O(1)$ | Sorted arrays |
+| Linear Search | $O(n)$ | $O(1)$ | Small datasets |
+| Hash Table | $O(1)$ average | $O(n)$ | Frequent lookups |
 
 ### 4. Important Notes and Warnings
 

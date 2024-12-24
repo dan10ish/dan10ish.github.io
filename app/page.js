@@ -2,18 +2,10 @@ import dynamic from "next/dynamic";
 import { FileText } from "lucide-react";
 import { getBlogPosts } from "../lib/posts";
 import AboutMe from "../components/AboutMe";
-import { IconCloudDemo } from "@/components/IconCloudDemo";
 
 const BlogList = dynamic(() => import("../components/BlogList"));
 const ProjectsSection = dynamic(() => import("../components/ProjectsSection"));
 const Footer = dynamic(() => import("@/components/Footer"));
-const GithubContributions = dynamic(
-  () => import("@/components/GithubContributions"),
-  {
-    ssr: false,
-    loading: () => <div style={{ height: "200px" }} />,
-  },
-);
 
 export default function Home() {
   const posts = getBlogPosts();
@@ -67,17 +59,6 @@ export default function Home() {
             </svg>
             <span className="sr-only">Email</span>
           </a>
-
-          <a
-            href="https://dan10ish.read.cv"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-button"
-            aria-label="View resume/CV"
-          >
-            <FileText aria-hidden="true" />
-            <span className="sr-only">Resume/CV</span>
-          </a>
         </div>
       </div>
 
@@ -89,10 +70,6 @@ export default function Home() {
       </div>
       <div id="projects">
         <ProjectsSection />
-        <div className="contributions-icons-container">
-          <GithubContributions />
-          <IconCloudDemo />
-        </div>
       </div>
       <Footer />
     </main>

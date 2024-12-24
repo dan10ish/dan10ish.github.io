@@ -3,11 +3,12 @@
 import { useState, useEffect, memo, useCallback } from "react";
 import { Eye, Heart, Github, Star } from "lucide-react";
 import { supabase } from "@/lib/supabase";
+import Link from "next/link";
 
 const Footer = ({ blogSlug = null }) => {
-  const [stats, setStats] = useState({ views: 0, likes: 0 });
+  const [stats, setStats] = useState({ views: null, likes: null });
   const [hasLiked, setHasLiked] = useState(false);
-  const [stars, setStars] = useState(0);
+  const [stars, setStars] = useState(null);
   const [isUpdating, setIsUpdating] = useState(false);
   const [isGithubHovered, setIsGithubHovered] = useState(false);
 
@@ -17,6 +18,8 @@ const Footer = ({ blogSlug = null }) => {
     const cachedStats = window?.localStorage?.getItem(`stats-${pageId}`);
     if (cachedStats) {
       setStats(JSON.parse(cachedStats));
+    } else {
+      setStats({ views: null, likes: null });
     }
 
     if (blogSlug) {
@@ -147,7 +150,7 @@ const Footer = ({ blogSlug = null }) => {
   }, [blogSlug, hasLiked, isUpdating]);
 
   const formatNumber = useCallback((num) => {
-    if (!num) return 0;
+    if (num === null) return <span className="infinity-symbol">∞</span>;
     if (num >= 1000000) return (num / 1000000).toFixed(2) + "M";
     if (num >= 1000) return (num / 1000).toFixed(2) + "K";
     return num;
@@ -155,6 +158,16 @@ const Footer = ({ blogSlug = null }) => {
 
   return (
     <footer className="footer">
+      {!blogSlug && (
+        <div className="footer-links">
+          <div className="footer-links-group">
+            <Link href="/notes">Notes</Link>
+            <Link href="/photos">Photos</Link>
+            <Link href="/books">Books</Link>
+            <Link href="/resources">Resources</Link>
+          </div>
+        </div>
+      )}
       <div className="footer-content">
         <div className="footer-row">
           <div className="stats-cards">
@@ -162,7 +175,6 @@ const Footer = ({ blogSlug = null }) => {
               <Eye size={18} />
               <span>{formatNumber(stats.views)}</span>
             </div>
-
             {blogSlug && (
               <div className="stat-card">
                 <button
@@ -177,7 +189,6 @@ const Footer = ({ blogSlug = null }) => {
               </div>
             )}
           </div>
-
           <div className="github-card-container">
             <a
               href={
@@ -195,13 +206,13 @@ const Footer = ({ blogSlug = null }) => {
                 <Github size={16} />
                 <span>View Source</span>
               </div>
-              {!blogSlug && stars > 0 && (
+              {!blogSlug && (
                 <div className="github-stars">
                   <Star
                     size={16}
                     className={isGithubHovered ? "star-hover" : ""}
                   />
-                  <span>{stars}</span>
+                  <span>{formatNumber(stars)}</span>
                 </div>
               )}
             </a>
