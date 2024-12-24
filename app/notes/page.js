@@ -16,7 +16,14 @@ const shouldUseWhiteText = (hexColor) => {
 export default function NotesPage() {
   const [selectedTags, setSelectedTags] = useState([]);
   const [touchedNote, setTouchedNote] = useState(null);
-  const tags = [...new Set(notes.flatMap((note) => note.tags))];
+  const tags = [...new Set(notes.flatMap((note) => note.tags))].sort((a, b) => {
+    const isSemesterA = a.startsWith("Semester");
+    const isSemesterB = b.startsWith("Semester");
+    if (isSemesterA === isSemesterB) {
+      return a.localeCompare(b);
+    }
+    return isSemesterA ? -1 : 1;
+  });
 
   const filteredNotes =
     selectedTags.length === 0

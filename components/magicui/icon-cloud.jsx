@@ -8,6 +8,7 @@ const IconCloud = ({ iconSlugs }) => {
   const animationRef = useRef();
   const [mounted, setMounted] = useState(false);
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
+  const [hoveredIcon, setHoveredIcon] = useState(null);
   const currentRotation = useRef({ x: 0, y: 0 });
   const isDragging = useRef(false);
   const previousTouch = useRef({ x: 0, y: 0 });
@@ -119,6 +120,7 @@ const IconCloud = ({ iconSlugs }) => {
 
     const handleTouchEnd = () => {
       isDragging.current = false;
+      setHoveredIcon(null);
     };
 
     const container = cloudRef.current;
@@ -181,27 +183,39 @@ const IconCloud = ({ iconSlugs }) => {
   };
 
   return (
-    <div ref={cloudRef} className="icon-cloud">
-      {iconSlugs.map((slug) => {
-        const iconKey = `si${slug.charAt(0).toUpperCase()}${slug.slice(1)}`;
-        const icon = Icons[iconKey];
-        if (!icon) return null;
+    <div className="icon-cloud-container">
+      <div ref={cloudRef} className="icon-cloud">
+        {iconSlugs.map((slug) => {
+          const iconKey = `si${slug.charAt(0).toUpperCase()}${slug.slice(1)}`;
+          const icon = Icons[iconKey];
+          if (!icon) return null;
 
-        const color = getContrastColor(icon.hex);
+          const color = getContrastColor(icon.hex);
 
-        return (
-          <div key={slug} className="icon-item" title={icon.title}>
-            <svg
-              role="img"
-              viewBox="0 0 24 24"
-              className="icon-svg"
-              style={{ color }}
+          return (
+            <div
+              key={slug}
+              className="icon-item"
+              onMouseEnter={() => setHoveredIcon(icon.title)}
+              onMouseLeave={() => setHoveredIcon(null)}
+              onTouchStart={() => setHoveredIcon(icon.title)}
+              onTouchEnd={() => setHoveredIcon(null)}
             >
-              <path d={icon.path} fill="currentColor" />
-            </svg>
-          </div>
-        );
-      })}
+              <svg
+                role="img"
+                viewBox="0 0 24 24"
+                className="icon-svg"
+                style={{ color }}
+              >
+                <path d={icon.path} fill="currentColor" />
+              </svg>
+            </div>
+          );
+        })}
+      </div>
+      <div className={`icon-cloud-tooltip ${hoveredIcon ? "visible" : ""}`}>
+        {hoveredIcon}
+      </div>
     </div>
   );
 };

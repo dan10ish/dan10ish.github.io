@@ -275,7 +275,7 @@ th {
   height: 32px;
 }
 
-.about-link svg{
+.about-link svg {
   opacity: 0.85;
 }
 
@@ -472,8 +472,9 @@ th {
 
 .projects-table {
   margin-top: 1.5rem;
-  border-radius: 8px;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .project-row {
@@ -485,6 +486,7 @@ th {
   transition: opacity 0.3s ease;
   background-color: var(--color-bg);
   will-change: opacity;
+  border-radius: 8px;
 }
 
 .project-title {
@@ -750,7 +752,7 @@ th {
 
 /* Footer */
 .footer {
-  margin-top: 2rem;
+  margin-top: 4rem;
   padding-top: 2rem;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -1182,16 +1184,6 @@ pre code {
   padding: 0.75rem 0;
 }
 
-@media (hover: none) {
-  .book-card.touch-active .book-cover {
-    transform: translateX(10px) rotateY(-25deg);
-  }
-
-  .book-card.touch-active .book-right-edge {
-    opacity: 1;
-  }
-}
-
 /* Resources */
 .resources-grid {
   display: flex;
@@ -1446,9 +1438,12 @@ a[data-footnote-ref] {
 }
 
 .contribution-tooltip {
-  position: fixed;
+  position: absolute;
+  left: 50%;
+  bottom: -35px;
+  transform: translateX(-50%);
   background: var(--color-bg);
-  border: 1px solid var(--github-border);
+  border: 1.5px solid var(--github-border);
   padding: 8px 12px;
   border-radius: 6px;
   font-size: 0.75rem;
@@ -1458,7 +1453,11 @@ a[data-footnote-ref] {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   color: var(--color-text);
   max-width: calc(100vw - 32px);
-  margin-top: -6px;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease;
 }
 
 [data-theme="light"] .contribution-cell {
@@ -1629,10 +1628,10 @@ a[data-footnote-ref] {
   width: 320px;
   height: 320px;
   aspect-ratio: 1;
-  margin: 3rem auto 0rem;
+  margin: 3rem auto 2rem;
   border-radius: var(--border-radius);
   background: var(--color-bg);
-  overflow: hidden;
+  overflow: visible;
   cursor: grab;
   user-select: none;
   display: flex;
@@ -1667,6 +1666,33 @@ a[data-footnote-ref] {
   height: 28px;
   transform: translate(-50%, -50%);
   transition: transform 0.2s ease;
+}
+
+.icon-cloud-tooltip {
+  position: absolute;
+  left: 50%;
+  bottom: -50px;
+  transform: translateX(-50%);
+  background: var(--color-bg);
+  border: 1.5px solid var(--github-border);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  pointer-events: none;
+  z-index: 1001;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: var(--color-text);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease;
+}
+
+.icon-cloud-tooltip.visible {
+  opacity: 1;
+  visibility: visible;
 }
 
 /* Photos */
@@ -2066,9 +2092,12 @@ a[data-footnote-ref] {
 
   .icon-cloud-container {
     max-width: 380px;
-    margin: 0;
     height: 260px;
     aspect-ratio: unset;
+  }
+
+  .icon-cloud-tooltip {
+    bottom: -50px;
   }
 
   .icon-cloud {
@@ -2077,8 +2106,8 @@ a[data-footnote-ref] {
   }
 
   .icon-svg {
-    width: 28px;
-    height: 28px;
+    width: 26px;
+    height: 26px;
   }
 
   .icon-item {
@@ -2089,8 +2118,9 @@ a[data-footnote-ref] {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 2rem;
-    margin: 2rem 0;
+    gap: 1rem;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
   .contributions-grid {
@@ -2106,6 +2136,10 @@ a[data-footnote-ref] {
   .contribution-cell {
     width: 16px;
     height: 16px;
+  }
+
+  .contribution-tooltip {
+    bottom: -50px;
   }
 }
 
@@ -2295,5 +2329,40 @@ a[data-footnote-ref] {
 
   .photo-card:hover .photo-container img {
     transform: scale(1.02);
+  }
+
+  .contribution-cell:hover + .contribution-tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .icon-cloud-container:hover .icon-cloud-tooltip.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .icon-cloud svg:hover {
+    cursor: default;
+    opacity: 0.8;
+  }
+}
+
+@media (hover: none) {
+  .book-card.touch-active .book-cover {
+    transform: translateX(10px) rotateY(-25deg);
+  }
+
+  .book-card.touch-active .book-right-edge {
+    opacity: 1;
+  }
+
+  .icon-cloud-container:active .icon-cloud-tooltip.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .contribution-cell:active + .contribution-tooltip {
+    opacity: 1;
+    visibility: visible;
   }
 }
