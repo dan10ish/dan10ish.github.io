@@ -1,80 +1,110 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, memo } from "react";
+
+const ContributionCell = memo(({ count, onHover, onLeave }) => {
+  const level =
+    count === 0 ? 0 : count === 1 ? 1 : count <= 3 ? 2 : count <= 5 ? 3 : 4;
+
+  return (
+    <div
+      className={`contribution-cell level-${level}`}
+      onMouseEnter={onHover}
+      onMouseLeave={onLeave}
+    />
+  );
+});
+
+ContributionCell.displayName = "ContributionCell";
+
+const ContributionWeek = memo(({ data, showTooltip, hideTooltip }) => (
+  <div className="contribution-week">
+    {data.map((day, index) => (
+      <ContributionCell
+        key={day.date || index}
+        count={day.count || 0}
+        onHover={(e) => day.date && showTooltip(e, day)}
+        onLeave={hideTooltip}
+      />
+    ))}
+  </div>
+));
+
+ContributionWeek.displayName = "ContributionWeek";
 
 const DAYS_IN_WEEK = 7;
-const MOBILE_WEEKS = 16;
-const DESKTOP_WEEKS = 16;
+const WEEKS_COUNT = 16;
+const API_URL =
+  "https://github-contributions-api.jogruber.de/v4/dan10ish?y=last";
+const CACHE_KEY = "github-contributions";
+const CACHE_TIME_KEY = "github-contributions-time";
+const CACHE_DURATION = 3600000; // 1 hour
 
 const GithubContributions = () => {
   const [contributions, setContributions] = useState([]);
   const [tooltip, setTooltip] = useState(null);
-  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
+    const loadContributions = async () => {
+      // Try loading from cache first
+      const cached = localStorage.getItem(CACHE_KEY);
+      const cacheTime = localStorage.getItem(CACHE_TIME_KEY);
+      const now = Date.now();
 
-  useEffect(() => {
-    const fetchContributions = async () => {
+      if (cached && cacheTime && now - parseInt(cacheTime) < CACHE_DURATION) {
+        setContributions(JSON.parse(cached));
+        return;
+      }
+
       try {
-        const response = await fetch(
-          "https://github-contributions-api.jogruber.de/v4/dan10ish?y=last"
-        );
-        const data = await response.json();
+        const res = await fetch(API_URL, {
+          cache: "force-cache",
+          next: { revalidate: 3600 },
+        });
+        const data = await res.json();
 
-        if (!data?.contributions) {
-          throw new Error("No contribution data found");
-        }
+        if (data?.contributions) {
+          const daysToShow = DAYS_IN_WEEK * WEEKS_COUNT;
+          const recentContributions = data.contributions
+            .slice(-daysToShow)
+            .map((day) => ({
+              date: day.date,
+              count: day.count,
+            }));
 
-        const contributionData = data.contributions.map((day) => ({
-          date: day.date,
-          contributionCount: day.count,
-        }));
-
-        const daysToShow =
-          DAYS_IN_WEEK * (isMobile ? MOBILE_WEEKS : DESKTOP_WEEKS);
-        const recentDays = contributionData.slice(-daysToShow);
-
-        if (recentDays.length < daysToShow) {
-          const emptyDays = Array(daysToShow - recentDays.length).fill({
-            contributionCount: 0,
-            date: null,
-          });
-          setContributions(emptyDays.concat(recentDays));
-        } else {
-          setContributions(recentDays);
+          // Pad with empty days if needed
+          if (recentContributions.length < daysToShow) {
+            const emptyDays = Array(
+              daysToShow - recentContributions.length,
+            ).fill({ count: 0, date: null });
+            setContributions(emptyDays.concat(recentContributions));
+            localStorage.setItem(
+              CACHE_KEY,
+              JSON.stringify(emptyDays.concat(recentContributions)),
+            );
+          } else {
+            setContributions(recentContributions);
+            localStorage.setItem(
+              CACHE_KEY,
+              JSON.stringify(recentContributions),
+            );
+          }
+          localStorage.setItem(CACHE_TIME_KEY, now.toString());
         }
       } catch (error) {
-        const daysToShow =
-          DAYS_IN_WEEK * (isMobile ? MOBILE_WEEKS : DESKTOP_WEEKS);
-        const emptyDays = Array(daysToShow).fill({
-          contributionCount: 0,
+        // On error, create empty grid
+        const emptyDays = Array(DAYS_IN_WEEK * WEEKS_COUNT).fill({
+          count: 0,
           date: null,
         });
         setContributions(emptyDays);
       }
     };
 
-    fetchContributions();
-    const interval = setInterval(fetchContributions, 3600000);
-    return () => clearInterval(interval);
-  }, [isMobile]);
-
-  const getContributionLevel = useCallback((count) => {
-    if (count === 0) return 0;
-    if (count === 1) return 1;
-    if (count <= 3) return 2;
-    if (count <= 5) return 3;
-    return 4;
+    loadContributions();
   }, []);
 
-  const showTooltip = useCallback((e, day) => {
+  const showTooltip = (e, day) => {
     if (!day?.date) return;
 
     const rect = e.target.getBoundingClientRect();
@@ -84,88 +114,38 @@ const GithubContributions = () => {
       month: "short",
     });
 
-    const tooltipWidth = 200;
-    const tooltipHeight = 40;
-    const padding = 22;
-    const viewportWidth = window.innerWidth;
-
-    let x = rect.left + rect.width / 2;
-    let y = rect.top;
-
-    const wouldGoOffRight = x + tooltipWidth / 2 > viewportWidth - padding;
-    const wouldGoOffLeft = x - tooltipWidth / 2 < padding;
-
-    if (wouldGoOffRight) {
-      x = viewportWidth - tooltipWidth / 2 - padding;
-    } else if (wouldGoOffLeft) {
-      x = tooltipWidth / 2 + padding;
-    }
-
-    if (y - tooltipHeight < padding) {
-      y = rect.bottom + 10;
-    }
-
     setTooltip({
-      text: `${day.contributionCount} ${
-        day.contributionCount === 1 ? "contribution" : "contributions"
-      } on ${formattedDate.split(" ").reverse().join(" ")}`,
-      x,
-      y,
-      position: y === rect.bottom + 10 ? "bottom" : "top",
+      text: `${day.count} contribution${day.count !== 1 ? "s" : ""} on ${formattedDate}`,
+      x: rect.left + rect.width / 2,
+      y: rect.top,
     });
-  }, []);
+  };
 
-  const hideTooltip = useCallback(() => setTooltip(null), []);
+  const weeks = [];
+  for (let i = 0; i < WEEKS_COUNT; i++) {
+    weeks.push(contributions.slice(i * DAYS_IN_WEEK, (i + 1) * DAYS_IN_WEEK));
+  }
 
   return (
     <div className="contributions-wrapper">
       <div
         className="contributions-grid"
-        style={{ "--week-count": isMobile ? MOBILE_WEEKS : DESKTOP_WEEKS }}
+        style={{ "--week-count": WEEKS_COUNT }}
       >
-        {Array.from({ length: isMobile ? MOBILE_WEEKS : DESKTOP_WEEKS }).map(
-          (_, weekIndex) => (
-            <div key={weekIndex} className="contribution-week">
-              {Array.from({ length: DAYS_IN_WEEK }).map((_, dayIndex) => {
-                const contribution =
-                  contributions[weekIndex * DAYS_IN_WEEK + dayIndex];
-                return (
-                  <div
-                    key={dayIndex}
-                    className={`contribution-cell ${
-                      contribution?.date
-                        ? `level-${getContributionLevel(
-                            contribution.contributionCount
-                          )}`
-                        : "level-0"
-                    }`}
-                    onMouseEnter={(e) =>
-                      contribution?.date && showTooltip(e, contribution)
-                    }
-                    onMouseLeave={hideTooltip}
-                    onTouchStart={(e) => {
-                      e.preventDefault();
-                      contribution?.date && showTooltip(e, contribution);
-                    }}
-                    onTouchEnd={(e) => {
-                      e.preventDefault();
-                      hideTooltip();
-                    }}
-                  />
-                );
-              })}
-            </div>
-          )
-        )}
+        {weeks.map((week, index) => (
+          <ContributionWeek
+            key={index}
+            data={week}
+            showTooltip={showTooltip}
+            hideTooltip={() => setTooltip(null)}
+          />
+        ))}
       </div>
       {tooltip && (
         <div
           className="contribution-tooltip"
           style={{
-            transform:
-              tooltip.position === "bottom"
-                ? "translateX(-50%)"
-                : "translateX(-50%) translateY(-100%)",
+            transform: "translateX(-50%) translateY(-100%)",
             left: `${tooltip.x}px`,
             top: `${tooltip.y}px`,
           }}
@@ -177,4 +157,4 @@ const GithubContributions = () => {
   );
 };
 
-export default GithubContributions;
+export default memo(GithubContributions);

@@ -1,34 +1,59 @@
 "use client";
 
-import React, { useState, useEffect, memo, useCallback } from "react";
+import { useState, useEffect, memo, useCallback } from "react";
 import { Eye, Heart, Github, Star } from "lucide-react";
-import { getStats, incrementStat, subscribeToStats } from "@/lib/supabase";
+import { supabase } from "@/lib/supabase";
 
 const Footer = ({ blogSlug = null }) => {
   const [stats, setStats] = useState({ views: 0, likes: 0 });
   const [hasLiked, setHasLiked] = useState(false);
   const [stars, setStars] = useState(0);
-  const [isGithubHovered, setIsGithubHovered] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
+  const [isGithubHovered, setIsGithubHovered] = useState(false);
 
   useEffect(() => {
     const pageId = blogSlug ? `post-${blogSlug}` : "home";
+
+    const cachedStats = window?.localStorage?.getItem(`stats-${pageId}`);
+    if (cachedStats) {
+      setStats(JSON.parse(cachedStats));
+    }
+
     if (blogSlug) {
       const likedKey = `liked-${pageId}`;
-      setHasLiked(!!sessionStorage.getItem(likedKey));
+      setHasLiked(!!window?.sessionStorage?.getItem(likedKey));
     }
 
     const initializeStats = async () => {
       try {
-        const initialStats = await getStats(pageId);
-        setStats(initialStats);
+        const { data, error } = await supabase
+          .from("page_stats")
+          .select("views, likes")
+          .eq("id", pageId)
+          .single();
+
+        if (error && error.code !== "PGRST116") throw error;
+
+        const result = data || { views: 0, likes: 0 };
+        setStats(result);
+        window?.localStorage?.setItem(
+          `stats-${pageId}`,
+          JSON.stringify(result),
+        );
+
         const viewedKey = `viewed-${pageId}-${new Date().toDateString()}`;
-        if (!sessionStorage.getItem(viewedKey)) {
+        if (!window?.sessionStorage?.getItem(viewedKey)) {
           setIsUpdating(true);
-          const updatedStats = await incrementStat(pageId, "views");
-          if (updatedStats) {
-            setStats(updatedStats);
-            sessionStorage.setItem(viewedKey, "true");
+          const { data: updated } = await supabase.rpc("increment_views", {
+            row_id: pageId,
+          });
+          if (updated) {
+            setStats(updated);
+            window?.localStorage?.setItem(
+              `stats-${pageId}`,
+              JSON.stringify(updated),
+            );
+            window?.sessionStorage?.setItem(viewedKey, "true");
           }
           setIsUpdating(false);
         }
@@ -38,53 +63,80 @@ const Footer = ({ blogSlug = null }) => {
       }
     };
 
-    const unsubscribe = subscribeToStats(pageId, (newStats) => {
-      if (!isUpdating) setStats(newStats);
-    });
+    const subscription = supabase
+      .channel(`stats-${pageId}`)
+      .on(
+        "postgres_changes",
+        {
+          event: "*",
+          schema: "public",
+          table: "page_stats",
+          filter: `id=eq.${pageId}`,
+        },
+        (payload) => {
+          if (!isUpdating) {
+            setStats(payload.new);
+            window?.localStorage?.setItem(
+              `stats-${pageId}`,
+              JSON.stringify(payload.new),
+            );
+          }
+        },
+      )
+      .subscribe();
 
     initializeStats();
-    return () => unsubscribe();
-  }, [blogSlug, isUpdating]);
 
-  useEffect(() => {
     if (!blogSlug) {
-      const cachedStars = sessionStorage.getItem("github-stars");
-      const cacheTime = sessionStorage.getItem("github-stars-time");
-      const now = Date.now();
+      const fetchStars = async () => {
+        const cachedStars = window?.localStorage?.getItem("github-stars");
+        const cacheTime = window?.localStorage?.getItem("github-stars-time");
+        const now = Date.now();
 
-      if (cachedStars && cacheTime && now - parseInt(cacheTime) < 3600000) {
-        setStars(parseInt(cachedStars));
-        return;
-      }
+        if (cachedStars && cacheTime && now - parseInt(cacheTime) < 3600000) {
+          setStars(parseInt(cachedStars));
+          return;
+        }
 
-      fetch("https://api.github.com/repos/dan10ish/dan10ish.github.io")
-        .then((res) => res.json())
-        .then((data) => {
+        try {
+          const res = await fetch(
+            "https://api.github.com/repos/dan10ish/dan10ish.github.io",
+          );
+          const data = await res.json();
           if (data?.stargazers_count) {
             setStars(data.stargazers_count);
-            sessionStorage.setItem(
+            window?.localStorage?.setItem(
               "github-stars",
               data.stargazers_count.toString(),
             );
-            sessionStorage.setItem("github-stars-time", now.toString());
+            window?.localStorage?.setItem("github-stars-time", now.toString());
           }
-        })
-        .catch(console.error);
+        } catch (error) {
+          console.error("Error fetching stars:", error);
+        }
+      };
+      fetchStars();
     }
-  }, [blogSlug]);
+
+    return () => subscription.unsubscribe();
+  }, [blogSlug, isUpdating]);
 
   const handleLike = useCallback(async () => {
     if (hasLiked || !blogSlug || isUpdating) return;
+
     try {
       const pageId = `post-${blogSlug}`;
       setIsUpdating(true);
       setHasLiked(true);
-      const updatedStats = await incrementStat(pageId, "likes");
-      if (updatedStats) {
-        setStats(updatedStats);
-        sessionStorage.setItem(`liked-${pageId}`, "true");
-      } else {
-        setHasLiked(false);
+
+      const { data } = await supabase.rpc("increment_likes", {
+        row_id: pageId,
+      });
+
+      if (data) {
+        setStats(data);
+        window?.localStorage?.setItem(`stats-${pageId}`, JSON.stringify(data));
+        window?.sessionStorage?.setItem(`liked-${pageId}`, "true");
       }
     } catch (error) {
       console.error("Error liking post:", error);
@@ -96,7 +148,7 @@ const Footer = ({ blogSlug = null }) => {
 
   const formatNumber = useCallback((num) => {
     if (!num) return 0;
-    if (num >= 1000000) return (num / 1000000).toFixed(3) + "M";
+    if (num >= 1000000) return (num / 1000000).toFixed(2) + "M";
     if (num >= 1000) return (num / 1000).toFixed(2) + "K";
     return num;
   }, []);
@@ -106,21 +158,13 @@ const Footer = ({ blogSlug = null }) => {
       <div className="footer-content">
         <div className="footer-row">
           <div className="stats-cards">
-            <div
-              className={`stat-card views-card ${isUpdating ? "updating" : ""}`}
-              title={`${stats.views} total visits`}
-            >
+            <div className="stat-card">
               <Eye size={18} />
               <span>{formatNumber(stats.views)}</span>
             </div>
 
             {blogSlug && (
-              <div
-                className={`stat-card likes-card ${
-                  isUpdating ? "updating" : ""
-                }`}
-                title={`${stats.likes} likes`}
-              >
+              <div className="stat-card">
                 <button
                   onClick={handleLike}
                   className={`like-button ${hasLiked ? "liked" : ""}`}
@@ -149,9 +193,9 @@ const Footer = ({ blogSlug = null }) => {
             >
               <div className="github-button-content">
                 <Github size={16} />
-                <span>{blogSlug ? "View Source" : "View Source"}</span>
+                <span>View Source</span>
               </div>
-              {!blogSlug && (
+              {!blogSlug && stars > 0 && (
                 <div className="github-stars">
                   <Star
                     size={16}
