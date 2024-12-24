@@ -47,29 +47,41 @@ const DAYS_IN_WEEK = 7;
 const WEEKS_COUNT = 16;
 const API_URL =
   "https://github-contributions-api.jogruber.de/v4/dan10ish?y=last";
-const CACHE_KEY = "github-contributions";
-const CACHE_TIME_KEY = "github-contributions-time";
-const CACHE_DURATION = 3600000; // 1 hour
+const CACHE_DURATION = 300000; // 5 minutes in milliseconds
 
 const GithubContributions = () => {
-  const [contributions, setContributions] = useState([]);
+  const [contributions, setContributions] = useState(() => {
+    if (typeof window !== "undefined") {
+      const cached = localStorage.getItem("github-contributions");
+      const timestamp = localStorage.getItem("github-contributions-time");
+
+      if (
+        cached &&
+        timestamp &&
+        Date.now() - Number(timestamp) < CACHE_DURATION
+      ) {
+        return JSON.parse(cached);
+      }
+    }
+    return Array(DAYS_IN_WEEK * WEEKS_COUNT).fill({ count: 0, date: null });
+  });
 
   useEffect(() => {
     const loadContributions = async () => {
-      const cached = localStorage.getItem(CACHE_KEY);
-      const cacheTime = localStorage.getItem(CACHE_TIME_KEY);
-      const now = Date.now();
+      const cached = localStorage.getItem("github-contributions");
+      const timestamp = localStorage.getItem("github-contributions-time");
 
-      if (cached && cacheTime && now - parseInt(cacheTime) < CACHE_DURATION) {
+      if (
+        cached &&
+        timestamp &&
+        Date.now() - Number(timestamp) < CACHE_DURATION
+      ) {
         setContributions(JSON.parse(cached));
         return;
       }
 
       try {
-        const res = await fetch(API_URL, {
-          cache: "force-cache",
-          next: { revalidate: 3600 },
-        });
+        const res = await fetch(API_URL);
         const data = await res.json();
 
         if (data?.contributions) {
@@ -81,30 +93,26 @@ const GithubContributions = () => {
               count: day.count,
             }));
 
-          if (recentContributions.length < daysToShow) {
-            const emptyDays = Array(
-              daysToShow - recentContributions.length,
-            ).fill({ count: 0, date: null });
-            setContributions(emptyDays.concat(recentContributions));
-            localStorage.setItem(
-              CACHE_KEY,
-              JSON.stringify(emptyDays.concat(recentContributions)),
-            );
-          } else {
-            setContributions(recentContributions);
-            localStorage.setItem(
-              CACHE_KEY,
-              JSON.stringify(recentContributions),
-            );
-          }
-          localStorage.setItem(CACHE_TIME_KEY, now.toString());
+          const finalData =
+            recentContributions.length < daysToShow
+              ? Array(daysToShow - recentContributions.length)
+                  .fill({ count: 0, date: null })
+                  .concat(recentContributions)
+              : recentContributions;
+
+          setContributions(finalData);
+          localStorage.setItem(
+            "github-contributions",
+            JSON.stringify(finalData),
+          );
+          localStorage.setItem(
+            "github-contributions-time",
+            Date.now().toString(),
+          );
         }
       } catch (error) {
-        const emptyDays = Array(DAYS_IN_WEEK * WEEKS_COUNT).fill({
-          count: 0,
-          date: null,
-        });
-        setContributions(emptyDays);
+        // Keep existing data on error
+        console.error("Failed to fetch contributions:", error);
       }
     };
 

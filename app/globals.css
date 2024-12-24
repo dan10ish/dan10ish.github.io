@@ -1461,35 +1461,35 @@ a[data-footnote-ref] {
 }
 
 [data-theme="light"] .contribution-cell {
-  background-color: var(--code-background-color);
+  background-color: #ebedf0;
 }
 [data-theme="light"] .contribution-cell.level-1 {
-  background-color: #9be9a8;
+  background-color: #77dd77;
 }
 [data-theme="light"] .contribution-cell.level-2 {
-  background-color: #40c463;
+  background-color: #45b745;
 }
 [data-theme="light"] .contribution-cell.level-3 {
-  background-color: #30a14e;
+  background-color: #2a9134;
 }
 [data-theme="light"] .contribution-cell.level-4 {
-  background-color: #216e39;
+  background-color: #176e1e;
 }
 
 [data-theme="dark"] .contribution-cell {
   background-color: var(--code-background-color);
 }
 [data-theme="dark"] .contribution-cell.level-1 {
-  background-color: #0e4429;
+  background-color: #024a1d;
 }
 [data-theme="dark"] .contribution-cell.level-2 {
-  background-color: #006d32;
+  background-color: #057a2d;
 }
 [data-theme="dark"] .contribution-cell.level-3 {
-  background-color: #26a641;
+  background-color: #13b94d;
 }
 [data-theme="dark"] .contribution-cell.level-4 {
-  background-color: #39d353;
+  background-color: #2eec6e;
 }
 
 .post-row,
