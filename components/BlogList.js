@@ -39,19 +39,26 @@ export default function BlogList({ posts, showAll = false }) {
 
       <div className="blog-grid">
         {displayedPosts.map((post) => (
-          <Link 
-            href={`/post/${post.slug}`} 
-            key={post.slug} 
+          <Link
+            href={`/post/${post.slug}`}
+            key={post.slug}
             className="blog-card"
             data-status={post.status}
+            aria-label={`${post.title} - ${post.status} post from ${post.year}`}
           >
             <div className="blog-year">{post.year}</div>
             <h3 className="blog-title">{post.title}</h3>
             <div className="blog-meta">
               {post.status !== "completed" && (
-                <div className="blog-status">{post.status.toUpperCase()}</div>
+                <div className="blog-status" role="status">
+                  {post.status.toUpperCase()}
+                </div>
               )}
-              <ArrowUpRight className="blog-arrow" size={16} />
+              <ArrowUpRight
+                className="blog-arrow"
+                size={16}
+                aria-hidden="true"
+              />
             </div>
           </Link>
         ))}

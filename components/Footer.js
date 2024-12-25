@@ -157,67 +157,56 @@ const Footer = ({ blogSlug = null }) => {
   }, []);
 
   return (
-    <footer className="footer">
+    <footer className="site-footer">
       {!blogSlug && (
-        <div className="footer-links">
-          <div className="footer-links-group">
-            <Link href="/notes">Notes</Link>
-            <Link href="/photos">Photos</Link>
-            <Link href="/books">Books</Link>
-            <Link href="/resources">Resources</Link>
-          </div>
+        <div className="footer-nav">
+          <Link href="/notes">Notes</Link>
+          <Link href="/photos">Photos</Link>
+          <Link href="/books">Books</Link>
+          <Link href="/resources">Resources</Link>
         </div>
       )}
-      <div className="footer-content">
-        <div className="footer-row">
-          <div className="stats-cards">
-            <div className="stat-card">
-              <Eye size={18} />
-              <span>{formatNumber(stats.views)}</span>
+      <div className="footer-metrics">
+        <div className="metrics-group">
+          <div className="metric">
+            <Eye size={16} />
+            <span>{formatNumber(stats.views)}</span>
+          </div>
+          {blogSlug && (
+            <div className="metric">
+              <button
+                onClick={handleLike}
+                className={`like-button ${hasLiked ? "liked" : ""}`}
+                disabled={hasLiked || isUpdating}
+                aria-label={hasLiked ? "Already liked" : "Like this post"}
+              >
+                <Heart size={16} />
+                <span>{formatNumber(stats.likes)}</span>
+              </button>
             </div>
-            {blogSlug && (
-              <div className="stat-card">
-                <button
-                  onClick={handleLike}
-                  className={`like-button ${hasLiked ? "liked" : ""}`}
-                  disabled={hasLiked || isUpdating}
-                  aria-label={hasLiked ? "Already liked" : "Like this post"}
-                >
-                  <Heart size={18} className={hasLiked ? "fill-current" : ""} />
-                  <span>{formatNumber(stats.likes)}</span>
-                </button>
-              </div>
-            )}
-          </div>
-          <div className="github-card-container">
-            <a
-              href={
-                blogSlug
-                  ? `https://github.com/dan10ish/dan10ish.github.io/blob/main/content/blog/${blogSlug}.md`
-                  : "https://github.com/dan10ish/dan10ish.github.io"
-              }
-              target="_blank"
-              rel="noopener noreferrer"
-              className="github-button"
-              onMouseEnter={() => setIsGithubHovered(true)}
-              onMouseLeave={() => setIsGithubHovered(false)}
-            >
-              <div className="github-button-content">
-                <Github size={16} />
-                <span>View Source</span>
-              </div>
-              {!blogSlug && (
-                <div className="github-stars">
-                  <Star
-                    size={16}
-                    className={isGithubHovered ? "star-hover" : ""}
-                  />
-                  <span>{formatNumber(stars)}</span>
-                </div>
-              )}
-            </a>
-          </div>
+          )}
         </div>
+        <a
+          href={
+            blogSlug
+              ? `https://github.com/dan10ish/dan10ish.github.io/blob/main/content/blog/${blogSlug}.md`
+              : "https://github.com/dan10ish/dan10ish.github.io"
+          }
+          target="_blank"
+          rel="noopener noreferrer"
+          className="github-link"
+          onMouseEnter={() => setIsGithubHovered(true)}
+          onMouseLeave={() => setIsGithubHovered(false)}
+        >
+          <Github size={16} />
+          <span>Source</span>
+          {!blogSlug && stars !== null && (
+            <div className="github-stars">
+              <Star size={16} className={isGithubHovered ? "star-hover" : ""} />
+              <span>{formatNumber(stars)}</span>
+            </div>
+          )}
+        </a>
       </div>
     </footer>
   );

@@ -34,7 +34,7 @@
   --color-text: #18181b;
   --color-link: #2563eb;
   --blockquote-color: #64748b;
-  --code-background-color: #f1f5f9;
+  --code-background-color: #edf2f7;
   --code-color: #1e293b;
   --syntax-comment: #64748b;
   --syntax-keyword: #2563eb;
@@ -108,7 +108,8 @@ body {
 }
 
 .infinity-symbol {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
+  transform: translateY(-2px);
   opacity: 0.75;
   display: inline-block;
 }
@@ -423,16 +424,6 @@ table td > *:last-child {
   top: -2px;
 }
 
-.blog-card[data-status="development"] .blog-status {
-  background: rgba(20, 128, 237, 0.15);
-  color: #1480ed;
-}
-
-.blog-card[data-status="draft"] .blog-status {
-  background: rgba(var(--color-text-rgb), 0.1);
-  color: var(--blockquote-color);
-}
-
 .blog-arrow {
   color: var(--color-link);
   opacity: 0;
@@ -479,6 +470,59 @@ table td > *:last-child {
 }
 
 /* Status Badges */
+
+/* Development Status Badge */
+.blog-card[data-status="development"] .blog-status {
+  background: #2563eb;
+  color: #ffffff;
+  font-weight: 450;
+}
+
+[data-theme="dark"] .blog-card[data-status="development"] .blog-status {
+  background: #3b82f6;
+  color: #ffffff;
+  font-weight: 450;
+}
+
+/* Draft Status Badge */
+.blog-card[data-status="draft"] .blog-status {
+  background: #333333;
+  color: #ffffff;
+  font-weight: 450;
+}
+
+[data-theme="dark"] .blog-card[data-status="draft"] .blog-status {
+  background: #666666;
+  color: #ffffff;
+  font-weight: 450;
+}
+
+/* Development Badge */
+.development-badge {
+  background: #2563eb;
+  color: #ffffff;
+  font-weight: 450;
+}
+
+[data-theme="dark"] .development-badge {
+  background: #3b82f6;
+  color: #ffffff;
+  font-weight: 450;
+}
+
+/* Draft Badge */
+.draft-badge {
+  background: #333333;
+  color: #ffffff;
+  font-weight: 450;
+}
+
+[data-theme="dark"] .draft-badge {
+  background: #666666;
+  color: #ffffff;
+  font-weight: 450;
+}
+
 .development-badge,
 .draft-badge {
   display: inline-flex;
@@ -493,16 +537,6 @@ table td > *:last-child {
   position: relative;
   top: -3px;
   text-transform: uppercase;
-}
-
-.development-badge {
-  background: rgba(20, 128, 237, 0.2);
-  color: #1480ed;
-}
-
-.draft-badge {
-  background: rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.6);
 }
 
 /* Projects Section */
@@ -534,6 +568,7 @@ table td > *:last-child {
   text-decoration: none;
   transition: all 0.2s ease;
   border: 1.5px solid transparent;
+  height: 40px;
 }
 
 .github-profile-button svg {
@@ -624,48 +659,6 @@ table td > *:last-child {
 
 .globe-icon-class {
   color: var(--color-link);
-}
-
-/* Github Card */
-.github-card-container {
-  display: inline-flex;
-  font-size: 0.8rem;
-  margin: 0;
-}
-
-.github-button {
-  display: flex;
-  align-items: center;
-  padding: 10px 18px;
-  font-weight: 400;
-  text-decoration: none;
-  white-space: nowrap;
-  cursor: pointer;
-  background-color: var(--code-background-color);
-  border-radius: 100px;
-  color: var(--color-text);
-  transition: all 0.2s ease;
-  gap: 12px;
-  border: 1.5px solid transparent;
-  height: 40px;
-}
-
-.github-button-content {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.github-button svg {
-  width: 16px;
-  height: 16px;
-  transition: transform 0.2s ease;
-}
-
-.github-stars {
-  display: flex;
-  align-items: center;
-  gap: 6px;
 }
 
 /* Navigation and Buttons */
@@ -823,44 +816,21 @@ table td > *:last-child {
 }
 
 /* Footer */
-.footer {
+
+.site-footer {
   margin-top: 4rem;
-  padding-top: 2rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-}
-
-.footer-content {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  max-width: var(--max-width);
-  margin: 0 auto;
-  width: 100%;
-}
-
-.footer-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-.footer {
+  padding: 2rem 0.5rem 1rem;
   /* border-top: 1px solid rgba(var(--color-text-rgb), 0.1); */
 }
 
-.footer-links {
-  padding: 0rem 0rem 2.5rem;
-}
-
-.footer-links-group {
+.footer-nav {
   display: flex;
-  gap: 1.5rem;
   justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
 }
 
-.footer-links-group a {
+.footer-nav a {
   color: var(--color-text);
   opacity: 0.7;
   font-size: 0.85rem;
@@ -868,36 +838,75 @@ table td > *:last-child {
   transition: all 0.2s ease;
 }
 
-/* Stats Cards */
-.stats-cards {
+.footer-metrics {
   display: flex;
-  gap: 0.5rem;
-  margin: 0;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
 }
 
-.stat-card {
+.metrics-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.metric {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 10px 18px;
+  padding: 0.4rem 1rem;
+  height: 40px;
+  background-color: var(--code-background-color);
   border-radius: 100px;
   font-size: 0.8rem;
-  color: var(--color-text);
-  user-select: none;
-  white-space: nowrap;
-  background-color: var(--code-background-color);
-  transition: all 0.2s ease;
-  border: 1.5px solid transparent;
-  height: 40px;
 }
 
-.stat-card svg {
-  width: 17px;
-  height: 17px;
+.metric svg {
+  opacity: 0.8;
+}
+
+.like-button {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: transform 0.2s ease;
+}
+
+.like-button:disabled {
+  cursor: default;
   opacity: 1;
 }
 
-/* Like Button */
+.like-button.liked svg {
+  fill: #ff0000;
+  color: #ff0000;
+}
+
+.github-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  height: 40px;
+  background-color: var(--code-background-color);
+  border-radius: 100px;
+  color: var(--color-text);
+  font-size: 0.8rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.github-stars {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-left: 0.25rem;
+  padding-left: 0.5rem;
+  border-left: 1px solid rgba(var(--color-text-rgb), 0.2);
+}
+
 .like-button {
   all: unset;
   cursor: pointer;
@@ -1053,7 +1062,7 @@ pre code {
 }
 
 .code-tab.active {
-  background-color: rgba(var(--color-text-rgb), 0.1);
+  background-color: var(--color-bg);
   opacity: 1;
 }
 
@@ -1190,7 +1199,7 @@ pre code {
 
 .books-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   gap: 1rem;
   padding: 0.75rem 0;
 }
@@ -1202,9 +1211,9 @@ pre code {
 
 .book-cover {
   position: relative;
-  aspect-ratio: 3/3;
+  aspect-ratio: 2.5/2.5;
   border-radius: 2px;
-  padding: 1rem 1.25rem;
+  padding: 0.75rem 1.25rem;
   transform-style: preserve-3d;
   transform-origin: 0% 50%;
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1240,14 +1249,14 @@ pre code {
 
 .book-title {
   font-family: var(--font-heading);
-  font-size: 1rem;
-  line-height: 1.4;
+  font-size: 0.9rem;
+  line-height: 1.3;
   margin: 0;
   font-weight: 450;
 }
 
 .book-author {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   margin-top: auto;
   opacity: 0.85;
 }
@@ -1273,8 +1282,8 @@ pre code {
 
 .notes-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 1rem;
   padding: 0.75rem 0;
 }
 
@@ -1836,14 +1845,6 @@ a[data-footnote-ref] {
     height: 20px;
   }
 
-  .footer {
-    margin-top: 4rem;
-  }
-
-  .footer-content {
-    gap: 2rem;
-  }
-
   .stats-cards {
     gap: 1rem;
   }
@@ -1947,9 +1948,12 @@ a[data-footnote-ref] {
   }
 
   .books-grid {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 2rem;
-    padding: 2rem 0;
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(140px, 1fr)
+    );
+    gap: 1.5rem;
+    padding: 1rem 0;
   }
 
   .book-cover {
@@ -1957,12 +1961,12 @@ a[data-footnote-ref] {
   }
 
   .book-title {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     font-weight: 450;
   }
 
   .book-author {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
   }
 
   .blog-card {
@@ -1990,9 +1994,12 @@ a[data-footnote-ref] {
   }
 
   .notes-grid {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 2rem;
-    padding: 2rem 0;
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(140px, 1fr)
+    );
+    gap: 1.5rem;
+    padding: 1rem 0;
   }
 
   .photo-grid {
@@ -2013,8 +2020,23 @@ a[data-footnote-ref] {
     margin-bottom: 0.5rem;
   }
 
-  .footer-links-group {
-    gap: 2rem;
+  .site-footer {
+    padding: 3rem 0.5rem 1rem;
+  }
+
+  .footer-nav {
+    gap: 3rem;
+  }
+
+  .footer-nav a {
+    font-size: 0.9rem;
+  }
+
+  .metric,
+  .github-link {
+    padding: 0.4rem 1rem;
+    height: 40px;
+    font-size: 0.85rem;
   }
 }
 
@@ -2069,22 +2091,6 @@ a[data-footnote-ref] {
 
   .theme-circle:not(.active):hover {
     transform: scale(1.1);
-  }
-
-  .like-button:not(.liked):hover svg {
-    transform: scale(1.1);
-    color: #ff0000;
-  }
-
-  .github-button:hover {
-    background-color: var(--color-link);
-    color: #ffffff;
-    text-decoration: none;
-  }
-
-  .star-hover {
-    fill: #ffd700;
-    stroke: #ffd700;
   }
 
   .code-tab:hover:not(.active) {
@@ -2202,10 +2208,26 @@ a[data-footnote-ref] {
     transform: scale(1.02);
   }
 
-  .footer-links-group a:hover {
+  .footer-nav a:hover {
     opacity: 1;
-    text-decoration: none;
     color: var(--color-link);
+    text-decoration: none;
+  }
+
+  .like-button:not(.liked):hover svg {
+    transform: scale(1.1);
+    color: #ff0000;
+  }
+
+  .github-link:hover {
+    background-color: var(--color-link);
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  .star-hover {
+    fill: #ffd700;
+    stroke: #ffd700;
   }
 }
 

@@ -49,13 +49,18 @@ const FilterComponent = ({
             <button
               onClick={() => removeFilter(filter)}
               className="remove-filter"
+              aria-label={`Remove ${filter} filter`}
             >
-              <X size={15} />
+              <X size={15} aria-hidden="true" />
             </button>
           </div>
         ))}
         {unusedOptions.length > 0 && (
-          <button onClick={() => setIsOpen(!isOpen)} className="add-filter-btn">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="add-filter-btn"
+            aria-label="Add filter tag"
+          >
             <Filter size={16} />
             {placeholder}
           </button>
