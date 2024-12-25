@@ -23,7 +23,8 @@ export default function BlogList({ posts, showAll = false }) {
 
   const displayedPosts = useMemo(() => {
     if (showAll || selectedTags.length > 0) return filteredPosts;
-    return filteredPosts.slice(0, 3);
+    const homePosts = filteredPosts.filter((post) => post.home);
+    return homePosts.slice(0, 3);
   }, [filteredPosts, showAll, selectedTags]);
 
   return (

@@ -9,7 +9,7 @@
 
 @font-face {
   font-family: "Sentient";
-  src: url("/fonts/Sentient.ttf") format("truetype");
+  src: url("/fonts/Sentient.woff2") format("woff2-variations");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -30,6 +30,9 @@
 }
 
 [data-theme="light"] {
+  --gradient-start: rgba(255, 255, 255, 0);
+  --gradient-end: rgba(255, 255, 255, 0.9);
+
   --color-bg: #ffffff;
   --color-text: #18181b;
   --color-link: #2563eb;
@@ -53,6 +56,9 @@
 }
 
 [data-theme="dark"] {
+  --gradient-start: rgba(9, 9, 11, 0);
+  --gradient-end: rgba(9, 9, 11, 0.9);
+
   --color-bg: #09090b;
   --color-text: #fafafa;
   --color-link: #3b82f6;
@@ -112,6 +118,21 @@ body {
   transform: translateY(-2px);
   opacity: 0.75;
   display: inline-block;
+}
+
+.gradient-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: linear-gradient(
+    180deg,
+    var(--gradient-end) 0%,
+    var(--gradient-start) 100%
+  );
+  pointer-events: none;
+  z-index: 100;
 }
 
 /* Base Elements */
@@ -318,6 +339,12 @@ table td > *:last-child {
   height: 20px !important;
   width: auto;
   stroke-width: 2;
+}
+
+.social-button[aria-label="Send email"] svg {
+  height: 25px !important;
+  stroke-width: 1.4;
+  color: var(--color-text);
 }
 
 .about {
@@ -831,7 +858,7 @@ table td > *:last-child {
 }
 
 .footer-nav a {
-  color: var(--color-text);
+  color: var(--blockquote-color);
   opacity: 0.7;
   font-size: 0.85rem;
   text-decoration: none;
@@ -1199,9 +1226,15 @@ pre code {
 
 .books-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   padding: 0.75rem 0;
+}
+
+@media (min-width: 480px) {
+  .books-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .book-card {
@@ -1249,7 +1282,7 @@ pre code {
 
 .book-title {
   font-family: var(--font-heading);
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   line-height: 1.3;
   margin: 0;
   font-weight: 450;
@@ -1688,8 +1721,9 @@ a[data-footnote-ref] {
 .meta-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 0.25rem;
+  column-gap: 0.5rem;
+  margin-bottom: 0.15rem;
+  row-gap: 0.15rem;
   align-items: center;
 }
 
@@ -1948,10 +1982,7 @@ a[data-footnote-ref] {
   }
 
   .books-grid {
-    grid-template-columns: repeat(
-      auto-fill,
-      minmax(140px, 1fr)
-    );
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: 1.5rem;
     padding: 1rem 0;
   }
@@ -1961,7 +1992,7 @@ a[data-footnote-ref] {
   }
 
   .book-title {
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 450;
   }
 
@@ -1994,10 +2025,7 @@ a[data-footnote-ref] {
   }
 
   .notes-grid {
-    grid-template-columns: repeat(
-      auto-fill,
-      minmax(140px, 1fr)
-    );
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: 1.5rem;
     padding: 1rem 0;
   }
@@ -2017,7 +2045,7 @@ a[data-footnote-ref] {
 
   .meta-row {
     gap: 0.75rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
   }
 
   .site-footer {
@@ -2228,6 +2256,10 @@ a[data-footnote-ref] {
   .star-hover {
     fill: #ffd700;
     stroke: #ffd700;
+  }
+
+  .social-button[aria-label="Send email"] svg:hover {
+    color: var(--color-link);
   }
 }
 

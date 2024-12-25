@@ -68,14 +68,21 @@ export default function RootLayout({ children }) {
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              (function() {
-                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                  document.documentElement.setAttribute('data-theme', 'dark');
-                  document.documentElement.style.backgroundColor = '#09090b';
-                  document.documentElement.style.color = '#fafafa';
-                }
-              })();
-            `,
+                (function() {
+                  try {
+                    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    const root = document.documentElement;
+                    const themeColor = isDark ? '#09090b' : '#ffffff';
+                    root.setAttribute('data-theme', isDark ? 'dark' : 'light');
+                    root.style.backgroundColor = themeColor;
+                    root.style.color = isDark ? '#fafafa' : '#18181b';
+                    const meta = document.createElement('meta');
+                    meta.name = 'theme-color';
+                    meta.content = themeColor;
+                    document.getElementsByTagName('head')[0].appendChild(meta);
+                  } catch (e) {}
+                })();
+              `,
           }}
         />
         <link
@@ -107,6 +114,7 @@ export default function RootLayout({ children }) {
         <meta httpEquiv="x-dns-prefetch-control" content="on" />
       </head>
       <body>
+        <div className="gradient-overlay" />
         <ThemeHandler />
         <Suspense fallback={null}>
           <ButtonsContainer />
