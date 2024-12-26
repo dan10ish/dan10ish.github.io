@@ -1,5 +1,4 @@
 import { Suspense } from "react";
-import Script from "next/script";
 import ButtonsContainer from "@/components/ButtonsContainer";
 import ThemeHandler from "@/components/ThemeHandler";
 import "./globals.css";
@@ -65,30 +64,47 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script
+        <style
           dangerouslySetInnerHTML={{
             __html: `
-                (function() {
-                  try {
-                    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                    const root = document.documentElement;
-                    const themeColor = isDark ? '#09090b' : '#ffffff';
-                    root.setAttribute('data-theme', isDark ? 'dark' : 'light');
-                    root.style.backgroundColor = themeColor;
-                    root.style.color = isDark ? '#fafafa' : '#18181b';
-                    const meta = document.createElement('meta');
-                    meta.name = 'theme-color';
-                    meta.content = themeColor;
-                    document.getElementsByTagName('head')[0].appendChild(meta);
-                  } catch (e) {}
-                })();
-              `,
+            @font-face {
+              font-family: "Geist Mono";
+              src: url("/fonts/GeistMonoVF.woff2") format("woff2-variations");
+              font-weight: 100 900;
+              font-stretch: 75% 125%;
+              font-style: normal;
+              font-display: swap;
+            }
+            @font-face {
+              font-family: "Sentient";
+              src: url("/fonts/Sentient.woff2") format("woff2-variations");
+              font-weight: 100 900;
+              font-style: normal;
+              font-display: swap;
+            }
+            :root {
+              --font-normal: "Geist Mono", ui-monospace, monospace;
+              --font-heading: "Sentient", system-ui, sans-serif;
+              --color-bg: #ffffff;
+              --color-text: #18181b;
+              --color-link: #2563eb;
+            }
+            @media (prefers-color-scheme: dark) {
+              :root {
+                --color-bg: #09090b;
+                --color-text: #fafafa;
+                --color-link: #3b82f6;
+              }
+            }
+            body {
+              font-family: var(--font-normal);
+              color: var(--color-text);
+              background: var(--color-bg);
+              margin: 0;
+              padding: 0 20px 40px;
+            }
+          `,
           }}
-        />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
         />
         <link
           rel="preload"
@@ -104,14 +120,11 @@ export default function RootLayout({ children }) {
           type="font/woff2"
           crossOrigin="anonymous"
         />
-        <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
-        <link
-          rel="preload"
-          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/github.css"
-          as="style"
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{const e=window.matchMedia("(prefers-color-scheme: dark)").matches,t=document.documentElement,o=e?"#09090b":"#ffffff";t.setAttribute("data-theme",e?"dark":"light"),t.style.backgroundColor=o,t.style.color=e?"#fafafa":"#18181b"}catch(e){}})();`,
+          }}
         />
-        <link rel="manifest" href="/manifest.json" />
-        <meta httpEquiv="x-dns-prefetch-control" content="on" />
       </head>
       <body>
         <div className="gradient-overlay" />
@@ -120,9 +133,6 @@ export default function RootLayout({ children }) {
           <ButtonsContainer />
         </Suspense>
         <main className="container">{children}</main>
-        <Script id="location-handler" strategy="afterInteractive">
-          {`(function(l){if(l.search[1]==='/'){var decoded=l.search.slice(1).split('&').map(function(s){return s.replace(/~and~/g,'&')}).join('?');window.history.replaceState(null,null,l.pathname.slice(0,-1)+decoded+l.hash)}}(window.location))`}
-        </Script>
       </body>
     </html>
   );
