@@ -1,88 +1,43 @@
 3:I[4707,[],""]
 5:I[36423,[],""]
-8:I[83012,["3185","static/chunks/app/layout-7fb6686f5b88b770.js"],"default"]
+7:I[39263,["3185","static/chunks/app/layout-886415aa5fe0c120.js"],"default"]
+8:I[83012,["3185","static/chunks/app/layout-886415aa5fe0c120.js"],"default"]
 9:"$Sreact.suspense"
-a:I[74386,["8124","static/chunks/8124-c4693c8987f606bf.js","6605","static/chunks/app/post/%5Bslug%5D/page-d0fe3cd2bc71b93c.js"],"default"]
+a:I[74386,["8124","static/chunks/8124-aa593cbf5d9de9eb.js","6605","static/chunks/app/post/%5Bslug%5D/page-d0fe3cd2bc71b93c.js"],"default"]
 4:["slug","pathfinder","d"]
-6:T630,(function() {
-              const savedTheme = localStorage.getItem('theme');
-              const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+6:T4f6,
+              (function() {
+                function setTheme() {
+                  try {
+                    const savedTheme = localStorage.getItem('theme');
+                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+                    const themeColors = {
+                      light: '#ffffff',
+                      dark: '#09090b',
+                      solarized: '#002b36'
+                    };
+                    document.documentElement.setAttribute('data-theme', theme);
 
-              const theme = savedTheme === 'light'
-                ? 'light'
-                : (savedTheme === 'solarized' ? 'solarized' : 'dark');
-
-              let themeColor, textColor;
-              switch (theme) {
-                case 'dark':
-                  themeColor = '#09090b';
-                  textColor = '#fafafa';
-                  break;
-                case 'solarized':
-                  themeColor = '#002b36';
-                  textColor = '#C8D2D2';
-                  break;
-                default:
-                  themeColor = '#ffffff';
-                  textColor = '#18181b';
-              }
-
-              document.documentElement.setAttribute('data-theme', theme);
-              document.documentElement.style.setProperty('--color-bg', themeColor);
-              document.documentElement.style.setProperty('--color-text', textColor);
-              document.documentElement.style.backgroundColor = themeColor;
-              document.documentElement.style.color = textColor;
-
-              const metaTags = document.getElementsByTagName('meta');
-              for (let i = 0; i < metaTags.length; i++) {
-                if (metaTags[i].getAttribute('name') === 'theme-color') {
-                  metaTags[i].setAttribute('content', themeColor);
+                    let metaTheme = document.querySelector('meta[name="theme-color"]');
+                    if (!metaTheme) {
+                      metaTheme = document.createElement('meta');
+                      metaTheme.name = 'theme-color';
+                      document.head.appendChild(metaTheme);
+                    }
+                    metaTheme.content = themeColors[theme];
+                  } catch (e) {
+                    console.error('Theme initialization error:', e);
+                  }
                 }
-              }
-
-              console.log('Theme initialized:', theme, 'Color:', textColor);
-            })();7:T507,
-            @font-face {
-              font-family: "Geist Mono";
-              src: url("/fonts/GeistMonoVF.woff2") format("woff2-variations");
-              font-weight: 100 900;
-              font-stretch: 75% 125%;
-              font-style: normal;
-              font-display: swap;
-            }
-            @font-face {
-              font-family: "Sentient";
-              src: url("/fonts/Sentient.woff2") format("woff2-variations");
-              font-weight: 100 900;
-              font-style: normal;
-              font-display: swap;
-            }
-            :root {
-              --font-normal: "Geist Mono", ui-monospace, monospace;
-              --font-heading: "Sentient", system-ui, sans-serif;
-              --color-bg: #ffffff;
-              --color-text: #18181b;
-              --color-link: #2563eb;
-            }
-            @media (prefers-color-scheme: dark) {
-              :root {
-                --color-bg: #09090b;
-                --color-text: #fafafa;
-                --color-link: #3b82f6;
-              }
-            }
-            body {
-              font-family: var(--font-normal);
-              color: var(--color-text);
-              background: var(--color-bg);
-              margin: 0;
-              padding: 0 20px 40px;
-            }
-          0:["u4jfuJHcqDdt9IdpPeTVV",[[["",{"children":["post",{"children":[["slug","pathfinder","d"],{"children":["__PAGE__?{\"slug\":\"pathfinder\"}",{}]}]}]},"$undefined","$undefined",true],["",{"children":["post",{"children":[["slug","pathfinder","d"],{"children":["__PAGE__",{},[["$L1","$L2",null],null],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","post","children","$4","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","post","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/8b93ae334bd1ed40.css","precedence":"next","crossOrigin":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/bdcfe657bd7ec8de.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":[["$","head",null,{"children":[["$","meta",null,{"name":"theme-color","content":"#ffffff"}],["$","script",null,{"id":"theme-script","dangerouslySetInnerHTML":{"__html":"$6"}}],["$","style",null,{"dangerouslySetInnerHTML":{"__html":"$7"}}],["$","link",null,{"rel":"preload","href":"/fonts/GeistMonoVF.woff2","as":"font","type":"font/woff2","crossOrigin":"anonymous"}],["$","link",null,{"rel":"preload","href":"/fonts/Sentient.woff2","as":"font","type":"font/woff2","crossOrigin":"anonymous"}],["$","link",null,{"rel":"preconnect","href":"https://iksodfcuqkwlvhyymcjk.supabase.co","crossOrigin":"anonymous"}]]}],["$","body",null,{"children":[["$","div",null,{"className":"gradient-overlay"}],["$","$L8",null,{}],["$","$9",null,{"fallback":null,"children":["$","$La",null,{}]}],["$","main",null,{"className":"container","children":["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":["$","div",null,{"style":{"display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center","height":"100%","textAlign":"center","paddingTop":"200px"},"children":[["$","h1",null,{"children":"404 - Page Not Found"}],["$","p",null,{"children":"Sorry, the page you are looking for does not exist."}],["$","a",null,{"href":"https://dan10ish.github.io","style":{"color":"blue","fontSize":"15px","paddingTop":"30px"},"children":"Go back to homepage"}]]}],"notFoundStyles":[]}]}]]}]]}]],null],null],["$Lb",null]]]]
-c:I[90716,["8124","static/chunks/8124-c4693c8987f606bf.js","6605","static/chunks/app/post/%5Bslug%5D/page-d0fe3cd2bc71b93c.js"],"default"]
-e:I[81523,["8124","static/chunks/8124-c4693c8987f606bf.js","6605","static/chunks/app/post/%5Bslug%5D/page-d0fe3cd2bc71b93c.js"],"BailoutToCSR"]
-f:I[22590,["8124","static/chunks/8124-c4693c8987f606bf.js","6605","static/chunks/app/post/%5Bslug%5D/page-d0fe3cd2bc71b93c.js"],"default"]
-10:I[18124,["8124","static/chunks/8124-c4693c8987f606bf.js","6605","static/chunks/app/post/%5Bslug%5D/page-d0fe3cd2bc71b93c.js"],"default"]
+                setTheme();
+                document.addEventListener('DOMContentLoaded', setTheme);
+              })();
+            0:["-epypq5ogUFtKWpzseZ_I",[[["",{"children":["post",{"children":[["slug","pathfinder","d"],{"children":["__PAGE__?{\"slug\":\"pathfinder\"}",{}]}]}]},"$undefined","$undefined",true],["",{"children":["post",{"children":[["slug","pathfinder","d"],{"children":["__PAGE__",{},[["$L1","$L2",null],null],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","post","children","$4","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","post","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/7160dd38dd228dfb.css","precedence":"next","crossOrigin":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/bdcfe657bd7ec8de.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":[["$","head",null,{"children":[["$","meta",null,{"name":"theme-color","content":""}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"$6"}}],["$","link",null,{"rel":"preload","href":"/fonts/GeistMonoVF.woff2","as":"font","type":"font/woff2","crossOrigin":"anonymous"}],["$","link",null,{"rel":"preload","href":"/fonts/Sentient.woff2","as":"font","type":"font/woff2","crossOrigin":"anonymous"}],["$","link",null,{"rel":"preconnect","href":"https://iksodfcuqkwlvhyymcjk.supabase.co","crossOrigin":"anonymous"}]]}],["$","body",null,{"children":[["$","$L7",null,{}],["$","$L8",null,{}],["$","$9",null,{"fallback":null,"children":["$","$La",null,{}]}],["$","main",null,{"className":"container","children":["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":["$","div",null,{"style":{"display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center","height":"100%","textAlign":"center","paddingTop":"200px"},"children":[["$","h1",null,{"children":"404 - Page Not Found"}],["$","p",null,{"children":"Sorry, the page you are looking for does not exist."}],["$","a",null,{"href":"https://dan10ish.github.io","style":{"color":"blue","fontSize":"15px","paddingTop":"30px"},"children":"Go back to homepage"}]]}],"notFoundStyles":[]}]}]]}]]}]],null],null],["$Lb",null]]]]
+c:I[90716,["8124","static/chunks/8124-aa593cbf5d9de9eb.js","6605","static/chunks/app/post/%5Bslug%5D/page-d0fe3cd2bc71b93c.js"],"default"]
+e:I[81523,["8124","static/chunks/8124-aa593cbf5d9de9eb.js","6605","static/chunks/app/post/%5Bslug%5D/page-d0fe3cd2bc71b93c.js"],"BailoutToCSR"]
+f:I[22590,["8124","static/chunks/8124-aa593cbf5d9de9eb.js","6605","static/chunks/app/post/%5Bslug%5D/page-d0fe3cd2bc71b93c.js"],"default"]
+10:I[18124,["8124","static/chunks/8124-aa593cbf5d9de9eb.js","6605","static/chunks/app/post/%5Bslug%5D/page-d0fe3cd2bc71b93c.js"],"default"]
 d:T3e44,<h2>Introduction</h2>
 <p>Pathfinding algorithms are fundamental in computer science, powering applications from GPS navigation to artificial intelligence in video games. This Pathfinding Visualizer project offers an interactive platform to explore and compare various pathfinding algorithms and maze generation techniques.</p>
 <p><strong>Live Demo</strong>: <a href="https://dan10ish.github.io/pathfinding-visualizer">Pathfinding Visualizer</a></p>
@@ -323,5 +278,5 @@ Numbers: Exploration order    -→↓←↑: DFS path
 </ul>
 <p>Thank you for exploring and may your paths always be optimal!</p>
 2:[["$","$La",null,{}],["$","article",null,{"className":"blog-post markdown-body","children":[["$","div",null,{"className":"blogpost-title","children":[["$","h1",null,{"children":"Pathfinder"}],false,false]}],["$","div",null,{"className":"blogpost-meta","children":[["$","div",null,{"children":["$","p",null,{"className":"blog-date","children":"Sep 28, 2024"}]}],["$","div",null,{"children":"|"}],["$","div",null,{"children":["$","a",null,{"href":"https://x.com/dan10ish","target":"_blank","rel":"noopener noreferrer","children":[["$","span",null,{"className":"at","children":"@"}],"dan10ish"]}]}]]}],["$","div",null,{"className":"mark","children":["$","$Lc",null,{"content":"$d"}]}],["$","$9",null,{"fallback":null,"children":["$","$Le",null,{"reason":"next/dynamic","children":["$","$Lf",null,{}]}]}],["$","$L10",null,{"blogSlug":"pathfinder"}]]}]]
-b:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, viewport-fit=cover, user-scalable=yes"}],["$","meta","1",{"name":"theme-color","media":"(prefers-color-scheme: light)","content":"#ffffff"}],["$","meta","2",{"name":"theme-color","media":"(prefers-color-scheme: dark)","content":"#09090b"}],["$","meta","3",{"charSet":"utf-8"}],["$","title","4",{"children":"Pathfinder"}],["$","meta","5",{"name":"description","content":"Pathfinder - A blog post by Danish"}],["$","meta","6",{"name":"robots","content":"index, follow, nocache"}],["$","meta","7",{"name":"googlebot","content":"index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"}],["$","meta","8",{"name":"profile:username","content":"dan10ish"}],["$","meta","9",{"property":"og:title","content":"Pathfinder"}],["$","meta","10",{"property":"og:description","content":"Pathfinder - A blog post by Danish"}],["$","meta","11",{"property":"og:url","content":"https://dan10ish.github.io/post/pathfinder"}],["$","meta","12",{"property":"og:image","content":"https://dan10ish.github.io/header-images/pathfinding.jpg"}],["$","meta","13",{"property":"og:image:width","content":"1200"}],["$","meta","14",{"property":"og:image:height","content":"630"}],["$","meta","15",{"property":"og:image:alt","content":"Pathfinder"}],["$","meta","16",{"property":"og:type","content":"article"}],["$","meta","17",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","18",{"name":"twitter:title","content":"Pathfinder"}],["$","meta","19",{"name":"twitter:description","content":"Pathfinder - A blog post by Danish"}],["$","meta","20",{"name":"twitter:image","content":"https://dan10ish.github.io/header-images/pathfinding.jpg"}]]
+b:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, viewport-fit=cover, user-scalable=yes"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"Pathfinder"}],["$","meta","3",{"name":"description","content":"Pathfinder - A blog post by Danish"}],["$","meta","4",{"name":"robots","content":"index, follow, nocache"}],["$","meta","5",{"name":"googlebot","content":"index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"}],["$","meta","6",{"name":"profile:username","content":"dan10ish"}],["$","meta","7",{"property":"og:title","content":"Pathfinder"}],["$","meta","8",{"property":"og:description","content":"Pathfinder - A blog post by Danish"}],["$","meta","9",{"property":"og:url","content":"https://dan10ish.github.io/post/pathfinder"}],["$","meta","10",{"property":"og:image","content":"https://dan10ish.github.io/header-images/pathfinding.jpg"}],["$","meta","11",{"property":"og:image:width","content":"1200"}],["$","meta","12",{"property":"og:image:height","content":"630"}],["$","meta","13",{"property":"og:image:alt","content":"Pathfinder"}],["$","meta","14",{"property":"og:type","content":"article"}],["$","meta","15",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","16",{"name":"twitter:title","content":"Pathfinder"}],["$","meta","17",{"name":"twitter:description","content":"Pathfinder - A blog post by Danish"}],["$","meta","18",{"name":"twitter:image","content":"https://dan10ish.github.io/header-images/pathfinding.jpg"}]]
 1:null
