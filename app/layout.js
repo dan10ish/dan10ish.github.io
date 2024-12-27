@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import ButtonsContainer from "@/components/ButtonsContainer";
-import ThemeHandler from "@/components/ThemeHandler";
+import ThemeHandler, { ThemeButton } from "@/components/ThemeHandler";
 import "./globals.css";
 
 export const metadata = {
@@ -118,6 +118,11 @@ export default function RootLayout({ children }) {
           href="/fonts/Sentient.woff2"
           as="font"
           type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preconnect"
+          href={process.env.NEXT_PUBLIC_SUPABASE_URL}
           crossOrigin="anonymous"
         />
         <script

@@ -27,6 +27,8 @@
   --border-radius: 6px;
   --color-bg-rgb: 255, 255, 255;
   --color-text-rgb: 51, 51, 51;
+  --color-bg: #ffffff;
+  --color-text: #18181b;
 }
 
 [data-theme="light"] {
@@ -89,6 +91,8 @@ body {
   -webkit-user-select: none;
   user-select: none;
   -webkit-touch-callout: none;
+  background-color: var(--color-bg);
+  color: var(--color-text);
 }
 
 html {
@@ -829,19 +833,53 @@ table td > *:last-child {
   /* border-top: 1px solid rgba(var(--color-text-rgb), 0.1); */
 }
 
-.footer-nav {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-bottom: 2rem;
+.footer-nav-col a,
+.footer-nav-links a {
+  color: rgba(var(--color-text-rgb), 0.8);
+  text-decoration: none;
 }
 
-.footer-nav a {
+.footer-nav-mobile {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  width: 100%;
+  align-items: center;
+  padding: 0px 0.5rem;
+}
+
+.footer-nav-col {
+  display: flex;
+  gap: 3rem;
+}
+
+.footer-nav-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.footer-nav-theme {
+  display: flex;
+  align-items: flex-start;
+}
+
+.footer-nav-desktop {
+  display: none;
+}
+
+.theme-button {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--color-text);
   opacity: 0.7;
-  font-size: 0.85rem;
-  text-decoration: none;
   transition: all 0.2s ease;
+  padding: 8px;
+  margin: -8px;
+  border-radius: 8px;
 }
 
 .footer-metrics {
@@ -901,7 +939,6 @@ table td > *:last-child {
   color: var(--color-text);
   font-size: 0.8rem;
   text-decoration: none;
-  transition: all 0.2s ease;
 }
 
 .github-stars {
@@ -2036,12 +2073,22 @@ a[data-footnote-ref] {
     padding: 3rem 0.5rem 1rem;
   }
 
-  .footer-nav {
-    gap: 3rem;
+  .footer-nav-mobile {
+    display: none;
   }
 
-  .footer-nav a {
-    font-size: 0.9rem;
+  .footer-nav-desktop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    width: 100%;
+    padding: 0px 0.5rem;
+  }
+
+  .footer-nav-links {
+    display: flex;
+    gap: 3rem;
   }
 
   .metric,
@@ -2211,10 +2258,17 @@ a[data-footnote-ref] {
     transform: scale(1.02);
   }
 
-  .footer-nav a:hover {
+  .theme-button:hover {
     opacity: 1;
     color: var(--color-link);
+    transform: scale(1.15);
+  }
+
+  .footer-nav-col a:hover,
+  .footer-nav-links a:hover {
     text-decoration: none;
+    color: var(--color-link);
+    opacity: 1;
   }
 
   .like-button:not(.liked):hover svg {

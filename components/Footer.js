@@ -4,6 +4,7 @@ import { useState, useEffect, memo, useCallback } from "react";
 import { Eye, Heart, Github, Star } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import Link from "next/link";
+import { ThemeButton } from "./ThemeHandler";
 
 const Footer = ({ blogSlug = null }) => {
   const [stats, setStats] = useState({ views: null, likes: null });
@@ -156,15 +157,37 @@ const Footer = ({ blogSlug = null }) => {
     return num;
   }, []);
 
+  const isHomePage = !blogSlug;
+
   return (
     <footer className="site-footer">
-      {!blogSlug && (
-        <div className="footer-nav">
-          <Link href="/notes">Notes</Link>
-          <Link href="/photos">Photos</Link>
-          <Link href="/books">Books</Link>
-          <Link href="/resources">Resources</Link>
-        </div>
+      {isHomePage && (
+        <>
+          <div className="footer-nav-mobile">
+            <div className="footer-nav-col">
+              <div className="footer-nav-row">
+                <Link href="/notes">Notes</Link>
+                <Link href="/photos">Photos</Link>
+              </div>
+              <div className="footer-nav-row">
+                <Link href="/books">Books</Link>
+                <Link href="/resources">Resources</Link>
+              </div>
+            </div>
+            <div className="footer-nav-theme">
+              <ThemeButton />
+            </div>
+          </div>
+          <div className="footer-nav-desktop">
+            <div className="footer-nav-links">
+              <Link href="/notes">Notes</Link>
+              <Link href="/photos">Photos</Link>
+              <Link href="/books">Books</Link>
+              <Link href="/resources">Resources</Link>
+            </div>
+            <ThemeButton />
+          </div>
+        </>
       )}
       <div className="footer-metrics">
         <div className="metrics-group">

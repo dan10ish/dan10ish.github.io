@@ -14,9 +14,14 @@ const nextConfig = {
       "@react-three/drei",
       "framer-motion",
     ],
+    optimizeCss: true,
+    legacyBrowsers: false,
+    browsersListForSwc: true,
+    gzipSize: true,
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",
+    styledComponents: true,
   },
   env: {
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -46,7 +51,6 @@ const nextConfig = {
 
     return config;
   },
-  swcMinify: true,
   poweredByHeader: false,
 };
 
