@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import ButtonsContainer from "@/components/ButtonsContainer";
-import ThemeHandler, { ThemeButton } from "@/components/ThemeHandler";
+import ThemeHandler from "@/components/ThemeHandler";
+import GradientOverlay from "@/components/GradientOverlay";
 import "./globals.css";
 
 export const metadata = {
@@ -53,10 +54,6 @@ export const viewport = {
   minimumScale: 1,
   maximumScale: 5,
   userScalable: true,
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#09090b" },
-  ],
   viewportFit: "cover",
 };
 
@@ -64,90 +61,38 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="" />
         <script
-          id="theme-script"
-          dangerouslySetInnerHTML={{
-            __html: `(function() {
-              const savedTheme = localStorage.getItem('theme');
-              const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-              const theme = savedTheme === 'light'
-                ? 'light'
-                : (savedTheme === 'solarized' ? 'solarized' : 'dark');
-
-              let themeColor, textColor;
-              switch (theme) {
-                case 'dark':
-                  themeColor = '#09090b';
-                  textColor = '#fafafa';
-                  break;
-                case 'solarized':
-                  themeColor = '#002b36';
-                  textColor = '#C8D2D2';
-                  break;
-                default:
-                  themeColor = '#ffffff';
-                  textColor = '#18181b';
-              }
-
-              document.documentElement.setAttribute('data-theme', theme);
-              document.documentElement.style.setProperty('--color-bg', themeColor);
-              document.documentElement.style.setProperty('--color-text', textColor);
-              document.documentElement.style.backgroundColor = themeColor;
-              document.documentElement.style.color = textColor;
-
-              const metaTags = document.getElementsByTagName('meta');
-              for (let i = 0; i < metaTags.length; i++) {
-                if (metaTags[i].getAttribute('name') === 'theme-color') {
-                  metaTags[i].setAttribute('content', themeColor);
-                }
-              }
-
-              console.log('Theme initialized:', theme, 'Color:', textColor);
-            })();`,
-          }}
-        />
-        <style
           dangerouslySetInnerHTML={{
             __html: `
-            @font-face {
-              font-family: "Geist Mono";
-              src: url("/fonts/GeistMonoVF.woff2") format("woff2-variations");
-              font-weight: 100 900;
-              font-stretch: 75% 125%;
-              font-style: normal;
-              font-display: swap;
-            }
-            @font-face {
-              font-family: "Sentient";
-              src: url("/fonts/Sentient.woff2") format("woff2-variations");
-              font-weight: 100 900;
-              font-style: normal;
-              font-display: swap;
-            }
-            :root {
-              --font-normal: "Geist Mono", ui-monospace, monospace;
-              --font-heading: "Sentient", system-ui, sans-serif;
-              --color-bg: #ffffff;
-              --color-text: #18181b;
-              --color-link: #2563eb;
-            }
-            @media (prefers-color-scheme: dark) {
-              :root {
-                --color-bg: #09090b;
-                --color-text: #fafafa;
-                --color-link: #3b82f6;
-              }
-            }
-            body {
-              font-family: var(--font-normal);
-              color: var(--color-text);
-              background: var(--color-bg);
-              margin: 0;
-              padding: 0 20px 40px;
-            }
-          `,
+              (function() {
+                function setTheme() {
+                  try {
+                    const savedTheme = localStorage.getItem('theme');
+                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+                    const themeColors = {
+                      light: '#ffffff',
+                      dark: '#09090b',
+                      solarized: '#002b36'
+                    };
+                    document.documentElement.setAttribute('data-theme', theme);
+
+                    let metaTheme = document.querySelector('meta[name="theme-color"]');
+                    if (!metaTheme) {
+                      metaTheme = document.createElement('meta');
+                      metaTheme.name = 'theme-color';
+                      document.head.appendChild(metaTheme);
+                    }
+                    metaTheme.content = themeColors[theme];
+                  } catch (e) {
+                    console.error('Theme initialization error:', e);
+                  }
+                }
+                setTheme();
+                document.addEventListener('DOMContentLoaded', setTheme);
+              })();
+            `,
           }}
         />
         <link
@@ -171,7 +116,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
-        <div className="gradient-overlay" />
+        <GradientOverlay />
         <ThemeHandler />
         <Suspense fallback={null}>
           <ButtonsContainer />

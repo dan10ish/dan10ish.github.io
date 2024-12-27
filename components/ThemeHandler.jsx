@@ -3,79 +3,57 @@
 import { useState, useEffect } from "react";
 import { Sun, Moon, Palette } from "lucide-react";
 
-function updateThemeMetaTag(theme) {
-  let themeColor, textColor;
+const themes = {
+  light: { bg: "#ffffff", text: "#18181b" },
+  dark: { bg: "#09090b", text: "#fafafa" },
+  solarized: { bg: "#002b36", text: "#C8D2D2" },
+};
 
-  switch (theme) {
-    case "dark":
-      themeColor = "#09090b";
-      textColor = "#fafafa";
-      break;
-    case "solarized":
-      themeColor = "#002b36";
-      textColor = "#C8D2D2";
-      break;
-    default:
-      themeColor = "#ffffff";
-      textColor = "#18181b";
-  }
-
+function updateTheme(theme) {
+  const { bg, text } = themes[theme];
   document.documentElement.setAttribute("data-theme", theme);
-
-  document.documentElement.style.setProperty("--color-bg", themeColor);
-  document.documentElement.style.setProperty("--color-text", textColor);
-
-  document.documentElement.style.backgroundColor = themeColor;
-  document.documentElement.style.color = textColor;
-
-  const metaTags = document.getElementsByTagName("meta");
-  for (let i = 0; i < metaTags.length; i++) {
-    if (metaTags[i].getAttribute("name") === "theme-color") {
-      metaTags[i].setAttribute("content", themeColor);
-    }
+  const metaTheme = document.querySelector('meta[name="theme-color"]');
+  if (metaTheme) {
+    metaTheme.setAttribute("content", bg);
+  } else {
+    const meta = document.createElement("meta");
+    meta.name = "theme-color";
+    meta.content = bg;
+    document.head.appendChild(meta);
   }
-
-  console.log(
-    `Theme applied: ${theme}, Color: ${themeColor}, Text: ${textColor}`,
-  );
 }
 
 export function ThemeButton() {
-  const [themeState, setThemeState] = useState("light");
+  const [theme, setTheme] = useState("");
   const [mounted, setMounted] = useState(false);
-
-  const themeIcons = {
-    light: <Sun size={20} />,
-    dark: <Moon size={20} />,
-    solarized: <Palette size={20} />,
-  };
 
   useEffect(() => {
     setMounted(true);
-    const savedTheme = localStorage.getItem("theme") || "light";
-
-    const initialTheme =
-      savedTheme === "light"
-        ? "light"
-        : savedTheme === "solarized"
-          ? "solarized"
-          : "dark";
-
-    setThemeState(initialTheme);
-    updateThemeMetaTag(initialTheme);
+    const savedTheme = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)",
+    ).matches;
+    const initialTheme = savedTheme || (prefersDark ? "dark" : "light");
+    setTheme(initialTheme);
+    updateTheme(initialTheme);
   }, []);
 
   const cycleTheme = () => {
     const themeOrder = ["light", "dark", "solarized"];
-    const currentIndex = themeOrder.indexOf(themeState);
-    const nextTheme = themeOrder[(currentIndex + 1) % themeOrder.length];
-
-    setThemeState(nextTheme);
-    updateThemeMetaTag(nextTheme);
+    const nextTheme =
+      themeOrder[(themeOrder.indexOf(theme) + 1) % themeOrder.length];
+    setTheme(nextTheme);
+    updateTheme(nextTheme);
     localStorage.setItem("theme", nextTheme);
   };
 
   if (!mounted) return null;
+
+  const icons = {
+    light: <Sun size={20} />,
+    dark: <Moon size={20} />,
+    solarized: <Palette size={20} />,
+  };
 
   return (
     <button
@@ -83,34 +61,32 @@ export function ThemeButton() {
       className="theme-button"
       aria-label="Toggle theme"
     >
-      {themeIcons[themeState]}
+      {icons[theme]}
     </button>
   );
 }
 
 export default function ThemeHandler() {
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") || "light";
+    const init = () => {
+      const savedTheme = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
+      const theme = savedTheme || (prefersDark ? "dark" : "light");
+      updateTheme(theme);
+    };
 
-    const theme =
-      savedTheme === "light"
-        ? "light"
-        : savedTheme === "solarized"
-          ? "solarized"
-          : "dark";
+    init();
 
-    updateThemeMetaTag(theme);
-
-    if (!savedTheme) {
-      const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-      const handleChange = (e) => {
-        const newTheme = e.matches ? "dark" : "light";
-        updateThemeMetaTag(newTheme);
-      };
-
-      mediaQuery.addEventListener("change", handleChange);
-      return () => mediaQuery.removeEventListener("change", handleChange);
-    }
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", init);
+    return () => {
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .removeEventListener("change", init);
+    };
   }, []);
 
   return null;
