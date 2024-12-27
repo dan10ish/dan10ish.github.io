@@ -1,18 +1,30 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Sun, Moon } from "lucide-react";
+import { Sun, Moon, Palette } from "lucide-react";
 
-function updateThemeMetaTag(isDark) {
-  const themeColor = isDark ? "#09090b" : "#ffffff";
-  const textColor = isDark ? "#fafafa" : "#18181b";
+function updateThemeMetaTag(theme) {
+  let themeColor, textColor;
 
-  document.documentElement.setAttribute(
-    "data-theme",
-    isDark ? "dark" : "light",
-  );
+  switch (theme) {
+    case "dark":
+      themeColor = "#09090b";
+      textColor = "#fafafa";
+      break;
+    case "solarized":
+      themeColor = "#002b36";
+      textColor = "#C8D2D2";
+      break;
+    default:
+      themeColor = "#ffffff";
+      textColor = "#18181b";
+  }
+
+  document.documentElement.setAttribute("data-theme", theme);
+
   document.documentElement.style.setProperty("--color-bg", themeColor);
   document.documentElement.style.setProperty("--color-text", textColor);
+
   document.documentElement.style.backgroundColor = themeColor;
   document.documentElement.style.color = textColor;
 
@@ -22,63 +34,78 @@ function updateThemeMetaTag(isDark) {
       metaTags[i].setAttribute("content", themeColor);
     }
   }
+
+  console.log(
+    `Theme applied: ${theme}, Color: ${themeColor}, Text: ${textColor}`,
+  );
 }
 
 export function ThemeButton() {
-  const [isDark, setIsDark] = useState(false);
+  const [themeState, setThemeState] = useState("light");
   const [mounted, setMounted] = useState(false);
+
+  const themeIcons = {
+    light: <Sun size={20} />,
+    dark: <Moon size={20} />,
+    solarized: <Palette size={20} />,
+  };
 
   useEffect(() => {
     setMounted(true);
-    const savedTheme = localStorage.getItem("theme");
-    const systemPrefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)",
-    ).matches;
-    const currentTheme = savedTheme || (systemPrefersDark ? "dark" : "light");
-    const isDarkTheme = currentTheme === "dark";
+    const savedTheme = localStorage.getItem("theme") || "light";
 
-    setIsDark(isDarkTheme);
-    updateThemeMetaTag(isDarkTheme);
+    const initialTheme =
+      savedTheme === "light"
+        ? "light"
+        : savedTheme === "solarized"
+          ? "solarized"
+          : "dark";
+
+    setThemeState(initialTheme);
+    updateThemeMetaTag(initialTheme);
   }, []);
 
-  const toggleTheme = () => {
-    const newIsDark = !isDark;
-    setIsDark(newIsDark);
-    const theme = newIsDark ? "dark" : "light";
+  const cycleTheme = () => {
+    const themeOrder = ["light", "dark", "solarized"];
+    const currentIndex = themeOrder.indexOf(themeState);
+    const nextTheme = themeOrder[(currentIndex + 1) % themeOrder.length];
 
-    updateThemeMetaTag(newIsDark);
-    localStorage.setItem("theme", theme);
+    setThemeState(nextTheme);
+    updateThemeMetaTag(nextTheme);
+    localStorage.setItem("theme", nextTheme);
   };
 
   if (!mounted) return null;
 
   return (
     <button
-      onClick={toggleTheme}
+      onClick={cycleTheme}
       className="theme-button"
       aria-label="Toggle theme"
     >
-      {isDark ? <Sun size={20} /> : <Moon size={20} />}
+      {themeIcons[themeState]}
     </button>
   );
 }
 
 export default function ThemeHandler() {
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    const systemPrefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)",
-    ).matches;
-    const theme = savedTheme || (systemPrefersDark ? "dark" : "light");
-    const isDark = theme === "dark";
+    const savedTheme = localStorage.getItem("theme") || "light";
 
-    updateThemeMetaTag(isDark);
+    const theme =
+      savedTheme === "light"
+        ? "light"
+        : savedTheme === "solarized"
+          ? "solarized"
+          : "dark";
+
+    updateThemeMetaTag(theme);
 
     if (!savedTheme) {
       const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
       const handleChange = (e) => {
-        const newIsDark = e.matches;
-        updateThemeMetaTag(newIsDark);
+        const newTheme = e.matches ? "dark" : "light";
+        updateThemeMetaTag(newTheme);
       };
 
       mediaQuery.addEventListener("change", handleChange);

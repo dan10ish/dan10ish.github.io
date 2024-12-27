@@ -68,28 +68,44 @@ export default function RootLayout({ children }) {
         <script
           id="theme-script"
           dangerouslySetInnerHTML={{
-            __html: `
-(function() {
-  const savedTheme = localStorage.getItem('theme');
-  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const isDark = savedTheme ? savedTheme === 'dark' : systemPrefersDark;
-  const themeColor = isDark ? '#09090b' : '#ffffff';
-  const textColor = isDark ? '#fafafa' : '#18181b';
+            __html: `(function() {
+              const savedTheme = localStorage.getItem('theme');
+              const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
-  document.documentElement.style.setProperty('--color-bg', themeColor);
-  document.documentElement.style.setProperty('--color-text', textColor);
-  document.documentElement.style.backgroundColor = themeColor;
-  document.documentElement.style.color = textColor;
+              const theme = savedTheme === 'light'
+                ? 'light'
+                : (savedTheme === 'solarized' ? 'solarized' : 'dark');
 
-  const metaTags = document.getElementsByTagName('meta');
-  for (let i = 0; i < metaTags.length; i++) {
-    if (metaTags[i].getAttribute('name') === 'theme-color') {
-      metaTags[i].setAttribute('content', themeColor);
-    }
-  }
-})();
-            `,
+              let themeColor, textColor;
+              switch (theme) {
+                case 'dark':
+                  themeColor = '#09090b';
+                  textColor = '#fafafa';
+                  break;
+                case 'solarized':
+                  themeColor = '#002b36';
+                  textColor = '#C8D2D2';
+                  break;
+                default:
+                  themeColor = '#ffffff';
+                  textColor = '#18181b';
+              }
+
+              document.documentElement.setAttribute('data-theme', theme);
+              document.documentElement.style.setProperty('--color-bg', themeColor);
+              document.documentElement.style.setProperty('--color-text', textColor);
+              document.documentElement.style.backgroundColor = themeColor;
+              document.documentElement.style.color = textColor;
+
+              const metaTags = document.getElementsByTagName('meta');
+              for (let i = 0; i < metaTags.length; i++) {
+                if (metaTags[i].getAttribute('name') === 'theme-color') {
+                  metaTags[i].setAttribute('content', themeColor);
+                }
+              }
+
+              console.log('Theme initialized:', theme, 'Color:', textColor);
+            })();`,
           }}
         />
         <style
