@@ -64,6 +64,34 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <meta name="theme-color" content="#ffffff" />
+        <script
+          id="theme-script"
+          dangerouslySetInnerHTML={{
+            __html: `
+(function() {
+  const savedTheme = localStorage.getItem('theme');
+  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const isDark = savedTheme ? savedTheme === 'dark' : systemPrefersDark;
+  const themeColor = isDark ? '#09090b' : '#ffffff';
+  const textColor = isDark ? '#fafafa' : '#18181b';
+
+  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  document.documentElement.style.setProperty('--color-bg', themeColor);
+  document.documentElement.style.setProperty('--color-text', textColor);
+  document.documentElement.style.backgroundColor = themeColor;
+  document.documentElement.style.color = textColor;
+
+  const metaTags = document.getElementsByTagName('meta');
+  for (let i = 0; i < metaTags.length; i++) {
+    if (metaTags[i].getAttribute('name') === 'theme-color') {
+      metaTags[i].setAttribute('content', themeColor);
+    }
+  }
+})();
+            `,
+          }}
+        />
         <style
           dangerouslySetInnerHTML={{
             __html: `
@@ -124,11 +152,6 @@ export default function RootLayout({ children }) {
           rel="preconnect"
           href={process.env.NEXT_PUBLIC_SUPABASE_URL}
           crossOrigin="anonymous"
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{const e=window.matchMedia("(prefers-color-scheme: dark)").matches,t=document.documentElement,o=e?"#09090b":"#ffffff";t.setAttribute("data-theme",e?"dark":"light"),t.style.backgroundColor=o,t.style.color=e?"#fafafa":"#18181b"}catch(e){}})();`,
-          }}
         />
       </head>
       <body>
