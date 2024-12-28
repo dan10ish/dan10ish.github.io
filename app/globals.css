@@ -111,7 +111,7 @@ html {
 
   --color-bg: #002b36;
   --color-text: #c8d2d2;
-  --color-link: #6ca6cd;
+  --color-link: #268bd2;
 
   --blockquote-color: #839496;
   --code-background-color: #073642;
@@ -462,7 +462,7 @@ table td > *:last-child {
   display: grid;
   grid-template-columns: 55px 1fr auto;
   align-items: baseline;
-  padding: 12px 8px;
+  padding: 15px 8px;
   text-decoration: none;
   border-radius: var(--border-radius);
   transition: background-color 0.15s ease;
@@ -517,6 +517,10 @@ table td > *:last-child {
   top: 2.5px;
 }
 
+.blog-card:hover .blog-arrow {
+  opacity: 0 !important;
+}
+
 .show-more {
   display: flex;
   align-items: center;
@@ -552,6 +556,11 @@ table td > *:last-child {
 }
 
 /* Status Badges */
+
+.blog-status {
+  top: -3px !important;
+  text-transform: uppercase;
+}
 
 .blog-card[data-status="development"] .blog-status,
 [data-theme="light"] .blog-card[data-status="development"] .blog-status {
@@ -639,22 +648,6 @@ table td > *:last-child {
   color: #859900;
   border: 1px solid rgba(133, 153, 0, 0.3);
   font-weight: 500;
-}
-
-.development-badge,
-.draft-badge {
-  display: inline-flex;
-  align-items: center;
-  font-size: 0.65rem;
-  padding: 3px 6px;
-  border-radius: 4px;
-  margin: 0 !important;
-  font-weight: 500;
-  font-family: var(--font-normal);
-  opacity: 1;
-  position: relative;
-  top: -3px;
-  text-transform: uppercase;
 }
 
 /* Projects Section */
@@ -2106,6 +2099,10 @@ a[data-footnote-ref] {
   .blog-meta {
     gap: 20px;
   }
+  
+  .blog-status{
+    top: -5px !important;
+  }
 
   .blog-year {
     font-size: 0.8rem;
@@ -2168,6 +2165,10 @@ a[data-footnote-ref] {
     padding: 0.4rem 1rem;
     height: 40px;
     font-size: 0.85rem;
+  }
+
+  .blog-card:hover .blog-arrow {
+    opacity: 1 !important;
   }
 }
 
