@@ -557,9 +557,20 @@ table td > *:last-child {
 
 /* Status Badges */
 
+.development-badge,
+.draft-badge {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  justify-self: end;
+  cursor: default;
+}
+
 .blog-status {
   top: -3px !important;
   text-transform: uppercase;
+  cursor: default;
 }
 
 .blog-card[data-status="development"] .blog-status,
@@ -2099,8 +2110,8 @@ a[data-footnote-ref] {
   .blog-meta {
     gap: 20px;
   }
-  
-  .blog-status{
+
+  .blog-status {
     top: -5px !important;
   }
 
