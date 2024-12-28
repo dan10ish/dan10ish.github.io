@@ -74,6 +74,7 @@ html {
   --color-text-rgb: 24, 24, 27;
   --github-border: rgba(24, 24, 27, 0.1);
   --github-hover-bg: #f8fafc;
+  --color-bg-rgb: 255, 255, 255;
   color-scheme: light;
 }
 
@@ -166,7 +167,7 @@ body {
 
 .infinity-symbol {
   font-size: 1.2rem;
-  transform: translateY(-2px);
+  transform: translateY(-1px);
   opacity: 0.75;
   display: inline-block;
 }
