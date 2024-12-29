@@ -8,7 +8,7 @@ export async function GET(request) {
   if (!id) {
     return NextResponse.json(
       { error: "Missing id parameter" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -49,7 +49,7 @@ export async function POST(request) {
   try {
     const { data, error } = await supabase.rpc(
       type === "view" ? "increment_views" : "increment_likes",
-      { row_id: id }
+      { row_id: id },
     );
 
     if (error) throw error;
@@ -59,7 +59,7 @@ export async function POST(request) {
     console.error("Error:", error);
     return NextResponse.json(
       { error: "Internal server error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

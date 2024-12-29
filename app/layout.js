@@ -43,9 +43,7 @@ export const metadata = {
       },
     ],
   },
-  other: {
-    "profile:username": "dan10ish",
-  },
+  other: { "profile:username": "dan10ish" },
 };
 
 export const viewport = {
@@ -71,11 +69,7 @@ export default function RootLayout({ children }) {
                     const savedTheme = localStorage.getItem('theme');
                     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
                     const theme = savedTheme || (prefersDark ? 'dark' : 'light');
-                    const themeColors = {
-                      light: '#ffffff',
-                      dark: '#09090b',
-                      solarized: '#002b36'
-                    };
+                    const themeColors = { light: '#ffffff', dark: '#09090b', solarized: '#002b36' };
                     document.documentElement.setAttribute('data-theme', theme);
 
                     let metaTheme = document.querySelector('meta[name="theme-color"]');

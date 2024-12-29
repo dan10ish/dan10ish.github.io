@@ -566,6 +566,7 @@ table td > *:last-child {
   white-space: nowrap;
   justify-self: end;
   cursor: default;
+  text-transform: uppercase;
 }
 
 .blog-status {
@@ -1324,7 +1325,7 @@ pre code {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
-  padding: 0.75rem 0;
+  padding: 2rem 0;
 }
 
 @media (min-width: 480px) {
@@ -2122,7 +2123,7 @@ a[data-footnote-ref] {
 
   .blog-status {
     font-size: 0.7rem;
-    right: 26px;
+    right: 30px;
     top: -3.5px;
   }
 
