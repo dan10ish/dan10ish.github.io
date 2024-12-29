@@ -91,7 +91,7 @@ export default function RootLayout({ children }) {
         />
         <link
           rel="preload"
-          href="/fonts/GeistMonoVF.woff2"
+          href="/fonts/GeistMono.woff2"
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
