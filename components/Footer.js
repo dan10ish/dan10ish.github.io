@@ -1,7 +1,16 @@
 "use client";
 
 import { useState, useEffect, memo, useCallback } from "react";
-import { Eye, Heart, Github, Star } from "lucide-react";
+import {
+  Eye,
+  Heart,
+  Github,
+  Star,
+  BookText,
+  Library,
+  Image,
+  FolderSearch,
+} from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import Link from "next/link";
 import { ThemeButton } from "./ThemeHandler";
@@ -166,12 +175,24 @@ const Footer = ({ blogSlug = null }) => {
           <div className="footer-nav-mobile">
             <div className="footer-nav-col">
               <div className="footer-nav-row">
-                <Link href="/notes">Notes</Link>
-                <Link href="/photos">Photos</Link>
+                <Link href="/notes" className="footer-link">
+                  <BookText size={16} />
+                  notes
+                </Link>
+                <Link href="/photos" className="footer-link">
+                  <Image size={16} />
+                  photos
+                </Link>
               </div>
               <div className="footer-nav-row">
-                <Link href="/books">Books</Link>
-                <Link href="/resources">Resources</Link>
+                <Link href="/books" className="footer-link">
+                  <Library size={16} />
+                  books
+                </Link>
+                <Link href="/resources" className="footer-link">
+                  <FolderSearch size={16} />
+                  resources
+                </Link>
               </div>
             </div>
             <div className="footer-nav-theme">
@@ -180,10 +201,22 @@ const Footer = ({ blogSlug = null }) => {
           </div>
           <div className="footer-nav-desktop">
             <div className="footer-nav-links">
-              <Link href="/notes">Notes</Link>
-              <Link href="/photos">Photos</Link>
-              <Link href="/books">Books</Link>
-              <Link href="/resources">Resources</Link>
+              <Link href="/notes" className="footer-link">
+                <BookText size={16} />
+                notes
+              </Link>
+              <Link href="/photos" className="footer-link">
+                <Image size={16} />
+                photos
+              </Link>
+              <Link href="/books" className="footer-link">
+                <Library size={16} />
+                books
+              </Link>
+              <Link href="/resources" className="footer-link">
+                <FolderSearch size={16} />
+                resources
+              </Link>
             </div>
             <ThemeButton />
           </div>

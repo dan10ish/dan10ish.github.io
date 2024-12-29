@@ -926,7 +926,15 @@ table td > *:last-child {
   /* border-top: 1px solid rgba(var(--color-text-rgb), 0.1); */
 }
 
-.footer-nav-col a,
+.footer-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(var(--color-text-rgb), 0.8);
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
 .footer-nav-links a {
   color: rgba(var(--color-text-rgb), 0.8);
   text-decoration: none;

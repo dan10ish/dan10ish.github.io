@@ -7,7 +7,17 @@ import "./globals.css";
 export const metadata = {
   metadataBase: new URL("https://danish.bio"),
   title: "Danish",
-  description: "Danish's website containing his writings and projects",
+  description:
+    "Danish is a mechatronics engineer exploring machine learning, robotics, and computer science. Discover his projects, writings, and technical insights.",
+  keywords: [
+    "Danish",
+    "mechatronics",
+    "robotics",
+    "machine learning",
+    "developer",
+    "engineer",
+    "portfolio",
+  ],
   robots: {
     index: true,
     follow: true,
@@ -20,19 +30,24 @@ export const metadata = {
       "max-snippet": -1,
     },
   },
+  alternates: {
+    canonical: "https://danish.bio",
+  },
   twitter: {
     card: "summary_large_image",
     site: "@dan10ish",
     creator: "@dan10ish",
-    title: "Danish's Website",
-    description: "Danish's personal website",
+    title: "Danish",
+    description:
+      "Danish's personal website featuring his engineering projects, technical writings, and insights in robotics and machine learning.",
     images: ["https://i.ibb.co/xYpLtw6/Link-Preview.png"],
   },
   openGraph: {
     type: "website",
     siteName: "Danish",
     title: "Danish",
-    description: "Danish's website containing his writings and projects",
+    description:
+      "Danish's personal website featuring his engineering projects, technical writings, and insights in robotics and machine learning.",
     url: "https://danish.bio",
     images: [
       {
@@ -40,10 +55,14 @@ export const metadata = {
         width: 1200,
         height: 675,
         type: "image/png",
+        alt: "Danish's Portfolio Preview",
       },
     ],
   },
-  other: { "profile:username": "dan10ish" },
+  other: {
+    "profile:username": "dan10ish",
+    "profile:first_name": "Danish",
+  },
 };
 
 export const viewport = {
