@@ -15,9 +15,13 @@ export default function NotFound() {
       <p>Sorry, the page you are looking for does not exist.</p>
       <a
         href="https://dan10ish.github.io"
-        style={{ color: "blue", fontSize: "15px", paddingTop: "30px" }}
+        style={{
+          color: "blue",
+          fontSize: "15px",
+          paddingTop: "30px",
+        }}
       >
-        Go back to homepage
+        Go back to homepage.
       </a>
     </div>
   );
