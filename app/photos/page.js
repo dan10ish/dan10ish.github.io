@@ -12,11 +12,6 @@ const PhotoGrid = dynamic(() => import("@/components/PhotoGrid"), {
 export default function PhotosPage() {
   return (
     <main>
-      <div className="title-container">
-        <div className="title-link">
-          <h1>Photos</h1>
-        </div>
-      </div>
       <PhotoGrid />
       <ButtonsContainer />
     </main>

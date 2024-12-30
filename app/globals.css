@@ -681,8 +681,7 @@ table td > *:last-child {
   top: 0;
   background: var(--color-bg);
   z-index: 100;
-  border-bottom: 1px solid rgba(var(--color-text-rgb), 0.1);
-  padding: 2rem 0 2rem;
+  padding: 2rem 0 1rem;
   margin: -1rem 0 1rem 0;
 }
 
@@ -695,7 +694,6 @@ table td > *:last-child {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
 }
 
 .sticky-filter {
@@ -704,7 +702,6 @@ table td > *:last-child {
 
 .content-scroll {
   position: relative;
-  margin-top: 2rem;
 }
 
 .section-header h2 {
@@ -1357,7 +1354,7 @@ pre code {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
-  padding: 0.75rem 0;
+  padding: 2rem 0;
 }
 
 .notes-grid {
@@ -1767,7 +1764,7 @@ a[data-footnote-ref] {
 
 .filter-container {
   position: relative;
-  margin: 1rem 0 0;
+  margin: 1rem 0;
 }
 
 .active-filters {
@@ -1886,7 +1883,7 @@ a[data-footnote-ref] {
 .photo-grid {
   display: flex;
   margin-left: -1rem;
-  margin-top: 1rem;
+  margin-top: 2rem;
   width: auto;
 }
 
@@ -2193,7 +2190,7 @@ a[data-footnote-ref] {
   .books-grid {
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: 1.5rem;
-    padding: 1rem 0;
+    padding: 2rem 0;
   }
 
   .book-cover {
@@ -2240,7 +2237,7 @@ a[data-footnote-ref] {
   .notes-grid {
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: 1.5rem;
-    padding: 1rem 0;
+    padding: 2rem 0;
   }
 
   .photo-grid {

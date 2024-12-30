@@ -39,7 +39,7 @@ export default function NotesPage() {
 
   return (
     <main>
-      <div className="title-container">
+      <div className="title-container title-center">
         <div className="title-link">
           <h1>Notes</h1>
         </div>
