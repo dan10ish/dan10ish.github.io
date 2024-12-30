@@ -801,9 +801,7 @@ table td > *:last-child {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  transition:
-    transform 0.3s ease,
-    opacity 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .buttons-container.hidden {
@@ -2453,6 +2451,10 @@ a[data-footnote-ref] {
     text-decoration: none;
   }
 
+  .show-more:hover svg {
+    transform: scale(1.2);
+  }
+
   .about-link:hover {
     text-decoration: none;
     background: var(--color-link);
@@ -2477,7 +2479,7 @@ a[data-footnote-ref] {
   }
 
   .footer-nav-col a:hover svg,
-  .footer-nav-links a:hover  svg{
+  .footer-nav-links a:hover svg {
     transform: scale(1.2);
   }
 
