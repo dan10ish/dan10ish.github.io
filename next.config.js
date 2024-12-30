@@ -1,19 +1,12 @@
 const nextConfig = {
   reactStrictMode: true,
   output: "export",
-  images: {
-    unoptimized: false,
-    domains: ["danish.bio"],
-  },
+  images: { unoptimized: false },
   compress: true,
   swcMinify: true,
-  reactStrictMode: true,
   experimental: {
-    optimizePackageImports: [
-      "lucide-react",
-      "@react-three/drei",
-      "framer-motion",
-    ],
+    optimizePackageImports: ["lucide-react"],
+    optimizeCss: true,
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",
@@ -33,20 +26,29 @@ const nextConfig = {
       splitChunks: {
         chunks: "all",
         minSize: 20000,
-        maxSize: 70000,
+        maxSize: 40000,
         cacheGroups: {
           vendor: {
             test: /[\\/]node_modules[\\/]/,
-            name: "vendor",
-            enforce: true,
+            name: (module) => {
+              const packageName = module.context.match(
+                /[\\/]node_modules[\\/](.*?)([\\/]|$)/
+              )[1];
+              return `vendor.${packageName.replace("@", "")}`;
+            },
+            priority: 20,
+          },
+          common: {
+            minChunks: 2,
+            priority: 10,
+            reuseExistingChunk: true,
           },
         },
       },
+      runtimeChunk: "single",
     };
-
     return config;
   },
-  poweredByHeader: false,
 };
 
 module.exports = nextConfig;

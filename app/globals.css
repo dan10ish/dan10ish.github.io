@@ -1603,7 +1603,7 @@ pre code {
   .resource-card[data-category="YouTube"]
   .resource-title,
 [data-theme="solarized"] .resource-card[data-category="YouTube"] svg {
-  color: rgb(220, 50, 47, 0.9);
+  color: rgb(255, 4, 0);
 }
 
 [data-theme="solarized"] .resource-card[data-category="Papers"] {
@@ -1626,7 +1626,7 @@ pre code {
 
 [data-theme="solarized"] .resource-card[data-category="Papers"] .resource-title,
 [data-theme="solarized"] .resource-card[data-category="Papers"] svg {
-  color: rgb(133, 153, 0, 0.9);
+  color: rgb(166, 192, 3);
 }
 
 [data-theme="solarized"] .resource-card[data-category="Tools"] {
@@ -1649,7 +1649,7 @@ pre code {
 
 [data-theme="solarized"] .resource-card[data-category="Tools"] .resource-title,
 [data-theme="solarized"] .resource-card[data-category="Tools"] svg {
-  color: rgb(38, 139, 210, 0.9);
+  color: rgb(2, 149, 255);
 }
 
 /* Footnotes */
@@ -2474,6 +2474,11 @@ a[data-footnote-ref] {
     text-decoration: none;
     color: var(--color-link);
     opacity: 1;
+  }
+
+  .footer-nav-col a:hover svg,
+  .footer-nav-links a:hover  svg{
+    transform: scale(1.2);
   }
 
   .like-button:not(.liked):hover svg {
