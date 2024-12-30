@@ -676,6 +676,37 @@ table td > *:last-child {
   margin-bottom: 1.5rem;
 }
 
+.sticky-wrapper {
+  position: sticky;
+  top: 0;
+  background: var(--color-bg);
+  z-index: 100;
+  border-bottom: 1px solid rgba(var(--color-text-rgb), 0.1);
+  padding: 2rem 0 2rem;
+  margin: -1rem 0 1rem 0;
+}
+
+.sticky-wrapper h2 {
+  margin: 0;
+  padding-bottom: 0.5rem;
+}
+
+.sticky-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.sticky-filter {
+  position: relative;
+}
+
+.content-scroll {
+  position: relative;
+  margin-top: 2rem;
+}
+
 .section-header h2 {
   margin: 0;
 }
@@ -1736,7 +1767,7 @@ a[data-footnote-ref] {
 
 .filter-container {
   position: relative;
-  margin: 1rem 0;
+  margin: 1rem 0 0;
 }
 
 .active-filters {

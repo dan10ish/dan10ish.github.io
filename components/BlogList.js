@@ -5,7 +5,12 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import FilterComponent from "./FilterComponent";
 
-export default function BlogList({ posts, showAll = false }) {
+export default function BlogList({
+  posts,
+  showAll = false,
+  hideFilter = false,
+  hideHeader = false,
+}) {
   const [selectedTags, setSelectedTags] = useState([]);
 
   const allTags = useMemo(() => {
@@ -28,7 +33,7 @@ export default function BlogList({ posts, showAll = false }) {
   }, [filteredPosts, showAll, selectedTags]);
 
   return (
-    <section>
+    <section className={showAll ? "" : "home-section"}>
       <h2>Posts</h2>
 
       <FilterComponent
