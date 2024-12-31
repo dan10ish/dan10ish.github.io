@@ -806,12 +806,6 @@ table td > *:last-child {
     opacity 0.3s ease;
 }
 
-.buttons-container.hidden {
-  transform: translateY(150%);
-  opacity: 0;
-  pointer-events: none;
-}
-
 .home-button,
 .toc-toggle,
 .scroll-to-top {
@@ -826,10 +820,13 @@ table td > *:last-child {
   border: none;
   padding: 0;
   transition: all 0.2s ease;
+  background: none;
 }
 
-.toc-toggle {
-  background: none;
+.buttons-container.hidden {
+  transform: translateY(150%);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .home-button svg,
@@ -2379,8 +2376,8 @@ a[data-footnote-ref] {
   .scroll-to-top:hover,
   .home-button:hover,
   .toc-toggle:hover {
-    transform: scale(1.15);
     color: var(--color-link);
+    background: none;
   }
 
   .theme-circle:not(.active):hover {
