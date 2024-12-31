@@ -28,8 +28,8 @@ export default function ProjectsPage() {
 
   return (
     <main>
-      <div className="sticky-wrapper">
-        <div className="sticky-header">
+      <div className="sticky-header-container sticky-effect">
+        <div className="title-container">
           <h2>Projects</h2>
           <a
             href="https://github.com/dan10ish"
@@ -41,14 +41,12 @@ export default function ProjectsPage() {
             <span>dan10ish</span>
           </a>
         </div>
-        <div className="sticky-filter">
-          <FilterComponent
-            options={tags}
-            activeFilters={selectedTags}
-            onFilterChange={setSelectedTags}
-            placeholder=""
-          />
-        </div>
+        <FilterComponent
+          options={tags}
+          activeFilters={selectedTags}
+          onFilterChange={setSelectedTags}
+          placeholder=""
+        />
       </div>
 
       <div className="content-scroll">

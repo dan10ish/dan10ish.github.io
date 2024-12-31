@@ -27,16 +27,14 @@ export default function PostsPage() {
 
   return (
     <main>
-      <div className="sticky-wrapper">
+      <div className="sticky-header-container sticky-effect">
         <h2>Posts</h2>
-        <div className="sticky-filter">
-          <FilterComponent
-            options={allTags}
-            activeFilters={selectedTags}
-            onFilterChange={setSelectedTags}
-            placeholder=""
-          />
-        </div>
+        <FilterComponent
+          options={allTags}
+          activeFilters={selectedTags}
+          onFilterChange={setSelectedTags}
+          placeholder=""
+        />
       </div>
 
       <div className="content-scroll">

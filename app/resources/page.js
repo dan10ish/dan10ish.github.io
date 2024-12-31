@@ -29,18 +29,20 @@ export default function ResourcesPage() {
 
   return (
     <main>
-      <div className="title-container">
-        <div className="title-link">
-          <h1>Resources</h1>
+      <div className="sticky-header-container">
+        <div className="title-container">
+          <div className="title-link">
+            <h1>Resources</h1>
+          </div>
         </div>
-      </div>
 
-      <FilterComponent
-        options={resourceCategories}
-        activeFilters={selectedCategories}
-        onFilterChange={setSelectedCategories}
-        placeholder=""
-      />
+        <FilterComponent
+          options={resourceCategories}
+          activeFilters={selectedCategories}
+          onFilterChange={setSelectedCategories}
+          placeholder=""
+        />
+      </div>
 
       <div className="resources-grid">
         {filteredResources.map((resource) => (

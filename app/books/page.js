@@ -27,18 +27,20 @@ export default function BooksPage() {
 
   return (
     <main>
-      <div className="title-container title-center">
-        <div className="title-link">
-          <h1>Books</h1>
+      <div className="sticky-header-container">
+        <div className="title-container">
+          <div className="title-link">
+            <h1>Books</h1>
+          </div>
         </div>
-      </div>
 
-      <FilterComponent
-        options={tags}
-        activeFilters={selectedTags}
-        onFilterChange={setSelectedTags}
-        placeholder=""
-      />
+        <FilterComponent
+          options={tags}
+          activeFilters={selectedTags}
+          onFilterChange={setSelectedTags}
+          placeholder=""
+        />
+      </div>
 
       <div className="books-grid">
         {filteredBooks.map((book) => (
