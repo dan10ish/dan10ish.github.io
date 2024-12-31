@@ -21,6 +21,8 @@ const Footer = ({ blogSlug = null }) => {
   const [stars, setStars] = useState(null);
   const [isUpdating, setIsUpdating] = useState(false);
   const [isGithubHovered, setIsGithubHovered] = useState(false);
+  const [isTouching, setIsTouching] = useState(null);
+  const [touchTimeout, setTouchTimeout] = useState(null);
 
   useEffect(() => {
     const pageId = blogSlug ? `post-${blogSlug}` : "home";
@@ -166,6 +168,17 @@ const Footer = ({ blogSlug = null }) => {
     return num;
   }, []);
 
+  const handleTouchStart = (id) => {
+    if (touchTimeout) clearTimeout(touchTimeout);
+    const timeout = setTimeout(() => setIsTouching(id), 0);
+    setTouchTimeout(timeout);
+  };
+
+  const handleTouchEnd = () => {
+    if (touchTimeout) clearTimeout(touchTimeout);
+    setIsTouching(null);
+  };
+
   const isHomePage = !blogSlug;
 
   return (
@@ -224,12 +237,26 @@ const Footer = ({ blogSlug = null }) => {
       )}
       <div className="footer-metrics">
         <div className="metrics-group">
-          <div className="metric">
+          <div
+            className="metric metric-view"
+            data-tooltip={`${stats.views?.toLocaleString() || "0"} views`}
+            data-show-tooltip={isTouching === "views"}
+            onTouchStart={() => handleTouchStart("views")}
+            onTouchEnd={handleTouchEnd}
+            onTouchCancel={handleTouchEnd}
+          >
             <Eye size={16} />
             <span>{formatNumber(stats.views)}</span>
           </div>
           {blogSlug && (
-            <div className="metric">
+            <div
+              className="metric"
+              data-tooltip={`${stats.likes?.toLocaleString() || "0"} likes`}
+              data-show-tooltip={isTouching === "likes"}
+              onTouchStart={() => handleTouchStart("likes")}
+              onTouchEnd={handleTouchEnd}
+              onTouchCancel={handleTouchEnd}
+            >
               <button
                 onClick={handleLike}
                 className={`like-button ${hasLiked ? "liked" : ""}`}

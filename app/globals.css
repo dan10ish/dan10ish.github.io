@@ -801,7 +801,9 @@ table td > *:last-child {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
 }
 
 .buttons-container.hidden {
@@ -1002,8 +1004,7 @@ table td > *:last-child {
   align-items: center;
   justify-content: center;
   color: var(--color-text);
-  opacity: 0.7;
-  transition: all 0.2s ease;
+  opacity: 1;
   padding: 8px;
   margin: -8px;
   border-radius: 8px;
@@ -1030,10 +1031,44 @@ table td > *:last-child {
   background-color: var(--code-background-color);
   border-radius: 100px;
   font-size: 0.8rem;
+  cursor: default;
 }
 
 .metric svg {
-  opacity: 0.8;
+  opacity: 1;
+}
+
+[data-tooltip] {
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+}
+
+[data-tooltip]:before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 3px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1px 6px;
+  background: var(--color-bg);
+  border: 1.5px solid var(--code-background-color);
+  color: var(--color-text);
+  font-size: 0.65rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.1s ease;
+  pointer-events: none;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+[data-tooltip][data-show-tooltip="true"]:before {
+  opacity: 1;
+  visibility: visible;
 }
 
 .github-link {
@@ -1046,6 +1081,7 @@ table td > *:last-child {
   border-radius: 100px;
   color: var(--color-text);
   font-size: 0.8rem;
+  border: 1px solid var(--code-background-color);
   text-decoration: none;
 }
 
@@ -1064,7 +1100,7 @@ table td > *:last-child {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  transition: transform 0.2s ease;
+  /* transition: transform 0.2s ease; */
 }
 
 .like-button:disabled {
@@ -2322,6 +2358,14 @@ a[data-footnote-ref] {
     cursor: pointer;
   }
 
+  .add-filter-btn:hover svg {
+    transform: scale(1.1);
+  }
+
+  .github-profile-button:hover svg {
+    transform: scale(1.2);
+  }
+
   .project-link:not(.project-no-link):hover {
     opacity: 1;
     color: var(--color-link);
@@ -2335,9 +2379,8 @@ a[data-footnote-ref] {
   .scroll-to-top:hover,
   .home-button:hover,
   .toc-toggle:hover {
-    transform: scale(1.1);
+    transform: scale(1.15);
     color: var(--color-link);
-    background: none;
   }
 
   .theme-circle:not(.active):hover {
@@ -2468,7 +2511,7 @@ a[data-footnote-ref] {
   .theme-button:hover {
     opacity: 1;
     color: var(--color-link);
-    transform: scale(1.15);
+    transform: scale(1.2);
   }
 
   .footer-nav-col a:hover,
@@ -2489,9 +2532,16 @@ a[data-footnote-ref] {
   }
 
   .github-link:hover {
-    background-color: var(--color-link);
-    color: #ffffff;
+    border: 1px solid var(--color-link);
     text-decoration: none;
+  }
+
+  .github-link:hover svg {
+    transform: scale(1.2);
+  }
+
+  .metric-view:hover svg {
+    transform: scale(1.2);
   }
 
   .star-hover {
@@ -2501,6 +2551,11 @@ a[data-footnote-ref] {
 
   .social-button[aria-label="Send email"] svg:hover {
     color: var(--color-link);
+  }
+
+  [data-tooltip]:hover:before {
+    opacity: 1;
+    visibility: visible;
   }
 }
 
