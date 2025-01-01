@@ -136,7 +136,8 @@ const Footer = ({ blogSlug = null }) => {
     return () => subscription.unsubscribe();
   }, [blogSlug, isUpdating]);
 
-  const handleLike = useCallback(async () => {
+  const handleLike = useCallback(async (e) => {
+    e.preventDefault();
     if (hasLiked || !blogSlug || isUpdating) return;
 
     try {
