@@ -216,19 +216,19 @@ const Footer = ({ blogSlug = null }) => {
             <div className="footer-nav-links">
               <Link href="/notes" className="footer-link">
                 <BookText size={16} />
-                notes
+                Notes
               </Link>
               <Link href="/photos" className="footer-link">
                 <Image size={16} />
-                photos
+                Photos
               </Link>
               <Link href="/books" className="footer-link">
                 <Library size={16} />
-                books
+                Books
               </Link>
               <Link href="/resources" className="footer-link">
                 <FolderSearch size={16} />
-                resources
+                Resources
               </Link>
             </div>
             <ThemeButton />

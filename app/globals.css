@@ -281,72 +281,6 @@ th {
   font-weight: bold;
 }
 
-/* Table Styles - Add these without removing anything */
-.markdown-body table,
-table {
-  border-spacing: 0;
-  border-collapse: collapse;
-  margin: 2rem 0;
-  font-size: 0.85rem;
-  width: 100%;
-}
-
-.markdown-body table tr,
-table tr {
-  background-color: var(--color-bg);
-  border-top: 1px solid rgba(var(--color-text-rgb), 0.1);
-}
-
-.markdown-body table tr:nth-child(2n),
-table tr:nth-child(2n) {
-  background-color: rgba(var(--color-text-rgb), 0.02);
-}
-
-.markdown-body table th,
-.markdown-body table td,
-table th,
-table td {
-  padding: 0.75rem 1rem;
-  border: 1px solid rgba(var(--color-text-rgb), 0.1);
-}
-
-.markdown-body table th,
-table th {
-  font-weight: 500;
-  text-align: left;
-  background-color: var(--code-background-color);
-}
-
-.markdown-body table td > code,
-table td > code {
-  background-color: var(--code-background-color);
-  padding: 0.2em 0.4em;
-  border-radius: 3px;
-  font-size: 0.85em;
-  font-family: var(--font-normal);
-}
-
-.markdown-body table td .katex,
-table td .katex {
-  font-size: 1em;
-  display: inline-block;
-}
-
-.markdown-body table td p,
-table td p {
-  margin: 0;
-}
-
-.markdown-body table img,
-table img {
-  margin: 0;
-}
-
-.markdown-body table td > *:last-child,
-table td > *:last-child {
-  margin-bottom: 0;
-}
-
 /* Layout Components */
 .title-link a {
   color: var(--color-text);
@@ -356,11 +290,6 @@ table td > *:last-child {
 
 .title-link h1 {
   margin-top: 3rem;
-}
-
-.social-buttons {
-  display: flex;
-  gap: 16px;
 }
 
 .sr-only {
@@ -375,28 +304,6 @@ table td > *:last-child {
   border: 0;
 }
 
-.social-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  color: var(--color-text);
-  transition: all 0.2s ease;
-  position: relative;
-}
-
-.social-button svg {
-  height: 20px !important;
-  width: auto;
-  stroke-width: 2;
-}
-
-.social-button[aria-label="Send email"] svg {
-  height: 25px !important;
-  stroke-width: 1.4;
-  color: var(--color-text);
-}
-
 .about {
   font-weight: 400;
   padding: var(--padding-medium) 0 0;
@@ -406,42 +313,17 @@ table td > *:last-child {
   line-height: 2;
 }
 
-.about-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 2rem;
-}
-
-.about-link {
-  display: flex;
+.x-link {
+  display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-  padding: 6px 12px;
-  border-radius: 100px;
-  font-weight: 400 !important;
-  transition: all 0.2s ease;
-  font-size: 0.8rem;
-  height: 32px;
+  vertical-align: text-top;
+  padding: 0 2px;
 }
 
-.about-link svg {
-  opacity: 0.85;
-}
-
-.about-link {
-  background: var(--code-background-color);
-  color: var(--color-text);
-}
-
-.at {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 0.8rem;
-}
-
-.copyright-symbol {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-weight: 500;
+.email-link {
+  color: var(--color-link);
+  text-decoration: none;
+  transition: opacity 0.15s ease;
 }
 
 /* Blog Components */
@@ -450,7 +332,7 @@ table td > *:last-child {
   display: flex;
   flex-direction: column;
   gap: 0rem;
-  margin: 1.5rem 0;
+  margin: 1.5rem 0 1.5rem;
 }
 
 .blog-card {
@@ -1509,7 +1391,6 @@ pre code {
   padding: 0.875rem 1.25rem;
   border-radius: 12px;
   text-decoration: none;
-  transition: all 0.2s ease;
   gap: 1rem;
 }
 
@@ -2352,6 +2233,15 @@ a[data-footnote-ref] {
     color: var(--color-link);
   }
 
+  .x-link:hover {
+    color: var(--color-link);
+    transform: scale(1.2);
+  }
+
+  .email-link:hover {
+    text-decoration: underline;
+  }
+
   .post-row:hover {
     background-color: rgba(var(--color-text-rgb), 0.03);
     text-decoration: none;
@@ -2419,12 +2309,6 @@ a[data-footnote-ref] {
     background-color: rgba(var(--color-text-rgb), 0.1);
   }
 
-  .social-button:hover {
-    color: var(--color-link);
-    transform: scale(1.1);
-    text-decoration: none;
-  }
-
   .github-icon-class:hover {
     opacity: 1;
     color: var(--color-text) !important;
@@ -2456,6 +2340,8 @@ a[data-footnote-ref] {
 
   .resource-card:hover {
     text-decoration: none;
+    cursor: alias;
+    transform: scale(1.02);
   }
 
   [data-theme="solarized"] .resource-card[data-category="YouTube"]:hover {
@@ -2562,10 +2448,6 @@ a[data-footnote-ref] {
   .star-hover {
     fill: #ffd700;
     stroke: #ffd700;
-  }
-
-  .social-button[aria-label="Send email"] svg:hover {
-    color: var(--color-link);
   }
 
   [data-tooltip]:hover:before {
