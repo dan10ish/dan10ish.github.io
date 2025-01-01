@@ -21,7 +21,7 @@ export default function Home() {
       </div>
 
       <div id="about">
-        <AboutMe />
+        <AboutMe priority={true} />
       </div>
       <div id="blog">
         <BlogList posts={posts} />
