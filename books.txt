@@ -1,35 +1,39 @@
 2:I[19107,[],"ClientPageRoot"]
-3:I[13369,["8124","static/chunks/8124-acdb93aa0d653786.js","9023","static/chunks/app/books/page-971f1f0c54bed93e.js"],"default",1]
+3:I[13369,["8124","static/chunks/8124-f4cab5aa1ec621bc.js","9023","static/chunks/app/books/page-6b05b26f82a9fcc4.js"],"default",1]
 4:I[4707,[],""]
 5:I[36423,[],""]
-7:I[39263,["3185","static/chunks/app/layout-44e66e5faaf7f5c6.js"],"default"]
-8:I[83012,["3185","static/chunks/app/layout-44e66e5faaf7f5c6.js"],"default"]
+7:I[39263,["3185","static/chunks/app/layout-fd178e97e43731ee.js"],"default"]
+8:I[83012,["3185","static/chunks/app/layout-fd178e97e43731ee.js"],"default"]
 9:"$Sreact.suspense"
-a:I[74386,["3185","static/chunks/app/layout-44e66e5faaf7f5c6.js"],"default"]
-6:T4a0,
+a:I[74386,["3185","static/chunks/app/layout-fd178e97e43731ee.js"],"default"]
+6:T5a8,
               (function() {
-                function setTheme() {
-                  try {
-                    const savedTheme = localStorage.getItem('theme');
-                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                    const theme = savedTheme || (prefersDark ? 'dark' : 'light');
-                    const themeColors = { light: '#ffffff', dark: '#09090b', solarized: '#002b36' };
-                    document.documentElement.setAttribute('data-theme', theme);
-
-                    let metaTheme = document.querySelector('meta[name="theme-color"]');
-                    if (!metaTheme) {
-                      metaTheme = document.createElement('meta');
-                      metaTheme.name = 'theme-color';
-                      document.head.appendChild(metaTheme);
-                    }
-                    metaTheme.content = themeColors[theme];
-                  } catch (e) {
-                    console.error('Theme initialization error:', e);
+                try {
+                  const savedTheme = localStorage.getItem('theme');
+                  const computedTheme = localStorage.getItem('computedTheme');
+                  if (computedTheme) {
+                    document.documentElement.setAttribute('data-theme', computedTheme);
+                    return;
                   }
+                  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  const theme = savedTheme || 'system';
+                  const themeColors = {
+                    light: '#ffffff',
+                    dark: '#09090b',
+                    solarized: '#002b36',
+                    manila: '#f3deaf'
+                  };
+                  const effectiveTheme = theme === 'system' ? (prefersDark ? 'dark' : 'light') : theme;
+                  document.documentElement.setAttribute('data-theme', effectiveTheme);
+                  const metaTheme = document.querySelector('meta[name="theme-color"]') || document.createElement('meta');
+                  metaTheme.name = 'theme-color';
+                  metaTheme.content = themeColors[effectiveTheme];
+                  document.head.appendChild(metaTheme);
+                  localStorage.setItem('computedTheme', effectiveTheme);
+                } catch (e) {
+                  console.error('Theme initialization error:', e);
                 }
-                setTheme();
-                document.addEventListener('DOMContentLoaded', setTheme);
               })();
-            0:["ax5yHY-5vtoylhSUnrVCZ",[[["",{"children":["books",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",true],["",{"children":["books",{"children":["__PAGE__",{},[["$L1",["$","$L2",null,{"props":{"params":{},"searchParams":{}},"Component":"$3"}],null],null],null]},[null,["$","$L4",null,{"parallelRouterKey":"children","segmentPath":["children","books","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/f52e4735d075b5d9.css","precedence":"next","crossOrigin":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/f271627eeeb6873f.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":[["$","head",null,{"children":[["$","meta",null,{"name":"theme-color","content":""}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"$6"}}],["$","link",null,{"rel":"preload","href":"/fonts/GeistMono.woff2","as":"font","type":"font/woff2","crossOrigin":"anonymous"}],["$","link",null,{"rel":"preload","href":"/fonts/Sentient.woff2","as":"font","type":"font/woff2","crossOrigin":"anonymous"}],["$","link",null,{"rel":"preconnect","href":"https://iksodfcuqkwlvhyymcjk.supabase.co","crossOrigin":"anonymous"}]]}],["$","body",null,{"children":[["$","$L7",null,{}],["$","$L8",null,{}],["$","$9",null,{"fallback":null,"children":["$","$La",null,{}]}],["$","main",null,{"className":"container","children":["$","$L4",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":["$","div",null,{"style":{"display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center","height":"100%","textAlign":"center","paddingTop":"200px"},"children":[["$","h1",null,{"children":"404 - Page Not Found"}],["$","p",null,{"children":"Sorry, the page you are looking for does not exist."}],["$","a",null,{"href":"https://dan10ish.github.io","style":{"color":"blue","fontSize":"15px","paddingTop":"30px"},"children":"Go back to homepage."}]]}],"notFoundStyles":[]}]}]]}]]}]],null],null],["$Lb",null]]]]
+            0:["L3wfTkqdYwgz9I1sx8leI",[[["",{"children":["books",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",true],["",{"children":["books",{"children":["__PAGE__",{},[["$L1",["$","$L2",null,{"props":{"params":{},"searchParams":{}},"Component":"$3"}],null],null],null]},[null,["$","$L4",null,{"parallelRouterKey":"children","segmentPath":["children","books","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/66c855ea3dc40de5.css","precedence":"next","crossOrigin":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/f271627eeeb6873f.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":[["$","head",null,{"children":[["$","meta",null,{"name":"theme-color","content":""}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"$6"}}],["$","link",null,{"rel":"icon","type":"image/png","href":"/icons/icon.png"}],["$","link",null,{"rel":"apple-touch-icon","href":"/icons/icon.png"}],["$","link",null,{"rel":"shortcut icon","type":"image/png","href":"/icons/icon.png"}],["$","link",null,{"rel":"preload","href":"/fonts/GeistMono.woff2","as":"font","type":"font/woff2","crossOrigin":"anonymous"}],["$","link",null,{"rel":"preload","href":"/fonts/Sentient.woff2","as":"font","type":"font/woff2","crossOrigin":"anonymous"}],["$","link",null,{"rel":"preconnect","href":"https://iksodfcuqkwlvhyymcjk.supabase.co","crossOrigin":"anonymous"}]]}],["$","body",null,{"children":[["$","$L7",null,{}],["$","$L8",null,{}],["$","$9",null,{"fallback":null,"children":["$","$La",null,{}]}],["$","main",null,{"className":"container","children":["$","$L4",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":["$","div",null,{"style":{"display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center","height":"100%","textAlign":"center","paddingTop":"200px"},"children":[["$","h1",null,{"children":"404 - Page Not Found"}],["$","p",null,{"children":"Sorry, the page you are looking for does not exist."}],["$","a",null,{"href":"https://dan10ish.github.io","style":{"color":"blue","fontSize":"15px","paddingTop":"30px"},"children":"Go back to homepage."}]]}],"notFoundStyles":[]}]}]]}]]}]],null],null],["$Lb",null]]]]
 b:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, viewport-fit=cover, user-scalable=yes"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"Danish"}],["$","meta","3",{"name":"description","content":"Danish is a mechatronics engineer exploring machine learning, robotics, and computer science. Discover his projects, writings, and technical insights."}],["$","meta","4",{"name":"keywords","content":"Danish,mechatronics,robotics,machine learning,developer,engineer,portfolio"}],["$","meta","5",{"name":"robots","content":"index, follow, nocache"}],["$","meta","6",{"name":"googlebot","content":"index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"}],["$","meta","7",{"name":"profile:username","content":"dan10ish"}],["$","meta","8",{"name":"profile:first_name","content":"Danish"}],["$","link","9",{"rel":"canonical","href":"https://danish.bio"}],["$","meta","10",{"property":"og:title","content":"Danish"}],["$","meta","11",{"property":"og:description","content":"Danish's personal website featuring his engineering projects, technical writings, and insights in robotics and machine learning."}],["$","meta","12",{"property":"og:url","content":"https://danish.bio"}],["$","meta","13",{"property":"og:site_name","content":"Danish"}],["$","meta","14",{"property":"og:image","content":"https://i.ibb.co/xYpLtw6/Link-Preview.png"}],["$","meta","15",{"property":"og:image:width","content":"1200"}],["$","meta","16",{"property":"og:image:height","content":"675"}],["$","meta","17",{"property":"og:image:type","content":"image/png"}],["$","meta","18",{"property":"og:image:alt","content":"Danish's Portfolio Preview"}],["$","meta","19",{"property":"og:type","content":"website"}],["$","meta","20",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","21",{"name":"twitter:site","content":"@dan10ish"}],["$","meta","22",{"name":"twitter:creator","content":"@dan10ish"}],["$","meta","23",{"name":"twitter:title","content":"Danish"}],["$","meta","24",{"name":"twitter:description","content":"Danish's personal website featuring his engineering projects, technical writings, and insights in robotics and machine learning."}],["$","meta","25",{"name":"twitter:image","content":"https://i.ibb.co/xYpLtw6/Link-Preview.png"}]]
 1:null
