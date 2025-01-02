@@ -105,7 +105,11 @@ export function ThemeButton() {
 
   return (
     <div className="theme-selector" ref={menuRef}>
-      <button onClick={() => setIsOpen(!isOpen)} className="theme-button">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="theme-button"
+        aria-label="Website theme button"
+      >
         <span className="theme-button-content">
           {themes[theme]?.icon}
           <span className="theme-button-label">{themes[theme]?.label}</span>
@@ -118,6 +122,7 @@ export function ThemeButton() {
               key={key}
               onClick={() => handleThemeChange(key)}
               className={`theme-option ${theme === key ? "active" : ""}`}
+              aria-label="Website theme button"
             >
               <span className="theme-option-icon">{value.icon}</span>
               <span className="theme-option-label">{value.label}</span>
