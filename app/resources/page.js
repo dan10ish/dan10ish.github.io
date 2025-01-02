@@ -29,7 +29,7 @@ export default function ResourcesPage() {
 
   return (
     <main>
-      <div className="sticky-header-container">
+      <div className="header-container">
         <div className="title-container">
           <div className="title-link">
             <h1>Resources</h1>

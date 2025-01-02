@@ -83,31 +83,38 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
-                function setTheme() {
-                  try {
-                    const savedTheme = localStorage.getItem('theme');
-                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                    const theme = savedTheme || (prefersDark ? 'dark' : 'light');
-                    const themeColors = { light: '#ffffff', dark: '#09090b', solarized: '#002b36' };
-                    document.documentElement.setAttribute('data-theme', theme);
-
-                    let metaTheme = document.querySelector('meta[name="theme-color"]');
-                    if (!metaTheme) {
-                      metaTheme = document.createElement('meta');
-                      metaTheme.name = 'theme-color';
-                      document.head.appendChild(metaTheme);
-                    }
-                    metaTheme.content = themeColors[theme];
-                  } catch (e) {
-                    console.error('Theme initialization error:', e);
+                try {
+                  const savedTheme = localStorage.getItem('theme');
+                  const computedTheme = localStorage.getItem('computedTheme');
+                  if (computedTheme) {
+                    document.documentElement.setAttribute('data-theme', computedTheme);
+                    return;
                   }
+                  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  const theme = savedTheme || 'system';
+                  const themeColors = {
+                    light: '#ffffff',
+                    dark: '#09090b',
+                    solarized: '#002b36',
+                    manila: '#f3deaf'
+                  };
+                  const effectiveTheme = theme === 'system' ? (prefersDark ? 'dark' : 'light') : theme;
+                  document.documentElement.setAttribute('data-theme', effectiveTheme);
+                  const metaTheme = document.querySelector('meta[name="theme-color"]') || document.createElement('meta');
+                  metaTheme.name = 'theme-color';
+                  metaTheme.content = themeColors[effectiveTheme];
+                  document.head.appendChild(metaTheme);
+                  localStorage.setItem('computedTheme', effectiveTheme);
+                } catch (e) {
+                  console.error('Theme initialization error:', e);
                 }
-                setTheme();
-                document.addEventListener('DOMContentLoaded', setTheme);
               })();
             `,
           }}
         />
+        <link rel="icon" type="image/png" href="/icons/icon.png" />
+        <link rel="apple-touch-icon" href="/icons/icon.png" />
+        <link rel="shortcut icon" type="image/png" href="/icons/icon.png" />
         <link
           rel="preload"
           href="/fonts/GeistMono.woff2"
