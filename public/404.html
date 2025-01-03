@@ -125,13 +125,38 @@
         height: 100dvh;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 3rem;
         padding: 2rem;
-        overflow: hidden;
         position: fixed;
         inset: 0;
+        background: var(--color-bg);
+      }
+      .error-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 15vh;
+        gap: 1.5rem;
+      }
+      .error-nav {
+        padding-bottom: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+      }
+      .error-title {
+        font-family: var(--font-heading);
+        font-size: 2rem;
+        font-weight: 500;
+        color: var(--color-text);
+        margin: 0;
+      }
+      .social-links {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
       }
       .ghost-face {
         position: relative;
@@ -190,20 +215,12 @@
       .meta:nth-of-type(2)::after {
         left: 5px;
       }
-      .error-title {
-        font-family: var(--font-heading);
-        font-size: clamp(5rem, 15vw, 8rem);
-        font-weight: 900;
-        margin: 0;
-        color: var(--color-text);
-        letter-spacing: -0.02em;
-      }
       .return-link {
         font-family: var(--font-normal);
         font-size: 1rem;
         color: var(--color-text);
         text-decoration: none;
-        padding: 1rem 2rem;
+        padding: 0.5rem 1.5rem;
         background: var(--code-background-color);
         border-radius: 99px;
         transition: all 0.2s ease;
@@ -213,12 +230,6 @@
         border-color: var(--color-link);
         transform: translateY(-1px);
         text-decoration: none;
-      }
-      .social-links {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        margin-top: -1rem;
       }
       .social-link {
         color: var(--color-link);
@@ -267,29 +278,25 @@
     </style>
   </head>
   <body>
-    <div class="error-container">
-      <div class="ghost-face">
-        <div class="meta"></div>
-        <div class="meta"></div>
+    <div className="error-container">
+      <div className="error-content">
+        <div className="ghost-face">
+          <div className="meta" />
+          <div className="meta" />
+        </div>
+        <h1 className="error-title">404</h1>
+        <p>Page not found</p>
       </div>
-      <h1 class="error-title">404</h1>
-      <a href="https://danish.bio" class="return-link">Return Home</a>
-      <div class="social-links">
-        <a
-          href="https://github.com/dan10ish"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="social-link"
-          >GitHub</a
-        >
-        <span class="divider">·</span>
-        <a
-          href="https://x.com/dan10ish"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="social-link"
-          >Twitter</a
-        >
+
+      <div className="error-nav">
+        <a href="/" className="return-link"> Return Home </a>
+        <div className="social-links">
+          <a href="https://github.com/dan10ish" className="social-link">
+            GitHub
+          </a>
+          <span className="divider">·</span>
+          <a href="https://x.com/dan10ish" className="social-link"> Twitter </a>
+        </div>
       </div>
     </div>
   </body>

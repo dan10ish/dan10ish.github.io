@@ -6,10 +6,11 @@ import dynamic from "next/dynamic";
 import "katex/dist/katex.min.css";
 import Footer from "@/components/Footer";
 import ButtonsContainer from "@/components/ButtonsContainer";
+import StatusOverlay from "@/components/StatusOverlay";
 
 const HighlightCode = dynamic(
   () => import("../../../components/HighlightCode"),
-  { ssr: false }
+  { ssr: false },
 );
 
 export async function generateStaticParams() {
@@ -102,6 +103,8 @@ export default async function BlogPost({ params }) {
           <LatexRenderer content={contentHtml} />
         </div>
         <HighlightCode />
+        {post.status === "development" && <StatusOverlay type="development" />}
+        {post.status === "draft" && <StatusOverlay type="draft" />}
         <Footer blogSlug={slug} />
       </article>
     </>

@@ -6,7 +6,7 @@ Algorithms are implemented from the book [Competitive Programing in Python](http
 
 ## Matrices
 
-- **Matrix Multiplication** Matrix multiplication $AB$ between two $n \times n$ matrices results in another $n \times n$ matrix, where each element is calculated as:
+- Matrix multiplication $AB$ between two $n \times n$ matrices results in another $n \times n$ matrix, where each element is calculated as:
   $$
   (AB){ij} = \sum{k=0}^{n-1} A_{ik} \times B_{kj}
   $$
