@@ -1,28 +1,41 @@
 export default function NotFound() {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "100%",
-        textAlign: "center",
-        paddingTop: "200px",
-      }}
-    >
-      <h1>404 - Page Not Found</h1>
-      <p>Sorry, the page you are looking for does not exist.</p>
-      <a
-        href="https://dan10ish.github.io"
-        style={{
-          color: "blue",
-          fontSize: "15px",
-          paddingTop: "30px",
-        }}
-      >
-        Go back to homepage.
-      </a>
+    <div className="error-container">
+      <div className="ghost-face">
+        <div className="meta" />
+        <div className="meta" />
+      </div>
+
+      <div>
+        <h1 className="error-title">404</h1>
+        <p>Page not found</p>
+      </div>
+
+      <div className="error-nav">
+        <a href="https://danish.bio" className="return-link">
+          Return Home
+        </a>
+      </div>
+
+      <div className="social-links">
+        <a
+          href="https://github.com/dan10ish"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="social-link"
+        >
+          GitHub
+        </a>
+        <span className="divider">·</span>
+        <a
+          href="https://x.com/dan10ish"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="social-link"
+        >
+          Twitter
+        </a>
+      </div>
     </div>
   );
 }
