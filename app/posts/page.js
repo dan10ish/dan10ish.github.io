@@ -27,8 +27,10 @@ export default function PostsPage() {
 
   return (
     <main>
-      <div className="sticky-header-container sticky-effect">
-        <h2>Posts</h2>
+      <div className="section-page">
+        <div className="section-header">
+          <h2>Posts</h2>
+        </div>
         <FilterComponent
           options={allTags}
           activeFilters={selectedTags}

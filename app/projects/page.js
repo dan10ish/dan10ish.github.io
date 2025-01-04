@@ -28,8 +28,8 @@ export default function ProjectsPage() {
 
   return (
     <main>
-      <div className="sticky-header-container sticky-effect">
-        <div className="title-container">
+      <div className="section-page">
+        <div className="section-header">
           <h2>Projects</h2>
           <a
             href="https://github.com/dan10ish"

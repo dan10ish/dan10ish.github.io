@@ -69,13 +69,14 @@ export default async function BlogPost(props) {
   const contentHtml = await markdownToHtml(post.content);
 
   return (
-    <Suspense
-      fallback={
-        <div className="blog-loading">
-          Loading the blog <Loader2 className="status-icon" />
-        </div>
-      }
-    >
+    <>
+      {/* <Suspense
+         fallback={
+           <div className="blog-loading">
+             Loading the blog <Loader2 className="status-icon" />
+           </div>
+         }
+       > */}
       <ButtonsContainer />
       <article className="blog-post markdown-body">
         <div className="blogpost-title">
@@ -107,6 +108,7 @@ export default async function BlogPost(props) {
         {post.status === "draft" && <StatusOverlay type="draft" />}
         <Footer blogSlug={params?.slug} />
       </article>
-    </Suspense>
+      {/* </Suspense> */}
+    </>
   );
 }

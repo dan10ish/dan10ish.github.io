@@ -621,6 +621,14 @@ th {
 }
 
 /* Projects Section */
+.section-page {
+  padding: 2rem 0 0;
+}
+
+.content-scroll {
+  padding: 0 0 2rem;
+}
+
 .projects-section {
   margin-top: var(--padding-large);
   margin-bottom: var(--padding-large);
@@ -1406,7 +1414,7 @@ pre code {
   top: 0;
   bottom: 0;
   width: 9px;
-  filter: brightness(0.6);
+  filter: brightness(0.85);
 }
 
 .book-spine-edge {
