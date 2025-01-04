@@ -2,11 +2,10 @@ import { getBlogPost, getBlogPosts } from "@/lib/posts";
 import { markdownToHtml } from "@/lib/mdxutils";
 import { MDXContent } from "@/components/ClientWrapper";
 import ButtonsContainer from "@/components/ButtonsContainer";
-import { Suspense } from "react";
 import "katex/dist/katex.min.css";
-import Footer from "@/components/Footer";
-import StatusOverlay from "@/components/StatusOverlay";
-import { Loader2 } from "lucide-react";
+import dynamic from "next/dynamic";
+
+const Footer = dynamic(() => import("@/components/Footer"));
 
 export async function generateStaticParams() {
   const posts = getBlogPosts();
@@ -70,22 +69,12 @@ export default async function BlogPost(props) {
 
   return (
     <>
-      {/* <Suspense
-         fallback={
-           <div className="blog-loading">
-             Loading the blog <Loader2 className="status-icon" />
-           </div>
-         }
-       > */}
       <ButtonsContainer />
       <article className="blog-post markdown-body">
         <div className="blogpost-title">
           <h1>{post.title}</h1>
-          {post.status === "development" && (
-            <span className="development-badge">In Development</span>
-          )}
-          {post.status === "draft" && (
-            <span className="draft-badge">Draft</span>
+          {post.status === "wip" && (
+            <span className="wip-badge">🏗️ Work In Progress</span>
           )}
         </div>
         <div className="blogpost-meta">
@@ -104,11 +93,8 @@ export default async function BlogPost(props) {
           </div>
         </div>
         <MDXContent content={contentHtml} />
-        {post.status === "development" && <StatusOverlay type="development" />}
-        {post.status === "draft" && <StatusOverlay type="draft" />}
         <Footer blogSlug={params?.slug} />
       </article>
-      {/* </Suspense> */}
     </>
   );
 }

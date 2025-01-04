@@ -57,7 +57,7 @@ export default function BlogList({
             <div className="blog-meta">
               {post.status !== "completed" && (
                 <div className="blog-status" role="status">
-                  {post.status.toUpperCase()}
+                  🏗️ {post.status.toUpperCase()}
                 </div>
               )}
               <ArrowUpRight

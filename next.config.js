@@ -1,3 +1,5 @@
+const path = require("path");
+
 const nextConfig = {
   reactStrictMode: true,
   output: "export",
@@ -21,11 +23,13 @@ const nextConfig = {
     NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
   },
   webpack: (config) => {
+    // Add alias configuration
+    config.resolve.alias["@"] = path.resolve(__dirname);
+
     config.module.rules.push({
       test: /\.md$/,
       use: "raw-loader",
     });
-
     config.optimization = {
       ...config.optimization,
       splitChunks: {
@@ -41,7 +45,6 @@ const nextConfig = {
         },
       },
     };
-
     return config;
   },
   poweredByHeader: false,
