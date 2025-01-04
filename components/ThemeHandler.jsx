@@ -27,12 +27,6 @@ const themes = {
     colors: ["#002b36"],
     bg: "#002b36",
   },
-  manila: {
-    icon: <Palette size={18} />,
-    label: "Manila",
-    colors: ["#f3deaf"],
-    bg: "#f3deaf",
-  },
 };
 
 export function ThemeButton() {

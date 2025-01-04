@@ -95,8 +95,7 @@ export default function RootLayout({ children }) {
                   const themeColors = {
                     light: '#ffffff',
                     dark: '#09090b',
-                    solarized: '#002b36',
-                    manila: '#f3deaf'
+                    solarized: '#002b36'
                   };
                   const effectiveTheme = theme === 'system' ? (prefersDark ? 'dark' : 'light') : theme;
                   document.documentElement.setAttribute('data-theme', effectiveTheme);

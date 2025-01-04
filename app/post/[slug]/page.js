@@ -1,17 +1,12 @@
-import { getBlogPost, getBlogPosts } from "../../../lib/posts";
-
-import LatexRenderer from "../../../components/LatexRenderer";
-import { markdownToHtml } from "../../../lib/mdxutils";
-import dynamic from "next/dynamic";
+import { getBlogPost, getBlogPosts } from "@/lib/posts";
+import { markdownToHtml } from "@/lib/mdxutils";
+import { MDXContent } from "@/components/ClientWrapper";
+import ButtonsContainer from "@/components/ButtonsContainer";
+import { Suspense } from "react";
 import "katex/dist/katex.min.css";
 import Footer from "@/components/Footer";
-import ButtonsContainer from "@/components/ButtonsContainer";
 import StatusOverlay from "@/components/StatusOverlay";
-
-const HighlightCode = dynamic(
-  () => import("../../../components/HighlightCode"),
-  { ssr: false },
-);
+import { Loader2 } from "lucide-react";
 
 export async function generateStaticParams() {
   const posts = getBlogPosts();
@@ -20,17 +15,19 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }) {
-  const { slug } = params;
-  const post = await getBlogPost(slug);
+async function getPostFromParams(params) {
+  return await Promise.resolve(params);
+}
+
+export async function generateMetadata(props) {
+  const baseUrl = "https://dan10ish.github.io";
+  const params = await getPostFromParams(props.params);
+  const post = await getBlogPost(String(params?.slug));
 
   if (!post) {
-    return {
-      title: "Post not found",
-    };
+    return { title: "Post not found" };
   }
 
-  const baseUrl = "https://dan10ish.github.io";
   const imageUrl = post.headerImage.startsWith("http")
     ? post.headerImage
     : `${baseUrl}${post.headerImage}`;
@@ -42,7 +39,7 @@ export async function generateMetadata({ params }) {
       title: post.title,
       description: `${post.title} - A blog post by Danish`,
       type: "article",
-      url: `${baseUrl}/post/${post.slug}`,
+      url: `${baseUrl}/post/${String(params?.slug)}`,
       images: [
         {
           url: imageUrl,
@@ -61,9 +58,9 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function BlogPost({ params }) {
-  const { slug } = params;
-  const post = await getBlogPost(slug);
+export default async function BlogPost(props) {
+  const params = await getPostFromParams(props.params);
+  const post = await getBlogPost(String(params?.slug));
 
   if (!post) {
     return <div>Post not found</div>;
@@ -72,7 +69,13 @@ export default async function BlogPost({ params }) {
   const contentHtml = await markdownToHtml(post.content);
 
   return (
-    <>
+    <Suspense
+      fallback={
+        <div className="blog-loading">
+          Loading the blog <Loader2 className="status-icon" />
+        </div>
+      }
+    >
       <ButtonsContainer />
       <article className="blog-post markdown-body">
         <div className="blogpost-title">
@@ -99,14 +102,11 @@ export default async function BlogPost({ params }) {
             </a>
           </div>
         </div>
-        <div className="mark">
-          <LatexRenderer content={contentHtml} />
-        </div>
-        <HighlightCode />
+        <MDXContent content={contentHtml} />
         {post.status === "development" && <StatusOverlay type="development" />}
         {post.status === "draft" && <StatusOverlay type="draft" />}
-        <Footer blogSlug={slug} />
+        <Footer blogSlug={params?.slug} />
       </article>
-    </>
+    </Suspense>
   );
 }

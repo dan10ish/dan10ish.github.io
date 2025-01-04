@@ -4,49 +4,63 @@ import { useEffect } from "react";
 import hljs from "highlight.js/lib/core";
 import dynamic from "next/dynamic";
 import javascript from "highlight.js/lib/languages/javascript";
+import typescript from "highlight.js/lib/languages/typescript";
 import python from "highlight.js/lib/languages/python";
 import css from "highlight.js/lib/languages/css";
 import xml from "highlight.js/lib/languages/xml";
 import c from "highlight.js/lib/languages/c";
 import cpp from "highlight.js/lib/languages/cpp";
-import markdown from "highlight.js/lib/languages/markdown";
 import csharp from "highlight.js/lib/languages/csharp";
-import lua from "highlight.js/lib/languages/lua";
 import java from "highlight.js/lib/languages/java";
-import php from "highlight.js/lib/languages/php";
-import ruby from "highlight.js/lib/languages/ruby";
+import kotlin from "highlight.js/lib/languages/kotlin";
+import swift from "highlight.js/lib/languages/swift";
 import go from "highlight.js/lib/languages/go";
 import rust from "highlight.js/lib/languages/rust";
+import ruby from "highlight.js/lib/languages/ruby";
+import php from "highlight.js/lib/languages/php";
+import scala from "highlight.js/lib/languages/scala";
+import shell from "highlight.js/lib/languages/shell";
 import sql from "highlight.js/lib/languages/sql";
+import yaml from "highlight.js/lib/languages/yaml";
+import json from "highlight.js/lib/languages/json";
+import markdown from "highlight.js/lib/languages/markdown";
+import dart from "highlight.js/lib/languages/dart";
 import bash from "highlight.js/lib/languages/bash";
-import typescript from "highlight.js/lib/languages/typescript";
+import powershell from "highlight.js/lib/languages/powershell";
+import dockerfile from "highlight.js/lib/languages/dockerfile";
+import plaintext from "highlight.js/lib/languages/plaintext";
 
 const CopyButton = dynamic(() => import("./CopyButton"), { ssr: false });
 const TabsCodeBlock = dynamic(() => import("./TabsCodeBlock"), { ssr: false });
 
 hljs.registerLanguage("javascript", javascript);
+hljs.registerLanguage("typescript", typescript);
 hljs.registerLanguage("python", python);
 hljs.registerLanguage("css", css);
 hljs.registerLanguage("xml", xml);
 hljs.registerLanguage("html", xml);
 hljs.registerLanguage("c", c);
 hljs.registerLanguage("cpp", cpp);
-hljs.registerLanguage("markdown", markdown);
 hljs.registerLanguage("csharp", csharp);
-hljs.registerLanguage("lua", lua);
 hljs.registerLanguage("java", java);
-hljs.registerLanguage("php", php);
-hljs.registerLanguage("ruby", ruby);
+hljs.registerLanguage("kotlin", kotlin);
+hljs.registerLanguage("swift", swift);
 hljs.registerLanguage("go", go);
 hljs.registerLanguage("rust", rust);
+hljs.registerLanguage("ruby", ruby);
+hljs.registerLanguage("php", php);
+hljs.registerLanguage("scala", scala);
+hljs.registerLanguage("shell", shell);
 hljs.registerLanguage("sql", sql);
+hljs.registerLanguage("yaml", yaml);
+hljs.registerLanguage("json", json);
+hljs.registerLanguage("markdown", markdown);
+hljs.registerLanguage("dart", dart);
 hljs.registerLanguage("bash", bash);
-hljs.registerLanguage("sh", bash);
-hljs.registerLanguage("typescript", typescript);
-
-hljs.configure({
-  languages: ["bash", "sh"],
-});
+hljs.registerLanguage("powershell", powershell);
+hljs.registerLanguage("dockerfile", dockerfile);
+hljs.registerLanguage("plaintext", plaintext);
+hljs.registerLanguage("txt", plaintext);
 
 export default function HighlightCode() {
   useEffect(() => {
@@ -54,7 +68,7 @@ export default function HighlightCode() {
 
     document
       .querySelectorAll(
-        "pre:not(.code-tab-0):not(.code-tab-1):not(.code-tab-2)"
+        "pre:not(.code-tab-0):not(.code-tab-1):not(.code-tab-2)",
       )
       .forEach((pre) => {
         if (pre.parentElement?.classList.contains("code-block-container"))
@@ -62,6 +76,10 @@ export default function HighlightCode() {
 
         const code = pre.querySelector("code");
         if (!code) return;
+
+        if (!code.className) {
+          code.className = "language-plaintext";
+        }
 
         if (
           code.className.includes("language-bash") ||
@@ -100,10 +118,15 @@ export default function HighlightCode() {
 
     document.querySelectorAll(".tabs-code-block").forEach((element) => {
       if (element.dataset.processed) return;
-      const blocks = JSON.parse(element.dataset.blocks);
-      const root = require("react-dom/client").createRoot(element);
-      root.render(<TabsCodeBlock blocks={blocks} />);
-      element.dataset.processed = "true";
+      try {
+        const blocks = JSON.parse(element.dataset.blocks);
+        require("react-dom/client")
+          .createRoot(element)
+          .render(<TabsCodeBlock blocks={blocks} />);
+        element.dataset.processed = "true";
+      } catch (error) {
+        console.error("Failed to process code block:", error);
+      }
     });
   }, []);
 

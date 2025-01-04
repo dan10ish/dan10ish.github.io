@@ -50,32 +50,6 @@ html {
   }
 }
 
-[data-theme="manila"] {
-  --color-bg: #f3deaf;
-  --color-text: #26241f;
-  --color-link: #2563eb;
-  --blockquote-color: #5f5d58;
-  --code-background-color: #e6d19c;
-  --code-color: #26241f;
-  --github-border: rgba(38, 36, 31, 0.1);
-  --github-hover-bg: #e6d19c;
-  --color-bg-rgb: 243, 222, 175;
-  --color-text-rgb: 38, 36, 31;
-  --syntax-comment: #5f5d58;
-  --syntax-keyword: #2563eb;
-  --syntax-number: #0891b2;
-  --syntax-string: #059669;
-  --syntax-title: #6d28d9;
-  --syntax-type: #be123c;
-  --syntax-tag: #16a34a;
-  --syntax-regexp: #ea580c;
-  --syntax-symbol: #2563eb;
-  --syntax-builtin: #6d28d9;
-  --syntax-meta: #5f5d58;
-  --gradient-start: rgba(243, 222, 175, 0);
-  --gradient-end: rgba(243, 222, 175, 0.9);
-}
-
 [data-theme="light"] {
   --gradient-start: rgba(255, 255, 255, 0);
   --gradient-end: rgba(255, 255, 255, 0.9);
@@ -353,6 +327,23 @@ th {
 }
 
 /* Blog Components */
+
+.blog-loading {
+  font-size: 1rem;
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.blog-loading .status-icon {
+  width: 16px;
+  height: 16px;
+}
 
 .blog-grid {
   display: flex;
