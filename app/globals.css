@@ -449,15 +449,16 @@ th {
   justify-self: end;
   cursor: default;
   text-transform: uppercase;
-  background: transparent;
+  background: rgba(255, 222, 33, 0.07);
   color: #ffda03;
   border: 1px solid rgba(255, 218, 3, 0.75);
   font-weight: 500;
 }
 
 [data-theme="light"] .wip-badge {
-  color: #eed202;
-  border: 1px solid rgba(238, 210, 2, 0.8);
+  color: #996515;
+  background: rgba(253, 240, 203, 0.5);
+  border: 1px solid rgba(153, 101, 21, 0.7);
 }
 
 .blog-status {
@@ -470,15 +471,16 @@ th {
   top: -4px !important;
   text-transform: uppercase;
   cursor: default;
-  background: transparent;
+  background: rgba(255, 222, 33, 0.07);
   color: #ffda03;
   border: 1px solid rgba(255, 218, 3, 0.75);
   font-weight: 500;
 }
 
 [data-theme="light"] .blog-status {
-  color: #eed202;
-  border: 1px solid rgba(238, 210, 2, 0.8);
+  color: #996515;
+  background: rgba(253, 240, 203, 0.5);
+  border: 1px solid rgba(153, 101, 21, 0.7);
 }
 
 /* Projects Section */
