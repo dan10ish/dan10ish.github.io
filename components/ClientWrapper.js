@@ -1,14 +1,7 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
-const HighlightCode = dynamic(() => import("@/components/HighlightCode"), {
-  ssr: false,
-});
-
-const LatexRenderer = dynamic(() => import("@/components/LatexRenderer"), {
-  ssr: false,
-});
+import HighlightCode from "@/components/HighlightCode";
+import LatexRenderer from "@/components/LatexRenderer";
 
 export function MDXContent({ content }) {
   return (
