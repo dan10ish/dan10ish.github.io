@@ -58,7 +58,7 @@ const PhotoGrid = () => {
   const [loadedPhotos, setLoadedPhotos] = useState([]);
 
   const breakpointColumns = {
-    default: 2,
+    default: 3,
     768: 2,
   };
 

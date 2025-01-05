@@ -111,6 +111,12 @@ export default function RootLayout({ children }) {
             `,
           }}
         />
+        <link
+          rel="preload"
+          as="image"
+          href="/icons/icon.png"
+          type="image/png"
+        />
         <link rel="icon" type="image/png" href="/icons/icon.png" />
         <link rel="apple-touch-icon" href="/icons/icon.png" />
         <link rel="shortcut icon" type="image/png" href="/icons/icon.png" />

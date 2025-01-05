@@ -4,6 +4,8 @@ import { MDXContent } from "@/components/ClientWrapper";
 import ButtonsContainer from "@/components/ButtonsContainer";
 import "katex/dist/katex.min.css";
 import dynamic from "next/dynamic";
+import { Suspense } from "react";
+import BlogSkeleton from "../../../components/BlogSkeleton";
 
 const Footer = dynamic(() => import("@/components/Footer"));
 
@@ -70,6 +72,7 @@ export default async function BlogPost(props) {
   return (
     <>
       <ButtonsContainer />
+      <Suspense fallback={<BlogSkeleton />}>
       <article className="blog-post markdown-body">
         <div className="blogpost-title">
           <h1>{post.title}</h1>
@@ -95,6 +98,7 @@ export default async function BlogPost(props) {
         <MDXContent content={contentHtml} />
         <Footer blogSlug={params?.slug} />
       </article>
+      </Suspense>
     </>
   );
 }
