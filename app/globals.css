@@ -1194,14 +1194,18 @@ pre code {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
-  padding: 1rem 0.5rem 2rem;
+  padding: 0rem 0.5rem 2rem;
+}
+
+.header-container .title-container h1 {
+  margin-bottom: 1rem;
 }
 
 .notes-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
-  padding: 1rem 0.5rem 2rem;
+  padding: 0rem 0.5rem 2rem;
 }
 
 @media (min-width: 480px) {
@@ -1295,7 +1299,7 @@ pre code {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  padding: 1rem 0rem;
+  padding: 0.5rem 0rem;
   justify-content: center;
   align-items: center;
 }
@@ -1607,7 +1611,7 @@ a[data-footnote-ref] {
 
 .filter-container {
   position: relative;
-  margin: 1rem 0;
+  margin: 0rem 0;
 }
 
 .active-filters {
@@ -2413,7 +2417,7 @@ a[data-footnote-ref] {
   .books-grid {
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: 1.5rem;
-    padding: 1rem 0 2rem;
+    padding: 0.5rem 0 2rem;
   }
 
   .book-cover {
@@ -2460,7 +2464,7 @@ a[data-footnote-ref] {
   .notes-grid {
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: 1.5rem;
-    padding: 1rem 0 2rem;
+    padding: 0.5rem 0 2rem;
   }
 
   .photo-grid {
