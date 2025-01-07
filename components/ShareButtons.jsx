@@ -62,8 +62,8 @@ export default function ShareButton({ slug }) {
       }
       document.body.removeChild(textArea);
     }
-    setTimeout(() => setCopied(false), 4000);
-    setIsOpen(false);
+    setTimeout(() => setCopied(false), 2000);
+    setTimeout(() => setIsOpen(false), 2000);
   };
 
   const shareButtons = [
@@ -104,7 +104,7 @@ export default function ShareButton({ slug }) {
       class: "share-whatsapp",
     },
     {
-      name: "Copy link",
+      name: copied ? "Link Copied" : "Copy Link",
       Icon: copied ? Check : Link2,
       action: handleCopy,
       class: copied ? "share-copied" : "share-copy",
