@@ -25,7 +25,7 @@ export default async function AboutMe() {
           <span className="sr-only">X (Twitter)</span>
         </a>{" "}
         or via{" "}
-        <a href="mailto:iamdan10ish@gmail.com" className="email-link">
+        <a href="mailto:aansaridan@gmail.com" className="email-link">
           email
         </a>
         .
