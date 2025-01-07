@@ -14,6 +14,7 @@ import {
 import { supabase } from "@/lib/supabase";
 import Link from "next/link";
 import { ThemeButton } from "./ThemeHandler";
+import ShareButton from "./ShareButtons";
 
 const Footer = ({ blogSlug = null }) => {
   const [stats, setStats] = useState({ views: null, likes: null });
@@ -136,31 +137,37 @@ const Footer = ({ blogSlug = null }) => {
     return () => subscription.unsubscribe();
   }, [blogSlug, isUpdating]);
 
-  const handleLike = useCallback(async (e) => {
-    e.preventDefault();
-    if (hasLiked || !blogSlug || isUpdating) return;
+  const handleLike = useCallback(
+    async (e) => {
+      e.preventDefault();
+      if (hasLiked || !blogSlug || isUpdating) return;
 
-    try {
-      const pageId = `post-${blogSlug}`;
-      setIsUpdating(true);
-      setHasLiked(true);
+      try {
+        const pageId = `post-${blogSlug}`;
+        setIsUpdating(true);
+        setHasLiked(true);
 
-      const { data } = await supabase.rpc("increment_likes", {
-        row_id: pageId,
-      });
+        const { data } = await supabase.rpc("increment_likes", {
+          row_id: pageId,
+        });
 
-      if (data) {
-        setStats(data);
-        window?.localStorage?.setItem(`stats-${pageId}`, JSON.stringify(data));
-        window?.sessionStorage?.setItem(`liked-${pageId}`, "true");
+        if (data) {
+          setStats(data);
+          window?.localStorage?.setItem(
+            `stats-${pageId}`,
+            JSON.stringify(data),
+          );
+          window?.sessionStorage?.setItem(`liked-${pageId}`, "true");
+        }
+      } catch (error) {
+        console.error("Error liking post:", error);
+        setHasLiked(false);
+      } finally {
+        setIsUpdating(false);
       }
-    } catch (error) {
-      console.error("Error liking post:", error);
-      setHasLiked(false);
-    } finally {
-      setIsUpdating(false);
-    }
-  }, [blogSlug, hasLiked, isUpdating]);
+    },
+    [blogSlug, hasLiked, isUpdating],
+  );
 
   const formatNumber = useCallback((num) => {
     if (num === null) return <span className="infinity-symbol">∞</span>;
@@ -270,6 +277,7 @@ const Footer = ({ blogSlug = null }) => {
             </div>
           )}
         </div>
+        <div className="footer-share">
         <a
           href={
             blogSlug
@@ -291,6 +299,8 @@ const Footer = ({ blogSlug = null }) => {
             </div>
           )}
         </a>
+        {blogSlug && <ShareButton slug={blogSlug} />}
+      </div>
       </div>
     </footer>
   );
