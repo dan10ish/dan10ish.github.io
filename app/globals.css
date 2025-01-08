@@ -2281,7 +2281,7 @@ a[data-footnote-ref] {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  padding: 0.6rem 0.8rem;
+  padding: 0.4rem 0.8rem;
   border-radius: 8px;
   font-size: 0.75rem;
   font-weight: 450;

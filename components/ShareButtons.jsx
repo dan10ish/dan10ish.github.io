@@ -1,4 +1,3 @@
-"use client";
 import { useState, useEffect, useRef } from "react";
 import { Share2, Link2, Check, MessageCircleMore } from "lucide-react";
 
@@ -15,23 +14,56 @@ const LinkedInIcon = () => (
 );
 
 export default function ShareButton({ slug }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isClickOpen, setIsClickOpen] = useState(false);
+  const [isHoverOpen, setIsHoverOpen] = useState(false);
+  const [isButtonHovered, setIsButtonHovered] = useState(false);
+  const [isMenuHovered, setIsMenuHovered] = useState(false);
   const [copied, setCopied] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
   const wrapperRef = useRef(null);
+  const closeTimeoutRef = useRef(null);
 
   useEffect(() => {
     setMounted(true);
+    const checkScreenSize = () => {
+      setIsLargeScreen(window.innerWidth >= 768);
+    };
+
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
 
     const handleClickOutside = (event) => {
       if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-        setIsOpen(false);
+        setIsClickOpen(false);
       }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("resize", checkScreenSize);
+      if (closeTimeoutRef.current) {
+        clearTimeout(closeTimeoutRef.current);
+      }
+    };
   }, []);
+
+  useEffect(() => {
+    if (isLargeScreen && !isClickOpen) {
+      if (isButtonHovered || isMenuHovered) {
+        setIsHoverOpen(true);
+        if (closeTimeoutRef.current) {
+          clearTimeout(closeTimeoutRef.current);
+          closeTimeoutRef.current = null;
+        }
+      } else {
+        closeTimeoutRef.current = setTimeout(() => {
+          setIsHoverOpen(false);
+        }, 200);
+      }
+    }
+  }, [isButtonHovered, isMenuHovered, isLargeScreen, isClickOpen]);
 
   if (!mounted) {
     return (
@@ -49,6 +81,13 @@ export default function ShareButton({ slug }) {
     try {
       await navigator.clipboard.writeText(url);
       setCopied(true);
+      setTimeout(() => {
+        setCopied(false);
+        if (!isButtonHovered && !isMenuHovered) {
+          setIsHoverOpen(false);
+        }
+        setIsClickOpen(false);
+      }, 2000);
     } catch (err) {
       const textArea = document.createElement("textarea");
       textArea.value = url;
@@ -57,13 +96,18 @@ export default function ShareButton({ slug }) {
       try {
         document.execCommand("copy");
         setCopied(true);
+        setTimeout(() => {
+          setCopied(false);
+          if (!isButtonHovered && !isMenuHovered) {
+            setIsHoverOpen(false);
+          }
+          setIsClickOpen(false);
+        }, 2000);
       } catch (err) {
         console.error("Failed to copy:", err);
       }
       document.body.removeChild(textArea);
     }
-    setTimeout(() => setCopied(false), 2000);
-    setTimeout(() => setIsOpen(false), 2000);
   };
 
   const shareButtons = [
@@ -75,7 +119,8 @@ export default function ShareButton({ slug }) {
           `https://twitter.com/intent/tweet?text=${encodeURIComponent(`Check out this post by @dan10ish\n\n${url}`)}`,
           "_blank",
         );
-        setIsOpen(false);
+        setIsClickOpen(false);
+        setIsHoverOpen(false);
       },
       class: "share-x",
     },
@@ -87,7 +132,8 @@ export default function ShareButton({ slug }) {
           `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
           "_blank",
         );
-        setIsOpen(false);
+        setIsClickOpen(false);
+        setIsHoverOpen(false);
       },
       class: "share-linkedin",
     },
@@ -99,7 +145,8 @@ export default function ShareButton({ slug }) {
           `https://wa.me/?text=${encodeURIComponent(`Check out this post by Danish\n\n${url}`)}`,
           "_blank",
         );
-        setIsOpen(false);
+        setIsClickOpen(false);
+        setIsHoverOpen(false);
       },
       class: "share-whatsapp",
     },
@@ -111,17 +158,31 @@ export default function ShareButton({ slug }) {
     },
   ];
 
+  const handleButtonClick = (e) => {
+    e.preventDefault();
+    setIsClickOpen(!isClickOpen);
+    setIsHoverOpen(false);
+  };
+
+  const isOpen = isClickOpen || isHoverOpen;
+
   return (
     <div className="share-wrapper" ref={wrapperRef} data-open={isOpen}>
       <button
         className="share-button"
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={handleButtonClick}
+        onMouseEnter={() => isLargeScreen && setIsButtonHovered(true)}
+        onMouseLeave={() => isLargeScreen && setIsButtonHovered(false)}
         aria-label="Share"
       >
         <Share2 size={14} />
       </button>
       {isOpen && (
-        <div className="share-popup">
+        <div
+          className="share-popup"
+          onMouseEnter={() => isLargeScreen && setIsMenuHovered(true)}
+          onMouseLeave={() => isLargeScreen && setIsMenuHovered(false)}
+        >
           {shareButtons.map((btn) => {
             const IconComponent = btn.Icon;
             return (
