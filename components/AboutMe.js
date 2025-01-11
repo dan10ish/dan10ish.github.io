@@ -2,11 +2,26 @@ export default async function AboutMe() {
   return (
     <section className="about">
       <p>
-        A mechatronics engineer exploring machine learning, robotics and
-        computer science.
+        A mechatronics engineer exploring{" "}
+        <a href="/ml" className="about-page-link">
+          machine learning
+        </a>
+        ,{" "}
+        <a href="/robotics" className="about-page-link">
+          robotics
+        </a>
+        ,{" "}
+        <a href="/planes" className="about-page-link">
+          planes
+        </a>{" "}
+        and{" "}
+        <a href="/finance" className="about-page-link">
+          finance
+        </a>
+        .
       </p>
       <p>
-        Reach me on{" "}
+        Connect via{" "}
         <a
           href="https://x.com/dan10ish"
           target="_blank"
@@ -24,7 +39,7 @@ export default async function AboutMe() {
           </svg>
           <span className="sr-only">X (Twitter)</span>
         </a>{" "}
-        or via{" "}
+        or{" "}
         <a href="mailto:aansaridan@gmail.com" className="email-link">
           email
         </a>
