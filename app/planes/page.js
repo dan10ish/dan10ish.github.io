@@ -147,7 +147,7 @@ export default function PlanesPage() {
       <div className="terminal-frame">
         <div className="terminal-header">
           <Circle size={8} className="status-dot" />
-          <span className="status-text">DAN7SH STATUS: ACTIVE</span>
+          <span className="status-text">STATUS: ACTIVE</span>
           <div className="header-actions">
             <button
               onClick={fetchStats}

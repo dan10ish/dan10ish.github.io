@@ -1515,6 +1515,58 @@ pre code {
   color: rgb(2, 149, 255);
 }
 
+.resource-card[data-category="Finance"] {
+  background: rgba(168, 85, 247, 0.3);
+}
+
+.resource-card[data-category="Finance"] .resource-category {
+  background: #f5f3ff;
+  color: #6d28d9;
+}
+
+.resource-card[data-category="Finance"] .resource-title,
+.resource-card[data-category="Finance"] svg {
+  color: #6d28d9;
+}
+
+[data-theme="dark"] .resource-card[data-category="Finance"] {
+  background: rgba(168, 85, 247, 0.5);
+}
+
+[data-theme="dark"] .resource-card[data-category="Finance"] .resource-category {
+  background: #421980;
+  color: #c4b5fd;
+}
+
+[data-theme="dark"] .resource-card[data-category="Finance"] .resource-title,
+[data-theme="dark"] .resource-card[data-category="Finance"] svg {
+  color: #c4b5fd;
+}
+
+[data-theme="solarized"] .resource-card[data-category="Finance"] {
+  background: rgba(108, 113, 196, 0.25);
+  border: 1px solid rgba(108, 113, 196, 0.3);
+}
+
+[data-theme="solarized"]
+  .resource-card[data-category="Finance"]
+  .resource-category {
+  background: rgba(108, 113, 196, 0.1);
+  color: #9295d3;
+  border: 1px solid rgba(108, 113, 196, 0.25);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-size: 0.7rem;
+}
+
+[data-theme="solarized"]
+  .resource-card[data-category="Finance"]
+  .resource-title,
+[data-theme="solarized"] .resource-card[data-category="Finance"] svg {
+  color: #9295d3;
+}
+
 /* Footnotes */
 
 .footnotes {
@@ -2745,6 +2797,60 @@ a[data-footnote-ref] {
   margin: 0;
 }
 
+/* Tree Map */
+
+.shimmer-t {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(var(--color-text-rgb), 0.03) 0%,
+    rgba(var(--color-text-rgb), 0.08) 50%,
+    rgba(var(--color-text-rgb), 0.03) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+.treemap-container {
+  margin-top: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.skeleton-t {
+  background: var(--code-background-color);
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 0.25rem;
+}
+
+.skeleton-img-t {
+  background-color: rgba(var(--color-text-rgb), 0.04);
+  animation: pulseLoading 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  position: relative;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes pulseLoading {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 /* Desktop Media Queries */
 @media (min-width: 768px) {
   body {
@@ -3216,6 +3322,18 @@ a[data-footnote-ref] {
 
   [data-theme="dark"] .resource-card[data-category="Tools"]:hover {
     background: rgba(33, 150, 243, 0.4);
+  }
+
+  .resource-card[data-category="Finance"]:hover {
+    background: rgba(168, 85, 247, 0.2);
+  }
+
+  [data-theme="dark"] .resource-card[data-category="Finance"]:hover {
+    background: rgba(168, 85, 247, 0.4);
+  }
+
+  [data-theme="solarized"] .resource-card[data-category="Finance"]:hover {
+    background: rgba(108, 113, 196, 0.2);
   }
 
   .blog-card:hover {
