@@ -2528,7 +2528,7 @@ a[data-footnote-ref] {
   color: var(--color-link);
   font-size: 0.9rem;
   position: fixed;
-  top: 40vh;
+  top: 45%;
 }
 
 .info-overlay {
@@ -3380,5 +3380,26 @@ a[data-footnote-ref] {
   }
   100% {
     background-position: 1000px 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .terminal-frame {
+    width: min(700px, 95%);
+  }
+  .data-grid.larger {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .terminal-frame {
+    width: 95%;
+  }
+  .data-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .terminal-header {
+    padding: 0.5rem;
   }
 }

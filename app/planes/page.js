@@ -136,7 +136,7 @@ export default function PlanesPage() {
       <main className="terminal-main">
         <div className="loading-overlay">
           <RefreshCw className="spin" />
-          <span>Initializing Flight Stats</span>
+          <span>Loading Stats</span>
         </div>
       </main>
     );
