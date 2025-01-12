@@ -136,7 +136,7 @@ export default function PlanesPage() {
       <main className="terminal-main">
         <div className="loading-overlay">
           <RefreshCw className="spin" />
-          <span>Initializing Flight Systems</span>
+          <span>Initializing Flight Stats</span>
         </div>
       </main>
     );
@@ -168,7 +168,7 @@ export default function PlanesPage() {
         <div className="terminal-scroll">
           <div className="terminal-grid">
             <section className="terminal-section">
-              <div className="section-header">
+              <div className="planes-section-header">
                 <Award size={16} className="section-icon gold" />
                 <h2>PROFILE</h2>
               </div>
@@ -192,7 +192,7 @@ export default function PlanesPage() {
             </section>
 
             <section className="terminal-section">
-              <div className="section-header">
+              <div className="planes-section-header">
                 <Plane size={16} className="section-icon blue" />
                 <h2>FLIGHT DATA</h2>
               </div>
@@ -221,7 +221,7 @@ export default function PlanesPage() {
             </section>
 
             <section className="terminal-section">
-              <div className="section-header">
+              <div className="planes-section-header">
                 <Cloud size={16} className="section-icon purple" />
                 <h2>FLIGHT CONDITIONS</h2>
               </div>
@@ -241,7 +241,7 @@ export default function PlanesPage() {
 
             {stats.routes?.length > 0 && (
               <section className="terminal-section">
-                <div className="section-header">
+                <div className="planes-section-header">
                   <Navigation2 size={16} className="section-icon cyan" />
                   <h2>FREQUENT ROUTES</h2>
                 </div>
@@ -265,7 +265,7 @@ export default function PlanesPage() {
 
             {stats.lastFlight && (
               <section className="terminal-section">
-                <div className="section-header">
+                <div className="planes-section-header">
                   <Clock size={16} className="section-icon gold" />
                   <h2>LAST FLIGHT</h2>
                 </div>

@@ -2341,27 +2341,18 @@ a[data-footnote-ref] {
 /* Infinite Flight */
 
 .terminal-main {
-  position: fixed;
-  inset: 0;
   background: var(--color-bg);
   display: flex;
   align-items: center;
-  top: -3rem;
   justify-content: center;
   font-family: var(--font-normal);
-  padding: 0.5rem;
-  overflow: hidden;
+  padding: 0rem;
+  margin: 1.5rem 0 2rem;
 }
 
 .terminal-frame {
   width: 800px;
-  height: 70vh;
-  max-height: 700px;
-  background: rgba(var(--color-text-rgb), 0.03);
-  border: 1px solid rgba(var(--color-text-rgb), 0.1);
   border-radius: var(--border-radius);
-  padding: 1.25rem;
-  box-shadow: 0 0 30px rgba(var(--color-text-rgb), 0.05);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -2433,14 +2424,14 @@ a[data-footnote-ref] {
   padding: 1rem;
 }
 
-.section-header {
+.planes-section-header {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   margin-bottom: 1rem;
 }
 
-.section-header h2 {
+.planes-section-header h2 {
   font-size: 0.7rem;
   font-weight: 500;
   color: var(--blockquote-color);
@@ -2536,6 +2527,8 @@ a[data-footnote-ref] {
   gap: 1rem;
   color: var(--color-link);
   font-size: 0.9rem;
+  position: fixed;
+  top: 40vh;
 }
 
 .info-overlay {
@@ -2655,7 +2648,7 @@ a[data-footnote-ref] {
     opacity: 1;
   }
   50% {
-    opacity: 0.5;
+    opacity: 0.3;
   }
 }
 
