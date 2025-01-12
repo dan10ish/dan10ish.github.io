@@ -1210,7 +1210,7 @@ pre code {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 1.5rem;
-  padding: 1rem 0.5rem 2rem;
+  padding: 1rem 0.5rem 1rem;
   width: 100%;
   max-width: var(--max-width);
   margin: 0 auto;
@@ -2769,16 +2769,6 @@ a[data-footnote-ref] {
     font-size: 0.8rem;
   }
 
-  .about-link {
-    padding: 7px 14px;
-    font-size: 0.85rem;
-    height: 32px;
-  }
-
-  .about-links {
-    gap: 0.75rem;
-  }
-
   .project-row {
     padding: 16px 10px;
     grid-template-columns: 100px 1fr auto;
@@ -2933,7 +2923,7 @@ a[data-footnote-ref] {
   .books-grid,
   .notes-grid {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    padding: 1rem 0 2rem;
+    padding: 1rem 0 1rem;
   }
 
   .book-card {
@@ -3076,7 +3066,8 @@ a[data-footnote-ref] {
   }
 
   .about-page-link:hover {
-    background: rgba(var(--color-text-rgb), 0.2);
+    background: var(--color-link);
+    color: #ffffff;
     text-decoration: none;
   }
 
@@ -3246,12 +3237,6 @@ a[data-footnote-ref] {
     transform: scale(1.2);
   }
 
-  .about-link:hover {
-    text-decoration: none;
-    background: var(--color-link);
-    color: #ffffff;
-  }
-
   .photo-card:hover .photo-container img {
     transform: scale(1.02);
   }
@@ -3395,29 +3380,5 @@ a[data-footnote-ref] {
   }
   100% {
     background-position: 1000px 0;
-  }
-}
-
-@media (max-width: 900px) {
-  .terminal-frame {
-    width: min(700px, 95%);
-  }
-
-  .data-grid.larger {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 640px) {
-  .terminal-frame {
-    width: 95%;
-  }
-
-  .data-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .terminal-header {
-    padding: 0.5rem;
   }
 }

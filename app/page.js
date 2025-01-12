@@ -1,5 +1,4 @@
 import dynamic from "next/dynamic";
-import { FileText } from "lucide-react";
 import { getBlogPosts } from "../lib/posts";
 import AboutMe from "../components/AboutMe";
 
