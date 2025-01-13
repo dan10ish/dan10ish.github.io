@@ -1,13 +1,10 @@
 name: Deploy to GitHub Pages
-
 on:
   push:
     branches: [main]
   workflow_dispatch:
-
 permissions:
   contents: write
-
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -15,17 +12,14 @@ jobs:
       NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
       NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
       NEXT_PUBLIC_INFINITE_FLIGHT_API_KEY: ${{ secrets.NEXT_PUBLIC_INFINITE_FLIGHT_API_KEY }}
-
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 1
-
       - uses: actions/setup-node@v3
         with:
           node-version: "18"
           cache: "npm"
-
       - name: Cache
         uses: actions/cache@v3
         with:
@@ -37,7 +31,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
             ${{ runner.os }}-nextjs-
-
       - name: Clear and Install
         run: |
           rm -rf node_modules
@@ -45,15 +38,17 @@ jobs:
           npm cache clean --force
           npm install
           npm install react@18.3.1 react-dom@18.3.1 next@14.2.15 --save-exact
-
       - name: Setup and Build
         run: |
           echo "NEXT_PUBLIC_SUPABASE_URL=${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}" > .env.production
           echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}" >> .env.production
           npm run build
           npm run postbuild
+      - name: Prepare deployment
+        run: |
           touch out/.nojekyll
-
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
@@ -62,3 +57,4 @@ jobs:
           clean: true
           clean-exclude: |
             .nojekyll
+          commit-message: "Deploy to GitHub Pages [skip ci] - sitemap updated"
