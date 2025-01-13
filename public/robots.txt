@@ -1,6 +1,9 @@
+# *
 User-agent: *
 Allow: /
 
-Sitemap: https://danish.bio/sitemap.xml
-
+# Host
 Host: https://danish.bio
+
+# Sitemaps
+Sitemap: https://danish.bio/sitemap.xml
