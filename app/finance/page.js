@@ -143,8 +143,7 @@ const FinancePage = () => {
 
       <div className="portfolio-viz">
           <div className="treemap-container" style={{ overflow: "hidden" }}>
-            {/* {isLoading ? <TreemapSkeleton /> : <CustomTreemap />} */}
-            <TreemapSkeleton /> 
+            {isLoading ? <TreemapSkeleton /> : <CustomTreemap />}
           </div>
       </div>
 
