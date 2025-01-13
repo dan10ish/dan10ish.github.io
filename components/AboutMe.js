@@ -1,6 +1,6 @@
-import Link from 'next/link';
+import Link from "next/link";
 
-export default async function AboutMe() {
+export default function AboutMe() {
   return (
     <section className="about">
       <p>
@@ -15,8 +15,8 @@ export default async function AboutMe() {
         ,{" "}
         <Link href="/planes" className="about-page-link">
           planes
-        </Link>
-        {" "}and{" "}
+        </Link>{" "}
+        and{" "}
         <Link href="/finance" className="about-page-link">
           finance
         </Link>

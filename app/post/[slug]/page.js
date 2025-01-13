@@ -73,31 +73,31 @@ export default async function BlogPost(props) {
     <>
       <ButtonsContainer />
       <Suspense fallback={<BlogSkeleton />}>
-      <article className="blog-post markdown-body">
-        <div className="blogpost-title">
-          <h1>{post.title}</h1>
-          {post.status === "wip" && (
-            <span className="wip-badge">🏗️ Work In Progress</span>
-          )}
-        </div>
-        <div className="blogpost-meta">
-          <div>
-            <p className="blog-date">{post.date}</p>
+        <article className="blog-post markdown-body">
+          <div className="blogpost-title">
+            <h1>{post.title}</h1>
+            {post.status === "wip" && (
+              <span className="wip-badge">Work In Progress</span>
+            )}
           </div>
-          <div>|</div>
-          <div>
-            <a
-              href="https://x.com/dan10ish"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="at">@</span>dan10ish
-            </a>
+          <div className="blogpost-meta">
+            <div>
+              <p className="blog-date">{post.date}</p>
+            </div>
+            <div>|</div>
+            <div>
+              <a
+                href="https://x.com/dan10ish"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="at">@</span>dan10ish
+              </a>
+            </div>
           </div>
-        </div>
-        <MDXContent content={contentHtml} />
-        <Footer blogSlug={params?.slug} />
-      </article>
+          <MDXContent content={contentHtml} />
+          <Footer blogSlug={params?.slug} />
+        </article>
       </Suspense>
     </>
   );
