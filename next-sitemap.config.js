@@ -2,7 +2,7 @@
 const config = {
   siteUrl: "https://danish.bio",
   generateRobotsTxt: true,
-  outDir: "./public",
+  outDir: "./out",
   generateIndexSitemap: false,
   transform: async (config, path) => {
     console.log(`Generating sitemap for path: ${path}`);

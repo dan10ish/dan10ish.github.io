@@ -37,20 +37,22 @@ jobs:
           rm -f package-lock.json
           npm cache clean --force
           npm install
-          npm install react@18.3.1 react-dom@18.3.1 next@14.2.15 --save-exact 
+          npm install react@18.3.1 react-dom@18.3.1 next@14.2.15 --save-exact
       - name: Setup and Build
         run: |
-          echo "NEXT_PUBLIC_SUPABASE_URL=$secrets.NEXT_PUBLIC_SUPABASE_URL }}".env.production
-          echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=$secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}" .env.production
+          echo "NEXT_PUBLIC_SUPABASE_URL=${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}" > .env.production
+          echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}" >> .env.production
           npm run build
       - name: Prepare deployment
         run: |
-          git config --global user.email "github-acti[bot]@users.noreply.github.com"
-          git config --global user.name "github-actions[]"
-      - name: Deploy
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+      - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: .next
+          folder: out
           clean: true
+          clean-exclude: |
+            .nojekyll
           commit-message: "Deploy to GitHub Pages [skip ci] - sitemap updated"

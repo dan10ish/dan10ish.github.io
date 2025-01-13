@@ -2,7 +2,7 @@ const path = require("path");
 
 const nextConfig = {
   reactStrictMode: true,
-  output: "standalone",
+  output: "export",
   images: {
     unoptimized: false,
     domains: ["danish.bio"],
