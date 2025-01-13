@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { books, resources } from "@/lib/library-data";
 import ButtonsContainer from "@/components/ButtonsContainer";
 import { Treemap, ResponsiveContainer } from "recharts";
@@ -72,21 +72,39 @@ const CustomTreemap = () => {
           dataKey="value"
           ratio={4 / 3}
           animationDuration={0}
-          content={({ x, y, width, height, ticker, color }) => (
-            <g>
-              <rect x={x} y={y} width={width} height={height} fill={color} />
-              <text
-                x={x + width / 2}
-                y={y + height / 2}
-                textAnchor="middle"
-                alignmentBaseline="middle"
-                fill="#fff"
-                fontSize={14}
-              >
-                {ticker}
-              </text>
-            </g>
-          )}
+          content={({ root }) => {
+            if (!root || !root.children) return null;
+
+            return root.children.map((node, index) => {
+              const { x, y, width, height, color } = node;
+              const ticker = treemapData[index].ticker;
+
+              const fontSize = Math.max(
+                Math.min(width / ticker.length, height / 2, 14),
+                8,
+              );
+              const textX = x + width / 2;
+              const textY = y + height / 2;
+
+              return (
+                <g key={index}>
+                  <rect x={x} y={y} width={width} height={height} fill={color} />
+                  <text
+                    x={textX}
+                    y={textY}
+                    textAnchor="middle"
+                    dominantBaseline="central"
+                    fill="#fff"
+                    fontSize={fontSize}
+                    fontWeight="500"
+                    style={{ pointerEvents: "none" }}
+                  >
+                    {ticker}
+                  </text>
+                </g>
+              );
+            });
+          }}
         />
       </ResponsiveContainer>
     </div>
