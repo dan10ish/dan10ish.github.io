@@ -52,8 +52,6 @@ jobs:
           echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}" >> .env.production
           npm run build
           npm run postbuild
-          cp ./out/sitemap*.xml ./out
-          cp ./out/robots.txt ./out
           touch out/.nojekyll
 
       - name: Deploy
