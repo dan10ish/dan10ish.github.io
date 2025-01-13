@@ -1,23 +1,25 @@
+import Link from 'next/link';
+
 export default async function AboutMe() {
   return (
     <section className="about">
       <p>
         A mechatronics engineer exploring{" "}
-        <a href="/ml" className="about-page-link">
+        <Link href="/ml" className="about-page-link">
           machine learning
-        </a>
+        </Link>
         ,{" "}
-        <a href="/robotics" className="about-page-link">
+        <Link href="/robotics" className="about-page-link">
           robotics
-        </a>
+        </Link>
         ,{" "}
-        <a href="/planes" className="about-page-link">
+        <Link href="/planes" className="about-page-link">
           planes
-        </a>{" "}
-        and{" "}
-        <a href="/finance" className="about-page-link">
+        </Link>
+        {" "}and{" "}
+        <Link href="/finance" className="about-page-link">
           finance
-        </a>
+        </Link>
         .
       </p>
       <p>
