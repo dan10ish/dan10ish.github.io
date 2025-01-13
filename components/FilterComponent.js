@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Filter, X } from "lucide-react";
+import { ListFilter, X } from "lucide-react";
 
 const FilterComponent = ({
   options,
@@ -61,7 +61,7 @@ const FilterComponent = ({
             className="add-filter-btn"
             aria-label="Add filter tag"
           >
-            <Filter size={16} />
+            <ListFilter size={18} />
             {placeholder}
           </button>
         )}

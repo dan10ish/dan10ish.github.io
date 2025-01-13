@@ -32,10 +32,6 @@ export default function MLPage() {
     <main>
       <div className="domain-header">
         <h2>Machine Learning</h2>
-        <p className="domain-description">
-          Exploring artificial intelligence and machine learning through
-          projects and research.
-        </p>
       </div>
 
       <div className="domain-projects">

@@ -322,12 +322,6 @@ th {
   white-space: nowrap;
 }
 
-.page-description {
-  color: var(--blockquote-color);
-  font-size: 0.85rem;
-  margin: 2rem 0 1rem;
-}
-
 .x-link {
   display: inline-flex;
   align-items: center;
@@ -1712,7 +1706,6 @@ a[data-footnote-ref] {
 
 .add-filter-btn svg {
   position: relative;
-  top: 1px;
 }
 
 .github-profile-button {
@@ -2758,13 +2751,6 @@ a[data-footnote-ref] {
   margin-bottom: 1rem;
 }
 
-.domain-description {
-  color: var(--blockquote-color);
-  font-size: 0.85rem;
-  line-height: 2;
-  margin: 2rem 0 1rem;
-}
-
 .domain-projects {
   display: flex;
   flex-direction: column;
@@ -2805,28 +2791,28 @@ a[data-footnote-ref] {
   background: linear-gradient(
     90deg,
     rgba(var(--color-text-rgb), 0.03) 0%,
-    rgba(var(--color-text-rgb), 0.08) 50%,
+    rgba(var(--color-text-rgb), 0.06) 50%,
     rgba(var(--color-text-rgb), 0.03) 100%
   );
   background-size: 200% 100%;
   animation: shimmer 2s infinite linear;
 }
 
+.portfolio-viz {
+  margin-bottom: 0.5rem;
+}
+
 .treemap-container {
-  margin-top: 1rem;
-  margin-bottom: 0.25rem;
+  border-radius: 10px;
 }
 
 .skeleton-t {
-  background: var(--code-background-color);
   overflow: hidden;
   position: relative;
-  margin-bottom: 0.25rem;
 }
 
 .skeleton-img-t {
-  background-color: rgba(var(--color-text-rgb), 0.04);
-  animation: pulseLoading 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation: pulseLoading 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   position: relative;
 }
 

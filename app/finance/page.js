@@ -55,7 +55,7 @@ const treemapData = [
 
 const TreemapSkeleton = () => {
   return (
-    <div className="skeleton-t" style={{ height: "300px", width: "100%" }}>
+    <div className="skeleton-t" style={{ height: "350px", width: "100%" }}>
       <div className="skeleton-img-t" style={{ height: "100%", width: "100%" }}>
         <div className="shimmer-t" />
       </div>
@@ -66,7 +66,7 @@ const TreemapSkeleton = () => {
 const CustomTreemap = () => {
   return (
     <div className="treemap-container">
-      <ResponsiveContainer width="100%" height={300}>
+      <ResponsiveContainer width="100%" height={350}>
         <Treemap
           data={treemapData}
           dataKey="value"
@@ -88,7 +88,13 @@ const CustomTreemap = () => {
 
               return (
                 <g key={index}>
-                  <rect x={x} y={y} width={width} height={height} fill={color} />
+                  <rect
+                    x={x}
+                    y={y}
+                    width={width}
+                    height={height}
+                    fill={color}
+                  />
                   <text
                     x={textX}
                     y={textY}
@@ -133,17 +139,13 @@ const FinancePage = () => {
     <main>
       <div className="domain-header">
         <h2>Finance</h2>
-        <p className="domain-description">
-          Portfolio allocation and curated resources for financial markets.
-        </p>
       </div>
 
       <div className="portfolio-viz">
-        <div className="viz-content">
           <div className="treemap-container" style={{ overflow: "hidden" }}>
-            {isLoading ? <TreemapSkeleton /> : <CustomTreemap />}
+            {/* {isLoading ? <TreemapSkeleton /> : <CustomTreemap />} */}
+            <TreemapSkeleton /> 
           </div>
-        </div>
       </div>
 
       {financeBooks.length > 0 && (

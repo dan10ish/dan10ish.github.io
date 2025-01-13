@@ -33,10 +33,6 @@ export default function RoboticsPage() {
     <main>
       <div className="domain-header">
         <h2>Robotics</h2>
-        <p className="domain-description">
-          Researching and programming robots through mechanics, electronics, and
-          control systems.
-        </p>
       </div>
 
       <div className="domain-projects">

@@ -20,10 +20,7 @@ export default function AboutMe() {
         <Link href="/finance" className="about-page-link">
           finance
         </Link>
-        .
-      </p>
-      <p>
-        Connect via{" "}
+        . Connect via{" "}
         <a
           href="https://x.com/dan10ish"
           target="_blank"
