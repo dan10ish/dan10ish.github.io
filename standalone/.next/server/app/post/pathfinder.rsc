@@ -1,0 +1,280 @@
+3:I[4707,[],""]
+5:I[36423,[],""]
+7:I[39263,["3185","static/chunks/app/layout-414babf250cd8107.js"],"default"]
+8:I[83012,["3185","static/chunks/app/layout-414babf250cd8107.js"],"default"]
+9:"$Sreact.suspense"
+a:I[74386,["6112","static/chunks/6112-e059ce9b9a774c76.js","6605","static/chunks/app/post/%5Bslug%5D/page-a5c85809925d6451.js"],"default"]
+4:["slug","pathfinder","d"]
+6:T581,
+              (function() {
+                try {
+                  const savedTheme = localStorage.getItem('theme');
+                  const computedTheme = localStorage.getItem('computedTheme');
+                  if (computedTheme) {
+                    document.documentElement.setAttribute('data-theme', computedTheme);
+                    return;
+                  }
+                  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  const theme = savedTheme || 'system';
+                  const themeColors = {
+                    light: '#ffffff',
+                    dark: '#09090b',
+                    solarized: '#002b36'
+                  };
+                  const effectiveTheme = theme === 'system' ? (prefersDark ? 'dark' : 'light') : theme;
+                  document.documentElement.setAttribute('data-theme', effectiveTheme);
+                  const metaTheme = document.querySelector('meta[name="theme-color"]') || document.createElement('meta');
+                  metaTheme.name = 'theme-color';
+                  metaTheme.content = themeColors[effectiveTheme];
+                  document.head.appendChild(metaTheme);
+                  localStorage.setItem('computedTheme', effectiveTheme);
+                } catch (e) {
+                  console.error('Theme initialization error:', e);
+                }
+              })();
+            0:["_ixGMjbQ7X3CWXew93Dzv",[[["",{"children":["post",{"children":[["slug","pathfinder","d"],{"children":["__PAGE__?{\"slug\":\"pathfinder\"}",{}]}]}]},"$undefined","$undefined",true],["",{"children":["post",{"children":[["slug","pathfinder","d"],{"children":["__PAGE__",{},[["$L1","$L2",null],null],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","post","children","$4","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","post","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/0b680ba30f08401d.css","precedence":"next","crossOrigin":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/326c6796e9721891.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":[["$","head",null,{"children":[["$","meta",null,{"name":"theme-color","content":""}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"$6"}}],["$","link",null,{"rel":"preload","as":"image","href":"/icons/icon.png","type":"image/png"}],["$","link",null,{"rel":"icon","type":"image/png","href":"/icons/icon.png"}],["$","link",null,{"rel":"apple-touch-icon","href":"/icons/icon.png"}],["$","link",null,{"rel":"shortcut icon","type":"image/png","href":"/icons/icon.png"}],["$","link",null,{"rel":"preload","href":"/fonts/GeistMono.woff2","as":"font","type":"font/woff2","crossOrigin":"anonymous"}],["$","link",null,{"rel":"preload","href":"/fonts/Sentient.woff2","as":"font","type":"font/woff2","crossOrigin":"anonymous"}],["$","link",null,{"rel":"preconnect","href":"https://iksodfcuqkwlvhyymcjk.supabase.co","crossOrigin":"anonymous"}]]}],["$","body",null,{"children":[["$","$L7",null,{}],["$","$L8",null,{}],["$","$9",null,{"fallback":null,"children":["$","$La",null,{}]}],["$","main",null,{"className":"container","children":["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":["$","div",null,{"className":"error-container","children":[["$","div",null,{"className":"error-content","children":[["$","div",null,{"className":"ghost-face","children":[["$","div",null,{"className":"meta"}],["$","div",null,{"className":"meta"}]]}],["$","h1",null,{"className":"error-title","children":"404"}],["$","p",null,{"children":"Page not found"}]]}],["$","div",null,{"className":"error-nav","children":[["$","a",null,{"href":"/","className":"return-link","children":"Home"}],["$","div",null,{"className":"social-links","children":[["$","a",null,{"href":"https://github.com/dan10ish","className":"social-link","children":"GitHub"}],["$","a",null,{"href":"https://x.com/dan10ish","className":"social-link","children":"Twitter"}]]}]]}]]}],"notFoundStyles":[]}]}]]}]]}]],null],null],["$Lb",null]]]]
+c:I[48506,["6112","static/chunks/6112-e059ce9b9a774c76.js","6605","static/chunks/app/post/%5Bslug%5D/page-a5c85809925d6451.js"],"MDXContent"]
+e:I[70049,["6112","static/chunks/6112-e059ce9b9a774c76.js","6605","static/chunks/app/post/%5Bslug%5D/page-a5c85809925d6451.js"],"PreloadCss"]
+f:I[96112,["6112","static/chunks/6112-e059ce9b9a774c76.js","6605","static/chunks/app/post/%5Bslug%5D/page-a5c85809925d6451.js"],"default"]
+d:T3e44,<h2>Introduction</h2>
+<p>Pathfinding algorithms are fundamental in computer science, powering applications from GPS navigation to artificial intelligence in video games. This Pathfinding Visualizer project offers an interactive platform to explore and compare various pathfinding algorithms and maze generation techniques.</p>
+<p><strong>Live Demo</strong>: <a href="https://dan10ish.github.io/pathfinding-visualizer">Pathfinding Visualizer</a></p>
+<p><strong>Source Code</strong>: <a href="https://github.com/dan10ish/pathfinding-visualizer">GitHub Repository</a></p>
+<h2>Technical Stack</h2>
+<ul>
+<li>Frontend Framework: <code>React</code> (with Hooks for state management)</li>
+<li>Styling: <code>CSS</code> with Flexbox</li>
+<li>Deployment: GitHub Pages</li>
+</ul>
+<h2>Core Components</h2>
+<ol>
+<li><strong>Grid</strong>: Represents the pathfinding area</li>
+<li><strong>Node</strong>: Individual cells within the grid</li>
+<li><strong>Algorithms</strong>: Implementation of pathfinding and maze generation algorithms</li>
+<li><strong>Visualizer</strong>: Manages the visualization process</li>
+</ol>
+<h2>Pathfinding Algorithms</h2>
+<h3>1. Dijkstra's Algorithm</h3>
+<p><strong>Use Case</strong>: Ideal for finding the shortest path in weighted graphs. Commonly used in network routing protocols and GPS systems.</p>
+<p><strong>Time Complexity</strong>: <span class="math math-inline">O(V^2)</span> without a min-priority queue, <span class="math math-inline">O((V+E) \log V)</span> with a min-priority queue, where <span class="math math-inline">V</span> is the number of vertices and <span class="math math-inline">E</span> is the number of edges.</p>
+<p><strong>Space Complexity</strong>: <span class="math math-inline">O(V)</span></p>
+<p><strong>Logic</strong>:</p>
+<ol>
+<li>Initialize distances: set start node to 0, all others to infinity</li>
+<li>While unvisited nodes exist:
+<ol>
+<li>Select unvisited node with smallest distance</li>
+<li>Mark it as visited</li>
+<li>Update distances to its unvisited neighbors</li>
+</ol>
+</li>
+<li>Terminate when end node is reached or all reachable nodes are visited</li>
+</ol>
+<p><strong>Visualization</strong>:</p>
+<pre><code class="language-plaintext">Initial Grid       Step 1           Step 2           Final Path
+S 0 ∞ ∞ ∞ ∞       S 0 1 ∞ ∞ ∞      S 0 1 2 ∞ ∞      S 0 1 2 3 4
+∞ ∞ ∞ # ∞ ∞       1 2 2 # ∞ ∞      1 2 2 # 3 ∞      1 2 3 # 3 4
+∞ # ∞ ∞ ∞ ∞       2 # 3 ∞ ∞ ∞      2 # 3 4 4 ∞      2 # 3 4 3 4
+∞ # ∞ ∞ # ∞       ∞ # ∞ ∞ # ∞      3 # 4 5 # 5      3 # 4 5 # 5
+∞ ∞ ∞ ∞ ∞ E       ∞ ∞ ∞ ∞ ∞ E      4 4 5 5 6 E      4 4 5 5 6 E
+
+S: Start node    E: End node    #: Wall    ∞: Unvisited
+Numbers represent distance from start node
+</code></pre>
+<h3>2. A* (A-Star) Algorithm</h3>
+<p><strong>Use Case</strong>: Excellent for pathfinding in games and robotics, especially when a heuristic can be applied to guide the search.</p>
+<p><strong>Time Complexity</strong>: <span class="math math-inline">O(b^d)</span>, where <span class="math math-inline">b</span> is the branching factor and <span class="math math-inline">d</span> is the depth of the solution.</p>
+<p><strong>Space Complexity</strong>: <span class="math math-inline">O(b^d)</span></p>
+<p><strong>Logic</strong>:</p>
+<ol>
+<li>Maintain open list (nodes to be evaluated) and closed list (evaluated nodes)</li>
+<li>Start with initial node in open list</li>
+<li>While open list is not empty:
+<ol>
+<li>Choose node with lowest f_score (f = g + h)</li>
+<li>If it's the goal, return the path</li>
+<li>Move it to closed list</li>
+<li>For each neighbor:</li>
+</ol>
+<ul>
+<li>If in closed list, ignore</li>
+<li>If not in open list, add it</li>
+<li>If in open list, update if this path is better</li>
+</ul>
+</li>
+</ol>
+<p><strong>Visualization</strong>:</p>
+<pre><code class="language-plaintext">Initial Grid       Step 1           Step 2           Final Path
+S 0 ∞ ∞ ∞ ∞       S 0 1 2 3 4      S 0 1 2 3 4      S 0 1 2 3 4
+∞ ∞ ∞ # ∞ ∞       1 2 2 # 4 5      1 2 2 # 4 5      1 2 3 # 4 5
+∞ # ∞ ∞ ∞ ∞       2 # 3 3 4 5      2 # 3 3 4 5      2 # 3 4 5 6
+∞ # ∞ ∞ # ∞       3 # 4 4 # 6      3 # 4 4 # 6      3 # 4 5 # 7
+∞ ∞ ∞ ∞ ∞ E       4 4 5 5 5 E      4 4 5 5 5 E      4 5 6 7 8 E
+
+S: Start node    E: End node    #: Wall    ∞: Unvisited
+Numbers represent f_score (g_score + heuristic)
+</code></pre>
+<h3>3. Breadth-First Search (BFS)</h3>
+<p><strong>Use Case</strong>: Useful for finding the shortest path in unweighted graphs. Often used in social network analysis, web crawling, and in solving puzzles with the least number of moves.</p>
+<p><strong>Time Complexity</strong>: <span class="math math-inline">O(V + E)</span>, where <span class="math math-inline">V</span> is the number of vertices and <span class="math math-inline">E</span> is the number of edges.</p>
+<p><strong>Space Complexity</strong>: <span class="math math-inline">O(V)</span></p>
+<p><strong>Logic</strong>:</p>
+<ol>
+<li>Start at the root node</li>
+<li>Explore all neighbor nodes at the current depth</li>
+<li>Move to the next level</li>
+<li>Repeat steps 2-3 until goal is found or all nodes are explored</li>
+</ol>
+<p><strong>Visualization</strong>:</p>
+<pre><code class="language-plaintext">Initial Grid       Step 1           Step 2           Final Path
+S ∞ ∞ ∞ ∞ ∞       S 1 1 1 1 1      S 1 1 1 1 1      S→→→→→→
+∞ ∞ ∞ # ∞ ∞       1 1 1 # 1 1      1 1 1 # 1 1      ↓↑←←#↓↑
+∞ # ∞ ∞ ∞ ∞       1 # 1 1 1 1      2 # 2 2 2 2      ↓#↑←←↓↑
+∞ # ∞ ∞ # ∞       ∞ # ∞ ∞ # ∞      2 # 2 2 # 2      ↓#↓→#↑
+∞ ∞ ∞ ∞ ∞ E       ∞ ∞ ∞ ∞ ∞ E      2 2 2 2 2 E      →→→→→E
+
+S: Start node    E: End node    #: Wall    ∞: Unvisited
+Numbers represent levels of exploration
+</code></pre>
+<h3>4. Depth-First Search (DFS)</h3>
+<p><strong>Use Case</strong>: Effective for maze solving, topological sorting, and cycle detection in graphs. Often used in puzzle-solving algorithms and game AI for exploring possible move sequences.</p>
+<p><strong>Time Complexity</strong>: <span class="math math-inline">O(V + E)</span>, where <span class="math math-inline">V</span> is the number of vertices and <span class="math math-inline">E</span> is the number of edges.</p>
+<p><strong>Space Complexity</strong>: <span class="math math-inline">O(V)</span> in the worst case (skewed tree), <span class="math math-inline">O(\log V)</span> in the best case (balanced tree)</p>
+<p><strong>Logic</strong>:</p>
+<ol>
+<li>Start at the root node</li>
+<li>Explore as far as possible along each branch</li>
+<li>Backtrack when you can't go further</li>
+<li>Repeat steps 2-3 until goal is found or all nodes are explored</li>
+</ol>
+<p><strong>Visualization</strong>:</p>
+<pre><code class="language-plaintext">Initial Grid          DFS Exploration          Final Path
+
+S · · · · ·           S 1-2-3-4 ·              S-→-→-→-→ ·
+· · · # · ·           | · · # 5 ·              |     # | ·
+· # · · · ·           7 # 6 ← ← ·              | # ←-←-↓ ·
+· # · · # ·           | # | · # 8              | #   ↓ # ·
+· · · · · E           9-10-11-12-13-E          ↓-→-→-→-→-E
+
+S: Start    E: End    #: Wall    ·: Unvisited
+Numbers: Exploration order    -→↓←↑: DFS path
+</code></pre>
+<h2>Maze Generation Algorithms</h2>
+<h3>1. Recursive Division</h3>
+<p><strong>Use Case</strong>: Creates mazes with long corridors and rooms, suitable for game level generation or puzzle creation.</p>
+<p><strong>Time Complexity</strong>: <span class="math math-inline">O(n \log n)</span>, where <span class="math math-inline">n</span> is the number of cells in the grid.</p>
+<p><strong>Space Complexity</strong>: <span class="math math-inline">O(\log n)</span> due to the recursion stack.</p>
+<p><strong>Logic</strong>:</p>
+<ol>
+<li>Start with an empty grid</li>
+<li>Recursively:
+<ol>
+<li>Choose a random point to create a wall</li>
+<li>Create a passage in the wall</li>
+<li>Recursively apply to sub-chambers</li>
+</ol>
+</li>
+</ol>
+<p><strong>Visualization</strong>:</p>
+<pre><code class="language-plaintext">Initial Grid       Step 1           Step 2           Final Maze
+□□□□□□□□□□       □□□□□□□□□□       □□□□□□□□□□       □□□□■□□□□□
+□□□□□□□□□□       □□□□□□□□□□       ■■■■□■■■■■       ■■■■□■■■■■
+□□□□□□□□□□       ■■■■□■■■■■       ■■■■□■■■■■       ■□□□□■□□□■
+□□□□□□□□□□       ■■■■□■■■■■       ■■■■□■■■■■       ■□■■□■□■□■
+□□□□□□□□□□       ■■■■□■■■■■       ■■■■□■■■■■       ■□■□□□□■□■
+□□□□□□□□□□       □□□□□□□□□□       □□□□□□□□□□       □□■□■■■■□■
+
+□: Empty cell    ■: Wall
+</code></pre>
+<h3>2. Random Maze</h3>
+<p><strong>Use Case</strong>: Generates mazes with a more organic, unpredictable structure. Useful for creating varied environments in games or simulations.</p>
+<p><strong>Time Complexity</strong>: <span class="math math-inline">O(n)</span>, where <span class="math math-inline">n</span> is the number of cells in the grid.</p>
+<p><strong>Space Complexity</strong>: <span class="math math-inline">O(n)</span> to store the grid.</p>
+<p><strong>Logic</strong>:</p>
+<ol>
+<li>Start with an empty grid</li>
+<li>For each cell, set it as a wall with a predefined probability, here it is <code>30%</code></li>
+<li>Ensure start and end points are not walls</li>
+<li>Check if a path exists between start and end</li>
+<li>If no path exists, clear some walls and repeat from step 4</li>
+</ol>
+<p><strong>Visualization</strong>:</p>
+<pre><code class="language-plaintext">Initial Grid       Step 1           Step 2           Final Maze
+□□□□□□□□□□       ■□■□■□■□■□       ■□■□■□■□■□       S□■□■□■□■□
+□□□□□□□□□□       □■□■□■□■□■       □■□■□■□■□■       □■□■□■□■□■
+□□□□□□□□□□       ■□■□■□■□■□       ■□□□■□■□■□       ■□□□■□■□■□
+□□□□□□□□□□       □■□■□■□■□■       □■□□□■□■□■       □□□□□■□■□■
+□□□□□□□□□□       ■□■□■□■□■□       ■□■□□□■□■□       ■□■□□□■□■□
+□□□□□□□□□□       □■□■□■□■□■       □■□■□□□■□■       □■□■□□□■□E
+
+□: Empty cell    ■: Wall    S: Start node    E: End node
+</code></pre>
+<h2>Visualization Process</h2>
+<p>The visualization process brings the algorithms to life:</p>
+<ol>
+<li><strong>User Interaction</strong>: The user selects an algorithm and optionally a maze type.</li>
+<li><strong>Grid Initialization</strong>: The grid is initialized based on user input.</li>
+<li><strong>Algorithm Execution</strong>: The selected algorithm runs on the grid.</li>
+<li><strong>Step-by-Step Visualization</strong>:
+<ul>
+<li>Each step of the algorithm is visualized with a slight delay.</li>
+<li>Visited nodes are colored to show the algorithm's progress.</li>
+<li>The final path is highlighted once the end node is reached.</li>
+</ul>
+</li>
+</ol>
+<h2>Performance Considerations</h2>
+<p>Optimizing performance was crucial for smooth visualizations, especially for larger grids:</p>
+<ol>
+<li><strong>Efficient Data Structures</strong>: Using appropriate data structures (e.g., priority queues for Dijkstra's and A*) to improve algorithm efficiency.</li>
+<li><strong>Memoization</strong>: Caching results of expensive computations to avoid redundant calculations.</li>
+<li><strong>Batch DOM Updates</strong>: Grouping DOM updates to reduce layout thrashing during animations.</li>
+<li><strong>React Optimization</strong>: Using React.memo and useMemo to prevent unnecessary re-renders.</li>
+</ol>
+<h2>Challenges and Learnings</h2>
+<p>Developing this visualizer presented several challenges:</p>
+<ol>
+<li><strong>Algorithm Implementation</strong>: Translating textbook algorithms into efficient JavaScript code required deep understanding and careful optimization.</li>
+<li><strong>State Management</strong>: Managing the complex state of the grid, algorithm progress, and user interactions necessitated a well-planned state management strategy.</li>
+<li><strong>Visualization Timing</strong>: Balancing visualization speed with the ability to observe algorithm behavior was crucial for the educational aspect of the tool.</li>
+<li><strong>Maze Generation</strong>: Implementing maze generation algorithms that create interesting, solvable mazes while ensuring efficiency was a unique challenge.</li>
+</ol>
+<h2>Conclusion</h2>
+<p>This Pathfinding Visualizer project provides insights into:</p>
+<ol>
+<li>The behavior and efficiency of different pathfinding algorithms</li>
+<li>The impact of heuristics on search optimization</li>
+<li>The challenges of maze generation and solving</li>
+<li>The importance of user interface design in educational tools</li>
+</ol>
+<p>The project also demonstrates the power of modern web technologies in creating interactive experiences. Through React's component-based architecture and efficient rendering, it was possible to create a smooth, responsive tool that can handle complex computations and visualizations in real-time.</p>
+<p>I encourage you to explore the <a href="https://dan10ish.github.io/pathfinding-visualizer">live demo</a> to interact with these algorithms firsthand. For those interested in the implementation details or looking to contribute, please visit this project's <a href="https://github.com/dan10ish/pathfinding-visualizer">GitHub repository</a>.</p>
+<p>The visualizer not only demonstrates the mechanics of pathfinding algorithms but also illustrates important computer science concepts:</p>
+<ol>
+<li>
+<p><strong>Algorithm Efficiency</strong>: By comparing the performance of different algorithms on various maze configurations, users can gain intuitive insights into algorithmic complexity and efficiency.</p>
+</li>
+<li>
+<p><strong>Heuristics in Search</strong>: The A* algorithm showcases how informed search techniques can significantly improve performance in certain scenarios, demonstrating the power of heuristics in problem-solving.</p>
+</li>
+<li>
+<p><strong>Graph Theory in Practice</strong>: The grid-based visualization provides a tangible representation of graph theory concepts, making abstract ideas more concrete and understandable.</p>
+</li>
+<li>
+<p><strong>Trade-offs in Algorithm Design</strong>: Users can observe how different algorithms perform under various conditions, illustrating the trade-offs between speed, memory usage, and completeness in algorithm design.</p>
+</li>
+<li>
+<p><strong>Randomization in Computing</strong>: The maze generation algorithms demonstrate how randomization can be used to create complex structures, a concept widely used in procedural generation for games and simulations.</p>
+</li>
+</ol>
+<p>Future enhancements to this project could include:</p>
+<ul>
+<li>Implementation of additional pathfinding algorithms (e.g., Jump Point Search, Bi-directional Search)</li>
+<li>Support for weighted graphs to simulate more complex terrain</li>
+<li>Integration of machine learning techniques for adaptive pathfinding</li>
+<li>Expansion to 3D environments for more advanced visualizations</li>
+</ul>
+<p>Thank you for exploring and may your paths always be optimal!</p>
+2:[["$","$La",null,{}],["$","$9",null,{"fallback":["$","article",null,{"className":"blog-post markdown-body","children":["$","div",null,{"className":"skeleton-wrapper","children":[["$","div",null,{"className":"blogpost-title","children":["$","div",null,{"className":"skeleton-title"}]}],["$","div",null,{"className":"blogpost-meta skeleton-meta","children":[["$","div",null,{"className":"skeleton-date"}],["$","div",null,{"children":"|"}],["$","div",null,{"className":"skeleton-author"}]]}],["$","div",null,{"className":"skeleton-content","children":[["$","div",null,{"className":"skeleton-paragraph"}],["$","div",null,{"className":"skeleton-paragraph"}],["$","div",null,{"className":"skeleton-paragraph short"}],["$","div",null,{"className":"skeleton-code","children":[["$","div",null,{"className":"skeleton-code-header","children":["$","div",null,{"className":"skeleton-lang"}]}],["$","div",null,{"className":"skeleton-code-content","children":[["$","div",null,{"className":"skeleton-code-line"}],["$","div",null,{"className":"skeleton-code-line"}],["$","div",null,{"className":"skeleton-code-line"}],["$","div",null,{"className":"skeleton-code-line short"}]]}]]}],["$","div",null,{"className":"skeleton-paragraph"}],["$","div",null,{"className":"skeleton-paragraph"}],["$","div",null,{"className":"skeleton-paragraph short"}]]}]]}]}],"children":["$","article",null,{"className":"blog-post markdown-body","children":[["$","div",null,{"className":"blogpost-title","children":[["$","h1",null,{"children":"Pathfinder"}],false]}],["$","div",null,{"className":"blogpost-meta","children":[["$","div",null,{"children":["$","p",null,{"className":"blog-date","children":"Sep 28, 2024"}]}],["$","div",null,{"children":"|"}],["$","div",null,{"children":["$","a",null,{"href":"https://x.com/dan10ish","target":"_blank","rel":"noopener noreferrer","children":[["$","span",null,{"className":"at","children":"@"}],"dan10ish"]}]}]]}],["$","$Lc",null,{"content":"$d"}],["$","$9",null,{"fallback":null,"children":[["$","$Le",null,{"moduleIds":["app/post/[slug]/page.js -> @/components/Footer"]}],["$","$Lf",null,{"blogSlug":"pathfinder"}]]}]]}]}]]
+b:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, viewport-fit=cover, user-scalable=yes"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"Pathfinder"}],["$","meta","3",{"name":"description","content":"Pathfinder - A blog post by Danish"}],["$","meta","4",{"name":"keywords","content":"Danish,mechatronics,robotics,machine learning,developer,engineer,portfolio"}],["$","meta","5",{"name":"robots","content":"index, follow, nocache"}],["$","meta","6",{"name":"googlebot","content":"index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"}],["$","meta","7",{"name":"profile:username","content":"dan10ish"}],["$","meta","8",{"name":"profile:first_name","content":"Danish"}],["$","link","9",{"rel":"canonical","href":"https://danish.bio"}],["$","meta","10",{"property":"og:title","content":"Pathfinder"}],["$","meta","11",{"property":"og:description","content":"Pathfinder - A blog post by Danish"}],["$","meta","12",{"property":"og:url","content":"https://dan10ish.github.io/post/pathfinder"}],["$","meta","13",{"property":"og:image","content":"https://dan10ish.github.io/header-images/pathfinding.jpg"}],["$","meta","14",{"property":"og:image:width","content":"1200"}],["$","meta","15",{"property":"og:image:height","content":"630"}],["$","meta","16",{"property":"og:image:alt","content":"Pathfinder"}],["$","meta","17",{"property":"og:type","content":"article"}],["$","meta","18",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","19",{"name":"twitter:title","content":"Pathfinder"}],["$","meta","20",{"name":"twitter:description","content":"Pathfinder - A blog post by Danish"}],["$","meta","21",{"name":"twitter:image","content":"https://dan10ish.github.io/header-images/pathfinding.jpg"}]]
+1:null
