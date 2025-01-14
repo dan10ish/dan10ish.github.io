@@ -48,6 +48,7 @@
   },
   "devDependencies": {
     "gh-pages": "^6.1.1",
-    "raw-loader": "^4.0.2"
+    "raw-loader": "^4.0.2",
+    "typescript": "^5.7.3"
   }
 }
