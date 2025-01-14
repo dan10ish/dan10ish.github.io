@@ -32,18 +32,24 @@ a:I[74386,["6112","static/chunks/6112-26d3a99329ee1e2c.js","6605","static/chunks
                   console.error('Theme initialization error:', e);
                 }
               })();
-            0:["c_N6VG40SUxx79KCIIndJ",[[["",{"children":["post",{"children":[["slug","how-this-site-works","d"],{"children":["__PAGE__?{\"slug\":\"how-this-site-works\"}",{}]}]}]},"$undefined","$undefined",true],["",{"children":["post",{"children":[["slug","how-this-site-works","d"],{"children":["__PAGE__",{},[["$L1","$L2",null],null],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","post","children","$4","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","post","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/15b3123451131c9d.css","precedence":"next","crossOrigin":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/326c6796e9721891.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":[["$","head",null,{"children":[["$","meta",null,{"name":"theme-color","content":""}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"$6"}}],["$","link",null,{"rel":"preload","as":"image","href":"/icons/icon.png","type":"image/png"}],["$","link",null,{"rel":"icon","type":"image/png","href":"/icons/icon.png"}],["$","link",null,{"rel":"apple-touch-icon","href":"/icons/icon.png"}],["$","link",null,{"rel":"shortcut icon","type":"image/png","href":"/icons/icon.png"}],["$","link",null,{"rel":"preload","href":"/fonts/GeistMono.woff2","as":"font","type":"font/woff2","crossOrigin":"anonymous"}],["$","link",null,{"rel":"preload","href":"/fonts/Sentient.woff2","as":"font","type":"font/woff2","crossOrigin":"anonymous"}],["$","link",null,{"rel":"preconnect","href":"https://iksodfcuqkwlvhyymcjk.supabase.co","crossOrigin":"anonymous"}]]}],["$","body",null,{"children":[["$","$L7",null,{}],["$","$L8",null,{}],["$","$9",null,{"fallback":null,"children":["$","$La",null,{}]}],["$","main",null,{"className":"container","children":["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":["$","div",null,{"className":"error-container","children":[["$","div",null,{"className":"error-content","children":[["$","div",null,{"className":"ghost-face","children":[["$","div",null,{"className":"meta"}],["$","div",null,{"className":"meta"}]]}],["$","h1",null,{"className":"error-title","children":"404"}],["$","p",null,{"children":"Page not found"}]]}],["$","div",null,{"className":"error-nav","children":[["$","a",null,{"href":"/","className":"return-link","children":"Home"}],["$","div",null,{"className":"social-links","children":[["$","a",null,{"href":"https://github.com/dan10ish","className":"social-link","children":"GitHub"}],["$","a",null,{"href":"https://x.com/dan10ish","className":"social-link","children":"Twitter"}]]}]]}]]}],"notFoundStyles":[]}]}]]}]]}]],null],null],["$Lb",null]]]]
+            0:["Th0RxleH6--Ib5yceOJJ4",[[["",{"children":["post",{"children":[["slug","how-this-site-works","d"],{"children":["__PAGE__?{\"slug\":\"how-this-site-works\"}",{}]}]}]},"$undefined","$undefined",true],["",{"children":["post",{"children":[["slug","how-this-site-works","d"],{"children":["__PAGE__",{},[["$L1","$L2",null],null],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","post","children","$4","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","post","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/77a5d20530d768b1.css","precedence":"next","crossOrigin":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/326c6796e9721891.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":[["$","head",null,{"children":[["$","meta",null,{"name":"theme-color","content":""}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"$6"}}],["$","link",null,{"rel":"preload","as":"image","href":"/icons/icon.png","type":"image/png"}],["$","link",null,{"rel":"icon","type":"image/png","href":"/icons/icon.png"}],["$","link",null,{"rel":"apple-touch-icon","href":"/icons/icon.png"}],["$","link",null,{"rel":"shortcut icon","type":"image/png","href":"/icons/icon.png"}],["$","link",null,{"rel":"preload","href":"/fonts/GeistMono.woff2","as":"font","type":"font/woff2","crossOrigin":"anonymous"}],["$","link",null,{"rel":"preload","href":"/fonts/Sentient.woff2","as":"font","type":"font/woff2","crossOrigin":"anonymous"}],["$","link",null,{"rel":"preconnect","href":"https://iksodfcuqkwlvhyymcjk.supabase.co","crossOrigin":"anonymous"}]]}],["$","body",null,{"children":[["$","$L7",null,{}],["$","$L8",null,{}],["$","$9",null,{"fallback":null,"children":["$","$La",null,{}]}],["$","main",null,{"className":"container","children":["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":["$","div",null,{"className":"error-container","children":[["$","div",null,{"className":"error-content","children":[["$","div",null,{"className":"ghost-face","children":[["$","div",null,{"className":"meta"}],["$","div",null,{"className":"meta"}]]}],["$","h1",null,{"className":"error-title","children":"404"}],["$","p",null,{"children":"Page not found"}]]}],["$","div",null,{"className":"error-nav","children":[["$","a",null,{"href":"/","className":"return-link","children":"Home"}],["$","div",null,{"className":"social-links","children":[["$","a",null,{"href":"https://github.com/dan10ish","className":"social-link","children":"GitHub"}],["$","a",null,{"href":"https://x.com/dan10ish","className":"social-link","children":"Twitter"}]]}]]}]]}],"notFoundStyles":[]}]}]]}]]}]],null],null],["$Lb",null]]]]
 c:I[48506,["6112","static/chunks/6112-26d3a99329ee1e2c.js","6605","static/chunks/app/post/%5Bslug%5D/page-a5c85809925d6451.js"],"MDXContent"]
 e:I[70049,["6112","static/chunks/6112-26d3a99329ee1e2c.js","6605","static/chunks/app/post/%5Bslug%5D/page-a5c85809925d6451.js"],"PreloadCss"]
-d:T25ca,<p>I rebuilt my website using <code>Next.js 14</code> with React Server Components, focusing on performance, minimalism, and user experience while incorporating powerful features. Here's a detailed breakdown of how everything works.</p>
+d:T2891,<p>I rebuilt my website using Next.js 15 with React Server Components and the App Router, focusing on performance, minimalism, and user experience. Unlike typical portfolio sites that use frameworks like Tailwind CSS, this site uses pure CSS with variables and modules for better performance and control. Here's a detailed breakdown of how everything works.</p>
 <h2>Core Architecture</h2>
 <h3>File Structure</h3>
-<pre><code class="language-plaintext">├── app/                  # Next.js 14 app directory
-│   ├── page.js           # Homepage
-│   ├── layout.js         # Root layout
+<pre><code class="language-plaintext">├── app/                  # Next.js 15 app directory
+│   ├── page.js           # Homepage (Server Component)
+│   ├── layout.js         # Root layout with theme handling
+│   ├── ml/               # Machine Learning section
+│   ├── robotics/         # Robotics section
+│   ├── finance/          # Finance section
+│   ├── planes/           # Flight tracking dashboard
+│   ├── photos/           # Dynamic photo gallery
+│   ├── books/            # Interactive book showcase
+│   ├── notes/            # PDF note viewer
 │   ├── post/[slug]/      # Dynamic blog routes
-│   ├── library/          # Library section
-│   └── projects/         # Projects section
+│   └── resources/        # Categorized resources
 ├── components/           # React components
 ├── lib/                  # Utilities and data
 ├── content/              # Markdown content
@@ -51,51 +57,50 @@ d:T25ca,<p>I rebuilt my website using <code>Next.js 14</code> with React Server 
 </code></pre>
 <h3>Core Technologies</h3>
 <ul>
-<li>Next.js 14 with React Server Components</li>
-<li>Pure CSS with CSS Variables (no frameworks)</li>
-<li>Supabase for real-time features</li>
-<li>Custom fonts (Geist Mono &#x26; Sentient)</li>
+<li>Next.js 15 with App Router and Server Components</li>
+<li>CSS Variables for theming (no external frameworks)</li>
+<li>Supabase for real-time analytics</li>
+<li>Specialized fonts: Geist Mono &#x26; Sentient</li>
+<li>Integration libraries:
+<ul>
+<li>recharts for data visualization</li>
+<li>exifreader for photo metadata</li>
+<li>KaTeX for mathematical equations</li>
+<li>highlight.js for code highlighting</li>
+</ul>
+</li>
 </ul>
 <h2>Feature Implementations</h2>
-<h3>1. Dynamic Theming</h3>
-<p>Automatically detects system preferences and applies themes using CSS variables:</p>
-<pre><code class="language-javascript">// ThemeHandler.jsx
-export default function ThemeHandler() {
-  useEffect(() => {
-    const setTheme = (e) => {
-      document.documentElement.setAttribute(
-        "data-theme",
-        e.matches ? "dark" : "light",
-      );
-    };
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    setTheme(mediaQuery);
-    mediaQuery.addEventListener("change", setTheme);
-    return () => mediaQuery.removeEventListener("change", setTheme);
-  }, []);
-}
+<h3>1. Theme System</h3>
+<p>The site features a sophisticated theme system with four options: Light, Dark, System, and Solarized. The implementation uses CSS variables and maintains consistency across page reloads:</p>
+<pre><code class="language-javascript">const themes = {
+  system: {
+    icon: &#x3C;Monitor size={18} />,
+    colors: ["#fafafa", "#18181b"],
+  },
+  light: {
+    icon: &#x3C;Sun size={18} />,
+    colors: ["#ffffff"],
+    bg: "#ffffff",
+  },
+  dark: {
+    icon: &#x3C;Moon size={18} />,
+    colors: ["#09090b"],
+    bg: "#09090b",
+  },
+  solarized: {
+    icon: &#x3C;Palette size={18} />,
+    colors: ["#002b36"],
+    bg: "#002b36",
+  },
+};
 </code></pre>
-<p>Theme variables:</p>
-<pre><code class="language-css">[data-theme="light"] {
-  --color-bg: #ffffff;
-  --color-text: #18181b;
-  --color-link: #2563eb;
-}
-
-[data-theme="dark"] {
-  --color-bg: #09090b;
-  --color-text: #fafafa;
-  --color-link: #3b82f6;
-}
-</code></pre>
-<h3>2. Real-time Statistics</h3>
-<p>Each page tracks views and likes with efficient caching:</p>
-<pre><code class="language-javascript">// supabase.js
-export async function getStats(pageId) {
-  const cached = statsCache.get(pageId);
-  if (cached &#x26;&#x26; Date.now() - cached.timestamp &#x3C; CACHE_TIME) {
-    return cached.data;
-  }
+<p>Each theme maintains its own color palette, affecting everything from text to code blocks to UI components. The system automatically detects user preferences and handles theme switching seamlessly.</p>
+<h3>2. Real-time Analytics</h3>
+<p>Every page incorporates an analytics system using Supabase's real-time capabilities:</p>
+<pre><code class="language-javascript">export async function getStats(pageId) {
+  const cached = getStatsFromCache(pageId);
+  if (cached) return cached;
 
   try {
     const { data } = await supabase
@@ -104,44 +109,142 @@ export async function getStats(pageId) {
       .eq("id", pageId)
       .single();
 
-    // Cache and return results
     const result = data || { views: 0, likes: 0 };
-    statsCache.set(pageId, { data: result, timestamp: Date.now() });
+    statsCache.set(pageId, {
+      data: result,
+      timestamp: Date.now(),
+    });
     return result;
   } catch {
     return { views: 0, likes: 0 };
   }
 }
 </code></pre>
-<h3>3. Library System</h3>
-<p>Interactive book showcase with 3D effects:</p>
+<p>The system includes:</p>
+<ul>
+<li>Real-time view counting</li>
+<li>Like functionality with optimistic updates</li>
+<li>Efficient caching with timestamp-based invalidation</li>
+<li>Multi-level storage (memory, localStorage, and database)</li>
+<li>Debounced updates to prevent spam</li>
+</ul>
+<h3>3. Interactive Book Display</h3>
+<p>The book section features a unique 3D book visualization system:</p>
 <pre><code class="language-javascript">const BookCard = ({ book }) => {
-  const [isActive, setIsActive] = useState(false);
-
   return (
-    &#x3C;div
-      className={`book-card ${isActive ? "touch-active" : ""}`}
-      onTouchStart={() => setIsActive(true)}
-      onTouchEnd={() => setIsActive(false)}
-    >
+    &#x3C;div className="book-card">
       &#x3C;div
         className="book-cover"
         style={{
           "--book-color": book.coverColor,
-          color: shouldUseWhiteText(book.coverColor) ? "#fff" : "#000",
+          color: shouldUseWhiteText(book.coverColor) ? "#ffffff" : "#000000",
         }}
       >
+        &#x3C;div
+          className="book-spine"
+          style={{ backgroundColor: book.coverColor }}
+        />
+        &#x3C;div className="book-spine-edge" />
         &#x3C;div className="book-content">
           &#x3C;h3 className="book-title">{book.title}&#x3C;/h3>
           &#x3C;p className="book-author">{book.author}&#x3C;/p>
         &#x3C;/div>
+        &#x3C;div className="book-right-edge" />
       &#x3C;/div>
     &#x3C;/div>
   );
 };
 </code></pre>
-<h3>4. Code Block System</h3>
-<p>Multi-language support with syntax highlighting:</p>
+<p>Features include:</p>
+<ul>
+<li>Dynamic 3D transformations on hover</li>
+<li>Realistic spine and edge effects</li>
+<li>Color-adaptive text</li>
+<li>Touch-optimized interactions</li>
+<li>Category filtering</li>
+</ul>
+<h3>4. Aviation Dashboard</h3>
+<p>The planes section integrates with the Infinite Flight API to provide real-time flight statistics:</p>
+<pre><code class="language-javascript">const fetchFlightStats = async () => {
+  const response = await fetch(
+    "https://api.infiniteflight.com/public/v2/users",
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_INFINITE_FLIGHT_API_KEY}`,
+      },
+      body: JSON.stringify({
+        discourseNames: ["username"],
+      }),
+    },
+  );
+  // Process flight data
+};
+</code></pre>
+<p>Dashboard features:</p>
+<ul>
+<li>Real-time flight tracking</li>
+<li>Historical flight data analysis</li>
+<li>Interactive metrics display</li>
+<li>Automatic data refresh</li>
+<li>Beautiful stat cards</li>
+</ul>
+<h3>5. Photo Gallery</h3>
+<p>A sophisticated photo management system:</p>
+<pre><code class="language-javascript">const processPhoto = async (src, index) => {
+  try {
+    const fileResponse = await fetch(src);
+    const buffer = await fileResponse.blob().arrayBuffer();
+    const tags = await ExifReader.load(buffer);
+
+    return {
+      src,
+      index,
+      meta: formatMetadata(tags, photoMetadata[src] || {}),
+    };
+  } catch (error) {
+    return {
+      src,
+      index,
+      meta: formatMetadata({}, photoMetadata[src] || {}),
+    };
+  }
+};
+</code></pre>
+<p>Features:</p>
+<ul>
+<li>EXIF data extraction and display</li>
+<li>Responsive masonry layout</li>
+<li>Lazy loading</li>
+<li>Skeleton loading states</li>
+<li>Touch-optimized interaction</li>
+</ul>
+<h3>6. Finance Visualization</h3>
+<p>The finance section uses recharts for Treemap data visualization:</p>
+<pre><code class="language-javascript">const CustomTreemap = () => {
+  return (
+    &#x3C;ResponsiveContainer width="100%" height={350}>
+      &#x3C;Treemap
+        data={treemapData}
+        dataKey="value"
+        ratio={4 / 3}
+        stroke="#fff"
+        fill="#8884d8"
+      />
+    &#x3C;/ResponsiveContainer>
+  );
+};
+</code></pre>
+<p>Includes:</p>
+<ul>
+<li>Portfolio visualization with treemaps</li>
+<li>Real-time data updates</li>
+<li>Custom color schemes</li>
+<li>Responsive layouts</li>
+<li>Interactive tooltips</li>
+</ul>
+<h3>7. Code Block System</h3>
+<p>Advanced code block handling with multiple features:</p>
 <pre><code class="language-javascript">const TabsCodeBlock = memo(({ blocks }) => {
   const [activeTab, setActiveTab] = useState(0);
 
@@ -160,205 +263,114 @@ export async function getStats(pageId) {
         &#x3C;/div>
         &#x3C;CopyButton code={blocks[activeTab].code} />
       &#x3C;/div>
-      {/* Content rendering logic */}
     &#x3C;/div>
   );
 });
 </code></pre>
-<h3>5. LaTeX Support</h3>
-<p>Mathematics rendering with KaTeX:</p>
-<pre><code class="language-javascript">const LatexRenderer = ({ content }) => {
-  useEffect(() => {
-    const mathElements = containerRef.current.querySelectorAll(
-      ".math:not(.katex-rendered)",
-    );
-
-    mathElements.forEach((elem) => {
-      katex.render(elem.textContent, elem, {
-        displayMode: elem.classList.contains("math-display"),
-        throwOnError: false,
-      });
-    });
-  }, [content]);
-};
-</code></pre>
-<h3>6. Dynamic Table of Contents</h3>
-<p>Smart TOC with scroll tracking:</p>
-<pre><code class="language-javascript">const TOCButton = () => {
-  const [activeId, setActiveId] = useState("");
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id);
-          }
-        });
-      },
-      { rootMargin: "-20% 0% -35% 0%" },
-    );
-
-    // Observe headings
-    document.querySelectorAll("h2, h3, h4").forEach((heading) => {
-      if (heading.id) observer.observe(heading);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-};
-</code></pre>
-<h3>7. Project Showcase</h3>
-<p>Filterable project grid:</p>
-<pre><code class="language-javascript">export default function ProjectsSection({ showAll = false }) {
-  const [selectedTags, setSelectedTags] = useState([]);
-
-  const filteredProjects = useMemo(() => {
-    if (selectedTags.length === 0) return projects;
-    return projects.filter((project) =>
-      selectedTags.some((tag) => project.tags.includes(tag)),
-    );
-  }, [selectedTags]);
-
-  return (
-    &#x3C;section className="projects-section">
-      &#x3C;FilterComponent
-        options={tags}
-        activeFilters={selectedTags}
-        onFilterChange={setSelectedTags}
-      />
-      &#x3C;div className="projects-table">
-        {filteredProjects.map((project) => (
-          &#x3C;ProjectRow key={project.title} project={project} />
-        ))}
-      &#x3C;/div>
-    &#x3C;/section>
-  );
-}
-</code></pre>
-<h2>Workflows</h2>
-<h3>Adding a New Blog Post</h3>
-<ol>
-<li>Create markdown file in <code>/content/blog/your-post.md</code>:</li>
-</ol>
-<pre><code class="language-markdown">[Demo](demo-link) | [Source Code](source-code-link)
-
-# Title
-
-## Introduction
-
-Content here...
-</code></pre>
-<ol start="2">
-<li>Register in <code>/lib/posts.js</code>:</li>
-</ol>
-<pre><code class="language-javascript">const blogPosts = [
-  {
-    slug: "your-post",
-    title: "Your Post Title",
-    date: new Date("2024-12-19"),
-    tags: ["tag1", "tag2"],
-    headerImage: "/header-images/your-image.jpg",
-    estimatedWordCount: 1000,
-    status: "completed", // or "development" or "draft"
-    home: false,
-  },
-];
-</code></pre>
-<h3>Adding a New Project</h3>
-<p>Update <code>/lib/projects.js</code>:</p>
-<pre><code class="language-javascript">const projects = [
-  {
-    title: "Your Project",
-    description: "Project description",
-    sourceLink: "https://github.com/username/project",
-    projectLink: "https://demo-link.com",
-    tags: ["web"],
-    home: true,
-  },
-];
-</code></pre>
-<h3>Adding Library Resources</h3>
-<p>Update <code>/app/library/page.js</code>:</p>
-<pre><code class="language-javascript">const books = [
-  {
-    title: "Book Title",
-    author: "Author Name",
-    coverColor: "#hex-color",
-    tags: ["Category"],
-    description: "Description",
-  },
-];
-
-const resources = [
-  {
-    title: "Resource Name",
-    category: "YouTube", // or "Papers" or "Tools"
-    link: "https://resource-link.com",
-  },
-];
-</code></pre>
-<h2>Development Workflow</h2>
-<ol>
-<li><strong>Local Development</strong></li>
-</ol>
-<pre><code class="language-bash">npm run dev
-npm run build &#x26;&#x26; npm run start # Preview production
-</code></pre>
-<ol start="2">
-<li><strong>Deployment</strong></li>
-</ol>
-<pre><code class="language-bash">npm run deploy
-</code></pre>
-<ol start="3">
-<li><strong>Testing Checklist</strong></li>
-</ol>
+<p>Features:</p>
 <ul>
-<li>Verify markdown rendering</li>
-<li>Test in both themes</li>
-<li>Check mobile responsiveness</li>
-<li>Verify real-time features</li>
-<li>Run performance audits</li>
-<li>Test with slow network</li>
+<li>Multi-language support</li>
+<li>Syntax highlighting</li>
+<li>Copy functionality</li>
+<li>Line numbers</li>
+<li>Language tabs</li>
+</ul>
+<h3>8. Share System</h3>
+<p>Advanced sharing functionality:</p>
+<pre><code class="language-javascript">const shareButtons = [
+  {
+    name: "X",
+    Icon: XIcon,
+    action: () => {
+      window.open(
+        `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+          `Check out this post by @dan10ish\n\n${url}`,
+        )}`,
+        "_blank",
+      );
+    },
+  },
+  // More share options...
+];
+</code></pre>
+<p>Includes:</p>
+<ul>
+<li>Multiple platform support</li>
+<li>Copy to clipboard</li>
+<li>Link sharing</li>
+<li>Platform-specific formatting</li>
+<li>Success animations</li>
 </ul>
 <h2>Performance Optimizations</h2>
 <ol>
-<li>Dynamic Imports</li>
+<li>Server Components</li>
 </ol>
-<pre><code class="language-javascript">const HighlightCode = dynamic(() => import("./HighlightCode"), {
-  ssr: false,
-});
-</code></pre>
+<ul>
+<li>Static page generation where possible</li>
+<li>Streaming for dynamic content</li>
+<li>Selective hydration</li>
+<li>Edge runtime support</li>
+</ul>
 <ol start="2">
-<li>Asset Optimization</li>
+<li>Resource Loading</li>
 </ol>
 <pre><code class="language-javascript">&#x3C;link
   rel="preload"
-  href="/fonts/GeistMonoVF.woff2"
+  href="/fonts/GeistMono.woff2"
   as="font"
   type="font/woff2"
   crossOrigin="anonymous"
 />
 </code></pre>
 <ol start="3">
-<li>Efficient Caching</li>
+<li>Advanced Caching</li>
 </ol>
-<pre><code class="language-javascript">const cached = statsCache.get(pageId);
-if (cached &#x26;&#x26; now - cached.timestamp &#x3C; CACHE_TIME) {
-  return cached.data;
-}
+<pre><code class="language-javascript">const CACHE_TIME = 60000;
+const statsCache = new Map();
+
+const getStatsFromCache = (pageId) => {
+  const cached = statsCache.get(pageId);
+  return cached &#x26;&#x26; Date.now() - cached.timestamp &#x3C; CACHE_TIME
+    ? cached.data
+    : null;
+};
+</code></pre>
+<ol start="4">
+<li>Image Optimization</li>
+</ol>
+<ul>
+<li>Responsive sizing</li>
+<li>Format optimization</li>
+<li>Lazy loading</li>
+<li>Loading priority</li>
+</ul>
+<h2>Development Workflow</h2>
+<ol>
+<li>Local Development</li>
+</ol>
+<pre><code class="language-bash">npm run dev
+</code></pre>
+<ol start="2">
+<li>Production Build</li>
+</ol>
+<pre><code class="language-bash">npm run build &#x26;&#x26; npm run start  # Preview production
+</code></pre>
+<ol start="3">
+<li>Deployment</li>
+</ol>
+<pre><code class="language-bash">npm run deploy  # Builds, generates sitemap, and deploys
 </code></pre>
 <h2>Future Plans</h2>
 <ol>
-<li>Full-text search implementation</li>
-<li>Enhanced image optimization</li>
-<li>Advanced animation system</li>
-<li>Expanded interactive visualizations</li>
-<li>PWA features</li>
-<li>Advanced caching strategies</li>
+<li>AI-powered search</li>
+<li>Advanced caching with Redis</li>
+<li>Enhanced analytics dashboard</li>
+<li>PWA implementation</li>
+<li>WebAssembly optimizations</li>
+<li>Additional visualization libraries</li>
 </ol>
 <br>
-<p>The site remains open source and continuously evolving. Feel free to explore the <a href="https://github.com/dan10ish/dan10ish.github.io">source code</a> or reach out with suggestions!</p>
+<p>The site remains open source and continuously evolving. Feel free to explore the <a href="https://github.com/dan10ish/dan10ish.github.io">source code</a> or <a href="https://x.com/dan10ish">reach out</a> with suggestions!</p>
 2:[["$","$La",null,{}],["$","$9",null,{"fallback":["$","article",null,{"className":"blog-post markdown-body","children":["$","div",null,{"className":"skeleton-wrapper","children":[["$","div",null,{"className":"blogpost-title","children":["$","div",null,{"className":"skeleton-title"}]}],["$","div",null,{"className":"blogpost-meta skeleton-meta","children":[["$","div",null,{"className":"skeleton-date"}],["$","div",null,{"children":"|"}],["$","div",null,{"className":"skeleton-author"}]]}],["$","div",null,{"className":"skeleton-content","children":[["$","div",null,{"className":"skeleton-paragraph"}],["$","div",null,{"className":"skeleton-paragraph"}],["$","div",null,{"className":"skeleton-paragraph short"}],["$","div",null,{"className":"skeleton-code","children":[["$","div",null,{"className":"skeleton-code-header","children":["$","div",null,{"className":"skeleton-lang"}]}],["$","div",null,{"className":"skeleton-code-content","children":[["$","div",null,{"className":"skeleton-code-line"}],["$","div",null,{"className":"skeleton-code-line"}],["$","div",null,{"className":"skeleton-code-line"}],["$","div",null,{"className":"skeleton-code-line short"}]]}]]}],["$","div",null,{"className":"skeleton-paragraph"}],["$","div",null,{"className":"skeleton-paragraph"}],["$","div",null,{"className":"skeleton-paragraph short"}]]}]]}]}],"children":["$","article",null,{"className":"blog-post markdown-body","children":[["$","div",null,{"className":"blogpost-title","children":[["$","h1",null,{"children":"How this site works"}],false]}],["$","div",null,{"className":"blogpost-meta","children":[["$","div",null,{"children":["$","p",null,{"className":"blog-date","children":"Oct 27, 2024"}]}],["$","div",null,{"children":"|"}],["$","div",null,{"children":["$","a",null,{"href":"https://x.com/dan10ish","target":"_blank","rel":"noopener noreferrer","children":[["$","span",null,{"className":"at","children":"@"}],"dan10ish"]}]}]]}],["$","$Lc",null,{"content":"$d"}],["$","$9",null,{"fallback":null,"children":[["$","$Le",null,{"moduleIds":["app/post/[slug]/page.js -> @/components/Footer"]}],"$Lf"]}]]}]}]]
 b:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, viewport-fit=cover, user-scalable=yes"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"How this site works"}],["$","meta","3",{"name":"description","content":"How this site works - A blog post by Danish"}],["$","meta","4",{"name":"keywords","content":"Danish,mechatronics,robotics,machine learning,developer,engineer,portfolio"}],["$","meta","5",{"name":"robots","content":"index, follow, nocache"}],["$","meta","6",{"name":"googlebot","content":"index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"}],["$","meta","7",{"name":"profile:username","content":"dan10ish"}],["$","meta","8",{"name":"profile:first_name","content":"Danish"}],["$","link","9",{"rel":"canonical","href":"https://danish.bio"}],["$","meta","10",{"property":"og:title","content":"How this site works"}],["$","meta","11",{"property":"og:description","content":"How this site works - A blog post by Danish"}],["$","meta","12",{"property":"og:url","content":"https://dan10ish.github.io/post/how-this-site-works"}],["$","meta","13",{"property":"og:image","content":"https://dan10ish.github.io/header-images/site.jpg"}],["$","meta","14",{"property":"og:image:width","content":"1200"}],["$","meta","15",{"property":"og:image:height","content":"630"}],["$","meta","16",{"property":"og:image:alt","content":"How this site works"}],["$","meta","17",{"property":"og:type","content":"article"}],["$","meta","18",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","19",{"name":"twitter:title","content":"How this site works"}],["$","meta","20",{"name":"twitter:description","content":"How this site works - A blog post by Danish"}],["$","meta","21",{"name":"twitter:image","content":"https://dan10ish.github.io/header-images/site.jpg"}]]
 1:null
