@@ -24,8 +24,8 @@ const themes = {
   solarized: {
     icon: <Palette size={18} />,
     label: "Solarized",
-    colors: ["#002b36"],
-    bg: "#002b36",
+    colors: ["#00212b"],
+    bg: "#00212b",
   },
 };
 

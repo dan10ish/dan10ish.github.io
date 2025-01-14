@@ -8,7 +8,7 @@ export const metadata = {
   metadataBase: new URL("https://danish.bio"),
   title: "Danish",
   description:
-    "Danish is a mechatronics engineer exploring machine learning, robotics, and computer science. Discover his projects, writings, and technical insights.",
+    "Danish is a mechatronics engineer exploring ml, robotics, planes and finance. Discover his projects, writings, and technical insights.",
   keywords: [
     "Danish",
     "mechatronics",
@@ -95,7 +95,7 @@ export default function RootLayout({ children }) {
                   const themeColors = {
                     light: '#ffffff',
                     dark: '#09090b',
-                    solarized: '#002b36'
+                    solarized: '#00212b'
                   };
                   const effectiveTheme = theme === 'system' ? (prefersDark ? 'dark' : 'light') : theme;
                   document.documentElement.setAttribute('data-theme', effectiveTheme);

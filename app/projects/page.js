@@ -53,6 +53,7 @@ export default function ProjectsPage() {
         <div className="projects-table">
           {filteredProjects.map((project) => (
             <div key={project.title} className="project-row">
+              <div className="project-title">{project.title}</div>
               <div className="project-links">
                 <a
                   href={project.sourceLink || "#"}
@@ -79,8 +80,6 @@ export default function ProjectsPage() {
                   <span className="sr-only">Live demo</span>
                 </a>
               </div>
-              <div className="project-title">{project.title}</div>
-              <div className="project-tag">{project.tags[0]}</div>
             </div>
           ))}
         </div>

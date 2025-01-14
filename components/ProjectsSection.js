@@ -51,14 +51,13 @@ export default function ProjectsSection({ showAll = false }) {
       <div className="projects-table">
         {displayedProjects.map((project) => (
           <div key={project.title} className="project-row">
+            <div className="project-title">{project.title}</div>
             <div className="project-links">
               <a
                 href={project.sourceLink || "#"}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`project-link github-icon-class ${
-                  !project.sourceLink ? "disabled-link" : ""
-                }`}
+                className={`project-link github-icon-class ${!project.sourceLink ? "disabled-link" : ""}`}
                 aria-label={`View source code for ${project.title}`}
                 tabIndex={project.sourceLink ? 0 : -1}
                 onClick={(e) => !project.sourceLink && e.preventDefault()}
@@ -70,9 +69,7 @@ export default function ProjectsSection({ showAll = false }) {
                 href={project.projectLink || "#"}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`project-link globe-icon-class ${
-                  !project.projectLink ? "disabled-link" : ""
-                }`}
+                className={`project-link globe-icon-class ${!project.projectLink ? "disabled-link" : ""}`}
                 aria-label={`View live demo of ${project.title}`}
                 tabIndex={project.projectLink ? 0 : -1}
                 onClick={(e) => !project.projectLink && e.preventDefault()}
@@ -81,8 +78,6 @@ export default function ProjectsSection({ showAll = false }) {
                 <span className="sr-only">Live demo</span>
               </a>
             </div>
-            <div className="project-title">{project.title}</div>
-            <div className="project-tag">{project.tags[0]}</div>
           </div>
         ))}
       </div>

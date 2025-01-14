@@ -15,6 +15,7 @@ export default function Home() {
         <div className="title-link">
           <a href="/">
             <h1>Danish</h1>
+            <span className="pronunciation">/ˈdænɪʃ/</span>
           </a>
         </div>
       </div>
