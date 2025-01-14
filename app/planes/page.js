@@ -40,7 +40,7 @@ export default function PlanesPage() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            discourseNames: ["dan7sh"],
+            discourseNames: ["dan10ish"],
           }),
         },
       );
