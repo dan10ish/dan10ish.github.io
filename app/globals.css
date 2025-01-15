@@ -138,7 +138,6 @@ html {
   color-scheme: dark;
 }
 
-
 html,
 body {
   overscroll-behavior: none;
@@ -292,17 +291,6 @@ th {
 .title-link h1 {
   margin-top: 3rem;
 }
-
-.pronunciation {
-  font-size: 1rem;
-  color: rgba(var(--color-text-rgb), 0.5);
-  font-weight: normal;
-  font-style: normal;
-  font-family: var(--font-heading);
-  position: relative;
-  top: -1.5rem;
-}
-
 
 .sr-only {
   position: absolute;
@@ -555,18 +543,22 @@ th {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .project-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 8px;
+  padding: 0.75rem 1.25rem;
+  width: 100%;
   position: relative;
   transition: opacity 0.3s ease;
-  background-color: var(--color-bg);
   will-change: opacity;
-  border-radius: 8px;
+  border-radius: 12px;
+  background-color: rgba(var(--color-text-rgb), 0.03);
 }
 
 .project-title {
@@ -2764,7 +2756,7 @@ a[data-footnote-ref] {
   gap: 1rem;
   max-width: 450px;
   width: 100%;
-  border: 2px solid rgba(var(--color-text-rgb), 0.1);
+  border: 1px solid rgba(var(--color-text-rgb), 0.15);
 }
 
 .domain-project-title {
@@ -2864,13 +2856,7 @@ a[data-footnote-ref] {
   }
 
   .project-row {
-    border: 1px solid rgba(var(--color-text-rgb), 0.15);
     padding: 12px 20px;
-  }
-
-  .project-row:not(:last-child)::after {
-    left: 6px;
-    right: 6px;
   }
 
   .project-title {
@@ -3210,7 +3196,7 @@ a[data-footnote-ref] {
   }
 
   .project-row:hover {
-    background-color: rgba(var(--color-text-rgb), 0.03);
+    background-color: rgba(var(--color-text-rgb), 0.05);
   }
 
   .scroll-to-top:hover,

@@ -125,6 +125,7 @@ export default function RootLayout({ children }) {
           href="/fonts/GeistMono.woff2"
           as="font"
           type="font/woff2"
+          fetchPriority="high"
           crossOrigin="anonymous"
         />
         <link
@@ -132,12 +133,29 @@ export default function RootLayout({ children }) {
           href="/fonts/Sentient.woff2"
           as="font"
           type="font/woff2"
+          fetchPriority="high"
           crossOrigin="anonymous"
         />
         <link
           rel="preconnect"
           href={process.env.NEXT_PUBLIC_SUPABASE_URL}
           crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
+          as="style"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
+          crossOrigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
+          crossOrigin="anonymous"
+          async
         />
       </head>
       <body>

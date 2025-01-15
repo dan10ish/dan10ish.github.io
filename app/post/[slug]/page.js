@@ -2,7 +2,6 @@ import { getBlogPost, getBlogPosts } from "@/lib/posts";
 import { markdownToHtml } from "@/lib/mdxutils";
 import { MDXContent } from "@/components/ClientWrapper";
 import ButtonsContainer from "@/components/ButtonsContainer";
-import "katex/dist/katex.min.css";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 import BlogSkeleton from "../../../components/BlogSkeleton";

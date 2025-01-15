@@ -9,11 +9,7 @@ const nextConfig = {
   },
   compress: true,
   experimental: {
-    optimizePackageImports: [
-      "lucide-react",
-      "@react-three/drei",
-      "framer-motion",
-    ],
+    optimizePackageImports: ["lucide-react"],
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",
