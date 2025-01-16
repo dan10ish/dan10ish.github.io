@@ -151,7 +151,7 @@ export default function ShareButton({ slug }) {
       class: "share-whatsapp",
     },
     {
-      name: copied ? "Link Copied" : "Copy Link",
+      name: copied ? "Copied" : "Copy Link",
       Icon: copied ? Check : Link2,
       action: handleCopy,
       class: copied ? "share-copied" : "share-copy",

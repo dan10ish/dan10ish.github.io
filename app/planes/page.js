@@ -147,7 +147,7 @@ export default function PlanesPage() {
       <div className="terminal-frame">
         <div className="terminal-header">
           <Circle size={8} className="status-dot" />
-          <span className="status-text">STATUS: ACTIVE</span>
+          <span className="status-text">ACTIVE</span>
           <div className="header-actions">
             <button
               onClick={fetchStats}
@@ -160,7 +160,7 @@ export default function PlanesPage() {
               onClick={() => setShowInfo(true)}
               className="terminal-btn primary"
             >
-              <Info size={16} />
+              <Info size={20} />
             </button>
           </div>
         </div>
