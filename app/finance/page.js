@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { books, resources } from "@/lib/library-data";
 import ButtonsContainer from "@/components/ButtonsContainer";
 import { Treemap, ResponsiveContainer } from "recharts";
+import { RefreshCw } from "lucide-react";
 
 const treemapData = [
   {
@@ -57,7 +58,12 @@ const TreemapSkeleton = () => {
   return (
     <div className="skeleton-t" style={{ height: "350px", width: "100%" }}>
       <div className="skeleton-img-t" style={{ height: "100%", width: "100%" }}>
-        <div className="shimmer-t" />
+        <div className="shimmer-t">
+          <div className="loading-tree">
+            <RefreshCw className="spin" />
+            <span>Loading</span>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -142,9 +148,9 @@ const FinancePage = () => {
       </div>
 
       <div className="portfolio-viz">
-          <div className="treemap-container" style={{ overflow: "hidden" }}>
-            {isLoading ? <TreemapSkeleton /> : <CustomTreemap />}
-          </div>
+        <div className="treemap-container" style={{ overflow: "hidden" }}>
+          {isLoading ? <TreemapSkeleton /> : <CustomTreemap />}
+        </div>
       </div>
 
       {financeBooks.length > 0 && (

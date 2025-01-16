@@ -84,26 +84,19 @@ export default function RootLayout({ children }) {
             __html: `
               (function() {
                 try {
-                  const savedTheme = localStorage.getItem('theme');
-                  const computedTheme = localStorage.getItem('computedTheme');
-                  if (computedTheme) {
-                    document.documentElement.setAttribute('data-theme', computedTheme);
-                    return;
-                  }
+                  const sessionTheme = sessionStorage.getItem('theme');
                   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                  const theme = savedTheme || 'system';
+                  const effectiveTheme = sessionTheme || (prefersDark ? 'dark' : 'light');
                   const themeColors = {
                     light: '#ffffff',
                     dark: '#09090b',
                     solarized: '#00212b'
                   };
-                  const effectiveTheme = theme === 'system' ? (prefersDark ? 'dark' : 'light') : theme;
                   document.documentElement.setAttribute('data-theme', effectiveTheme);
                   const metaTheme = document.querySelector('meta[name="theme-color"]') || document.createElement('meta');
                   metaTheme.name = 'theme-color';
                   metaTheme.content = themeColors[effectiveTheme];
                   document.head.appendChild(metaTheme);
-                  localStorage.setItem('computedTheme', effectiveTheme);
                 } catch (e) {
                   console.error('Theme initialization error:', e);
                 }
@@ -111,15 +104,6 @@ export default function RootLayout({ children }) {
             `,
           }}
         />
-        <link
-          rel="preload"
-          as="image"
-          href="/icons/icon.png"
-          type="image/png"
-        />
-        <link rel="icon" type="image/png" href="/icons/icon.png" />
-        <link rel="apple-touch-icon" href="/icons/icon.png" />
-        <link rel="shortcut icon" type="image/png" href="/icons/icon.png" />
         <link
           rel="preload"
           href="/fonts/GeistMono.woff2"
@@ -136,6 +120,15 @@ export default function RootLayout({ children }) {
           fetchPriority="high"
           crossOrigin="anonymous"
         />
+        <link
+          rel="preload"
+          as="image"
+          href="/icons/icon.png"
+          type="image/png"
+        />
+        <link rel="icon" type="image/png" href="/icons/icon.png" />
+        <link rel="apple-touch-icon" href="/icons/icon.png" />
+        <link rel="shortcut icon" type="image/png" href="/icons/icon.png" />
         <link
           rel="preconnect"
           href={process.env.NEXT_PUBLIC_SUPABASE_URL}

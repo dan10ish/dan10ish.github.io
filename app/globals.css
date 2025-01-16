@@ -333,6 +333,9 @@ th {
   color: var(--color-link);
   text-decoration: none;
   transition: opacity 0.15s ease;
+  font-size: 0.85rem;
+  position: relative;
+  top: 0px;
 }
 
 /* Blog Components */
@@ -2756,7 +2759,8 @@ a[data-footnote-ref] {
   gap: 1rem;
   max-width: 450px;
   width: 100%;
-  border: 1px solid rgba(var(--color-text-rgb), 0.15);
+  background-color: rgba(var(--color-text-rgb), 0.03);
+  cursor: default;
 }
 
 .domain-project-title {
@@ -2774,14 +2778,19 @@ a[data-footnote-ref] {
 .shimmer-t {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    90deg,
-    rgba(var(--color-text-rgb), 0.03) 0%,
-    rgba(var(--color-text-rgb), 0.06) 50%,
-    rgba(var(--color-text-rgb), 0.03) 100%
-  );
-  background-size: 200% 100%;
-  animation: shimmer 2s infinite linear;
+  background: rgba(var(--color-text-rgb), 0.03);
+}
+
+.shimmer-t .loading-tree {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--color-link) !important;
+  font-size: 0.9rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .portfolio-viz {
@@ -2798,7 +2807,6 @@ a[data-footnote-ref] {
 }
 
 .skeleton-img-t {
-  animation: pulseLoading 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   position: relative;
 }
 
@@ -3452,7 +3460,7 @@ a[data-footnote-ref] {
 
   .domain-project-card:hover {
     text-decoration: none;
-    background: rgba(var(--color-text-rgb), 0.03);
+    background: rgba(var(--color-text-rgb), 0.05);
   }
 }
 

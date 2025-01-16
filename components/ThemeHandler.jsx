@@ -30,7 +30,7 @@ const themes = {
 };
 
 export function ThemeButton() {
-  const [theme, setTheme] = useState("");
+  const [theme, setTheme] = useState("system");
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
 
@@ -40,57 +40,46 @@ export function ThemeButton() {
     ).matches;
     const effectiveTheme =
       newTheme === "system" ? (prefersDark ? "dark" : "light") : newTheme;
+    sessionStorage.setItem("theme", newTheme);
 
     document.documentElement.setAttribute("data-theme", effectiveTheme);
     const metaTheme = document.querySelector('meta[name="theme-color"]');
     if (metaTheme) {
       metaTheme.content = themes[effectiveTheme]?.bg || themes.light.bg;
     }
-    localStorage.setItem("computedTheme", effectiveTheme);
   }, []);
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") || "system";
-    setTheme(savedTheme);
-    updateTheme(savedTheme);
+    const sessionTheme = sessionStorage.getItem("theme");
+    if (sessionTheme) {
+      setTheme(sessionTheme);
+      updateTheme(sessionTheme);
+    }
 
     const handleScroll = () => setIsOpen(false);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
     const handleClickOutside = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
         setIsOpen(false);
       }
     };
-    document.addEventListener("mousedown", handleClickOutside);
 
-    if (savedTheme === "system") {
-      const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-      const handleChange = () => {
-        updateTheme("system");
-        localStorage.setItem(
-          "computedTheme",
-          mediaQuery.matches ? "dark" : "light",
-        );
-      };
-      mediaQuery.addEventListener("change", handleChange);
-      return () => {
-        window.removeEventListener("scroll", handleScroll);
-        document.removeEventListener("mousedown", handleClickOutside);
-        mediaQuery.removeEventListener("change", handleChange);
-      };
-    }
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleMediaChange = () => theme === "system" && updateTheme("system");
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    document.addEventListener("mousedown", handleClickOutside);
+    mediaQuery.addEventListener("change", handleMediaChange);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
       document.removeEventListener("mousedown", handleClickOutside);
+      mediaQuery.removeEventListener("change", handleMediaChange);
     };
-  }, [updateTheme]);
+  }, [theme, updateTheme]);
 
   const handleThemeChange = useCallback(
     (newTheme) => {
       setTheme(newTheme);
-      localStorage.setItem("theme", newTheme);
       updateTheme(newTheme);
       setIsOpen(false);
     },
@@ -141,11 +130,10 @@ export default function ThemeHandler() {
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     const handleChange = (e) => {
-      const savedTheme = localStorage.getItem("theme");
-      if (savedTheme === "system") {
+      const sessionTheme = sessionStorage.getItem("theme");
+      if (!sessionTheme || sessionTheme === "system") {
         const effectiveTheme = e.matches ? "dark" : "light";
         document.documentElement.setAttribute("data-theme", effectiveTheme);
-        localStorage.setItem("computedTheme", effectiveTheme);
         const metaTheme = document.querySelector('meta[name="theme-color"]');
         if (metaTheme) {
           metaTheme.content = themes[effectiveTheme]?.bg || themes.light.bg;
