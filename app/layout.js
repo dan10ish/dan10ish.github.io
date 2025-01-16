@@ -135,12 +135,6 @@ export default function RootLayout({ children }) {
           crossOrigin="anonymous"
         />
         <link
-          rel="preload"
-          href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
-          as="style"
-          crossOrigin="anonymous"
-        />
-        <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
           crossOrigin="anonymous"

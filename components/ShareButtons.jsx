@@ -175,7 +175,7 @@ export default function ShareButton({ slug }) {
         onMouseLeave={() => isLargeScreen && setIsButtonHovered(false)}
         aria-label="Share"
       >
-        <Share2 size={14} />
+        <Share2 size={16} />
       </button>
       {isOpen && (
         <div

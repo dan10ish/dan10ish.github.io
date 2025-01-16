@@ -26,6 +26,7 @@ export default function AboutMe() {
           className="x-link"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Visit my X profile"
         >
           <svg
             width="16"
