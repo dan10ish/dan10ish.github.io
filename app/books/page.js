@@ -30,7 +30,7 @@ export default function BooksPage() {
       <div className="header-container">
         <div className="title-container">
           <div className="title-link">
-            <h1>Books</h1>
+            <h2>Books</h2>
           </div>
         </div>
 

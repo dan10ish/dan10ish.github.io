@@ -14,7 +14,7 @@ export default function Home() {
       <div className="title-container">
         <div className="title-link">
           <a href="/">
-            <h1>Danish</h1>
+            <h2>Danish</h2>
           </a>
         </div>
       </div>

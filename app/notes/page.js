@@ -42,7 +42,7 @@ export default function NotesPage() {
       <div className="header-container">
         <div className="title-container">
           <div className="title-link">
-            <h1>Notes</h1>
+            <h2>Notes</h2>
           </div>
         </div>
 

@@ -32,7 +32,7 @@ export default function ResourcesPage() {
       <div className="header-container">
         <div className="title-container">
           <div className="title-link">
-            <h1>Resources</h1>
+            <h2>Resources</h2>
           </div>
         </div>
 

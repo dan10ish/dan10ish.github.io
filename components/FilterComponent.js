@@ -44,7 +44,7 @@ const FilterComponent = ({
     <div className="filter-container" ref={containerRef}>
       <div className="active-filters">
         {activeFilters.map((filter) => (
-          <div key={filter} className="filter-pill">
+          <div key={filter} className="filter-pill" onClick={() => removeFilter(filter)}>
             <span>{filter}</span>
             <button
               onClick={() => removeFilter(filter)}
