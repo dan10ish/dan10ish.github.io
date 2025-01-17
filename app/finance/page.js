@@ -56,7 +56,7 @@ const treemapData = [
 
 const TreemapSkeleton = () => {
   return (
-    <div className="skeleton-t" style={{ height: "350px", width: "100%" }}>
+    <div className="skeleton-t" style={{ height: "450px", width: "100%" }}>
       <div className="skeleton-img-t" style={{ height: "100%", width: "100%" }}>
         <div className="shimmer-t">
           <div className="loading-tree">
@@ -72,7 +72,7 @@ const TreemapSkeleton = () => {
 const CustomTreemap = () => {
   return (
     <div className="treemap-container">
-      <ResponsiveContainer width="100%" height={350}>
+      <ResponsiveContainer width="100%" height={450}>
         <Treemap
           data={treemapData}
           dataKey="value"
