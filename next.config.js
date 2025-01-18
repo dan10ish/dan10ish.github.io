@@ -1,15 +1,10 @@
 const path = require("path");
 
+/** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
   output: "export",
   images: {
     unoptimized: false,
-    domains: ["danish.bio"],
-  },
-  compress: true,
-  experimental: {
-    optimizePackageImports: ["lucide-react"],
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",
@@ -21,30 +16,17 @@ const nextConfig = {
       process.env.NEXT_PUBLIC_INFINITE_FLIGHT_API_KEY,
   },
   webpack: (config) => {
-    config.resolve.alias["@"] = path.resolve(__dirname);
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "@": path.resolve(__dirname),
+    };
 
     config.module.rules.push({
       test: /\.md$/,
       use: "raw-loader",
     });
-    config.optimization = {
-      ...config.optimization,
-      splitChunks: {
-        chunks: "all",
-        minSize: 20000,
-        maxSize: 70000,
-        cacheGroups: {
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: "vendor",
-            enforce: true,
-          },
-        },
-      },
-    };
     return config;
   },
-  poweredByHeader: false,
 };
 
 module.exports = nextConfig;
