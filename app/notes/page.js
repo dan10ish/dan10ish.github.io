@@ -5,6 +5,7 @@ import { notes } from "@/lib/library-data";
 import FilterComponent from "@/components/FilterComponent";
 import Footer from "@/components/Footer";
 import ButtonsContainer from "@/components/ButtonsContainer";
+import Copyright from "../../components/Copyright";
 
 const shouldUseWhiteText = (hexColor) => {
   const r = parseInt(hexColor.slice(1, 3), 16);
@@ -91,10 +92,7 @@ export default function NotesPage() {
         <Footer />
       </div>
       <ButtonsContainer />
-      <div className="copy-footer">
-        Copyright <span className="at">&copy;</span> {new Date().getFullYear()}{" "}
-        Danish
-      </div>
+      <Copyright />
     </main>
   );
 }

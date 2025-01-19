@@ -15,6 +15,7 @@ import { supabase } from "@/lib/supabase";
 import Link from "next/link";
 import { ThemeButton } from "./ThemeHandler";
 import ShareButton from "./ShareButtons";
+import Copyright from "./Copyright";
 
 const Footer = ({ blogSlug = null }) => {
   const [stats, setStats] = useState({ views: null, likes: null });
@@ -305,10 +306,7 @@ const Footer = ({ blogSlug = null }) => {
           {blogSlug && <ShareButton slug={blogSlug} />}
         </div>
       </div>
-      <div className="copy-footer">
-        Copyright <span className="at">&copy;</span> {new Date().getFullYear()}{" "}
-        Danish
-      </div>
+      <Copyright />
     </footer>
   );
 };

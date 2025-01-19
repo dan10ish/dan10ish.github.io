@@ -3,31 +3,49 @@
 import { useState, useEffect, memo, useCallback } from "react";
 import ExifReader from "exifreader";
 import Masonry from "react-masonry-css";
+import {
+  Camera,
+  Maximize2,
+  Frame,
+  Target,
+  Aperture,
+  Timer,
+} from "lucide-react";
 import { photoMetadata } from "@/lib/photo-meta";
+
+const PhotoMeta = ({ meta }) => (
+  <div className="photo-meta">
+    <div className="meta-row">
+      <Camera size={14} className="meta-icon" />
+      <span>{meta.camera}</span>
+    </div>
+    <div className="meta-row">
+      <Maximize2 size={14} className="meta-icon" />
+      <span>{meta.resolution}</span>
+    </div>
+    <div className="meta-row">
+      <Frame size={14} className="meta-icon" />
+      <span>ISO {meta.iso}</span>
+      <Aperture size={14} className="meta-icon" />
+      <span>{meta.aperture}</span>
+    </div>
+    <div className="meta-row">
+      <Target size={14} className="meta-icon" />
+      <span>{meta.focalLength}</span>
+      <Timer size={14} className="meta-icon" />
+      <span>{meta.shutterspeed}</span>
+    </div>
+  </div>
+);
 
 const PhotoCard = memo(({ photo }) => (
   <div className="photo-card">
     <div className="photo-container">
       <img src={photo.src} alt="" loading="lazy" decoding="async" />
     </div>
-    <div className="photo-meta">
-      <div className="meta-row">
-        <span>{photo.meta.camera}</span>
-      </div>
-      <div className="meta-row">
-        <span>{photo.meta.resolution}</span>
-      </div>
-      <div className="meta-row">
-        <span>ISO {photo.meta.iso}</span>
-        <span>{photo.meta.focalLength}</span>
-        <span>{photo.meta.aperture}</span>
-        <span>{photo.meta.shutterspeed}</span>
-      </div>
-    </div>
+    <PhotoMeta meta={photo.meta} />
   </div>
 ));
-
-PhotoCard.displayName = "PhotoCard";
 
 const Skeleton = memo(() => (
   <div className="photo-card skeleton">
@@ -42,15 +60,18 @@ const Skeleton = memo(() => (
         <div className="skeleton-text"></div>
       </div>
       <div className="meta-row">
-        {[...Array(5)].map((_, i) => (
-          <div key={i} className="skeleton-stat"></div>
-        ))}
+        <div className="skeleton-stat-group">
+          <div className="skeleton-stat"></div>
+        </div>
+      </div>
+      <div className="meta-row">
+        <div className="skeleton-stat-group">
+          <div className="skeleton-stat"></div>
+        </div>
       </div>
     </div>
   </div>
 ));
-
-Skeleton.displayName = "Skeleton";
 
 const PhotoGrid = () => {
   const [loading, setLoading] = useState(true);
@@ -93,6 +114,41 @@ const PhotoGrid = () => {
     }
   }, []);
 
+  const formatMetadata = (tags, customData = {}) => {
+    const getValue = (obj, path, defaultValue = "Unknown") => {
+      return (
+        path.split(".").reduce((acc, key) => acc?.[key], obj) ?? defaultValue
+      );
+    };
+
+    const formatNumber = (value, decimals = 2) => {
+      if (!value) return "Unknown";
+      const num = parseFloat(value);
+      return isNaN(num) ? "Unknown" : num.toFixed(decimals);
+    };
+
+    const focalLength = getValue(tags, "FocalLength.description", "").split(
+      " ",
+    )[0];
+    const aperture = getValue(tags, "FNumber.description", "").replace(
+      "f/",
+      "",
+    );
+
+    return {
+      camera:
+        customData.camera ||
+        getValue(tags, "Model.description", "Unknown").split(" back")[0],
+      resolution: `${getValue(tags, "ImageWidth.value")} × ${getValue(tags, "ImageHeight.value")}`,
+      iso: customData.iso || getValue(tags, "ISOSpeedRatings.value"),
+      focalLength:
+        customData.focalLength || `${formatNumber(focalLength, 1)}mm`,
+      aperture: customData.aperture || `f/${formatNumber(aperture)}`,
+      shutterspeed:
+        customData.shutterspeed || getValue(tags, "ExposureTime.description"),
+    };
+  };
+
   useEffect(() => {
     let mounted = true;
     const controller = new AbortController();
@@ -133,41 +189,6 @@ const PhotoGrid = () => {
     };
   }, [processPhoto]);
 
-  const formatMetadata = (tags, customData = {}) => {
-    const getValue = (obj, path, defaultValue = "Unknown") => {
-      return (
-        path.split(".").reduce((acc, key) => acc?.[key], obj) ?? defaultValue
-      );
-    };
-
-    const formatNumber = (value, decimals = 2) => {
-      if (!value) return "Unknown";
-      const num = parseFloat(value);
-      return isNaN(num) ? "Unknown" : num.toFixed(decimals);
-    };
-
-    const focalLength = getValue(tags, "FocalLength.description", "").split(
-      " ",
-    )[0];
-    const aperture = getValue(tags, "FNumber.description", "").replace(
-      "f/",
-      "",
-    );
-
-    return {
-      camera:
-        customData.camera ||
-        getValue(tags, "Model.description", "Unknown").split(" back")[0],
-      resolution: `${getValue(tags, "ImageWidth.value")} × ${getValue(tags, "ImageHeight.value")}`,
-      iso: customData.iso || getValue(tags, "ISOSpeedRatings.value"),
-      focalLength:
-        customData.focalLength || `${formatNumber(focalLength, 1)}mm`,
-      aperture: customData.aperture || `f/${formatNumber(aperture)}`,
-      shutterspeed:
-        customData.shutterspeed || getValue(tags, "ExposureTime.description"),
-    };
-  };
-
   return (
     <>
       <Masonry
@@ -183,10 +204,6 @@ const PhotoGrid = () => {
           ),
         )}
       </Masonry>
-      <div className="copy-footer">
-        Copyright <span className="at">&copy;</span> {new Date().getFullYear()}{" "}
-        Danish
-      </div>
     </>
   );
 };

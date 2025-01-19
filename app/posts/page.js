@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import ButtonsContainer from "@/components/ButtonsContainer";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import Copyright from "../../components/Copyright";
 
 export default function PostsPage() {
   const posts = getBlogPosts();

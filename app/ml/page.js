@@ -5,6 +5,7 @@ import { books, resources, notes } from "@/lib/library-data";
 import { getProjects } from "@/lib/projects";
 import ButtonsContainer from "@/components/ButtonsContainer";
 import { Github, Globe } from "lucide-react";
+import Copyright from "../../components/Copyright";
 
 export default function MLPage() {
   const [touchedBook, setTouchedBook] = useState(null);
@@ -124,10 +125,7 @@ export default function MLPage() {
         </div>
       )}
       <ButtonsContainer />
-      <div className="copy-footer">
-        Copyright <span className="at">&copy;</span> {new Date().getFullYear()}{" "}
-        Danish
-      </div>
+      <Copyright />
     </main>
   );
 }
