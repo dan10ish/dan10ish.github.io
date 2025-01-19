@@ -765,9 +765,10 @@ th {
 
 .copy-footer {
   text-align: center;
-  margin-top: 2rem;
+  margin-top: 3rem;
   color: var(--blockquote-color);
   word-spacing: -4px;
+  font-size: calc(var(--font-size-mobile) * 1);
 }
 
 .footer-link {

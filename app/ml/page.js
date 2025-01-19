@@ -124,6 +124,10 @@ export default function MLPage() {
         </div>
       )}
       <ButtonsContainer />
+      <div className="copy-footer">
+        Copyright <span className="at">&copy;</span> {new Date().getFullYear()}{" "}
+        Danish
+      </div>
     </main>
   );
 }

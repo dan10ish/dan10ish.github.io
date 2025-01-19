@@ -169,19 +169,25 @@ const PhotoGrid = () => {
   };
 
   return (
-    <Masonry
-      breakpointCols={breakpointColumns}
-      className="photo-grid"
-      columnClassName="photo-grid-column"
-    >
-      {[...Array(totalPhotos)].map((_, index) =>
-        loadedPhotos[index] ? (
-          <PhotoCard key={`photo-${index}`} photo={loadedPhotos[index]} />
-        ) : (
-          <Skeleton key={`skeleton-${index}`} />
-        ),
-      )}
-    </Masonry>
+    <>
+      <Masonry
+        breakpointCols={breakpointColumns}
+        className="photo-grid"
+        columnClassName="photo-grid-column"
+      >
+        {[...Array(totalPhotos)].map((_, index) =>
+          loadedPhotos[index] ? (
+            <PhotoCard key={`photo-${index}`} photo={loadedPhotos[index]} />
+          ) : (
+            <Skeleton key={`skeleton-${index}`} />
+          ),
+        )}
+      </Masonry>
+      <div className="copy-footer">
+        Copyright <span className="at">&copy;</span> {new Date().getFullYear()}{" "}
+        Danish
+      </div>
+    </>
   );
 };
 

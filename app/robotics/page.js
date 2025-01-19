@@ -126,6 +126,11 @@ export default function RoboticsPage() {
       )}
 
       <ButtonsContainer />
+
+      <div className="copy-footer">
+        Copyright <span className="at">&copy;</span> {new Date().getFullYear()}{" "}
+        Danish
+      </div>
     </main>
   );
 }

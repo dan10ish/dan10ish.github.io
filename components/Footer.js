@@ -306,7 +306,8 @@ const Footer = ({ blogSlug = null }) => {
         </div>
       </div>
       <div className="copy-footer">
-        <span className="at">&copy;</span> 2025 Danish
+        Copyright <span className="at">&copy;</span> {new Date().getFullYear()}{" "}
+        Danish
       </div>
     </footer>
   );
