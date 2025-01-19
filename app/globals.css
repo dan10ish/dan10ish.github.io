@@ -291,7 +291,8 @@ th {
 
 /* Layout Components */
 
-.title-link a,.title-link {
+.title-link a,
+.title-link {
   color: var(--color-text);
 }
 
@@ -759,7 +760,14 @@ th {
 
 .site-footer {
   margin-top: 4rem;
-  padding: 2rem 0.5rem 1rem;
+  padding: 2rem 0.5rem 0rem;
+}
+
+.copy-footer {
+  text-align: center;
+  margin-top: 2rem;
+  color: var(--blockquote-color);
+  word-spacing: -4px;
 }
 
 .footer-link {
@@ -3084,7 +3092,7 @@ a[data-footnote-ref] {
   }
 
   .site-footer {
-    padding: 3rem 0.5rem 1rem;
+    padding: 3rem 0.5rem 0rem;
   }
 
   .footer-nav-mobile {

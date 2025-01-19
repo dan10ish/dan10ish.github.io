@@ -278,29 +278,35 @@ const Footer = ({ blogSlug = null }) => {
           )}
         </div>
         <div className="footer-share">
-        <a
-          href={
-            blogSlug
-              ? `https://github.com/dan10ish/dan10ish.github.io/blob/main/content/blog/${blogSlug}.md`
-              : "https://github.com/dan10ish/dan10ish.github.io"
-          }
-          target="_blank"
-          rel="noopener noreferrer"
-          className="github-link"
-          onMouseEnter={() => setIsGithubHovered(true)}
-          onMouseLeave={() => setIsGithubHovered(false)}
-        >
-          <Github size={16} />
-          <span>Source</span>
-          {!blogSlug && stars !== null && (
-            <div className="github-stars">
-              <Star size={16} className={isGithubHovered ? "star-hover" : ""} />
-              <span>{formatNumber(stars)}</span>
-            </div>
-          )}
-        </a>
-        {blogSlug && <ShareButton slug={blogSlug} />}
+          <a
+            href={
+              blogSlug
+                ? `https://github.com/dan10ish/dan10ish.github.io/blob/main/content/blog/${blogSlug}.md`
+                : "https://github.com/dan10ish/dan10ish.github.io"
+            }
+            target="_blank"
+            rel="noopener noreferrer"
+            className="github-link"
+            onMouseEnter={() => setIsGithubHovered(true)}
+            onMouseLeave={() => setIsGithubHovered(false)}
+          >
+            <Github size={16} />
+            <span>Source</span>
+            {!blogSlug && stars !== null && (
+              <div className="github-stars">
+                <Star
+                  size={16}
+                  className={isGithubHovered ? "star-hover" : ""}
+                />
+                <span>{formatNumber(stars)}</span>
+              </div>
+            )}
+          </a>
+          {blogSlug && <ShareButton slug={blogSlug} />}
+        </div>
       </div>
+      <div className="copy-footer">
+        <span className="at">&copy;</span> 2025 Danish
       </div>
     </footer>
   );
