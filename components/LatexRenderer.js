@@ -1,14 +1,15 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import katex from "katex";
 
 const LatexRenderer = ({ content }) => {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    const renderLatex = () => {
-      if (!containerRef.current || !window.katex) return;
+    if (!window || !containerRef.current) return;
 
+    try {
       const mathElements = containerRef.current.querySelectorAll(
         ".math:not(.katex-rendered)",
       );
@@ -16,15 +17,14 @@ const LatexRenderer = ({ content }) => {
       mathElements.forEach((elem) => {
         try {
           const isDisplay = elem.classList.contains("math-display");
-          const latex = elem.textContent.trim();
+          const latex = elem.textContent;
 
           if (latex) {
-            window.katex.render(latex, elem, {
+            katex.render(latex, elem, {
               displayMode: isDisplay,
               throwOnError: false,
               output: "html",
-              strict: (errorCode) =>
-                errorCode === "unknownSymbol" ? "ignore" : "warn",
+              trust: true,
             });
             elem.classList.add("katex-rendered");
           }
@@ -32,10 +32,15 @@ const LatexRenderer = ({ content }) => {
           console.warn("KaTeX rendering error:", err);
         }
       });
-    };
 
-    if (content) {
-      renderLatex();
+      const links = containerRef.current.querySelectorAll("a");
+      links.forEach((link) => {
+        if (link.getAttribute("href")?.startsWith("#")) return;
+        link.setAttribute("target", "_blank");
+        link.setAttribute("rel", "noopener noreferrer");
+      });
+    } catch (err) {
+      console.warn("LatexRenderer error:", err);
     }
   }, [content]);
 
@@ -50,4 +55,4 @@ const LatexRenderer = ({ content }) => {
   );
 };
 
-export default React.memo(LatexRenderer);
+export default LatexRenderer;

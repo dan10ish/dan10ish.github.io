@@ -9,6 +9,7 @@ const ContentSwitcher = ({ posts, projects }) => {
   const [selectedOption, setSelectedOption] = useState("writings");
   const [mounted, setMounted] = useState(false);
   const [viewsData, setViewsData] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const savedOption = localStorage.getItem("selectedOption");
@@ -18,25 +19,31 @@ const ContentSwitcher = ({ posts, projects }) => {
     setMounted(true);
 
     const fetchViews = async () => {
-      const viewsPromises = posts.map(async (post) => {
-        const { data } = await supabase
-          .from("page_stats")
-          .select("views")
-          .eq("id", `post-${post.slug}`)
-          .single();
-        return { slug: post.slug, views: data?.views || "∞" };
-      });
+      try {
+        const viewsPromises = posts.map(async (post) => {
+          const { data } = await supabase
+            .from("page_stats")
+            .select("views")
+            .eq("id", `post-${post.slug}`)
+            .single();
+          return { slug: post.slug, views: data?.views };
+        });
 
-      const views = await Promise.all(viewsPromises);
-      const viewsMap = views.reduce(
-        (acc, { slug, views }) => ({
-          ...acc,
-          [slug]: views,
-        }),
-        {},
-      );
+        const views = await Promise.all(viewsPromises);
+        const viewsMap = views.reduce(
+          (acc, { slug, views }) => ({
+            ...acc,
+            [slug]: views,
+          }),
+          {},
+        );
 
-      setViewsData(viewsMap);
+        setViewsData(viewsMap);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching views:", error);
+        setLoading(false);
+      }
     };
 
     fetchViews();
@@ -84,7 +91,13 @@ const ContentSwitcher = ({ posts, projects }) => {
               >
                 <span className="date">{post.year}</span>
                 <span className="title title-blog">{post.title}</span>
-                <span className="views">{viewsData[post.slug] || 0}</span>
+                <span className="views">
+                  {loading || viewsData[post.slug] === undefined ? (
+                    <span className="infinity-symbol">∞</span>
+                  ) : (
+                    viewsData[post.slug]
+                  )}
+                </span>
               </Link>
             ))}
           </div>

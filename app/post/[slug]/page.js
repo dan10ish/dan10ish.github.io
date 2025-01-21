@@ -3,6 +3,7 @@ import { markdownToHtml } from "@/lib/mdxutils";
 import { MDXContent } from "@/components/ClientWrapper";
 import ButtonsContainer from "@/components/ButtonsContainer";
 import dynamic from "next/dynamic";
+import "katex/dist/katex.min.css";
 
 const Footer = dynamic(() => import("@/components/Footer"));
 

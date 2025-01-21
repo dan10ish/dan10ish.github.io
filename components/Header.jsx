@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Github } from "lucide-react";
+import { Github, Mail } from "lucide-react";
 
 const Header = () => {
   return (
@@ -29,14 +29,24 @@ const Header = () => {
           aria-label="Visit my X profile"
         >
           <svg
-            width="16"
-            height="16"
-            viewBox="0 0 22 25"
+            xmlns="http://www.w3.org/2000/svg"
+            width="1200"
+            height="1227"
+            viewBox="0 0 1200 1227"
             fill="currentColor"
-            aria-hidden="true"
           >
-            <path d="m11.385 10.729.082-.058-.082.058.89 1.273 6.33 9.056a.9.9 0 0 1-.737 1.415h-.609a.9.9 0 0 1-.738-.384l-5.765-8.246-.082.057.082-.057-.89-1.274L3.883 4.01a.9.9 0 0 1 .737-1.415h.61a.9.9 0 0 1 .737.384l5.418 7.75zm2.587-.509 6.806-7.911a.853.853 0 1 0-1.292-1.112l-6.203 7.21a.9.9 0 0 1-1.424-.078L7.082 1.377A1.1 1.1 0 0 0 6.175.9H1.9a1.1 1.1 0 0 0-.906 1.723l7.274 10.586a.9.9 0 0 1-.06 1.097L.994 22.69a.853.853 0 0 0 1.292 1.113l6.61-7.684a.9.9 0 0 1 1.425.077l5.103 7.426a1.1 1.1 0 0 0 .906.477h4.275a1.1 1.1 0 0 0 .907-1.723l-7.6-11.06a.9.9 0 0 1 .06-1.097z" />
+            <path d="M714.163 519.284 1160.89 0h-105.86L667.137 450.887 357.328 0H0l468.492 681.821L0 1226.37h105.866l409.625-476.152 327.181 476.152H1200L714.137 519.284h.026ZM569.165 687.828l-47.468-67.894-377.686-540.24h162.604l304.797 435.991 47.468 67.894 396.2 566.721H892.476L569.165 687.854v-.026Z" />
           </svg>
+        </a>
+
+        <a
+          href="mailto:aansaridan@gmail.com"
+          className="header-icon email-link"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Connect via email"
+        >
+          <Mail size={20} />
         </a>
       </div>
     </header>

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import ButtonsContainer from "@/components/ButtonsContainer";
 import { Treemap, ResponsiveContainer } from "recharts";
-import { RefreshCw } from "lucide-react";
+import { RefreshCw, Info } from "lucide-react";
 
 const treemapData = [
   {
@@ -118,7 +118,9 @@ const CustomTreemap = () => {
           }}
         />
       </ResponsiveContainer>
-      <p className="treemap-caption">Portfolio Treemap</p>
+      <p className="treemap-caption">
+        <Info size={18}/> Portfolio Treemap
+      </p>
     </div>
   );
 };
