@@ -3,7 +3,6 @@
 import dynamic from "next/dynamic";
 import ButtonsContainer from "@/components/ButtonsContainer";
 import PhotoSkeleton from "@/components/PhotoSkeleton";
-import Copyright from "../../components/Copyright";
 
 const PhotoGrid = dynamic(() => import("@/components/PhotoGrid"), {
   loading: () => <PhotoSkeleton />,
@@ -15,7 +14,6 @@ export default function PhotosPage() {
     <main>
       <PhotoGrid />
       <ButtonsContainer />
-      <Copyright />
     </main>
   );
 }

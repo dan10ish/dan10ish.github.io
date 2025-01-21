@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { books, resources } from "@/lib/library-data";
 import ButtonsContainer from "@/components/ButtonsContainer";
 import { Treemap, ResponsiveContainer } from "recharts";
 import { RefreshCw } from "lucide-react";
@@ -119,12 +118,12 @@ const CustomTreemap = () => {
           }}
         />
       </ResponsiveContainer>
+      <p className="treemap-caption">Portfolio Treemap</p>
     </div>
   );
 };
 
 const FinancePage = () => {
-  const [touchedBook, setTouchedBook] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -133,13 +132,6 @@ const FinancePage = () => {
     }, 500);
     return () => clearTimeout(timer);
   }, []);
-
-  const financeBooks = books.filter((book) => book.tags.includes("Finance"));
-  const financeResources = resources.filter(
-    (resource) =>
-      resource.tags?.includes("Finance") ||
-      resource.title.toLowerCase().includes("finance"),
-  );
 
   return (
     <main>
@@ -152,57 +144,6 @@ const FinancePage = () => {
           {isLoading ? <TreemapSkeleton /> : <CustomTreemap />}
         </div>
       </div>
-
-      {financeBooks.length > 0 && (
-        <div className="books-grid">
-          {financeBooks.map((book) => (
-            <div
-              key={book.title}
-              className={`book-card ${touchedBook === book.title ? "touch-active" : ""}`}
-              onTouchStart={() => setTouchedBook(book.title)}
-              onTouchEnd={() => setTouchedBook(null)}
-            >
-              <div
-                className="book-cover"
-                style={{
-                  "--book-color": book.coverColor,
-                  color: "#ffffff",
-                }}
-              >
-                <div
-                  className="book-spine"
-                  style={{ backgroundColor: book.coverColor }}
-                />
-                <div className="book-spine-edge" />
-                <div className="book-content">
-                  <h3 className="book-title">{book.title}</h3>
-                  <p className="book-author">{book.author}</p>
-                </div>
-                <div className="book-right-edge" />
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {financeResources.length > 0 && (
-        <div className="resources-grid">
-          {financeResources.map((resource) => (
-            <a
-              key={resource.title}
-              href={resource.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="resource-card"
-              data-category={resource.category}
-            >
-              <h3 className="resource-title">{resource.title}</h3>
-              <span className="resource-category">{resource.category}</span>
-            </a>
-          ))}
-        </div>
-      )}
-
       <ButtonsContainer />
     </main>
   );

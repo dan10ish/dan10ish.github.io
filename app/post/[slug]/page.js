@@ -3,8 +3,6 @@ import { markdownToHtml } from "@/lib/mdxutils";
 import { MDXContent } from "@/components/ClientWrapper";
 import ButtonsContainer from "@/components/ButtonsContainer";
 import dynamic from "next/dynamic";
-import { Suspense } from "react";
-import BlogSkeleton from "../../../components/BlogSkeleton";
 
 const Footer = dynamic(() => import("@/components/Footer"));
 
@@ -71,33 +69,31 @@ export default async function BlogPost(props) {
   return (
     <>
       <ButtonsContainer />
-      <Suspense fallback={<BlogSkeleton />}>
-        <article className="blog-post markdown-body">
-          <div className="blogpost-title">
-            <h1>{post.title}</h1>
-            {post.status === "wip" && (
-              <span className="wip-badge">Work In Progress</span>
-            )}
+      <article className="blog-post markdown-body">
+        <div className="blogpost-title">
+          <h1>{post.title}</h1>
+          {post.status === "wip" && (
+            <span className="wip-badge">Work In Progress</span>
+          )}
+        </div>
+        <div className="blogpost-meta">
+          <div>
+            <p className="blog-date">{post.date}</p>
           </div>
-          <div className="blogpost-meta">
-            <div>
-              <p className="blog-date">{post.date}</p>
-            </div>
-            <div>|</div>
-            <div>
-              <a
-                href="https://x.com/dan10ish"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span className="at">@</span>dan10ish
-              </a>
-            </div>
+          <div>|</div>
+          <div>
+            <a
+              href="https://x.com/dan10ish"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span className="at">@</span>dan10ish
+            </a>
           </div>
-          <MDXContent content={contentHtml} />
-          <Footer blogSlug={params?.slug} />
-        </article>
-      </Suspense>
+        </div>
+        <MDXContent content={contentHtml} />
+        <Footer blogSlug={params?.slug} />
+      </article>
     </>
   );
 }

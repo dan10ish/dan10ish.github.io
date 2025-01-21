@@ -9,13 +9,13 @@ import {
   BookText,
   Library,
   Image,
-  FolderSearch,
+  PlaneTakeoff,
+  ChartCandlestick,
 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import Link from "next/link";
 import { ThemeButton } from "./ThemeHandler";
 import ShareButton from "./ShareButtons";
-import Copyright from "./Copyright";
 
 const Footer = ({ blogSlug = null }) => {
   const [stats, setStats] = useState({ views: null, likes: null });
@@ -207,13 +207,13 @@ const Footer = ({ blogSlug = null }) => {
                 </Link>
               </div>
               <div className="footer-nav-row">
-                <Link href="/books" className="footer-link">
-                  <Library size={16} />
-                  Books
+                <Link href="/finance" className="footer-link">
+                  <ChartCandlestick size={16} />
+                  Finance
                 </Link>
-                <Link href="/resources" className="footer-link">
-                  <FolderSearch size={16} />
-                  Resources
+                <Link href="/planes" className="footer-link">
+                  <PlaneTakeoff size={16} />
+                  Planes
                 </Link>
               </div>
             </div>
@@ -231,13 +231,13 @@ const Footer = ({ blogSlug = null }) => {
                 <Image size={16} />
                 Photos
               </Link>
-              <Link href="/books" className="footer-link">
-                <Library size={16} />
-                Books
+              <Link href="/finance" className="footer-link">
+                <ChartCandlestick size={16} />
+                Finance
               </Link>
-              <Link href="/resources" className="footer-link">
-                <FolderSearch size={16} />
-                Resources
+              <Link href="/planes" className="footer-link">
+                <PlaneTakeoff size={16} />
+                Planes
               </Link>
             </div>
             <ThemeButton />
@@ -306,7 +306,6 @@ const Footer = ({ blogSlug = null }) => {
           {blogSlug && <ShareButton slug={blogSlug} />}
         </div>
       </div>
-      <Copyright />
     </footer>
   );
 };
