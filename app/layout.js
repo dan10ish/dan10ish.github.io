@@ -89,7 +89,7 @@ export default function RootLayout({ children }) {
                   const effectiveTheme = sessionTheme || (prefersDark ? 'dark' : 'light');
                   const themeColors = {
                     light: '#ffffff',
-                    dark: '#09090b',
+                    dark: '#1c1c1c',
                     solarized: '#00212b'
                   };
                   document.documentElement.setAttribute('data-theme', effectiveTheme);

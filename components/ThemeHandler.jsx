@@ -18,8 +18,8 @@ const themes = {
   dark: {
     icon: <Moon size={18} />,
     label: "Dark",
-    colors: ["#09090b"],
-    bg: "#09090b",
+    colors: ["#1c1c1c"],
+    bg: "#1c1c1c",
   },
   solarized: {
     icon: <Palette size={18} />,
