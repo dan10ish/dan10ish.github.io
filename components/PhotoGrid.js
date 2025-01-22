@@ -59,16 +59,6 @@ const Skeleton = memo(() => (
       <div className="meta-row">
         <div className="skeleton-text"></div>
       </div>
-      <div className="meta-row">
-        <div className="skeleton-stat-group">
-          <div className="skeleton-stat"></div>
-        </div>
-      </div>
-      <div className="meta-row">
-        <div className="skeleton-stat-group">
-          <div className="skeleton-stat"></div>
-        </div>
-      </div>
     </div>
   </div>
 ));
@@ -79,8 +69,7 @@ const PhotoGrid = () => {
   const [loadedPhotos, setLoadedPhotos] = useState([]);
 
   const breakpointColumns = {
-    default: 3,
-    768: 2,
+    default: 2,
   };
 
   const processPhoto = useCallback(async (src, index) => {

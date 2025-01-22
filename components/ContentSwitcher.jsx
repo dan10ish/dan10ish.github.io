@@ -5,6 +5,31 @@ import { supabase } from "@/lib/supabase";
 import Link from "next/link";
 import { Globe, Github, ArrowUp, ArrowDown, X } from "lucide-react";
 
+const InitialLoadState = () => (
+  <div className="content-wrapper" style={{ opacity: 0 }}>
+    <div className="option-switcher">
+      <button className="option-btn active">Writings</button>
+      <button className="option-btn">Projects</button>
+    </div>
+    <div className="content-area">
+      <div className="mono-list">
+        <div className="list-header">
+          <span>date</span>
+          <span>title</span>
+          <span className="views">views</span>
+        </div>
+        {[...Array(5)].map((_, i) => (
+          <div key={i} className="list-row">
+            <span className="date"></span>
+            <span className="title"></span>
+            <span className="views"></span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+);
+
 const ContentSwitcher = ({ posts, projects }) => {
   const [selectedOption, setSelectedOption] = useState("writings");
   const [mounted, setMounted] = useState(false);
@@ -139,20 +164,24 @@ const ContentSwitcher = ({ posts, projects }) => {
     );
   };
 
-  if (!mounted) return null;
+  if (!mounted) return <InitialLoadState />;
 
   return (
     <div className="content-wrapper">
       <div className="option-switcher">
         <button
           onClick={() => setSelectedOption("writings")}
-          className={`option-btn ${selectedOption === "writings" ? "active" : ""}`}
+          className={`option-btn ${
+            selectedOption === "writings" ? "active" : ""
+          }`}
         >
           Writings
         </button>
         <button
           onClick={() => setSelectedOption("projects")}
-          className={`option-btn ${selectedOption === "projects" ? "active" : ""}`}
+          className={`option-btn ${
+            selectedOption === "projects" ? "active" : ""
+          }`}
         >
           Projects
         </button>
@@ -164,15 +193,26 @@ const ContentSwitcher = ({ posts, projects }) => {
             <div className="list-header">
               <span
                 onClick={() => handleSort("date")}
-                style={{ cursor: "pointer" }}
+                style={{
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.25rem",
+                }}
               >
                 date {getSortIcon("date")}
               </span>
-              <span>title</span>
+              <span style={{ cursor: "default" }}>title</span>
               <span
                 onClick={() => handleSort("views")}
                 className="views"
-                style={{ cursor: "pointer", textAlign: "right" }}
+                style={{
+                  cursor: "pointer",
+                  textAlign: "right",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.25rem",
+                }}
               >
                 {getSortIcon("views")} views
               </span>
@@ -202,21 +242,23 @@ const ContentSwitcher = ({ posts, projects }) => {
           <div className="mono-list project-list">
             <div className="list-header">
               <span>title</span>
-              <span className="actions">links</span>
+              <span className="actions" style={{ cursor: "default" }}>
+                links
+              </span>
               <span
                 className="tags"
                 style={{
                   cursor: selectedTag ? "default" : "pointer",
                   display: "flex",
                   alignItems: "center",
-                  gap: "0.5rem",
+                  gap: "0.25rem",
                   opacity: 1,
                 }}
                 onClick={() => handleSort("tags")}
               >
                 {!selectedTag && getSortIcon("tags")}
                 {selectedTag && (
-                  <X size={14} className="tag-reset" onClick={handleClearTag} />
+                  <X size={16} className="tag-reset" onClick={handleClearTag} />
                 )}{" "}
                 tags
               </span>
@@ -229,7 +271,9 @@ const ContentSwitcher = ({ posts, projects }) => {
                     href={project.sourceLink || "#"}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`action-link github ${!project.sourceLink ? "disabled" : ""}`}
+                    className={`action-link github ${
+                      !project.sourceLink ? "disabled" : ""
+                    }`}
                     onClick={(e) => !project.sourceLink && e.preventDefault()}
                   >
                     <Github size={20} />
@@ -238,7 +282,9 @@ const ContentSwitcher = ({ posts, projects }) => {
                     href={project.projectLink || "#"}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`action-link globe ${!project.projectLink ? "disabled" : ""}`}
+                    className={`action-link globe ${
+                      !project.projectLink ? "disabled" : ""
+                    }`}
                     onClick={(e) => !project.projectLink && e.preventDefault()}
                   >
                     <Globe size={20} />
