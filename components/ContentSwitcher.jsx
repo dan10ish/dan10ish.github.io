@@ -1,15 +1,17 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { supabase } from "@/lib/supabase";
 import Link from "next/link";
-import { Globe, Github } from "lucide-react";
+import { Globe, Github, ArrowUp, ArrowDown, X } from "lucide-react";
 
 const ContentSwitcher = ({ posts, projects }) => {
   const [selectedOption, setSelectedOption] = useState("writings");
   const [mounted, setMounted] = useState(false);
   const [viewsData, setViewsData] = useState({});
   const [loading, setLoading] = useState(true);
+  const [sortConfig, setSortConfig] = useState({ key: null, direction: null });
+  const [selectedTag, setSelectedTag] = useState(null);
 
   useEffect(() => {
     const savedOption = localStorage.getItem("selectedOption");
@@ -55,11 +57,92 @@ const ContentSwitcher = ({ posts, projects }) => {
     }
   }, [selectedOption, mounted]);
 
+  useEffect(() => {
+    if (selectedTag) {
+      setSortConfig((current) => ({
+        ...current,
+        key: current.key === "tags" ? null : current.key,
+      }));
+    }
+  }, [selectedTag]);
+
+  const sortedPosts = useMemo(() => {
+    if (!sortConfig.key) return posts;
+
+    return [...posts].sort((a, b) => {
+      if (sortConfig.key === "date") {
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
+        return sortConfig.direction === "asc" ? dateA - dateB : dateB - dateA;
+      }
+      if (sortConfig.key === "views") {
+        const viewsA = viewsData[a.slug] || 0;
+        const viewsB = viewsData[b.slug] || 0;
+        return sortConfig.direction === "asc"
+          ? viewsA - viewsB
+          : viewsB - viewsA;
+      }
+      return 0;
+    });
+  }, [posts, sortConfig, viewsData]);
+
+  const filteredProjects = useMemo(() => {
+    let filtered = projects;
+    if (selectedTag) {
+      filtered = projects.filter((project) =>
+        project.tags.includes(selectedTag),
+      );
+      return filtered;
+    }
+    if (sortConfig.key === "tags") {
+      filtered = [...filtered].sort((a, b) => {
+        const tagsA = a.tags.join(",");
+        const tagsB = b.tags.join(",");
+        return sortConfig.direction === "asc"
+          ? tagsA.localeCompare(tagsB)
+          : tagsB.localeCompare(tagsA);
+      });
+    }
+    return filtered;
+  }, [projects, selectedTag, sortConfig]);
+
+  const handleSort = (key) => {
+    if (key === "tags" && selectedTag) return;
+
+    setSortConfig((current) => ({
+      key: current.key === key && current.direction === "desc" ? null : key,
+      direction:
+        current.key === key
+          ? current.direction === "asc"
+            ? "desc"
+            : null
+          : "asc",
+    }));
+  };
+
+  const handleTagClick = (tag, event) => {
+    event.preventDefault();
+    setSelectedTag((current) => (current === tag ? null : tag));
+  };
+
+  const handleClearTag = (e) => {
+    e.stopPropagation();
+    setSelectedTag(null);
+  };
+
+  const getSortIcon = (key) => {
+    if (sortConfig.key !== key) return null;
+    return sortConfig.direction === "asc" ? (
+      <ArrowUp size={14} />
+    ) : (
+      <ArrowDown size={14} />
+    );
+  };
+
+  if (!mounted) return null;
+
   return (
-    <div
-      className="content-wrapper"
-      style={{ opacity: mounted ? 1 : 0, transition: "opacity 0.2s ease" }}
-    >
+    <div className="content-wrapper">
       <div className="option-switcher">
         <button
           onClick={() => setSelectedOption("writings")}
@@ -79,15 +162,27 @@ const ContentSwitcher = ({ posts, projects }) => {
         {selectedOption === "writings" && (
           <div className="mono-list">
             <div className="list-header">
-              <span>date</span>
+              <span
+                onClick={() => handleSort("date")}
+                style={{ cursor: "pointer" }}
+              >
+                date {getSortIcon("date")}
+              </span>
               <span>title</span>
-              <span className="views">views</span>
+              <span
+                onClick={() => handleSort("views")}
+                className="views"
+                style={{ cursor: "pointer", textAlign: "right" }}
+              >
+                {getSortIcon("views")} views
+              </span>
             </div>
-            {posts.map((post) => (
+            {sortedPosts.map((post) => (
               <Link
                 href={`/post/${post.slug}`}
                 key={post.slug}
                 className="list-row"
+                prefetch={false}
               >
                 <span className="date">{post.year}</span>
                 <span className="title title-blog">{post.title}</span>
@@ -108,9 +203,25 @@ const ContentSwitcher = ({ posts, projects }) => {
             <div className="list-header">
               <span>title</span>
               <span className="actions">links</span>
-              <span className="tags">tags</span>
+              <span
+                className="tags"
+                style={{
+                  cursor: selectedTag ? "default" : "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                  opacity: 1,
+                }}
+                onClick={() => handleSort("tags")}
+              >
+                {!selectedTag && getSortIcon("tags")}
+                {selectedTag && (
+                  <X size={14} className="tag-reset" onClick={handleClearTag} />
+                )}{" "}
+                tags
+              </span>
             </div>
-            {projects.map((project) => (
+            {filteredProjects.map((project) => (
               <div key={project.title} className="list-row">
                 <span className="title">{project.title}</span>
                 <span className="actions">
@@ -135,7 +246,12 @@ const ContentSwitcher = ({ posts, projects }) => {
                 </span>
                 <span className="tags">
                   {project.tags.map((tag) => (
-                    <span key={tag} className="tag">
+                    <span
+                      key={tag}
+                      className={`tag ${selectedTag === tag ? "selected" : ""}`}
+                      onClick={(e) => handleTagClick(tag, e)}
+                      style={{ cursor: "pointer" }}
+                    >
                       {tag}
                     </span>
                   ))}
