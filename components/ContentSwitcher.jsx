@@ -241,7 +241,7 @@ const ContentSwitcher = ({ posts, projects }) => {
         {selectedOption === "projects" && (
           <div className="mono-list project-list">
             <div className="list-header">
-              <span>title</span>
+              <span style={{ cursor: "default" }}>title</span>
               <span className="actions" style={{ cursor: "default" }}>
                 links
               </span>
