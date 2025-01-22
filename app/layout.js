@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import ButtonsContainer from "@/components/ButtonsContainer";
 import ThemeHandler from "@/components/ThemeHandler";
 import GradientOverlay from "@/components/GradientOverlay";
@@ -106,7 +105,7 @@ export default function RootLayout({ children }) {
         />
         <link
           rel="preload"
-          href="/fonts/GeistMono.woff2"
+          href="/fonts/SFMono-Bold.woff2"
           as="font"
           type="font/woff2"
           fetchPriority="high"
@@ -114,7 +113,39 @@ export default function RootLayout({ children }) {
         />
         <link
           rel="preload"
-          href="/fonts/Sentient.woff2"
+          href="/fonts/SFMono-Heavy.woff2"
+          as="font"
+          type="font/woff2"
+          fetchPriority="high"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/SFMono-Light.woff2"
+          as="font"
+          type="font/woff2"
+          fetchPriority="high"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/SFMono-Medium.woff2"
+          as="font"
+          type="font/woff2"
+          fetchPriority="high"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/SFMono-Regular.woff2"
+          as="font"
+          type="font/woff2"
+          fetchPriority="high"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/SFMono-Semibold.woff2"
           as="font"
           type="font/woff2"
           fetchPriority="high"
@@ -138,9 +169,7 @@ export default function RootLayout({ children }) {
       <body>
         <GradientOverlay />
         <ThemeHandler />
-        <Suspense fallback={null}>
-          <ButtonsContainer />
-        </Suspense>
+        <ButtonsContainer />
         <main className="container">{children}</main>
       </body>
     </html>

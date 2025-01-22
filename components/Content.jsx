@@ -30,7 +30,7 @@ const InitialLoadState = () => (
   </div>
 );
 
-const ContentSwitcher = ({ posts, projects }) => {
+const Content = ({ posts, projects }) => {
   const [selectedOption, setSelectedOption] = useState("writings");
   const [mounted, setMounted] = useState(false);
   const [viewsData, setViewsData] = useState({});
@@ -168,23 +168,28 @@ const ContentSwitcher = ({ posts, projects }) => {
 
   return (
     <div className="content-wrapper">
-      <div className="option-switcher">
-        <button
-          onClick={() => setSelectedOption("writings")}
-          className={`option-btn ${
-            selectedOption === "writings" ? "active" : ""
-          }`}
-        >
-          Writings
-        </button>
-        <button
-          onClick={() => setSelectedOption("projects")}
-          className={`option-btn ${
-            selectedOption === "projects" ? "active" : ""
-          }`}
-        >
-          Projects
-        </button>
+      <div className="content-header">
+        <Link href="/" className="site-title">
+          Danish
+        </Link>
+        <div className="option-switcher">
+          <button
+            onClick={() => setSelectedOption("writings")}
+            className={`option-btn ${
+              selectedOption === "writings" ? "active" : ""
+            }`}
+          >
+            Writings
+          </button>
+          <button
+            onClick={() => setSelectedOption("projects")}
+            className={`option-btn ${
+              selectedOption === "projects" ? "active" : ""
+            }`}
+          >
+            Projects
+          </button>
+        </div>
       </div>
 
       <div className="content-area">
@@ -311,4 +316,4 @@ const ContentSwitcher = ({ posts, projects }) => {
   );
 };
 
-export default ContentSwitcher;
+export default Content;

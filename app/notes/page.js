@@ -39,20 +39,16 @@ export default function NotesPage() {
 
   return (
     <main>
-      <div className="header-container">
-        <div className="title-container">
-          <div className="title-link">
-            <h2>Notes</h2>
-          </div>
-        </div>
-
-        <FilterComponent
-          options={tags}
-          activeFilters={selectedTags}
-          onFilterChange={setSelectedTags}
-          placeholder=""
-        />
+      <div className="domain-header">
+        <h2>Notes</h2>
       </div>
+
+      <FilterComponent
+        options={tags}
+        activeFilters={selectedTags}
+        onFilterChange={setSelectedTags}
+        placeholder=""
+      />
 
       <div className="notes-grid">
         {filteredNotes.map((note) => (

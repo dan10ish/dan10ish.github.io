@@ -1,25 +1,54 @@
 @font-face {
-  font-family: "Geist Mono";
-  src: url("/fonts/GeistMono.woff2") format("woff2-variations");
-  font-weight: 100 900;
-  font-stretch: 75% 125%;
-  font-style: oblique 0deg 12deg;
+  font-family: "SF Mono";
+  src: url("/fonts/SFMono-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Sentient";
-  src: url("/fonts/Sentient.woff2") format("woff2-variations");
-  font-weight: 100 900;
+  font-family: "SF Mono";
+  src: url("/fonts/SFMono-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF Mono";
+  src: url("/fonts/SFMono-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF Mono";
+  src: url("/fonts/SFMono-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF Mono";
+  src: url("/fonts/SFMono-Heavy.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF Mono";
+  src: url("/fonts/SFMono-Semibold.woff2") format("woff2");
+  font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 
 :root {
-  --font-normal: "Geist Mono", ui-monospace, "Cascadia Code", "SF Mono", Menlo,
-    Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  --font-heading: "Sentient", system-ui, ui-sans-serif, -apple-system,
-    BlinkMacSystemFont, "Segoe UI", Verdana, Arial, sans-serif;
+  --font-normal: "SF Mono", ui-monospace, Menlo, monospace;
+  --font-heading: "SF Mono", ui-monospace, Menlo, monospace;
   --padding-small: 0.5rem;
   --padding-medium: 1rem;
   --padding-large: 2rem;
@@ -289,13 +318,6 @@ th {
   font-weight: bold;
 }
 
-/* Layout Components */
-
-.title-link a,
-.title-link {
-  color: var(--color-text);
-}
-
 .sr-only {
   position: absolute;
   width: 1px;
@@ -308,60 +330,33 @@ th {
   border: 0;
 }
 
-.site-header {
+/* Content Switcher */
+
+.content-wrapper {
+  margin: 2.5rem 0 0;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  row-gap: 2rem;
+  min-height: 360px;
+}
+
+.content-header {
+  display: flex;
   align-items: center;
-  padding: 2.5rem 0 0;
-  margin-bottom: 2rem;
+  justify-content: space-between;
 }
 
 .site-title {
   font-family: var(--font-heading);
-  font-size: calc(var(--font-size-mobile) * 1.8);
+  font-size: calc(var(--font-size-mobile) * 1.4);
   color: var(--color-text);
   text-decoration: none;
-  font-weight: 700;
-}
-
-.site-header .header-actions {
-  display: flex;
-  align-items: center;
-  gap: 1.2rem;
-}
-
-.header-icon {
-  color: var(--color-text);
-}
-
-.header-icon svg {
-  height: 18px;
-  width: auto;
-  stroke-width: 1.8;
-}
-
-.header-icon-github svg {
-  height: 22px;
-  width: auto;
-}
-
-.email-link svg {
-  height: 24px;
-  width: auto;
-  stroke-width: 1.4;
-}
-
-/* Content Switcher */
-
-.content-wrapper {
-  margin: 2rem 0;
-  min-height: 360px;
+  font-weight: 500;
 }
 
 .option-switcher {
   display: flex;
-  gap: 0.5rem;
-  margin-bottom: 2rem;
+  gap: 1rem;
 }
 
 .option-btn {
@@ -379,11 +374,8 @@ th {
   font-weight: 500;
 }
 
-/* Blogs and Projects Tables */
-
 .mono-list {
   font-family: var(--font-normal);
-  margin: 2rem 0;
   width: 100%;
   animation: fadeIn 0.1s ease;
 }
@@ -399,7 +391,7 @@ th {
 
 .list-header {
   display: grid;
-  grid-template-columns: 60px minmax(0, 1fr) 100px;
+  grid-template-columns: 50px minmax(0, 1fr) 100px;
   gap: 2rem;
   padding: 0.75rem 0.5rem;
   color: rgba(var(--color-text-rgb), 0.5);
@@ -417,7 +409,7 @@ th {
 
 .list-row {
   display: grid;
-  grid-template-columns: 60px minmax(0, 1fr) 100px;
+  grid-template-columns: 50px minmax(0, 1fr) 100px;
   gap: 2rem;
   padding: 0.75rem 0.5rem;
   text-decoration: none;
@@ -523,7 +515,7 @@ th {
 @media (max-width: 768px) {
   .list-header,
   .list-row {
-    grid-template-columns: 60px minmax(0, 1fr) 80px;
+    grid-template-columns: 50px minmax(0, 1fr) 80px;
     gap: 1rem;
   }
 
@@ -535,6 +527,10 @@ th {
 
   .action-link {
     padding: 0.15rem;
+  }
+
+  .option-switcher {
+    gap: 0.5rem;
   }
 }
 
@@ -598,6 +594,7 @@ th {
 
 .content-area {
   min-height: 200px;
+  margin: 0;
 }
 
 /* Blog Post */
@@ -608,6 +605,7 @@ th {
 
 .blogpost-title h1 {
   margin-bottom: var(--padding-medium);
+  margin-top: 2.5rem;
 }
 
 .blogpost-meta {
@@ -862,8 +860,10 @@ th {
 /* Footer */
 
 .site-footer {
-  margin-top: 4rem;
-  padding: 2rem 0.5rem 1rem;
+  margin: 4rem 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .footer-link {
@@ -884,7 +884,6 @@ th {
 .footer-nav-mobile {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 2rem;
   width: 100%;
   align-items: center;
   padding: 0px 0.5rem;
@@ -908,6 +907,41 @@ th {
 
 .footer-nav-desktop {
   display: none;
+}
+
+.footer-socials {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 0.5rem;
+}
+
+.header-icon {
+  color: var(--color-text);
+  border-radius: 50%;
+  background-color: var(--code-background-color);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-icon svg {
+  height: 16px;
+  width: auto;
+  stroke-width: 1.8;
+}
+
+.header-icon-github svg {
+  height: 20px;
+  width: auto;
+}
+
+.email-link svg {
+  height: 20px;
+  width: auto;
+  stroke-width: 1.5;
 }
 
 .footer-metrics {
@@ -1499,7 +1533,7 @@ a[data-footnote-ref] {
 
 .filter-container {
   position: relative;
-  margin: 0rem 0;
+  margin: 1.5rem 0;
 }
 
 .active-filters {
@@ -1578,7 +1612,7 @@ a[data-footnote-ref] {
   box-shadow: 0 2px 8px rgba(var(--color-text-rgb), 0.07);
   z-index: 100;
   animation: filterDropdown 0.2s ease;
-  padding: 8px;
+  padding: 0.5rem 0.75rem;
 }
 
 .filter-options {
@@ -1952,17 +1986,17 @@ a[data-footnote-ref] {
 .share-popup {
   position: absolute;
   bottom: calc(100% + 15px);
-  right: -0.25rem;
+  right: 0rem;
   background: var(--color-bg);
   border: 1px solid var(--code-background-color);
   border-radius: 12px;
-  padding: 0.4rem;
-  min-width: 150px;
   box-shadow: 0 2px 8px rgba(var(--color-text-rgb), 0.07);
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
   animation: sharePopIn 0.2s ease;
+  padding: 0.5rem 0.7rem;
+  white-space: nowrap;
   z-index: 50;
 }
 
@@ -1972,7 +2006,7 @@ a[data-footnote-ref] {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  padding: 0.4rem 0.8rem;
+  padding: 0.2rem 0.5rem;
   border-radius: 8px;
   font-size: var(--font-size-mobile);
   font-weight: 450;
@@ -2370,17 +2404,9 @@ a[data-footnote-ref] {
   font-family: var(--font-normal);
 }
 
-/* Domain Pages */
-
-.domain-header {
-  margin: 3rem 0 2rem;
-}
-
-.domain-header h1 {
-  font-family: var(--font-heading);
-  font-size: calc(var(--font-size-mobile) * 2.2);
-  margin-top: 3rem;
-  margin-bottom: 1rem;
+.domain-header h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 0 !important;
 }
 
 /* Tree Map */
@@ -2487,7 +2513,7 @@ a[data-footnote-ref] {
   }
 
   .site-title {
-    font-size: calc(var(--font-size-desktop) * 2);
+    font-size: calc(var(--font-size-desktop) * 1.5);
   }
 
   .buttons-container {
@@ -2657,7 +2683,7 @@ a[data-footnote-ref] {
   }
 
   .site-footer {
-    padding: 3rem 0.5rem 1rem;
+    margin: 4rem 0 1rem;
   }
 
   .footer-nav-mobile {
@@ -2668,7 +2694,6 @@ a[data-footnote-ref] {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem;
     width: 100%;
     padding: 0px 0.5rem;
   }
@@ -2693,21 +2718,12 @@ a[data-footnote-ref] {
     opacity: 1 !important;
   }
 
-  .domain-header {
-    margin: 4rem 0 3rem;
-  }
-
-  .domain-header h1 {
-    font-size: calc(var(--font-size-desktop) * 2.2);
-    margin-bottom: 1rem;
-  }
-
   .metrics-group {
     gap: 1.5rem;
   }
 
-  .site-header .header-actions {
-    gap: 1.4rem;
+  .footer-socials {
+    gap: 1.5rem;
   }
 }
 
@@ -2947,8 +2963,9 @@ a[data-footnote-ref] {
 
   .header-icon:hover {
     opacity: 1;
-    color: var(--color-link);
-    transform: scale(1.1);
+    background: var(--color-link);
+    color: #ffffff;
+    transform: scale(1.05);
   }
 }
 

@@ -1,8 +1,7 @@
 import { getBlogPosts } from "../lib/posts";
 import { getProjects } from "../lib/projects";
-import ContentSwitcher from "../components/ContentSwitcher";
+import Content from "../components/Content";
 import Footer from "@/components/Footer";
-import Header from "@/components/Header";
 
 export default function Home() {
   const posts = getBlogPosts();
@@ -10,8 +9,7 @@ export default function Home() {
 
   return (
     <main>
-      <Header />
-      <ContentSwitcher posts={posts} projects={projects} />
+      <Content posts={posts} projects={projects} />
       <Footer />
     </main>
   );
