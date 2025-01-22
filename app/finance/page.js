@@ -119,7 +119,7 @@ const CustomTreemap = () => {
         />
       </ResponsiveContainer>
       <p className="treemap-caption">
-        <Info size={18}/> Portfolio Treemap
+        <Info size={15} /> Portfolio Treemap
       </p>
     </div>
   );

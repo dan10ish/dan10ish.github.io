@@ -440,14 +440,19 @@ th {
 
 .project-list .list-header,
 .project-list .list-row {
-  grid-template-columns: minmax(0, 1fr) 50px 100px;
+  grid-template-columns: minmax(0, 1fr) 50px 70px;
   gap: 2rem;
+}
+
+.list-header .actions {
+  text-align: center;
+  justify-content: center;
 }
 
 .project-list .list-row .actions {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 0.5rem;
 }
 
@@ -521,7 +526,7 @@ th {
 
   .project-list .list-header,
   .project-list .list-row {
-    grid-template-columns: minmax(0, 1fr) 50px 50px;
+    grid-template-columns: minmax(0, 1fr) 40px 50px;
     gap: 2rem;
   }
 
@@ -912,16 +917,13 @@ th {
 .footer-socials {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
   padding: 0 0.5rem;
 }
 
 .header-icon {
   color: var(--color-text);
-  border-radius: 50%;
-  background-color: var(--code-background-color);
-  width: 40px;
-  height: 40px;
+  border-radius: 0.25rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2411,6 +2413,14 @@ a[data-footnote-ref] {
 
 /* Tree Map */
 
+.treemap-container {
+  margin-top: 1rem;
+}
+
+.portfolio-viz {
+  border-radius: 1rem;
+}
+
 .shimmer-t {
   position: absolute;
   inset: 0;
@@ -2429,14 +2439,9 @@ a[data-footnote-ref] {
   transform: translate(-50%, -50%);
 }
 
-.portfolio-viz {
-  margin-bottom: 0.5rem;
-  padding: 0 0.25rem;
-}
-
 .treemap-caption {
   color: rgba(var(--color-text-rgb), 0.5);
-  margin-top: 1rem;
+  margin-top: 2rem;
   font-size: calc(var(--font-size-mobile) * 1);
   display: flex;
   align-items: center;
@@ -2447,6 +2452,7 @@ a[data-footnote-ref] {
 .skeleton-t {
   overflow: hidden;
   position: relative;
+  margin-top: 1rem;
 }
 
 .skeleton-img-t {
@@ -2723,7 +2729,7 @@ a[data-footnote-ref] {
   }
 
   .footer-socials {
-    gap: 1.5rem;
+    gap: 1.75rem;
   }
 }
 
@@ -2962,10 +2968,8 @@ a[data-footnote-ref] {
   }
 
   .header-icon:hover {
-    opacity: 1;
-    background: var(--color-link);
-    color: #ffffff;
-    transform: scale(1.05);
+    color: var(--color-link);
+    transform: scale(1.2);
   }
 }
 
