@@ -7,6 +7,62 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Globe, Github, ArrowUp, ArrowDown, X } from "lucide-react";
 import { Suspense } from "react";
 import Footer from "@/components/Footer";
+import Image from "next/image";
+
+const InfoPopup = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
+  return (
+    <>
+      <div
+        className="title-wrapper"
+        onClick={() => setIsOpen(true)}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => e.key === "Enter" && setIsOpen(true)}
+      >
+        <span className="site-title">Danish</span>
+      </div>
+      {isOpen && (
+        <div className="info-overlay" onClick={() => setIsOpen(false)}>
+          <div className="info-popup" onClick={(e) => e.stopPropagation()}>
+            <button
+              onClick={() => setIsOpen(false)}
+              className="info-close"
+              aria-label="Close popup"
+            >
+              <X size={16} />
+            </button>
+            <div className="info-content">
+              <Image
+                src="icons/icon.png"
+                alt="Danish"
+                className="info-avatar"
+                width={80}
+                height={80}
+              />
+              <p className="info-text">
+                Danish is a <strong>mechatronics</strong> engineer exploring <code>machine learning</code>, <code>robotics</code>, and{" "}
+                <code>finance</code>.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
 
 const BlogList = ({ posts, viewsData, loading, sortConfig, handleSort }) => {
   const getSortIcon = (key) => {
@@ -287,9 +343,7 @@ const Content = ({ posts, projects }) => {
   return (
     <div className="content-wrapper">
       <div className="content-header">
-        <Link href="/" className="site-title">
-          Danish
-        </Link>
+        <InfoPopup />
         <div className="option-switcher">
           <button
             onClick={() => handleOptionChange("writings")}

@@ -4,7 +4,7 @@ const path = require("path");
 const nextConfig = {
   output: "export",
   images: {
-    unoptimized: false,
+    unoptimized: true,
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",
