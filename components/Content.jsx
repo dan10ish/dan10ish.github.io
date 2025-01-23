@@ -5,6 +5,7 @@ import { supabase } from "@/lib/supabase";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Globe, Github, ArrowUp, ArrowDown, X } from "lucide-react";
+import { Suspense } from "react";
 
 const BlogList = ({ posts, viewsData, loading, sortConfig, handleSort }) => {
   const getSortIcon = (key) => {
@@ -329,4 +330,10 @@ const Content = ({ posts, projects }) => {
   );
 };
 
-export default Content;
+export default function ContentWrapper({ posts, projects }) {
+  return (
+    <Suspense fallback={null}>
+      <Content posts={posts} projects={projects} />
+    </Suspense>
+  );
+}
