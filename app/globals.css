@@ -391,7 +391,7 @@ th {
 
 .list-header {
   display: grid;
-  grid-template-columns: 50px minmax(0, 1fr) 100px;
+  grid-template-columns: 55px minmax(0, 1fr) 100px;
   gap: 2rem;
   padding: 0.75rem 0.5rem;
   color: rgba(var(--color-text-rgb), 0.5);
@@ -410,7 +410,7 @@ th {
 
 .list-row {
   display: grid;
-  grid-template-columns: 50px minmax(0, 1fr) 100px;
+  grid-template-columns: 55px minmax(0, 1fr) 100px;
   gap: 2rem;
   padding: 0.75rem 0.5rem;
   text-decoration: none;
@@ -510,6 +510,7 @@ th {
 .tag-reset {
   color: #ff0000;
   cursor: pointer;
+  stroke-width: 2;
 }
 
 .tag.selected {
@@ -525,13 +526,13 @@ th {
 @media (max-width: 768px) {
   .list-header,
   .list-row {
-    grid-template-columns: 50px minmax(0, 1fr) 80px;
+    grid-template-columns: 55px minmax(0, 1fr) 80px;
     gap: 1rem;
   }
 
   .project-list .list-header,
   .project-list .list-row {
-    grid-template-columns: minmax(0, 1fr) 40px 50px;
+    grid-template-columns: minmax(0, 1fr) 30px 55px;
     gap: 2rem;
   }
 
@@ -2965,6 +2966,15 @@ a[data-footnote-ref] {
   .header-icon:hover {
     color: var(--color-link);
     transform: scale(1.2);
+  }
+
+  .tag-reset:hover {
+    transform: scale(1.08);
+    stroke-width: 3;
+  }
+
+  .tag:hover {
+    transform: scale(1.08);
   }
 }
 

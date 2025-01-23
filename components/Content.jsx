@@ -162,6 +162,7 @@ const ProjectList = ({
                     className="tag"
                     data-selected={selectedTag === tag}
                     onClick={(e) => handleTagClick(tag, e)}
+                    style={{ cursor: "pointer" }}
                   >
                     {tag}
                   </span>
