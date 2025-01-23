@@ -128,7 +128,7 @@ const ProjectList = ({
                   </span>
                 </span>
                 <span className="tags">
-                  <span className="tag loading-state">-</span>
+                  <span className="tag">-</span>
                 </span>
               </div>
             ))
@@ -206,7 +206,10 @@ const Content = ({ posts, projects }) => {
         const views = await Promise.all(viewsPromises);
         setViewsData(
           views.reduce(
-            (acc, { slug, views }) => ({ ...acc, [slug]: views }),
+            (acc, { slug, views }) => ({
+              ...acc,
+              [slug]: views,
+            }),
             {},
           ),
         );

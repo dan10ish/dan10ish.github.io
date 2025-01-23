@@ -29,7 +29,7 @@ const themes = [
 const themeColors = {
   light: "#ffffff",
   dark: "#1c1c1c",
-  solarized: "#00212b",
+  solarized: "#002b36",
 };
 
 export function ThemeButton() {

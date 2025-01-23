@@ -139,18 +139,18 @@ html {
 }
 
 [data-theme="solarized"] {
-  --gradient-start: rgba(0, 33, 43, 0);
-  --gradient-end: rgba(0, 33, 43, 0.9);
+  --gradient-start: rgba(0, 43, 54, 0);
+  --gradient-end: rgba(0, 43, 54, 0.9);
 
-  --color-bg: #00212b;
-  --color-text: #d0d0d0;
-  --color-link: #00a2ff;
+  --color-bg: #002b36;
+  --color-text: #eee8d5;
+  --color-link: #268bd2;
 
   --blockquote-color: #586e75;
-  --code-background-color: #00303b;
+  --code-background-color: #073642;
   --code-color: #93a1a1;
 
-  --syntax-comment: #93a1a1;
+  --syntax-comment: #586e75;
   --syntax-keyword: #859900;
   --syntax-number: #2aa198;
   --syntax-string: #d33682;
@@ -162,11 +162,12 @@ html {
   --syntax-builtin: #cb4b16;
   --syntax-meta: #586e75;
 
-  --color-bg-rgb: 0, 33, 43;
-  --color-text-rgb: 208, 208, 208;
+  --color-bg-rgb: 0, 43, 54;
+  --color-text-rgb: 238, 232, 213;
 
-  --github-border: rgba(208, 208, 208, 0.1);
+  --github-border: rgba(238, 232, 213, 0.1);
   --github-hover-bg: #001f26;
+
   color-scheme: dark;
 }
 
@@ -510,7 +511,7 @@ th {
 .tag-reset {
   color: #ff0000;
   cursor: pointer;
-  stroke-width: 2;
+  stroke-width: 2.5;
 }
 
 .tag.selected {
@@ -923,7 +924,7 @@ th {
 .footer-socials {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1rem;
   padding: 0 0.5rem;
 }
 
@@ -936,20 +937,20 @@ th {
 }
 
 .header-icon svg {
-  height: 16px;
+  height: 20px;
   width: auto;
-  stroke-width: 1.8;
 }
 
 .header-icon-github svg {
   height: 20px;
   width: auto;
+  stroke-width: 2;
 }
 
 .email-link svg {
   height: 20px;
   width: auto;
-  stroke-width: 1.5;
+  stroke-width: 2;
 }
 
 .footer-metrics {
@@ -2725,7 +2726,7 @@ a[data-footnote-ref] {
   }
 
   .footer-socials {
-    gap: 1.75rem;
+    gap: 1.5rem;
   }
 }
 
@@ -2969,8 +2970,8 @@ a[data-footnote-ref] {
   }
 
   .tag-reset:hover {
-    transform: scale(1.08);
-    stroke-width: 3;
+    transform: scale(1.05);
+    stroke-width: 4;
   }
 
   .tag:hover {
