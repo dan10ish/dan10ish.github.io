@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo } from "react";
 import { supabase } from "@/lib/supabase";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Globe, Github, ArrowUp, ArrowDown, X, RefreshCw } from "lucide-react";
+import { Globe, Github, ArrowUp, ArrowDown, X } from "lucide-react";
 import { Suspense } from "react";
 import Footer from "@/components/Footer";
 
@@ -329,15 +329,9 @@ const Content = ({ posts, projects }) => {
   );
 };
 
-const LoadingOverlay = () => (
-  <div className="loading-content">
-    <RefreshCw className="spin" />
-  </div>
-);
-
 export default function ContentWrapper({ posts, projects }) {
   return (
-    <Suspense fallback={<LoadingOverlay />}>
+    <Suspense fallback={null}>
       <Content posts={posts} projects={projects} />
       <Footer />
     </Suspense>
