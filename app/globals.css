@@ -377,7 +377,6 @@ th {
   padding: 1rem;
   z-index: 1000;
   animation: fadeIn 0.2s ease;
-  top: -10%;
 }
 
 .info-close {
@@ -409,6 +408,7 @@ th {
   padding: 1rem 2rem 1.5rem;
   position: relative;
   animation: slideUp 0.2s ease;
+  top: -5%;
 }
 
 .info-content {
@@ -416,7 +416,15 @@ th {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0rem;
+}
+
+.info-content-profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
 }
 
 .info-avatar {
@@ -2607,13 +2615,24 @@ a[data-footnote-ref] {
     font-size: calc(var(--font-size-desktop) * 1.5);
   }
 
+  .info-content-profile {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
   .info-content {
     flex-direction: row;
+    align-items: center;
     gap: 2rem;
+  }
+  
+  .info-text{
+    margin: 0;
+    padding: 0;
   }
 
   .info-popup {
-    padding: 2rem 3rem 1.5rem;
+    padding: 2rem 3rem 2.5rem;
   }
 
   .info-text {
