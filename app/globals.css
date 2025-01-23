@@ -337,6 +337,7 @@ th {
   display: flex;
   flex-direction: column;
   row-gap: 2rem;
+  min-height: 360px;
 }
 
 .content-header {
