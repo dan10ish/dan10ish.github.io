@@ -3,48 +3,193 @@
 import { useState, useEffect, useMemo } from "react";
 import { supabase } from "@/lib/supabase";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Globe, Github, ArrowUp, ArrowDown, X } from "lucide-react";
 
-const InitialLoadState = () => (
-  <div className="content-wrapper" style={{ opacity: 0 }}>
-    <div className="option-switcher">
-      <button className="option-btn active">Writings</button>
-      <button className="option-btn">Projects</button>
-    </div>
-    <div className="content-area">
-      <div className="mono-list">
-        <div className="list-header">
-          <span>date</span>
-          <span>title</span>
-          <span className="views">views</span>
-        </div>
-        {[...Array(5)].map((_, i) => (
-          <div key={i} className="list-row">
-            <span className="date"></span>
-            <span className="title"></span>
-            <span className="views"></span>
-          </div>
-        ))}
+const BlogList = ({ posts, viewsData, loading, sortConfig, handleSort }) => {
+  const getSortIcon = (key) => {
+    if (sortConfig.key !== key) return null;
+    return sortConfig.direction === "asc" ? (
+      <ArrowUp size={14} />
+    ) : (
+      <ArrowDown size={14} />
+    );
+  };
+
+  return (
+    <div className="mono-list">
+      <div className="list-header">
+        <span
+          className="sort-header"
+          onClick={() => handleSort("date")}
+          style={{ cursor: "pointer" }}
+        >
+          date {getSortIcon("date")}
+        </span>
+        <span style={{ cursor: "default" }}>title</span>
+        <span
+          className="sort-header views"
+          onClick={() => handleSort("views")}
+          style={{ cursor: "pointer" }}
+        >
+          {getSortIcon("views")} views
+        </span>
       </div>
+      {loading
+        ? Array(4)
+            .fill(0)
+            .map((_, i) => (
+              <div key={i} className="list-row">
+                <span className="date">2049</span>
+                <span className="title loading-state">Loading post</span>
+                <span className="views">
+                  <span className="infinity-symbol">∞</span>
+                </span>
+              </div>
+            ))
+        : posts.map((post) => (
+            <Link
+              href={`/post/${post.slug}`}
+              key={post.slug}
+              className="list-row"
+              prefetch={false}
+            >
+              <span className="date">{post.year}</span>
+              <span className="title">{post.title}</span>
+              <span className="views">
+                {viewsData[post.slug] === undefined ? (
+                  <span className="infinity-symbol">∞</span>
+                ) : (
+                  viewsData[post.slug]
+                )}
+              </span>
+            </Link>
+          ))}
     </div>
-  </div>
-);
+  );
+};
+
+const ProjectList = ({
+  projects,
+  loading,
+  selectedTag,
+  handleTagClick,
+  handleSort,
+  sortConfig,
+}) => {
+  const getSortIcon = (key) => {
+    if (sortConfig.key !== key) return null;
+    return sortConfig.direction === "asc" ? (
+      <ArrowUp size={14} />
+    ) : (
+      <ArrowDown size={14} />
+    );
+  };
+
+  return (
+    <div className="mono-list project-list">
+      <div className="list-header">
+        <span style={{ cursor: "default" }}>title</span>
+        <span className="actions" style={{ cursor: "default" }}>
+          links
+        </span>
+        <span
+          className="sort-header tags"
+          onClick={() => handleSort("tags")}
+          style={{ cursor: selectedTag ? "default" : "pointer" }}
+        >
+          {!selectedTag && getSortIcon("tags")}
+          {selectedTag && (
+            <X
+              size={16}
+              className="tag-reset"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleTagClick(null, e);
+              }}
+            />
+          )}
+          tags
+        </span>
+      </div>
+      {loading
+        ? Array(8)
+            .fill(0)
+            .map((_, i) => (
+              <div key={i} className="list-row">
+                <span className="title loading-state">Loading project</span>
+                <span className="actions">
+                  <span className="action-link disabled">
+                    <Github size={20} />
+                  </span>
+                  <span className="action-link disabled">
+                    <Globe size={20} />
+                  </span>
+                </span>
+                <span className="tags">
+                  <span className="tag">-</span>
+                </span>
+              </div>
+            ))
+        : projects.map((project) => (
+            <div key={project.title} className="list-row">
+              <span className="title">{project.title}</span>
+              <span className="actions">
+                <a
+                  href={project.sourceLink || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`action-link github ${!project.sourceLink ? "disabled" : ""}`}
+                  onClick={(e) => !project.sourceLink && e.preventDefault()}
+                >
+                  <Github size={20} />
+                </a>
+                <a
+                  href={project.projectLink || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`action-link globe ${!project.projectLink ? "disabled" : ""}`}
+                  onClick={(e) => !project.projectLink && e.preventDefault()}
+                >
+                  <Globe size={20} />
+                </a>
+              </span>
+              <span className="tags">
+                {project.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="tag"
+                    data-selected={selectedTag === tag}
+                    onClick={(e) => handleTagClick(tag, e)}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </span>
+            </div>
+          ))}
+    </div>
+  );
+};
 
 const Content = ({ posts, projects }) => {
-  const [selectedOption, setSelectedOption] = useState("writings");
-  const [mounted, setMounted] = useState(false);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const tab = searchParams.get("tab");
+  const [selectedOption, setSelectedOption] = useState(
+    tab === "projects" ? "projects" : "writings",
+  );
   const [viewsData, setViewsData] = useState({});
-  const [loading, setLoading] = useState(true);
   const [sortConfig, setSortConfig] = useState({ key: null, direction: null });
   const [selectedTag, setSelectedTag] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  const handleOptionChange = (option) => {
+    setSelectedOption(option);
+    router.push(`/?tab=${option}`, { scroll: false });
+  };
 
   useEffect(() => {
-    const savedOption = localStorage.getItem("selectedOption");
-    if (savedOption) {
-      setSelectedOption(savedOption);
-    }
-    setMounted(true);
-
     const fetchViews = async () => {
       try {
         const viewsPromises = posts.map(async (post) => {
@@ -57,15 +202,15 @@ const Content = ({ posts, projects }) => {
         });
 
         const views = await Promise.all(viewsPromises);
-        const viewsMap = views.reduce(
-          (acc, { slug, views }) => ({
-            ...acc,
-            [slug]: views,
-          }),
-          {},
+        setViewsData(
+          views.reduce(
+            (acc, { slug, views }) => ({
+              ...acc,
+              [slug]: views,
+            }),
+            {},
+          ),
         );
-
-        setViewsData(viewsMap);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching views:", error);
@@ -77,23 +222,13 @@ const Content = ({ posts, projects }) => {
   }, [posts]);
 
   useEffect(() => {
-    if (mounted) {
+    if (typeof window !== "undefined") {
       localStorage.setItem("selectedOption", selectedOption);
     }
-  }, [selectedOption, mounted]);
-
-  useEffect(() => {
-    if (selectedTag) {
-      setSortConfig((current) => ({
-        ...current,
-        key: current.key === "tags" ? null : current.key,
-      }));
-    }
-  }, [selectedTag]);
+  }, [selectedOption]);
 
   const sortedPosts = useMemo(() => {
     if (!sortConfig.key) return posts;
-
     return [...posts].sort((a, b) => {
       if (sortConfig.key === "date") {
         const dateA = new Date(a.date);
@@ -133,7 +268,6 @@ const Content = ({ posts, projects }) => {
 
   const handleSort = (key) => {
     if (key === "tags" && selectedTag) return;
-
     setSortConfig((current) => ({
       key: current.key === key && current.direction === "desc" ? null : key,
       direction:
@@ -150,22 +284,6 @@ const Content = ({ posts, projects }) => {
     setSelectedTag((current) => (current === tag ? null : tag));
   };
 
-  const handleClearTag = (e) => {
-    e.stopPropagation();
-    setSelectedTag(null);
-  };
-
-  const getSortIcon = (key) => {
-    if (sortConfig.key !== key) return null;
-    return sortConfig.direction === "asc" ? (
-      <ArrowUp size={14} />
-    ) : (
-      <ArrowDown size={14} />
-    );
-  };
-
-  if (!mounted) return <InitialLoadState />;
-
   return (
     <div className="content-wrapper">
       <div className="content-header">
@@ -174,142 +292,37 @@ const Content = ({ posts, projects }) => {
         </Link>
         <div className="option-switcher">
           <button
-            onClick={() => setSelectedOption("writings")}
-            className={`option-btn ${
-              selectedOption === "writings" ? "active" : ""
-            }`}
+            onClick={() => handleOptionChange("writings")}
+            className={`option-btn${selectedOption === "writings" ? " active" : ""}`}
           >
             Writings
           </button>
           <button
-            onClick={() => setSelectedOption("projects")}
-            className={`option-btn ${
-              selectedOption === "projects" ? "active" : ""
-            }`}
+            onClick={() => handleOptionChange("projects")}
+            className={`option-btn${selectedOption === "projects" ? " active" : ""}`}
           >
             Projects
           </button>
         </div>
       </div>
-
       <div className="content-area">
-        {selectedOption === "writings" && (
-          <div className="mono-list">
-            <div className="list-header">
-              <span
-                onClick={() => handleSort("date")}
-                style={{
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.25rem",
-                }}
-              >
-                date {getSortIcon("date")}
-              </span>
-              <span style={{ cursor: "default" }}>title</span>
-              <span
-                onClick={() => handleSort("views")}
-                className="views"
-                style={{
-                  cursor: "pointer",
-                  textAlign: "right",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.25rem",
-                }}
-              >
-                {getSortIcon("views")} views
-              </span>
-            </div>
-            {sortedPosts.map((post) => (
-              <Link
-                href={`/post/${post.slug}`}
-                key={post.slug}
-                className="list-row"
-                prefetch={false}
-              >
-                <span className="date">{post.year}</span>
-                <span className="title title-blog">{post.title}</span>
-                <span className="views">
-                  {loading || viewsData[post.slug] === undefined ? (
-                    <span className="infinity-symbol">∞</span>
-                  ) : (
-                    viewsData[post.slug]
-                  )}
-                </span>
-              </Link>
-            ))}
-          </div>
-        )}
-
-        {selectedOption === "projects" && (
-          <div className="mono-list project-list">
-            <div className="list-header">
-              <span style={{ cursor: "default" }}>title</span>
-              <span className="actions" style={{ cursor: "default" }}>
-                links
-              </span>
-              <span
-                className="tags"
-                style={{
-                  cursor: selectedTag ? "default" : "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.25rem",
-                  opacity: 1,
-                }}
-                onClick={() => handleSort("tags")}
-              >
-                {!selectedTag && getSortIcon("tags")}
-                {selectedTag && (
-                  <X size={16} className="tag-reset" onClick={handleClearTag} />
-                )}{" "}
-                tags
-              </span>
-            </div>
-            {filteredProjects.map((project) => (
-              <div key={project.title} className="list-row">
-                <span className="title">{project.title}</span>
-                <span className="actions">
-                  <a
-                    href={project.sourceLink || "#"}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`action-link github ${
-                      !project.sourceLink ? "disabled" : ""
-                    }`}
-                    onClick={(e) => !project.sourceLink && e.preventDefault()}
-                  >
-                    <Github size={20} />
-                  </a>
-                  <a
-                    href={project.projectLink || "#"}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`action-link globe ${
-                      !project.projectLink ? "disabled" : ""
-                    }`}
-                    onClick={(e) => !project.projectLink && e.preventDefault()}
-                  >
-                    <Globe size={20} />
-                  </a>
-                </span>
-                <span className="tags">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className={`tag ${selectedTag === tag ? "selected" : ""}`}
-                      onClick={(e) => handleTagClick(tag, e)}
-                      style={{ cursor: "pointer" }}
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </span>
-              </div>
-            ))}
-          </div>
+        {selectedOption === "writings" ? (
+          <BlogList
+            posts={sortedPosts}
+            viewsData={viewsData}
+            loading={loading}
+            sortConfig={sortConfig}
+            handleSort={handleSort}
+          />
+        ) : (
+          <ProjectList
+            projects={filteredProjects}
+            loading={loading}
+            selectedTag={selectedTag}
+            handleTagClick={handleTagClick}
+            handleSort={handleSort}
+            sortConfig={sortConfig}
+          />
         )}
       </div>
     </div>

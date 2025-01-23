@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { Check, ClipboardCopy } from "lucide-react";
+import { Check, Copy } from "lucide-react";
 
 const CopyButton = ({ code }) => {
   const [copied, setCopied] = useState(false);
@@ -44,7 +44,7 @@ const CopyButton = ({ code }) => {
       {copied ? (
         <Check className="copy-icon" strokeWidth={2.5} />
       ) : (
-        <ClipboardCopy className="copy-icon" strokeWidth={2} />
+        <Copy className="copy-icon" strokeWidth={2} />
       )}
     </button>
   );
