@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Globe, Github, ArrowUp, ArrowDown, X } from "lucide-react";
 import { Suspense } from "react";
+import Footer from "@/components/Footer";
 
 const BlogList = ({ posts, viewsData, loading, sortConfig, handleSort }) => {
   const getSortIcon = (key) => {
@@ -332,6 +333,7 @@ export default function ContentWrapper({ posts, projects }) {
   return (
     <Suspense fallback={null}>
       <Content posts={posts} projects={projects} />
+      <Footer />
     </Suspense>
   );
 }
