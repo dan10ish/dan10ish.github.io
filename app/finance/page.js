@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import ButtonsContainer from "@/components/ButtonsContainer";
 import { Treemap, ResponsiveContainer } from "recharts";
 import { RefreshCw, Info } from "lucide-react";
+import ButtonsContainer from "@/components/ButtonsContainer";
 
 const treemapData = [
   {
@@ -53,22 +53,37 @@ const treemapData = [
   },
 ];
 
-const TreemapSkeleton = () => {
-  return (
-    <div className="skeleton-t" style={{ height: "450px", width: "100%" }}>
-      <div className="skeleton-img-t" style={{ height: "100%", width: "100%" }}>
-        <div className="shimmer-t">
-          <div className="loading-tree">
-            <RefreshCw className="spin" />
-            <span>Loading</span>
-          </div>
+const TreemapSkeleton = () => (
+  <div className="skeleton-t" style={{ height: "450px", width: "100%" }}>
+    <div className="skeleton-img-t" style={{ height: "100%", width: "100%" }}>
+      <div className="shimmer-t">
+        <div className="loading-tree">
+          <RefreshCw className="spin" />
+          <span>Loading</span>
         </div>
       </div>
     </div>
-  );
-};
+  </div>
+);
 
 const CustomTreemap = () => {
+  const [hoveredNode, setHoveredNode] = useState(null);
+  const [activeNode, setActiveNode] = useState(null);
+  const [isTouch, setIsTouch] = useState(false);
+
+  useEffect(() => {
+    setIsTouch(window.matchMedia("(hover: none)").matches);
+  }, []);
+
+  useEffect(() => {
+    if (isTouch && activeNode !== null) {
+      const timer = setTimeout(() => {
+        setActiveNode(null);
+      }, 800);
+      return () => clearTimeout(timer);
+    }
+  }, [activeNode, isTouch]);
+
   return (
     <div className="treemap-container">
       <ResponsiveContainer width="100%" height={450}>
@@ -78,40 +93,60 @@ const CustomTreemap = () => {
           ratio={4 / 3}
           animationDuration={0}
           content={({ root }) => {
-            if (!root || !root.children) return null;
+            if (!root?.children) return null;
 
             return root.children.map((node, index) => {
               const { x, y, width, height, color } = node;
-              const ticker = treemapData[index].ticker;
-
+              const stock = treemapData[index];
+              const isActive =
+                (!isTouch && hoveredNode === index) ||
+                (isTouch && activeNode === index);
               const fontSize = Math.max(
-                Math.min(width / ticker.length, height / 2, 14),
-                8,
+                Math.min(width / stock.ticker.length, height / 2, 18),
+                10,
               );
               const textX = x + width / 2;
               const textY = y + height / 2;
 
               return (
-                <g key={index}>
+                <g
+                  key={index}
+                  className="treemap-node"
+                  onMouseEnter={() => !isTouch && setHoveredNode(index)}
+                  onMouseLeave={() => !isTouch && setHoveredNode(null)}
+                  onClick={() => isTouch && setActiveNode(index)}
+                >
                   <rect
                     x={x}
                     y={y}
                     width={width}
                     height={height}
                     fill={color}
+                    className={isActive ? "active" : ""}
                   />
                   <text
                     x={textX}
-                    y={textY}
+                    y={isActive ? textY - 10 : textY}
                     textAnchor="middle"
                     dominantBaseline="central"
                     fill="#fff"
                     fontSize={fontSize}
                     fontWeight="500"
-                    style={{ pointerEvents: "none" }}
                   >
-                    {ticker}
+                    {stock.ticker}
                   </text>
+                  {isActive && (
+                    <text
+                      x={textX}
+                      y={textY + 8}
+                      textAnchor="middle"
+                      dominantBaseline="central"
+                      fill="#fff"
+                      fontSize={12}
+                    >
+                      {stock.value}%
+                    </text>
+                  )}
                 </g>
               );
             });
@@ -129,9 +164,7 @@ const FinancePage = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 500);
+    const timer = setTimeout(() => setIsLoading(false), 500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -140,7 +173,6 @@ const FinancePage = () => {
       <div className="domain-header">
         <h2>Finance</h2>
       </div>
-
       <div className="portfolio-viz">
         <div className="treemap-container" style={{ overflow: "hidden" }}>
           {isLoading ? <TreemapSkeleton /> : <CustomTreemap />}

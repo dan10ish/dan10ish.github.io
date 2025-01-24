@@ -2542,6 +2542,23 @@ a[data-footnote-ref] {
   justify-content: center;
 }
 
+.treemap-node {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.treemap-node rect {
+  transition: filter 0.15s ease;
+}
+
+.treemap-node rect.active {
+  filter: brightness(1.2);
+}
+
+.treemap-node text {
+  pointer-events: none;
+}
+
 .skeleton-t {
   overflow: hidden;
   position: relative;
@@ -2619,14 +2636,14 @@ a[data-footnote-ref] {
     flex-direction: column;
     gap: 0.25rem;
   }
-  
+
   .info-content {
     flex-direction: row;
     align-items: center;
     gap: 2rem;
   }
-  
-  .info-text{
+
+  .info-text {
     margin: 0;
     padding: 0;
   }
