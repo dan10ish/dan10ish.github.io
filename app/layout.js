@@ -7,9 +7,13 @@ export const metadata = {
   metadataBase: new URL("https://danish.bio"),
   title: "Danish",
   description:
-    "Danish is a mechatronics engineer exploring ml, robotics, planes and finance. Discover his projects, writings, and technical insights.",
+    "Danish is a mechatronics engineer exploring machine learning, robotics and finance. Discover his projects, writings, and technical insights.",
   keywords: [
     "Danish",
+    "ai",
+    "artificial intelligence",
+    "Danish Ansari",
+    "Danish Mumbai",
     "mechatronics",
     "robotics",
     "machine learning",
@@ -38,19 +42,19 @@ export const metadata = {
     creator: "@dan10ish",
     title: "Danish",
     description:
-      "Danish's personal website featuring his engineering projects, technical writings, and insights in robotics and machine learning.",
-    images: ["https://i.ibb.co/xYpLtw6/Link-Preview.png"],
+      "Danish's personal website featuring his projects, technical writings, and insights in robotics and machine learning.",
+    images: ["https://i.ibb.co/1271Rbk/OG.png"],
   },
   openGraph: {
     type: "website",
     siteName: "Danish",
     title: "Danish",
     description:
-      "Danish's personal website featuring his engineering projects, technical writings, and insights in robotics and machine learning.",
+      "Danish's personal website featuring his projects, technical writings, and insights in robotics and machine learning..",
     url: "https://danish.bio",
     images: [
       {
-        url: "https://i.ibb.co/xYpLtw6/Link-Preview.png",
+        url: "https://i.ibb.co/1271Rbk/OG.png",
         width: 1200,
         height: 675,
         type: "image/png",
