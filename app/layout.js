@@ -43,7 +43,7 @@ export const metadata = {
     title: "Danish",
     description:
       "Danish's personal website featuring his projects, technical writings, and insights in robotics and machine learning.",
-    images: ["https://i.ibb.co/1271Rbk/OG.png"],
+    images: ["https://i.ibb.co/vmBrhSd/OG.png"],
   },
   openGraph: {
     type: "website",
@@ -54,7 +54,7 @@ export const metadata = {
     url: "https://danish.bio",
     images: [
       {
-        url: "https://i.ibb.co/1271Rbk/OG.png",
+        url: "https://i.ibb.co/vmBrhSd/OG.png",
         width: 1200,
         height: 675,
         type: "image/png",
