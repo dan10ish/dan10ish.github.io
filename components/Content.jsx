@@ -36,7 +36,7 @@ const InfoPopup = () => {
       </div>
       {isOpen && (
         <div className="info-overlay" onClick={() => setIsOpen(false)}>
-          <div className="info-popup" onClick={(e) => e.stopPropagation()}>
+          <div className="info-popup">
             <button
               onClick={() => setIsOpen(false)}
               className="info-close"
@@ -52,6 +52,7 @@ const InfoPopup = () => {
                   className="info-avatar"
                   width={80}
                   height={80}
+                  onClick={(e) => e.stopPropagation()}
                 />
                 <div className="footer-socials">
                   <a
@@ -60,6 +61,7 @@ const InfoPopup = () => {
                     rel="noopener noreferrer"
                     className="header-icon"
                     aria-label="Visit my X profile"
+                    onClick={(e) => e.stopPropagation()}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -75,6 +77,7 @@ const InfoPopup = () => {
                     rel="noopener noreferrer"
                     className="header-icon header-icon-github"
                     aria-label="Visit my GitHub profile"
+                    onClick={(e) => e.stopPropagation()}
                   >
                     <Github size={18} />
                   </a>
@@ -84,16 +87,31 @@ const InfoPopup = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Connect via email"
+                    onClick={(e) => e.stopPropagation()}
                   >
                     <Mail size={20} />
                   </a>
                 </div>
               </div>
-              <p className="info-text">
-                Danish is a <strong>mechatronics</strong> engineer exploring{" "}
-                <code>machine learning</code>, <code>robotics</code>, and{" "}
-                <code>finance</code>.
-              </p>
+              <div className="info-text">
+                <p onClick={(e) => e.stopPropagation()}>
+                  Hi, I’m Danish, a <strong>mechatronics</strong> engineer based
+                  in Mumbai, India.
+                </p>
+                <p onClick={(e) => e.stopPropagation()}>
+                  I’m passionate about Machine Learning, Robotics, and Finance.
+                </p>
+                <p onClick={(e) => e.stopPropagation()}>
+                  Previously, I had the chance to mathematically model and
+                  program 3 and 4-DOF robotic arms for agricultural
+                  applications.
+                </p>
+                <p onClick={(e) => e.stopPropagation()}>
+                  In my free time, I explore the world of aviation, play
+                  football, enjoy simulation or battle royale games, or find
+                  inspiration in great design—whether it's architecture or UI.
+                </p>
+              </div>
             </div>
           </div>
         </div>
