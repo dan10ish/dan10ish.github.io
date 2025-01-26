@@ -11,6 +11,7 @@ import {
   Image,
   PlaneTakeoff,
   ChartCandlestick,
+  Instagram,
 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import Link from "next/link";
@@ -266,6 +267,15 @@ const Footer = ({ blogSlug = null }) => {
               aria-label="Visit my GitHub profile"
             >
               <Github size={18} />
+            </a>
+            <a
+              href="https://instagram.com/dan10ish"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="header-icon header-icon-github"
+              aria-label="Visit my Instagram profile"
+            >
+              <Instagram size={18} />
             </a>
             <a
               href="mailto:aansaridan@gmail.com"
