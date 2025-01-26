@@ -384,7 +384,6 @@ th {
   border: 1px solid rgba(var(--color-text-rgb), 0.1);
   border-radius: 10px;
   position: relative;
-  top: -5%;
 }
 
 .about-close {
@@ -470,9 +469,6 @@ th {
   color: var(--color-text);
   font-size: calc(var(--font-size-mobile) * 0.9);
   text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
 }
 
 .option-switcher {
