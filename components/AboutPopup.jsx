@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { X, Mail, Github, Instagram } from "lucide-react";
+import { X, Mail, Github, Instagram, ArrowRight, ArrowUpRight } from "lucide-react";
 
 const AboutPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -121,6 +121,7 @@ const AboutPopup = () => {
                         className="detail-link"
                       >
                         {detail.content}
+                        <ArrowUpRight size={12}/>
                       </a>
                     ) : (
                       <span className="detail-content">{detail.content}</span>
