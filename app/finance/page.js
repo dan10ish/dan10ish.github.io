@@ -67,23 +67,6 @@ const TreemapSkeleton = () => (
 );
 
 const CustomTreemap = () => {
-  const [hoveredNode, setHoveredNode] = useState(null);
-  const [activeNode, setActiveNode] = useState(null);
-  const [isTouch, setIsTouch] = useState(false);
-
-  useEffect(() => {
-    setIsTouch(window.matchMedia("(hover: none)").matches);
-  }, []);
-
-  useEffect(() => {
-    if (isTouch && activeNode !== null) {
-      const timer = setTimeout(() => {
-        setActiveNode(null);
-      }, 800);
-      return () => clearTimeout(timer);
-    }
-  }, [activeNode, isTouch]);
-
   return (
     <div className="treemap-container">
       <ResponsiveContainer width="100%" height={450}>
@@ -98,9 +81,7 @@ const CustomTreemap = () => {
             return root.children.map((node, index) => {
               const { x, y, width, height, color } = node;
               const stock = treemapData[index];
-              const isActive =
-                (!isTouch && hoveredNode === index) ||
-                (isTouch && activeNode === index);
+
               const fontSize = Math.max(
                 Math.min(width / stock.ticker.length, height / 2, 18),
                 10,
@@ -109,24 +90,17 @@ const CustomTreemap = () => {
               const textY = y + height / 2;
 
               return (
-                <g
-                  key={index}
-                  className="treemap-node"
-                  onMouseEnter={() => !isTouch && setHoveredNode(index)}
-                  onMouseLeave={() => !isTouch && setHoveredNode(null)}
-                  onClick={() => isTouch && setActiveNode(index)}
-                >
+                <g key={index} className="treemap-node">
                   <rect
                     x={x}
                     y={y}
                     width={width}
                     height={height}
                     fill={color}
-                    className={isActive ? "active" : ""}
                   />
                   <text
                     x={textX}
-                    y={isActive ? textY - 10 : textY}
+                    y={textY}
                     textAnchor="middle"
                     dominantBaseline="central"
                     fill="#fff"
@@ -135,18 +109,6 @@ const CustomTreemap = () => {
                   >
                     {stock.ticker}
                   </text>
-                  {isActive && (
-                    <text
-                      x={textX}
-                      y={textY + 8}
-                      textAnchor="middle"
-                      dominantBaseline="central"
-                      fill="#fff"
-                      fontSize={12}
-                    >
-                      {stock.value}%
-                    </text>
-                  )}
                 </g>
               );
             });
@@ -154,7 +116,7 @@ const CustomTreemap = () => {
         />
       </ResponsiveContainer>
       <p className="treemap-caption">
-        <Info size={15} /> Portfolio Treemap
+        <Info size={15} /> Portfolio
       </p>
     </div>
   );
@@ -172,6 +134,7 @@ const FinancePage = () => {
     <main>
       <div className="domain-header">
         <h2>Finance</h2>
+        <span className="wip-badge domain-wip">Work In Progress</span>
       </div>
       <div className="portfolio-viz">
         <div className="treemap-container" style={{ overflow: "hidden" }}>
