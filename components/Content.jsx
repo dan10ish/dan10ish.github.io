@@ -1,13 +1,19 @@
 "use client";
 
-import { useState, useEffect, useMemo, useCallback, memo } from "react";
+import {
+  useState,
+  useEffect,
+  useMemo,
+  useCallback,
+  memo,
+  Suspense,
+} from "react";
 import { supabase } from "@/lib/supabase";
-import Link from "next/link";
-import { Globe, Github, ArrowUp, ArrowDown, X, Mail } from "lucide-react";
-import { Suspense } from "react";
-import Footer from "@/components/Footer";
 import { useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link";
+import { Globe, Github, ArrowUp, ArrowDown, X } from "lucide-react";
 import AboutPopup from "./AboutPopup";
+import Footer from "./Footer";
 
 const BlogList = memo(
   ({ posts, viewsData, loading, sortConfig, handleSort }) => {
@@ -22,6 +28,48 @@ const BlogList = memo(
       },
       [sortConfig],
     );
+
+    const listItems = useMemo(() => {
+      if (loading) {
+        return Array(4)
+          .fill(0)
+          .map((_, i) => (
+            <div key={i} className="list-row skeleton-row">
+              <span className="date">
+                <div className="skeleton-text" style={{ width: "45px" }}></div>
+              </span>
+              <span className="title">
+                <div className="skeleton-text" style={{ width: "80%" }}></div>
+              </span>
+              <span className="views">
+                <div
+                  className="skeleton-text"
+                  style={{ width: "30px", marginLeft: "auto" }}
+                ></div>
+              </span>
+            </div>
+          ));
+      }
+
+      return posts.map((post) => (
+        <Link
+          href={`/post/${post.slug}`}
+          key={post.slug}
+          className="list-row"
+          prefetch
+        >
+          <span className="date">{post.year}</span>
+          <span className="title">{post.title}</span>
+          <span className="views">
+            {viewsData[post.slug] === undefined ? (
+              <span className="infinity-symbol">∞</span>
+            ) : (
+              viewsData[post.slug]
+            )}
+          </span>
+        </Link>
+      ));
+    }, [posts, viewsData, loading]);
 
     return (
       <div className="mono-list">
@@ -41,49 +89,7 @@ const BlogList = memo(
             {getSortIcon("views")} views
           </span>
         </div>
-        {loading
-          ? Array(4)
-              .fill(0)
-              .map((_, i) => (
-                <div key={i} className="list-row skeleton-row">
-                  <span className="date">
-                    <div
-                      className="skeleton-text"
-                      style={{ width: "45px" }}
-                    ></div>
-                  </span>
-                  <span className="title">
-                    <div
-                      className="skeleton-text"
-                      style={{ width: "80%" }}
-                    ></div>
-                  </span>
-                  <span className="views">
-                    <div
-                      className="skeleton-text"
-                      style={{ width: "30px", marginLeft: "auto" }}
-                    ></div>
-                  </span>
-                </div>
-              ))
-          : posts.map((post) => (
-              <Link
-                href={`/post/${post.slug}`}
-                key={post.slug}
-                className="list-row"
-                prefetch
-              >
-                <span className="date">{post.year}</span>
-                <span className="title">{post.title}</span>
-                <span className="views">
-                  {viewsData[post.slug] === undefined ? (
-                    <span className="infinity-symbol">∞</span>
-                  ) : (
-                    viewsData[post.slug]
-                  )}
-                </span>
-              </Link>
-            ))}
+        {listItems}
       </div>
     );
   },
@@ -98,17 +104,68 @@ const ProjectList = memo(
     handleSort,
     sortConfig,
   }) => {
-    const getSortIcon = useCallback(
-      (key) => {
-        if (sortConfig.key !== key) return null;
-        return sortConfig.direction === "asc" ? (
-          <ArrowUp size={14} />
-        ) : (
-          <ArrowDown size={14} />
-        );
-      },
-      [sortConfig],
-    );
+    const listItems = useMemo(() => {
+      if (loading) {
+        return Array(8)
+          .fill(0)
+          .map((_, i) => (
+            <div key={i} className="list-row skeleton-row">
+              <span className="title">
+                <div className="skeleton-text" style={{ width: "70%" }}></div>
+              </span>
+              <span className="actions">
+                <span className="action-link skeleton-action">
+                  <Github size={20} />
+                </span>
+                <span className="action-link skeleton-action">
+                  <Globe size={20} />
+                </span>
+              </span>
+              <span className="tags">
+                <span className="tag skeleton-tag"></span>
+              </span>
+            </div>
+          ));
+      }
+
+      return projects.map((project) => (
+        <div key={project.title} className="list-row">
+          <span className="title">{project.title}</span>
+          <span className="actions">
+            <a
+              href={project.sourceLink || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`action-link github ${!project.sourceLink ? "disabled" : ""}`}
+              onClick={(e) => !project.sourceLink && e.preventDefault()}
+            >
+              <Github size={20} />
+            </a>
+            <a
+              href={project.projectLink || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`action-link globe ${!project.projectLink ? "disabled" : ""}`}
+              onClick={(e) => !project.projectLink && e.preventDefault()}
+            >
+              <Globe size={20} />
+            </a>
+          </span>
+          <span className="tags">
+            {project.tags.map((tag) => (
+              <span
+                key={tag}
+                className={`tag ${selectedTag === tag ? "selected" : ""}`}
+                onClick={(e) => handleTagClick(tag, e)}
+                style={{ cursor: "pointer" }}
+              >
+                {tag}
+              </span>
+            ))}
+          </span>
+        </div>
+      ));
+    }, [projects, loading, selectedTag, handleTagClick]);
 
     return (
       <div className="mono-list project-list">
@@ -122,7 +179,13 @@ const ProjectList = memo(
             onClick={() => !selectedTag && handleSort("tags")}
             style={{ cursor: selectedTag ? "default" : "pointer" }}
           >
-            {!selectedTag && getSortIcon("tags")}
+            {!selectedTag &&
+              sortConfig.key === "tags" &&
+              (sortConfig.direction === "asc" ? (
+                <ArrowUp size={14} />
+              ) : (
+                <ArrowDown size={14} />
+              ))}
             {selectedTag && (
               <X
                 size={16}
@@ -136,67 +199,7 @@ const ProjectList = memo(
             tags
           </span>
         </div>
-        {loading
-          ? Array(8)
-              .fill(0)
-              .map((_, i) => (
-                <div key={i} className="list-row skeleton-row">
-                  <span className="title">
-                    <div
-                      className="skeleton-text"
-                      style={{ width: "70%" }}
-                    ></div>
-                  </span>
-                  <span className="actions">
-                    <span className="action-link skeleton-action">
-                      <Github size={20} />
-                    </span>
-                    <span className="action-link skeleton-action">
-                      <Globe size={20} />
-                    </span>
-                  </span>
-                  <span className="tags">
-                    <span className="tag skeleton-tag"></span>
-                  </span>
-                </div>
-              ))
-          : projects.map((project) => (
-              <div key={project.title} className="list-row">
-                <span className="title">{project.title}</span>
-                <span className="actions">
-                  <a
-                    href={project.sourceLink || "#"}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`action-link github ${!project.sourceLink ? "disabled" : ""}`}
-                    onClick={(e) => !project.sourceLink && e.preventDefault()}
-                  >
-                    <Github size={20} />
-                  </a>
-                  <a
-                    href={project.projectLink || "#"}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`action-link globe ${!project.projectLink ? "disabled" : ""}`}
-                    onClick={(e) => !project.projectLink && e.preventDefault()}
-                  >
-                    <Globe size={20} />
-                  </a>
-                </span>
-                <span className="tags">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className={`tag ${selectedTag === tag ? "selected" : ""}`}
-                      onClick={(e) => handleTagClick(tag, e)}
-                      style={{ cursor: "pointer" }}
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </span>
-              </div>
-            ))}
+        {listItems}
       </div>
     );
   },
@@ -205,19 +208,16 @@ const ProjectList = memo(
 const Content = ({ posts, projects }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const tab = searchParams.get("tab");
   const [selectedOption, setSelectedOption] = useState(
-    tab === "projects" ? "projects" : "writings",
+    searchParams.get("tab") === "projects" ? "projects" : "writings",
   );
   const [viewsData, setViewsData] = useState({});
   const [sortConfig, setSortConfig] = useState({ key: null, direction: null });
   const [selectedTag, setSelectedTag] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [initialLoad, setInitialLoad] = useState(true);
 
   useEffect(() => {
     let isMounted = true;
-
     const fetchViews = async () => {
       try {
         const viewsPromises = posts.map(async (post) => {
@@ -238,25 +238,20 @@ const Content = ({ posts, projects }) => {
             ),
           );
           setLoading(false);
-          setInitialLoad(false);
         }
       } catch (error) {
         console.error("Error fetching views:", error);
         if (isMounted) {
           setLoading(false);
-          setInitialLoad(false);
         }
       }
     };
 
-    if (initialLoad) {
-      fetchViews();
-    }
-
+    fetchViews();
     return () => {
       isMounted = false;
     };
-  }, [posts, initialLoad]);
+  }, [posts]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -371,6 +366,7 @@ const Content = ({ posts, projects }) => {
           />
         )}
       </div>
+      <Footer />
     </div>
   );
 };
@@ -379,10 +375,6 @@ export default function ContentWrapper({ posts, projects }) {
   return (
     <Suspense fallback={null}>
       <Content posts={posts} projects={projects} />
-      <Footer />
     </Suspense>
   );
 }
-
-BlogList.displayName = "BlogList";
-ProjectList.displayName = "ProjectList";

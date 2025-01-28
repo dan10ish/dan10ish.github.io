@@ -109,23 +109,7 @@ export default function RootLayout({ children }) {
         />
         <link
           rel="preload"
-          href="/fonts/SFMono-Bold.woff2"
-          as="font"
-          type="font/woff2"
-          fetchPriority="high"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/SFMono-Heavy.woff2"
-          as="font"
-          type="font/woff2"
-          fetchPriority="high"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/SFMono-Light.woff2"
+          href="/fonts/SFMono-Regular.woff2"
           as="font"
           type="font/woff2"
           fetchPriority="high"
@@ -138,28 +122,6 @@ export default function RootLayout({ children }) {
           type="font/woff2"
           fetchPriority="high"
           crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/SFMono-Regular.woff2"
-          as="font"
-          type="font/woff2"
-          fetchPriority="high"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/SFMono-Semibold.woff2"
-          as="font"
-          type="font/woff2"
-          fetchPriority="high"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          as="image"
-          href="/icons/icon.png"
-          type="image/png"
         />
         <link rel="icon" type="image/png" href="/icons/icon.png" />
         <link rel="apple-touch-icon" href="/icons/icon.png" />
