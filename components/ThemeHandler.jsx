@@ -27,7 +27,7 @@ const themes = [
 ];
 
 const themeColors = {
-  light: "#ffffff",
+  light: "#f5f4ee",
   dark: "#1c1c1c",
   solarized: "#002b36",
 };

@@ -83,7 +83,7 @@ const CustomTreemap = () => {
               const stock = treemapData[index];
 
               const fontSize = Math.max(
-                Math.min(width / stock.ticker.length, height / 2, 18),
+                Math.min(width / stock.ticker.length, height / 2, 14),
                 10,
               );
               const textX = x + width / 2;

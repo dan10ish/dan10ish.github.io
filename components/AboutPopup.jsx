@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { X, Mail, Github, Instagram, ArrowRight, ArrowUpRight } from "lucide-react";
+import {
+  X,
+  Mail,
+  Github,
+  Instagram,
+  ArrowUpRight,
+  Plane,
+  ChartCandlestick,
+} from "lucide-react";
+import Link from "next/link";
 
 const AboutPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -55,12 +64,29 @@ const AboutPopup = () => {
     },
     {
       label: "Interests",
-      content: "Aviation, Design, Football, Gaming",
+      content: (
+        <div className="about-interest">
+          <Link href="/planes" className="detail-link">
+            <Plane size={12} /> Planes
+          </Link>
+          <Link href="/finance" className="detail-link">
+            <ChartCandlestick size={12} /> Finance
+          </Link>
+        </div>
+      ),
     },
     {
       label: "Reading",
-      content: "The Art of Doing Science and Engineering",
-      link: "https://press.stripe.com/the-art-of-doing-science-and-engineering",
+      content: (
+        <a
+          href="https://press.stripe.com/the-art-of-doing-science-and-engineering"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="detail-link"
+        >
+          The Art of Doing Science and Engineering <ArrowUpRight size={12} />
+        </a>
+      ),
     },
   ];
 
@@ -113,19 +139,7 @@ const AboutPopup = () => {
                 {details.map((detail, index) => (
                   <div key={index} className="detail-item">
                     <span className="detail-label">{detail.label}</span>
-                    {detail.link ? (
-                      <a
-                        href={detail.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="detail-link"
-                      >
-                        {detail.content}
-                        <ArrowUpRight size={12}/>
-                      </a>
-                    ) : (
-                      <span className="detail-content">{detail.content}</span>
-                    )}
+                    <span className="detail-content">{detail.content}</span>
                   </div>
                 ))}
               </div>

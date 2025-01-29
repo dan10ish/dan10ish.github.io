@@ -9,8 +9,6 @@ import {
   BookText,
   Mail,
   Image,
-  PlaneTakeoff,
-  ChartCandlestick,
   Instagram,
 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
@@ -197,26 +195,14 @@ const Footer = ({ blogSlug = null }) => {
         <>
           <div className="footer-nav-mobile">
             <div className="footer-nav-col">
-              <div className="footer-nav-row">
-                <Link href="/notes" className="footer-link">
-                  <BookText size={16} />
-                  Notes
-                </Link>
-                <Link href="/photos" className="footer-link">
-                  <Image size={16} />
-                  Photos
-                </Link>
-              </div>
-              <div className="footer-nav-row">
-                <Link href="/finance" className="footer-link">
-                  <ChartCandlestick size={16} />
-                  Finance
-                </Link>
-                <Link href="/planes" className="footer-link">
-                  <PlaneTakeoff size={16} />
-                  Planes
-                </Link>
-              </div>
+              <Link href="/notes" className="footer-link">
+                <BookText size={16} />
+                Notes
+              </Link>
+              <Link href="/photos" className="footer-link">
+                <Image size={16} />
+                Photos
+              </Link>
             </div>
             <div className="footer-nav-theme">
               <ThemeButton />
@@ -232,16 +218,10 @@ const Footer = ({ blogSlug = null }) => {
                 <Image size={16} />
                 Photos
               </Link>
-              <Link href="/finance" className="footer-link">
-                <ChartCandlestick size={16} />
-                Finance
-              </Link>
-              <Link href="/planes" className="footer-link">
-                <PlaneTakeoff size={16} />
-                Planes
-              </Link>
             </div>
-            <ThemeButton />
+            <div className="footer-nav-theme">
+              <ThemeButton />
+            </div>
           </div>
           <div className="footer-socials">
             <a
@@ -340,7 +320,7 @@ const Footer = ({ blogSlug = null }) => {
               <Github size={18} />
               <div className="github-stars">
                 <Star
-                  size={16}
+                  size={14}
                   className={isGithubHovered ? "star-hover" : ""}
                 />
                 <span>{formatNumber(stars)}</span>

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>404 | Danish</title>
     <link rel="icon" type="image/png" href="/icons/icon.png" />
+    <link rel="stylesheet" href="./error.css" />
     <script>
       var redirect = function () {
         var segmentCount = 0;
@@ -40,7 +41,7 @@
           const effectiveTheme =
             sessionTheme || (prefersDark ? "dark" : "light");
           const themeColors = {
-            light: "#ffffff",
+            light: "#f5f4ee",
             dark: "#1c1c1c",
             solarized: "#00212b",
           };
@@ -55,7 +56,6 @@
       })();
       window.onload = redirect;
     </script>
-    <link rel="stylesheet" href="./error.css" />
   </head>
   <body>
     <div class="error-container">

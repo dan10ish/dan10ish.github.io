@@ -83,14 +83,14 @@ html {
 }
 
 [data-theme="light"] {
-  --gradient-start: rgba(255, 255, 255, 0);
-  --gradient-end: rgba(255, 255, 255, 0.9);
+  --gradient-start: rgba(245, 244, 238, 0);
+  --gradient-end: rgba(245, 244, 238, 0.9);
 
-  --color-bg: #ffffff;
+  --color-bg: #f5f4ee;
   --color-text: #18181b;
   --color-link: #2563eb;
   --blockquote-color: #64748b;
-  --code-background-color: #edf2f7;
+  --code-background-color: #ffffff;
   --code-color: #1e293b;
   --syntax-comment: #64748b;
   --syntax-keyword: #2563eb;
@@ -106,7 +106,7 @@ html {
   --color-text-rgb: 24, 24, 27;
   --github-border: rgba(24, 24, 27, 0.1);
   --github-hover-bg: #f8fafc;
-  --color-bg-rgb: 255, 255, 255;
+  --color-bg-rgb: 245, 244, 238;
   color-scheme: light;
 }
 
