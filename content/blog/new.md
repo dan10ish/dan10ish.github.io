@@ -40,7 +40,7 @@
       </tr>
       <tr>
         <th>3</th>
-        <td>2 &divide; 2</td>
+        <td>2 &divide; 2 | $\ln_{2}(8) = 3 ,i.e., 2^{3} = 8$</td>
         <td>1</td>
         <td>0</td>
       </tr>
@@ -67,4 +67,7 @@ Example:
 - $\ln_{4}(16) = 2, i.e., 4^{2} = 16$
 
 #### 3. Arithmetic sequence
-- Sum: 
+
+- Sum:
+
+`$\ln_{2}(8) = 3 ,i.e., 2^{3} = 8$`
