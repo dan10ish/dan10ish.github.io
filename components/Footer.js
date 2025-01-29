@@ -324,21 +324,20 @@ const Footer = ({ blogSlug = null }) => {
           )}
         </div>
         <div className="footer-share">
-          <a
-            href={
-              blogSlug
-                ? `https://github.com/dan10ish/dan10ish.github.io/blob/main/content/blog/${blogSlug}.md`
-                : "https://github.com/dan10ish/dan10ish.github.io"
-            }
-            target="_blank"
-            rel="noopener noreferrer"
-            className="github-link"
-            onMouseEnter={() => setIsGithubHovered(true)}
-            onMouseLeave={() => setIsGithubHovered(false)}
-          >
-            <Github size={16} />
-            <span>Source</span>
-            {!blogSlug && stars !== null && (
+          {!blogSlug && stars !== null && (
+            <a
+              href={
+                blogSlug
+                  ? `https://github.com/dan10ish/dan10ish.github.io/blob/main/content/blog/${blogSlug}.md`
+                  : "https://github.com/dan10ish/dan10ish.github.io"
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+              className="github-link"
+              onMouseEnter={() => setIsGithubHovered(true)}
+              onMouseLeave={() => setIsGithubHovered(false)}
+            >
+              <Github size={18} />
               <div className="github-stars">
                 <Star
                   size={16}
@@ -346,9 +345,28 @@ const Footer = ({ blogSlug = null }) => {
                 />
                 <span>{formatNumber(stars)}</span>
               </div>
-            )}
-          </a>
-          {blogSlug && <ShareButton slug={blogSlug} />}
+            </a>
+          )}
+          {blogSlug && (
+            <>
+              <ThemeButton />
+              <a
+                href={
+                  blogSlug
+                    ? `https://github.com/dan10ish/dan10ish.github.io/blob/main/content/blog/${blogSlug}.md`
+                    : "https://github.com/dan10ish/dan10ish.github.io"
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+                className="blog-source"
+                onMouseEnter={() => setIsGithubHovered(true)}
+                onMouseLeave={() => setIsGithubHovered(false)}
+              >
+                <Github size={20} />
+              </a>
+              <ShareButton slug={blogSlug} size={20} />
+            </>
+          )}
         </div>
       </div>
     </footer>

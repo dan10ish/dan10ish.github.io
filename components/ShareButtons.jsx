@@ -85,7 +85,7 @@ export default function ShareButton({ slug }) {
     return (
       <div className="share-wrapper">
         <button className="share-button" aria-label="Share">
-          <Share2 size={14} />
+          <Share2 size={20} />
         </button>
       </div>
     );
