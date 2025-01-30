@@ -91,7 +91,7 @@ export default function RootLayout({ children }) {
                   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
                   const effectiveTheme = sessionTheme || (prefersDark ? 'dark' : 'light');
                   const themeColors = {
-                    light: '#f5f4ee',
+                    light: '#ffffff',
                     dark: '#1c1c1c',
                     solarized: '#00212b'
                   };

@@ -40,10 +40,10 @@ const AboutPopup = () => {
       content: (
         <div className="about-interest">
           <Link href="/planes" className="detail-link">
-            <Plane size={12} /> Planes
+            <Plane size={14} /> Planes
           </Link>
           <Link href="/finance" className="detail-link">
-            <ChartCandlestick size={12} /> Finance
+            <ChartCandlestick size={14} /> Finance
           </Link>
         </div>
       ),
