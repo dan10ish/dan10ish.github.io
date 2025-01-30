@@ -418,12 +418,6 @@ th {
   border: 1px solid rgba(var(--color-text-rgb), 0.1);
 }
 
-.about-socials {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
 .about-container img {
   margin: 0;
   padding: 0;
@@ -447,7 +441,7 @@ th {
 .about-details {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
   width: 320px;
   position: relative;
   left: 50%;
@@ -473,13 +467,13 @@ th {
 
 .about-interest {
   display: flex;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
 .about-interest .detail-link {
   display: flex;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.5rem;
   padding: 2px 6px;
   border-radius: 8px;
   background: var(--code-background-color);
@@ -3186,7 +3180,12 @@ a[data-footnote-ref] {
   }
 
   .about-interest .detail-link:hover {
-    background: rgba(var(--color-text-rgb), 0.05);
+    background: rgba(var(--color-text-rgb), 0.1);
+    color: var(--color-text);
+  }
+
+  .about-interest .detail-link:hover svg {
+    transform: scale(1.2);
   }
 
   .list-row:hover .title-blog {

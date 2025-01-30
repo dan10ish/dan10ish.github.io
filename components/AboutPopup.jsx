@@ -21,33 +21,6 @@ const AboutPopup = () => {
     };
   }, [isOpen]);
 
-  const socialLinks = [
-    {
-      href: "https://x.com/dan10ish",
-      icon: (
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-        </svg>
-      ),
-      label: "X Profile",
-    },
-    {
-      href: "https://github.com/dan10ish",
-      icon: <Github size={16} />,
-      label: "GitHub",
-    },
-    {
-      href: "https://instagram.com/dan10ish",
-      icon: <Instagram size={16} />,
-      label: "Instagram",
-    },
-    {
-      href: "mailto:aansaridan@gmail.com",
-      icon: <Mail size={16} />,
-      label: "Email",
-    },
-  ];
-
   const details = [
     {
       label: "Education",
@@ -119,19 +92,49 @@ const AboutPopup = () => {
                   height={48}
                   priority
                 />
-                <div className="about-socials">
-                  {socialLinks.map((link, index) => (
-                    <a
-                      key={index}
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="about-icon"
-                      aria-label={link.label}
+                <div className="footer-socials">
+                  <a
+                    href="https://x.com/dan10ish"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="header-icon"
+                    aria-label="Visit my X profile"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 512 512"
+                      fill="currentColor"
                     >
-                      {link.icon}
-                    </a>
-                  ))}
+                      <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
+                    </svg>
+                  </a>
+                  <a
+                    href="https://github.com/dan10ish"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="header-icon header-icon-github"
+                    aria-label="Visit my GitHub profile"
+                  >
+                    <Github size={18} />
+                  </a>
+                  <a
+                    href="https://instagram.com/dan10ish"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="header-icon header-icon-github"
+                    aria-label="Visit my Instagram profile"
+                  >
+                    <Instagram size={18} />
+                  </a>
+                  <a
+                    href="mailto:aansaridan@gmail.com"
+                    className="header-icon email-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Connect via email"
+                  >
+                    <Mail size={20} />
+                  </a>
                 </div>
               </div>
 
