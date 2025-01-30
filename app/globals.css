@@ -1548,14 +1548,15 @@ pre code {
 }
 
 .book-title {
-  font-size: calc(var(--font-size-mobile) * 1.2);
+  font-size: calc(var(--font-size-mobile) * 1.1);
   line-height: 1.4;
   margin: 0;
   font-weight: 500;
+  padding-right: 0.5rem;
 }
 
 .book-author {
-  font-size: var(--font-size-mobile);
+  font-size: calc(var(--font-size-mobile) * 0.9);
   margin: 0;
   opacity: 0.9;
 }
@@ -2321,7 +2322,7 @@ a[data-footnote-ref] {
 .data-grid {
   display: grid;
   gap: 0.75rem;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .data-grid.larger {

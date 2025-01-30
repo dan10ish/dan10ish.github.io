@@ -7,8 +7,6 @@ import {
   Circle,
   Plane,
   Navigation2,
-  Timer,
-  Lock,
   Shield,
   Award,
   BarChart3,
@@ -183,14 +181,8 @@ export default function PlanesPage() {
                   <span className="box-label">Experience</span>
                   <span className="box-value">{stats.general.xp}</span>
                 </div>
-                <div className="data-box">
-                  <Navigation2 size={16} className="cyan" />
-                  <span className="box-label">ATC Rank</span>
-                  <span className="box-value">{stats.general.atcRank}</span>
-                </div>
               </div>
             </section>
-
             <section className="terminal-section">
               <div className="planes-section-header">
                 <Plane size={16} className="section-icon blue" />
@@ -219,7 +211,6 @@ export default function PlanesPage() {
                 </div>
               </div>
             </section>
-
             <section className="terminal-section">
               <div className="planes-section-header">
                 <Cloud size={16} className="section-icon purple" />
@@ -238,7 +229,6 @@ export default function PlanesPage() {
                 </div>
               </div>
             </section>
-
             {stats.routes?.length > 0 && (
               <section className="terminal-section">
                 <div className="planes-section-header">
@@ -255,14 +245,14 @@ export default function PlanesPage() {
                         </span>
                       </div>
                       <span className="list-item-value">
-                        {route.count} flights
+                        {route.count}{" "}
+                        {parseInt(route.count, 10) === 1 ? "flight" : "flights"}
                       </span>
                     </div>
                   ))}
                 </div>
               </section>
             )}
-
             {stats.lastFlight && (
               <section className="terminal-section">
                 <div className="planes-section-header">
