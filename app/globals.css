@@ -478,6 +478,8 @@ th {
   border-radius: 8px;
   background: var(--code-background-color);
   white-space: nowrap;
+  font-size: calc(var(--font-size-mobile)*0.85);
+  font-weight: 500;
 }
 
 .about-interest .detail-link svg {
@@ -1041,10 +1043,11 @@ th {
 .footer-link {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.25rem;
   color: rgba(var(--color-text-rgb), 1);
   text-decoration: none;
   font-size: var(--font-size-mobile);
+  font-weight: 500;
 }
 
 .footer-nav-links a {
