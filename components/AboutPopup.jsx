@@ -76,7 +76,7 @@ const AboutPopup = () => {
         <div className="about-overlay" onClick={() => setIsOpen(false)}>
           <div className="about-container" onClick={(e) => e.stopPropagation()}>
             <button className="about-close" onClick={() => setIsOpen(false)}>
-              <X size={16} />
+              <X size={20} strokeWidth={2.5}/>
             </button>
 
             <div className="about-content">

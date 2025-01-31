@@ -373,7 +373,7 @@ th {
   backdrop-filter: blur(8px);
   display: grid;
   place-items: center;
-  padding: 1rem 2rem;
+  padding: 1rem;
   z-index: 1000;
 }
 
@@ -389,8 +389,8 @@ th {
 
 .about-close {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 0.5rem;
+  right: 0.5rem;
   padding: 0.4rem;
   border: none;
   background: none;
