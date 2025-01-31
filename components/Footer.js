@@ -1,16 +1,14 @@
 "use client";
 
 import { useState, useEffect, memo, useCallback } from "react";
+import { Eye, Heart, Star, BookText, Mail, Image } from "lucide-react";
+
 import {
-  Eye,
-  Heart,
-  Github,
-  Star,
-  BookText,
-  Mail,
-  Image,
-  Instagram,
-} from "lucide-react";
+  SiInstagram,
+  SiRefinedgithub,
+  SiX,
+} from "@icons-pack/react-simple-icons";
+
 import { supabase } from "@/lib/supabase";
 import Link from "next/link";
 import { ThemeButton } from "./ThemeHandler";
@@ -231,13 +229,7 @@ const Footer = ({ blogSlug = null }) => {
               className="header-icon"
               aria-label="Visit my X profile"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 512 512"
-                fill="currentColor"
-              >
-                <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
-              </svg>
+              <SiX size={20} />
             </a>
             <a
               href="https://github.com/dan10ish"
@@ -246,7 +238,7 @@ const Footer = ({ blogSlug = null }) => {
               className="header-icon header-icon-github"
               aria-label="Visit my GitHub profile"
             >
-              <Github size={18} />
+              <SiRefinedgithub size={20} />
             </a>
             <a
               href="https://instagram.com/dan10ish"
@@ -255,7 +247,7 @@ const Footer = ({ blogSlug = null }) => {
               className="header-icon header-icon-github"
               aria-label="Visit my Instagram profile"
             >
-              <Instagram size={18} />
+              <SiInstagram size={20} />
             </a>
             <a
               href="mailto:aansaridan@gmail.com"
@@ -264,7 +256,7 @@ const Footer = ({ blogSlug = null }) => {
               rel="noopener noreferrer"
               aria-label="Connect via email"
             >
-              <Mail size={20} />
+              <Mail size={24} strokeWidth={1.8} />
             </a>
           </div>
         </>
@@ -317,7 +309,7 @@ const Footer = ({ blogSlug = null }) => {
               onMouseEnter={() => setIsGithubHovered(true)}
               onMouseLeave={() => setIsGithubHovered(false)}
             >
-              <Github size={18} />
+              <SiRefinedgithub size={18} />
               <div className="github-stars">
                 <Star
                   size={14}
@@ -342,7 +334,7 @@ const Footer = ({ blogSlug = null }) => {
                 onMouseEnter={() => setIsGithubHovered(true)}
                 onMouseLeave={() => setIsGithubHovered(false)}
               >
-                <Github size={20} />
+                <SiRefinedgithub size={20} />
               </a>
               <ShareButton slug={blogSlug} size={20} />
             </>

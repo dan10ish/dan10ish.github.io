@@ -12,6 +12,7 @@
     "deploy": "npm run build && npm run postbuild && touch out/.nojekyll && gh-pages -d out -t true"
   },
   "dependencies": {
+    "@icons-pack/react-simple-icons": "^11.2.0",
     "@supabase/supabase-js": "^2.45.6",
     "compression-next": "^1.0.3",
     "exifreader": "^4.25.0",

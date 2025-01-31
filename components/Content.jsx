@@ -11,9 +11,10 @@ import {
 import { supabase } from "@/lib/supabase";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { Globe, Github, ArrowUp, ArrowDown, X } from "lucide-react";
+import { Globe, ArrowUp, ArrowDown, X } from "lucide-react";
 import AboutPopup from "./AboutPopup";
 import Footer from "./Footer";
+import { SiRefinedgithub } from "@icons-pack/react-simple-icons";
 
 const BlogList = memo(
   ({ posts, viewsData, loading, sortConfig, handleSort }) => {
@@ -115,7 +116,7 @@ const ProjectList = memo(
               </span>
               <span className="actions">
                 <span className="action-link skeleton-action">
-                  <Github size={20} />
+                  <SiRefinedgithub size={20} />
                 </span>
                 <span className="action-link skeleton-action">
                   <Globe size={20} />
@@ -139,7 +140,7 @@ const ProjectList = memo(
               className={`action-link github ${!project.sourceLink ? "disabled" : ""}`}
               onClick={(e) => !project.sourceLink && e.preventDefault()}
             >
-              <Github size={20} />
+              <SiRefinedgithub size={20} />
             </a>
             <a
               href={project.projectLink || "#"}

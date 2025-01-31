@@ -90,7 +90,7 @@ html {
   --color-text: #18181b;
   --color-link: #2563eb;
   --blockquote-color: #64748b;
-  --code-background-color: #f4f4f4;
+  --code-background-color: #f0f0f0;
   --code-color: #1e293b;
   --syntax-comment: #64748b;
   --syntax-keyword: #2563eb;
@@ -415,7 +415,7 @@ th {
 .about-avatar {
   border-radius: 50%;
   object-fit: cover;
-  border: 1px solid rgba(var(--color-text-rgb), 0.1);
+  box-shadow: 0px 0px 40px -15px rgba(var(--color-text-rgb), 1);
 }
 
 .about-container img {
@@ -496,7 +496,7 @@ th {
 .detail-link svg {
   color: var(--color-link);
   stroke-width: 2.5;
-  margin: 0px 0px -1px 4px;
+  margin: 0px 0px -1.5px 0px;
 }
 
 .option-switcher {
@@ -1047,6 +1047,10 @@ th {
   font-weight: 500;
 }
 
+.footer-link svg {
+  stroke-width: 2.3;
+}
+
 .footer-nav-links a {
   color: rgba(var(--color-text-rgb), 1);
   text-decoration: none;
@@ -1091,20 +1095,8 @@ th {
 }
 
 .header-icon svg {
-  height: 20px;
-  width: auto;
-}
-
-.header-icon-github svg {
-  height: 20px;
-  width: auto;
-  stroke-width: 2;
-}
-
-.email-link svg {
-  height: 22px;
-  width: auto;
-  stroke-width: 1.8;
+  margin: 0;
+  padding: 0;
 }
 
 .footer-metrics {
