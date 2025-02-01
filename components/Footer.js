@@ -1,13 +1,17 @@
 "use client";
 
 import { useState, useEffect, memo, useCallback } from "react";
-import { Eye, Heart, Star, BookText, Mail, Image } from "lucide-react";
-
 import {
-  SiInstagram,
-  SiRefinedgithub,
-  SiX,
-} from "@icons-pack/react-simple-icons";
+  ChartNoAxesColumn,
+  Heart,
+  Star,
+  BookText,
+  Mail,
+  Image,
+  CodeXml,
+} from "lucide-react";
+
+import { SiGithub, SiInstagram, SiX } from "@icons-pack/react-simple-icons";
 
 import { supabase } from "@/lib/supabase";
 import Link from "next/link";
@@ -238,7 +242,7 @@ const Footer = ({ blogSlug = null }) => {
               className="header-icon header-icon-github"
               aria-label="Visit my GitHub profile"
             >
-              <SiRefinedgithub size={20} />
+              <SiGithub size={22} />
             </a>
             <a
               href="https://instagram.com/dan10ish"
@@ -271,7 +275,7 @@ const Footer = ({ blogSlug = null }) => {
             onTouchEnd={handleTouchEnd}
             onTouchCancel={handleTouchEnd}
           >
-            <Eye size={16} />
+            <ChartNoAxesColumn size={16} />
             <span>{formatNumber(stats.views)}</span>
           </div>
           {blogSlug && (
@@ -309,13 +313,13 @@ const Footer = ({ blogSlug = null }) => {
               onMouseEnter={() => setIsGithubHovered(true)}
               onMouseLeave={() => setIsGithubHovered(false)}
             >
-              <SiRefinedgithub size={18} />
+              <SiGithub size={20} />
               <div className="github-stars">
                 <Star
-                  size={14}
+                  size={16}
                   className={isGithubHovered ? "star-hover" : ""}
                 />
-                <span>{formatNumber(stars)}</span>
+                <span className="star-number">{formatNumber(stars)}</span>
               </div>
             </a>
           )}
@@ -334,7 +338,7 @@ const Footer = ({ blogSlug = null }) => {
                 onMouseEnter={() => setIsGithubHovered(true)}
                 onMouseLeave={() => setIsGithubHovered(false)}
               >
-                <SiRefinedgithub size={20} />
+                <CodeXml size={20} />
               </a>
               <ShareButton slug={blogSlug} size={20} />
             </>

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { X, Mail, ArrowUpRight, Plane, ChartCandlestick } from "lucide-react";
 import Link from "next/link";
 import {
+    SiGithub,
   SiInstagram,
   SiRefinedgithub,
   SiX,
@@ -76,7 +77,7 @@ const AboutPopup = () => {
         <div className="about-overlay" onClick={() => setIsOpen(false)}>
           <div className="about-container" onClick={(e) => e.stopPropagation()}>
             <button className="about-close" onClick={() => setIsOpen(false)}>
-              <X size={20} strokeWidth={2.5}/>
+              <X size={20} strokeWidth={2.5} />
             </button>
 
             <div className="about-content">
@@ -106,7 +107,7 @@ const AboutPopup = () => {
                     className="header-icon header-icon-github"
                     aria-label="Visit my GitHub profile"
                   >
-                    <SiRefinedgithub size={20} />
+                    <SiGithub size={22} />
                   </a>
                   <a
                     href="https://instagram.com/dan10ish"
