@@ -10,7 +10,7 @@ import {
   GraduationCap,
   Heart,
   Hammer,
-  Book,
+  BookText,
 } from "lucide-react";
 import Link from "next/link";
 import { SiGithub, SiInstagram, SiX } from "@icons-pack/react-simple-icons";
@@ -36,8 +36,7 @@ const AboutPopup = () => {
     },
     {
       label: <Briefcase />,
-      content:
-        "Mathematical modelling and programming of 3-DOF & 4-DOF robotic arms",
+      content: "Modelling and programming of 3 & 4-DOF robotic arms",
     },
     {
       label: <Heart />,
@@ -53,7 +52,7 @@ const AboutPopup = () => {
       ),
     },
     {
-      label: <Book />,
+      label: <BookText />,
       content: (
         <a
           href="https://press.stripe.com/the-art-of-doing-science-and-engineering"
