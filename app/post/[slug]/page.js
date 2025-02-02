@@ -94,8 +94,8 @@ export default async function BlogPost(props) {
           </div>
         </div>
         <MDXContent content={contentHtml} />
-        <Footer blogSlug={params?.slug} />
       </article>
+      <Footer blogSlug={params?.slug} />
     </>
   );
 }

@@ -7,6 +7,7 @@ import {
   useCallback,
   memo,
   Suspense,
+  useRef,
 } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -14,6 +15,12 @@ import Link from "next/link";
 import { Globe, ArrowUp, ArrowDown, X, CodeXml } from "lucide-react";
 import AboutPopup from "./AboutPopup";
 import Footer from "./Footer";
+import dynamic from "next/dynamic";
+
+const ScrollIndicator = dynamic(() => import("./ScrollIndicator"), {
+  ssr: false,
+  loading: () => null,
+});
 
 const BlogList = memo(
   ({ posts, viewsData, loading, sortConfig, handleSort }) => {
@@ -28,6 +35,17 @@ const BlogList = memo(
       },
       [sortConfig],
     );
+
+    const [showScroll, setShowScroll] = useState(false);
+    useEffect(() => {
+      let timeout;
+      if (!loading) {
+        timeout = setTimeout(() => {
+          setShowScroll(true);
+        }, 1000);
+      }
+      return () => clearTimeout(timeout);
+    }, [loading]);
 
     const listItems = useMemo(() => {
       if (loading) {
@@ -71,6 +89,8 @@ const BlogList = memo(
       ));
     }, [posts, viewsData, loading]);
 
+    const tableRef = useRef(null);
+
     return (
       <div className="mono-list">
         <div className="list-header">
@@ -89,7 +109,10 @@ const BlogList = memo(
             {getSortIcon("views")} views
           </span>
         </div>
-        <div className="table-max">{listItems}</div>
+        <div className="table-max" ref={tableRef}>
+          {listItems}
+        </div>
+        {showScroll && <ScrollIndicator containerRef={tableRef} />}
       </div>
     );
   },
@@ -167,6 +190,18 @@ const ProjectList = memo(
       ));
     }, [projects, loading, selectedTag, handleTagClick]);
 
+    const tableRef = useRef(null);
+    const [showScroll, setShowScroll] = useState(false);
+    useEffect(() => {
+      let timeout;
+      if (!loading) {
+        timeout = setTimeout(() => {
+          setShowScroll(true);
+        }, 1000);
+      }
+      return () => clearTimeout(timeout);
+    }, [loading]);
+
     return (
       <div className="mono-list project-list">
         <div className="list-header">
@@ -199,7 +234,10 @@ const ProjectList = memo(
             tags
           </span>
         </div>
-        <div className="table-max">{listItems}</div>
+        <div className="table-max" ref={tableRef}>
+          {listItems}
+        </div>
+        {showScroll && <ScrollIndicator containerRef={tableRef} />}
       </div>
     );
   },
