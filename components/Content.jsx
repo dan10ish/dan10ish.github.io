@@ -89,7 +89,7 @@ const BlogList = memo(
             {getSortIcon("views")} views
           </span>
         </div>
-        {listItems}
+        <div className="table-max">{listItems}</div>
       </div>
     );
   },
@@ -199,7 +199,7 @@ const ProjectList = memo(
             tags
           </span>
         </div>
-        {listItems}
+        <div className="table-max">{listItems}</div>
       </div>
     );
   },
@@ -329,44 +329,48 @@ const Content = ({ posts, projects }) => {
 
   return (
     <div className="content-wrapper">
-      <div className="content-header">
-        <AboutPopup />
-        <div className="option-switcher">
-          <button
-            onClick={() => handleOptionChange("writings")}
-            className={`option-btn${selectedOption === "writings" ? " active" : ""}`}
-          >
-            Writings
-          </button>
-          <button
-            onClick={() => handleOptionChange("projects")}
-            className={`option-btn${selectedOption === "projects" ? " active" : ""}`}
-          >
-            Projects
-          </button>
+      <div className="content-header-table">
+        <div className="content-header">
+          <AboutPopup />
+          <div className="option-switcher">
+            <button
+              onClick={() => handleOptionChange("writings")}
+              className={`option-btn${selectedOption === "writings" ? " active" : ""}`}
+            >
+              Writings
+            </button>
+            <button
+              onClick={() => handleOptionChange("projects")}
+              className={`option-btn${selectedOption === "projects" ? " active" : ""}`}
+            >
+              Projects
+            </button>
+          </div>
+        </div>
+        <div className="content-area">
+          {selectedOption === "writings" ? (
+            <BlogList
+              posts={sortedPosts}
+              viewsData={viewsData}
+              loading={loading}
+              sortConfig={sortConfig}
+              handleSort={handleSort}
+            />
+          ) : (
+            <ProjectList
+              projects={filteredProjects}
+              loading={loading}
+              selectedTag={selectedTag}
+              handleTagClick={handleTagClick}
+              handleSort={handleSort}
+              sortConfig={sortConfig}
+            />
+          )}
         </div>
       </div>
-      <div className="content-area">
-        {selectedOption === "writings" ? (
-          <BlogList
-            posts={sortedPosts}
-            viewsData={viewsData}
-            loading={loading}
-            sortConfig={sortConfig}
-            handleSort={handleSort}
-          />
-        ) : (
-          <ProjectList
-            projects={filteredProjects}
-            loading={loading}
-            selectedTag={selectedTag}
-            handleTagClick={handleTagClick}
-            handleSort={handleSort}
-            sortConfig={sortConfig}
-          />
-        )}
+      <div>
+        <Footer />
       </div>
-      <Footer />
     </div>
   );
 };
