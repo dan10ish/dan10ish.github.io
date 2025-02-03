@@ -359,7 +359,7 @@ th {
   align-items: center;
   cursor: pointer;
   border-radius: 6px;
-  padding: 0.38rem 1rem;
+  padding: 0.5rem 1rem;
   margin: -10px;
   -webkit-tap-highlight-color: transparent;
   border: 1px solid rgba(var(--color-text-rgb), 0.1);
@@ -373,7 +373,7 @@ th {
   text-decoration: none;
   font-weight: 500;
   padding: 0;
-  margin: 0;
+  margin: -0.2rem;
 }
 
 .about-overlay {
@@ -708,12 +708,6 @@ th {
 
   .option-switcher {
     gap: 0.25rem;
-  }
-}
-
-@media (hover: hover) {
-  .option-btn:hover:not(.active) {
-    background: var(--code-background-color);
   }
 }
 
@@ -1159,7 +1153,7 @@ th {
 [data-tooltip]:before {
   content: attr(data-tooltip);
   position: absolute;
-  bottom: calc(100% + 10px);
+  bottom: calc(100% + 8px);
   left: 50%;
   transform: translateX(-50%);
   padding: 6px 10px;
@@ -2679,12 +2673,11 @@ a[data-footnote-ref] {
   align-items: center;
   justify-content: center;
   background: linear-gradient(to bottom, transparent, var(--color-bg));
-  transition: opacity 0.2s ease;
   pointer-events: none;
   opacity: 0;
   margin-top: 5px;
   visibility: hidden;
-  transition: all 0.3s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
 }
 
 .scroll-indicator.visible {
@@ -3003,6 +2996,12 @@ a[data-footnote-ref] {
   .toc-content a.active {
     margin-right: 0px;
   }
+
+  [data-tooltip]:before {
+    bottom: calc(100% + 10px);
+    padding: 6px 10px;
+    font-size: calc(var(--font-size-mobile) * 1);
+  }
 }
 
 /* Hover Effects */
@@ -3280,8 +3279,9 @@ a[data-footnote-ref] {
     text-decoration: none;
   }
 
-  .title-wrapper:hover {
-    background: var(--code-background-color);
+  .title-wrapper:hover,
+  .option-btn:hover:not(.active) {
+    background: rgba(var(--color-text-rgb), 0.06);
   }
 }
 

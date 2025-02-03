@@ -8,7 +8,7 @@ import {
   ChartCandlestick,
   Briefcase,
   GraduationCap,
-  Heart,
+  Star,
   Hammer,
   BookText,
 } from "lucide-react";
@@ -39,7 +39,7 @@ const AboutPopup = () => {
       content: "Modelling and programming of 3 & 4-DOF robotic arms",
     },
     {
-      label: <Heart />,
+      label: <Star />,
       content: (
         <div className="about-interest">
           <Link href="/planes" className="detail-link">
