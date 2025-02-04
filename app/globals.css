@@ -1256,6 +1256,8 @@ th {
   display: flex;
   align-items: center;
   gap: 0.4rem;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .like-button:disabled {
@@ -1264,8 +1266,72 @@ th {
 }
 
 .like-button.liked svg {
-  fill: #ff0000;
   color: #ff0000;
+  fill: #ff0000;
+  animation: likeEffect 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.like-button svg {
+  position: relative;
+  z-index: 1;
+  transform-origin: center;
+}
+
+.like-button:active svg {
+  transform: scale(0.95);
+}
+
+.like-button.liked::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 0, 0, 0.2) 0%,
+    rgba(255, 0, 0, 0) 60%
+  );
+  z-index: 0;
+  animation: heartBurst 0.4s ease-out forwards;
+}
+
+@keyframes likeEffect {
+  0% {
+    transform: scale(1);
+  }
+  15% {
+    transform: scale(1.4) rotate(10deg);
+  }
+  30% {
+    transform: scale(0.9) rotate(-8deg);
+  }
+  45% {
+    transform: scale(1.15) rotate(5deg);
+  }
+  60% {
+    transform: scale(0.95) rotate(-3deg);
+  }
+  75% {
+    transform: scale(1.05) rotate(2deg);
+  }
+  100% {
+    transform: scale(1) rotate(0);
+  }
+}
+
+@keyframes heartBurst {
+  0% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
 }
 
 /* Code Blocks */

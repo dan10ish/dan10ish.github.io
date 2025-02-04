@@ -1,13 +1,7 @@
 "use client";
 
 import { useState, useEffect, memo, useCallback } from "react";
-import {
-  ChartNoAxesColumn,
-  Heart,
-  Star,
-  Mail,
-  CodeXml,
-} from "lucide-react";
+import { ChartNoAxesColumn, Heart, Star, Mail, CodeXml } from "lucide-react";
 
 import { SiGithub, SiInstagram, SiX } from "@icons-pack/react-simple-icons";
 
@@ -23,6 +17,7 @@ const Footer = ({ blogSlug = null }) => {
   const [isGithubHovered, setIsGithubHovered] = useState(false);
   const [isTouching, setIsTouching] = useState(null);
   const [touchTimeout, setTouchTimeout] = useState(null);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
     const pageId = blogSlug ? `post-${blogSlug}` : "home";
@@ -139,13 +134,14 @@ const Footer = ({ blogSlug = null }) => {
   const handleLike = useCallback(
     async (e) => {
       e.preventDefault();
-      if (hasLiked || !blogSlug || isUpdating) return;
+      if (hasLiked || !blogSlug) return;
+
+      setHasLiked(true);
+
+      const pageId = `post-${blogSlug}`;
+      window?.sessionStorage?.setItem(`liked-${pageId}`, "true");
 
       try {
-        const pageId = `post-${blogSlug}`;
-        setIsUpdating(true);
-        setHasLiked(true);
-
         const { data } = await supabase.rpc("increment_likes", {
           row_id: pageId,
         });
@@ -156,18 +152,13 @@ const Footer = ({ blogSlug = null }) => {
             `stats-${pageId}`,
             JSON.stringify(data),
           );
-          window?.sessionStorage?.setItem(`liked-${pageId}`, "true");
         }
       } catch (error) {
         console.error("Error liking post:", error);
-        setHasLiked(false);
-      } finally {
-        setIsUpdating(false);
       }
     },
-    [blogSlug, hasLiked, isUpdating],
+    [blogSlug, hasLiked],
   );
-
   const formatNumber = useCallback((num) => {
     if (num === null) return <span className="infinity-symbol">∞</span>;
     if (num >= 1000000) return (num / 1000000).toFixed(2) + "M";
@@ -261,7 +252,7 @@ const Footer = ({ blogSlug = null }) => {
             >
               <button
                 onClick={handleLike}
-                className={`like-button ${hasLiked ? "liked" : ""}`}
+                className={`like-button ${hasLiked ? "liked" : ""} ${isAnimating ? "animating" : ""}`}
                 disabled={hasLiked || isUpdating}
                 aria-label={hasLiked ? "Already liked" : "Like this post"}
               >
