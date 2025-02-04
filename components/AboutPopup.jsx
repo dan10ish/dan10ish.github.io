@@ -96,7 +96,10 @@ const AboutPopup = () => {
             </div>
           </div>
           <div className="about-header">
-            <div className="about-header-links">
+            <div
+              className="about-header-links"
+              onClick={(e) => e.stopPropagation()}
+            >
               <Link href="/notes" className="footer-link">
                 <BookText size={16} />
                 Notes
@@ -106,7 +109,10 @@ const AboutPopup = () => {
                 Photos
               </Link>
             </div>
-            <div className="footer-socials">
+            <div
+              className="footer-socials"
+              onClick={(e) => e.stopPropagation()}
+            >
               <a
                 href="https://x.com/dan10ish"
                 target="_blank"
