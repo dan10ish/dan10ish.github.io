@@ -12,7 +12,7 @@ import {
 import { supabase } from "@/lib/supabase";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { Globe, ArrowUp, ArrowDown, X, CodeXml } from "lucide-react";
+import { Globe, ArrowUp, ArrowDown, X, CodeXml, Star } from "lucide-react";
 import AboutPopup from "./AboutPopup";
 import Footer from "./Footer";
 import dynamic from "next/dynamic";
@@ -153,7 +153,16 @@ const ProjectList = memo(
 
       return projects.map((project) => (
         <div key={project.title} className="list-row">
-          <span className="title">{project.title}</span>
+          <span className="title">
+            <div>{project.title}</div>
+            <div>
+              {project.highlight && (
+                <span className="highlight-star" title="Highlighted Project">
+                  <Star size={14} fill="currentColor" />
+                </span>
+              )}
+            </div>
+          </span>
           <span className="actions">
             <a
               href={project.sourceLink || "#"}

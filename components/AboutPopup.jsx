@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
 import {
   X,
   Mail,
@@ -11,6 +10,7 @@ import {
   Star,
   Hammer,
   BookText,
+  Images,
 } from "lucide-react";
 import Link from "next/link";
 import { SiGithub, SiInstagram, SiX } from "@icons-pack/react-simple-icons";
@@ -80,61 +80,11 @@ const AboutPopup = () => {
 
       {isOpen && (
         <div className="about-overlay" onClick={() => setIsOpen(false)}>
+          <button className="about-close" onClick={() => setIsOpen(false)}>
+            <X size={20} strokeWidth={2.5} />
+          </button>
           <div className="about-container" onClick={(e) => e.stopPropagation()}>
-            <button className="about-close" onClick={() => setIsOpen(false)}>
-              <X size={20} strokeWidth={2.5} />
-            </button>
-
             <div className="about-content">
-              <div className="about-header">
-                <Image
-                  src="/icons/icon.png"
-                  alt="Danish"
-                  className="about-avatar"
-                  width={48}
-                  height={48}
-                  priority
-                />
-                <div className="footer-socials">
-                  <a
-                    href="https://x.com/dan10ish"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="header-icon"
-                    aria-label="Visit my X profile"
-                  >
-                    <SiX size={20} />
-                  </a>
-                  <a
-                    href="https://github.com/dan10ish"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="header-icon header-icon-github"
-                    aria-label="Visit my GitHub profile"
-                  >
-                    <SiGithub size={22} />
-                  </a>
-                  <a
-                    href="https://instagram.com/dan10ish"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="header-icon header-icon-github"
-                    aria-label="Visit my Instagram profile"
-                  >
-                    <SiInstagram size={20} />
-                  </a>
-                  <a
-                    href="mailto:aansaridan@gmail.com"
-                    className="header-icon email-link"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Connect via email"
-                  >
-                    <Mail size={24} strokeWidth={1.8} />
-                  </a>
-                </div>
-              </div>
-
               <div className="about-details">
                 {details.map((detail, index) => (
                   <div key={index} className="detail-item">
@@ -143,6 +93,56 @@ const AboutPopup = () => {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+          <div className="about-header">
+            <div className="about-header-links">
+              <Link href="/notes" className="footer-link">
+                <BookText size={16} />
+                Notes
+              </Link>
+              <Link href="/photos" className="footer-link">
+                <Images size={16} />
+                Photos
+              </Link>
+            </div>
+            <div className="footer-socials">
+              <a
+                href="https://x.com/dan10ish"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="header-icon"
+                aria-label="Visit my X profile"
+              >
+                <SiX size={20} />
+              </a>
+              <a
+                href="https://github.com/dan10ish"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="header-icon header-icon-github"
+                aria-label="Visit my GitHub profile"
+              >
+                <SiGithub size={22} />
+              </a>
+              <a
+                href="https://instagram.com/dan10ish"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="header-icon header-icon-github"
+                aria-label="Visit my Instagram profile"
+              >
+                <SiInstagram size={20} />
+              </a>
+              <a
+                href="mailto:aansaridan@gmail.com"
+                className="header-icon email-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Connect via email"
+              >
+                <Mail size={24} strokeWidth={1.8} />
+              </a>
             </div>
           </div>
         </div>

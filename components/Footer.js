@@ -5,16 +5,13 @@ import {
   ChartNoAxesColumn,
   Heart,
   Star,
-  BookText,
   Mail,
-  Image,
   CodeXml,
 } from "lucide-react";
 
 import { SiGithub, SiInstagram, SiX } from "@icons-pack/react-simple-icons";
 
 import { supabase } from "@/lib/supabase";
-import Link from "next/link";
 import { ThemeButton } from "./ThemeHandler";
 import ShareButton from "./ShareButtons";
 
@@ -196,72 +193,47 @@ const Footer = ({ blogSlug = null }) => {
       {isHomePage && (
         <>
           <div className="footer-nav-mobile">
-            <div className="footer-nav-col">
-              <Link href="/notes" className="footer-link">
-                <BookText size={16} />
-                Notes
-              </Link>
-              <Link href="/photos" className="footer-link">
-                <Image size={16} />
-                Photos
-              </Link>
+            <div className="footer-socials">
+              <a
+                href="https://x.com/dan10ish"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="header-icon"
+                aria-label="Visit my X profile"
+              >
+                <SiX size={20} />
+              </a>
+              <a
+                href="https://github.com/dan10ish"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="header-icon header-icon-github"
+                aria-label="Visit my GitHub profile"
+              >
+                <SiGithub size={22} />
+              </a>
+              <a
+                href="https://instagram.com/dan10ish"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="header-icon header-icon-github"
+                aria-label="Visit my Instagram profile"
+              >
+                <SiInstagram size={20} />
+              </a>
+              <a
+                href="mailto:aansaridan@gmail.com"
+                className="header-icon email-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Connect via email"
+              >
+                <Mail size={24} strokeWidth={1.8} />
+              </a>
             </div>
             <div className="footer-nav-theme">
               <ThemeButton />
             </div>
-          </div>
-          <div className="footer-nav-desktop">
-            <div className="footer-nav-links">
-              <Link href="/notes" className="footer-link">
-                <BookText size={16} />
-                Notes
-              </Link>
-              <Link href="/photos" className="footer-link">
-                <Image size={16} />
-                Photos
-              </Link>
-            </div>
-            <div className="footer-nav-theme">
-              <ThemeButton />
-            </div>
-          </div>
-          <div className="footer-socials">
-            <a
-              href="https://x.com/dan10ish"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="header-icon"
-              aria-label="Visit my X profile"
-            >
-              <SiX size={20} />
-            </a>
-            <a
-              href="https://github.com/dan10ish"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="header-icon header-icon-github"
-              aria-label="Visit my GitHub profile"
-            >
-              <SiGithub size={22} />
-            </a>
-            <a
-              href="https://instagram.com/dan10ish"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="header-icon header-icon-github"
-              aria-label="Visit my Instagram profile"
-            >
-              <SiInstagram size={20} />
-            </a>
-            <a
-              href="mailto:aansaridan@gmail.com"
-              className="header-icon email-link"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Connect via email"
-            >
-              <Mail size={24} strokeWidth={1.8} />
-            </a>
           </div>
         </>
       )}
@@ -315,10 +287,13 @@ const Footer = ({ blogSlug = null }) => {
             >
               <SiGithub size={20} />
               <div className="github-stars">
-                <Star
-                  size={16}
-                  className={isGithubHovered ? "star-hover" : ""}
-                />
+                <span className="highlight-star">
+                  <Star
+                    size={16}
+                    className={isGithubHovered ? "star-hover" : ""}
+                    fill="currentColor"
+                  />
+                </span>
                 <span className="star-number">{formatNumber(stars)}</span>
               </div>
             </a>
