@@ -592,7 +592,7 @@ th {
 
 .list-row .title {
   color: var(--color-text);
-  font-weight: 400;
+  font-weight: 450;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -658,7 +658,8 @@ th {
   font-size: calc(var(--font-size-mobile) * 0.9);
   padding: 0.2rem 0.6rem;
   border-radius: 4px;
-  background: var(--code-background-color);
+  border: 1px solid rgba(var(--color-text-rgb), 0.1);
+  /* background: rgba(var(--color-text-rgb), 0.04); */
   color: rgba(var(--color-text-rgb), 0.8);
   white-space: nowrap;
   font-weight: 400;
@@ -679,7 +680,7 @@ th {
 }
 
 .tag.selected {
-  background: rgba(var(--color-text-rgb), 0.15);
+  background: rgba(var(--color-text-rgb), 0.04);
 }
 
 .list-header .views,
@@ -708,6 +709,15 @@ th {
   .option-switcher {
     gap: 0.25rem;
   }
+}
+
+.table-max::-webkit-scrollbar {
+  display: none;
+}
+
+.table-max {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .content-area {
@@ -1075,6 +1085,7 @@ th {
 
 .site-footer {
   margin: 0 0 2rem;
+  padding-top: 2rem;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -3305,7 +3316,12 @@ a[data-footnote-ref] {
   }
 
   .list-row:hover .tag {
-    background: rgba(var(--color-text-rgb), 0.1);
+    background: var(--color-bg);
+  }
+
+  .list-row:hover .tag.selected,
+  .tag.selected:hover {
+    background: rgba(var(--color-text-rgb), 0.04);
   }
 
   .about-interest .detail-link:hover {
