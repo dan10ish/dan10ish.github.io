@@ -69,17 +69,14 @@ const AboutPopup = () => {
 
   return (
     <>
-      <motion.div
+      <div
         className="title-wrapper"
-        onClick={() => setIsOpen(true)}
         role="button"
         tabIndex={0}
-        onKeyDown={(e) => e.key === "Enter" && setIsOpen(true)}
-        whileTap={{ scale: 0.7 }}
-        transition={{ type: "spring", stiffness: 500, damping: 20 }}
+        onClick={() => setIsOpen(true)}
       >
         <span className="site-title">Danish</span>
-      </motion.div>
+      </div>
       <AnimatePresence>
         {isOpen && (
           <motion.div

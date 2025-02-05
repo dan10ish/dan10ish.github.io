@@ -3382,7 +3382,11 @@ a[data-footnote-ref] {
   }
 
   .title-wrapper:hover {
-    background: rgba(var(--color-text-rgb), 0.1);
+    border-color: transparent;
+  }
+
+  .title-wrapper:hover .site-title {
+    color: var(--color-link);
   }
 
   .option-btn:hover:not(.active) {

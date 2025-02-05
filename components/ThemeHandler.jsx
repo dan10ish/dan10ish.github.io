@@ -85,7 +85,7 @@ export function ThemeButton() {
       onClick={toggleTheme}
       className="theme-button"
       aria-label="Toggle theme"
-      whileTap={{ scale: 0.8 }}
+      whileTap={{ scale: 0.95 }}
       transition={{ type: "spring", stiffness: 500, damping: 17 }}
     >
       <span className="theme-button-content">
