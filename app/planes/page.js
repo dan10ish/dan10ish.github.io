@@ -18,6 +18,7 @@ import {
   Moon,
 } from "lucide-react";
 import ButtonsContainer from "@/components/ButtonsContainer";
+import PageTransition from "@/components/PageTransition";
 
 export default function PlanesPage() {
   const [showInfo, setShowInfo] = useState(false);
@@ -141,170 +142,179 @@ export default function PlanesPage() {
   }
 
   return (
-    <main className="terminal-main">
-      <div className="terminal-frame">
-        <div className="terminal-header">
-          <Circle size={8} className="status-dot" />
-          <span className="status-text">ACTIVE</span>
-          <div className="header-actions">
-            <button
-              onClick={fetchStats}
-              className="terminal-btn"
-              title="Refresh"
-            >
-              <RefreshCw size={16} />
-            </button>
-            <button
-              onClick={() => setShowInfo(true)}
-              className="terminal-btn primary"
-            >
-              <Info size={20} />
-            </button>
+    <PageTransition>
+      <main className="terminal-main">
+        <div className="terminal-frame">
+          <div className="terminal-header">
+            <Circle size={8} className="status-dot" />
+            <span className="status-text">ACTIVE</span>
+            <div className="header-actions">
+              <button
+                onClick={fetchStats}
+                className="terminal-btn"
+                title="Refresh"
+              >
+                <RefreshCw size={16} />
+              </button>
+              <button
+                onClick={() => setShowInfo(true)}
+                className="terminal-btn primary"
+              >
+                <Info size={20} />
+              </button>
+            </div>
           </div>
-        </div>
 
-        <div className="terminal-scroll">
-          <div className="terminal-grid">
-            <section className="terminal-section">
-              <div className="planes-section-header">
-                <Award size={16} className="section-icon gold" />
-                <h2>PROFILE</h2>
-              </div>
-              <div className="data-grid">
-                <div className="data-box">
-                  <Shield size={16} className="orange" />
-                  <span className="box-label">Grade</span>
-                  <span className="box-value">{stats.general.grade}</span>
-                </div>
-                <div className="data-box">
-                  <BarChart3 size={16} className="blue" />
-                  <span className="box-label">Experience</span>
-                  <span className="box-value">{stats.general.xp}</span>
-                </div>
-              </div>
-            </section>
-            <section className="terminal-section">
-              <div className="planes-section-header">
-                <Plane size={16} className="section-icon blue" />
-                <h2>FLIGHT DATA</h2>
-              </div>
-              <div className="data-grid larger">
-                <div className="data-box">
-                  <Clock size={16} />
-                  <span className="box-label">Total Hours</span>
-                  <span className="box-value">{`${stats.flight.hours}h ${stats.flight.minutes}m`}</span>
-                </div>
-                <div className="data-box">
-                  <Plane size={16} />
-                  <span className="box-label">Total Flights</span>
-                  <span className="box-value">{stats.flight.total}</span>
-                </div>
-                <div className="data-box">
-                  <Compass size={16} />
-                  <span className="box-label">Landings</span>
-                  <span className="box-value">{stats.flight.landings}</span>
-                </div>
-                <div className="data-box">
-                  <Shield size={16} />
-                  <span className="box-label">Violations</span>
-                  <span className="box-value">{stats.general.violations}</span>
-                </div>
-              </div>
-            </section>
-            <section className="terminal-section">
-              <div className="planes-section-header">
-                <Cloud size={16} className="section-icon purple" />
-                <h2>FLIGHT CONDITIONS</h2>
-              </div>
-              <div className="data-grid dual">
-                <div className="data-box">
-                  <Palmtree size={16} className="orange" />
-                  <span className="box-label">Day Flight Time</span>
-                  <span className="box-value">{`${stats.flight.dayTime}h`}</span>
-                </div>
-                <div className="data-box">
-                  <Moon size={16} className="blue" />
-                  <span className="box-label">Night Flight Time</span>
-                  <span className="box-value">{`${stats.flight.nightTime}h`}</span>
-                </div>
-              </div>
-            </section>
-            {stats.routes?.length > 0 && (
+          <div className="terminal-scroll">
+            <div className="terminal-grid">
               <section className="terminal-section">
                 <div className="planes-section-header">
-                  <Navigation2 size={16} className="section-icon cyan" />
-                  <h2>FREQUENT ROUTES</h2>
+                  <Award size={16} className="section-icon gold" />
+                  <h2>PROFILE</h2>
                 </div>
-                <div className="list-data">
-                  {stats.routes.map((route, index) => (
-                    <div key={index} className="list-item">
-                      <div className="list-item-main">
-                        <Compass size={14} className="icon-offset" />
-                        <span>
-                          {route.from} → {route.to}
-                        </span>
-                      </div>
-                      <span className="list-item-value">
-                        {route.count}{" "}
-                        {parseInt(route.count, 10) === 1 ? "flight" : "flights"}
-                      </span>
-                    </div>
-                  ))}
+                <div className="data-grid">
+                  <div className="data-box">
+                    <Shield size={16} className="orange" />
+                    <span className="box-label">Grade</span>
+                    <span className="box-value">{stats.general.grade}</span>
+                  </div>
+                  <div className="data-box">
+                    <BarChart3 size={16} className="blue" />
+                    <span className="box-label">Experience</span>
+                    <span className="box-value">{stats.general.xp}</span>
+                  </div>
                 </div>
               </section>
-            )}
-            {stats.lastFlight && (
               <section className="terminal-section">
                 <div className="planes-section-header">
-                  <Clock size={16} className="section-icon gold" />
-                  <h2>LAST FLIGHT</h2>
+                  <Plane size={16} className="section-icon blue" />
+                  <h2>FLIGHT DATA</h2>
                 </div>
-                <div className="data-box">
-                  <div className="list-item-main">
-                    <span>
-                      {stats.lastFlight.originAirport} →{" "}
-                      {stats.lastFlight.destinationAirport}
+                <div className="data-grid larger">
+                  <div className="data-box">
+                    <Clock size={16} />
+                    <span className="box-label">Total Hours</span>
+                    <span className="box-value">{`${stats.flight.hours}h ${stats.flight.minutes}m`}</span>
+                  </div>
+                  <div className="data-box">
+                    <Plane size={16} />
+                    <span className="box-label">Total Flights</span>
+                    <span className="box-value">{stats.flight.total}</span>
+                  </div>
+                  <div className="data-box">
+                    <Compass size={16} />
+                    <span className="box-label">Landings</span>
+                    <span className="box-value">{stats.flight.landings}</span>
+                  </div>
+                  <div className="data-box">
+                    <Shield size={16} />
+                    <span className="box-label">Violations</span>
+                    <span className="box-value">
+                      {stats.general.violations}
                     </span>
                   </div>
-                  <span className="box-label">
-                    Callsign: {stats.lastFlight.callsign}
-                  </span>
                 </div>
               </section>
-            )}
+              <section className="terminal-section">
+                <div className="planes-section-header">
+                  <Cloud size={16} className="section-icon purple" />
+                  <h2>FLIGHT CONDITIONS</h2>
+                </div>
+                <div className="data-grid dual">
+                  <div className="data-box">
+                    <Palmtree size={16} className="orange" />
+                    <span className="box-label">Day Flight Time</span>
+                    <span className="box-value">{`${stats.flight.dayTime}h`}</span>
+                  </div>
+                  <div className="data-box">
+                    <Moon size={16} className="blue" />
+                    <span className="box-label">Night Flight Time</span>
+                    <span className="box-value">{`${stats.flight.nightTime}h`}</span>
+                  </div>
+                </div>
+              </section>
+              {stats.routes?.length > 0 && (
+                <section className="terminal-section">
+                  <div className="planes-section-header">
+                    <Navigation2 size={16} className="section-icon cyan" />
+                    <h2>FREQUENT ROUTES</h2>
+                  </div>
+                  <div className="list-data">
+                    {stats.routes.map((route, index) => (
+                      <div key={index} className="list-item">
+                        <div className="list-item-main">
+                          <Compass size={14} className="icon-offset" />
+                          <span>
+                            {route.from} → {route.to}
+                          </span>
+                        </div>
+                        <span className="list-item-value">
+                          {route.count}{" "}
+                          {parseInt(route.count, 10) === 1
+                            ? "flight"
+                            : "flights"}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              )}
+              {stats.lastFlight && (
+                <section className="terminal-section">
+                  <div className="planes-section-header">
+                    <Clock size={16} className="section-icon gold" />
+                    <h2>LAST FLIGHT</h2>
+                  </div>
+                  <div className="data-box">
+                    <div className="list-item-main">
+                      <span>
+                        {stats.lastFlight.originAirport} →{" "}
+                        {stats.lastFlight.destinationAirport}
+                      </span>
+                    </div>
+                    <span className="box-label">
+                      Callsign: {stats.lastFlight.callsign}
+                    </span>
+                  </div>
+                </section>
+              )}
+            </div>
           </div>
-        </div>
 
-        {showInfo && (
-          <div className="info-overlay" onClick={() => setShowInfo(false)}>
-            <div className="info-box" onClick={(e) => e.stopPropagation()}>
-              <button className="close-btn" onClick={() => setShowInfo(false)}>
-                <X size={16} />
-              </button>
-              <h3>INFINITE FLIGHT LIVE DATA</h3>
-              <div className="info-grid">
-                <div className="info-stat info-row-1">
-                  <span className="stat-label">Last Update: </span>
-                  <span className="stat-value">{lastUpdate}</span>
-                </div>
-                <div className="info-stat info-row-2">
-                  <span className="stat-label">L1 Violations: </span>
-                  <span className="stat-value">
-                    {stats.flight.violationsByLevel.level1}
-                  </span>
-                </div>
-                <div className="info-stat info-row-2">
-                  <span className="stat-label">L2 Violations: </span>
-                  <span className="stat-value">
-                    {stats.flight.violationsByLevel.level2}
-                  </span>
+          {showInfo && (
+            <div className="info-overlay" onClick={() => setShowInfo(false)}>
+              <div className="info-box" onClick={(e) => e.stopPropagation()}>
+                <button
+                  className="close-btn"
+                  onClick={() => setShowInfo(false)}
+                >
+                  <X size={16} />
+                </button>
+                <h3>INFINITE FLIGHT LIVE DATA</h3>
+                <div className="info-grid">
+                  <div className="info-stat info-row-1">
+                    <span className="stat-label">Last Update: </span>
+                    <span className="stat-value">{lastUpdate}</span>
+                  </div>
+                  <div className="info-stat info-row-2">
+                    <span className="stat-label">L1 Violations: </span>
+                    <span className="stat-value">
+                      {stats.flight.violationsByLevel.level1}
+                    </span>
+                  </div>
+                  <div className="info-stat info-row-2">
+                    <span className="stat-label">L2 Violations: </span>
+                    <span className="stat-value">
+                      {stats.flight.violationsByLevel.level2}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        )}
-      </div>
-      <ButtonsContainer />
-    </main>
+          )}
+        </div>
+        <ButtonsContainer />
+      </main>
+    </PageTransition>
   );
 }

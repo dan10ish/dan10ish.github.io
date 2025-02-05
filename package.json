@@ -16,6 +16,7 @@
     "@supabase/supabase-js": "^2.45.6",
     "compression-next": "^1.0.3",
     "exifreader": "^4.25.0",
+    "framer-motion": "^12.1.0",
     "highlight.js": "^11.10.0",
     "katex": "^0.16.11",
     "lucide-react": "^0.453.0",

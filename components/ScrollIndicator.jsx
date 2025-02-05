@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import { ChevronDown } from "lucide-react";
 
 const ScrollIndicator = ({ containerRef }) => {
-  const [isVisible, setIsVisible] = useState(false);
   const [shouldShow, setShouldShow] = useState(false);
   const resizeObserverRef = useRef(null);
   const mutationObserverRef = useRef(null);
@@ -19,7 +18,7 @@ const ScrollIndicator = ({ containerRef }) => {
       setShouldShow(hasOverflow && notAtBottom);
     };
 
-    setTimeout(checkScroll, 100);
+    checkScroll();
 
     resizeObserverRef.current = new ResizeObserver(() => {
       requestAnimationFrame(checkScroll);
@@ -55,21 +54,10 @@ const ScrollIndicator = ({ containerRef }) => {
     };
   }, [containerRef]);
 
-  useEffect(() => {
-    if (shouldShow) {
-      const timer = setTimeout(() => {
-        setIsVisible(true);
-      }, 100);
-      return () => clearTimeout(timer);
-    } else {
-      setIsVisible(false);
-    }
-  }, [shouldShow]);
-
   if (!shouldShow) return null;
 
   return (
-    <div className={`scroll-indicator ${isVisible ? "visible" : ""}`}>
+    <div className="scroll-indicator visible">
       <ChevronDown />
     </div>
   );

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Treemap, ResponsiveContainer } from "recharts";
 import { RefreshCw, Info } from "lucide-react";
 import ButtonsContainer from "@/components/ButtonsContainer";
+import PageTransition from "@/components/PageTransition";
 
 const treemapData = [
   {
@@ -131,18 +132,20 @@ const FinancePage = () => {
   }, []);
 
   return (
-    <main>
-      <div className="domain-header">
-        <h2>Finance</h2>
-        <span className="wip-badge domain-wip">Work In Progress</span>
-      </div>
-      <div className="portfolio-viz">
-        <div className="treemap-container" style={{ overflow: "hidden" }}>
-          {isLoading ? <TreemapSkeleton /> : <CustomTreemap />}
+    <PageTransition>
+      <main>
+        <div className="domain-header">
+          <h2>Finance</h2>
+          <span className="wip-badge domain-wip">Work In Progress</span>
         </div>
-      </div>
-      <ButtonsContainer />
-    </main>
+        <div className="portfolio-viz">
+          <div className="treemap-container" style={{ overflow: "hidden" }}>
+            {isLoading ? <TreemapSkeleton /> : <CustomTreemap />}
+          </div>
+        </div>
+        <ButtonsContainer />
+      </main>
+    </PageTransition>
   );
 };
 

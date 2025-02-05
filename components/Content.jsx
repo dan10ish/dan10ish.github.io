@@ -16,10 +16,101 @@ import { Globe, ArrowUp, ArrowDown, X, CodeXml, Star } from "lucide-react";
 import AboutPopup from "./AboutPopup";
 import Footer from "./Footer";
 import dynamic from "next/dynamic";
+import { motion, AnimatePresence } from "framer-motion";
+import ScrollIndicator from "./ScrollIndicator";
 
-const ScrollIndicator = dynamic(() => import("./ScrollIndicator"), {
-  ssr: false,
-  loading: () => null,
+const OptionSwitcher = memo(({ selectedOption, handleOptionChange }) => {
+  const containerRef = useRef(null);
+  const [dimensions, setDimensions] = useState(null);
+  const [isInitialRender, setIsInitialRender] = useState(true);
+  const resizeObserverRef = useRef(null);
+
+  const updateDimensions = useCallback(() => {
+    if (!containerRef.current) return;
+
+    const activeButton =
+      containerRef.current.querySelector(".option-btn.active");
+    if (activeButton) {
+      const rect = activeButton.getBoundingClientRect();
+      const containerRect = containerRef.current.getBoundingClientRect();
+
+      setDimensions({
+        width: rect.width,
+        left: rect.left - containerRect.left,
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    resizeObserverRef.current = new ResizeObserver((entries) => {
+      requestAnimationFrame(() => {
+        updateDimensions();
+      });
+    });
+
+    resizeObserverRef.current.observe(containerRef.current);
+    if (containerRef.current.parentElement) {
+      resizeObserverRef.current.observe(containerRef.current.parentElement);
+    }
+
+    updateDimensions();
+
+    return () => {
+      if (resizeObserverRef.current) {
+        resizeObserverRef.current.disconnect();
+      }
+    };
+  }, [updateDimensions]);
+
+  useEffect(() => {
+    updateDimensions();
+    if (isInitialRender) {
+      const timer = setTimeout(() => setIsInitialRender(false), 100);
+      return () => clearTimeout(timer);
+    }
+  }, [selectedOption, isInitialRender, updateDimensions]);
+
+  return (
+    <div className="option-switcher" ref={containerRef}>
+      {dimensions && (
+        <motion.div
+          className="option-background"
+          initial={
+            isInitialRender
+              ? {
+                  width: dimensions.width,
+                  x: dimensions.left,
+                }
+              : false
+          }
+          animate={{
+            width: dimensions.width,
+            x: dimensions.left,
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 500,
+            damping: 30,
+          }}
+          layout
+        />
+      )}
+      <button
+        onClick={() => handleOptionChange("writings")}
+        className={`option-btn${selectedOption === "writings" ? " active" : ""}`}
+      >
+        Writings
+      </button>
+      <button
+        onClick={() => handleOptionChange("projects")}
+        className={`option-btn${selectedOption === "projects" ? " active" : ""}`}
+      >
+        Projects
+      </button>
+    </div>
+  );
 });
 
 const BlogList = memo(
@@ -37,12 +128,14 @@ const BlogList = memo(
     );
 
     const [showScroll, setShowScroll] = useState(false);
+    const tableRef = useRef(null);
+
     useEffect(() => {
       let timeout;
       if (!loading) {
         timeout = setTimeout(() => {
           setShowScroll(true);
-        }, 1000);
+        }, 0);
       }
       return () => clearTimeout(timeout);
     }, [loading]);
@@ -89,8 +182,6 @@ const BlogList = memo(
       ));
     }, [posts, viewsData, loading]);
 
-    const tableRef = useRef(null);
-
     return (
       <div className="mono-list">
         <div className="list-header">
@@ -109,9 +200,18 @@ const BlogList = memo(
             {getSortIcon("views")} views
           </span>
         </div>
-        <div className="table-max" ref={tableRef}>
-          {listItems}
-        </div>
+        <AnimatePresence mode="wait">
+          <motion.div
+            className="table-max"
+            ref={tableRef}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+          >
+            {listItems}
+          </motion.div>
+        </AnimatePresence>
         {showScroll && <ScrollIndicator containerRef={tableRef} />}
       </div>
     );
@@ -127,6 +227,19 @@ const ProjectList = memo(
     handleSort,
     sortConfig,
   }) => {
+    const [showScroll, setShowScroll] = useState(false);
+    const tableRef = useRef(null);
+
+    useEffect(() => {
+      let timeout;
+      if (!loading) {
+        timeout = setTimeout(() => {
+          setShowScroll(true);
+        }, 0);
+      }
+      return () => clearTimeout(timeout);
+    }, [loading]);
+
     const listItems = useMemo(() => {
       if (loading) {
         return Array(8)
@@ -199,18 +312,6 @@ const ProjectList = memo(
       ));
     }, [projects, loading, selectedTag, handleTagClick]);
 
-    const tableRef = useRef(null);
-    const [showScroll, setShowScroll] = useState(false);
-    useEffect(() => {
-      let timeout;
-      if (!loading) {
-        timeout = setTimeout(() => {
-          setShowScroll(true);
-        }, 1000);
-      }
-      return () => clearTimeout(timeout);
-    }, [loading]);
-
     return (
       <div className="mono-list project-list">
         <div className="list-header">
@@ -243,9 +344,18 @@ const ProjectList = memo(
             tags
           </span>
         </div>
-        <div className="table-max" ref={tableRef}>
-          {listItems}
-        </div>
+        <AnimatePresence mode="wait">
+          <motion.div
+            className="table-max"
+            ref={tableRef}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+          >
+            {listItems}
+          </motion.div>
+        </AnimatePresence>
         {showScroll && <ScrollIndicator containerRef={tableRef} />}
       </div>
     );
@@ -379,20 +489,10 @@ const Content = ({ posts, projects }) => {
       <div className="content-header-table">
         <div className="content-header">
           <AboutPopup />
-          <div className="option-switcher">
-            <button
-              onClick={() => handleOptionChange("writings")}
-              className={`option-btn${selectedOption === "writings" ? " active" : ""}`}
-            >
-              Writings
-            </button>
-            <button
-              onClick={() => handleOptionChange("projects")}
-              className={`option-btn${selectedOption === "projects" ? " active" : ""}`}
-            >
-              Projects
-            </button>
-          </div>
+          <OptionSwitcher
+            selectedOption={selectedOption}
+            handleOptionChange={handleOptionChange}
+          />
         </div>
         <div className="content-area">
           {selectedOption === "writings" ? (

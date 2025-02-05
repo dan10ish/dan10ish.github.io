@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Monitor, Moon, Sun, Palette } from "lucide-react";
+import { motion } from "framer-motion";
 
 const themes = [
   {
@@ -80,16 +81,18 @@ export function ThemeButton() {
   const CurrentIcon = themes[themeIndex].icon;
 
   return (
-    <button
+    <motion.button
       onClick={toggleTheme}
       className="theme-button"
       aria-label="Toggle theme"
+      whileTap={{ scale: 0.8 }}
+      transition={{ type: "spring", stiffness: 500, damping: 17 }}
     >
       <span className="theme-button-content">
         <CurrentIcon size={20} />
         <span className="theme-button-label">{themes[themeIndex].label}</span>
       </span>
-    </button>
+    </motion.button>
   );
 }
 

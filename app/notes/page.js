@@ -5,6 +5,7 @@ import { notes } from "@/lib/library-data";
 import FilterComponent from "@/components/FilterComponent";
 import Footer from "@/components/Footer";
 import ButtonsContainer from "@/components/ButtonsContainer";
+import PageTransition from "@/components/PageTransition";
 
 const shouldUseWhiteText = (hexColor) => {
   const r = parseInt(hexColor.slice(1, 3), 16);
@@ -38,55 +39,57 @@ export default function NotesPage() {
   };
 
   return (
-    <main>
-      <div className="domain-header">
-        <h2>Notes</h2>
-      </div>
+    <PageTransition>
+      <main>
+        <div className="domain-header">
+          <h2>Notes</h2>
+        </div>
 
-      <FilterComponent
-        options={tags}
-        activeFilters={selectedTags}
-        onFilterChange={setSelectedTags}
-        placeholder=""
-      />
+        <FilterComponent
+          options={tags}
+          activeFilters={selectedTags}
+          onFilterChange={setSelectedTags}
+          placeholder=""
+        />
 
-      <div className="notes-grid">
-        {filteredNotes.map((note) => (
-          <div
-            key={note.title}
-            className={`book-card ${touchedNote === note.title ? "touch-active" : ""}`}
-            onClick={() => handleNoteClick(note.file)}
-            onTouchStart={() => setTouchedNote(note.title)}
-            onTouchEnd={() => setTouchedNote(null)}
-          >
+        <div className="notes-grid">
+          {filteredNotes.map((note) => (
             <div
-              className="book-cover"
-              style={{
-                "--book-color": note.coverColor,
-                color: shouldUseWhiteText(note.coverColor)
-                  ? "#ffffff"
-                  : "#000000",
-              }}
+              key={note.title}
+              className={`book-card ${touchedNote === note.title ? "touch-active" : ""}`}
+              onClick={() => handleNoteClick(note.file)}
+              onTouchStart={() => setTouchedNote(note.title)}
+              onTouchEnd={() => setTouchedNote(null)}
             >
               <div
-                className="book-spine"
-                style={{ backgroundColor: note.coverColor }}
-              />
-              <div className="book-spine-edge" />
-              <div className="book-content">
-                <h3 className="book-title">{note.title}</h3>
-                <p className="book-author">{note.author}</p>
+                className="book-cover"
+                style={{
+                  "--book-color": note.coverColor,
+                  color: shouldUseWhiteText(note.coverColor)
+                    ? "#ffffff"
+                    : "#000000",
+                }}
+              >
+                <div
+                  className="book-spine"
+                  style={{ backgroundColor: note.coverColor }}
+                />
+                <div className="book-spine-edge" />
+                <div className="book-content">
+                  <h3 className="book-title">{note.title}</h3>
+                  <p className="book-author">{note.author}</p>
+                </div>
+                <div className="book-right-edge" />
               </div>
-              <div className="book-right-edge" />
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
 
-      <div className="noFooter">
-        <Footer />
-      </div>
-      <ButtonsContainer />
-    </main>
+        <div className="noFooter">
+          <Footer />
+        </div>
+        <ButtonsContainer />
+      </main>
+    </PageTransition>
   );
 }

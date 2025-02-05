@@ -378,7 +378,7 @@ th {
 .about-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(var(--color-bg-rgb), 0.8);
+  background: rgba(var(--color-bg-rgb), 0.5);
   backdrop-filter: blur(12px);
   display: flex;
   flex-direction: column;
@@ -507,6 +507,21 @@ th {
 .option-switcher {
   display: flex;
   gap: 1rem;
+  position: relative;
+  isolation: isolate;
+  will-change: transform;
+}
+
+.option-background {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  border-radius: 6px;
+  background: rgba(var(--color-text-rgb), 0.04);
+  border: 1px solid rgba(var(--color-text-rgb), 0.1);
+  z-index: -1;
+  pointer-events: none;
+  will-change: transform, width;
 }
 
 .option-btn {
@@ -516,12 +531,12 @@ th {
   cursor: pointer;
   font-size: var(--font-size-mobile);
   color: rgba(var(--color-text-rgb), 0.6);
-  border: 1px solid transparent;
+  transition: color 0.1s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .option-btn.active {
-  border: 1px solid rgba(var(--color-text-rgb), 0.1);
-  background: rgba(var(--color-text-rgb), 0.04);
   color: var(--color-text);
   font-weight: 500;
 }
@@ -2772,15 +2787,7 @@ a[data-footnote-ref] {
   justify-content: center;
   background: linear-gradient(to bottom, transparent, var(--color-bg));
   pointer-events: none;
-  opacity: 0;
-  margin-top: 5px;
-  visibility: hidden;
-  transition: opacity 0.2s ease-in-out;
-}
-
-.scroll-indicator.visible {
-  opacity: 1;
-  visibility: visible;
+  margin-top: 1rem;
 }
 
 .scroll-indicator svg {
@@ -2798,6 +2805,11 @@ a[data-footnote-ref] {
   50% {
     transform: translateY(3px);
   }
+}
+
+.scroll-indicator.visible {
+  opacity: 1;
+  visibility: visible;
 }
 
 /* Desktop Media Queries */
@@ -3369,9 +3381,13 @@ a[data-footnote-ref] {
     text-decoration: none;
   }
 
-  .title-wrapper:hover,
-  .option-btn:hover:not(.active) {
+  .title-wrapper:hover {
     background: rgba(var(--color-text-rgb), 0.1);
+  }
+
+  .option-btn:hover:not(.active) {
+    color: var(--color-text);
+    font-weight: 500;
   }
 
   .about-header-links a:hover {

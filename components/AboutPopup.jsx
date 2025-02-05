@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { SiGithub, SiInstagram, SiX } from "@icons-pack/react-simple-icons";
+import { motion, AnimatePresence } from "framer-motion";
 
 const AboutPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -68,91 +69,104 @@ const AboutPopup = () => {
 
   return (
     <>
-      <div
+      <motion.div
         className="title-wrapper"
         onClick={() => setIsOpen(true)}
         role="button"
         tabIndex={0}
         onKeyDown={(e) => e.key === "Enter" && setIsOpen(true)}
+        whileTap={{ scale: 0.7 }}
+        transition={{ type: "spring", stiffness: 500, damping: 20 }}
       >
         <span className="site-title">Danish</span>
-      </div>
-
-      {isOpen && (
-        <div className="about-overlay" onClick={() => setIsOpen(false)}>
-          <button className="about-close" onClick={() => setIsOpen(false)}>
-            <X size={20} strokeWidth={2.5} />
-          </button>
-          <div className="about-container" onClick={(e) => e.stopPropagation()}>
-            <div className="about-content">
-              <div className="about-details">
-                {details.map((detail, index) => (
-                  <div key={index} className="detail-item">
-                    <span className="detail-label">{detail.label}</span>
-                    <span className="detail-content">{detail.content}</span>
-                  </div>
-                ))}
+      </motion.div>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="about-overlay"
+            onClick={() => setIsOpen(false)}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.1 }}
+          >
+            <button className="about-close" onClick={() => setIsOpen(false)}>
+              <X size={20} strokeWidth={2.5} />
+            </button>
+            <div
+              className="about-container"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="about-content">
+                <div className="about-details">
+                  {details.map((detail, index) => (
+                    <div key={index} className="detail-item">
+                      <span className="detail-label">{detail.label}</span>
+                      <span className="detail-content">{detail.content}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-          <div className="about-header">
-            <div
-              className="about-header-links"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <Link href="/notes" className="footer-link">
-                <BookText size={16} />
-                Notes
-              </Link>
-              <Link href="/photos" className="footer-link">
-                <Images size={16} />
-                Photos
-              </Link>
+            <div className="about-header">
+              <div
+                className="about-header-links"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <Link href="/notes" className="footer-link">
+                  <BookText size={16} />
+                  Notes
+                </Link>
+                <Link href="/photos" className="footer-link">
+                  <Images size={16} />
+                  Photos
+                </Link>
+              </div>
+              <div
+                className="footer-socials"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <a
+                  href="https://x.com/dan10ish"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="header-icon"
+                  aria-label="Visit my X profile"
+                >
+                  <SiX size={20} />
+                </a>
+                <a
+                  href="https://github.com/dan10ish"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="header-icon header-icon-github"
+                  aria-label="Visit my GitHub profile"
+                >
+                  <SiGithub size={22} />
+                </a>
+                <a
+                  href="https://instagram.com/dan10ish"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="header-icon header-icon-github"
+                  aria-label="Visit my Instagram profile"
+                >
+                  <SiInstagram size={20} />
+                </a>
+                <a
+                  href="mailto:aansaridan@gmail.com"
+                  className="header-icon email-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Connect via email"
+                >
+                  <Mail size={24} strokeWidth={1.8} />
+                </a>
+              </div>
             </div>
-            <div
-              className="footer-socials"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <a
-                href="https://x.com/dan10ish"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="header-icon"
-                aria-label="Visit my X profile"
-              >
-                <SiX size={20} />
-              </a>
-              <a
-                href="https://github.com/dan10ish"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="header-icon header-icon-github"
-                aria-label="Visit my GitHub profile"
-              >
-                <SiGithub size={22} />
-              </a>
-              <a
-                href="https://instagram.com/dan10ish"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="header-icon header-icon-github"
-                aria-label="Visit my Instagram profile"
-              >
-                <SiInstagram size={20} />
-              </a>
-              <a
-                href="mailto:aansaridan@gmail.com"
-                className="header-icon email-link"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Connect via email"
-              >
-                <Mail size={24} strokeWidth={1.8} />
-              </a>
-            </div>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };
