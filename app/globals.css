@@ -367,12 +367,12 @@ th {
 
 .site-title {
   font-family: var(--font-heading);
-  font-size: calc(var(--font-size-mobile) * 1.2);
+  font-size: calc(var(--font-size-mobile) * 1.1);
   color: var(--color-text);
   text-decoration: none;
   font-weight: 500;
   padding: 0;
-  margin: -0.2rem;
+  margin: -0.1rem;
 }
 
 .about-overlay {
