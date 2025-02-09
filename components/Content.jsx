@@ -15,7 +15,6 @@ import Link from "next/link";
 import { Globe, ArrowUp, ArrowDown, X, CodeXml, Star } from "lucide-react";
 import AboutPopup from "./AboutPopup";
 import Footer from "./Footer";
-import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
 import ScrollIndicator from "./ScrollIndicator";
 
@@ -101,13 +100,19 @@ const OptionSwitcher = memo(({ selectedOption, handleOptionChange }) => {
         onClick={() => handleOptionChange("writings")}
         className={`option-btn${selectedOption === "writings" ? " active" : ""}`}
       >
-        Writings
+        Posts
       </button>
       <button
         onClick={() => handleOptionChange("projects")}
         className={`option-btn${selectedOption === "projects" ? " active" : ""}`}
       >
         Projects
+      </button>
+      <button
+        onClick={() => handleOptionChange("about")}
+        className={`option-btn${selectedOption === "about" ? " active" : ""}`}
+      >
+        <span className="info-option-btn">i</span>
       </button>
     </div>
   );
@@ -368,6 +373,8 @@ const Content = ({ posts, projects }) => {
   const [selectedOption, setSelectedOption] = useState(
     searchParams.get("tab") === "projects" ? "projects" : "writings",
   );
+  const [isAboutOpen, setIsAboutOpen] = useState(false);
+  const [previousOption, setPreviousOption] = useState(selectedOption);
   const [viewsData, setViewsData] = useState({});
   const [sortConfig, setSortConfig] = useState({ key: null, direction: null });
   const [selectedTag, setSelectedTag] = useState(null);
@@ -418,11 +425,21 @@ const Content = ({ posts, projects }) => {
 
   const handleOptionChange = useCallback(
     (option) => {
+      if (option === "about") {
+        setPreviousOption(selectedOption);
+        setIsAboutOpen(true);
+      } else {
+        router.push(`/?tab=${option}`, { scroll: false });
+      }
       setSelectedOption(option);
-      router.push(`/?tab=${option}`, { scroll: false });
     },
-    [router],
+    [router, selectedOption],
   );
+
+  const handleAboutClose = useCallback(() => {
+    setIsAboutOpen(false);
+    setSelectedOption(previousOption);
+  }, [previousOption]);
 
   const handleSort = useCallback(
     (key) => {
@@ -488,7 +505,7 @@ const Content = ({ posts, projects }) => {
     <div className="content-wrapper">
       <div className="content-header-table">
         <div className="content-header">
-          <AboutPopup />
+          <AboutPopup isOpen={isAboutOpen} setIsOpen={handleAboutClose} />
           <OptionSwitcher
             selectedOption={selectedOption}
             handleOptionChange={handleOptionChange}
@@ -503,7 +520,7 @@ const Content = ({ posts, projects }) => {
               sortConfig={sortConfig}
               handleSort={handleSort}
             />
-          ) : (
+          ) : selectedOption === "projects" ? (
             <ProjectList
               projects={filteredProjects}
               loading={loading}
@@ -512,7 +529,7 @@ const Content = ({ posts, projects }) => {
               handleSort={handleSort}
               sortConfig={sortConfig}
             />
-          )}
+          ) : null}
         </div>
       </div>
       <div>

@@ -16,9 +16,7 @@ import Link from "next/link";
 import { SiGithub, SiInstagram, SiX } from "@icons-pack/react-simple-icons";
 import { motion, AnimatePresence } from "framer-motion";
 
-const AboutPopup = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
+const AboutPopup = ({ isOpen, setIsOpen }) => {
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
     return () => {
@@ -69,12 +67,7 @@ const AboutPopup = () => {
 
   return (
     <>
-      <div
-        className="title-wrapper"
-        role="button"
-        tabIndex={0}
-        onClick={() => setIsOpen(true)}
-      >
+      <div className="title-wrapper">
         <span className="site-title">Danish</span>
       </div>
       <AnimatePresence>
