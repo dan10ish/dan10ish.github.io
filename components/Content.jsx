@@ -25,7 +25,10 @@ const OptionSwitcher = memo(({ selectedOption, handleOptionChange }) => {
   const resizeObserverRef = useRef(null);
 
   const updateDimensions = useCallback(() => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || selectedOption === "about") {
+      setDimensions(null);
+      return;
+    }
 
     const activeButton =
       containerRef.current.querySelector(".option-btn.active");
@@ -38,15 +41,13 @@ const OptionSwitcher = memo(({ selectedOption, handleOptionChange }) => {
         left: rect.left - containerRect.left,
       });
     }
-  }, []);
+  }, [selectedOption]);
 
   useEffect(() => {
     if (!containerRef.current) return;
 
-    resizeObserverRef.current = new ResizeObserver((entries) => {
-      requestAnimationFrame(() => {
-        updateDimensions();
-      });
+    resizeObserverRef.current = new ResizeObserver(() => {
+      requestAnimationFrame(updateDimensions);
     });
 
     resizeObserverRef.current.observe(containerRef.current);
@@ -73,7 +74,7 @@ const OptionSwitcher = memo(({ selectedOption, handleOptionChange }) => {
 
   return (
     <div className="option-switcher" ref={containerRef}>
-      {dimensions && (
+      {dimensions && selectedOption !== "about" && (
         <motion.div
           className="option-background"
           initial={
@@ -117,6 +118,8 @@ const OptionSwitcher = memo(({ selectedOption, handleOptionChange }) => {
     </div>
   );
 });
+
+OptionSwitcher.displayName = "OptionSwitcher";
 
 const BlogList = memo(
   ({ posts, viewsData, loading, sortConfig, handleSort }) => {
