@@ -16,6 +16,7 @@ import { Globe, ArrowUp, ArrowDown, X, CodeXml, Star } from "lucide-react";
 import AboutPopup from "./AboutPopup";
 import Footer from "./Footer";
 import ScrollIndicator from "./ScrollIndicator";
+import { motion, AnimatePresence } from "framer-motion";
 
 const OptionSwitcher = memo(({ selectedOption, handleOptionChange }) => {
   const containerRef = useRef(null);
@@ -74,12 +75,26 @@ const OptionSwitcher = memo(({ selectedOption, handleOptionChange }) => {
   return (
     <div className="option-switcher" ref={containerRef}>
       {dimensions && selectedOption !== "about" && (
-        <div
+        <motion.div
           className="option-background"
-          style={{
+          initial={
+            isInitialRender
+              ? {
+                  width: dimensions.width,
+                  x: dimensions.left,
+                }
+              : false
+          }
+          animate={{
             width: dimensions.width,
-            transform: `translateX(${dimensions.left}px)`,
+            x: dimensions.left,
           }}
+          transition={{
+            type: "spring",
+            stiffness: 500,
+            damping: 30,
+          }}
+          layout
         />
       )}
       <button
