@@ -15,7 +15,6 @@ import Link from "next/link";
 import { Globe, ArrowUp, ArrowDown, X, CodeXml, Star } from "lucide-react";
 import AboutPopup from "./AboutPopup";
 import Footer from "./Footer";
-import { motion, AnimatePresence } from "framer-motion";
 import ScrollIndicator from "./ScrollIndicator";
 
 const OptionSwitcher = memo(({ selectedOption, handleOptionChange }) => {
@@ -75,26 +74,12 @@ const OptionSwitcher = memo(({ selectedOption, handleOptionChange }) => {
   return (
     <div className="option-switcher" ref={containerRef}>
       {dimensions && selectedOption !== "about" && (
-        <motion.div
+        <div
           className="option-background"
-          initial={
-            isInitialRender
-              ? {
-                  width: dimensions.width,
-                  x: dimensions.left,
-                }
-              : false
-          }
-          animate={{
+          style={{
             width: dimensions.width,
-            x: dimensions.left,
+            transform: `translateX(${dimensions.left}px)`,
           }}
-          transition={{
-            type: "spring",
-            stiffness: 500,
-            damping: 30,
-          }}
-          layout
         />
       )}
       <button
@@ -121,157 +106,80 @@ const OptionSwitcher = memo(({ selectedOption, handleOptionChange }) => {
 
 OptionSwitcher.displayName = "OptionSwitcher";
 
-const BlogList = memo(
-  ({ posts, viewsData, loading, sortConfig, handleSort }) => {
-    const getSortIcon = useCallback(
-      (key) => {
-        if (sortConfig.key !== key) return null;
-        return sortConfig.direction === "asc" ? (
-          <ArrowUp size={14} />
-        ) : (
-          <ArrowDown size={14} />
-        );
-      },
-      [sortConfig],
-    );
+const BlogList = memo(({ posts, viewsData, sortConfig, handleSort }) => {
+  const getSortIcon = useCallback(
+    (key) => {
+      if (sortConfig.key !== key) return null;
+      return sortConfig.direction === "asc" ? (
+        <ArrowUp size={14} />
+      ) : (
+        <ArrowDown size={14} />
+      );
+    },
+    [sortConfig],
+  );
 
-    const [showScroll, setShowScroll] = useState(false);
-    const tableRef = useRef(null);
+  const [showScroll, setShowScroll] = useState(false);
+  const tableRef = useRef(null);
 
-    useEffect(() => {
-      let timeout;
-      if (!loading) {
-        timeout = setTimeout(() => {
-          setShowScroll(true);
-        }, 0);
-      }
-      return () => clearTimeout(timeout);
-    }, [loading]);
+  useEffect(() => {
+    setShowScroll(true);
+  }, []);
 
-    const listItems = useMemo(() => {
-      if (loading) {
-        return Array(4)
-          .fill(0)
-          .map((_, i) => (
-            <div key={i} className="list-row skeleton-row">
-              <span className="date">
-                <div className="skeleton-text" style={{ width: "45px" }}></div>
-              </span>
-              <span className="title">
-                <div className="skeleton-text" style={{ width: "80%" }}></div>
-              </span>
-              <span className="views">
-                <div
-                  className="skeleton-text"
-                  style={{ width: "30px", marginLeft: "auto" }}
-                ></div>
-              </span>
-            </div>
-          ));
-      }
+  const listItems = useMemo(() => {
+    return posts.map((post) => (
+      <Link
+        href={`/post/${post.slug}`}
+        key={post.slug}
+        className="list-row"
+        prefetch
+      >
+        <span className="date">{post.year}</span>
+        <span className="title">{post.title}</span>
+        <span className="views">
+          {viewsData[post.slug] === undefined ? (
+            <span className="infinity-symbol">∞</span>
+          ) : (
+            viewsData[post.slug]
+          )}
+        </span>
+      </Link>
+    ));
+  }, [posts, viewsData]);
 
-      return posts.map((post) => (
-        <Link
-          href={`/post/${post.slug}`}
-          key={post.slug}
-          className="list-row"
-          prefetch
+  return (
+    <div className="mono-list">
+      <div className="list-header">
+        <span onClick={() => handleSort("date")} style={{ cursor: "pointer" }}>
+          date {getSortIcon("date")}
+        </span>
+        <span style={{ cursor: "default" }}>title</span>
+        <span
+          onClick={() => handleSort("views")}
+          style={{ cursor: "pointer" }}
+          className="views"
         >
-          <span className="date">{post.year}</span>
-          <span className="title">{post.title}</span>
-          <span className="views">
-            {viewsData[post.slug] === undefined ? (
-              <span className="infinity-symbol">∞</span>
-            ) : (
-              viewsData[post.slug]
-            )}
-          </span>
-        </Link>
-      ));
-    }, [posts, viewsData, loading]);
-
-    return (
-      <div className="mono-list">
-        <div className="list-header">
-          <span
-            onClick={() => handleSort("date")}
-            style={{ cursor: "pointer" }}
-          >
-            date {getSortIcon("date")}
-          </span>
-          <span style={{ cursor: "default" }}>title</span>
-          <span
-            onClick={() => handleSort("views")}
-            style={{ cursor: "pointer" }}
-            className="views"
-          >
-            {getSortIcon("views")} views
-          </span>
-        </div>
-        <AnimatePresence mode="wait">
-          <motion.div
-            className="table-max"
-            ref={tableRef}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-          >
-            {listItems}
-          </motion.div>
-        </AnimatePresence>
-        {showScroll && <ScrollIndicator containerRef={tableRef} />}
+          {getSortIcon("views")} views
+        </span>
       </div>
-    );
-  },
-);
+      <div className="table-max" ref={tableRef}>
+        {listItems}
+      </div>
+      {showScroll && <ScrollIndicator containerRef={tableRef} />}
+    </div>
+  );
+});
 
 const ProjectList = memo(
-  ({
-    projects,
-    loading,
-    selectedTag,
-    handleTagClick,
-    handleSort,
-    sortConfig,
-  }) => {
+  ({ projects, selectedTag, handleTagClick, handleSort, sortConfig }) => {
     const [showScroll, setShowScroll] = useState(false);
     const tableRef = useRef(null);
 
     useEffect(() => {
-      let timeout;
-      if (!loading) {
-        timeout = setTimeout(() => {
-          setShowScroll(true);
-        }, 0);
-      }
-      return () => clearTimeout(timeout);
-    }, [loading]);
+      setShowScroll(true);
+    }, []);
 
     const listItems = useMemo(() => {
-      if (loading) {
-        return Array(8)
-          .fill(0)
-          .map((_, i) => (
-            <div key={i} className="list-row skeleton-row">
-              <span className="title">
-                <div className="skeleton-text" style={{ width: "70%" }}></div>
-              </span>
-              <span className="actions">
-                <span className="action-link skeleton-action">
-                  <CodeXml size={20} />
-                </span>
-                <span className="action-link skeleton-action">
-                  <Globe size={20} />
-                </span>
-              </span>
-              <span className="tags">
-                <span className="tag skeleton-tag"></span>
-              </span>
-            </div>
-          ));
-      }
-
       return projects.map((project) => (
         <div key={project.title} className="list-row">
           <span className="title">
@@ -318,7 +226,7 @@ const ProjectList = memo(
           </span>
         </div>
       ));
-    }, [projects, loading, selectedTag, handleTagClick]);
+    }, [projects, selectedTag, handleTagClick]);
 
     return (
       <div className="mono-list project-list">
@@ -352,18 +260,9 @@ const ProjectList = memo(
             tags
           </span>
         </div>
-        <AnimatePresence mode="wait">
-          <motion.div
-            className="table-max"
-            ref={tableRef}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-          >
-            {listItems}
-          </motion.div>
-        </AnimatePresence>
+        <div className="table-max" ref={tableRef}>
+          {listItems}
+        </div>
         {showScroll && <ScrollIndicator containerRef={tableRef} />}
       </div>
     );
@@ -381,7 +280,6 @@ const Content = ({ posts, projects }) => {
   const [viewsData, setViewsData] = useState({});
   const [sortConfig, setSortConfig] = useState({ key: null, direction: null });
   const [selectedTag, setSelectedTag] = useState(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let isMounted = true;
@@ -404,13 +302,9 @@ const Content = ({ posts, projects }) => {
               {},
             ),
           );
-          setLoading(false);
         }
       } catch (error) {
         console.error("Error fetching views:", error);
-        if (isMounted) {
-          setLoading(false);
-        }
       }
     };
 
@@ -519,14 +413,12 @@ const Content = ({ posts, projects }) => {
             <BlogList
               posts={sortedPosts}
               viewsData={viewsData}
-              loading={loading}
               sortConfig={sortConfig}
               handleSort={handleSort}
             />
           ) : selectedOption === "projects" ? (
             <ProjectList
               projects={filteredProjects}
-              loading={loading}
               selectedTag={selectedTag}
               handleTagClick={handleTagClick}
               handleSort={handleSort}
