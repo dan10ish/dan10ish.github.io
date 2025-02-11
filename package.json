@@ -4,12 +4,12 @@
   "private": true,
   "homepage": "https://dan10ish.github.io",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "postbuild": "next-sitemap --config next-sitemap.config.js",
-    "start": "next start",
-    "lint": "next lint",
-    "deploy": "npm run build && npm run postbuild && touch out/.nojekyll && gh-pages -d out -t true"
+    "dev": "bun next dev",
+    "build": "bun next build",
+    "start": "bun next start",
+    "lint": "bun next lint",
+    "postbuild": "bun next-sitemap --config next-sitemap.config.js",
+    "deploy": "bun build && bun postbuild && touch out/.nojekyll && gh-pages -d out -t true"
   },
   "dependencies": {
     "@icons-pack/react-simple-icons": "^11.2.0",

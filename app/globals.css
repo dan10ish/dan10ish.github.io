@@ -388,6 +388,7 @@ th {
   position: relative;
   left: 50%;
   transform: translate(-50%);
+  top: -2%;
 }
 
 .about-close {
@@ -2864,6 +2865,7 @@ a[data-footnote-ref] {
 
   .about-container {
     border-radius: 12px;
+    top: -5%;
   }
 
   .about-header {
