@@ -12,7 +12,16 @@ import {
 import { supabase } from "@/lib/supabase";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { Globe, ArrowUp, ArrowDown, X, CodeXml, Star } from "lucide-react";
+import {
+  Globe,
+  ArrowUp,
+  ArrowDown,
+  X,
+  CodeXml,
+  Star,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import AboutPopup from "./AboutPopup";
 import Footer from "./Footer";
 import ScrollIndicator from "./ScrollIndicator";
@@ -168,7 +177,9 @@ const BlogList = memo(({ posts, viewsData, sortConfig, handleSort }) => {
         <span onClick={() => handleSort("date")} style={{ cursor: "pointer" }}>
           date {getSortIcon("date")}
         </span>
-        <span style={{ cursor: "default" }}>title</span>
+        <span onClick={() => handleSort("title")} style={{ cursor: "pointer" }}>
+          title {getSortIcon("title")}
+        </span>
         <span
           onClick={() => handleSort("views")}
           style={{ cursor: "pointer" }}
@@ -185,18 +196,150 @@ const BlogList = memo(({ posts, viewsData, sortConfig, handleSort }) => {
   );
 });
 
+const ProjectPopup = ({
+  project,
+  onClose,
+  onPrev,
+  onNext,
+  isFirst,
+  isLast,
+}) => {
+  const popupRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (popupRef.current && !popupRef.current.contains(event.target)) {
+        onClose();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [onClose]);
+
+  return (
+    <div className="project-pop-overlay">
+      <div className="project-pop-container" ref={popupRef}>
+        <div className="project-pop-header">
+          <h3 className="project-pop-title">{project.title}</h3>
+          <button className="project-pop-close" onClick={onClose}>
+            <X size={20} strokeWidth={2.5} />
+          </button>
+        </div>
+
+        <div className="project-pop-body">
+          <p className="project-pop-about">{project.description}</p>
+          <div className="project-pop-links">
+            {project.sourceLink && (
+              <a
+                href={project.sourceLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="project-pop-link"
+              >
+                <CodeXml size={18} className="project-pop-icon" />
+                View Source
+              </a>
+            )}
+            {project.projectLink && (
+              <a
+                href={project.projectLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="project-pop-link"
+              >
+                <Globe size={18} className="project-pop-icon" />
+                Live Project
+              </a>
+            )}
+          </div>
+        </div>
+
+        <div className="project-pop-nav">
+          <button
+            className="project-pop-nav-button"
+            onClick={onPrev}
+            disabled={isFirst}
+            style={{ opacity: isFirst ? 0.3 : 1 }}
+          >
+            <ChevronLeft size={22}/> 
+          </button> 
+          <button
+            className="project-pop-nav-button"
+            onClick={onNext}
+            disabled={isLast}
+            style={{ opacity: isLast ? 0.3 : 1 }}
+          >
+            <ChevronRight size={22}/>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const ProjectList = memo(
   ({ projects, selectedTag, handleTagClick, handleSort, sortConfig }) => {
     const [showScroll, setShowScroll] = useState(false);
     const tableRef = useRef(null);
+    const [selectedProjectIndex, setSelectedProjectIndex] = useState(null);
 
     useEffect(() => {
       setShowScroll(true);
     }, []);
 
+    const handleRowClick = (index, event) => {
+      if (
+        event.target.classList.contains("tag") ||
+        event.target.classList.contains("action-link") ||
+        event.target.closest(".tag") ||
+        event.target.closest(".action-link")
+      ) {
+        return;
+      }
+      setSelectedProjectIndex(index);
+    };
+
+    const handlePopupClose = () => {
+      setSelectedProjectIndex(null);
+    };
+
+    const handlePrevProject = () => {
+      setSelectedProjectIndex((prevIndex) =>
+        prevIndex > 0 ? prevIndex - 1 : 0,
+      );
+    };
+
+    const handleNextProject = () => {
+      setSelectedProjectIndex((prevIndex) =>
+        prevIndex < projects.length - 1 ? prevIndex + 1 : projects.length - 1,
+      );
+    };
+
+    const getSortIcon = useCallback(
+      (key) => {
+        if (sortConfig?.key !== key) return null;
+        return sortConfig.direction === "asc" ? (
+          <ArrowUp size={14} />
+        ) : (
+          <ArrowDown size={14} />
+        );
+      },
+      [sortConfig],
+    );
+
     const listItems = useMemo(() => {
-      return projects.map((project) => (
-        <div key={project.title} className="list-row">
+      return projects.map((project, index) => (
+        <div
+          key={project.title}
+          className={`list-row ${
+            index === selectedProjectIndex ? "active-project" : ""
+          }`}
+          onClick={(e) => handleRowClick(index, e)}
+        >
           <span className="title">
             <div>{project.title}</div>
             <div>
@@ -212,8 +355,9 @@ const ProjectList = memo(
               href={project.sourceLink || "#"}
               target="_blank"
               rel="noopener noreferrer"
-              className={`action-link github ${!project.sourceLink ? "disabled" : ""}`}
-              onClick={(e) => !project.sourceLink && e.preventDefault()}
+              className={`action-link github ${
+                !project.sourceLink ? "disabled" : ""
+              }`}
             >
               <CodeXml size={20} />
             </a>
@@ -221,8 +365,9 @@ const ProjectList = memo(
               href={project.projectLink || "#"}
               target="_blank"
               rel="noopener noreferrer"
-              className={`action-link globe ${!project.projectLink ? "disabled" : ""}`}
-              onClick={(e) => !project.projectLink && e.preventDefault()}
+              className={`action-link globe ${
+                !project.projectLink ? "disabled" : ""
+              }`}
             >
               <Globe size={20} />
             </a>
@@ -233,7 +378,6 @@ const ProjectList = memo(
                 key={tag}
                 className={`tag ${selectedTag === tag ? "selected" : ""}`}
                 onClick={(e) => handleTagClick(tag, e)}
-                style={{ cursor: "pointer" }}
               >
                 {tag}
               </span>
@@ -241,45 +385,64 @@ const ProjectList = memo(
           </span>
         </div>
       ));
-    }, [projects, selectedTag, handleTagClick]);
+    }, [projects, selectedTag, handleTagClick, selectedProjectIndex]);
 
     return (
-      <div className="mono-list project-list">
-        <div className="list-header">
-          <span style={{ cursor: "default" }}>title</span>
-          <span className="actions" style={{ cursor: "default" }}>
-            links
-          </span>
-          <span
-            className="sort-header tags"
-            onClick={() => !selectedTag && handleSort("tags")}
-            style={{ cursor: selectedTag ? "default" : "pointer" }}
-          >
-            {!selectedTag &&
-              sortConfig.key === "tags" &&
-              (sortConfig.direction === "asc" ? (
-                <ArrowUp size={14} />
-              ) : (
-                <ArrowDown size={14} />
-              ))}
-            {selectedTag && (
-              <X
-                size={16}
-                className="tag-reset"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleTagClick(null, e);
-                }}
-              />
-            )}
-            tags
-          </span>
+      <>
+        <div className="mono-list project-list">
+          <div className="list-header">
+            <span
+              onClick={() => handleSort("title")}
+              style={{ cursor: "pointer" }}
+            >
+              title {getSortIcon("title")}
+            </span>
+            <span className="actions" style={{ cursor: "default" }}>
+              links
+            </span>
+            <span
+              className="sort-header tags"
+              onClick={() => !selectedTag && handleSort("tags")}
+              style={{ cursor: selectedTag ? "default" : "pointer" }}
+            >
+              {!selectedTag &&
+                sortConfig.key === "tags" &&
+                (sortConfig.direction === "asc" ? (
+                  <ArrowUp size={14} />
+                ) : (
+                  <ArrowDown size={14} />
+                ))}
+              {selectedTag && (
+                <X
+                  size={16}
+                  className="tag-reset"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleTagClick(null, e);
+                  }}
+                />
+              )}
+              tags
+            </span>
+          </div>
+          <div className="table-max" ref={tableRef}>
+            {listItems}
+          </div>
+          {showScroll && <ScrollIndicator containerRef={tableRef} />}
         </div>
-        <div className="table-max" ref={tableRef}>
-          {listItems}
-        </div>
-        {showScroll && <ScrollIndicator containerRef={tableRef} />}
-      </div>
+        <AnimatePresence>
+          {selectedProjectIndex !== null && (
+            <ProjectPopup
+              project={projects[selectedProjectIndex]}
+              onClose={handlePopupClose}
+              onPrev={handlePrevProject}
+              onNext={handleNextProject}
+              isFirst={selectedProjectIndex === 0}
+              isLast={selectedProjectIndex === projects.length - 1}
+            />
+          )}
+        </AnimatePresence>
+      </>
     );
   },
 );
@@ -353,21 +516,17 @@ const Content = ({ posts, projects }) => {
     setSelectedOption(previousOption);
   }, [previousOption]);
 
-  const handleSort = useCallback(
-    (key) => {
-      if (key === "tags" && selectedTag) return;
-      setSortConfig((current) => ({
-        key: current.key === key && current.direction === "desc" ? null : key,
-        direction:
-          current.key === key
-            ? current.direction === "asc"
-              ? "desc"
-              : null
-            : "asc",
-      }));
-    },
-    [selectedTag],
-  );
+  const handleSort = useCallback((key) => {
+    setSortConfig((current) => ({
+      key: current.key === key && current.direction === "desc" ? null : key,
+      direction:
+        current.key === key
+          ? current.direction === "asc"
+            ? "desc"
+            : null
+          : "asc",
+    }));
+  }, []);
 
   const handleTagClick = useCallback((tag, event) => {
     event.preventDefault();
@@ -381,8 +540,11 @@ const Content = ({ posts, projects }) => {
         const dateA = new Date(a.date);
         const dateB = new Date(b.date);
         return sortConfig.direction === "asc" ? dateA - dateB : dateB - dateA;
-      }
-      if (sortConfig.key === "views") {
+      } else if (sortConfig.key === "title") {
+        return sortConfig.direction === "asc"
+          ? a.title.localeCompare(b.title)
+          : b.title.localeCompare(a.title);
+      } else if (sortConfig.key === "views") {
         const viewsA = viewsData[a.slug] || 0;
         const viewsB = viewsData[b.slug] || 0;
         return sortConfig.direction === "asc"
@@ -399,9 +561,16 @@ const Content = ({ posts, projects }) => {
       filtered = projects.filter((project) =>
         project.tags.includes(selectedTag),
       );
-      return filtered;
     }
-    if (sortConfig.key === "tags") {
+    if (sortConfig?.key === "title") {
+      filtered = [...filtered].sort((a, b) => {
+        const titleA = a.title;
+        const titleB = b.title;
+        return sortConfig.direction === "asc"
+          ? titleA.localeCompare(titleB)
+          : titleB.localeCompare(titleA);
+      });
+    } else if (sortConfig?.key === "tags") {
       filtered = [...filtered].sort((a, b) => {
         const tagsA = a.tags.join(",");
         const tagsB = b.tags.join(",");

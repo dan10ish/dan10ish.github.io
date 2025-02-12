@@ -639,6 +639,10 @@ th {
   gap: 2rem;
 }
 
+.project-list .list-row {
+  cursor: pointer;
+}
+
 .list-header .actions {
   text-align: center;
   justify-content: center;
@@ -683,7 +687,6 @@ th {
   padding: 0.2rem 0.6rem;
   border-radius: 4px;
   border: 1px solid rgba(var(--color-text-rgb), 0.1);
-  /* background: rgba(var(--color-text-rgb), 0.04); */
   color: rgba(var(--color-text-rgb), 0.8);
   white-space: nowrap;
   font-weight: 400;
@@ -2821,6 +2824,129 @@ a[data-footnote-ref] {
   visibility: visible;
 }
 
+.project-pop-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.project-pop-container {
+  position: relative;
+  width: 90%;
+  max-width: 500px;
+  background: var(--code-background-color);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  top: -2%;
+  background: var(--code-background-color);
+  transition: box-shadow 0.3s ease;
+  border: 1px solid rgba(var(--color-text-rgb), 0.1);
+}
+
+.project-pop-header {
+  padding: 0.75rem 1.5rem;
+  border-bottom: 1px solid rgba(var(--color-text-rgb), 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.project-pop-title {
+  font-size: calc(var(--font-size-mobile) * 1.2);
+  margin: 0;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.project-pop-close {
+  background: none;
+  border: none;
+  color: #ff0000;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.2rem;
+  border-radius: 4px;
+}
+
+.project-pop-body {
+  padding: 0.75rem 1.5rem;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.project-pop-about {
+  font-size: calc(var(--font-size-mobile) * 0.9);
+  color: rgba(var(--color-text-rgb), 0.8);
+  margin-bottom: 0.75rem;
+  height: calc(var(--font-size-mobile) * 5);
+}
+
+.project-pop-links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.project-pop-link {
+  color: var(--color-text);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 45%;
+  font-size: calc(var(--font-size-mobile) * 0.85);
+  padding: 0.6rem;
+  border: 1px solid rgba(var(--color-text-rgb), 0.1);
+  border-radius: 8px;
+  width: 100%;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  background: rgba(var(--color-text-rgb), 0.05);
+}
+
+.project-pop-icon {
+  opacity: 1;
+  color: var(--color-link);
+}
+
+.project-pop-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1.5rem 0.75rem;
+}
+
+.project-pop-nav-button {
+  border: none;
+  background: var(--code-background-color);
+  color: var(--color-text);
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(var(--color-text-rgb), 0.1);
+}
+
+.project-pop-nav-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
 /* Desktop Media Queries */
 @media (min-width: 768px) {
   html {
@@ -3110,6 +3236,28 @@ a[data-footnote-ref] {
   .about-overlay {
     gap: 3rem;
   }
+
+  .project-pop-container {
+    width: 90%;
+    max-height: 90vh;
+    top: -7%;
+  }
+
+  .project-pop-links {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .project-pop-link {
+    width: 45%;
+    font-size: calc(var(--font-size-mobile) * 0.95);
+    gap: 0.75rem;
+  }
+
+  .project-pop-about {
+    font-size: calc(var(--font-size-mobile) * 1);
+    height: calc(var(--font-size-mobile) * 4);
+  }
 }
 
 /* Hover Effects */
@@ -3375,6 +3523,7 @@ a[data-footnote-ref] {
 
   .tag:hover {
     transform: scale(1.08);
+    cursor: pointer;
   }
 
   .about-close:hover {
@@ -3404,6 +3553,23 @@ a[data-footnote-ref] {
 
   .about-header-links a:hover svg {
     scale: 1.2;
+  }
+
+  .project-pop-link:hover {
+    border-color: var(--color-link);
+    text-decoration: none;
+  }
+
+  .project-pop-link:hover .project-pop-icon {
+    scale: 1.2;
+  }
+
+  .project-pop-close:hover {
+    scale: 1.2;
+  }
+
+  .project-pop-nav-button:hover {
+    background: rgba(var(--color-text-rgb), 0.05);
   }
 }
 
