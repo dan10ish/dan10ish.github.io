@@ -19,13 +19,22 @@ import {
   X,
   CodeXml,
   Star,
+  Mail,
+  ArrowUpRight,
+  Plane,
+  ChartCandlestick,
+  Briefcase,
+  GraduationCap,
+  Hammer,
+  BookText,
+  Images,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import AboutPopup from "./AboutPopup";
 import Footer from "./Footer";
 import ScrollIndicator from "./ScrollIndicator";
 import { motion, AnimatePresence } from "framer-motion";
+import { SiX, SiGithub, SiInstagram } from "@icons-pack/react-simple-icons";
 
 const OptionSwitcher = memo(({ selectedOption, handleOptionChange }) => {
   const containerRef = useRef(null);
@@ -34,42 +43,37 @@ const OptionSwitcher = memo(({ selectedOption, handleOptionChange }) => {
   const resizeObserverRef = useRef(null);
 
   const updateDimensions = useCallback(() => {
-    if (!containerRef.current || selectedOption === "about") {
+    if (!containerRef.current) {
       setDimensions(null);
       return;
     }
 
     const activeButton =
       containerRef.current.querySelector(".option-btn.active");
-    if (activeButton) {
-      const rect = activeButton.getBoundingClientRect();
-      const containerRect = containerRef.current.getBoundingClientRect();
+    if (!activeButton) return;
 
-      setDimensions({
-        width: rect.width,
-        left: rect.left - containerRect.left,
-      });
-    }
-  }, [selectedOption]);
+    const rect = activeButton.getBoundingClientRect();
+    const containerRect = containerRef.current.getBoundingClientRect();
+
+    setDimensions({
+      width: rect.width,
+      left: rect.left - containerRect.left,
+    });
+  }, []);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    const currentRef = containerRef.current;
+    if (!currentRef) return;
 
-    resizeObserverRef.current = new ResizeObserver(() => {
-      requestAnimationFrame(updateDimensions);
-    });
-
-    resizeObserverRef.current.observe(containerRef.current);
-    if (containerRef.current.parentElement) {
-      resizeObserverRef.current.observe(containerRef.current.parentElement);
+    resizeObserverRef.current = new ResizeObserver(updateDimensions);
+    resizeObserverRef.current.observe(currentRef);
+    if (currentRef.parentElement) {
+      resizeObserverRef.current.observe(currentRef.parentElement);
     }
-
     updateDimensions();
 
     return () => {
-      if (resizeObserverRef.current) {
-        resizeObserverRef.current.disconnect();
-      }
+      resizeObserverRef.current?.disconnect();
     };
   }, [updateDimensions]);
 
@@ -83,52 +87,149 @@ const OptionSwitcher = memo(({ selectedOption, handleOptionChange }) => {
 
   return (
     <div className="option-switcher" ref={containerRef}>
-      {dimensions && selectedOption !== "about" && (
+      {dimensions && (
         <motion.div
           className="option-background"
           initial={
             isInitialRender
-              ? {
-                  width: dimensions.width,
-                  x: dimensions.left,
-                }
+              ? { width: dimensions.width, x: dimensions.left }
               : false
           }
-          animate={{
-            width: dimensions.width,
-            x: dimensions.left,
-          }}
-          transition={{
-            type: "spring",
-            stiffness: 500,
-            damping: 30,
-          }}
+          animate={{ width: dimensions.width, x: dimensions.left }}
+          transition={{ type: "spring", stiffness: 500, damping: 30 }}
           layout
         />
       )}
-      <button
-        onClick={() => handleOptionChange("writings")}
-        className={`option-btn${selectedOption === "writings" ? " active" : ""}`}
-      >
-        Posts
-      </button>
-      <button
-        onClick={() => handleOptionChange("projects")}
-        className={`option-btn${selectedOption === "projects" ? " active" : ""}`}
-      >
-        Projects
-      </button>
-      <button
-        onClick={() => handleOptionChange("about")}
-        className={`option-btn${selectedOption === "about" ? " active" : ""}`}
-      >
-        <span className="info-option-btn">i</span>
-      </button>
+      <div className="option-left">
+        <button
+          onClick={() => handleOptionChange("writings")}
+          className={`option-btn${selectedOption === "writings" ? " active" : ""}`}
+        >
+          Posts
+        </button>
+        <button
+          onClick={() => handleOptionChange("projects")}
+          className={`option-btn${selectedOption === "projects" ? " active" : ""}`}
+        >
+          Projects
+        </button>
+      </div>
+      <div className="option-right">
+        <button
+          onClick={() => handleOptionChange("about")}
+          className={`option-btn${selectedOption === "about" ? " active" : ""}`}
+        >
+          About
+        </button>
+      </div>
     </div>
   );
 });
 
 OptionSwitcher.displayName = "OptionSwitcher";
+
+const AboutContent = () => {
+  const details = [
+    { label: <GraduationCap />, content: "Mechatronics Engineering" },
+    { label: <Hammer />, content: "ML, Robotics, CS" },
+    {
+      label: <Briefcase />,
+      content: "Modelling and programming of 3 & 4-DOF robotic arms",
+    },
+    {
+      label: <Star />,
+      content: (
+        <div className="about-interest">
+          <Link href="/planes" className="detail-link">
+            <Plane size={14} /> Planes
+          </Link>
+          <Link href="/finance" className="detail-link">
+            <ChartCandlestick size={14} /> Finance
+          </Link>
+        </div>
+      ),
+    },
+    {
+      label: <BookText />,
+      content: (
+        <a
+          href="https://press.stripe.com/the-art-of-doing-science-and-engineering"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="detail-link"
+        >
+          The Art of Doing Science and Engineering <ArrowUpRight size={12} />
+        </a>
+      ),
+    },
+  ];
+
+  return (
+    <div className="about-container">
+      <div className="about-content">
+        <span className="name">Danish Ansari</span>
+        <div className="about-details">
+          {details.map((detail, index) => (
+            <div key={index} className="detail-item">
+              <span className="detail-label">{detail.label}</span>
+              <span className="detail-content">{detail.content}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="about-header">
+        <div className="about-header-links">
+          <Link href="/notes" className="footer-link">
+            <BookText size={16} />
+            Notes
+          </Link>
+          <Link href="/photos" className="footer-link">
+            <Images size={16} />
+            Photos
+          </Link>
+        </div>
+        <div className="footer-socials">
+          <a
+            href="https://x.com/dan10ish"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="header-icon"
+            aria-label="Visit my X profile"
+          >
+            <SiX size={20} />
+          </a>
+          <a
+            href="https://github.com/dan10ish"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="header-icon header-icon-github"
+            aria-label="Visit my GitHub profile"
+          >
+            <SiGithub size={22} />
+          </a>
+          <a
+            href="https://instagram.com/dan10ish"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="header-icon header-icon-github"
+            aria-label="Visit my Instagram profile"
+          >
+            <SiInstagram size={20} />
+          </a>
+          <a
+            href="mailto:aansaridan@gmail.com"
+            className="header-icon email-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Connect via email"
+          >
+            <Mail size={24} strokeWidth={1.8} />
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const BlogList = memo(({ posts, viewsData, sortConfig, handleSort }) => {
   const getSortIcon = useCallback(
@@ -143,12 +244,7 @@ const BlogList = memo(({ posts, viewsData, sortConfig, handleSort }) => {
     [sortConfig],
   );
 
-  const [showScroll, setShowScroll] = useState(false);
   const tableRef = useRef(null);
-
-  useEffect(() => {
-    setShowScroll(true);
-  }, []);
 
   const listItems = useMemo(() => {
     return posts.map((post) => (
@@ -191,7 +287,7 @@ const BlogList = memo(({ posts, viewsData, sortConfig, handleSort }) => {
       <div className="table-max" ref={tableRef}>
         {listItems}
       </div>
-      {showScroll && <ScrollIndicator containerRef={tableRef} />}
+      <ScrollIndicator containerRef={tableRef} />
     </div>
   );
 });
@@ -265,15 +361,15 @@ const ProjectPopup = ({
             disabled={isFirst}
             style={{ opacity: isFirst ? 0.3 : 1 }}
           >
-            <ChevronLeft size={22}/> 
-          </button> 
+            <ChevronLeft size={22} />
+          </button>
           <button
             className="project-pop-nav-button"
             onClick={onNext}
             disabled={isLast}
             style={{ opacity: isLast ? 0.3 : 1 }}
           >
-            <ChevronRight size={22}/>
+            <ChevronRight size={22} />
           </button>
         </div>
       </div>
@@ -283,41 +379,34 @@ const ProjectPopup = ({
 
 const ProjectList = memo(
   ({ projects, selectedTag, handleTagClick, handleSort, sortConfig }) => {
-    const [showScroll, setShowScroll] = useState(false);
     const tableRef = useRef(null);
     const [selectedProjectIndex, setSelectedProjectIndex] = useState(null);
 
-    useEffect(() => {
-      setShowScroll(true);
+    const handleRowClick = useCallback((index, event) => {
+      const target = event.target;
+      if (
+        target.classList.contains("tag") ||
+        target.classList.contains("action-link") ||
+        target.closest(".tag") ||
+        target.closest(".action-link")
+      )
+        return;
+      setSelectedProjectIndex(index);
     }, []);
 
-    const handleRowClick = (index, event) => {
-      if (
-        event.target.classList.contains("tag") ||
-        event.target.classList.contains("action-link") ||
-        event.target.closest(".tag") ||
-        event.target.closest(".action-link")
-      ) {
-        return;
-      }
-      setSelectedProjectIndex(index);
-    };
-
-    const handlePopupClose = () => {
+    const handlePopupClose = useCallback(() => {
       setSelectedProjectIndex(null);
-    };
+    }, []);
 
-    const handlePrevProject = () => {
-      setSelectedProjectIndex((prevIndex) =>
-        prevIndex > 0 ? prevIndex - 1 : 0,
-      );
-    };
+    const handlePrevProject = useCallback(() => {
+      setSelectedProjectIndex((prevIndex) => Math.max(0, prevIndex - 1));
+    }, []);
 
-    const handleNextProject = () => {
+    const handleNextProject = useCallback(() => {
       setSelectedProjectIndex((prevIndex) =>
-        prevIndex < projects.length - 1 ? prevIndex + 1 : projects.length - 1,
+        Math.min(projects.length - 1, prevIndex + 1),
       );
-    };
+    }, [projects.length]);
 
     const getSortIcon = useCallback(
       (key) => {
@@ -385,7 +474,13 @@ const ProjectList = memo(
           </span>
         </div>
       ));
-    }, [projects, selectedTag, handleTagClick, selectedProjectIndex]);
+    }, [
+      projects,
+      selectedTag,
+      handleTagClick,
+      selectedProjectIndex,
+      handleRowClick,
+    ]);
 
     return (
       <>
@@ -428,7 +523,7 @@ const ProjectList = memo(
           <div className="table-max" ref={tableRef}>
             {listItems}
           </div>
-          {showScroll && <ScrollIndicator containerRef={tableRef} />}
+          <ScrollIndicator containerRef={tableRef} />
         </div>
         <AnimatePresence>
           {selectedProjectIndex !== null && (
@@ -450,17 +545,13 @@ const ProjectList = memo(
 const Content = ({ posts, projects }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [selectedOption, setSelectedOption] = useState(
-    searchParams.get("tab") === "projects" ? "projects" : "writings",
-  );
-  const [isAboutOpen, setIsAboutOpen] = useState(false);
-  const [previousOption, setPreviousOption] = useState(selectedOption);
+  const initialTab = searchParams.get("tab") || "writings";
+  const [selectedOption, setSelectedOption] = useState(initialTab);
   const [viewsData, setViewsData] = useState({});
   const [sortConfig, setSortConfig] = useState({ key: null, direction: null });
   const [selectedTag, setSelectedTag] = useState(null);
 
   useEffect(() => {
-    let isMounted = true;
     const fetchViews = async () => {
       try {
         const viewsPromises = posts.map(async (post) => {
@@ -473,48 +564,27 @@ const Content = ({ posts, projects }) => {
         });
 
         const views = await Promise.all(viewsPromises);
-        if (isMounted) {
-          setViewsData(
-            views.reduce(
-              (acc, { slug, views }) => ({ ...acc, [slug]: views }),
-              {},
-            ),
-          );
-        }
+        setViewsData(
+          views.reduce(
+            (acc, { slug, views }) => ({ ...acc, [slug]: views }),
+            {},
+          ),
+        );
       } catch (error) {
         console.error("Error fetching views:", error);
       }
     };
 
     fetchViews();
-    return () => {
-      isMounted = false;
-    };
   }, [posts]);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("selectedOption", selectedOption);
-    }
-  }, [selectedOption]);
 
   const handleOptionChange = useCallback(
     (option) => {
-      if (option === "about") {
-        setPreviousOption(selectedOption);
-        setIsAboutOpen(true);
-      } else {
-        router.push(`/?tab=${option}`, { scroll: false });
-      }
       setSelectedOption(option);
+      router.push(`/?tab=${option}`, { scroll: false });
     },
-    [router, selectedOption],
+    [router],
   );
-
-  const handleAboutClose = useCallback(() => {
-    setIsAboutOpen(false);
-    setSelectedOption(previousOption);
-  }, [previousOption]);
 
   const handleSort = useCallback((key) => {
     setSortConfig((current) => ({
@@ -535,21 +605,22 @@ const Content = ({ posts, projects }) => {
 
   const sortedPosts = useMemo(() => {
     if (!sortConfig.key) return posts;
+    const key = sortConfig.key;
+    const direction = sortConfig.direction;
+
     return [...posts].sort((a, b) => {
-      if (sortConfig.key === "date") {
+      if (key === "date") {
         const dateA = new Date(a.date);
         const dateB = new Date(b.date);
-        return sortConfig.direction === "asc" ? dateA - dateB : dateB - dateA;
-      } else if (sortConfig.key === "title") {
-        return sortConfig.direction === "asc"
+        return direction === "asc" ? dateA - dateB : dateB - dateA;
+      } else if (key === "title") {
+        return direction === "asc"
           ? a.title.localeCompare(b.title)
           : b.title.localeCompare(a.title);
-      } else if (sortConfig.key === "views") {
+      } else if (key === "views") {
         const viewsA = viewsData[a.slug] || 0;
         const viewsB = viewsData[b.slug] || 0;
-        return sortConfig.direction === "asc"
-          ? viewsA - viewsB
-          : viewsB - viewsA;
+        return direction === "asc" ? viewsA - viewsB : viewsB - viewsA;
       }
       return 0;
     });
@@ -586,7 +657,6 @@ const Content = ({ posts, projects }) => {
     <div className="content-wrapper">
       <div className="content-header-table">
         <div className="content-header">
-          <AboutPopup isOpen={isAboutOpen} setIsOpen={handleAboutClose} />
           <OptionSwitcher
             selectedOption={selectedOption}
             handleOptionChange={handleOptionChange}
@@ -605,10 +675,12 @@ const Content = ({ posts, projects }) => {
               projects={filteredProjects}
               selectedTag={selectedTag}
               handleTagClick={handleTagClick}
-              handleSort={handleSort}
               sortConfig={sortConfig}
+              handleSort={handleSort}
             />
-          ) : null}
+          ) : (
+            <AboutContent />
+          )}
         </div>
       </div>
       <div>

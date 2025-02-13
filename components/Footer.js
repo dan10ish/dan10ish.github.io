@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, memo, useCallback } from "react";
-import { ChartNoAxesColumn, Heart, Star, Mail, CodeXml } from "lucide-react";
+import { ChartNoAxesColumn, Heart, Star, Mail, CodeXml, GitFork } from "lucide-react";
 
 import { SiGithub, SiInstagram, SiX } from "@icons-pack/react-simple-icons";
 
@@ -15,9 +15,13 @@ const Footer = ({ blogSlug = null }) => {
   const [stars, setStars] = useState(null);
   const [isUpdating, setIsUpdating] = useState(false);
   const [isGithubHovered, setIsGithubHovered] = useState(false);
-  const [isTouching, setIsTouching] = useState(null);
-  const [touchTimeout, setTouchTimeout] = useState(null);
-  const [isAnimating, setIsAnimating] = useState(false);
+
+  const formatNumber = useCallback((num) => {
+    if (num === null) return <span className="infinity-symbol">∞</span>;
+    if (num >= 1000000) return (num / 1000000).toFixed(2) + "M";
+    if (num >= 1000) return (num / 1000).toFixed(2) + "K";
+    return num;
+  }, []);
 
   useEffect(() => {
     const pageId = blogSlug ? `post-${blogSlug}` : "home";
@@ -129,7 +133,7 @@ const Footer = ({ blogSlug = null }) => {
     }
 
     return () => subscription.unsubscribe();
-  }, [blogSlug, isUpdating]);
+  }, [blogSlug, isUpdating, formatNumber]);
 
   const handleLike = useCallback(
     async (e) => {
@@ -159,100 +163,22 @@ const Footer = ({ blogSlug = null }) => {
     },
     [blogSlug, hasLiked],
   );
-  const formatNumber = useCallback((num) => {
-    if (num === null) return <span className="infinity-symbol">∞</span>;
-    if (num >= 1000000) return (num / 1000000).toFixed(2) + "M";
-    if (num >= 1000) return (num / 1000).toFixed(2) + "K";
-    return num;
-  }, []);
-
-  const handleTouchStart = (id) => {
-    if (touchTimeout) clearTimeout(touchTimeout);
-    const timeout = setTimeout(() => setIsTouching(id), 0);
-    setTouchTimeout(timeout);
-  };
-
-  const handleTouchEnd = () => {
-    if (touchTimeout) clearTimeout(touchTimeout);
-    setIsTouching(null);
-  };
 
   const isHomePage = !blogSlug;
 
   return (
     <footer className="site-footer">
-      {isHomePage && (
-        <>
-          <div className="footer-nav-mobile">
-            <div className="footer-socials">
-              <a
-                href="https://x.com/dan10ish"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="header-icon"
-                aria-label="Visit my X profile"
-              >
-                <SiX size={20} />
-              </a>
-              <a
-                href="https://github.com/dan10ish"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="header-icon header-icon-github"
-                aria-label="Visit my GitHub profile"
-              >
-                <SiGithub size={22} />
-              </a>
-              <a
-                href="https://instagram.com/dan10ish"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="header-icon header-icon-github"
-                aria-label="Visit my Instagram profile"
-              >
-                <SiInstagram size={20} />
-              </a>
-              <a
-                href="mailto:aansaridan@gmail.com"
-                className="header-icon email-link"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Connect via email"
-              >
-                <Mail size={24} strokeWidth={1.8} />
-              </a>
-            </div>
-            <div className="footer-nav-theme">
-              <ThemeButton />
-            </div>
-          </div>
-        </>
-      )}
       <div className="footer-metrics">
         <div className="metrics-group">
-          <div
-            className="metric metric-view"
-            data-tooltip={`${stats.views?.toLocaleString() || "0"} views`}
-            data-show-tooltip={isTouching === "views"}
-            onTouchStart={() => handleTouchStart("views")}
-            onTouchEnd={handleTouchEnd}
-            onTouchCancel={handleTouchEnd}
-          >
+          <div className="metric metric-view">
             <ChartNoAxesColumn size={16} />
             <span>{formatNumber(stats.views)}</span>
           </div>
           {blogSlug && (
-            <div
-              className="metric"
-              data-tooltip={`${stats.likes?.toLocaleString() || "0"} likes`}
-              data-show-tooltip={isTouching === "likes"}
-              onTouchStart={() => handleTouchStart("likes")}
-              onTouchEnd={handleTouchEnd}
-              onTouchCancel={handleTouchEnd}
-            >
+            <div className="metric">
               <button
                 onClick={handleLike}
-                className={`like-button ${hasLiked ? "liked" : ""} ${isAnimating ? "animating" : ""}`}
+                className={`like-button ${hasLiked ? "liked" : ""} ${isUpdating ? "animating" : ""}`}
                 disabled={hasLiked || isUpdating}
                 aria-label={hasLiked ? "Already liked" : "Like this post"}
               >
@@ -264,30 +190,33 @@ const Footer = ({ blogSlug = null }) => {
         </div>
         <div className="footer-share">
           {!blogSlug && stars !== null && (
-            <a
-              href={
-                blogSlug
-                  ? `https://github.com/dan10ish/dan10ish.github.io/blob/main/content/blog/${blogSlug}.md`
-                  : "https://github.com/dan10ish/dan10ish.github.io"
-              }
-              target="_blank"
-              rel="noopener noreferrer"
-              className="github-link"
-              onMouseEnter={() => setIsGithubHovered(true)}
-              onMouseLeave={() => setIsGithubHovered(false)}
-            >
-              <SiGithub size={20} />
-              <div className="github-stars">
-                <span className="highlight-star">
-                  <Star
-                    size={16}
-                    className={isGithubHovered ? "star-hover" : ""}
-                    fill="currentColor"
-                  />
-                </span>
-                <span className="star-number">{formatNumber(stars)}</span>
-              </div>
-            </a>
+            <>
+              <a
+                href={
+                  blogSlug
+                    ? `https://github.com/dan10ish/dan10ish.github.io/blob/main/content/blog/${blogSlug}.md`
+                    : "https://github.com/dan10ish/dan10ish.github.io"
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+                className="github-link"
+                onMouseEnter={() => setIsGithubHovered(true)}
+                onMouseLeave={() => setIsGithubHovered(false)}
+              >
+                <GitFork size={20} />
+                <div className="github-stars">
+                  <span className="highlight-star">
+                    <Star
+                      size={16}
+                      className={isGithubHovered ? "star-hover" : ""}
+                      fill="currentColor"
+                    />
+                  </span>
+                  <span className="star-number">{formatNumber(stars)}</span>
+                </div>
+              </a>
+              <ThemeButton />
+            </>
           )}
           {blogSlug && (
             <>
