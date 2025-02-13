@@ -30,6 +30,7 @@ import {
   Images,
   ChevronLeft,
   ChevronRight,
+  ChartCandlestickIcon,
 } from "lucide-react";
 import Footer from "./Footer";
 import ScrollIndicator from "./ScrollIndicator";
@@ -136,32 +137,6 @@ const AboutContent = () => {
       label: <Briefcase />,
       content: "Modelling and programming of 3 & 4-DOF robotic arms",
     },
-    {
-      label: <Star />,
-      content: (
-        <div className="about-interest">
-          <Link href="/planes" className="detail-link">
-            <Plane size={14} /> Planes
-          </Link>
-          <Link href="/finance" className="detail-link">
-            <ChartCandlestick size={14} /> Finance
-          </Link>
-        </div>
-      ),
-    },
-    {
-      label: <BookText />,
-      content: (
-        <a
-          href="https://press.stripe.com/the-art-of-doing-science-and-engineering"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="detail-link"
-        >
-          The Art of Doing Science and Engineering <ArrowUpRight size={12} />
-        </a>
-      ),
-    },
   ];
 
   return (
@@ -179,13 +154,17 @@ const AboutContent = () => {
       </div>
       <div className="about-header">
         <div className="about-header-links">
-          <Link href="/notes" className="footer-link">
+          <Link href="/notes" className="header-link">
             <BookText size={16} />
             Notes
           </Link>
-          <Link href="/photos" className="footer-link">
+          <Link href="/photos" className="header-link">
             <Images size={16} />
             Photos
+          </Link>
+          <Link href="/finance" className="header-link">
+            <ChartCandlestickIcon size={16} />
+            Finance
           </Link>
         </div>
         <div className="footer-socials">

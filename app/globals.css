@@ -386,17 +386,21 @@ th {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1.5rem;
+  gap: 0.5rem;
 }
 
 .about-header-links a {
   border: 1px solid rgba(var(--color-text-rgb), 0.1);
   background: rgba(var(--color-text-rgb), 0.04);
-  padding: 0.5rem 1rem;
+  padding: 0.2rem 1rem;
   border-radius: 0.5rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  text-decoration: none;
+  color: rgba(var(--color-text-rgb), 1);
+  font-size: calc(var(--font-size-mobile) * 0.95);
+  font-weight: 500;
   text-decoration: none;
 }
 
@@ -1012,7 +1016,7 @@ th {
 .toc-content {
   flex: 1;
   overflow-y: auto;
-  padding: 0px 0 100px;
+  padding: 10px 0 100px;
   margin: 0;
   scrollbar-width: thin;
   scrollbar-color: rgba(var(--color-text-rgb), 0.3) transparent;
@@ -1083,16 +1087,6 @@ th {
   gap: 1.5rem;
 }
 
-.footer-link {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  color: rgba(var(--color-text-rgb), 1);
-  text-decoration: none;
-  font-size: calc(var(--font-size-mobile) * 0.95);
-  font-weight: 500;
-}
-
 .footer-socials {
   display: flex;
   align-items: center;
@@ -1125,34 +1119,28 @@ th {
   gap: 0.5rem;
 }
 
-.metric {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.1rem 1rem;
-  /* height: 40px; */
-  /* background-color: var(--code-background-color); */
-  border-radius: 100px;
-  font-size: var(--font-size-mobile);
-  cursor: default;
-}
-
 .metric svg {
   opacity: 1;
 }
 
+.metric,
 .github-link {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.3rem 1rem;
-  /* height: 40px; */
-  /* background-color: var(--code-background-color); */
   border-radius: 100px;
   color: var(--color-text);
-  font-size: var(--font-size-mobile);
-  border: 1px solid var(--code-background-color);
+  border: 1px solid rgba(var(--color-text-rgb), 0.1);
   text-decoration: none;
+  padding: 0.4rem 1rem;
+  height: 35px;
+  font-size: calc(var(--font-size-mobile) * 0.9);
+}
+
+.metric svg,
+.github-link svg {
+  height: 18px;
+  width: auto;
 }
 
 .blog-source,
@@ -1182,13 +1170,6 @@ th {
   align-items: center;
   gap: 0.4rem;
   margin-left: 0.25rem;
-}
-
-.star-number {
-  font-size: calc(var(--font-size-mobile) * 1);
-  border-radius: 4px;
-  margin: 0;
-  opacity: 0.7;
 }
 
 .like-button {
@@ -2743,13 +2724,12 @@ a[data-footnote-ref] {
   position: relative;
   width: 85%;
   max-width: 500px;
-  background: var(--code-background-color);
   border-radius: 8px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   top: -2%;
-  background: var(--code-background-color);
+  background: var(--color-bg);
   transition: box-shadow 0.3s ease;
   border: 1px solid rgba(var(--color-text-rgb), 0.1);
 }
@@ -3270,10 +3250,6 @@ a[data-footnote-ref] {
     text-decoration: none;
   }
 
-  .github-link:hover svg {
-    transform: scale(1.2);
-  }
-
   .blog-source:hover {
     background: var(--code-background-color);
     transform: scale(1.1);
@@ -3281,11 +3257,6 @@ a[data-footnote-ref] {
 
   .metric-view:hover svg {
     transform: scale(1.2);
-  }
-
-  .star-hover {
-    fill: #ffd700;
-    stroke: #ffd700;
   }
 
   [data-theme="dark"].star-hover {
