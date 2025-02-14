@@ -6,7 +6,6 @@ import { ChartNoAxesColumn, Heart, Star, Mail, CodeXml, GitFork } from "lucide-r
 import { SiGithub, SiInstagram, SiX } from "@icons-pack/react-simple-icons";
 
 import { supabase } from "@/lib/supabase";
-import { ThemeButton } from "./ThemeHandler";
 import ShareButton from "./ShareButtons";
 
 const Footer = ({ blogSlug = null }) => {
@@ -190,37 +189,33 @@ const Footer = ({ blogSlug = null }) => {
         </div>
         <div className="footer-share">
           {!blogSlug && stars !== null && (
-            <>
-              <a
-                href={
-                  blogSlug
-                    ? `https://github.com/dan10ish/dan10ish.github.io/blob/main/content/blog/${blogSlug}.md`
-                    : "https://github.com/dan10ish/dan10ish.github.io"
-                }
-                target="_blank"
-                rel="noopener noreferrer"
-                className="github-link"
-                onMouseEnter={() => setIsGithubHovered(true)}
-                onMouseLeave={() => setIsGithubHovered(false)}
-              >
-                <GitFork size={20} />
-                <div className="github-stars">
-                  <span className="highlight-star">
-                    <Star
-                      size={16}
-                      className={isGithubHovered ? "star-hover" : ""}
-                      fill="currentColor"
-                    />
-                  </span>
-                  <span className="star-number">{formatNumber(stars)}</span>
-                </div>
-              </a>
-              <ThemeButton />
-            </>
+            <a
+              href={
+                blogSlug
+                  ? `https://github.com/dan10ish/dan10ish.github.io/blob/main/content/blog/${blogSlug}.md`
+                  : "https://github.com/dan10ish/dan10ish.github.io"
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+              className="github-link"
+              onMouseEnter={() => setIsGithubHovered(true)}
+              onMouseLeave={() => setIsGithubHovered(false)}
+            >
+              <GitFork size={20} />
+              <div className="github-stars">
+                <span className="highlight-star">
+                  <Star
+                    size={16}
+                    className={isGithubHovered ? "star-hover" : ""}
+                    fill="currentColor"
+                  />
+                </span>
+                <span className="star-number">{formatNumber(stars)}</span>
+              </div>
+            </a>
           )}
           {blogSlug && (
             <>
-              <ThemeButton />
               <a
                 href={
                   blogSlug

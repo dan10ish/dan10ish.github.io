@@ -1,6 +1,6 @@
 import ButtonsContainer from "@/components/ButtonsContainer";
-import ThemeHandler from "@/components/ThemeHandler";
 import GradientOverlay from "@/components/GradientOverlay";
+import ThemeListener from "@/components/ThemeListener";
 import "./globals.css";
 
 export const metadata = {
@@ -84,7 +84,16 @@ export default function RootLayout({ children }) {
         <meta name="theme-color" content="" />
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{const t=localStorage.getItem('theme')||'system',s=window.matchMedia('(prefers-color-scheme: dark)').matches,e=t==='system'?s?'dark':'light':t;document.documentElement.setAttribute('data-theme',e);document.querySelector('meta[name="theme-color"]').content=e==='dark'?'#1c1c1c':'#ffffff'}catch(e){}})()`,
+            __html: `
+              (function() {
+                try {
+                  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  const theme = prefersDark ? 'dark' : 'light';
+                  document.documentElement.setAttribute('data-theme', theme);
+                  document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#1c1c1c' : '#ffffff';
+                } catch(e) {}
+              })()
+            `,
           }}
         />
         <link
@@ -130,7 +139,7 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <GradientOverlay />
-        <ThemeHandler />
+        <ThemeListener />
         <ButtonsContainer />
         <main className="container">{children}</main>
       </body>
