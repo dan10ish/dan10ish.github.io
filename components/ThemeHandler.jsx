@@ -1,84 +1,85 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Monitor, Moon, Sun, Palette } from "lucide-react";
+import { Moon, Sun } from "lucide-react";
 import { motion } from "framer-motion";
 
-const themes = [
-  {
-    id: "system",
-    icon: Monitor,
-    label: "System",
+const THEME_COLORS = {
+  light: {
+    background: "#ffffff",
+    meta: "#ffffff",
   },
-  {
-    id: "light",
-    icon: Sun,
-    label: "Light",
+  dark: {
+    background: "#1c1c1c",
+    meta: "#1c1c1c",
   },
-  {
-    id: "dark",
-    icon: Moon,
-    label: "Dark",
-  },
-  {
-    id: "solarized",
-    icon: Palette,
-    label: "Solarized",
-  },
-];
-
-const themeColors = {
-  light: "#ffffff",
-  dark: "#1c1c1c",
-  solarized: "#002b36",
 };
 
+function getSystemTheme() {
+  if (typeof window === "undefined") return "light";
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+}
+
+function setTheme(theme, persist = true) {
+  const root = document.documentElement;
+  const effectiveTheme = theme === "system" ? getSystemTheme() : theme;
+
+  root.setAttribute("data-theme", effectiveTheme);
+
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) {
+    meta.content = THEME_COLORS[effectiveTheme].meta;
+  }
+
+  if (persist) {
+    try {
+      localStorage.setItem("theme", theme);
+    } catch (e) {}
+  }
+}
+
 export function ThemeButton() {
-  const [themeIndex, setThemeIndex] = useState(0);
-
-  const updateTheme = (theme) => {
-    const prefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)",
-    ).matches;
-    const effectiveTheme =
-      theme === "system" ? (prefersDark ? "dark" : "light") : theme;
-    sessionStorage.setItem("theme", theme);
-
-    document.documentElement.setAttribute("data-theme", effectiveTheme);
-    const metaTheme = document.querySelector('meta[name="theme-color"]');
-    if (metaTheme) {
-      metaTheme.content = themeColors[effectiveTheme];
-    }
-  };
+  const [currentTheme, setCurrentTheme] = useState("system");
 
   useEffect(() => {
-    const sessionTheme = sessionStorage.getItem("theme");
-    if (sessionTheme) {
-      const index = themes.findIndex((t) => t.id === sessionTheme);
-      if (index !== -1) {
-        setThemeIndex(index);
-        updateTheme(sessionTheme);
-      }
+    const stored = localStorage.getItem("theme");
+    if (stored) {
+      setCurrentTheme(stored);
+      setTheme(stored);
+    } else {
+      setTheme("system");
     }
 
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleMediaChange = () => {
-      if (themeIndex === 0) {
-        updateTheme("system");
+    const handleChange = () => {
+      if (currentTheme === "system") {
+        setTheme("system", false);
       }
     };
 
-    mediaQuery.addEventListener("change", handleMediaChange);
-    return () => mediaQuery.removeEventListener("change", handleMediaChange);
-  }, [themeIndex]);
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, [currentTheme]);
 
   const toggleTheme = () => {
-    const nextIndex = (themeIndex + 1) % themes.length;
-    setThemeIndex(nextIndex);
-    updateTheme(themes[nextIndex].id);
+    const newTheme =
+      currentTheme === "system"
+        ? getSystemTheme() === "dark"
+          ? "light"
+          : "dark"
+        : currentTheme === "dark"
+        ? "light"
+        : "dark";
+
+    setCurrentTheme(newTheme);
+    setTheme(newTheme);
   };
 
-  const CurrentIcon = themes[themeIndex].icon;
+  const isDark =
+    currentTheme === "dark" ||
+    (currentTheme === "system" && getSystemTheme() === "dark");
 
   return (
     <motion.button
@@ -89,8 +90,7 @@ export function ThemeButton() {
       transition={{ type: "spring", stiffness: 500, damping: 17 }}
     >
       <span className="theme-button-content">
-        <CurrentIcon size={20} />
-        <span className="theme-button-label">{themes[themeIndex].label}</span>
+        {isDark ? <Sun size={20} /> : <Moon size={20} />}
       </span>
     </motion.button>
   );
@@ -98,20 +98,8 @@ export function ThemeButton() {
 
 export default function ThemeHandler() {
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleChange = (e) => {
-      const sessionTheme = sessionStorage.getItem("theme");
-      if (!sessionTheme || sessionTheme === "system") {
-        const effectiveTheme = e.matches ? "dark" : "light";
-        document.documentElement.setAttribute("data-theme", effectiveTheme);
-        const metaTheme = document.querySelector('meta[name="theme-color"]');
-        if (metaTheme) {
-          metaTheme.content = themeColors[effectiveTheme];
-        }
-      }
-    };
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
+    const theme = localStorage.getItem("theme") || "system";
+    setTheme(theme);
   }, []);
 
   return null;

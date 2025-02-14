@@ -58,7 +58,9 @@
   --color-text-rgb: 51, 51, 51;
   --color-bg: #ffffff;
   --color-text: #18181b;
-  color-scheme: light dark;
+  --gradient-start: rgba(255, 255, 255, 0);
+  --gradient-end: rgba(255, 255, 255, 0.9);
+  color-scheme: light;
 
   --font-size-mobile: 0.95rem;
   --font-size-desktop: 0.95rem;
@@ -74,18 +76,19 @@ html {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-bg: #09090b;
+    --color-bg: #1c1c1c;
     --color-text: #fafafa;
-    --color-link: #3b82f6;
-    --color-bg-rgb: 9, 9, 11;
+    --color-bg-rgb: 28, 28, 28;
     --color-text-rgb: 250, 250, 250;
+    --gradient-start: rgba(28, 28, 28, 0);
+    --gradient-end: rgba(28, 28, 28, 0.9);
+    color-scheme: dark;
   }
 }
 
 [data-theme="light"] {
   --gradient-start: rgba(255, 255, 255, 0);
   --gradient-end: rgba(255, 255, 255, 0.9);
-
   --color-bg: #ffffff;
   --color-text: #18181b;
   --color-link: #2563eb;
@@ -113,7 +116,6 @@ html {
 [data-theme="dark"] {
   --gradient-start: rgba(28, 28, 28, 0);
   --gradient-end: rgba(28, 28, 28, 0.9);
-
   --color-bg: #1c1c1c;
   --color-text: #fafafa;
   --color-link: #3b82f6;
@@ -135,39 +137,6 @@ html {
   --color-text-rgb: 250, 250, 250;
   --github-border: rgba(250, 250, 250, 0.1);
   --github-hover-bg: #27272a;
-  color-scheme: dark;
-}
-
-[data-theme="solarized"] {
-  --gradient-start: rgba(0, 43, 54, 0);
-  --gradient-end: rgba(0, 43, 54, 0.9);
-
-  --color-bg: #002b36;
-  --color-text: #eee8d5;
-  --color-link: #268bd2;
-
-  --blockquote-color: #586e75;
-  --code-background-color: #073642;
-  --code-color: #93a1a1;
-
-  --syntax-comment: #586e75;
-  --syntax-keyword: #859900;
-  --syntax-number: #2aa198;
-  --syntax-string: #d33682;
-  --syntax-title: #268bd2;
-  --syntax-type: #b58900;
-  --syntax-tag: #2aa198;
-  --syntax-regexp: #d33682;
-  --syntax-symbol: #6c71c4;
-  --syntax-builtin: #cb4b16;
-  --syntax-meta: #586e75;
-
-  --color-bg-rgb: 0, 43, 54;
-  --color-text-rgb: 238, 232, 213;
-
-  --github-border: rgba(238, 232, 213, 0.1);
-  --github-hover-bg: #001f26;
-
   color-scheme: dark;
 }
 
@@ -934,9 +903,7 @@ th {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  transition:
-    transform 0.3s ease,
-    opacity 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .home-button,

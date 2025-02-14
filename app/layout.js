@@ -87,22 +87,15 @@ export default function RootLayout({ children }) {
             __html: `
               (function() {
                 try {
-                  const sessionTheme = sessionStorage.getItem('theme');
-                  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                  const effectiveTheme = sessionTheme || (prefersDark ? 'dark' : 'light');
-                  const themeColors = {
-                    light: '#ffffff',
-                    dark: '#1c1c1c',
-                    solarized: '#00212b'
-                  };
+                  const theme = localStorage.getItem('theme') || 'system';
+                  const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                  const effectiveTheme = theme === 'system' ? systemTheme : theme;
+                  
                   document.documentElement.setAttribute('data-theme', effectiveTheme);
-                  const metaTheme = document.querySelector('meta[name="theme-color"]') || document.createElement('meta');
-                  metaTheme.name = 'theme-color';
-                  metaTheme.content = themeColors[effectiveTheme];
-                  document.head.appendChild(metaTheme);
-                } catch (e) {
-                  console.error('Theme initialization error:', e);
-                }
+                  
+                  const meta = document.querySelector('meta[name="theme-color"]');
+                  if (meta) meta.content = effectiveTheme === 'dark' ? '#1c1c1c' : '#ffffff';
+                } catch (e) {}
               })();
             `,
           }}
