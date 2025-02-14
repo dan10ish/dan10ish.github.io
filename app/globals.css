@@ -383,7 +383,8 @@ th {
 }
 
 .about-header-links {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
@@ -1137,6 +1138,10 @@ th {
   font-size: calc(var(--font-size-mobile) * 0.9);
 }
 
+.github-link {
+  background: rgba(var(--color-text-rgb), 0.04);
+}
+
 .metric svg,
 .github-link svg {
   height: 18px;
@@ -1170,6 +1175,8 @@ th {
   align-items: center;
   gap: 0.4rem;
   margin-left: 0.25rem;
+  padding-left: 0.75rem;
+  border-left: 1px solid rgba(var(--color-text-rgb), 0.1);
 }
 
 .like-button {
@@ -2718,6 +2725,7 @@ a[data-footnote-ref] {
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  background: rgba(var(--color-bg-rgb), 0.6);
 }
 
 .project-pop-container {
@@ -2766,7 +2774,7 @@ a[data-footnote-ref] {
 }
 
 .project-pop-about {
-  font-size: calc(var(--font-size-mobile) * 0.9);
+  font-size: calc(var(--font-size-mobile) * 0.95);
   color: rgba(var(--color-text-rgb), 0.8);
   margin-bottom: 0.75rem;
   height: calc(var(--font-size-mobile) * 5);
@@ -2788,7 +2796,7 @@ a[data-footnote-ref] {
   justify-content: center;
   gap: 0.5rem;
   width: 45%;
-  font-size: calc(var(--font-size-mobile) * 0.85);
+  font-size: calc(var(--font-size-mobile) * 0.95);
   padding: 0.6rem;
   border: 1px solid rgba(var(--color-text-rgb), 0.1);
   border-radius: 8px;
@@ -2807,7 +2815,7 @@ a[data-footnote-ref] {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 1.5rem 0.75rem;
+  padding: 0.5rem 1.5rem 1rem;
 }
 
 .project-pop-nav-button {
@@ -2815,7 +2823,7 @@ a[data-footnote-ref] {
   background: var(--code-background-color);
   color: var(--color-text);
   cursor: pointer;
-  padding: 0.5rem 1rem;
+  padding: 0.25rem 0.5rem;
   border-radius: 12px;
   transition: all 0.2s ease;
   display: grid;
@@ -3129,6 +3137,10 @@ a[data-footnote-ref] {
   .project-pop-about {
     font-size: calc(var(--font-size-mobile) * 1);
     height: calc(var(--font-size-mobile) * 4);
+  }
+
+  .about-header-links {
+    display: flex;
   }
 }
 

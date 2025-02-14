@@ -30,7 +30,6 @@ import {
   Images,
   ChevronLeft,
   ChevronRight,
-  ChartCandlestickIcon,
 } from "lucide-react";
 import Footer from "./Footer";
 import ScrollIndicator from "./ScrollIndicator";
@@ -163,8 +162,12 @@ const AboutContent = () => {
             Photos
           </Link>
           <Link href="/finance" className="header-link">
-            <ChartCandlestickIcon size={16} />
+            <ChartCandlestick size={16} />
             Finance
+          </Link>
+          <Link href="/planes" className="header-link">
+            <Plane size={16} />
+            Planes
           </Link>
         </div>
         <div className="footer-socials">
