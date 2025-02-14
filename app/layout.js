@@ -84,20 +84,7 @@ export default function RootLayout({ children }) {
         <meta name="theme-color" content="" />
         <script
           dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  const theme = localStorage.getItem('theme') || 'system';
-                  const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-                  const effectiveTheme = theme === 'system' ? systemTheme : theme;
-                  
-                  document.documentElement.setAttribute('data-theme', effectiveTheme);
-                  
-                  const meta = document.querySelector('meta[name="theme-color"]');
-                  if (meta) meta.content = effectiveTheme === 'dark' ? '#1c1c1c' : '#ffffff';
-                } catch (e) {}
-              })();
-            `,
+            __html: `(function(){try{const t=localStorage.getItem('theme')||'system',s=window.matchMedia('(prefers-color-scheme: dark)').matches,e=t==='system'?s?'dark':'light':t;document.documentElement.setAttribute('data-theme',e);document.querySelector('meta[name="theme-color"]').content=e==='dark'?'#1c1c1c':'#ffffff'}catch(e){}})()`,
           }}
         />
         <link
@@ -109,21 +96,37 @@ export default function RootLayout({ children }) {
           crossOrigin="anonymous"
         />
         <link
-          rel="preload"
-          href="/fonts/SFMono-Medium.woff2"
-          as="font"
-          type="font/woff2"
-          fetchPriority="high"
+          rel="preconnect"
+          href="https://github.com"
           crossOrigin="anonymous"
         />
+        <link
+          rel="preconnect"
+          href="https://api.github.com"
+          crossOrigin="anonymous"
+        />
+        <link rel="dns-prefetch" href="https://github.com" />
+        <link rel="dns-prefetch" href="https://api.github.com" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                var link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.href = '/deferred-fonts.css';
+                link.media = 'print';
+                link.onload = function() { this.media = 'all' };
+                document.head.appendChild(link);
+              })()
+            `,
+          }}
+        />
+        <noscript>
+          <link rel="stylesheet" href="/deferred-fonts.css" />
+        </noscript>
         <link rel="icon" type="image/png" href="/icons/icon.png" />
         <link rel="apple-touch-icon" href="/icons/icon.png" />
         <link rel="shortcut icon" type="image/png" href="/icons/icon.png" />
-        <link
-          rel="preconnect"
-          href={process.env.NEXT_PUBLIC_SUPABASE_URL}
-          crossOrigin="anonymous"
-        />
       </head>
       <body>
         <GradientOverlay />

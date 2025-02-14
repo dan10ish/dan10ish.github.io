@@ -3031,6 +3031,7 @@ a[data-footnote-ref] {
   }
 
   .site-footer {
+    margin: 0 0 1.5rem;
     gap: 1.5rem;
   }
 
