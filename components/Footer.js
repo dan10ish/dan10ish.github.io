@@ -220,7 +220,7 @@ const Footer = ({ blogSlug = null }) => {
             </a>
           )}
           {blogSlug && (
-            <>
+            <div className="blog-util-links">
               <a
                 href={
                   blogSlug
@@ -236,7 +236,7 @@ const Footer = ({ blogSlug = null }) => {
                 <LucideIcon icon={CodeXml} size={20} />
               </a>
               <ShareButton slug={blogSlug} size={20} />
-            </>
+            </div>
           )}
         </div>
       </div>
