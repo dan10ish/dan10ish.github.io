@@ -37,6 +37,10 @@ import ScrollIndicator from "./ScrollIndicator";
 import { motion, AnimatePresence } from "framer-motion";
 import { SiX, SiGithub, SiInstagram } from "@icons-pack/react-simple-icons";
 
+const LucideIcon = ({ icon: Icon, ...props }) => {
+  return <Icon strokeWidth={`var(--icon-stroke-width)`} {...props} />;
+};
+
 const OptionSwitcher = memo(({ selectedOption, handleOptionChange }) => {
   const containerRef = useRef(null);
   const [dimensions, setDimensions] = useState(null);
@@ -135,12 +139,9 @@ OptionSwitcher.displayName = "OptionSwitcher";
 
 const AboutContent = () => {
   const details = [
-    { label: <GraduationCap />, content: "Mechatronics Engineering" },
-    { label: <Hammer />, content: "ML | Robotics | Finance" },
-    {
-      label: <Briefcase />,
-      content: "Modelling and programming of robotic arms",
-    },
+    { label: <LucideIcon icon={GraduationCap} />, content: "Mechatronics Engineering" },
+    { label: <LucideIcon icon={Hammer} />, content: "ML | Robotics | Finance" },
+    { label: <LucideIcon icon={Briefcase} />, content: "Modelling and programming of robotic arms" },
   ];
 
   return (
@@ -159,19 +160,19 @@ const AboutContent = () => {
       <div className="about-header">
         <div className="about-header-links">
           <Link href="/notes" className="header-link">
-            <BookText size={16} />
+            <LucideIcon icon={BookText} size={16} />
             Notes
           </Link>
           <Link href="/photos" className="header-link">
-            <Images size={16} />
+            <LucideIcon icon={Images} size={16} />
             Photos
           </Link>
           <Link href="/finance" className="header-link">
-            <ChartCandlestick size={16} />
+            <LucideIcon icon={ChartCandlestick} size={16} />
             Finance
           </Link>
           <Link href="/planes" className="header-link">
-            <Plane size={16} />
+            <LucideIcon icon={Plane} size={16} />
             Planes
           </Link>
         </div>
@@ -222,14 +223,16 @@ const BlogList = memo(({ posts, viewsData, sortConfig, handleSort }) => {
   const getSortIcon = useCallback(
     (key) => (
       <span className="sort-icons">
-        <ChevronUp
+        <LucideIcon
+          icon={ChevronUp}
           className={
             sortConfig.key === key && sortConfig.direction === "asc"
               ? "active"
               : ""
           }
         />
-        <ChevronDown
+        <LucideIcon
+          icon={ChevronDown}
           className={
             sortConfig.key === key && sortConfig.direction === "desc"
               ? "active"
@@ -289,133 +292,23 @@ const BlogList = memo(({ posts, viewsData, sortConfig, handleSort }) => {
   );
 });
 
-const ProjectPopup = ({
-  project,
-  onClose,
-  onPrev,
-  onNext,
-  isFirst,
-  isLast,
-}) => {
-  const popupRef = useRef(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (popupRef.current && !popupRef.current.contains(event.target)) {
-        onClose();
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [onClose]);
-
-  return (
-    <div className="project-pop-overlay">
-      <div className="project-pop-container" ref={popupRef}>
-        <div className="project-pop-header">
-          <h3 className="project-pop-title">{project.title}</h3>
-          <button className="project-pop-close" onClick={onClose}>
-            <X size={20} strokeWidth={2.5} />
-          </button>
-        </div>
-
-        <div className="project-pop-body">
-          <p className="project-pop-about">{project.description}</p>
-          <div className="project-pop-links">
-            {project.sourceLink && (
-              <a
-                href={project.sourceLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="project-pop-link"
-              >
-                <CodeXml size={18} className="project-pop-icon" />
-                View Source
-              </a>
-            )}
-            {project.projectLink && (
-              <a
-                href={project.projectLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="project-pop-link"
-              >
-                <Globe size={18} className="project-pop-icon" />
-                Live Project
-              </a>
-            )}
-          </div>
-        </div>
-
-        <div className="project-pop-nav">
-          <button
-            className="project-pop-nav-button"
-            onClick={onPrev}
-            disabled={isFirst}
-            style={{ opacity: isFirst ? 0.3 : 1 }}
-          >
-            <ChevronLeft size={22} />
-          </button>
-          <button
-            className="project-pop-nav-button"
-            onClick={onNext}
-            disabled={isLast}
-            style={{ opacity: isLast ? 0.3 : 1 }}
-          >
-            <ChevronRight size={22} />
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-};
-
 const ProjectList = memo(
   ({ projects, selectedTag, handleTagClick, handleSort, sortConfig }) => {
     const tableRef = useRef(null);
-    const [selectedProjectIndex, setSelectedProjectIndex] = useState(null);
-
-    const handleRowClick = useCallback((index, event) => {
-      const target = event.target;
-      if (
-        target.classList.contains("tag") ||
-        target.classList.contains("action-link") ||
-        target.closest(".tag") ||
-        target.closest(".action-link")
-      )
-        return;
-      setSelectedProjectIndex(index);
-    }, []);
-
-    const handlePopupClose = useCallback(() => {
-      setSelectedProjectIndex(null);
-    }, []);
-
-    const handlePrevProject = useCallback(() => {
-      setSelectedProjectIndex((prevIndex) => Math.max(0, prevIndex - 1));
-    }, []);
-
-    const handleNextProject = useCallback(() => {
-      setSelectedProjectIndex((prevIndex) =>
-        Math.min(projects.length - 1, prevIndex + 1)
-      );
-    }, [projects.length]);
 
     const getSortIcon = useCallback(
       (key) => (
         <span className="sort-icons">
-          <ChevronUp
+          <LucideIcon
+            icon={ChevronUp}
             className={
               sortConfig?.key === key && sortConfig.direction === "asc"
                 ? "active"
                 : ""
             }
           />
-          <ChevronDown
+          <LucideIcon
+            icon={ChevronDown}
             className={
               sortConfig?.key === key && sortConfig.direction === "desc"
                 ? "active"
@@ -428,20 +321,17 @@ const ProjectList = memo(
     );
 
     const listItems = useMemo(() => {
-      return projects.map((project, index) => (
+      return projects.map((project) => (
         <div
           key={project.title}
-          className={`list-row ${
-            index === selectedProjectIndex ? "active-project" : ""
-          }`}
-          onClick={(e) => handleRowClick(index, e)}
+          className="list-row"
         >
           <span className="title">
             <div>{project.title}</div>
             <div>
               {project.highlight && (
                 <span className="highlight-star" title="Highlighted Project">
-                  <Star size={14} fill="currentColor" />
+                  <LucideIcon icon={Star} size={14} fill="currentColor" />
                 </span>
               )}
             </div>
@@ -455,7 +345,7 @@ const ProjectList = memo(
                 !project.sourceLink ? "disabled" : ""
               }`}
             >
-              <CodeXml size={20} />
+              <LucideIcon icon={CodeXml} size={20} />
             </a>
             <a
               href={project.projectLink || "#"}
@@ -465,7 +355,7 @@ const ProjectList = memo(
                 !project.projectLink ? "disabled" : ""
               }`}
             >
-              <Globe size={20} />
+              <LucideIcon icon={Globe} size={20} />
             </a>
           </span>
           <span className="tags">
@@ -481,65 +371,43 @@ const ProjectList = memo(
           </span>
         </div>
       ));
-    }, [
-      projects,
-      selectedTag,
-      handleTagClick,
-      selectedProjectIndex,
-      handleRowClick,
-    ]);
+    }, [projects, selectedTag, handleTagClick]);
 
     return (
-      <>
-        <div className="mono-list project-list">
-          <div className="list-header">
-            <span
-              onClick={() => handleSort("title")}
-              style={{ cursor: "pointer" }}
-            >
-              title {getSortIcon("title")}
-            </span>
-            <span className="actions" style={{ cursor: "default" }}>
-              links
-            </span>
-            <span
-              className="sort-header tags"
-              onClick={() => !selectedTag && handleSort("tags")}
-              style={{ cursor: selectedTag ? "default" : "pointer" }}
-            >
-              {selectedTag ? (
-                <X
-                  size={16}
-                  className="tag-reset"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleTagClick(null, e);
-                  }}
-                />
-              ) : (
-                getSortIcon("tags")
-              )}
-              tags
-            </span>
-          </div>
-          <div className="table-max" ref={tableRef}>
-            {listItems}
-          </div>
-          <ScrollIndicator containerRef={tableRef} />
+      <div className="mono-list project-list">
+        <div className="list-header">
+          <span onClick={() => handleSort("title")} style={{ cursor: "pointer" }}>
+            title {getSortIcon("title")}
+          </span>
+          <span className="actions" style={{ cursor: "default" }}>
+            links
+          </span>
+          <span
+            className="sort-header tags"
+            onClick={() => !selectedTag && handleSort("tags")}
+            style={{ cursor: selectedTag ? "default" : "pointer" }}
+          >
+            {selectedTag ? (
+              <LucideIcon
+                icon={X}
+                size={16}
+                className="tag-reset"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleTagClick(null, e);
+                }}
+              />
+            ) : (
+              getSortIcon("tags")
+            )}
+            tags
+          </span>
         </div>
-        <AnimatePresence>
-          {selectedProjectIndex !== null && (
-            <ProjectPopup
-              project={projects[selectedProjectIndex]}
-              onClose={handlePopupClose}
-              onPrev={handlePrevProject}
-              onNext={handleNextProject}
-              isFirst={selectedProjectIndex === 0}
-              isLast={selectedProjectIndex === projects.length - 1}
-            />
-          )}
-        </AnimatePresence>
-      </>
+        <div className="table-max" ref={tableRef}>
+          {listItems}
+        </div>
+        <ScrollIndicator containerRef={tableRef} />
+      </div>
     );
   }
 );

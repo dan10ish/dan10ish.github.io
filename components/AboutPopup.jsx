@@ -16,6 +16,10 @@ import Link from "next/link";
 import { SiGithub, SiInstagram, SiX } from "@icons-pack/react-simple-icons";
 import { motion, AnimatePresence } from "framer-motion";
 
+const LucideIcon = ({ icon: Icon, ...props }) => {
+  return <Icon strokeWidth={`var(--icon-stroke-width)`} {...props} />;
+};
+
 const AboutPopup = ({ isOpen, setIsOpen }) => {
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
@@ -26,32 +30,32 @@ const AboutPopup = ({ isOpen, setIsOpen }) => {
 
   const details = [
     {
-      label: <GraduationCap />,
+      label: <LucideIcon icon={GraduationCap} />,
       content: "Mechatronics Engineering",
     },
     {
-      label: <Hammer />,
+      label: <LucideIcon icon={Hammer} />,
       content: "ML, Robotics, CS",
     },
     {
-      label: <Briefcase />,
+      label: <LucideIcon icon={Briefcase} />,
       content: "Modelling and programming of 3 & 4-DOF robotic arms",
     },
     {
-      label: <Star />,
+      label: <LucideIcon icon={Star} />,
       content: (
         <div className="about-interest">
           <Link href="/planes" className="detail-link">
-            <Plane size={14} /> Planes
+            <LucideIcon icon={Plane} size={14} /> Planes
           </Link>
           <Link href="/finance" className="detail-link">
-            <ChartCandlestick size={14} /> Finance
+            <LucideIcon icon={ChartCandlestick} size={14} /> Finance
           </Link>
         </div>
       ),
     },
     {
-      label: <BookText />,
+      label: <LucideIcon icon={BookText} />,
       content: (
         <a
           href="https://press.stripe.com/the-art-of-doing-science-and-engineering"
@@ -59,7 +63,7 @@ const AboutPopup = ({ isOpen, setIsOpen }) => {
           rel="noopener noreferrer"
           className="detail-link"
         >
-          The Art of Doing Science and Engineering <ArrowUpRight size={12} />
+          The Art of Doing Science and Engineering <LucideIcon icon={ArrowUpRight} size={12} />
         </a>
       ),
     },
@@ -81,7 +85,7 @@ const AboutPopup = ({ isOpen, setIsOpen }) => {
             transition={{ duration: 0.1 }}
           >
             <button className="about-close" onClick={() => setIsOpen(false)}>
-              <X size={20} strokeWidth={2.5} />
+              <LucideIcon icon={X} size={20} />
             </button>
             <div
               className="about-container"
@@ -104,11 +108,11 @@ const AboutPopup = ({ isOpen, setIsOpen }) => {
                 onClick={(e) => e.stopPropagation()}
               >
                 <Link href="/notes" className="footer-link">
-                  <BookText size={16} />
+                  <LucideIcon icon={BookText} size={16} />
                   Notes
                 </Link>
                 <Link href="/photos" className="footer-link">
-                  <Images size={16} />
+                  <LucideIcon icon={Images} size={16} />
                   Photos
                 </Link>
               </div>
@@ -123,7 +127,7 @@ const AboutPopup = ({ isOpen, setIsOpen }) => {
                   className="header-icon"
                   aria-label="Visit my X profile"
                 >
-                  <SiX size={20} />
+                  <LucideIcon icon={SiX} size={20} />
                 </a>
                 <a
                   href="https://github.com/dan10ish"
@@ -132,7 +136,7 @@ const AboutPopup = ({ isOpen, setIsOpen }) => {
                   className="header-icon header-icon-github"
                   aria-label="Visit my GitHub profile"
                 >
-                  <SiGithub size={22} />
+                  <LucideIcon icon={SiGithub} size={22} />
                 </a>
                 <a
                   href="https://instagram.com/dan10ish"
@@ -141,7 +145,7 @@ const AboutPopup = ({ isOpen, setIsOpen }) => {
                   className="header-icon header-icon-github"
                   aria-label="Visit my Instagram profile"
                 >
-                  <SiInstagram size={20} />
+                  <LucideIcon icon={SiInstagram} size={20} />
                 </a>
                 <a
                   href="mailto:aansaridan@gmail.com"
@@ -150,7 +154,7 @@ const AboutPopup = ({ isOpen, setIsOpen }) => {
                   rel="noopener noreferrer"
                   aria-label="Connect via email"
                 >
-                  <Mail size={24} strokeWidth={1.8} />
+                  <LucideIcon icon={Mail} size={24} strokeWidth={1.8} />
                 </a>
               </div>
             </div>

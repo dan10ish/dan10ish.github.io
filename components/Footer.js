@@ -8,6 +8,10 @@ import { SiGithub, SiInstagram, SiX } from "@icons-pack/react-simple-icons";
 import { supabase } from "@/lib/supabase";
 import ShareButton from "./ShareButtons";
 
+const LucideIcon = ({ icon: Icon, ...props }) => {
+  return <Icon strokeWidth={`var(--icon-stroke-width)`} {...props} />;
+};
+
 const Footer = ({ blogSlug = null }) => {
   const [stats, setStats] = useState({ views: null, likes: null });
   const [hasLiked, setHasLiked] = useState(false);
@@ -181,7 +185,7 @@ const Footer = ({ blogSlug = null }) => {
                 disabled={hasLiked || isUpdating}
                 aria-label={hasLiked ? "Already liked" : "Like this post"}
               >
-                <Heart size={16} />
+                <LucideIcon icon={Heart} size={16} />
                 <span>{formatNumber(stats.likes)}</span>
               </button>
             </div>
@@ -201,10 +205,11 @@ const Footer = ({ blogSlug = null }) => {
               onMouseEnter={() => setIsGithubHovered(true)}
               onMouseLeave={() => setIsGithubHovered(false)}
             >
-              <GitFork size={20} />
+              <LucideIcon icon={GitFork} size={20} />
               <div className="github-stars">
                 <span className="highlight-star">
-                  <Star
+                  <LucideIcon 
+                    icon={Star}
                     size={16}
                     className={isGithubHovered ? "star-hover" : ""}
                     fill="currentColor"
@@ -228,7 +233,7 @@ const Footer = ({ blogSlug = null }) => {
                 onMouseEnter={() => setIsGithubHovered(true)}
                 onMouseLeave={() => setIsGithubHovered(false)}
               >
-                <CodeXml size={20} />
+                <LucideIcon icon={CodeXml} size={20} />
               </a>
               <ShareButton slug={blogSlug} size={20} />
             </>
