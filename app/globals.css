@@ -1866,9 +1866,7 @@ a[data-footnote-ref] {
 }
 
 .photo-meta {
-  padding: 1rem;
-  font-size: calc(var(--font-size-mobile) * 0.7);
-  color: rgba(var(--color-text-rgb), 0.7);
+  padding: 0.5rem;
 }
 
 .meta-row {
@@ -3086,8 +3084,8 @@ a[data-footnote-ref] {
 .meta-row {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  font-size: calc(var(--font-size-mobile) * 0.85);
+  gap: 0.5rem;
+  font-size: calc(var(--font-size-mobile) * 0.7);
   color: var(--color-text);
 }
 

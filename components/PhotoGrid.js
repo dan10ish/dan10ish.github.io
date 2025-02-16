@@ -69,7 +69,9 @@ const PhotoGrid = () => {
   const [loadedPhotos, setLoadedPhotos] = useState([]);
 
   const breakpointColumns = {
-    default: 2,
+    default: 3,
+    1100: 2,
+    700: 2,
   };
 
   const processPhoto = useCallback(async (src, index) => {
@@ -117,18 +119,21 @@ const PhotoGrid = () => {
     };
 
     const focalLength = getValue(tags, "FocalLength.description", "").split(
-      " ",
+      " "
     )[0];
     const aperture = getValue(tags, "FNumber.description", "").replace(
       "f/",
-      "",
+      ""
     );
 
     return {
       camera:
         customData.camera ||
         getValue(tags, "Model.description", "Unknown").split(" back")[0],
-      resolution: `${getValue(tags, "ImageWidth.value")} × ${getValue(tags, "ImageHeight.value")}`,
+      resolution: `${getValue(tags, "ImageWidth.value")} × ${getValue(
+        tags,
+        "ImageHeight.value"
+      )}`,
       iso: customData.iso || getValue(tags, "ISOSpeedRatings.value"),
       focalLength:
         customData.focalLength || `${formatNumber(focalLength, 1)}mm`,
@@ -190,7 +195,7 @@ const PhotoGrid = () => {
             <PhotoCard key={`photo-${index}`} photo={loadedPhotos[index]} />
           ) : (
             <Skeleton key={`skeleton-${index}`} />
-          ),
+          )
         )}
       </Masonry>
     </>
