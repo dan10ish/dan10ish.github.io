@@ -1849,6 +1849,7 @@ a[data-footnote-ref] {
   transform: translateZ(0);
   backface-visibility: hidden;
   transform-origin: center;
+  border-radius: 12px;
 }
 
 .photo-container {
@@ -1865,7 +1866,7 @@ a[data-footnote-ref] {
 }
 
 .photo-meta {
-  padding: 0.5rem;
+  padding: 1rem;
   font-size: calc(var(--font-size-mobile) * 0.7);
   color: rgba(var(--color-text-rgb), 0.7);
 }
@@ -3075,43 +3076,6 @@ a[data-footnote-ref] {
   border: 1px solid rgba(var(--color-text-rgb), 0.1);
 }
 
-.photo-meta-overlay {
-  position: absolute;
-  inset: 0;
-  background: var(--color-bg);
-  opacity: 0;
-  visibility: hidden;
-  display: flex;
-  flex-direction: column;
-  padding: 1.5rem;
-  z-index: 3;
-  border-radius: 12px;
-}
-
-.photo-meta-overlay.visible {
-  opacity: 0.97;
-  visibility: visible;
-}
-
-.photo-meta-header {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 1rem;
-}
-
-.photo-meta-close {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 0;
-}
-
 .meta-content {
   display: flex;
   flex-direction: column;
@@ -3123,7 +3087,7 @@ a[data-footnote-ref] {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  font-size: calc(var(--font-size-mobile) * 0.9);
+  font-size: calc(var(--font-size-mobile) * 0.85);
   color: var(--color-text);
 }
 
