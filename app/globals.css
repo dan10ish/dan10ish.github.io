@@ -3462,3 +3462,24 @@ a[data-footnote-ref] {
     height: 32.9rem;
   }
 }
+
+.sort-icons {
+  display: inline-flex;
+  flex-direction: column;
+  margin-left: 2px;
+  vertical-align: middle;
+  gap: -4px;
+  line-height: 0;
+}
+
+.sort-icons svg {
+  height: 12px;
+  width: 12px;
+  opacity: 0.7;
+  margin: -4px 0;
+}
+
+.sort-icons svg.active {
+  opacity: 1;
+  stroke-width: 3;
+}

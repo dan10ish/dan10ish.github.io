@@ -20,7 +20,6 @@ import {
   CodeXml,
   Star,
   Mail,
-  ArrowUpRight,
   Plane,
   ChartCandlestick,
   Briefcase,
@@ -30,6 +29,8 @@ import {
   Images,
   ChevronLeft,
   ChevronRight,
+  ChevronUp,
+  ChevronDown,
 } from "lucide-react";
 import Footer from "./Footer";
 import ScrollIndicator from "./ScrollIndicator";
@@ -103,13 +104,17 @@ const OptionSwitcher = memo(({ selectedOption, handleOptionChange }) => {
       <div className="option-left">
         <button
           onClick={() => handleOptionChange("writings")}
-          className={`option-btn${selectedOption === "writings" ? " active" : ""}`}
+          className={`option-btn${
+            selectedOption === "writings" ? " active" : ""
+          }`}
         >
           Posts
         </button>
         <button
           onClick={() => handleOptionChange("projects")}
-          className={`option-btn${selectedOption === "projects" ? " active" : ""}`}
+          className={`option-btn${
+            selectedOption === "projects" ? " active" : ""
+          }`}
         >
           Projects
         </button>
@@ -131,10 +136,10 @@ OptionSwitcher.displayName = "OptionSwitcher";
 const AboutContent = () => {
   const details = [
     { label: <GraduationCap />, content: "Mechatronics Engineering" },
-    { label: <Hammer />, content: "ML, Robotics, CS" },
+    { label: <Hammer />, content: "ML | Robotics | Finance" },
     {
       label: <Briefcase />,
-      content: "Modelling and programming of 3 & 4-DOF robotic arms",
+      content: "Modelling and programming of robotic arms",
     },
   ];
 
@@ -215,15 +220,25 @@ const AboutContent = () => {
 
 const BlogList = memo(({ posts, viewsData, sortConfig, handleSort }) => {
   const getSortIcon = useCallback(
-    (key) => {
-      if (sortConfig.key !== key) return null;
-      return sortConfig.direction === "asc" ? (
-        <ArrowUp size={14} />
-      ) : (
-        <ArrowDown size={14} />
-      );
-    },
-    [sortConfig],
+    (key) => (
+      <span className="sort-icons">
+        <ChevronUp
+          className={
+            sortConfig.key === key && sortConfig.direction === "asc"
+              ? "active"
+              : ""
+          }
+        />
+        <ChevronDown
+          className={
+            sortConfig.key === key && sortConfig.direction === "desc"
+              ? "active"
+              : ""
+          }
+        />
+      </span>
+    ),
+    [sortConfig]
   );
 
   const tableRef = useRef(null);
@@ -386,20 +401,30 @@ const ProjectList = memo(
 
     const handleNextProject = useCallback(() => {
       setSelectedProjectIndex((prevIndex) =>
-        Math.min(projects.length - 1, prevIndex + 1),
+        Math.min(projects.length - 1, prevIndex + 1)
       );
     }, [projects.length]);
 
     const getSortIcon = useCallback(
-      (key) => {
-        if (sortConfig?.key !== key) return null;
-        return sortConfig.direction === "asc" ? (
-          <ArrowUp size={14} />
-        ) : (
-          <ArrowDown size={14} />
-        );
-      },
-      [sortConfig],
+      (key) => (
+        <span className="sort-icons">
+          <ChevronUp
+            className={
+              sortConfig?.key === key && sortConfig.direction === "asc"
+                ? "active"
+                : ""
+            }
+          />
+          <ChevronDown
+            className={
+              sortConfig?.key === key && sortConfig.direction === "desc"
+                ? "active"
+                : ""
+            }
+          />
+        </span>
+      ),
+      [sortConfig]
     );
 
     const listItems = useMemo(() => {
@@ -482,14 +507,7 @@ const ProjectList = memo(
               onClick={() => !selectedTag && handleSort("tags")}
               style={{ cursor: selectedTag ? "default" : "pointer" }}
             >
-              {!selectedTag &&
-                sortConfig.key === "tags" &&
-                (sortConfig.direction === "asc" ? (
-                  <ArrowUp size={14} />
-                ) : (
-                  <ArrowDown size={14} />
-                ))}
-              {selectedTag && (
+              {selectedTag ? (
                 <X
                   size={16}
                   className="tag-reset"
@@ -498,6 +516,8 @@ const ProjectList = memo(
                     handleTagClick(null, e);
                   }}
                 />
+              ) : (
+                getSortIcon("tags")
               )}
               tags
             </span>
@@ -521,7 +541,7 @@ const ProjectList = memo(
         </AnimatePresence>
       </>
     );
-  },
+  }
 );
 
 const Content = ({ posts, projects }) => {
@@ -549,8 +569,8 @@ const Content = ({ posts, projects }) => {
         setViewsData(
           views.reduce(
             (acc, { slug, views }) => ({ ...acc, [slug]: views }),
-            {},
-          ),
+            {}
+          )
         );
       } catch (error) {
         console.error("Error fetching views:", error);
@@ -565,7 +585,7 @@ const Content = ({ posts, projects }) => {
       setSelectedOption(option);
       router.push(`/?tab=${option}`, { scroll: false });
     },
-    [router],
+    [router]
   );
 
   const handleSort = useCallback((key) => {
@@ -612,7 +632,7 @@ const Content = ({ posts, projects }) => {
     let filtered = projects;
     if (selectedTag) {
       filtered = projects.filter((project) =>
-        project.tags.includes(selectedTag),
+        project.tags.includes(selectedTag)
       );
     }
     if (sortConfig?.key === "title") {
