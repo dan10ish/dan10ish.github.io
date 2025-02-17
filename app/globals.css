@@ -932,8 +932,8 @@ th {
 .home-button svg,
 .toc-toggle svg,
 .scroll-to-top svg {
-  width: 18px;
-  height: 18px;
+  width: 22px;
+  height: 22px;
 }
 
 .scroll-to-top {
@@ -1099,7 +1099,7 @@ th {
   border: 1px solid rgba(var(--color-text-rgb), 0.1);
   text-decoration: none;
   padding: 0.4rem 1rem;
-  height: 35px;
+  height: 40px;
   font-size: calc(var(--font-size-mobile) * 0.9);
 }
 
