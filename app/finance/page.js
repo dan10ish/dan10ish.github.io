@@ -55,8 +55,8 @@ const treemapData = [
 ];
 
 const TreemapSkeleton = () => (
-  <div className="skeleton-t" style={{ height: "450px", width: "100%" }}>
-    <div className="skeleton-img-t" style={{ height: "100%", width: "100%" }}>
+  <div className="skeleton-t full-height">
+    <div className="skeleton-img-t">
       <div className="shimmer-t">
         <div className="loading-tree">
           <RefreshCw className="spin" />
@@ -69,8 +69,8 @@ const TreemapSkeleton = () => (
 
 const CustomTreemap = () => {
   return (
-    <div className="treemap-container">
-      <ResponsiveContainer width="100%" height={450}>
+    <div className="treemap-container full-height">
+      <ResponsiveContainer width="100%" height="100%">
         <Treemap
           data={treemapData}
           dataKey="value"
@@ -85,7 +85,7 @@ const CustomTreemap = () => {
 
               const fontSize = Math.max(
                 Math.min(width / stock.ticker.length, height / 2, 14),
-                10,
+                10
               );
               const textX = x + width / 2;
               const textY = y + height / 2;
@@ -116,9 +116,6 @@ const CustomTreemap = () => {
           }}
         />
       </ResponsiveContainer>
-      <p className="treemap-caption">
-        <Info size={15} /> Portfolio
-      </p>
     </div>
   );
 };
@@ -134,9 +131,8 @@ const FinancePage = () => {
   return (
     <PageTransition>
       <main>
-        <div className="domain-header">
+        <div className="domain-header mb-finance">
           <h2>Finance</h2>
-          <span className="wip-badge domain-wip">Work In Progress</span>
         </div>
         <div className="portfolio-viz">
           <div className="treemap-container" style={{ overflow: "hidden" }}>

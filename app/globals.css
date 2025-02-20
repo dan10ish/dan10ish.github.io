@@ -2546,12 +2546,19 @@ a[data-footnote-ref] {
 
 /* Tree Map */
 
-.treemap-container {
-  margin-top: 1rem;
+.full-height {
+  height: calc(90dvh - 100px);
+  display: flex;
+  flex-direction: column;
 }
 
+.treemap-container,
 .portfolio-viz {
-  border-radius: 1rem;
+  border-radius: 20px;
+}
+
+.mb-finance {
+  padding-bottom: 1rem;
 }
 
 .shimmer-t {
@@ -2601,11 +2608,16 @@ a[data-footnote-ref] {
 .skeleton-t {
   overflow: hidden;
   position: relative;
-  margin-top: 1rem;
+  border-radius: 20px;
+  height: calc(90dvh - 100px);
+  display: flex;
+  flex-direction: column;
 }
 
 .skeleton-img-t {
   position: relative;
+  height: 100%;
+  width: 100%;
 }
 
 @keyframes shimmer {
