@@ -1,8 +1,7 @@
-import ButtonsContainer from "@/components/ButtonsContainer";
-import GradientOverlay from "@/components/GradientOverlay";
-import ThemeListener from "@/components/ThemeListener";
+import { Suspense } from 'react';
+import ThemeHandler from '@/components/ThemeHandler';
 import "./globals.css";
-
+import GradientOverlay from '@/components/GradientOverlay';
 export const metadata = {
   metadataBase: new URL("https://danish.bio"),
   title: "Danish",
@@ -82,20 +81,6 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <head>
         <meta name="theme-color" content="" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                  const theme = prefersDark ? 'dark' : 'light';
-                  document.documentElement.setAttribute('data-theme', theme);
-                  document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#1c1c1c' : '#ffffff';
-                } catch(e) {}
-              })()
-            `,
-          }}
-        />
         <link
           rel="preload"
           href="/fonts/SFMono-Regular.woff2"
@@ -119,28 +104,25 @@ export default function RootLayout({ children }) {
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              (function() {
-                var link = document.createElement('link');
-                link.rel = 'stylesheet';
-                link.href = '/deferred-fonts.css';
-                link.media = 'print';
-                link.onload = function() { this.media = 'all' };
-                document.head.appendChild(link);
+              (() => {
+                try {
+                  const theme = localStorage.getItem('theme') || 
+                    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+                  document.documentElement.setAttribute('data-theme', theme);
+                  document.querySelector('meta[name="theme-color"]').content = 
+                    theme === 'dark' ? '#1c1c1c' : '#ffffff';
+                } catch(e) {}
               })()
             `,
           }}
         />
-        <noscript>
-          <link rel="stylesheet" href="/deferred-fonts.css" />
-        </noscript>
         <link rel="icon" type="image/png" href="/icons/icon.png" />
-        <link rel="apple-touch-icon" href="/icons/icon.png" />
-        <link rel="shortcut icon" type="image/png" href="/icons/icon.png" />
       </head>
       <body>
         <GradientOverlay />
-        <ThemeListener />
-        <ButtonsContainer />
+        <Suspense fallback={null}>
+          <ThemeHandler />
+        </Suspense>
         <main className="container">{children}</main>
       </body>
     </html>

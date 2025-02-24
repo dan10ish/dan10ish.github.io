@@ -4,82 +4,41 @@ import { useState, useEffect } from "react";
 import { Moon, Sun } from "lucide-react";
 import { motion } from "framer-motion";
 
-const THEME_COLORS = {
-  light: {
-    background: "#ffffff",
-    meta: "#ffffff",
-  },
-  dark: {
-    background: "#1c1c1c",
-    meta: "#1c1c1c",
-  },
+// Simplified theme handling
+const getTheme = () => {
+  if (typeof window === 'undefined') return 'light';
+  return document.documentElement.getAttribute('data-theme') || 'light';
 };
 
-function getSystemTheme() {
-  if (typeof window === "undefined") return "light";
-  return window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light";
-}
-
-function setTheme(theme, persist = true) {
-  const root = document.documentElement;
-  const effectiveTheme = theme === "system" ? getSystemTheme() : theme;
-
-  root.setAttribute("data-theme", effectiveTheme);
-
-  const meta = document.querySelector('meta[name="theme-color"]');
-  if (meta) {
-    meta.content = THEME_COLORS[effectiveTheme].meta;
+const setTheme = (theme) => {
+  if (typeof window === 'undefined') return;
+  
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('theme', theme);
+  
+  // Update meta theme color
+  const metaTheme = document.querySelector('meta[name="theme-color"]');
+  if (metaTheme) {
+    metaTheme.setAttribute('content', theme === 'dark' ? '#1c1c1c' : '#ffffff');
   }
-
-  if (persist) {
-    try {
-      localStorage.setItem("theme", theme);
-    } catch (e) {}
-  }
-}
+};
 
 export function ThemeButton() {
-  const [currentTheme, setCurrentTheme] = useState("system");
+  const [mounted, setMounted] = useState(false);
+  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
-    const stored = localStorage.getItem("theme");
-    if (stored) {
-      setCurrentTheme(stored);
-      setTheme(stored);
-    } else {
-      setTheme("system");
-    }
-
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleChange = () => {
-      if (currentTheme === "system") {
-        setTheme("system", false);
-      }
-    };
-
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
-  }, [currentTheme]);
+    setMounted(true);
+    setIsDark(getTheme() === 'dark');
+  }, []);
 
   const toggleTheme = () => {
-    const newTheme =
-      currentTheme === "system"
-        ? getSystemTheme() === "dark"
-          ? "light"
-          : "dark"
-        : currentTheme === "dark"
-        ? "light"
-        : "dark";
-
-    setCurrentTheme(newTheme);
+    const newTheme = isDark ? 'light' : 'dark';
     setTheme(newTheme);
+    setIsDark(!isDark);
   };
 
-  const isDark =
-    currentTheme === "dark" ||
-    (currentTheme === "system" && getSystemTheme() === "dark");
+  if (!mounted) return null;
 
   return (
     <motion.button
@@ -87,7 +46,6 @@ export function ThemeButton() {
       className="theme-button"
       aria-label="Toggle theme"
       whileTap={{ scale: 0.95 }}
-      transition={{ type: "spring", stiffness: 500, damping: 17 }}
     >
       <span className="theme-button-content">
         {isDark ? <Sun size={20} /> : <Moon size={20} />}
@@ -96,10 +54,26 @@ export function ThemeButton() {
   );
 }
 
+// Initialize theme on page load
 export default function ThemeHandler() {
   useEffect(() => {
-    const theme = localStorage.getItem("theme") || "system";
-    setTheme(theme);
+    // Get theme from localStorage or system preference
+    const savedTheme = localStorage.getItem('theme');
+    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initialTheme = savedTheme || (systemDark ? 'dark' : 'light');
+    
+    setTheme(initialTheme);
+
+    // Listen for system theme changes
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = (e) => {
+      if (!localStorage.getItem('theme')) {
+        setTheme(e.matches ? 'dark' : 'light');
+      }
+    };
+
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
 
   return null;

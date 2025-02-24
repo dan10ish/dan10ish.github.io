@@ -7,6 +7,7 @@ import { SiGithub, SiInstagram, SiX } from "@icons-pack/react-simple-icons";
 
 import { supabase } from "@/lib/supabase";
 import ShareButton from "./ShareButtons";
+import { ThemeButton } from "./ThemeHandler";
 
 const LucideIcon = ({ icon: Icon, ...props }) => {
   return <Icon strokeWidth={`var(--icon-stroke-width)`} {...props} />;
@@ -194,11 +195,7 @@ const Footer = ({ blogSlug = null }) => {
         <div className="footer-share">
           {!blogSlug && stars !== null && (
             <a
-              href={
-                blogSlug
-                  ? `https://github.com/dan10ish/dan10ish.github.io/blob/main/content/blog/${blogSlug}.md`
-                  : "https://github.com/dan10ish/dan10ish.github.io"
-              }
+              href="https://github.com/dan10ish/dan10ish.github.io"
               target="_blank"
               rel="noopener noreferrer"
               className="github-link"
@@ -222,22 +219,18 @@ const Footer = ({ blogSlug = null }) => {
           {blogSlug && (
             <div className="blog-util-links">
               <a
-                href={
-                  blogSlug
-                    ? `https://github.com/dan10ish/dan10ish.github.io/blob/main/content/blog/${blogSlug}.md`
-                    : "https://github.com/dan10ish/dan10ish.github.io"
-                }
+                href={`https://github.com/dan10ish/dan10ish.github.io/blob/main/content/blog/${blogSlug}.md`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="blog-source"
-                onMouseEnter={() => setIsGithubHovered(true)}
-                onMouseLeave={() => setIsGithubHovered(false)}
               >
                 <LucideIcon icon={CodeXml} size={20} />
               </a>
               <ShareButton slug={blogSlug} size={20} />
+              <ThemeButton />
             </div>
           )}
+          {!blogSlug && <ThemeButton />}
         </div>
       </div>
     </footer>
