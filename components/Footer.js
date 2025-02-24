@@ -3,8 +3,6 @@
 import { useState, useEffect, memo, useCallback } from "react";
 import { ChartNoAxesColumn, Heart, Star, Mail, CodeXml, GitFork } from "lucide-react";
 
-import { SiGithub, SiInstagram, SiX } from "@icons-pack/react-simple-icons";
-
 import { supabase } from "@/lib/supabase";
 import ShareButton from "./ShareButtons";
 import { ThemeButton } from "./ThemeHandler";
