@@ -1,79 +1,72 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { Moon, Sun } from "lucide-react";
-import { motion } from "framer-motion";
 
-// Simplified theme handling
-const getTheme = () => {
-  if (typeof window === 'undefined') return 'light';
-  return document.documentElement.getAttribute('data-theme') || 'light';
-};
-
-const setTheme = (theme) => {
-  if (typeof window === 'undefined') return;
-  
-  document.documentElement.setAttribute('data-theme', theme);
-  localStorage.setItem('theme', theme);
-  
-  // Update meta theme color
-  const metaTheme = document.querySelector('meta[name="theme-color"]');
-  if (metaTheme) {
-    metaTheme.setAttribute('content', theme === 'dark' ? '#1c1c1c' : '#ffffff');
-  }
-};
-
-export function ThemeButton() {
+export const ThemeButton = memo(() => {
+  const [theme, setTheme] = useState("light");
   const [mounted, setMounted] = useState(false);
-  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    setIsDark(getTheme() === 'dark');
+    const savedTheme = localStorage.getItem("theme") || 
+      (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    setTheme(savedTheme);
   }, []);
 
   const toggleTheme = () => {
-    const newTheme = isDark ? 'light' : 'dark';
+    const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
-    setIsDark(!isDark);
+    document.documentElement.setAttribute("data-theme", newTheme);
+    document.querySelector('meta[name="theme-color"]').content = 
+      newTheme === "dark" ? "#1c1c1c" : "#ffffff";
+    localStorage.setItem("theme", newTheme);
   };
 
-  if (!mounted) return null;
-
   return (
-    <motion.button
+    <button
       onClick={toggleTheme}
       className="theme-button"
-      aria-label="Toggle theme"
-      whileTap={{ scale: 0.95 }}
+      aria-label={`Switch to ${theme === "light" ? "dark" : "light"} theme`}
     >
-      <span className="theme-button-content">
-        {isDark ? <Sun size={20} /> : <Moon size={20} />}
-      </span>
-    </motion.button>
+      {mounted ? (
+        theme === "light" ? <Moon size={20} /> : <Sun size={20} />
+      ) : (
+        <Moon size={20} />
+      )}
+    </button>
   );
-}
+});
 
-// Initialize theme on page load
+ThemeButton.displayName = "ThemeButton";
+
 export default function ThemeHandler() {
-  useEffect(() => {
-    // Get theme from localStorage or system preference
-    const savedTheme = localStorage.getItem('theme');
-    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const initialTheme = savedTheme || (systemDark ? 'dark' : 'light');
-    
-    setTheme(initialTheme);
+  const [theme, setTheme] = useState("light");
 
-    // Listen for system theme changes
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const handleChange = (e) => {
-      if (!localStorage.getItem('theme')) {
-        setTheme(e.matches ? 'dark' : 'light');
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") || 
+      (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    setTheme(savedTheme);
+    document.documentElement.setAttribute("data-theme", savedTheme);
+    document.querySelector('meta[name="theme-color"]').content = 
+      savedTheme === "dark" ? "#1c1c1c" : "#ffffff";
+
+    const handleThemeChange = (e) => {
+      const newTheme = e.matches ? "dark" : "light";
+      if (!localStorage.getItem("theme")) {
+        setTheme(newTheme);
+        document.documentElement.setAttribute("data-theme", newTheme);
+        document.querySelector('meta[name="theme-color"]').content = 
+          newTheme === "dark" ? "#1c1c1c" : "#ffffff";
       }
     };
 
-    mediaQuery.addEventListener('change', handleChange);
-    return () => mediaQuery.removeEventListener('change', handleChange);
+    const darkModeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    darkModeMediaQuery.addEventListener("change", handleThemeChange);
+
+    return () => {
+      darkModeMediaQuery.removeEventListener("change", handleThemeChange);
+    };
   }, []);
 
   return null;

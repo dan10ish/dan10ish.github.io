@@ -1,15 +1,17 @@
 "use client";
 
-import { useState, useEffect, memo, useCallback } from "react";
+import { useState, useEffect, memo, useCallback, useRef } from "react";
 import { ChartNoAxesColumn, Heart, Star, Mail, CodeXml, GitFork } from "lucide-react";
 
 import { supabase } from "@/lib/supabase";
 import ShareButton from "./ShareButtons";
 import { ThemeButton } from "./ThemeHandler";
 
-const LucideIcon = ({ icon: Icon, ...props }) => {
+const LucideIcon = memo(({ icon: Icon, ...props }) => {
   return <Icon strokeWidth={`var(--icon-stroke-width)`} {...props} />;
-};
+});
+
+LucideIcon.displayName = "LucideIcon";
 
 const Footer = ({ blogSlug = null }) => {
   const [stats, setStats] = useState({ views: null, likes: null });
@@ -17,6 +19,7 @@ const Footer = ({ blogSlug = null }) => {
   const [stars, setStars] = useState(null);
   const [isUpdating, setIsUpdating] = useState(false);
   const [isGithubHovered, setIsGithubHovered] = useState(false);
+  const subscriptionRef = useRef(null);
 
   const formatNumber = useCallback((num) => {
     if (num === null) return <span className="infinity-symbol">∞</span>;
@@ -27,12 +30,10 @@ const Footer = ({ blogSlug = null }) => {
 
   useEffect(() => {
     const pageId = blogSlug ? `post-${blogSlug}` : "home";
-
     const cachedStats = window?.localStorage?.getItem(`stats-${pageId}`);
+    
     if (cachedStats) {
       setStats(JSON.parse(cachedStats));
-    } else {
-      setStats({ views: null, likes: null });
     }
 
     if (blogSlug) {
@@ -42,20 +43,15 @@ const Footer = ({ blogSlug = null }) => {
 
     const initializeStats = async () => {
       try {
-        const { data, error } = await supabase
+        const { data } = await supabase
           .from("page_stats")
           .select("views, likes")
           .eq("id", pageId)
           .single();
 
-        if (error && error.code !== "PGRST116") throw error;
-
         const result = data || { views: 0, likes: 0 };
         setStats(result);
-        window?.localStorage?.setItem(
-          `stats-${pageId}`,
-          JSON.stringify(result),
-        );
+        window?.localStorage?.setItem(`stats-${pageId}`, JSON.stringify(result));
 
         const viewedKey = `viewed-${pageId}-${new Date().toDateString()}`;
         if (!window?.sessionStorage?.getItem(viewedKey)) {
@@ -63,23 +59,21 @@ const Footer = ({ blogSlug = null }) => {
           const { data: updated } = await supabase.rpc("increment_views", {
             row_id: pageId,
           });
+          
           if (updated) {
             setStats(updated);
-            window?.localStorage?.setItem(
-              `stats-${pageId}`,
-              JSON.stringify(updated),
-            );
+            window?.localStorage?.setItem(`stats-${pageId}`, JSON.stringify(updated));
             window?.sessionStorage?.setItem(viewedKey, "true");
           }
+          
           setIsUpdating(false);
         }
-      } catch (error) {
-        console.error("Error initializing stats:", error);
+      } catch {
         setIsUpdating(false);
       }
     };
 
-    const subscription = supabase
+    subscriptionRef.current = supabase
       .channel(`stats-${pageId}`)
       .on(
         "postgres_changes",
@@ -92,10 +86,7 @@ const Footer = ({ blogSlug = null }) => {
         (payload) => {
           if (!isUpdating) {
             setStats(payload.new);
-            window?.localStorage?.setItem(
-              `stats-${pageId}`,
-              JSON.stringify(payload.new),
-            );
+            window?.localStorage?.setItem(`stats-${pageId}`, JSON.stringify(payload.new));
           }
         },
       )
@@ -115,58 +106,45 @@ const Footer = ({ blogSlug = null }) => {
         }
 
         try {
-          const res = await fetch(
-            "https://api.github.com/repos/dan10ish/dan10ish.github.io",
-          );
+          const res = await fetch("https://api.github.com/repos/dan10ish/dan10ish.github.io");
           const data = await res.json();
+          
           if (data?.stargazers_count) {
             setStars(data.stargazers_count);
-            window?.localStorage?.setItem(
-              "github-stars",
-              data.stargazers_count.toString(),
-            );
+            window?.localStorage?.setItem("github-stars", data.stargazers_count.toString());
             window?.localStorage?.setItem("github-stars-time", now.toString());
           }
-        } catch (error) {
-          console.error("Error fetching stars:", error);
-        }
+        } catch {}
       };
+      
       fetchStars();
     }
 
-    return () => subscription.unsubscribe();
-  }, [blogSlug, isUpdating, formatNumber]);
+    return () => {
+      subscriptionRef.current?.unsubscribe();
+    };
+  }, [blogSlug, isUpdating]);
 
-  const handleLike = useCallback(
-    async (e) => {
-      e.preventDefault();
-      if (hasLiked || !blogSlug) return;
+  const handleLike = useCallback(async (e) => {
+    e.preventDefault();
+    if (hasLiked || !blogSlug) return;
 
-      setHasLiked(true);
+    setHasLiked(true);
 
-      const pageId = `post-${blogSlug}`;
-      window?.sessionStorage?.setItem(`liked-${pageId}`, "true");
+    const pageId = `post-${blogSlug}`;
+    window?.sessionStorage?.setItem(`liked-${pageId}`, "true");
 
-      try {
-        const { data } = await supabase.rpc("increment_likes", {
-          row_id: pageId,
-        });
+    try {
+      const { data } = await supabase.rpc("increment_likes", {
+        row_id: pageId,
+      });
 
-        if (data) {
-          setStats(data);
-          window?.localStorage?.setItem(
-            `stats-${pageId}`,
-            JSON.stringify(data),
-          );
-        }
-      } catch (error) {
-        console.error("Error liking post:", error);
+      if (data) {
+        setStats(data);
+        window?.localStorage?.setItem(`stats-${pageId}`, JSON.stringify(data));
       }
-    },
-    [blogSlug, hasLiked],
-  );
-
-  const isHomePage = !blogSlug;
+    } catch {}
+  }, [blogSlug, hasLiked]);
 
   return (
     <footer className="site-footer">
@@ -191,7 +169,7 @@ const Footer = ({ blogSlug = null }) => {
           )}
         </div>
         <div className="footer-share">
-          {!blogSlug && stars !== null && (
+          {!blogSlug && (
             <a
               href="https://github.com/dan10ish/dan10ish.github.io"
               target="_blank"
@@ -214,7 +192,7 @@ const Footer = ({ blogSlug = null }) => {
               </div>
             </a>
           )}
-          {blogSlug && (
+          {blogSlug ? (
             <div className="blog-util-links">
               <a
                 href={`https://github.com/dan10ish/dan10ish.github.io/blob/main/content/blog/${blogSlug}.md`}
@@ -227,8 +205,9 @@ const Footer = ({ blogSlug = null }) => {
               <ShareButton slug={blogSlug} size={20} />
               <ThemeButton />
             </div>
+          ) : (
+            <ThemeButton />
           )}
-          {!blogSlug && <ThemeButton />}
         </div>
       </div>
     </footer>

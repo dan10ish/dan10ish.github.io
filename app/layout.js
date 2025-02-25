@@ -2,24 +2,12 @@ import { Suspense } from 'react';
 import ThemeHandler from '@/components/ThemeHandler';
 import "./globals.css";
 import GradientOverlay from '@/components/GradientOverlay';
+
 export const metadata = {
   metadataBase: new URL("https://danish.bio"),
   title: "Danish",
-  description:
-    "Danish is a mechatronics engineer exploring machine learning, robotics and finance. Discover his projects, writings, and technical insights.",
-  keywords: [
-    "Danish",
-    "ai",
-    "artificial intelligence",
-    "Danish Ansari",
-    "Danish Mumbai",
-    "mechatronics",
-    "robotics",
-    "machine learning",
-    "developer",
-    "engineer",
-    "portfolio",
-  ],
+  description: "Danish is a mechatronics engineer exploring machine learning, robotics and finance. Discover his projects, writings, and technical insights.",
+  keywords: ["Danish", "ai", "artificial intelligence", "Danish Ansari", "Danish Mumbai", "mechatronics", "robotics", "machine learning", "developer", "engineer", "portfolio"],
   robots: {
     index: true,
     follow: true,
@@ -32,34 +20,28 @@ export const metadata = {
       "max-snippet": -1,
     },
   },
-  alternates: {
-    canonical: "https://danish.bio",
-  },
+  alternates: { canonical: "https://danish.bio" },
   twitter: {
     card: "summary_large_image",
     site: "@dan10ish",
     creator: "@dan10ish",
     title: "Danish",
-    description:
-      "Danish's personal website featuring his projects, technical writings, and insights in robotics and machine learning.",
+    description: "Danish's personal website featuring his projects, technical writings, and insights in robotics and machine learning.",
     images: ["https://i.ibb.co/vmBrhSd/OG.png"],
   },
   openGraph: {
     type: "website",
     siteName: "Danish",
     title: "Danish",
-    description:
-      "Danish's personal website featuring his projects, technical writings, and insights in robotics and machine learning..",
+    description: "Danish's personal website featuring his projects, technical writings, and insights in robotics and machine learning.",
     url: "https://danish.bio",
-    images: [
-      {
-        url: "https://i.ibb.co/vmBrhSd/OG.png",
-        width: 1200,
-        height: 675,
-        type: "image/png",
-        alt: "Danish's Portfolio Preview",
-      },
-    ],
+    images: [{
+      url: "https://i.ibb.co/vmBrhSd/OG.png",
+      width: 1200,
+      height: 675,
+      type: "image/png",
+      alt: "Danish's Portfolio Preview",
+    }],
   },
   other: {
     "profile:username": "dan10ish",
@@ -103,17 +85,7 @@ export default function RootLayout({ children }) {
         <link rel="dns-prefetch" href="https://api.github.com" />
         <script
           dangerouslySetInnerHTML={{
-            __html: `
-              (() => {
-                try {
-                  const theme = localStorage.getItem('theme') || 
-                    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-                  document.documentElement.setAttribute('data-theme', theme);
-                  document.querySelector('meta[name="theme-color"]').content = 
-                    theme === 'dark' ? '#1c1c1c' : '#ffffff';
-                } catch(e) {}
-              })()
-            `,
+            __html: `(()=>{try{const t=localStorage.getItem("theme")||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t);document.querySelector('meta[name="theme-color"]').content=t==="dark"?"#1c1c1c":"#ffffff"}catch{}})()`
           }}
         />
         <link rel="icon" type="image/png" href="/icons/icon.png" />

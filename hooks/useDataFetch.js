@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 
-const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+const CACHE_DURATION = 5 * 60 * 1000;
 const cache = new Map();
 
 export function useDataFetch(key, fetchFn, options = {}) {

@@ -34,12 +34,14 @@ import {
 } from "lucide-react";
 import Footer from "./Footer";
 import ScrollIndicator from "./ScrollIndicator";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { SiX, SiGithub, SiInstagram } from "@icons-pack/react-simple-icons";
 
-const LucideIcon = ({ icon: Icon, ...props }) => {
+const LucideIcon = memo(({ icon: Icon, ...props }) => {
   return <Icon strokeWidth={`var(--icon-stroke-width)`} {...props} />;
-};
+});
+
+LucideIcon.displayName = "LucideIcon";
 
 const OptionSwitcher = memo(({ selectedOption, handleOptionChange }) => {
   const containerRef = useRef(null);
@@ -107,9 +109,9 @@ const OptionSwitcher = memo(({ selectedOption, handleOptionChange }) => {
       )}
       <div className="option-left">
         <button
-          onClick={() => handleOptionChange("writings")}
+          onClick={() => handleOptionChange("posts")}
           className={`option-btn${
-            selectedOption === "writings" ? " active" : ""
+            selectedOption === "posts" ? " active" : ""
           }`}
         >
           Posts
@@ -137,7 +139,7 @@ const OptionSwitcher = memo(({ selectedOption, handleOptionChange }) => {
 
 OptionSwitcher.displayName = "OptionSwitcher";
 
-const AboutContent = () => {
+const AboutContent = memo(() => {
   const details = [
     { label: <LucideIcon icon={GraduationCap} />, content: "Mechatronics Engineering" },
     { label: <LucideIcon icon={Hammer} />, content: "ML | Robotics | Finance" },
@@ -217,167 +219,148 @@ const AboutContent = () => {
       </div>
     </div>
   );
-};
+});
+
+AboutContent.displayName = "AboutContent";
+
+const SortIcon = memo(({ columnKey, sortConfig }) => (
+  <span className="sort-icons">
+    <LucideIcon
+      icon={ChevronUp}
+      className={
+        sortConfig.key === columnKey && sortConfig.direction === "asc"
+          ? "active"
+          : ""
+      }
+    />
+    <LucideIcon
+      icon={ChevronDown}
+      className={
+        sortConfig.key === columnKey && sortConfig.direction === "desc"
+          ? "active"
+          : ""
+      }
+    />
+  </span>
+));
+
+SortIcon.displayName = "SortIcon";
+
+const BlogListItem = memo(({ post, viewCount }) => (
+  <Link
+    href={`/post/${post.slug}`}
+    className="list-row"
+    prefetch
+  >
+    <span className="date">{post.year}</span>
+    <span className="title">{post.title}</span>
+    <span className="views">
+      {viewCount === undefined ? (
+        <span className="infinity-symbol">∞</span>
+      ) : (
+        viewCount
+      )}
+    </span>
+  </Link>
+));
+
+BlogListItem.displayName = "BlogListItem";
 
 const BlogList = memo(({ posts, viewsData, sortConfig, handleSort }) => {
-  const getSortIcon = useCallback(
-    (key) => (
-      <span className="sort-icons">
-        <LucideIcon
-          icon={ChevronUp}
-          className={
-            sortConfig.key === key && sortConfig.direction === "asc"
-              ? "active"
-              : ""
-          }
-        />
-        <LucideIcon
-          icon={ChevronDown}
-          className={
-            sortConfig.key === key && sortConfig.direction === "desc"
-              ? "active"
-              : ""
-          }
-        />
-      </span>
-    ),
-    [sortConfig]
-  );
-
   const tableRef = useRef(null);
-
-  const listItems = useMemo(() => {
-    return posts.map((post) => (
-      <Link
-        href={`/post/${post.slug}`}
-        key={post.slug}
-        className="list-row"
-        prefetch
-      >
-        <span className="date">{post.year}</span>
-        <span className="title">{post.title}</span>
-        <span className="views">
-          {viewsData[post.slug] === undefined ? (
-            <span className="infinity-symbol">∞</span>
-          ) : (
-            viewsData[post.slug]
-          )}
-        </span>
-      </Link>
-    ));
-  }, [posts, viewsData]);
 
   return (
     <div className="mono-list">
       <div className="list-header">
         <span onClick={() => handleSort("date")} style={{ cursor: "pointer" }}>
-          date {getSortIcon("date")}
+          date <SortIcon columnKey="date" sortConfig={sortConfig} />
         </span>
         <span onClick={() => handleSort("title")} style={{ cursor: "pointer" }}>
-          title {getSortIcon("title")}
+          title <SortIcon columnKey="title" sortConfig={sortConfig} />
         </span>
         <span
           onClick={() => handleSort("views")}
           style={{ cursor: "pointer" }}
           className="views"
         >
-          {getSortIcon("views")} views
+          <SortIcon columnKey="views" sortConfig={sortConfig} /> views
         </span>
       </div>
       <div className="table-max" ref={tableRef}>
-        {listItems}
+        {posts.map(post => (
+          <BlogListItem 
+            key={post.slug} 
+            post={post} 
+            viewCount={viewsData[post.slug]} 
+          />
+        ))}
       </div>
       <ScrollIndicator containerRef={tableRef} />
     </div>
   );
 });
 
+BlogList.displayName = "BlogList";
+
+const ProjectListItem = memo(({ project, selectedTag, handleTagClick }) => (
+  <div className="list-row">
+    <span className="title">
+      <div>{project.title}</div>
+      <div>
+        {project.highlight && (
+          <span className="highlight-star" title="Highlighted Project">
+            <LucideIcon icon={Star} size={14} fill="currentColor" />
+          </span>
+        )}
+      </div>
+    </span>
+    <span className="actions">
+      <a
+        href={project.sourceLink || "#"}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`action-link github ${
+          !project.sourceLink ? "disabled" : ""
+        }`}
+      >
+        <LucideIcon icon={CodeXml} size={20} />
+      </a>
+      <a
+        href={project.projectLink || "#"}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`action-link globe ${
+          !project.projectLink ? "disabled" : ""
+        }`}
+      >
+        <LucideIcon icon={Globe} size={20} />
+      </a>
+    </span>
+    <span className="tags">
+      {project.tags.map((tag) => (
+        <span
+          key={tag}
+          className={`tag ${selectedTag === tag ? "selected" : ""}`}
+          onClick={(e) => handleTagClick(tag, e)}
+        >
+          {tag}
+        </span>
+      ))}
+    </span>
+  </div>
+));
+
+ProjectListItem.displayName = "ProjectListItem";
+
 const ProjectList = memo(
   ({ projects, selectedTag, handleTagClick, handleSort, sortConfig }) => {
     const tableRef = useRef(null);
-
-    const getSortIcon = useCallback(
-      (key) => (
-        <span className="sort-icons">
-          <LucideIcon
-            icon={ChevronUp}
-            className={
-              sortConfig?.key === key && sortConfig.direction === "asc"
-                ? "active"
-                : ""
-            }
-          />
-          <LucideIcon
-            icon={ChevronDown}
-            className={
-              sortConfig?.key === key && sortConfig.direction === "desc"
-                ? "active"
-                : ""
-            }
-          />
-        </span>
-      ),
-      [sortConfig]
-    );
-
-    const listItems = useMemo(() => {
-      return projects.map((project) => (
-        <div
-          key={project.title}
-          className="list-row"
-        >
-          <span className="title">
-            <div>{project.title}</div>
-            <div>
-              {project.highlight && (
-                <span className="highlight-star" title="Highlighted Project">
-                  <LucideIcon icon={Star} size={14} fill="currentColor" />
-                </span>
-              )}
-            </div>
-          </span>
-          <span className="actions">
-            <a
-              href={project.sourceLink || "#"}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`action-link github ${
-                !project.sourceLink ? "disabled" : ""
-              }`}
-            >
-              <LucideIcon icon={CodeXml} size={20} />
-            </a>
-            <a
-              href={project.projectLink || "#"}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`action-link globe ${
-                !project.projectLink ? "disabled" : ""
-              }`}
-            >
-              <LucideIcon icon={Globe} size={20} />
-            </a>
-          </span>
-          <span className="tags">
-            {project.tags.map((tag) => (
-              <span
-                key={tag}
-                className={`tag ${selectedTag === tag ? "selected" : ""}`}
-                onClick={(e) => handleTagClick(tag, e)}
-              >
-                {tag}
-              </span>
-            ))}
-          </span>
-        </div>
-      ));
-    }, [projects, selectedTag, handleTagClick]);
 
     return (
       <div className="mono-list project-list">
         <div className="list-header">
           <span onClick={() => handleSort("title")} style={{ cursor: "pointer" }}>
-            title {getSortIcon("title")}
+            title <SortIcon columnKey="title" sortConfig={sortConfig} />
           </span>
           <span className="actions" style={{ cursor: "default" }}>
             links
@@ -398,13 +381,20 @@ const ProjectList = memo(
                 }}
               />
             ) : (
-              getSortIcon("tags")
+              <SortIcon columnKey="tags" sortConfig={sortConfig} />
             )}
             tags
           </span>
         </div>
         <div className="table-max" ref={tableRef}>
-          {listItems}
+          {projects.map(project => (
+            <ProjectListItem
+              key={project.title}
+              project={project}
+              selectedTag={selectedTag}
+              handleTagClick={handleTagClick}
+            />
+          ))}
         </div>
         <ScrollIndicator containerRef={tableRef} />
       </div>
@@ -412,10 +402,12 @@ const ProjectList = memo(
   }
 );
 
-const Content = ({ posts, projects }) => {
+ProjectList.displayName = "ProjectList";
+
+const Content = memo(({ posts, projects }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const initialTab = searchParams.get("tab") || "writings";
+  const initialTab = searchParams.get("tab") || "posts";
   const [selectedOption, setSelectedOption] = useState(initialTab);
   const [viewsData, setViewsData] = useState({});
   const [sortConfig, setSortConfig] = useState({ key: null, direction: null });
@@ -440,9 +432,7 @@ const Content = ({ posts, projects }) => {
             {}
           )
         );
-      } catch (error) {
-        console.error("Error fetching views:", error);
-      }
+      } catch {}
     };
 
     fetchViews();
@@ -505,11 +495,9 @@ const Content = ({ posts, projects }) => {
     }
     if (sortConfig?.key === "title") {
       filtered = [...filtered].sort((a, b) => {
-        const titleA = a.title;
-        const titleB = b.title;
         return sortConfig.direction === "asc"
-          ? titleA.localeCompare(titleB)
-          : titleB.localeCompare(titleA);
+          ? a.title.localeCompare(b.title)
+          : b.title.localeCompare(a.title);
       });
     } else if (sortConfig?.key === "tags") {
       filtered = [...filtered].sort((a, b) => {
@@ -533,7 +521,7 @@ const Content = ({ posts, projects }) => {
           />
         </div>
         <div className="content-area">
-          {selectedOption === "writings" ? (
+          {selectedOption === "posts" ? (
             <BlogList
               posts={sortedPosts}
               viewsData={viewsData}
@@ -558,7 +546,9 @@ const Content = ({ posts, projects }) => {
       </div>
     </div>
   );
-};
+});
+
+Content.displayName = "Content";
 
 export default function ContentWrapper({ posts, projects }) {
   return (
