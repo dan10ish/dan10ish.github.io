@@ -14,12 +14,9 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import {
   Globe,
-  ArrowUp,
-  ArrowDown,
   X,
   CodeXml,
   Star,
-  Mail,
   Plane,
   ChartCandlestick,
   Briefcase,
@@ -27,8 +24,6 @@ import {
   Hammer,
   BookText,
   Images,
-  ChevronLeft,
-  ChevronRight,
   ChevronUp,
   ChevronDown,
   Copy,
@@ -37,7 +32,6 @@ import {
 import Footer from "./Footer";
 import ScrollIndicator from "./ScrollIndicator";
 import { motion } from "framer-motion";
-import { SiX, SiGithub, SiInstagram } from "@icons-pack/react-simple-icons";
 
 const LucideIcon = memo(({ icon: Icon, ...props }) => {
   return <Icon strokeWidth={`var(--icon-stroke-width)`} {...props} />;
@@ -196,7 +190,6 @@ const AboutContent = memo(() => {
   const details = [
     { label: <LucideIcon icon={GraduationCap} />, content: "Mechatronics Engineering" },
     { label: <LucideIcon icon={Hammer} />, content: "ML | Robotics | Finance" },
-    { label: <LucideIcon icon={Briefcase} />, content: "Modelling and programming of robotic arms" },
   ];
 
   const email = "aansaridan@gmail.com";
