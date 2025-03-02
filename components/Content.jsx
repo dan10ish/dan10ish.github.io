@@ -31,6 +31,8 @@ import {
   ChevronRight,
   ChevronUp,
   ChevronDown,
+  Copy,
+  Check,
 } from "lucide-react";
 import Footer from "./Footer";
 import ScrollIndicator from "./ScrollIndicator";
@@ -139,12 +141,65 @@ const OptionSwitcher = memo(({ selectedOption, handleOptionChange }) => {
 
 OptionSwitcher.displayName = "OptionSwitcher";
 
+const EmailCopyButton = memo(({ email }) => {
+  const [copied, setCopied] = useState(false);
+
+  const copyToClipboard = useCallback(async () => {
+    if (!email) return;
+
+    try {
+      await navigator.clipboard.writeText(email);
+      setCopied(true);
+      setTimeout(() => {
+        setCopied(false);
+      }, 2000);
+    } catch (err) {
+      const textArea = document.createElement("textarea");
+      textArea.value = email;
+      textArea.style.position = "fixed";
+      textArea.style.left = "-999999px";
+      textArea.style.top = "-999999px";
+      textArea.style.opacity = "0";
+      textArea.style.pointerEvents = "none";
+      document.body.appendChild(textArea);
+      textArea.select();
+      try {
+        document.execCommand("copy");
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      } finally {
+        document.body.removeChild(textArea);
+      }
+    }
+  }, [email]);
+
+  return (
+    <button
+      type="button"
+      onClick={copyToClipboard}
+      className="email-copy-button"
+      aria-label={copied ? "Copied!" : "Copy email"}
+      title={copied ? "Copied!" : "Copy email"}
+    >
+      {copied ? (
+        <Check className="copy-icon" strokeWidth={2.5} size={18} color="#4ade80" />
+      ) : (
+        <Copy className="copy-icon" strokeWidth={2} size={18} />
+      )}
+    </button>
+  );
+});
+
+EmailCopyButton.displayName = "EmailCopyButton";
+
 const AboutContent = memo(() => {
   const details = [
     { label: <LucideIcon icon={GraduationCap} />, content: "Mechatronics Engineering" },
     { label: <LucideIcon icon={Hammer} />, content: "ML | Robotics | Finance" },
     { label: <LucideIcon icon={Briefcase} />, content: "Modelling and programming of robotic arms" },
   ];
+
+  const email = "aansaridan@gmail.com";
 
   return (
     <div className="about-container">
@@ -178,43 +233,29 @@ const AboutContent = memo(() => {
             Planes
           </Link>
         </div>
-        <div className="footer-socials">
-          <a
-            href="https://x.com/dan10ish"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="header-icon"
-            aria-label="Visit my X profile"
-          >
-            <SiX size={20} />
-          </a>
+        <div className="about-social-links">
+          <div className="about-contact-heading">Contact:</div>
           <a
             href="https://github.com/dan10ish"
             target="_blank"
             rel="noopener noreferrer"
-            className="header-icon header-icon-github"
+            className="about-social-link"
             aria-label="Visit my GitHub profile"
           >
-            <SiGithub size={22} />
+            GitHub
           </a>
-          <a
-            href="https://instagram.com/dan10ish"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="header-icon header-icon-github"
-            aria-label="Visit my Instagram profile"
-          >
-            <SiInstagram size={20} />
-          </a>
-          <a
-            href="mailto:aansaridan@gmail.com"
-            className="header-icon email-link"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Connect via email"
-          >
-            <Mail size={24} strokeWidth={1.8} />
-          </a>
+          <div className="about-email-container">
+            <a
+              href={`mailto:${email}`}
+              className="about-social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Connect via email"
+            >
+              {email}
+            </a>
+            <EmailCopyButton email={email} />
+          </div>
         </div>
       </div>
     </div>
