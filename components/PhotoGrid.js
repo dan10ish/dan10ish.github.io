@@ -16,7 +16,7 @@ import { photoMetadata } from "@/lib/photo-meta";
 import ButtonsContainer from "./ButtonsContainer";
 
 const PhotoMeta = memo(({ meta, isVisible, onClose }) => (
-  <div className={`photo-meta ${isVisible ? 'visible' : ''}`}>
+  <div className={`photo-meta ${isVisible ? 'visible' : ''}`} onClick={onClose}>
     <div className="meta-content">
       <div className="meta-row">
         <Camera size={14} className="meta-icon" />
@@ -42,44 +42,24 @@ const PhotoMeta = memo(({ meta, isVisible, onClose }) => (
   </div>
 ));
 
-const PhotoCard = memo(({ photo }) => {
-  const [showMeta, setShowMeta] = useState(false);
-
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (!e.target.closest('.photo-meta') && !e.target.closest('.meta-toggle-button')) {
-        setShowMeta(false);
-      }
-    };
-
-    if (showMeta) {
-      document.addEventListener('mousedown', handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [showMeta]);
-
-  return (
-    <div className="photo-card">
-      <div className="photo-container">
-        <img src={photo.src} alt="" loading="lazy" decoding="async" />
-        <button 
-          className="meta-toggle-button" 
-          onClick={() => setShowMeta(!showMeta)}
-        >
-          <ChevronUp size={20} strokeWidth={2.5} />
-        </button>
-        <PhotoMeta 
-          meta={photo.meta} 
-          isVisible={showMeta} 
-          onClose={() => setShowMeta(false)} 
-        />
-      </div>
+const PhotoCard = memo(({ photo, isMetaVisible, onMetaToggle }) => (
+  <div className="photo-card">
+    <div className="photo-container">
+      <img src={photo.src} alt="" loading="lazy" decoding="async" />
+      <button 
+        className="meta-toggle-button" 
+        onClick={() => onMetaToggle(photo.index)}
+      >
+        <ChevronUp size={20} strokeWidth={2.5} />
+      </button>
+      <PhotoMeta 
+        meta={photo.meta} 
+        isVisible={isMetaVisible} 
+        onClose={() => onMetaToggle(null)} 
+      />
     </div>
-  );
-});
+  </div>
+));
 
 const Skeleton = memo(() => (
   <div className="photo-card skeleton">
@@ -101,12 +81,28 @@ const PhotoGrid = () => {
   const [loading, setLoading] = useState(true);
   const [totalPhotos, setTotalPhotos] = useState(16);
   const [loadedPhotos, setLoadedPhotos] = useState([]);
+  const [activeMetaIndex, setActiveMetaIndex] = useState(null);
 
   const breakpointColumns = {
     default: 3,
     1100: 2,
     700: 2,
   };
+
+  const handleMetaToggle = useCallback((index) => {
+    setActiveMetaIndex(current => current === index ? null : index);
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (!e.target.closest('.photo-meta') && !e.target.closest('.meta-toggle-button')) {
+        setActiveMetaIndex(null);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const processPhoto = useCallback(async (src, index) => {
     try {
@@ -226,7 +222,12 @@ const PhotoGrid = () => {
       >
         {[...Array(totalPhotos)].map((_, index) =>
           loadedPhotos[index] ? (
-            <PhotoCard key={`photo-${index}`} photo={loadedPhotos[index]} />
+            <PhotoCard 
+              key={`photo-${index}`} 
+              photo={loadedPhotos[index]} 
+              isMetaVisible={activeMetaIndex === index}
+              onMetaToggle={handleMetaToggle}
+            />
           ) : (
             <Skeleton key={`skeleton-${index}`} />
           )
