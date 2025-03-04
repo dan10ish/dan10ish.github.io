@@ -3,6 +3,14 @@
 import { useState, useEffect, memo } from "react";
 import { Moon, Sun } from "lucide-react";
 
+const updateThemeColors = (theme) => {
+  document.documentElement.setAttribute("data-theme", theme);
+  const metaTheme = document.querySelector('meta[name="theme-color"]');
+  if (metaTheme) {
+    metaTheme.setAttribute("content", theme === "dark" ? "#1c1c1c" : "#ffffff");
+  }
+};
+
 export const ThemeButton = memo(() => {
   const [theme, setTheme] = useState("light");
   const [mounted, setMounted] = useState(false);
@@ -12,14 +20,13 @@ export const ThemeButton = memo(() => {
     const savedTheme = localStorage.getItem("theme") || 
       (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
     setTheme(savedTheme);
+    updateThemeColors(savedTheme);
   }, []);
 
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
-    document.documentElement.setAttribute("data-theme", newTheme);
-    document.querySelector('meta[name="theme-color"]').content = 
-      newTheme === "dark" ? "#1c1c1c" : "#ffffff";
+    updateThemeColors(newTheme);
     localStorage.setItem("theme", newTheme);
   };
 
@@ -47,17 +54,13 @@ export default function ThemeHandler() {
     const savedTheme = localStorage.getItem("theme") || 
       (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
     setTheme(savedTheme);
-    document.documentElement.setAttribute("data-theme", savedTheme);
-    document.querySelector('meta[name="theme-color"]').content = 
-      savedTheme === "dark" ? "#1c1c1c" : "#ffffff";
+    updateThemeColors(savedTheme);
 
     const handleThemeChange = (e) => {
       const newTheme = e.matches ? "dark" : "light";
       if (!localStorage.getItem("theme")) {
         setTheme(newTheme);
-        document.documentElement.setAttribute("data-theme", newTheme);
-        document.querySelector('meta[name="theme-color"]').content = 
-          newTheme === "dark" ? "#1c1c1c" : "#ffffff";
+        updateThemeColors(newTheme);
       }
     };
 

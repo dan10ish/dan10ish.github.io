@@ -85,7 +85,7 @@ export default function RootLayout({ children }) {
         <link rel="dns-prefetch" href="https://api.github.com" />
         <script
           dangerouslySetInnerHTML={{
-            __html: `(()=>{try{const t=localStorage.getItem("theme")||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t);document.querySelector('meta[name="theme-color"]').content=t==="dark"?"#1c1c1c":"#ffffff"}catch{}})()`
+            __html: `(()=>{try{const t=localStorage.getItem("theme")||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t);const m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="dark"?"#1c1c1c":"#ffffff")}catch{}})()`
           }}
         />
         <link rel="icon" type="image/png" href="/icons/icon.png" />
