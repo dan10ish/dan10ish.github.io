@@ -1,15 +1,16 @@
 "use client";
 
 import { List } from "lucide-react";
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 
-const TOCButton = () => {
+const TOCButton = ({ tocData = [] }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [toc, setToc] = useState([]);
   const [activeId, setActiveId] = useState("");
   const menuRef = useRef(null);
   const isLargeScreen = useRef(false);
   const observerRef = useRef(null);
+
+  const toc = useMemo(() => tocData || [], [tocData]);
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -54,46 +55,20 @@ const TOCButton = () => {
       },
     );
 
-    document.querySelectorAll("h2, h3, h4, h5, h6").forEach((heading) => {
-      if (heading.id) {
-        observerRef.current.observe(heading);
+    toc.forEach(item => {
+      const element = document.getElementById(item.id);
+      if (element) {
+        observerRef.current.observe(element);
       }
     });
 
     return () => observerRef.current.disconnect();
-  }, []);
+  }, [toc]);
 
   useEffect(() => {
-    const generateTOC = () => {
-      const headers = document.querySelectorAll("h2, h3, h4, h5, h6");
-      return Array.from(headers)
-        .map((header) => {
-          const text = header.textContent;
-          const id =
-            header.id ||
-            text
-              .toLowerCase()
-              .replace(/[^a-z0-9]+/g, "-")
-              .replace(/(^-|-$)/g, "");
-          if (!header.id) header.id = id;
-          return { id, text, level: parseInt(header.tagName.charAt(1)) };
-        })
-        .filter(
-          (item) =>
-            item.text.toLowerCase() !== "table of contents" &&
-            item.text.toLowerCase() !== "footnotes",
-        );
-    };
-
-    const updateTOC = () => {
-      setToc(generateTOC());
+    if (toc.length > 0) {
       createObserver();
-    };
-
-    updateTOC();
-
-    const observer = new MutationObserver(updateTOC);
-    observer.observe(document.body, { childList: true, subtree: true });
+    }
 
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -104,28 +79,56 @@ const TOCButton = () => {
     document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
-      observer.disconnect();
       document.removeEventListener("mousedown", handleClickOutside);
       if (observerRef.current) {
         observerRef.current.disconnect();
       }
     };
-  }, [createObserver]);
+  }, [createObserver, toc]);
 
   const handleClick = (e, id) => {
     e.preventDefault();
+    
     const element = document.getElementById(id);
-    const headerOffset = 80;
-    const elementPosition = element.getBoundingClientRect().top;
-    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
+    if (!element) {
+      const matchingItem = toc.find(item => item.id === id);
+      if (matchingItem) {
+        const headings = document.querySelectorAll("h2, h3, h4, h5, h6");
+        const matchingHeading = Array.from(headings).find(
+          h => h.textContent.trim() === matchingItem.text.trim()
+        );
+        
+        if (matchingHeading) {
+          if (!matchingHeading.id) {
+            matchingHeading.id = id;
+          }
+          scrollToElement(matchingHeading, id);
+          return;
+        }
+      }
+      return;
+    }
+    
+    scrollToElement(element, id);
+  };
+  
+  const scrollToElement = (element, id) => {
     setIsOpen(false);
     document.body.style.overflow = "";
+    
+    const headerOffset = 80;
+    const elementPosition = element.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.scrollY - headerOffset;
 
     window.scrollTo({
       top: offsetPosition,
       behavior: "smooth",
     });
+    
+    setTimeout(() => {
+      window.history.pushState(null, null, `#${id}`);
+      setActiveId(id);
+    }, 100);
   };
 
   if (!toc.length) return null;

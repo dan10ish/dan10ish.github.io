@@ -16,7 +16,7 @@ const TOCButton = dynamic(() => import("./TOCButton"), {
   loading: () => null,
 });
 
-export default function ButtonsContainer() {
+export default function ButtonsContainer({ tocData }) {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const pathname = usePathname();
@@ -44,7 +44,7 @@ export default function ButtonsContainer() {
 
   return (
     <div className={`buttons-container ${!isVisible ? "hidden" : ""}`}>
-      {isBlogPost && !isPhotoPage && <TOCButton />}
+      {isBlogPost && !isPhotoPage && <TOCButton tocData={tocData} />}
       {!isHomePage && !isPhotoPage && <HomeButton />}
       <ScrollToTop />
     </div>

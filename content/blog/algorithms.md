@@ -11,7 +11,7 @@ Algorithms are implemented from the book [Competitive Programing in Python](http
   (AB){ij} = \sum{k=0}^{n-1} A_{ik} \times B_{kj}
   $$
 
-#### 1. [Frievald's Algorithm](https://en.wikipedia.org/wiki/Freivalds%27_algorithm)
+#### 1. Frievald's Algorithm
 
 To check matrix multiplication, $AB = C$ in $O(n^2)$ instead of $O(n^3)$ by randomly choosing a vector $x$ and testing $A(Bx) = Cx$.
 

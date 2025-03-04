@@ -17,6 +17,7 @@
     "compression-next": "^1.0.3",
     "exifreader": "^4.25.0",
     "framer-motion": "^12.1.0",
+    "github-slugger": "^2.0.0",
     "highlight.js": "^11.10.0",
     "katex": "^0.16.11",
     "lucide-react": "^0.453.0",

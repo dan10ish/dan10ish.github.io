@@ -1,5 +1,5 @@
 import { getBlogPost, getBlogPosts } from "@/lib/posts";
-import { markdownToHtml } from "@/lib/mdxutils";
+import { markdownToHtml, extractTOC } from "@/lib/mdxutils";
 import { MDXContent } from "@/components/ClientWrapper";
 import ButtonsContainer from "@/components/ButtonsContainer";
 import dynamic from "next/dynamic";
@@ -67,10 +67,11 @@ export default async function BlogPost(props) {
   }
 
   const contentHtml = await markdownToHtml(post.content);
+  const tocData = await extractTOC(post.content);
 
   return (
     <>
-      <ButtonsContainer />
+      <ButtonsContainer tocData={tocData} />
       <article className="blog-post markdown-body">
         <div className="blogpost-title">
           <h1>{post.title}</h1>
