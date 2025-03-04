@@ -1957,32 +1957,102 @@ a[data-footnote-ref] {
   height: auto;
   display: block;
   margin: 0;
+  transition: transform 0.3s ease;
 }
 
 .photo-meta {
-  padding: 0.5rem;
+  position: absolute;
+  inset: -2px;
+  background: rgba(var(--color-bg-rgb), 0.95);
+  backdrop-filter: blur(8px);
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  z-index: 20;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-meta.visible {
+  transform: translateY(0);
+}
+
+.meta-content {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.25rem;
 }
 
 .meta-row {
   display: flex;
   flex-wrap: wrap;
   column-gap: 0.5rem;
-  margin-bottom: 0.1rem;
-  row-gap: 0.15rem;
+  row-gap: 0rem;
   align-items: center;
-}
-
-.meta-row:last-child {
-  margin-bottom: 0;
-}
-
-.meta-row span {
-  white-space: nowrap;
+  font-size: calc(var(--font-size-mobile) * 0.85);
+  color: rgba(var(--color-text-rgb), 0.9);
+  padding: 0;
+  margin: 0;
 }
 
 .meta-icon {
-  color: rgba(var(--color-text-rgb), 1);
-  opacity: 0.6;
+  color: rgba(var(--color-text-rgb), 0.6);
+  padding: 0;
+  margin: 0;
+}
+
+.meta-toggle-button {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  width: 26px;
+  height: 26px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(var(--color-bg-rgb), 0.9);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: rgba(var(--color-text-rgb), 0.8);
+  box-shadow: 
+    -2px -2px 5px rgba(255, 255, 255, 0.1),
+    2px 2px 5px rgba(0, 0, 0, 0.1),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.05),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.05);
+  transform: translateY(0);
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.meta-toggle-button svg {
+  transition: transform 0.3s ease;
+  min-width: 16px;
+  min-height: 16px;
+  stroke-opacity: 0.75;
+}
+
+.photo-meta.visible + .meta-toggle-button svg {
+  transform: rotate(180deg);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .meta-toggle-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+      -3px -3px 6px rgba(255, 255, 255, 0.15),
+      3px 3px 6px rgba(0, 0, 0, 0.15),
+      inset 1px 1px 2px rgba(255, 255, 255, 0.05),
+      inset -1px -1px 2px rgba(0, 0, 0, 0.05);
+    color: rgba(var(--color-text-rgb), 1);
+  }
+
+  .photo-card:hover .photo-container img {
+    transform: scale(1.02);
+  }
 }
 
 .skeleton-img {
@@ -3178,13 +3248,6 @@ a[data-footnote-ref] {
   justify-content: center;
   cursor: pointer;
   border: 1px solid rgba(var(--color-text-rgb), 0.1);
-}
-
-.meta-content {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-top: auto;
 }
 
 .meta-row {

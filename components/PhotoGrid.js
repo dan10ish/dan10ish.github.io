@@ -10,43 +10,76 @@ import {
   Target,
   Aperture,
   Timer,
+  ChevronUp,
 } from "lucide-react";
 import { photoMetadata } from "@/lib/photo-meta";
 import ButtonsContainer from "./ButtonsContainer";
 
-const PhotoMeta = ({ meta }) => (
-  <div className="photo-meta">
-    <div className="meta-row">
-      <Camera size={14} className="meta-icon" />
-      <span>{meta.camera}</span>
+const PhotoMeta = memo(({ meta, isVisible, onClose }) => (
+  <div className={`photo-meta ${isVisible ? 'visible' : ''}`}>
+    <div className="meta-content">
+      <div className="meta-row">
+        <Camera size={14} className="meta-icon" />
+        <span>{meta.camera}</span>
+      </div>
+      <div className="meta-row">
+        <Maximize2 size={14} className="meta-icon" />
+        <span>{meta.resolution}</span>
+      </div>
+      <div className="meta-row">
+        <Frame size={14} className="meta-icon" />
+        <span>ISO {meta.iso}</span>
+        <Aperture size={14} className="meta-icon" />
+        <span>{meta.aperture}</span>
+      </div>
+      <div className="meta-row">
+        <Target size={14} className="meta-icon" />
+        <span>{meta.focalLength}</span>
+        <Timer size={14} className="meta-icon" />
+        <span>{meta.shutterspeed}</span>
+      </div>
     </div>
-    <div className="meta-row">
-      <Maximize2 size={14} className="meta-icon" />
-      <span>{meta.resolution}</span>
-    </div>
-    <div className="meta-row">
-      <Frame size={14} className="meta-icon" />
-      <span>ISO {meta.iso}</span>
-      <Aperture size={14} className="meta-icon" />
-      <span>{meta.aperture}</span>
-    </div>
-    <div className="meta-row">
-      <Target size={14} className="meta-icon" />
-      <span>{meta.focalLength}</span>
-      <Timer size={14} className="meta-icon" />
-      <span>{meta.shutterspeed}</span>
-    </div>
-  </div>
-);
-
-const PhotoCard = memo(({ photo }) => (
-  <div className="photo-card">
-    <div className="photo-container">
-      <img src={photo.src} alt="" loading="lazy" decoding="async" />
-    </div>
-    <PhotoMeta meta={photo.meta} />
   </div>
 ));
+
+const PhotoCard = memo(({ photo }) => {
+  const [showMeta, setShowMeta] = useState(false);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (!e.target.closest('.photo-meta') && !e.target.closest('.meta-toggle-button')) {
+        setShowMeta(false);
+      }
+    };
+
+    if (showMeta) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showMeta]);
+
+  return (
+    <div className="photo-card">
+      <div className="photo-container">
+        <img src={photo.src} alt="" loading="lazy" decoding="async" />
+        <button 
+          className="meta-toggle-button" 
+          onClick={() => setShowMeta(!showMeta)}
+        >
+          <ChevronUp size={20} strokeWidth={2.5} />
+        </button>
+        <PhotoMeta 
+          meta={photo.meta} 
+          isVisible={showMeta} 
+          onClose={() => setShowMeta(false)} 
+        />
+      </div>
+    </div>
+  );
+});
 
 const Skeleton = memo(() => (
   <div className="photo-card skeleton">
