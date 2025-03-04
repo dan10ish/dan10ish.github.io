@@ -329,9 +329,9 @@ th {
 
 .about-container {
   position: fixed;
-  top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%);
+  padding-top: 2rem;
 }
 
 .about-content {
@@ -446,12 +446,6 @@ th {
   transition: color 0.2s ease;
 }
 
-.email-container {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
 .email-copy-button {
   background: transparent;
   border: none;
@@ -463,7 +457,7 @@ th {
   border-radius: 4px;
   transition: background-color 0.2s ease;
   position: absolute;
-  right: 0.5rem;
+  right: 1.5rem;
 }
 
 .email-copy-button .copy-icon {
@@ -473,7 +467,7 @@ th {
 }
 
 .email-copy-button:has(.lucide-check) .copy-icon {
-  color: #4ade80 !important; 
+  color: #4ade80 !important;
   opacity: 1;
 }
 
@@ -482,7 +476,7 @@ th {
   flex-direction: column;
   gap: 0.5rem;
   margin-top: 1rem;
-  align-items: flex-start; 
+  align-items: flex-start;
 }
 
 .about-contact-heading {
@@ -490,7 +484,7 @@ th {
   font-weight: 500;
   margin-bottom: 0.5rem;
   color: var(--color-text);
-  align-self: flex-start; 
+  align-self: flex-start;
 }
 
 .about-social-link {
@@ -520,6 +514,12 @@ th {
 .about-email-container .about-social-link {
   width: auto;
   padding-right: 2.5rem;
+}
+
+.about-social-link-wrapper {
+  display: inline-flex;
+  width: auto;
+  align-self: flex-start;
 }
 
 .detail-link {
@@ -3257,13 +3257,13 @@ a[data-footnote-ref] {
   .theme-button:hover {
     background: var(--code-background-color);
     transform: scale(1.1);
-  } 
+  }
 
   .social-link:hover {
     color: var(--color-primary);
     text-decoration: underline;
   }
-  
+
   .email-copy-button:hover {
     background-color: rgba(var(--color-text-rgb), 0.08);
   }

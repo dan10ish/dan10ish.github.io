@@ -28,6 +28,8 @@ import {
   ChevronDown,
   Copy,
   Check,
+  Github,
+  Mail,
 } from "lucide-react";
 import Footer from "./Footer";
 import ScrollIndicator from "./ScrollIndicator";
@@ -71,29 +73,27 @@ const OptionSwitcher = memo(({ selectedOption, handleOptionChange }) => {
     const optionsRef = optionsContainerRef.current;
     if (!currentRef || !optionsRef) return;
 
-    // Update dimensions after scrollbar appears/disappears
     const handleResize = () => {
       window.requestAnimationFrame(updateDimensions);
     };
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     resizeObserverRef.current = new ResizeObserver(() => {
       window.requestAnimationFrame(updateDimensions);
     });
-    
+
     resizeObserverRef.current.observe(currentRef);
     resizeObserverRef.current.observe(optionsRef);
     if (currentRef.parentElement) {
       resizeObserverRef.current.observe(currentRef.parentElement);
     }
-    
-    // Force recalculation after DOM updates
+
     setTimeout(updateDimensions, 50);
     setTimeout(updateDimensions, 200);
 
     return () => {
       resizeObserverRef.current?.disconnect();
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, [updateDimensions]);
 
@@ -126,9 +126,7 @@ const OptionSwitcher = memo(({ selectedOption, handleOptionChange }) => {
         )}
         <button
           onClick={() => handleOptionChange("posts")}
-          className={`option-btn${
-            selectedOption === "posts" ? " active" : ""
-          }`}
+          className={`option-btn${selectedOption === "posts" ? " active" : ""}`}
         >
           Posts
         </button>
@@ -202,7 +200,12 @@ const EmailCopyButton = memo(({ email }) => {
       title={copied ? "Copied!" : "Copy email"}
     >
       {copied ? (
-        <Check className="copy-icon" strokeWidth={2.5} size={18} color="#4ade80" />
+        <Check
+          className="copy-icon"
+          strokeWidth={2.5}
+          size={18}
+          color="#4ade80"
+        />
       ) : (
         <Copy className="copy-icon" strokeWidth={2} size={18} />
       )}
@@ -214,7 +217,10 @@ EmailCopyButton.displayName = "EmailCopyButton";
 
 const AboutContent = memo(() => {
   const details = [
-    { label: <LucideIcon icon={GraduationCap} />, content: "Mechatronics Engineering" },
+    {
+      label: <LucideIcon icon={GraduationCap} />,
+      content: "Mechatronics Engineering",
+    },
     { label: <LucideIcon icon={Hammer} />, content: "ML | Robotics | Finance" },
   ];
 
@@ -234,28 +240,43 @@ const AboutContent = memo(() => {
         </div>
       </div>
       <div className="about-header">
-        <div className="about-social-links">
-          <div className="about-contact-heading">Contact:</div>
-          <a
-            href="https://github.com/dan10ish"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="about-social-link"
-            aria-label="Visit my GitHub profile"
-          >
-            GitHub
-          </a>
-          <div className="about-email-container">
-            <a
-              href={`mailto:${email}`}
-              className="about-social-link"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Connect via email"
-            >
-              {email}
-            </a>
-            <EmailCopyButton email={email} />
+        <div className="about-details">
+          <div className="detail-item">
+            <span className="detail-label">
+              <LucideIcon icon={Github} />
+            </span>
+            <span className="detail-content">
+              <div className="about-social-link-wrapper">
+                <a
+                  href="https://github.com/dan10ish"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="about-social-link"
+                  aria-label="Visit my GitHub profile"
+                >
+                  dan10ish
+                </a>
+              </div>
+            </span>
+          </div>
+          <div className="detail-item">
+            <span className="detail-label">
+              <LucideIcon icon={Mail} />
+            </span>
+            <span className="detail-content">
+              <div className="about-email-container">
+                <a
+                  href={`mailto:${email}`}
+                  className="about-social-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Connect via email"
+                >
+                  {email}
+                </a>
+                <EmailCopyButton email={email} />
+              </div>
+            </span>
           </div>
         </div>
       </div>
@@ -289,11 +310,7 @@ const SortIcon = memo(({ columnKey, sortConfig }) => (
 SortIcon.displayName = "SortIcon";
 
 const BlogListItem = memo(({ post, viewCount }) => (
-  <Link
-    href={`/post/${post.slug}`}
-    className="list-row"
-    prefetch
-  >
+  <Link href={`/post/${post.slug}`} className="list-row" prefetch>
     <span className="date">{post.year}</span>
     <span className="title">{post.title}</span>
     <span className="views">
@@ -329,11 +346,11 @@ const BlogList = memo(({ posts, viewsData, sortConfig, handleSort }) => {
         </span>
       </div>
       <div className="table-max" ref={tableRef}>
-        {posts.map(post => (
-          <BlogListItem 
-            key={post.slug} 
-            post={post} 
-            viewCount={viewsData[post.slug]} 
+        {posts.map((post) => (
+          <BlogListItem
+            key={post.slug}
+            post={post}
+            viewCount={viewsData[post.slug]}
           />
         ))}
       </div>
@@ -401,7 +418,10 @@ const ProjectList = memo(
     return (
       <div className="mono-list project-list">
         <div className="list-header">
-          <span onClick={() => handleSort("title")} style={{ cursor: "pointer" }}>
+          <span
+            onClick={() => handleSort("title")}
+            style={{ cursor: "pointer" }}
+          >
             title <SortIcon columnKey="title" sortConfig={sortConfig} />
           </span>
           <span className="actions" style={{ cursor: "default" }}>
@@ -429,7 +449,7 @@ const ProjectList = memo(
           </span>
         </div>
         <div className="table-max" ref={tableRef}>
-          {projects.map(project => (
+          {projects.map((project) => (
             <ProjectListItem
               key={project.title}
               project={project}
@@ -457,11 +477,9 @@ const Content = memo(({ posts, projects }) => {
   const contentRef = useRef(null);
 
   useEffect(() => {
-    // Force redraw of the option switcher when tab changes to handle scrollbar appearance
     if (selectedOption === "photos") {
-      // If photos is selected, ensure dimensions are recalculated after photo grid renders
       setTimeout(() => {
-        window.dispatchEvent(new Event('resize'));
+        window.dispatchEvent(new Event("resize"));
       }, 100);
     }
   }, [selectedOption]);
