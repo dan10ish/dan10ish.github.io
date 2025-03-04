@@ -10,10 +10,16 @@ import {
   Target,
   Aperture,
   Timer,
-  ChevronUp,
+  PointerIcon,
 } from "lucide-react";
 import { photoMetadata } from "@/lib/photo-meta";
 import ButtonsContainer from "./ButtonsContainer";
+
+const TouchGuide = () => (
+  <div className="touch-guide">
+    <PointerIcon size={24} />
+  </div>
+);
 
 const PhotoMeta = memo(({ meta, isVisible, onClose }) => (
   <div className={`photo-meta ${isVisible ? 'visible' : ''}`} onClick={onClose}>
@@ -42,7 +48,7 @@ const PhotoMeta = memo(({ meta, isVisible, onClose }) => (
   </div>
 ));
 
-const PhotoCard = memo(({ photo, isMetaVisible, onMetaToggle }) => (
+const PhotoCard = memo(({ photo, isMetaVisible, onMetaToggle, isFirst, onGuideClick }) => (
   <div className="photo-card">
     <div className="photo-container">
       <img 
@@ -50,15 +56,15 @@ const PhotoCard = memo(({ photo, isMetaVisible, onMetaToggle }) => (
         alt="" 
         loading="lazy" 
         decoding="async" 
-        onClick={() => !isMetaVisible && onMetaToggle(photo.index)}
+        onClick={() => {
+          if (!isMetaVisible) {
+            onMetaToggle(photo.index);
+            if (isFirst) onGuideClick();
+          }
+        }}
         style={{ cursor: !isMetaVisible ? 'pointer' : 'default' }}
       />
-      <button 
-        className="meta-toggle-button" 
-        onClick={() => onMetaToggle(photo.index)}
-      >
-        <ChevronUp size={20} strokeWidth={2.5} />
-      </button>
+      {isFirst && <TouchGuide />}
       <PhotoMeta 
         meta={photo.meta} 
         isVisible={isMetaVisible} 
@@ -89,6 +95,19 @@ const PhotoGrid = () => {
   const [totalPhotos, setTotalPhotos] = useState(16);
   const [loadedPhotos, setLoadedPhotos] = useState([]);
   const [activeMetaIndex, setActiveMetaIndex] = useState(null);
+  const [showGuide, setShowGuide] = useState(false);
+
+  const startGuideTimer = useCallback(() => {
+    setShowGuide(true);
+    const timer = setTimeout(() => {
+      setShowGuide(false);
+    }, 3000);
+    return timer;
+  }, []);
+
+  const handleGuideClick = useCallback(() => {
+    setShowGuide(false);
+  }, []);
 
   const breakpointColumns = {
     default: 3,
@@ -183,6 +202,7 @@ const PhotoGrid = () => {
   useEffect(() => {
     let mounted = true;
     const controller = new AbortController();
+    let guideTimer;
 
     const loadPhotos = async () => {
       try {
@@ -200,6 +220,9 @@ const PhotoGrid = () => {
           setLoadedPhotos((prev) => {
             const newPhotos = [...prev];
             newPhotos[photoData.index] = photoData;
+            if (photoData.index === 0 && mounted) {
+              guideTimer = startGuideTimer();
+            }
             return newPhotos;
           });
         }
@@ -217,8 +240,9 @@ const PhotoGrid = () => {
     return () => {
       mounted = false;
       controller.abort();
+      if (guideTimer) clearTimeout(guideTimer);
     };
-  }, [processPhoto]);
+  }, [processPhoto, startGuideTimer]);
 
   return (
     <>
@@ -234,6 +258,8 @@ const PhotoGrid = () => {
               photo={loadedPhotos[index]} 
               isMetaVisible={activeMetaIndex === index}
               onMetaToggle={handleMetaToggle}
+              isFirst={showGuide && index === 0}
+              onGuideClick={handleGuideClick}
             />
           ) : (
             <Skeleton key={`skeleton-${index}`} />
