@@ -336,13 +336,16 @@ th {
 
 .about-content {
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .name {
   font-size: calc(var(--font-size-mobile) * 1.1);
   font-weight: 500;
   display: flex;
-  padding-bottom: 2rem;
+  padding-bottom: 1rem;
   justify-content: center;
 }
 
@@ -1854,8 +1857,8 @@ a[data-footnote-ref] {
 
 .photo-meta {
   position: absolute;
-  inset: 2px;
-  background: rgba(var(--color-bg-rgb), 0.95);
+  inset: -2px;
+  background: rgba(var(--color-bg-rgb), 0.65);
   backdrop-filter: blur(8px);
   transform: translateY(120%);
   transition: transform 0.3s ease;
@@ -1882,11 +1885,11 @@ a[data-footnote-ref] {
   align-items: center;
   gap: 0.45rem;
   font-size: calc(var(--font-size-mobile) * 0.75);
-  color: rgba(var(--color-text-rgb), 0.8);
+  color: var(--color-text);
 }
 
 .meta-icon {
-  color: rgba(var(--color-text-rgb), 0.6);
+  color: var(--color-text);
   padding: 0;
   margin: 0;
 }

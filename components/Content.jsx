@@ -238,8 +238,6 @@ const AboutContent = memo(() => {
             </div>
           ))}
         </div>
-      </div>
-      <div className="about-header">
         <div className="about-details">
           <div className="detail-item">
             <span className="detail-label">
