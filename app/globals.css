@@ -1347,7 +1347,7 @@ code {
 
 pre code {
   background-color: transparent;
-  padding: 10px;
+  padding: 10px 1rem;
   display: block;
   overflow-x: auto;
 }
@@ -1360,7 +1360,7 @@ pre code {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.25rem 0.75rem;
+  padding: 0.25rem 1rem;
   background-color: var(--code-background-color);
   border-top-left-radius: var(--border-radius);
   border-top-right-radius: var(--border-radius);
