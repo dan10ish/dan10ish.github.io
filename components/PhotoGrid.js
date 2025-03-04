@@ -45,7 +45,14 @@ const PhotoMeta = memo(({ meta, isVisible, onClose }) => (
 const PhotoCard = memo(({ photo, isMetaVisible, onMetaToggle }) => (
   <div className="photo-card">
     <div className="photo-container">
-      <img src={photo.src} alt="" loading="lazy" decoding="async" />
+      <img 
+        src={photo.src} 
+        alt="" 
+        loading="lazy" 
+        decoding="async" 
+        onClick={() => !isMetaVisible && onMetaToggle(photo.index)}
+        style={{ cursor: !isMetaVisible ? 'pointer' : 'default' }}
+      />
       <button 
         className="meta-toggle-button" 
         onClick={() => onMetaToggle(photo.index)}
