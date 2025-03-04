@@ -12,6 +12,7 @@ import {
   Timer,
 } from "lucide-react";
 import { photoMetadata } from "@/lib/photo-meta";
+import ButtonsContainer from "./ButtonsContainer";
 
 const PhotoMeta = ({ meta }) => (
   <div className="photo-meta">
@@ -198,6 +199,7 @@ const PhotoGrid = () => {
           )
         )}
       </Masonry>
+      <ButtonsContainer />
     </>
   );
 };

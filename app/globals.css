@@ -309,12 +309,15 @@ th {
   flex-direction: column;
   justify-content: space-between;
   min-height: 100dvh;
+  scrollbar-gutter: stable;
 }
 
 .content-header {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  width: 100%;
+  padding: 0;
+  overflow: visible;
 }
 
 .content-header-table {
@@ -534,21 +537,17 @@ th {
   display: flex;
   position: relative;
   isolation: isolate;
+  justify-content: center;
   width: 100%;
-  justify-content: space-between;
+  margin: 0 auto;
 }
 
 .option-left {
   display: flex;
-  gap: 1rem;
-  justify-content: flex-start;
+  gap: 0.5rem;
+  justify-content: center;
   align-items: center;
-}
-
-.option-right {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  position: relative;
 }
 
 .option-background {
@@ -561,11 +560,12 @@ th {
   z-index: -1;
   pointer-events: none;
   will-change: transform, width;
+  left: 0;
 }
 
 .option-btn {
   all: unset;
-  padding: 0.4rem 0.75rem;
+  padding: 0.2rem 0.6rem;
   border-radius: 6px;
   cursor: pointer;
   font-size: var(--font-size-mobile);
@@ -574,6 +574,7 @@ th {
   user-select: none;
   -webkit-tap-highlight-color: transparent;
   font-weight: 400;
+  position: relative;
 }
 
 .option-btn.active {
@@ -779,6 +780,8 @@ th {
 }
 
 .content-area {
+  width: 100%;
+  scrollbar-gutter: stable;
   margin-top: 1rem;
 }
 

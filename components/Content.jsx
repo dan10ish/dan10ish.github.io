@@ -32,6 +32,7 @@ import {
 import Footer from "./Footer";
 import ScrollIndicator from "./ScrollIndicator";
 import { motion } from "framer-motion";
+import PhotoGrid from "./PhotoGrid";
 
 const LucideIcon = memo(({ icon: Icon, ...props }) => {
   return <Icon strokeWidth={`var(--icon-stroke-width)`} {...props} />;
@@ -41,22 +42,23 @@ LucideIcon.displayName = "LucideIcon";
 
 const OptionSwitcher = memo(({ selectedOption, handleOptionChange }) => {
   const containerRef = useRef(null);
+  const optionsContainerRef = useRef(null);
   const [dimensions, setDimensions] = useState(null);
   const [isInitialRender, setIsInitialRender] = useState(true);
   const resizeObserverRef = useRef(null);
 
   const updateDimensions = useCallback(() => {
-    if (!containerRef.current) {
+    if (!containerRef.current || !optionsContainerRef.current) {
       setDimensions(null);
       return;
     }
 
     const activeButton =
-      containerRef.current.querySelector(".option-btn.active");
+      optionsContainerRef.current.querySelector(".option-btn.active");
     if (!activeButton) return;
 
     const rect = activeButton.getBoundingClientRect();
-    const containerRect = containerRef.current.getBoundingClientRect();
+    const containerRect = optionsContainerRef.current.getBoundingClientRect();
 
     setDimensions({
       width: rect.width,
@@ -66,44 +68,62 @@ const OptionSwitcher = memo(({ selectedOption, handleOptionChange }) => {
 
   useEffect(() => {
     const currentRef = containerRef.current;
-    if (!currentRef) return;
+    const optionsRef = optionsContainerRef.current;
+    if (!currentRef || !optionsRef) return;
 
-    resizeObserverRef.current = new ResizeObserver(updateDimensions);
+    // Update dimensions after scrollbar appears/disappears
+    const handleResize = () => {
+      window.requestAnimationFrame(updateDimensions);
+    };
+    window.addEventListener('resize', handleResize);
+
+    resizeObserverRef.current = new ResizeObserver(() => {
+      window.requestAnimationFrame(updateDimensions);
+    });
+    
     resizeObserverRef.current.observe(currentRef);
+    resizeObserverRef.current.observe(optionsRef);
     if (currentRef.parentElement) {
       resizeObserverRef.current.observe(currentRef.parentElement);
     }
-    updateDimensions();
+    
+    // Force recalculation after DOM updates
+    setTimeout(updateDimensions, 50);
+    setTimeout(updateDimensions, 200);
 
     return () => {
       resizeObserverRef.current?.disconnect();
+      window.removeEventListener('resize', handleResize);
     };
   }, [updateDimensions]);
 
   useEffect(() => {
     updateDimensions();
     if (isInitialRender) {
-      const timer = setTimeout(() => setIsInitialRender(false), 100);
+      const timer = setTimeout(() => {
+        setIsInitialRender(false);
+        updateDimensions();
+      }, 100);
       return () => clearTimeout(timer);
     }
   }, [selectedOption, isInitialRender, updateDimensions]);
 
   return (
     <div className="option-switcher" ref={containerRef}>
-      {dimensions && (
-        <motion.div
-          className="option-background"
-          initial={
-            isInitialRender
-              ? { width: dimensions.width, x: dimensions.left }
-              : false
-          }
-          animate={{ width: dimensions.width, x: dimensions.left }}
-          transition={{ type: "spring", stiffness: 500, damping: 30 }}
-          layout
-        />
-      )}
-      <div className="option-left">
+      <div className="option-left" ref={optionsContainerRef}>
+        {dimensions && (
+          <motion.div
+            className="option-background"
+            initial={
+              isInitialRender
+                ? { width: dimensions.width, x: dimensions.left }
+                : false
+            }
+            animate={{ width: dimensions.width, x: dimensions.left }}
+            transition={{ type: "spring", stiffness: 500, damping: 30 }}
+            layout
+          />
+        )}
         <button
           onClick={() => handleOptionChange("posts")}
           className={`option-btn${
@@ -120,8 +140,14 @@ const OptionSwitcher = memo(({ selectedOption, handleOptionChange }) => {
         >
           Projects
         </button>
-      </div>
-      <div className="option-right">
+        <button
+          onClick={() => handleOptionChange("photos")}
+          className={`option-btn${
+            selectedOption === "photos" ? " active" : ""
+          }`}
+        >
+          Photos
+        </button>
         <button
           onClick={() => handleOptionChange("about")}
           className={`option-btn${selectedOption === "about" ? " active" : ""}`}
@@ -208,24 +234,6 @@ const AboutContent = memo(() => {
         </div>
       </div>
       <div className="about-header">
-        <div className="about-header-links">
-          <Link href="/notes" className="header-link">
-            <LucideIcon icon={BookText} size={16} />
-            Notes
-          </Link>
-          <Link href="/photos" className="header-link">
-            <LucideIcon icon={Images} size={16} />
-            Photos
-          </Link>
-          <Link href="/finance" className="header-link">
-            <LucideIcon icon={ChartCandlestick} size={16} />
-            Finance
-          </Link>
-          <Link href="/planes" className="header-link">
-            <LucideIcon icon={Plane} size={16} />
-            Planes
-          </Link>
-        </div>
         <div className="about-social-links">
           <div className="about-contact-heading">Contact:</div>
           <a
@@ -446,6 +454,17 @@ const Content = memo(({ posts, projects }) => {
   const [viewsData, setViewsData] = useState({});
   const [sortConfig, setSortConfig] = useState({ key: null, direction: null });
   const [selectedTag, setSelectedTag] = useState(null);
+  const contentRef = useRef(null);
+
+  useEffect(() => {
+    // Force redraw of the option switcher when tab changes to handle scrollbar appearance
+    if (selectedOption === "photos") {
+      // If photos is selected, ensure dimensions are recalculated after photo grid renders
+      setTimeout(() => {
+        window.dispatchEvent(new Event('resize'));
+      }, 100);
+    }
+  }, [selectedOption]);
 
   useEffect(() => {
     const fetchViews = async () => {
@@ -570,6 +589,8 @@ const Content = memo(({ posts, projects }) => {
               sortConfig={sortConfig}
               handleSort={handleSort}
             />
+          ) : selectedOption === "photos" ? (
+            <PhotoGrid />
           ) : (
             <AboutContent />
           )}

@@ -22,6 +22,7 @@ export default function ButtonsContainer() {
   const pathname = usePathname();
   const isBlogPost = pathname.startsWith("/post/");
   const isHomePage = pathname === "/";
+  const isPhotoPage = pathname === "/?tab=photos";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,8 +44,8 @@ export default function ButtonsContainer() {
 
   return (
     <div className={`buttons-container ${!isVisible ? "hidden" : ""}`}>
-      {isBlogPost && <TOCButton />}
-      {!isHomePage && <HomeButton />}
+      {isBlogPost && !isPhotoPage && <TOCButton />}
+      {!isHomePage && !isPhotoPage && <HomeButton />}
       <ScrollToTop />
     </div>
   );
