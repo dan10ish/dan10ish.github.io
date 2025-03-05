@@ -103,14 +103,6 @@ const Skeleton = memo(() => (
     <div className="photo-container">
       <div className="skeleton-img"></div>
     </div>
-    <div className="photo-meta">
-      <div className="meta-row">
-        <div className="skeleton-text"></div>
-      </div>
-      <div className="meta-row">
-        <div className="skeleton-text"></div>
-      </div>
-    </div>
   </div>
 ));
 

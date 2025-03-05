@@ -1885,8 +1885,24 @@ a[data-footnote-ref] {
 
 .meta-icon {
   color: var(--color-text);
-  padding: 0;
-  margin: 0;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transform: translateY(-1px);
+}
+
+.meta-icon svg {
+  width: 14px !important;
+  height: 14px !important;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  stroke-width: 2;
 }
 
 @media (hover: hover) and (pointer: fine) {
