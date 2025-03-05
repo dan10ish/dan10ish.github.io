@@ -64,7 +64,7 @@
 
   --font-size-mobile: 0.95rem;
   --font-size-desktop: 0.95rem;
-  --icon-stroke-width: 1.5;
+  --icon-stroke-width: 2;
 }
 
 html {
@@ -509,19 +509,17 @@ th {
 .about-email-container {
   display: flex;
   align-items: center;
-  width: auto;
   position: relative;
   align-self: flex-start;
 }
 
-.about-email-container .about-social-link {
-  width: auto;
-  padding-right: 2.5rem;
+.about-email-container a {
+  margin-right: 0.5rem;
 }
 
 .about-social-link-wrapper {
   display: inline-flex;
-  width: auto;
+  width: fit-content;
   align-self: flex-start;
 }
 
