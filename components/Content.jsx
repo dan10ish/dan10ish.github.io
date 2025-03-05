@@ -22,8 +22,6 @@ import {
   Briefcase,
   GraduationCap,
   Hammer,
-  BookText,
-  Images,
   ChevronUp,
   ChevronDown,
   Copy,

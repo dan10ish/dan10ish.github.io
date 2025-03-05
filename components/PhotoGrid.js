@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { photoMetadata } from "@/lib/photo-meta";
 import ButtonsContainer from "./ButtonsContainer";
+import { motion, AnimatePresence } from "framer-motion";
 
 const TouchGuide = () => (
   <div className="touch-guide">
@@ -22,30 +23,46 @@ const TouchGuide = () => (
 );
 
 const PhotoMeta = memo(({ meta, isVisible, onClose }) => (
-  <div className={`photo-meta ${isVisible ? 'visible' : ''}`} onClick={onClose}>
-    <div className="meta-content">
-      <div className="meta-row">
-        <Camera size={14} className="meta-icon" />
-        <span>{meta.camera}</span>
-      </div>
-      <div className="meta-row">
-        <Maximize2 size={14} className="meta-icon" />
-        <span>{meta.resolution}</span>
-      </div>
-      <div className="meta-row">
-        <Frame size={14} className="meta-icon" />
-        <span>ISO {meta.iso}</span>
-        <Aperture size={14} className="meta-icon" />
-        <span>{meta.aperture}</span>
-      </div>
-      <div className="meta-row">
-        <Target size={14} className="meta-icon" />
-        <span>{meta.focalLength}</span>
-        <Timer size={14} className="meta-icon" />
-        <span>{meta.shutterspeed}</span>
-      </div>
-    </div>
-  </div>
+  <AnimatePresence>
+    {isVisible && (
+      <motion.div 
+        className="photo-meta"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 20 }}
+        transition={{ type: "spring", damping: 25, stiffness: 300 }}
+        onClick={onClose}
+      >
+        <motion.div 
+          className="meta-content"
+          initial={{ scale: 0.95 }}
+          animate={{ scale: 1 }}
+          transition={{ type: "spring", damping: 20, stiffness: 300 }}
+        >
+          <div className="meta-row">
+            <Camera size={14} className="meta-icon" />
+            <span>{meta.camera}</span>
+          </div>
+          <div className="meta-row">
+            <Maximize2 size={14} className="meta-icon" />
+            <span>{meta.resolution}</span>
+          </div>
+          <div className="meta-row">
+            <Frame size={14} className="meta-icon" />
+            <span>ISO {meta.iso}</span>
+            <Aperture size={14} className="meta-icon" />
+            <span>{meta.aperture}</span>
+          </div>
+          <div className="meta-row">
+            <Target size={14} className="meta-icon" />
+            <span>{meta.focalLength}</span>
+            <Timer size={14} className="meta-icon" />
+            <span>{meta.shutterspeed}</span>
+          </div>
+        </motion.div>
+      </motion.div>
+    )}
+  </AnimatePresence>
 ));
 
 const PhotoCard = memo(({ photo, isMetaVisible, onMetaToggle, isFirst, onGuideClick }) => (
