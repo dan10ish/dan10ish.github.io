@@ -17,9 +17,6 @@ import {
   X,
   CodeXml,
   Star,
-  Plane,
-  ChartCandlestick,
-  Briefcase,
   GraduationCap,
   Hammer,
   ChevronUp,
@@ -271,6 +268,36 @@ const AboutContent = memo(() => {
                   {email}
                 </a>
                 <EmailCopyButton email={email} />
+              </div>
+            </span>
+          </div>
+          <div className="detail-item">
+            <span className="detail-label">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1.4rem"
+                height="1.4rem"
+                viewBox="0 0 256 256"
+                fill="currentColor"
+                style={{ 
+                  strokeWidth: 'var(--icon-stroke-width)',
+                  opacity: 0.8
+                }}
+              >
+                <path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.3l62.6,98.37-61.77,68a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29ZM164.39,208,62.57,48h29L193.43,208Z"></path>
+              </svg>
+            </span>
+            <span className="detail-content">
+              <div className="about-social-link-wrapper">
+                <a
+                  href="https://x.com/dan10ish"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="about-social-link"
+                  aria-label="Visit my X profile"
+                >
+                  dan10ish
+                </a>
               </div>
             </span>
           </div>

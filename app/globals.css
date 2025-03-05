@@ -402,7 +402,7 @@ th {
   margin: 0;
   padding: 0;
   height: 1.4rem;
-  stroke-width: 1.5;
+  stroke-width: var(--icon-stroke-width) !important;
   opacity: 0.8;
 }
 
@@ -1858,7 +1858,7 @@ a[data-footnote-ref] {
 .photo-meta {
   position: absolute;
   inset: 0;
-  background: rgba(var(--color-bg-rgb), 0.65);
+  background: rgba(var(--color-bg-rgb), 0.75);
   backdrop-filter: blur(8px);
   z-index: 20;
   border-radius: 12px;
