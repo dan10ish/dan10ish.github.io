@@ -117,7 +117,7 @@ const PhotoGrid = () => {
     setShowGuide(true);
     const timer = setTimeout(() => {
       setShowGuide(false);
-    }, 3000);
+    }, 2000);
     return timer;
   }, []);
 
