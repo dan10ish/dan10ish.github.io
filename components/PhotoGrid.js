@@ -27,17 +27,24 @@ const PhotoMeta = memo(({ meta, isVisible, onClose }) => (
     {isVisible && (
       <motion.div 
         className="photo-meta"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: 20 }}
-        transition={{ type: "spring", damping: 25, stiffness: 300 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.15 }}
         onClick={onClose}
       >
         <motion.div 
           className="meta-content"
-          initial={{ scale: 0.95 }}
-          animate={{ scale: 1 }}
-          transition={{ type: "spring", damping: 20, stiffness: 300 }}
+          initial={{ opacity: 0, scale: 0.9, y: 5 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.95, y: -5 }}
+          transition={{ 
+            type: "spring", 
+            damping: 20, 
+            stiffness: 400,
+            mass: 0.6,
+            delay: 0.02
+          }}
         >
           <div className="meta-row">
             <Camera size={14} className="meta-icon" />
