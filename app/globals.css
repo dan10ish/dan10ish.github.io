@@ -64,7 +64,7 @@
 
   --font-size-mobile: 0.95rem;
   --font-size-desktop: 0.95rem;
-  --icon-stroke-width: 2;
+  --icon-stroke-width: 1.75;
 }
 
 html {
@@ -321,7 +321,6 @@ th {
 }
 
 .content-header-table {
-  padding-top: 1rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -331,7 +330,6 @@ th {
   position: fixed;
   left: 50%;
   transform: translate(-50%);
-  padding-top: 2rem;
 }
 
 .about-content {
@@ -536,12 +534,18 @@ th {
 
 .option-switcher {
   display: flex;
-  position: relative;
+  position: fixed;
   isolation: isolate;
   justify-content: center;
   margin: 0 auto;
-  padding: 0.5rem;
-  border-radius: 12px;
+  z-index: 1000;
+  gap: 0.5rem;
+  background-color: var(--code-background-color);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 8px;
+  padding: 0.25rem;
+  top: 0.5rem;
 }
 
 .option-left {
@@ -557,8 +561,7 @@ th {
   top: 0;
   height: 100%;
   border-radius: 6px;
-  background: rgba(var(--color-text-rgb), 0.04);
-  border: 1px solid rgba(var(--color-text-rgb), 0.1);
+  background: rgba(var(--color-bg-rgb), 1);
   z-index: -1;
   pointer-events: none;
   will-change: transform, width;
@@ -567,7 +570,7 @@ th {
 
 .option-btn {
   all: unset;
-  padding: 0.2rem 0.6rem;
+  padding: 0.1rem 0.6rem;
   border-radius: 6px;
   cursor: pointer;
   font-size: var(--font-size-mobile);
@@ -607,7 +610,7 @@ th {
   display: grid;
   grid-template-columns: 55px minmax(0, 1fr) 100px;
   gap: 2rem;
-  padding: 0.75rem 0.5rem;
+  padding: 0rem 0.5rem 0.75rem;
   color: rgba(var(--color-text-rgb), 0.5);
   font-size: calc(var(--font-size-mobile) * 0.9);
   border-bottom: 1px solid rgba(var(--color-text-rgb), 0.1);
@@ -786,6 +789,7 @@ th {
   scrollbar-gutter: stable;
   min-height: 200px;
   margin: 0;
+  padding-top: 3.5rem;
 }
 
 @media (min-width: 768px) {
@@ -1814,7 +1818,6 @@ a[data-footnote-ref] {
 .photo-grid {
   display: flex;
   margin-left: -1rem;
-  margin-top: 2rem;
   width: auto;
 }
 
