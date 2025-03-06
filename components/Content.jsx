@@ -52,11 +52,11 @@ const OptionSwitcher = memo(({ selectedOption, handleOptionChange }) => {
     }
 
     const activeButton =
-      optionsContainerRef.current.querySelector(".option-btn.active");
+      containerRef.current.querySelector(".option-btn.active");
     if (!activeButton) return;
 
     const rect = activeButton.getBoundingClientRect();
-    const containerRect = optionsContainerRef.current.getBoundingClientRect();
+    const containerRect = containerRef.current.getBoundingClientRect();
 
     setDimensions({
       width: rect.width,
@@ -106,20 +106,20 @@ const OptionSwitcher = memo(({ selectedOption, handleOptionChange }) => {
 
   return (
     <div className="option-switcher" ref={containerRef}>
+      {dimensions && (
+        <motion.div
+          className="option-background"
+          initial={
+            isInitialRender
+              ? { width: dimensions.width, x: dimensions.left }
+              : false
+          }
+          animate={{ width: dimensions.width, x: dimensions.left }}
+          transition={{ type: "spring", stiffness: 500, damping: 30 }}
+          layout
+        />
+      )}
       <div className="option-left" ref={optionsContainerRef}>
-        {dimensions && (
-          <motion.div
-            className="option-background"
-            initial={
-              isInitialRender
-                ? { width: dimensions.width, x: dimensions.left }
-                : false
-            }
-            animate={{ width: dimensions.width, x: dimensions.left }}
-            transition={{ type: "spring", stiffness: 500, damping: 30 }}
-            layout
-          />
-        )}
         <button
           onClick={() => handleOptionChange("posts")}
           className={`option-btn${selectedOption === "posts" ? " active" : ""}`}
@@ -142,6 +142,8 @@ const OptionSwitcher = memo(({ selectedOption, handleOptionChange }) => {
         >
           Photos
         </button>
+      </div>
+      <div className="option-right">
         <button
           onClick={() => handleOptionChange("about")}
           className={`option-btn${selectedOption === "about" ? " active" : ""}`}

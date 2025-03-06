@@ -315,9 +315,20 @@ th {
 .content-header {
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 100%;
   padding: 0;
   overflow: visible;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  height: 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: var(--color-bg);
+  height: 3.85rem;
 }
 
 .content-header-table {
@@ -539,19 +550,29 @@ th {
   justify-content: space-between;
   margin: 0 auto;
   z-index: 1000;
-  gap: 0.5rem;
   background-color: var(--code-background-color);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border-radius: 8px;
-  padding: 0.25rem;
+  width: calc(100% - 3rem);
+  padding: 0.25rem 0;
+  max-width: var(--max-width);
+  box-sizing: border-box;
   top: 0.5rem;
 }
 
 .option-left {
   display: flex;
   gap: 0.25rem;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+}
+
+.option-right {
+  display: flex;
+  gap: 0.25rem;
+  justify-content: flex-end;
   align-items: center;
   position: relative;
 }
@@ -773,6 +794,7 @@ th {
 
   .option-switcher {
     gap: 0.25rem;
+    /* padding: 0.25rem 0.5rem; */
   }
 }
 
@@ -790,12 +812,20 @@ th {
   scrollbar-gutter: stable;
   min-height: 200px;
   margin: 0;
-  padding-top: 3.5rem;
+  padding-top: 5rem;
 }
 
 @media (min-width: 768px) {
   .option-btn {
     font-size: var(--font-size-desktop);
+  }
+  
+  .option-left {
+    gap: 1rem;
+  }
+  
+  .option-right {
+    gap: 1rem;
   }
 }
 
@@ -1953,6 +1983,43 @@ a[data-footnote-ref] {
   }
   100% {
     opacity: 1;
+  }
+}
+
+.skeleton-row .actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.list-header,
+.list-row {
+  transition: opacity 0.2s ease;
+}
+
+.highlight-star {
+  display: flex;
+  color: #ff9500;
+  animation: starGlow 2s ease-in-out infinite;
+}
+
+[data-theme="dark"] .highlight-star {
+  color: #cfb004;
+}
+
+[data-theme="solarized"] .highlight-star {
+  color: #b58900;
+}
+
+@keyframes starGlow {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
