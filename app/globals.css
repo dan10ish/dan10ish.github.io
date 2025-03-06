@@ -536,7 +536,7 @@ th {
   display: flex;
   position: fixed;
   isolation: isolate;
-  justify-content: center;
+  justify-content: space-between;
   margin: 0 auto;
   z-index: 1000;
   gap: 0.5rem;
@@ -561,7 +561,8 @@ th {
   top: 0;
   height: 100%;
   border-radius: 6px;
-  background: rgba(var(--color-bg-rgb), 1);
+  background: rgba(var(--color-bg-rgb), 0.9);
+  border: 1px solid rgba(var(--color-text-rgb), 0.1);
   z-index: -1;
   pointer-events: none;
   will-change: transform, width;

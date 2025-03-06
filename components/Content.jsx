@@ -320,16 +320,19 @@ const SortIcon = memo(({ columnKey, sortConfig }) => (
 
 SortIcon.displayName = "SortIcon";
 
+const formatNumber = (num) => {
+  if (num === null || num === undefined) return <span className="infinity-symbol">∞</span>;
+  if (num >= 1000000) return (num / 1000000).toFixed(2) + "M";
+  if (num >= 1000) return (num / 1000).toFixed(2) + "K";
+  return num;
+};
+
 const BlogListItem = memo(({ post, viewCount }) => (
   <Link href={`/post/${post.slug}`} className="list-row" prefetch>
     <span className="date">{post.year}</span>
     <span className="title">{post.title}</span>
     <span className="views">
-      {viewCount === undefined ? (
-        <span className="infinity-symbol">∞</span>
-      ) : (
-        viewCount
-      )}
+      {formatNumber(viewCount)}
     </span>
   </Link>
 ));
