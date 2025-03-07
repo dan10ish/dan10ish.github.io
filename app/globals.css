@@ -321,14 +321,11 @@ th {
   overflow: visible;
   max-width: var(--max-width);
   margin: 0 auto;
-  height: 1rem;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  background-color: var(--color-bg);
-  height: 4.25rem;
 }
 
 .content-header-table {
@@ -553,7 +550,7 @@ th {
   background-color: var(--code-background-color);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border-radius: 8px;
+  border-radius: 16px;
   width: calc(100% - 3rem);
   padding: 0.5rem;
   max-width: var(--max-width);
@@ -580,7 +577,7 @@ th {
 .option-background {
   position: absolute;
   top: 0;
-  border-radius: 6px;
+  border-radius: 12px;
   background: rgba(var(--color-bg-rgb), 0.9);
   border: 1px solid rgba(var(--color-text-rgb), 0.1);
   z-index: -1;
@@ -592,7 +589,7 @@ th {
 .option-btn {
   all: unset;
   padding: 0.3rem 0.6rem;
-  border-radius: 6px;
+  border-radius: 12px;
   cursor: pointer;
   font-size: var(--font-size-mobile);
   color: rgba(var(--color-text-rgb), 0.6);
@@ -1853,6 +1850,7 @@ a[data-footnote-ref] {
   display: flex;
   margin-left: -1rem;
   width: auto;
+  padding: 0 0.5rem;
 }
 
 .photo-grid-column {
@@ -2739,10 +2737,6 @@ a[data-footnote-ref] {
   
   .option-right {
     gap: 1rem;
-  }
-
-  .content-header {
-    height: 4.85rem;
   }
 
   .content-area{
