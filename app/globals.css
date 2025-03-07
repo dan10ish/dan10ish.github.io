@@ -328,7 +328,7 @@ th {
   right: 0;
   z-index: 1000;
   background-color: var(--color-bg);
-  height: 3.85rem;
+  height: 4.25rem;
 }
 
 .content-header-table {
@@ -555,7 +555,7 @@ th {
   -webkit-backdrop-filter: blur(8px);
   border-radius: 8px;
   width: calc(100% - 3rem);
-  padding: 0.25rem 0;
+  padding: 0.5rem;
   max-width: var(--max-width);
   box-sizing: border-box;
   top: 0.5rem;
@@ -580,19 +580,18 @@ th {
 .option-background {
   position: absolute;
   top: 0;
-  height: 100%;
   border-radius: 6px;
   background: rgba(var(--color-bg-rgb), 0.9);
   border: 1px solid rgba(var(--color-text-rgb), 0.1);
   z-index: -1;
   pointer-events: none;
-  will-change: transform, width;
+  will-change: transform, width, height;
   left: 0;
 }
 
 .option-btn {
   all: unset;
-  padding: 0.1rem 0.6rem;
+  padding: 0.3rem 0.6rem;
   border-radius: 6px;
   cursor: pointer;
   font-size: var(--font-size-mobile);
@@ -794,7 +793,7 @@ th {
 
   .option-switcher {
     gap: 0.25rem;
-    /* padding: 0.25rem 0.5rem; */
+    padding: 0.4rem;
   }
 }
 
@@ -826,6 +825,10 @@ th {
   
   .option-right {
     gap: 1rem;
+  }
+  
+  .option-background {
+    height: 2.4rem;
   }
 }
 
@@ -2732,6 +2735,18 @@ a[data-footnote-ref] {
 
   .option-left {
     gap: 1rem;
+  }
+  
+  .option-right {
+    gap: 1rem;
+  }
+
+  .content-header {
+    height: 4.85rem;
+  }
+
+  .content-area{
+    padding-top: 5.75rem;
   }
 }
 

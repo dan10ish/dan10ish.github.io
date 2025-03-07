@@ -61,6 +61,8 @@ const OptionSwitcher = memo(({ selectedOption, handleOptionChange }) => {
     setDimensions({
       width: rect.width,
       left: rect.left - containerRect.left,
+      top: rect.top - containerRect.top + (rect.height / 2),
+      height: rect.height,
     });
   }, []);
 
@@ -111,10 +113,20 @@ const OptionSwitcher = memo(({ selectedOption, handleOptionChange }) => {
           className="option-background"
           initial={
             isInitialRender
-              ? { width: dimensions.width, x: dimensions.left }
+              ? { 
+                  width: dimensions.width, 
+                  height: dimensions.height,
+                  x: dimensions.left, 
+                  y: dimensions.top - (dimensions.height / 2) 
+                }
               : false
           }
-          animate={{ width: dimensions.width, x: dimensions.left }}
+          animate={{ 
+            width: dimensions.width, 
+            height: dimensions.height,
+            x: dimensions.left, 
+            y: dimensions.top - (dimensions.height / 2)
+          }}
           transition={{ type: "spring", stiffness: 500, damping: 30 }}
           layout
         />
