@@ -811,7 +811,7 @@ th {
   scrollbar-gutter: stable;
   min-height: 200px;
   margin: 0;
-  padding-top: 5rem;
+  padding-top: 5.75rem;
 }
 
 @media (min-width: 768px) {
@@ -2746,7 +2746,7 @@ a[data-footnote-ref] {
   }
 
   .content-area{
-    padding-top: 5.75rem;
+    padding-top: 6rem;
   }
 }
 
