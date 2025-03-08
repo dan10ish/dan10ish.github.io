@@ -5,9 +5,7 @@ import { usePathname } from "next/navigation";
 export default function GradientOverlay() {
   const pathname = usePathname();
   const hideGradientPaths = [
-    "/notes",
     "/photos",
-    "/finance",
     "/",
   ];
 

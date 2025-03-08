@@ -62,7 +62,7 @@ const OptionSwitcher = memo(({ selectedOption, handleOptionChange }) => {
     setDimensions({
       width: rect.width,
       left: rect.left - containerRect.left,
-      top: rect.top - containerRect.top + (rect.height / 2),
+      top: rect.top - containerRect.top + rect.height / 2,
       height: rect.height,
     });
   }, []);
@@ -114,19 +114,19 @@ const OptionSwitcher = memo(({ selectedOption, handleOptionChange }) => {
           className="option-background"
           initial={
             isInitialRender
-              ? { 
-                  width: dimensions.width, 
+              ? {
+                  width: dimensions.width,
                   height: dimensions.height,
-                  x: dimensions.left, 
-                  y: dimensions.top - (dimensions.height / 2) 
+                  x: dimensions.left,
+                  y: dimensions.top - dimensions.height / 2,
                 }
               : false
           }
-          animate={{ 
-            width: dimensions.width, 
+          animate={{
+            width: dimensions.width,
             height: dimensions.height,
-            x: dimensions.left, 
-            y: dimensions.top - (dimensions.height / 2)
+            x: dimensions.left,
+            y: dimensions.top - dimensions.height / 2,
           }}
           transition={{ type: "spring", stiffness: 500, damping: 30 }}
           layout
@@ -228,15 +228,15 @@ const AboutContent = memo(() => {
       content: "Mechatronics Engineer",
     },
     {
-      label: <LucideIcon icon={UserIcon} />,
-      content: "Generalist bridging code and hardware",
-      className: "no-center-align"
-    },
-    { 
       label: <LucideIcon icon={Hammer} />,
       content: ["Machine Learning", "Robotics", "Finance"],
       isPills: true,
-      className: "no-center-align"
+      className: "no-center-align",
+    },
+    {
+      label: <LucideIcon icon={UserIcon} />,
+      content: "Generalist bridging code and hardware",
+      className: "no-center-align",
     },
   ];
 
@@ -248,12 +248,17 @@ const AboutContent = memo(() => {
         <span className="name">Danish Ansari</span>
         <div className="about-details">
           {details.map((detail, index) => (
-            <div key={index} className={`detail-item ${detail.className || ""}`}>
+            <div
+              key={index}
+              className={`detail-item ${detail.className || ""}`}
+            >
               <span className="detail-label">{detail.label}</span>
               {detail.isPills ? (
                 <span className="detail-content pills-container">
                   {detail.content.map((pill, i) => (
-                    <span key={i} className="skill-pill">{pill}</span>
+                    <span key={i} className="skill-pill">
+                      {pill}
+                    </span>
                   ))}
                 </span>
               ) : (
@@ -302,11 +307,14 @@ const AboutContent = memo(() => {
           </div>
           <div className="detail-item">
             <span className="detail-label">
-              <SiX size={22} style={{ 
-                strokeWidth: `var(--icon-stroke-width)`,
-                opacity: 0.8,
-                height: '1.2rem'
-              }} />
+              <SiX
+                size={22}
+                style={{
+                  strokeWidth: `var(--icon-stroke-width)`,
+                  opacity: 0.8,
+                  height: "1.2rem",
+                }}
+              />
             </span>
             <span className="detail-content">
               <div className="about-social-link-wrapper">
@@ -354,7 +362,8 @@ const SortIcon = memo(({ columnKey, sortConfig }) => (
 SortIcon.displayName = "SortIcon";
 
 const formatNumber = (num) => {
-  if (num === null || num === undefined) return <span className="infinity-symbol">∞</span>;
+  if (num === null || num === undefined)
+    return <span className="infinity-symbol">∞</span>;
   if (num >= 1000000) return (num / 1000000).toFixed(2) + "M";
   if (num >= 1000) return (num / 1000).toFixed(2) + "K";
   return num;
@@ -364,9 +373,7 @@ const BlogListItem = memo(({ post, viewCount }) => (
   <Link href={`/post/${post.slug}`} className="list-row" prefetch>
     <span className="date">{post.year}</span>
     <span className="title">{post.title}</span>
-    <span className="views">
-      {formatNumber(viewCount)}
-    </span>
+    <span className="views">{formatNumber(viewCount)}</span>
   </Link>
 ));
 

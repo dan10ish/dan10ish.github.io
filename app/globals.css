@@ -422,7 +422,6 @@ th {
   background-color: var(--code-background-color);
   padding: 0.25rem 0.75rem;
   border-radius: 6px;
-  font-size: 0.9em;
 }
 
 .detail-label,
