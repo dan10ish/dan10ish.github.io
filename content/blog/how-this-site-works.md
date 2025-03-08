@@ -10,19 +10,19 @@ The project follows a clean, modular structure optimized for Next.js 15's App Ro
 ├── app/                 # Next.js 15 app directory
 │   ├── page.js          # Homepage with content switcher
 │   ├── layout.js        # Root layout with theme handling
-│   ├── finance/         # Portfolio treemap visualization
-│   ├── planes/          # Infinite Flight live data
 │   ├── photos/          # Photo gallery with EXIF data
-│   ├── notes/           # PDF notes viewer and filter
 │   ├── post/[slug]/     # Dynamic blog posts
 ├── components/          # React components
 │   ├── Content.jsx      # Main content switcher
-│   ├── Footer.jsx       # Stats and share system
+│   ├── Footer.js        # Stats and share system
 │   ├── PhotoGrid.js     # Masonry photo layout
+│   ├── ThemeHandler.jsx # Theme system management
 ├── lib/                 # Utilities
 │   ├── posts.js         # Blog post management
+│   ├── projects.js      # Project data storage
 │   ├── supabase.js      # Database and realtime
 ├── content/             # Blog posts in markdown
+│   ├── blog/            # Blog post content
 └── public/              # Static assets
 ```
 
@@ -38,16 +38,19 @@ Each directory serves a specific purpose:
 
 The site is built with a carefully selected tech stack:
 
-- **Next.js 15**: Using the new App Router with Server Components for optimal performance
+- **Next.js 15**: Using the App Router with Server Components for optimal performance
+- **React 19**: Leveraging the latest React features for improved performance
 - **Pure CSS**: Leveraging CSS variables and modules without frameworks
 - **Supabase**: Handles real-time analytics and interactions
 - **SF Mono**: Custom font family for consistent typography
-- **MDX**: Enhanced markdown for blog content
+- **Markdown**: Enhanced content for blog posts
 - **Key Libraries**:
+  - framer-motion: Animations and transitions
   - recharts: Data visualization for portfolio
   - exifreader: Handling photo metadata
   - KaTeX: Math equation rendering
   - highlight.js: Code syntax highlighting
+  - lucide-react: Icon system
 
 ## Content Management Workflows
 
@@ -129,13 +132,13 @@ const projects = [
 
 Projects feature:
 
-- Tag-based filtering system
-- Source code access
-- Live demo links
+- Tag-based filtering system (web, ml, rbtx, notes)
+- Source code access via GitHub links
+- Live demo links when available
 - Featured status for important projects
 - Sort by tags functionality
 - Responsive preview cards
-- GitHub stats integration
+- Home page prioritization
 
 ### 3. Photo Management System
 
@@ -196,52 +199,11 @@ The photo gallery includes:
 - Automatic image optimization
 - Layout recalculation on resize
 
-### 4. Notes Organization
-
-The notes system features a unique 3D book visualization:
-
-1. Define note metadata:
-
-```javascript
-export const notes = [
-  {
-    title: "AI & ML",
-    author: "Semester 6",
-    coverColor: "#B22222",
-    tags: ["AI", "Semester 6"],
-    file: "/notes/semester6/AIML.pdf",
-  },
-  // More notes...
-];
-```
-
-2. Implement color detection:
-
-```javascript
-const shouldUseWhiteText = (hexColor) => {
-  const r = parseInt(hexColor.slice(1, 3), 16);
-  const g = parseInt(hexColor.slice(3, 5), 16);
-  const b = parseInt(hexColor.slice(5, 7), 16);
-  return (0.299 * r + 0.587 * g + 0.114 * b) / 255 < 0.5;
-};
-```
-
-Notes features include:
-
-- 3D book cover animations
-- Tag-based filtering system
-- Semester organization
-- Integrated PDF viewer
-- Color-coded covers
-- Adaptive text colors
-- Touch interaction
-- Filter combinations
-
 ## Core Features
 
 ### 1. Theme System
 
-The theme system supports four modes: Light, Dark, System, and Solarized:
+The theme system supports multiple modes: Light, Dark, and System:
 
 ```javascript
 const effectiveTheme = sessionTheme || (prefersDark ? "dark" : "light");
@@ -250,7 +212,6 @@ document.documentElement.setAttribute("data-theme", effectiveTheme);
 const themeColors = {
   light: "#ffffff",
   dark: "#1c1c1c",
-  solarized: "#002b36",
 };
 ```
 
@@ -342,123 +303,64 @@ Features include:
 - Error handling
 - Rate limiting
 
-### 3. Portfolio Visualization
+### 3. Animation and Transitions
 
-The finance section uses recharts for portfolio visualization:
+The site utilizes Framer Motion for smooth animations:
 
 ```javascript
-const treemapData = [
-  {
-    name: "Meta Platforms Inc",
-    ticker: "META",
-    value: 33.86,
-    color: "#2563eb",
-  },
-  // Holdings...
-];
-
-const CustomTreemap = () => {
+const PageTransition = ({ children }) => {
   return (
-    <ResponsiveContainer width="100%" height={450}>
-      <Treemap
-        data={treemapData}
-        dataKey="value"
-        ratio={4 / 3}
-        animationDuration={0}
-        content={({ root }) => {
-          if (!root || !root.children) return null;
-
-          return root.children.map((node, index) => {
-            const { x, y, width, height, color } = node;
-            const ticker = treemapData[index].ticker;
-
-            const fontSize = Math.max(
-              Math.min(width / ticker.length, height / 2, 14),
-              8,
-            );
-
-            return (
-              <g key={index}>
-                <rect x={x} y={y} width={width} height={height} fill={color} />
-                <text
-                  x={x + width / 2}
-                  y={y + height / 2}
-                  textAnchor="middle"
-                  dominantBaseline="central"
-                  fill="#fff"
-                  fontSize={fontSize}
-                  fontWeight="500"
-                >
-                  {ticker}
-                </text>
-              </g>
-            );
-          });
-        }}
-      />
-    </ResponsiveContainer>
+    <motion.div
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 8 }}
+      transition={{ duration: 0.15 }}
+    >
+      {children}
+    </motion.div>
   );
 };
 ```
 
-Portfolio features:
+Animation features:
 
-- Interactive treemap
-- Percentage calculations
-- Color-coded holdings
-- Responsive sizing
-- Dynamic text scaling
-- Loading animations
-- Touch support
-- Hover interactions
+- Page transitions
+- Component mount/unmount animations
+- Scroll-based animations
+- Hover effects
+- Performance optimizations
+- Reduced motion support
 
-### 4. Flight Statistics Dashboard
+### 4. Code Highlighting System
 
-Real-time flight data integration with Infinite Flight:
+The code highlighting system supports multiple languages and features:
 
 ```javascript
-const fetchStats = async () => {
-  const response = await fetch(
-    "https://api.infiniteflight.com/public/v2/users",
-    {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_INFINITE_FLIGHT_API_KEY}`,
-      },
-      body: JSON.stringify({
-        discourseNames: ["dan10ish"],
-      }),
-    },
+import hljs from "highlight.js";
+import "highlight.js/styles/github.css";
+
+const HighlightCode = ({ code, language }) => {
+  useEffect(() => {
+    hljs.highlightAll();
+  }, [code]);
+
+  return (
+    <pre>
+      <code className={`language-${language}`}>{code}</code>
+    </pre>
   );
-
-  const { result } = await response.json();
-  const userData = result[0];
-  const userId = userData.userId;
-
-  // Fetch additional flight data
-  const [flightsResponse, gradeResponse] = await Promise.all([
-    fetch(`${API_URL}/flights?page=1`, {
-      headers: { Authorization: `Bearer ${API_KEY}` },
-    }),
-    fetch(`${API_URL}/users/${userId}`, {
-      headers: { Authorization: `Bearer ${API_KEY}` },
-    }),
-  ]);
-
-  // Process and visualize data
 };
 ```
 
-Dashboard capabilities:
+Code features include:
 
-- Live flight tracking
-- Historical flight data
-- Route analysis
-- Flight statistics
-- Auto-refresh system
-- Error handling
-- Loading states
-- Offline support
+- Syntax highlighting for multiple languages
+- Copy code button
+- Language tabs
+- Line numbering
+- Theme-compatible styling
+- Responsive layout
+- Overflow handling
 
 ## Performance Optimizations
 
@@ -475,7 +377,7 @@ export default async function BlogPost({ params }) {
 }
 
 // Client Component
-("use client");
+"use client";
 const PostStats = ({ slug }) => {
   const [stats, setStats] = useState({ views: 0, likes: 0 });
   // Realtime updates...
@@ -581,8 +483,6 @@ The workflows I've established for adding content - whether it's blog posts, pro
 - **Blog**: Technical writing and project documentation
 - **Notes**: Academic and learning resources
 - **Photos**: Visual storytelling and photography
-- **Finance**: Portfolio tracking and visualization
-- **Planes**: Flight statistics and tracking
 
 The combination of Next.js 15's Server Components with careful client-side hydration has resulted in a site that's both fast and interactive. The real-time features powered by Supabase provide dynamic content without sacrificing performance.
 
