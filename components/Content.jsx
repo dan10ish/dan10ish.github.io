@@ -15,7 +15,6 @@ import Link from "next/link";
 import {
   Globe,
   X,
-  CodeXml,
   Star,
   GraduationCap,
   Hammer,
@@ -436,7 +435,7 @@ const ProjectListItem = memo(({ project, selectedTag, handleTagClick }) => (
           !project.sourceLink ? "disabled" : ""
         }`}
       >
-        <LucideIcon icon={CodeXml} size={20} />
+        <LucideIcon icon={Github} size={20} />
       </a>
       <a
         href={project.projectLink || "#"}
