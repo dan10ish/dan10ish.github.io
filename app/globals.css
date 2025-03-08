@@ -348,8 +348,8 @@ th {
 }
 
 .name {
-  font-size: calc(var(--font-size-mobile) * 1.1);
-  font-weight: 500;
+  font-size: calc(var(--font-size-mobile) * 1.4);
+  font-weight: 700;
   display: flex;
   padding-bottom: 1rem;
   justify-content: center;
@@ -401,6 +401,28 @@ th {
   grid-template-columns: 45px 240px;
   align-items: center;
   justify-content: center;
+}
+
+.detail-item.no-center-align {
+  align-items: flex-start;
+}
+
+.detail-item.no-center-align svg{
+  margin-top: 0.3rem;
+}
+
+
+.pills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.skill-pill {
+  background-color: var(--code-background-color);
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.9em;
 }
 
 .detail-label,

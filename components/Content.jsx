@@ -25,6 +25,7 @@ import {
   Check,
   Github,
   Mail,
+  UserIcon,
 } from "lucide-react";
 import Footer from "./Footer";
 import ScrollIndicator from "./ScrollIndicator";
@@ -224,9 +225,19 @@ const AboutContent = memo(() => {
   const details = [
     {
       label: <LucideIcon icon={GraduationCap} />,
-      content: "Mechatronics Engineering",
+      content: "Mechatronics Engineer",
     },
-    { label: <LucideIcon icon={Hammer} />, content: "ML | Robotics | Finance" },
+    {
+      label: <LucideIcon icon={UserIcon} />,
+      content: "Generalist bridging code and hardware",
+      className: "no-center-align"
+    },
+    { 
+      label: <LucideIcon icon={Hammer} />,
+      content: ["Machine Learning", "Robotics", "Finance"],
+      isPills: true,
+      className: "no-center-align"
+    },
   ];
 
   const email = "aansaridan@gmail.com";
@@ -237,9 +248,17 @@ const AboutContent = memo(() => {
         <span className="name">Danish Ansari</span>
         <div className="about-details">
           {details.map((detail, index) => (
-            <div key={index} className="detail-item">
+            <div key={index} className={`detail-item ${detail.className || ""}`}>
               <span className="detail-label">{detail.label}</span>
-              <span className="detail-content">{detail.content}</span>
+              {detail.isPills ? (
+                <span className="detail-content pills-container">
+                  {detail.content.map((pill, i) => (
+                    <span key={i} className="skill-pill">{pill}</span>
+                  ))}
+                </span>
+              ) : (
+                <span className="detail-content">{detail.content}</span>
+              )}
             </div>
           ))}
         </div>
