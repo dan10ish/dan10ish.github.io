@@ -435,7 +435,12 @@ const ProjectListItem = memo(({ project, selectedTag, handleTagClick, handleProj
         className={`action-link github ${
           !project.sourceLink ? "disabled" : ""
         }`}
-        onClick={(e) => e.stopPropagation()}
+        onClick={(e) => {
+          e.stopPropagation();
+          if (!project.sourceLink) {
+            e.preventDefault();
+          }
+        }}
       >
         <LucideIcon icon={Github} size={20} />
       </a>
@@ -446,7 +451,12 @@ const ProjectListItem = memo(({ project, selectedTag, handleTagClick, handleProj
         className={`action-link globe ${
           !project.projectLink ? "disabled" : ""
         }`}
-        onClick={(e) => e.stopPropagation()}
+        onClick={(e) => {
+          e.stopPropagation();
+          if (!project.projectLink) {
+            e.preventDefault();
+          }
+        }}
       >
         <LucideIcon icon={Globe} size={20} />
       </a>
