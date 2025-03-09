@@ -31,6 +31,7 @@ import ScrollIndicator from "./ScrollIndicator";
 import { motion } from "framer-motion";
 import PhotoGrid from "./PhotoGrid";
 import { SiX } from "@icons-pack/react-simple-icons";
+import ProjectModal from "./ProjectModal";
 
 const LucideIcon = memo(({ icon: Icon, ...props }) => {
   return <Icon strokeWidth={`var(--icon-stroke-width)`} {...props} />;
@@ -414,8 +415,8 @@ const BlogList = memo(({ posts, viewsData, sortConfig, handleSort }) => {
 
 BlogList.displayName = "BlogList";
 
-const ProjectListItem = memo(({ project, selectedTag, handleTagClick }) => (
-  <div className="list-row">
+const ProjectListItem = memo(({ project, selectedTag, handleTagClick, handleProjectClick }) => (
+  <div className="list-row" onClick={() => handleProjectClick(project)}>
     <span className="title">
       <div>{project.title}</div>
       <div>
@@ -434,6 +435,7 @@ const ProjectListItem = memo(({ project, selectedTag, handleTagClick }) => (
         className={`action-link github ${
           !project.sourceLink ? "disabled" : ""
         }`}
+        onClick={(e) => e.stopPropagation()}
       >
         <LucideIcon icon={Github} size={20} />
       </a>
@@ -444,6 +446,7 @@ const ProjectListItem = memo(({ project, selectedTag, handleTagClick }) => (
         className={`action-link globe ${
           !project.projectLink ? "disabled" : ""
         }`}
+        onClick={(e) => e.stopPropagation()}
       >
         <LucideIcon icon={Globe} size={20} />
       </a>
@@ -453,7 +456,10 @@ const ProjectListItem = memo(({ project, selectedTag, handleTagClick }) => (
         <span
           key={tag}
           className={`tag ${selectedTag === tag ? "selected" : ""}`}
-          onClick={(e) => handleTagClick(tag, e)}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleTagClick(tag, e);
+          }}
         >
           {tag}
         </span>
@@ -467,6 +473,17 @@ ProjectListItem.displayName = "ProjectListItem";
 const ProjectList = memo(
   ({ projects, selectedTag, handleTagClick, handleSort, sortConfig }) => {
     const tableRef = useRef(null);
+    const [selectedProject, setSelectedProject] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleProjectClick = (project) => {
+      setSelectedProject(project);
+      setIsModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+      setIsModalOpen(false);
+    };
 
     return (
       <div className="mono-list project-list">
@@ -508,10 +525,16 @@ const ProjectList = memo(
               project={project}
               selectedTag={selectedTag}
               handleTagClick={handleTagClick}
+              handleProjectClick={handleProjectClick}
             />
           ))}
         </div>
         <ScrollIndicator containerRef={tableRef} />
+        <ProjectModal
+          project={selectedProject}
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+        />
       </div>
     );
   }
