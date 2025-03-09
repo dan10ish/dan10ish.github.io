@@ -1,33 +1,104 @@
 "use client";
 
-import { useState, useEffect, memo } from "react";
+import { useState, useEffect, memo, useCallback, useRef } from "react";
 import { Moon, Sun } from "lucide-react";
 
+const THEME_COLORS = {
+  light: "#ffffff",
+  dark: "#1c1c1c"
+};
+
+let currentTheme = null;
+
 const updateThemeColors = (theme) => {
+  if (!theme) return;
+  
+  currentTheme = theme;
+  
   document.documentElement.setAttribute("data-theme", theme);
+  
   const metaTheme = document.querySelector('meta[name="theme-color"]');
   if (metaTheme) {
-    metaTheme.setAttribute("content", theme === "dark" ? "#1c1c1c" : "#ffffff");
+    metaTheme.setAttribute("content", THEME_COLORS[theme] || THEME_COLORS.light);
   }
+  
+  try {
+    localStorage.setItem("theme", theme);
+  } catch (e) {
+    console.error("Failed to save theme to localStorage:", e);
+  }
+};
+
+const getThemePreference = () => {
+  try {
+    return localStorage.getItem("theme") || 
+      (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  } catch (e) {
+    return "light";
+  }
+};
+
+const setupGlobalListeners = () => {
+  const forceUpdateThemeColor = () => {
+    if (currentTheme) {
+      const metaTheme = document.querySelector('meta[name="theme-color"]');
+      if (metaTheme) {
+        metaTheme.setAttribute("content", THEME_COLORS[currentTheme] || THEME_COLORS.light);
+      }
+    }
+  };
+  
+  window.addEventListener("scroll", forceUpdateThemeColor, { passive: true });
+  window.addEventListener("popstate", forceUpdateThemeColor);
+  window.addEventListener("pageshow", forceUpdateThemeColor);
+  window.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") {
+      forceUpdateThemeColor();
+    }
+  });
+  
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          forceUpdateThemeColor();
+        }
+      });
+    });
+    
+    observer.observe(document.body);
+  }
+  
+  document.addEventListener("DOMContentLoaded", forceUpdateThemeColor);
 };
 
 export const ThemeButton = memo(() => {
   const [theme, setTheme] = useState("light");
   const [mounted, setMounted] = useState(false);
+  const listenerSetupRef = useRef(false);
 
   useEffect(() => {
     setMounted(true);
-    const savedTheme = localStorage.getItem("theme") || 
-      (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    const savedTheme = getThemePreference();
     setTheme(savedTheme);
     updateThemeColors(savedTheme);
+    
+    if (!listenerSetupRef.current) {
+      setupGlobalListeners();
+      listenerSetupRef.current = true;
+    }
   }, []);
+
+  useEffect(() => {
+    if (mounted) {
+      updateThemeColors(theme);
+    }
+  }, [theme, mounted]);
 
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
     updateThemeColors(newTheme);
-    localStorage.setItem("theme", newTheme);
   };
 
   return (
@@ -48,27 +119,30 @@ export const ThemeButton = memo(() => {
 ThemeButton.displayName = "ThemeButton";
 
 export default function ThemeHandler() {
-  const [theme, setTheme] = useState("light");
+  const listenerSetupRef = useRef(false);
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") || 
-      (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-    setTheme(savedTheme);
+    const savedTheme = getThemePreference();
     updateThemeColors(savedTheme);
-
-    const handleThemeChange = (e) => {
-      const newTheme = e.matches ? "dark" : "light";
-      if (!localStorage.getItem("theme")) {
-        setTheme(newTheme);
+    
+    const handleSystemThemeChange = (e) => {
+      const userSetTheme = localStorage.getItem("theme");
+      if (!userSetTheme) {
+        const newTheme = e.matches ? "dark" : "light";
         updateThemeColors(newTheme);
       }
     };
 
     const darkModeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    darkModeMediaQuery.addEventListener("change", handleThemeChange);
+    darkModeMediaQuery.addEventListener("change", handleSystemThemeChange);
+    
+    if (!listenerSetupRef.current) {
+      setupGlobalListeners();
+      listenerSetupRef.current = true;
+    }
 
     return () => {
-      darkModeMediaQuery.removeEventListener("change", handleThemeChange);
+      darkModeMediaQuery.removeEventListener("change", handleSystemThemeChange);
     };
   }, []);
 

@@ -41,7 +41,7 @@
           const effectiveTheme =
             sessionTheme || (prefersDark ? "dark" : "light");
           const themeColors = {
-            light: "#f5f4ee",
+            light: "#ffffff",
             dark: "#1c1c1c",
             solarized: "#00212b",
           };
@@ -50,8 +50,25 @@
             document.querySelector('meta[name="theme-color"]') ||
             document.createElement("meta");
           metaTheme.name = "theme-color";
-          metaTheme.content = themeColors[effectiveTheme];
+          metaTheme.content = themeColors[effectiveTheme] || themeColors.light;
           document.head.appendChild(metaTheme);
+          
+          // Add event listeners to keep theme consistent
+          const forceUpdate = () => {
+            const currentTheme = localStorage.getItem("theme") || 
+              (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+            document.documentElement.setAttribute("data-theme", currentTheme);
+            const m = document.querySelector('meta[name="theme-color"]');
+            if (m) m.setAttribute("content", themeColors[currentTheme] || themeColors.light);
+          };
+          
+          window.addEventListener("pageshow", forceUpdate);
+          window.addEventListener("scroll", forceUpdate, { passive: true });
+          window.addEventListener("visibilitychange", () => {
+            if (document.visibilityState === "visible") {
+              forceUpdate();
+            }
+          });
         } catch (e) {}
       })();
       window.onload = redirect;
