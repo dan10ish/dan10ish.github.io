@@ -73,7 +73,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
         if (!isOpen) {
           setShouldLoadVideo(false);
         }
-      }, 300);
+      }, 150);
     }
 
     return () => {
@@ -101,20 +101,29 @@ export default function ProjectModal({ project, isOpen, onClose }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ 
+              duration: 0.15,
+              exit: { duration: 0.1 }
+            }}
           />
           
           <motion.div
             className="project-modal"
             ref={modalRef}
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.98 }}
+            initial={{ opacity: 0, y: 10, scale: 0.99 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -8, scale: 0.98 }}
             transition={{ 
               type: "spring", 
-              damping: 30, 
-              stiffness: 350,
-              opacity: { duration: 0.25 }
+              stiffness: 500, 
+              damping: 25,
+              mass: 0.8,
+              opacity: { duration: 0.15 },
+              exit: { 
+                type: "tween", 
+                ease: "easeInOut", 
+                duration: 0.12 
+              }
             }}
           >
             <div className="project-modal-header">
@@ -164,7 +173,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
                 ) : (
                   <div className="video-unavailable">
                     <LucideIcon icon={VideoOff} size={32} />
-                    <p>No video available</p>
+                    <p>No preview available</p>
                   </div>
                 )}
               </div>

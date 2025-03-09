@@ -2406,6 +2406,14 @@ a[data-footnote-ref] {
     text-decoration: none;
   }
 
+  .project-details .project-link:hover {
+    opacity: 1;
+    color: var(--color-link);
+    transform: scale(1.02) translateZ(0);
+    text-decoration: none;
+    background-color: rgba(var(--color-text-rgb), 0.08);
+  }
+
   .project-modal-close:hover {
     transform: scale(1.1);
     color: #ff0000;
@@ -2834,6 +2842,7 @@ a[data-footnote-ref] {
     background-color: rgba(var(--color-text-rgb), 0.08);
     text-decoration: none;
     color: var(--color-link);
+    transform: scale(1.02) translateZ(0);
   }
 }
 
@@ -3058,11 +3067,12 @@ a[data-footnote-ref] {
 }
 
 .project-tag {
-  padding: 6px 12px;
-  border-radius: 30px;
-  background: rgba(var(--color-text-rgb), 0.08);
+  padding: 0.1rem 0.6rem;
+  border-radius: 8px;
   color: var(--color-text);
-  font-size: 0.9rem;
+  font-size: calc(var(--font-size-mobile) * 0.9);
+  border: 1px solid rgba(var(--color-text-rgb), 0.1);
+  color: rgba(var(--color-text-rgb), 0.8);
 }
 
 .project-links {
@@ -3077,7 +3087,8 @@ a[data-footnote-ref] {
   gap: 8px;
   padding: 10px 18px;
   border-radius: 30px;
-  background: rgba(var(--color-text-rgb), 0.1);
+  border: 1px solid rgba(var(--color-text-rgb), 0.1);
+  background: rgba(var(--color-text-rgb), 0.04);
   color: var(--color-text);
   text-decoration: none;
   font-size: 0.9rem;
@@ -3100,7 +3111,7 @@ a[data-footnote-ref] {
   
   .project-video-container {
     flex: none;
-    padding: 20px 20px 10px 20px;
+    padding: 20px 20px;
   }
   
   .video-wrapper, 
@@ -3163,7 +3174,7 @@ a[data-footnote-ref] {
   }
   
   .project-link {
-    padding: 8px 14px;
+    padding: 10px 14px;
     flex: 1;
     justify-content: center;
     text-align: center;

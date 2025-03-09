@@ -140,6 +140,51 @@ Projects feature:
 - Responsive preview cards
 - Home page prioritization
 
+#### Project Modal
+
+Project modals provide an enhanced viewing experience:
+
+```javascript
+const ProjectList = memo(({ projects, selectedTag, handleTagClick, handleSort, sortConfig }) => {
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleProjectClick = (project) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  return (
+    <div className="mono-list project-list">
+      {/* List header and project items */}
+      <ProjectModal
+        project={selectedProject}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
+    </div>
+  );
+});
+```
+
+The modal system includes:
+
+- Video preview with loading states
+- Project details and description
+- Animated transitions using Framer Motion
+- Responsive design for all screen sizes
+- Keyboard accessibility features
+- Source code and live demo links
+- Auto-pause when modal closes
+- Blur backdrop effect
+- Tag display
+
+Project videos are loaded when the modal opens and automatically paused when closed to preserve resources. The system supports graceful fallbacks when videos aren't available or fail to load.
+
 ### 3. Photo Management System
 
 The photo system combines aesthetics with technical metadata:
