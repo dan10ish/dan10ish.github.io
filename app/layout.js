@@ -85,7 +85,7 @@ export default function RootLayout({ children }) {
         <link rel="dns-prefetch" href="https://api.github.com" />
         <script
           dangerouslySetInnerHTML={{
-            __html: `(()=>{try{const themeColors={light:"#ffffff",dark:"#1c1c1c"};const t=localStorage.getItem("theme")||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t);const m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",themeColors[t]||themeColors.light);const forceUpdate=()=>{const currentTheme=localStorage.getItem("theme")||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",currentTheme);const m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",themeColors[currentTheme]||themeColors.light)};window.addEventListener("pageshow",forceUpdate);window.addEventListener("load",forceUpdate);if(document.readyState==="complete")forceUpdate()}catch{}})()`
+            __html: `(()=>{try{const t=localStorage.getItem("theme")||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t)}catch{}})()`
           }}
         />
         <link rel="icon" type="image/png" href="/icons/icon.png" />
