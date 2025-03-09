@@ -13,6 +13,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
   const videoRef = useRef(null);
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoError, setVideoError] = useState(false);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
   
   const hasVideo = project?.video && typeof project.video === 'string';
   
@@ -38,20 +39,18 @@ export default function ProjectModal({ project, isOpen, onClose }) {
       document.body.style.overflow = "hidden";
       document.addEventListener("mousedown", handleClickOutside);
       
-      // Reset video state when opening modal
       setVideoLoaded(false);
       setVideoError(false);
       
+      setShouldLoadVideo(true);
+      
       if (videoRef.current) {
-        // Reset video state
         try {
           videoRef.current.currentTime = 0;
-          // Try to play the video after user interaction
           const playPromise = videoRef.current.play();
           if (playPromise !== undefined) {
             playPromise.catch(error => {
               console.log("Auto-play prevented:", error);
-              // We'll let the video start when it can
             });
           }
         } catch (err) {
@@ -62,7 +61,6 @@ export default function ProjectModal({ project, isOpen, onClose }) {
       document.body.style.overflow = "";
       document.removeEventListener("mousedown", handleClickOutside);
       
-      // Pause video when closing modal
       if (videoRef.current) {
         try {
           videoRef.current.pause();
@@ -70,6 +68,12 @@ export default function ProjectModal({ project, isOpen, onClose }) {
           console.log("Error pausing video:", err);
         }
       }
+      
+      setTimeout(() => {
+        if (!isOpen) {
+          setShouldLoadVideo(false);
+        }
+      }, 300);
     }
 
     return () => {
@@ -128,21 +132,29 @@ export default function ProjectModal({ project, isOpen, onClose }) {
               <div className="project-video-container">
                 {hasVideo ? (
                   <div className={`video-wrapper ${videoLoaded ? 'loaded' : ''}`}>
-                    <video 
-                      ref={videoRef}
-                      className="project-video"
-                      src={`/project-videos/${project.video}`}
-                      playsInline
-                      autoPlay
-                      muted
-                      loop
-                      disablePictureInPicture
-                      disableRemotePlayback
-                      controlsList="nodownload noplaybackrate nofullscreen noremoteplayback"
-                      preload="auto"
-                      onLoadedData={handleVideoLoad}
-                      onError={handleVideoError}
-                    />
+                    {!videoLoaded && (
+                      <div className="video-loading">
+                        <div className="loading-spinner"></div>
+                      </div>
+                    )}
+                    
+                    {shouldLoadVideo && (
+                      <video 
+                        ref={videoRef}
+                        className="project-video"
+                        src={`/project-videos/${project.video}`}
+                        playsInline
+                        autoPlay
+                        muted
+                        loop
+                        disablePictureInPicture
+                        disableRemotePlayback
+                        controlsList="nodownload noplaybackrate nofullscreen noremoteplayback"
+                        preload="auto"
+                        onLoadedData={handleVideoLoad}
+                        onError={handleVideoError}
+                      />
+                    )}
                   </div>
                 ) : videoError ? (
                   <div className="video-error">
@@ -163,6 +175,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
                 </div>
                 
                 <div className="project-tags">
+                  <span className="tag-label">Tag: </span>
                   {project.tags.map((tag) => (
                     <span key={tag} className="project-tag">
                       {tag}
