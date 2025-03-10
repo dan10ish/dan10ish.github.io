@@ -2918,8 +2918,7 @@ a[data-footnote-ref] {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(var(--color-bg-rgb), 0.7);
-  backdrop-filter: blur(10px);
+  background: rgba(var(--color-bg-rgb), 1);
   z-index: 1;
 }
 
@@ -3053,7 +3052,7 @@ a[data-footnote-ref] {
   margin: 0;
   font-size: calc(var(--font-size-mobile) * 0.9);
   line-height: 1.5;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(var(--color-text-rgb), 0.8);
 }
 
 .project-links {
