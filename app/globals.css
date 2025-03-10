@@ -2635,13 +2635,13 @@ a[data-footnote-ref] {
 /* Media Queries */
 @media (min-height: 480px) {
   .table-max {
-    height: 23.9rem;
+    height: 29.9rem;
   }
 }
 
 @media (min-height: 768px) {
   .table-max {
-    height: 32.9rem;
+    height: 38.9rem;
   }
 }
 
