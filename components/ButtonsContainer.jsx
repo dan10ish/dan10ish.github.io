@@ -19,6 +19,7 @@ const TOCButton = dynamic(() => import("./TOCButton"), {
 export default function ButtonsContainer({ tocData }) {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isPhotoModalOpen, setIsPhotoModalOpen] = useState(false);
   const pathname = usePathname();
   const isBlogPost = pathname.startsWith("/post/");
   const isHomePage = pathname === "/";
@@ -38,9 +39,24 @@ export default function ButtonsContainer({ tocData }) {
       setLastScrollY(currentScrollY);
     };
 
+    const checkPhotoModal = () => {
+      const photoModalElement = document.querySelector('.photo-modal-container');
+      setIsPhotoModalOpen(!!photoModalElement);
+    };
+
+    const observer = new MutationObserver(checkPhotoModal);
+    observer.observe(document.body, { childList: true, subtree: true });
+    
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    checkPhotoModal();
+    
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      observer.disconnect();
+    };
   }, [lastScrollY]);
+
+  if (isPhotoModalOpen) return null;
 
   return (
     <div className={`buttons-container ${!isVisible ? "hidden" : ""}`}>

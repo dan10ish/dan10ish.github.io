@@ -1933,14 +1933,13 @@ a[data-footnote-ref] {
 .meta-row {
   display: flex;
   align-items: center;
-  gap: 0.45rem;
-  font-size: calc(var(--font-size-mobile) * 0.75);
+  gap: 0.5rem;
+  font-size: var(--font-size-mobile);
   color: var(--color-text);
-  font-weight: 500;
 }
 
 .meta-icon {
-  color: var(--color-text);
+  color: rgba(var(--color-text-rgb), 0.7);
   width: 14px;
   height: 14px;
   flex-shrink: 0;
@@ -2434,6 +2433,11 @@ a[data-footnote-ref] {
   }
 
   .project-modal-close:hover {
+    transform: scale(1.1);
+    color: #ff0000;
+  }
+
+  .photo-modal-close:hover {
     transform: scale(1.1);
     color: #ff0000;
   }
@@ -3114,5 +3118,206 @@ a[data-footnote-ref] {
     top: 0.8rem;
     right: 1rem;
     background: rgba(var(--color-text-rgb), 0.04);
+  }
+}
+
+/* Photo Modal Styles */
+.photo-modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-modal-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(var(--color-bg-rgb), 1);
+  z-index: 1;
+}
+
+.photo-modal-content-wrapper {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.photo-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: min(80%, var(--max-width, 800px));
+  max-height: 85vh;
+}
+
+.photo-modal-close {
+  position: absolute;
+  top: -3rem;
+  right: 0px;
+  background: var(--code-background-color);
+  border: 1px solid rgba(var(--color-text-rgb), 0.1);
+  color: var(--color-text);
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  padding: 0;
+  z-index: 10;
+}
+
+.photo-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.photo-placeholder .loading-icon {
+  color: var(--color-text);
+  animation: spin 1.5s linear infinite;
+}
+
+.photo-full-image {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+  border-radius: var(--border-radius);
+  box-shadow: 0 5px 30px rgba(var(--color-text-rgb), 0.1);
+  pointer-events: auto;
+}
+
+.photo-full-image.loaded {
+  opacity: 1;
+}
+
+.photo-meta-corner {
+  position: absolute;
+  background-color: rgba(var(--color-bg-rgb), 0.2);
+  backdrop-filter: blur(8px);
+  padding: 3px 10px;
+  border-radius: var(--border-radius);
+  color: #FFCC00;
+  display: flex;
+  flex-direction: column;
+  z-index: 3;
+  max-width: 49%;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.75);
+}
+
+.photo-meta-corner .meta-row {
+  display: flex;
+  align-items: center;
+  font-size: calc(var(--font-size-mobile) * 0.75);
+  gap: 4px;
+  flex-wrap: wrap;
+  color: #FFCC00;
+  text-shadow: 2px 2px 4px var(--color-bg);
+}
+
+.photo-meta-corner .meta-icon {
+  color: #FFCC00;
+  filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.75));
+}
+
+.top-left {
+  top: 14px;
+  left: 0px;
+}
+
+.top-right {
+  top: 14px;
+  right: 0px;
+}
+
+.bottom-left {
+  bottom: 14px;
+  left: 0px;
+}
+
+.bottom-right {
+  bottom: 14px;
+  right: 0px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (min-width: 768px) {
+  .photo-content {
+    max-width: min(60%, calc(var(--max-width, 900px) * 0.9));
+    max-height: 70vh;
+  }
+
+  .photo-full-image {
+    max-height: 70vh;
+  }
+
+  .photo-meta-corner {
+    padding: 8px 12px;
+    font-weight: 500;
+  }
+
+  .photo-meta-corner .meta-row {
+    font-size: calc(var(--font-size-mobile) * 0.9);
+    gap: 6px;
+    line-height: 1.6;
+  }
+
+  .photo-modal-close {
+    top: -4rem;
+    right: 0px;
+    width: 35px;
+    height: 35px;
+  }
+
+  .top-left {
+    top: 0px;
+    left: 0px;
+  }
+
+  .top-right {
+    top: 0px;
+    right: 0px;
+  }
+
+  .bottom-left {
+    bottom: 0px;
+    left: 0px;
+  }
+
+  .bottom-right {
+    bottom: 0px;
+    right: 0px;
   }
 }

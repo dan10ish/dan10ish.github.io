@@ -3,100 +3,10 @@
 import { useState, useEffect, memo, useCallback } from "react";
 import ExifReader from "exifreader";
 import Masonry from "react-masonry-css";
-import {
-  Camera,
-  Maximize2,
-  Frame,
-  Target,
-  Aperture,
-  Timer,
-  PointerIcon,
-} from "lucide-react";
+import { MapPin } from "lucide-react";
 import { photoMetadata } from "@/lib/photo-meta";
 import ButtonsContainer from "./ButtonsContainer";
-import { motion, AnimatePresence } from "framer-motion";
-
-const TouchGuide = () => (
-  <div className="touch-guide">
-    <PointerIcon size={24} />
-  </div>
-);
-
-const PhotoMeta = memo(({ meta, isVisible, onClose }) => (
-  <AnimatePresence>
-    {isVisible && (
-      <motion.div 
-        className="photo-meta"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.15 }}
-        onClick={onClose}
-      >
-        <motion.div 
-          className="meta-content"
-          initial={{ opacity: 0, scale: 0.9, y: 5 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: -5 }}
-          transition={{ 
-            type: "spring", 
-            damping: 20, 
-            stiffness: 400,
-            mass: 0.6,
-            delay: 0.02
-          }}
-        >
-          <div className="meta-row">
-            <Camera size={14} className="meta-icon" />
-            <span>{meta.camera}</span>
-          </div>
-          <div className="meta-row">
-            <Maximize2 size={14} className="meta-icon" />
-            <span>{meta.resolution}</span>
-          </div>
-          <div className="meta-row">
-            <Frame size={14} className="meta-icon" />
-            <span>ISO {meta.iso}</span>
-            <Aperture size={14} className="meta-icon" />
-            <span>{meta.aperture}</span>
-          </div>
-          <div className="meta-row">
-            <Target size={14} className="meta-icon" />
-            <span>{meta.focalLength}</span>
-            <Timer size={14} className="meta-icon" />
-            <span>{meta.shutterspeed}</span>
-          </div>
-        </motion.div>
-      </motion.div>
-    )}
-  </AnimatePresence>
-));
-
-const PhotoCard = memo(({ photo, isMetaVisible, onMetaToggle, isFirst, onGuideClick }) => (
-  <div className="photo-card">
-    <div className="photo-container">
-      <img 
-        src={photo.src} 
-        alt="" 
-        loading="lazy" 
-        decoding="async" 
-        onClick={() => {
-          if (!isMetaVisible) {
-            onMetaToggle(photo.index);
-            if (isFirst) onGuideClick();
-          }
-        }}
-        style={{ cursor: !isMetaVisible ? 'pointer' : 'default' }}
-      />
-      {isFirst && <TouchGuide />}
-      <PhotoMeta 
-        meta={photo.meta} 
-        isVisible={isMetaVisible} 
-        onClose={() => onMetaToggle(null)} 
-      />
-    </div>
-  </div>
-));
+import PhotoModal from "./PhotoModal";
 
 const Skeleton = memo(() => (
   <div className="photo-card skeleton">
@@ -106,24 +16,42 @@ const Skeleton = memo(() => (
   </div>
 ));
 
+const PhotoCard = memo(({ photo, onClick }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  
+  const handleImageLoad = useCallback(() => {
+    setIsLoaded(true);
+  }, []);
+  
+  const handleClick = useCallback(() => {
+    if (isLoaded) {
+      onClick(photo);
+    }
+  }, [isLoaded, onClick, photo]);
+  
+  return (
+    <div className="photo-card">
+      <div className="photo-container">
+        <img 
+          src={photo.src} 
+          alt="" 
+          loading="lazy" 
+          decoding="async" 
+          onClick={handleClick}
+          onLoad={handleImageLoad}
+          style={{ cursor: isLoaded ? 'pointer' : 'default' }}
+        />
+      </div>
+    </div>
+  );
+});
+
 const PhotoGrid = () => {
   const [loading, setLoading] = useState(true);
   const [totalPhotos, setTotalPhotos] = useState(16);
   const [loadedPhotos, setLoadedPhotos] = useState([]);
-  const [activeMetaIndex, setActiveMetaIndex] = useState(null);
-  const [showGuide, setShowGuide] = useState(false);
-
-  const startGuideTimer = useCallback(() => {
-    setShowGuide(true);
-    const timer = setTimeout(() => {
-      setShowGuide(false);
-    }, 2000);
-    return timer;
-  }, []);
-
-  const handleGuideClick = useCallback(() => {
-    setShowGuide(false);
-  }, []);
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const breakpointColumns = {
     default: 3,
@@ -131,19 +59,28 @@ const PhotoGrid = () => {
     700: 2,
   };
 
-  const handleMetaToggle = useCallback((index) => {
-    setActiveMetaIndex(current => current === index ? null : index);
+  const handlePhotoClick = useCallback((photo) => {
+    if (photo && photo.src) {
+      const img = new Image();
+      img.onload = () => {
+        setSelectedPhoto(photo);
+        setIsModalOpen(true);
+      };
+      img.onerror = () => {
+        console.error("Failed to load image:", photo.src);
+        setSelectedPhoto(photo);
+        setIsModalOpen(true);
+      };
+      img.src = photo.src;
+      if (img.complete) {
+        setSelectedPhoto(photo);
+        setIsModalOpen(true);
+      }
+    }
   }, []);
 
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (!e.target.closest('.photo-meta') && !e.target.closest('.meta-toggle-button')) {
-        setActiveMetaIndex(null);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+  const handleCloseModal = useCallback(() => {
+    setIsModalOpen(false);
   }, []);
 
   const processPhoto = useCallback(async (src, index) => {
@@ -198,6 +135,20 @@ const PhotoGrid = () => {
       ""
     );
 
+    // Try to extract country from GPS data if available
+    let country = null;
+    try {
+      if (tags.GPSLatitude && tags.GPSLongitude) {
+        // This is a simplified approach and might not be accurate
+        // For a production app, you'd want to use a geocoding service
+        const lat = tags.GPSLatitude.description;
+        const lng = tags.GPSLongitude.description;
+        if (customData.country) {
+          country = customData.country;
+        }
+      }
+    } catch (e) {}
+
     return {
       camera:
         customData.camera ||
@@ -212,13 +163,13 @@ const PhotoGrid = () => {
       aperture: customData.aperture || `f/${formatNumber(aperture)}`,
       shutterspeed:
         customData.shutterspeed || getValue(tags, "ExposureTime.description"),
+      country: customData.country || country,
     };
   };
 
   useEffect(() => {
     let mounted = true;
     const controller = new AbortController();
-    let guideTimer;
 
     const loadPhotos = async () => {
       try {
@@ -236,9 +187,6 @@ const PhotoGrid = () => {
           setLoadedPhotos((prev) => {
             const newPhotos = [...prev];
             newPhotos[photoData.index] = photoData;
-            if (photoData.index === 0 && mounted) {
-              guideTimer = startGuideTimer();
-            }
             return newPhotos;
           });
         }
@@ -256,9 +204,8 @@ const PhotoGrid = () => {
     return () => {
       mounted = false;
       controller.abort();
-      if (guideTimer) clearTimeout(guideTimer);
     };
-  }, [processPhoto, startGuideTimer]);
+  }, [processPhoto]);
 
   return (
     <>
@@ -272,17 +219,19 @@ const PhotoGrid = () => {
             <PhotoCard 
               key={`photo-${index}`} 
               photo={loadedPhotos[index]} 
-              isMetaVisible={activeMetaIndex === index}
-              onMetaToggle={handleMetaToggle}
-              isFirst={showGuide && index === 0}
-              onGuideClick={handleGuideClick}
+              onClick={handlePhotoClick}
             />
           ) : (
             <Skeleton key={`skeleton-${index}`} />
           )
         )}
       </Masonry>
-      <ButtonsContainer />
+      <PhotoModal
+        photo={selectedPhoto}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
+      {!isModalOpen && <ButtonsContainer />}
     </>
   );
 };
