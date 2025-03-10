@@ -1435,6 +1435,7 @@ pre code {
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid transparent;
 }
 
 .copy-icon {
@@ -2414,6 +2415,19 @@ a[data-footnote-ref] {
     background-color: rgba(var(--color-text-rgb), 0.08);
   }
 
+  .copy-code-button:hover {
+    background: rgba(var(--color-text-rgb), 0.05);
+    border: 1px solid rgba(var(--color-text-rgb), 0.2);
+    border-radius: 4px;
+  }
+
+  .copy-code-button:has(.lucide-check):hover {
+    background: none;
+    opacity: 1;
+    border: 1px solid transparent;
+    cursor: default;
+  }
+
   .project-modal-close:hover {
     transform: scale(1.1);
     color: #ff0000;
@@ -3103,37 +3117,37 @@ a[data-footnote-ref] {
     height: 90%;
     max-height: 90vh;
   }
-  
+
   .project-modal-content {
     flex-direction: column;
     overflow-y: auto;
   }
-  
+
   .project-video-container {
     flex: none;
     padding: 20px 20px;
   }
-  
-  .video-wrapper, 
+
+  .video-wrapper,
   .video-unavailable,
   .video-error {
     max-width: min(400px, 90vw);
   }
-  
+
   .project-details {
     max-width: 100%;
     padding: 20px 20px 30px;
     border-left: none;
     border-top: 1px solid rgba(var(--color-text-rgb), 0.08);
   }
-  
+
   .project-links {
     display: flex;
     width: 100%;
     justify-content: space-between;
     gap: 10px;
   }
-  
+
   .project-link {
     flex: 1;
     justify-content: center;
@@ -3148,31 +3162,31 @@ a[data-footnote-ref] {
     max-height: 100%;
     border-radius: 0;
   }
-  
+
   .project-modal-header {
     padding: 16px 20px;
   }
-  
+
   .project-modal-header h2 {
     font-size: 1.3rem;
   }
-  
+
   .project-modal-close {
     width: 32px;
     height: 32px;
   }
-  
-  .video-wrapper, 
+
+  .video-wrapper,
   .video-unavailable,
   .video-error {
     border-radius: 6px;
     max-width: min(300px, 90vw);
   }
-  
+
   .project-video {
     border-radius: 6px;
   }
-  
+
   .project-link {
     padding: 10px 14px;
     flex: 1;
@@ -3180,11 +3194,11 @@ a[data-footnote-ref] {
     text-align: center;
     width: 100%;
   }
-  
+
   .project-tag {
     padding: 4px 10px;
   }
-  
+
   .project-links {
     width: 100%;
     gap: 8px;
@@ -3214,6 +3228,10 @@ a[data-footnote-ref] {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
