@@ -5,7 +5,6 @@ import { ChartNoAxesColumn, Heart, Star, Mail, CodeXml, GitFork } from "lucide-r
 
 import { supabase } from "@/lib/supabase";
 import ShareButton from "./ShareButtons";
-import { ThemeButton } from "./ThemeHandler";
 
 const LucideIcon = memo(({ icon: Icon, ...props }) => {
   return <Icon strokeWidth={`var(--icon-stroke-width)`} {...props} />;
@@ -203,11 +202,8 @@ const Footer = ({ blogSlug = null }) => {
                 <LucideIcon icon={CodeXml} size={20} />
               </a>
               <ShareButton slug={blogSlug} size={20} />
-              <ThemeButton />
             </div>
-          ) : (
-            <ThemeButton />
-          )}
+          ) : null}
         </div>
       </div>
     </footer>

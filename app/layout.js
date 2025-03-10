@@ -1,7 +1,8 @@
 import { Suspense } from 'react';
-import ThemeHandler from '@/components/ThemeHandler';
+import SystemThemeDetector from '@/components/SystemThemeDetector';
 import "./globals.css";
 import GradientOverlay from '@/components/GradientOverlay';
+import { themeInitScript } from '@/lib/themeDetector';
 
 export const metadata = {
   metadataBase: new URL("https://danish.bio"),
@@ -87,7 +88,7 @@ export default function RootLayout({ children }) {
         <link rel="dns-prefetch" href="https://api.github.com" />
         <script
           dangerouslySetInnerHTML={{
-            __html: `(()=>{try{const t=localStorage.getItem("theme")||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t)}catch{}})()`
+            __html: themeInitScript
           }}
         />
         <link rel="icon" type="image/png" href="/icons/icon.png" />
@@ -95,7 +96,7 @@ export default function RootLayout({ children }) {
       <body>
         <GradientOverlay />
         <Suspense fallback={null}>
-          <ThemeHandler />
+          <SystemThemeDetector />
         </Suspense>
         <main className="container">{children}</main>
       </body>
