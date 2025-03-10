@@ -7,6 +7,39 @@
     <link rel="icon" type="image/png" href="/icons/icon.png" />
     <link rel="stylesheet" href="./error.css" />
     <script>
+      (function () {
+        try {
+          const themeColors = {
+            light: "#ffffff",
+            dark: "#1c1c1c"
+          };
+          
+          const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+          document.documentElement.setAttribute("data-theme", systemTheme);
+          
+          const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+          if (metaThemeColor) {
+            metaThemeColor.content = themeColors[systemTheme];
+          } else {
+            const meta = document.createElement('meta');
+            meta.name = 'theme-color';
+            meta.content = themeColors[systemTheme];
+            document.head.appendChild(meta);
+          }
+          
+          const darkModeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+          darkModeMediaQuery.addEventListener("change", (e) => {
+            const newTheme = e.matches ? "dark" : "light";
+            document.documentElement.setAttribute("data-theme", newTheme);
+            
+            const metaElement = document.querySelector('meta[name="theme-color"]');
+            if (metaElement) {
+              metaElement.content = themeColors[newTheme];
+            }
+          });
+        } catch (e) {}
+      })();
+      
       var redirect = function () {
         var segmentCount = 0;
         var l = window.location;
@@ -32,39 +65,6 @@
           );
         }
       };
-      (function () {
-        try {
-          const themeColors = {
-            light: "#ffffff",
-            dark: "#1c1c1c"
-          };
-          
-          const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-          
-          document.documentElement.setAttribute("data-theme", systemTheme);
-          
-          document.querySelectorAll('meta[name="theme-color"]').forEach(el => el.remove());
-          
-          const metaTheme = document.createElement("meta");
-          metaTheme.name = "theme-color";
-          metaTheme.content = themeColors[systemTheme] || themeColors.light;
-          document.head.appendChild(metaTheme);
-          
-          // Setup listener for system theme changes
-          const darkModeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-          darkModeMediaQuery.addEventListener("change", (e) => {
-            const newTheme = e.matches ? "dark" : "light";
-            document.documentElement.setAttribute("data-theme", newTheme);
-            
-            document.querySelectorAll('meta[name="theme-color"]').forEach(el => el.remove());
-            
-            const meta = document.createElement("meta");
-            meta.name = "theme-color";
-            meta.content = themeColors[newTheme] || themeColors.light;
-            document.head.appendChild(meta);
-          });
-        } catch (e) {}
-      })();
       window.onload = redirect;
     </script>
   </head>

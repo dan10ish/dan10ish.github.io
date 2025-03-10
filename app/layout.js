@@ -58,6 +58,7 @@ export function generateViewport() {
     maximumScale: 5,
     userScalable: true,
     viewportFit: "cover",
+    themeColor: "#1c1c1c",
   };
 }
 
@@ -65,7 +66,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <meta name="theme-color" content="#ffffff" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: themeInitScript
+          }}
+        />
         <link
           rel="preload"
           href="/fonts/SFMono-Regular.woff2"
@@ -86,11 +91,6 @@ export default function RootLayout({ children }) {
         />
         <link rel="dns-prefetch" href="https://github.com" />
         <link rel="dns-prefetch" href="https://api.github.com" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: themeInitScript
-          }}
-        />
         <link rel="icon" type="image/png" href="/icons/icon.png" />
       </head>
       <body>
