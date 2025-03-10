@@ -46,7 +46,9 @@
           
           document.documentElement.setAttribute("data-theme", effectiveTheme);
           
-          const metaTheme = document.querySelector('meta[name="theme-color"]') || document.createElement("meta");
+          document.querySelectorAll('meta[name="theme-color"]').forEach(el => el.remove());
+          
+          const metaTheme = document.createElement("meta");
           metaTheme.name = "theme-color";
           metaTheme.content = themeColors[effectiveTheme] || themeColors.light;
           document.head.appendChild(metaTheme);

@@ -15,10 +15,12 @@ export const ThemeButton = memo(() => {
   const updateTheme = (newTheme) => {
     document.documentElement.setAttribute("data-theme", newTheme);
     
-    const metaTheme = document.querySelector('meta[name="theme-color"]');
-    if (metaTheme) {
-      metaTheme.setAttribute("content", THEME_COLORS[newTheme] || THEME_COLORS.light);
-    }
+    document.querySelectorAll('meta[name="theme-color"]').forEach(el => el.remove());
+    
+    const meta = document.createElement('meta');
+    meta.name = 'theme-color';
+    meta.content = THEME_COLORS[newTheme] || THEME_COLORS.light;
+    document.head.appendChild(meta);
     
     try {
       localStorage.setItem("theme", newTheme);
@@ -69,10 +71,12 @@ export default function ThemeHandler() {
         const newTheme = e.matches ? "dark" : "light";
         document.documentElement.setAttribute("data-theme", newTheme);
         
-        const metaTheme = document.querySelector('meta[name="theme-color"]');
-        if (metaTheme) {
-          metaTheme.setAttribute("content", THEME_COLORS[newTheme] || THEME_COLORS.light);
-        }
+        document.querySelectorAll('meta[name="theme-color"]').forEach(el => el.remove());
+        
+        const meta = document.createElement('meta');
+        meta.name = 'theme-color';
+        meta.content = THEME_COLORS[newTheme] || THEME_COLORS.light;
+        document.head.appendChild(meta);
       }
     };
 
