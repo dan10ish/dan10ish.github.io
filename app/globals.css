@@ -715,7 +715,7 @@ th {
 }
 
 .project-list .list-row {
-  cursor: default;
+  cursor: pointer;
 }
 
 .list-header .actions {
@@ -3037,7 +3037,7 @@ a[data-footnote-ref] {
 
 .project-tag {
   font-size: 12px;
-  background: var(--color-bg);
+  background: none;
   border: 1px solid rgba(var(--color-text-rgb), 0.1);
   font-size: calc(var(--font-size-mobile) * 0.9);
   padding: 0.1rem 0.6rem;
@@ -3102,7 +3102,7 @@ a[data-footnote-ref] {
     width: 50%;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
   }
 
   .project-description {
