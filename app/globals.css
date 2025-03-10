@@ -3209,6 +3209,10 @@ a[data-footnote-ref] {
   border-radius: var(--border-radius);
   box-shadow: 0 5px 30px rgba(var(--color-text-rgb), 0.1);
   pointer-events: auto;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .photo-full-image.loaded {
@@ -3236,7 +3240,7 @@ a[data-footnote-ref] {
   gap: 4px;
   flex-wrap: wrap;
   color: #FFCC00;
-  text-shadow: 2px 2px 4px var(--color-bg);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.75);
 }
 
 .photo-meta-corner .meta-icon {

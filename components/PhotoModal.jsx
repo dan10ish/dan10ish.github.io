@@ -10,8 +10,8 @@ const LucideIcon = ({ icon: Icon, ...props }) => {
 
 export default function PhotoModal({ photo, isOpen, onClose }) {
   const photoRef = useRef(null);
+  const scrollPositionRef = useRef(0);
   const [imageLoaded, setImageLoaded] = useState(false);
-  const [scrollPosition, setScrollPosition] = useState(0);
   const imgRef = useRef(null);
 
   const handleClickOutside = (e) => {
@@ -22,12 +22,12 @@ export default function PhotoModal({ photo, isOpen, onClose }) {
 
   useEffect(() => {
     if (isOpen) {
-      setScrollPosition(window.pageYOffset);
+      // Store the current scroll position
+      scrollPositionRef.current = window.scrollY;
+      
+      // Prevent scrolling
       document.body.style.overflow = "hidden";
-      document.body.style.height = "100%";
-      document.body.style.position = "fixed";
-      document.body.style.width = "100%";
-      document.body.style.top = `-${scrollPosition}px`;
+      
       document.addEventListener("mousedown", handleClickOutside);
       setImageLoaded(false);
       
@@ -42,24 +42,20 @@ export default function PhotoModal({ photo, isOpen, onClose }) {
         preloadImg.src = photo.src;
       }
     } else {
+      // Re-enable scrolling
       document.body.style.overflow = "";
-      document.body.style.height = "";
-      document.body.style.position = "";
-      document.body.style.width = "";
-      document.body.style.top = "";
-      window.scrollTo(0, scrollPosition);
+      
+      // Restore scroll position
+      window.scrollTo(0, scrollPositionRef.current);
+      
       document.removeEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
       document.body.style.overflow = "";
-      document.body.style.height = "";
-      document.body.style.position = "";
-      document.body.style.width = "";
-      document.body.style.top = "";
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isOpen, scrollPosition, photo]);
+  }, [isOpen, photo]);
 
   const handleImageLoad = () => {
     setImageLoaded(true);
@@ -122,6 +118,8 @@ export default function PhotoModal({ photo, isOpen, onClose }) {
                 loading="eager" 
                 decoding="async" 
                 onLoad={handleImageLoad}
+                style={{ userSelect: "none", WebkitUserSelect: "none" }}
+                draggable="false"
               />
               
               {imageLoaded && (
