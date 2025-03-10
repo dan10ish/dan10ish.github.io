@@ -1,8 +1,6 @@
 import { Suspense } from 'react';
-import SystemThemeDetector from '@/components/SystemThemeDetector';
 import "./globals.css";
 import GradientOverlay from '@/components/GradientOverlay';
-import { themeInitScript } from '@/lib/themeDetector';
 
 export const metadata = {
   metadataBase: new URL("https://danish.bio"),
@@ -58,7 +56,6 @@ export function generateViewport() {
     maximumScale: 5,
     userScalable: true,
     viewportFit: "cover",
-    themeColor: "#1c1c1c",
   };
 }
 
@@ -66,11 +63,16 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: themeInitScript
-          }}
-        />
+        <script dangerouslySetInnerHTML={{ __html: `(function(){
+          // Set theme only on initial page load - no listeners for changes
+          document.documentElement.setAttribute("data-theme", window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        })()` }} />
+        <script dangerouslySetInnerHTML={{ __html: `(function(){
+          const metaThemeColor = document.createElement('meta');
+          metaThemeColor.name = 'theme-color';
+          metaThemeColor.content = document.documentElement.dataset.theme === 'dark' ? '#1c1c1c' : '#ffffff';
+          document.head.appendChild(metaThemeColor);
+        })()` }} />
         <link
           rel="preload"
           href="/fonts/SFMono-Regular.woff2"
@@ -95,9 +97,6 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <GradientOverlay />
-        <Suspense fallback={null}>
-          <SystemThemeDetector />
-        </Suspense>
         <main className="container">{children}</main>
       </body>
     </html>

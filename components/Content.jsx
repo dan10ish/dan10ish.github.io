@@ -700,9 +700,11 @@ const Content = memo(({ posts, projects }) => {
           )}
         </div>
       </div>
-      <div>
-        <Footer />
-      </div>
+      {selectedOption === "about" && (
+        <div>
+          <Footer />
+        </div>
+      )}
     </div>
   );
 });
