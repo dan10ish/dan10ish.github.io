@@ -1,15 +1,15 @@
 3:I[4707,[],""]
 5:I[36423,[],""]
-6:I[39263,["185","static/chunks/app/layout-a5aad1eb401dfa9c.js"],"default"]
+6:I[39263,["185","static/chunks/app/layout-43dc3810effc02ab.js"],"default"]
 7:"$Sreact.suspense"
-8:I[83012,["185","static/chunks/app/layout-a5aad1eb401dfa9c.js"],"default"]
+8:I[83012,["185","static/chunks/app/layout-43dc3810effc02ab.js"],"default"]
 4:["slug","pathfinder","d"]
-0:["I52txG70MK6xq9ivzV5Bq",[[["",{"children":["post",{"children":[["slug","pathfinder","d"],{"children":["__PAGE__?{\"slug\":\"pathfinder\"}",{}]}]}]},"$undefined","$undefined",true],["",{"children":["post",{"children":[["slug","pathfinder","d"],{"children":["__PAGE__",{},[["$L1","$L2",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/5b0b3af323bab63b.css","precedence":"next","crossOrigin":"$undefined"}]]],null],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","post","children","$4","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","post","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/468aaae814daefc6.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":[["$","head",null,{"children":[["$","meta",null,{"name":"theme-color","content":"#ffffff"}],["$","link",null,{"rel":"preload","href":"/fonts/SFMono-Regular.woff2","as":"font","type":"font/woff2","fetchPriority":"high","crossOrigin":"anonymous"}],["$","link",null,{"rel":"preconnect","href":"https://github.com","crossOrigin":"anonymous"}],["$","link",null,{"rel":"preconnect","href":"https://api.github.com","crossOrigin":"anonymous"}],["$","link",null,{"rel":"dns-prefetch","href":"https://github.com"}],["$","link",null,{"rel":"dns-prefetch","href":"https://api.github.com"}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(()=>{try{const t=localStorage.getItem(\"theme\")||(window.matchMedia(\"(prefers-color-scheme: dark)\").matches?\"dark\":\"light\");document.documentElement.setAttribute(\"data-theme\",t)}catch{}})()"}}],["$","link",null,{"rel":"icon","type":"image/png","href":"/icons/icon.png"}]]}],["$","body",null,{"children":[["$","$L6",null,{}],["$","$7",null,{"fallback":null,"children":["$","$L8",null,{}]}],["$","main",null,{"className":"container","children":["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":["$","div",null,{"className":"error-container","children":[["$","div",null,{"className":"ghost-face","children":[["$","div",null,{"className":"meta"}],["$","div",null,{"className":"meta"}]]}],["$","div",null,{"className":"error-title","children":[["$","div",null,{"children":"Oops!"}],["$","span",null,{"className":"p-nf","children":"Page not found"}]]}],["$","div",null,{"className":"error-nav","children":["$","a",null,{"href":"/","className":"return-link","children":"← Go Back"}]}]]}],"notFoundStyles":[]}]}]]}]]}]],null],null],["$L9",null]]]]
-a:I[74386,["954","static/chunks/d3ac728e-a3d4332997e9abbf.js","959","static/chunks/959-dd4726a4d58f2f13.js","362","static/chunks/362-84852bd824c5dc85.js","818","static/chunks/818-65925f9d2b1694ad.js","77","static/chunks/77-76deba6539af0e93.js","605","static/chunks/app/post/%5Bslug%5D/page-73b97c5a89e18f16.js"],"default"]
-b:I[48506,["954","static/chunks/d3ac728e-a3d4332997e9abbf.js","959","static/chunks/959-dd4726a4d58f2f13.js","362","static/chunks/362-84852bd824c5dc85.js","818","static/chunks/818-65925f9d2b1694ad.js","77","static/chunks/77-76deba6539af0e93.js","605","static/chunks/app/post/%5Bslug%5D/page-73b97c5a89e18f16.js"],"MDXContent"]
-d:I[70049,["954","static/chunks/d3ac728e-a3d4332997e9abbf.js","959","static/chunks/959-dd4726a4d58f2f13.js","362","static/chunks/362-84852bd824c5dc85.js","818","static/chunks/818-65925f9d2b1694ad.js","77","static/chunks/77-76deba6539af0e93.js","605","static/chunks/app/post/%5Bslug%5D/page-73b97c5a89e18f16.js"],"PreloadCss"]
-e:I[31613,["954","static/chunks/d3ac728e-a3d4332997e9abbf.js","959","static/chunks/959-dd4726a4d58f2f13.js","362","static/chunks/362-84852bd824c5dc85.js","818","static/chunks/818-65925f9d2b1694ad.js","77","static/chunks/77-76deba6539af0e93.js","605","static/chunks/app/post/%5Bslug%5D/page-73b97c5a89e18f16.js"],"default"]
-c:T3e44,<h2>Introduction</h2>
+0:["AA7XEeDhvM1ra8v3KFvcr",[[["",{"children":["post",{"children":[["slug","pathfinder","d"],{"children":["__PAGE__?{\"slug\":\"pathfinder\"}",{}]}]}]},"$undefined","$undefined",true],["",{"children":["post",{"children":[["slug","pathfinder","d"],{"children":["__PAGE__",{},[["$L1","$L2",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/5b0b3af323bab63b.css","precedence":"next","crossOrigin":"$undefined"}]]],null],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","post","children","$4","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","post","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/ba9829f4390aedad.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":[["$","head",null,{"children":[["$","meta",null,{"name":"theme-color","content":"#ffffff"}],["$","link",null,{"rel":"preload","href":"/fonts/SFMono-Regular.woff2","as":"font","type":"font/woff2","fetchPriority":"high","crossOrigin":"anonymous"}],["$","link",null,{"rel":"preconnect","href":"https://github.com","crossOrigin":"anonymous"}],["$","link",null,{"rel":"preconnect","href":"https://api.github.com","crossOrigin":"anonymous"}],["$","link",null,{"rel":"dns-prefetch","href":"https://github.com"}],["$","link",null,{"rel":"dns-prefetch","href":"https://api.github.com"}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(()=>{try{const t=localStorage.getItem(\"theme\")||(window.matchMedia(\"(prefers-color-scheme: dark)\").matches?\"dark\":\"light\");document.documentElement.setAttribute(\"data-theme\",t)}catch{}})()"}}],["$","link",null,{"rel":"icon","type":"image/png","href":"/icons/icon.png"}]]}],["$","body",null,{"children":[["$","$L6",null,{}],["$","$7",null,{"fallback":null,"children":["$","$L8",null,{}]}],["$","main",null,{"className":"container","children":["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":["$","div",null,{"className":"error-container","children":[["$","div",null,{"className":"ghost-face","children":[["$","div",null,{"className":"meta"}],["$","div",null,{"className":"meta"}]]}],["$","div",null,{"className":"error-title","children":[["$","div",null,{"children":"Oops!"}],["$","span",null,{"className":"p-nf","children":"Page not found"}]]}],["$","div",null,{"className":"error-nav","children":["$","a",null,{"href":"/","className":"return-link","children":"← Go Back"}]}]]}],"notFoundStyles":[]}]}]]}]]}]],null],null],["$L9",null]]]]
+a:I[74386,["954","static/chunks/d3ac728e-a3d4332997e9abbf.js","959","static/chunks/959-3e8adf85b8748a3f.js","362","static/chunks/362-d59c52724cba446d.js","818","static/chunks/818-65925f9d2b1694ad.js","77","static/chunks/77-d2b64ffd486471a0.js","605","static/chunks/app/post/%5Bslug%5D/page-73b97c5a89e18f16.js"],"default"]
+b:I[48506,["954","static/chunks/d3ac728e-a3d4332997e9abbf.js","959","static/chunks/959-3e8adf85b8748a3f.js","362","static/chunks/362-d59c52724cba446d.js","818","static/chunks/818-65925f9d2b1694ad.js","77","static/chunks/77-d2b64ffd486471a0.js","605","static/chunks/app/post/%5Bslug%5D/page-73b97c5a89e18f16.js"],"MDXContent"]
+d:I[70049,["954","static/chunks/d3ac728e-a3d4332997e9abbf.js","959","static/chunks/959-3e8adf85b8748a3f.js","362","static/chunks/362-d59c52724cba446d.js","818","static/chunks/818-65925f9d2b1694ad.js","77","static/chunks/77-d2b64ffd486471a0.js","605","static/chunks/app/post/%5Bslug%5D/page-73b97c5a89e18f16.js"],"PreloadCss"]
+e:I[31613,["954","static/chunks/d3ac728e-a3d4332997e9abbf.js","959","static/chunks/959-3e8adf85b8748a3f.js","362","static/chunks/362-d59c52724cba446d.js","818","static/chunks/818-65925f9d2b1694ad.js","77","static/chunks/77-d2b64ffd486471a0.js","605","static/chunks/app/post/%5Bslug%5D/page-73b97c5a89e18f16.js"],"default"]
+c:T3f1c,<h2>Introduction</h2>
 <p>Pathfinding algorithms are fundamental in computer science, powering applications from GPS navigation to artificial intelligence in video games. This Pathfinding Visualizer project offers an interactive platform to explore and compare various pathfinding algorithms and maze generation techniques.</p>
 <p><strong>Live Demo</strong>: <a href="https://dan10ish.github.io/pathfinding-visualizer">Pathfinding Visualizer</a></p>
 <p><strong>Source Code</strong>: <a href="https://github.com/dan10ish/pathfinding-visualizer">GitHub Repository</a></p>
@@ -29,8 +29,8 @@ c:T3e44,<h2>Introduction</h2>
 <h2>Pathfinding Algorithms</h2>
 <h3>1. Dijkstra's Algorithm</h3>
 <p><strong>Use Case</strong>: Ideal for finding the shortest path in weighted graphs. Commonly used in network routing protocols and GPS systems.</p>
-<p><strong>Time Complexity</strong>: <span class="math math-inline">O(V^2)</span> without a min-priority queue, <span class="math math-inline">O((V+E) \log V)</span> with a min-priority queue, where <span class="math math-inline">V</span> is the number of vertices and <span class="math math-inline">E</span> is the number of edges.</p>
-<p><strong>Space Complexity</strong>: <span class="math math-inline">O(V)</span></p>
+<p><strong>Time Complexity</strong>: <code class="language-math math-inline">O(V^2)</code> without a min-priority queue, <code class="language-math math-inline">O((V+E) \log V)</code> with a min-priority queue, where <code class="language-math math-inline">V</code> is the number of vertices and <code class="language-math math-inline">E</code> is the number of edges.</p>
+<p><strong>Space Complexity</strong>: <code class="language-math math-inline">O(V)</code></p>
 <p><strong>Logic</strong>:</p>
 <ol>
 <li>Initialize distances: set start node to 0, all others to infinity</li>
@@ -56,8 +56,8 @@ Numbers represent distance from start node
 </code></pre>
 <h3>2. A* (A-Star) Algorithm</h3>
 <p><strong>Use Case</strong>: Excellent for pathfinding in games and robotics, especially when a heuristic can be applied to guide the search.</p>
-<p><strong>Time Complexity</strong>: <span class="math math-inline">O(b^d)</span>, where <span class="math math-inline">b</span> is the branching factor and <span class="math math-inline">d</span> is the depth of the solution.</p>
-<p><strong>Space Complexity</strong>: <span class="math math-inline">O(b^d)</span></p>
+<p><strong>Time Complexity</strong>: <code class="language-math math-inline">O(b^d)</code>, where <code class="language-math math-inline">b</code> is the branching factor and <code class="language-math math-inline">d</code> is the depth of the solution.</p>
+<p><strong>Space Complexity</strong>: <code class="language-math math-inline">O(b^d)</code></p>
 <p><strong>Logic</strong>:</p>
 <ol>
 <li>Maintain open list (nodes to be evaluated) and closed list (evaluated nodes)</li>
@@ -89,8 +89,8 @@ Numbers represent f_score (g_score + heuristic)
 </code></pre>
 <h3>3. Breadth-First Search (BFS)</h3>
 <p><strong>Use Case</strong>: Useful for finding the shortest path in unweighted graphs. Often used in social network analysis, web crawling, and in solving puzzles with the least number of moves.</p>
-<p><strong>Time Complexity</strong>: <span class="math math-inline">O(V + E)</span>, where <span class="math math-inline">V</span> is the number of vertices and <span class="math math-inline">E</span> is the number of edges.</p>
-<p><strong>Space Complexity</strong>: <span class="math math-inline">O(V)</span></p>
+<p><strong>Time Complexity</strong>: <code class="language-math math-inline">O(V + E)</code>, where <code class="language-math math-inline">V</code> is the number of vertices and <code class="language-math math-inline">E</code> is the number of edges.</p>
+<p><strong>Space Complexity</strong>: <code class="language-math math-inline">O(V)</code></p>
 <p><strong>Logic</strong>:</p>
 <ol>
 <li>Start at the root node</li>
@@ -111,8 +111,8 @@ Numbers represent levels of exploration
 </code></pre>
 <h3>4. Depth-First Search (DFS)</h3>
 <p><strong>Use Case</strong>: Effective for maze solving, topological sorting, and cycle detection in graphs. Often used in puzzle-solving algorithms and game AI for exploring possible move sequences.</p>
-<p><strong>Time Complexity</strong>: <span class="math math-inline">O(V + E)</span>, where <span class="math math-inline">V</span> is the number of vertices and <span class="math math-inline">E</span> is the number of edges.</p>
-<p><strong>Space Complexity</strong>: <span class="math math-inline">O(V)</span> in the worst case (skewed tree), <span class="math math-inline">O(\log V)</span> in the best case (balanced tree)</p>
+<p><strong>Time Complexity</strong>: <code class="language-math math-inline">O(V + E)</code>, where <code class="language-math math-inline">V</code> is the number of vertices and <code class="language-math math-inline">E</code> is the number of edges.</p>
+<p><strong>Space Complexity</strong>: <code class="language-math math-inline">O(V)</code> in the worst case (skewed tree), <code class="language-math math-inline">O(\log V)</code> in the best case (balanced tree)</p>
 <p><strong>Logic</strong>:</p>
 <ol>
 <li>Start at the root node</li>
@@ -135,8 +135,8 @@ Numbers: Exploration order    -→↓←↑: DFS path
 <h2>Maze Generation Algorithms</h2>
 <h3>1. Recursive Division</h3>
 <p><strong>Use Case</strong>: Creates mazes with long corridors and rooms, suitable for game level generation or puzzle creation.</p>
-<p><strong>Time Complexity</strong>: <span class="math math-inline">O(n \log n)</span>, where <span class="math math-inline">n</span> is the number of cells in the grid.</p>
-<p><strong>Space Complexity</strong>: <span class="math math-inline">O(\log n)</span> due to the recursion stack.</p>
+<p><strong>Time Complexity</strong>: <code class="language-math math-inline">O(n \log n)</code>, where <code class="language-math math-inline">n</code> is the number of cells in the grid.</p>
+<p><strong>Space Complexity</strong>: <code class="language-math math-inline">O(\log n)</code> due to the recursion stack.</p>
 <p><strong>Logic</strong>:</p>
 <ol>
 <li>Start with an empty grid</li>
@@ -161,8 +161,8 @@ Numbers: Exploration order    -→↓←↑: DFS path
 </code></pre>
 <h3>2. Random Maze</h3>
 <p><strong>Use Case</strong>: Generates mazes with a more organic, unpredictable structure. Useful for creating varied environments in games or simulations.</p>
-<p><strong>Time Complexity</strong>: <span class="math math-inline">O(n)</span>, where <span class="math math-inline">n</span> is the number of cells in the grid.</p>
-<p><strong>Space Complexity</strong>: <span class="math math-inline">O(n)</span> to store the grid.</p>
+<p><strong>Time Complexity</strong>: <code class="language-math math-inline">O(n)</code>, where <code class="language-math math-inline">n</code> is the number of cells in the grid.</p>
+<p><strong>Space Complexity</strong>: <code class="language-math math-inline">O(n)</code> to store the grid.</p>
 <p><strong>Logic</strong>:</p>
 <ol>
 <li>Start with an empty grid</li>
