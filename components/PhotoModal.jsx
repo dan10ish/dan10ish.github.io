@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Camera, Maximize2, Frame, Target, Aperture, Timer, MapPin, Loader2 } from "lucide-react";
 
@@ -14,20 +14,16 @@ export default function PhotoModal({ photo, isOpen, onClose }) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const imgRef = useRef(null);
 
-  const handleClickOutside = (e) => {
+  const handleClickOutside = useCallback((e) => {
     if (photoRef.current && !photoRef.current.contains(e.target)) {
       onClose();
     }
-  };
+  }, [onClose]);
 
   useEffect(() => {
     if (isOpen) {
-      // Store the current scroll position
       scrollPositionRef.current = window.scrollY;
-      
-      // Prevent scrolling
       document.body.style.overflow = "hidden";
-      
       document.addEventListener("mousedown", handleClickOutside);
       setImageLoaded(false);
       
@@ -42,12 +38,8 @@ export default function PhotoModal({ photo, isOpen, onClose }) {
         preloadImg.src = photo.src;
       }
     } else {
-      // Re-enable scrolling
       document.body.style.overflow = "";
-      
-      // Restore scroll position
       window.scrollTo(0, scrollPositionRef.current);
-      
       document.removeEventListener("mousedown", handleClickOutside);
     }
 
@@ -55,16 +47,16 @@ export default function PhotoModal({ photo, isOpen, onClose }) {
       document.body.style.overflow = "";
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isOpen, photo]);
+  }, [isOpen, photo, handleClickOutside]);
 
-  const handleImageLoad = () => {
+  const handleImageLoad = useCallback(() => {
     setImageLoaded(true);
-  };
+  }, []);
 
   if (!photo) return null;
 
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       {isOpen && (
         <div className="photo-modal-container">
           <motion.div

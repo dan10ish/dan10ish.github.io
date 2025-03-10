@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback, memo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Github, Globe, Loader2, VideoOff } from "lucide-react";
 
-const LucideIcon = ({ icon: Icon, ...props }) => {
+const LucideIcon = memo(({ icon: Icon, ...props }) => {
   return <Icon strokeWidth={`var(--icon-stroke-width)`} {...props} />;
-};
+});
 
 export default function ProjectModal({ project, isOpen, onClose }) {
   const modalRef = useRef(null);
@@ -17,21 +17,21 @@ export default function ProjectModal({ project, isOpen, onClose }) {
 
   const hasVideo = project?.video && typeof project.video === "string";
 
-  const handleVideoLoad = () => {
+  const handleVideoLoad = useCallback(() => {
     setVideoLoaded(true);
     setVideoError(false);
-  };
+  }, []);
 
-  const handleVideoError = () => {
+  const handleVideoError = useCallback(() => {
     setVideoLoaded(false);
     setVideoError(true);
-  };
+  }, []);
 
-  const handleClickOutside = (e) => {
+  const handleClickOutside = useCallback((e) => {
     if (modalRef.current && !modalRef.current.contains(e.target)) {
       onClose();
     }
-  };
+  }, [onClose]);
 
   useEffect(() => {
     if (isOpen) {
@@ -40,18 +40,24 @@ export default function ProjectModal({ project, isOpen, onClose }) {
 
       setVideoLoaded(false);
       setVideoError(false);
-
-      setShouldLoadVideo(true);
+      
+      // Delay setting shouldLoadVideo until modal is visible
+      // to prevent unnecessary loading during animation
+      const timer = setTimeout(() => {
+        setShouldLoadVideo(true);
+      }, 50);
 
       if (videoRef.current) {
         try {
           videoRef.current.currentTime = 0;
           const playPromise = videoRef.current.play();
           if (playPromise !== undefined) {
-            playPromise.catch((error) => {});
+            playPromise.catch(() => {});
           }
-        } catch (err) {}
+        } catch {}
       }
+      
+      return () => clearTimeout(timer);
     } else {
       document.body.style.overflow = "";
       document.removeEventListener("mousedown", handleClickOutside);
@@ -59,16 +65,20 @@ export default function ProjectModal({ project, isOpen, onClose }) {
       if (videoRef.current) {
         try {
           videoRef.current.pause();
-        } catch (err) {}
+        } catch {}
       }
 
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         if (!isOpen) {
           setShouldLoadVideo(false);
         }
       }, 150);
+      
+      return () => clearTimeout(timer);
     }
+  }, [isOpen, handleClickOutside]);
 
+  useEffect(() => {
     return () => {
       document.body.style.overflow = "";
       document.removeEventListener("mousedown", handleClickOutside);
@@ -76,15 +86,15 @@ export default function ProjectModal({ project, isOpen, onClose }) {
       if (videoRef.current) {
         try {
           videoRef.current.pause();
-        } catch (err) {}
+        } catch {}
       }
     };
-  }, [isOpen]);
+  }, [handleClickOutside]);
 
   if (!project) return null;
 
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       {isOpen && (
         <div className="project-modal-container">
           <motion.div
@@ -129,7 +139,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
                   <div
                     className={`video-wrapper ${videoLoaded ? "loaded" : ""}`}
                   >
-                    {!videoLoaded && (
+                    {!videoLoaded && !videoError && (
                       <div className="video-placeholder">
                         <LucideIcon
                           icon={Loader2}

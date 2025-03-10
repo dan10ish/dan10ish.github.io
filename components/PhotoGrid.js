@@ -61,18 +61,21 @@ const PhotoGrid = () => {
 
   const handlePhotoClick = useCallback((photo) => {
     if (photo && photo.src) {
-      const img = new Image();
-      img.onload = () => {
+      // Use cached image when possible
+      const cachedImg = new Image();
+      cachedImg.onload = () => {
         setSelectedPhoto(photo);
         setIsModalOpen(true);
       };
-      img.onerror = () => {
+      cachedImg.onerror = () => {
         console.error("Failed to load image:", photo.src);
         setSelectedPhoto(photo);
         setIsModalOpen(true);
       };
-      img.src = photo.src;
-      if (img.complete) {
+      
+      // Check if image is already loaded in browser cache
+      cachedImg.src = photo.src;
+      if (cachedImg.complete) {
         setSelectedPhoto(photo);
         setIsModalOpen(true);
       }
