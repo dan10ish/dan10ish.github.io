@@ -25,7 +25,7 @@ export default function PhotoModal({ photo, isOpen, onClose }) {
   useEffect(() => {
     if (isOpen) {
       scrollPositionRef.current = window.scrollY;
-      document.body.style.overflow = "hidden";
+      document.body.classList.add('body-modal-open');
       document.addEventListener("mousedown", handleClickOutside);
       setImageLoaded(false);
       setShowCloseButton(false);
@@ -45,13 +45,13 @@ export default function PhotoModal({ photo, isOpen, onClose }) {
         preloadImg.src = photo.src;
       }
     } else {
-      document.body.style.overflow = "";
+      document.body.classList.remove('body-modal-open');
       window.scrollTo(0, scrollPositionRef.current);
       document.removeEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
-      document.body.style.overflow = "";
+      document.body.classList.remove('body-modal-open');
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isOpen, photo, handleClickOutside]);

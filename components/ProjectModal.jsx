@@ -35,7 +35,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
 
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = "hidden";
+      document.body.classList.add('body-modal-open');
       document.addEventListener("mousedown", handleClickOutside);
 
       setVideoLoaded(false);
@@ -59,7 +59,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
       
       return () => clearTimeout(timer);
     } else {
-      document.body.style.overflow = "";
+      document.body.classList.remove('body-modal-open');
       document.removeEventListener("mousedown", handleClickOutside);
 
       if (videoRef.current) {
@@ -80,7 +80,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
 
   useEffect(() => {
     return () => {
-      document.body.style.overflow = "";
+      document.body.classList.remove('body-modal-open');
       document.removeEventListener("mousedown", handleClickOutside);
 
       if (videoRef.current) {

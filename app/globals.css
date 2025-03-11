@@ -3228,8 +3228,7 @@ a[data-footnote-ref] {
   justify-content: center;
   max-width: min(80%, var(--max-width, 800px));
   max-height: 85vh;
-  padding: 0;
-  margin: 0;
+  top: -5%;
 }
 
 .photo-content img {
@@ -3239,7 +3238,7 @@ a[data-footnote-ref] {
 
 .photo-full-image {
   max-width: 100%;
-  max-height: 70vh;
+  max-height: 60vh;
   object-fit: contain;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -3315,8 +3314,8 @@ a[data-footnote-ref] {
 
 .photo-modal-close {
   position: fixed;
-  bottom: 1rem;
-  right: max(1rem, calc((100% - var(--max-width)) / 2));
+  bottom: 2rem;
+  right: max(2rem, calc((100% - var(--max-width)) / 2));
   background: var(--code-background-color);
   border: 1px solid rgba(var(--color-text-rgb), 0.1);
   color: var(--color-text);
@@ -3362,7 +3361,7 @@ a[data-footnote-ref] {
   }
 
   .photo-modal-close {
-    bottom: 2rem;
+    bottom: 3rem;
     right: max(2rem, calc((100% - var(--max-width)) / 2));
   }
 
@@ -3387,15 +3386,6 @@ a[data-footnote-ref] {
   }
 }
 
-.photo-content {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-width: min(80%, var(--max-width, 800px));
-  max-height: 85vh;
-}
-
 .photo-placeholder {
   position: absolute;
   inset: 0;
@@ -3412,19 +3402,11 @@ a[data-footnote-ref] {
   animation: spin 1.5s linear infinite;
 }
 
-.photo-full-image {
-  max-width: 100%;
-  max-height: 70vh;
-  object-fit: contain;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 2;
-  border-radius: var(--border-radius);
-  box-shadow: 0 5px 30px rgba(var(--color-text-rgb), 0.1);
-  pointer-events: auto;
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  position: relative;
+.body-modal-open {
+  overflow: hidden;
+  scrollbar-width: none;
+}
+
+.body-modal-open::-webkit-scrollbar {
+  display: none;
 }
