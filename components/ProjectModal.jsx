@@ -135,43 +135,43 @@ export default function ProjectModal({ project, isOpen, onClose }) {
             </button>
             <div className="project-modal-content">
               <div className="project-video-container">
-                {hasVideo ? (
-                  <div
-                    className={`video-wrapper ${videoLoaded ? "loaded" : ""}`}
-                  >
-                    {!videoLoaded && !videoError && (
-                      <div className="video-placeholder">
-                        <LucideIcon
-                          icon={Loader2}
-                          size={24}
-                          className="loading-icon"
+                <div className="video-wrapper">
+                  {hasVideo ? (
+                    <>
+                      {!videoLoaded && !videoError && (
+                        <div className="video-placeholder">
+                          <LucideIcon
+                            icon={Loader2}
+                            size={24}
+                            className="loading-icon"
+                          />
+                        </div>
+                      )}
+                      {shouldLoadVideo && (
+                        <video
+                          ref={videoRef}
+                          className={`project-video ${videoLoaded ? "loaded" : "hidden"}`}
+                          src={`/project-videos/${project.video}`}
+                          playsInline
+                          autoPlay
+                          muted
+                          loop
+                          disablePictureInPicture
+                          disableRemotePlayback
+                          controlsList="nodownload noplaybackrate nofullscreen noremoteplayback"
+                          preload="auto"
+                          onLoadedData={handleVideoLoad}
+                          onError={handleVideoError}
                         />
-                      </div>
-                    )}
-                    {shouldLoadVideo && (
-                      <video
-                        ref={videoRef}
-                        className="project-video"
-                        src={`/project-videos/${project.video}`}
-                        playsInline
-                        autoPlay
-                        muted
-                        loop
-                        disablePictureInPicture
-                        disableRemotePlayback
-                        controlsList="nodownload noplaybackrate nofullscreen noremoteplayback"
-                        preload="auto"
-                        onLoadedData={handleVideoLoad}
-                        onError={handleVideoError}
-                      />
-                    )}
-                  </div>
-                ) : (
-                  <div className="video-placeholder">
-                    <LucideIcon icon={VideoOff} size={24} />
-                    <p className="no-preview-text">Preview not available</p>
-                  </div>
-                )}
+                      )}
+                    </>
+                  ) : (
+                    <div className="video-placeholder">
+                      <LucideIcon icon={VideoOff} size={24} />
+                      <p className="no-preview-text">Preview not available</p>
+                    </div>
+                  )}
+                </div>
               </div>
 
               <div className="project-details">
