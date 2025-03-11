@@ -13,6 +13,7 @@ export default function PhotoModal({ photo, isOpen, onClose }) {
   const scrollPositionRef = useRef(0);
   const [imageLoaded, setImageLoaded] = useState(false);
   const imgRef = useRef(null);
+  const [imageDimensions, setImageDimensions] = useState({ width: 0, height: 0 });
 
   const handleClickOutside = useCallback((e) => {
     if (photoRef.current && !photoRef.current.contains(e.target)) {
@@ -51,6 +52,13 @@ export default function PhotoModal({ photo, isOpen, onClose }) {
 
   const handleImageLoad = useCallback(() => {
     setImageLoaded(true);
+    if (imgRef.current) {
+      const rect = imgRef.current.getBoundingClientRect();
+      setImageDimensions({
+        width: rect.width,
+        height: rect.height
+      });
+    }
   }, []);
 
   if (!photo) return null;
@@ -102,63 +110,65 @@ export default function PhotoModal({ photo, isOpen, onClose }) {
                 <LucideIcon icon={X} size={18} />
               </button>
               
-              <img 
-                ref={imgRef}
-                src={photo.src} 
-                alt="" 
-                className={`photo-full-image ${imageLoaded ? 'loaded' : ''}`}
-                loading="eager" 
-                decoding="async" 
-                onLoad={handleImageLoad}
-                style={{ userSelect: "none", WebkitUserSelect: "none" }}
-                draggable="false"
-              />
-              
-              {imageLoaded && (
-                <>
-                  {/* Top Left Corner */}
-                  <div className="photo-meta-corner top-left">
-                    <div className="meta-row">
-                      <Camera size={14} className="meta-icon" />
-                      <span>{photo.meta.camera}</span>
-                    </div>
-                  </div>
-                  
-                  {/* Top Right Corner */}
-                  <div className="photo-meta-corner top-right">
-                    <div className="meta-row">
-                      <Maximize2 size={14} className="meta-icon" />
-                      <span>{photo.meta.resolution}</span>
-                    </div>
-                  </div>
-                  
-                  {/* Bottom Left Corner */}
-                  <div className="photo-meta-corner bottom-left">
-                    <div className="meta-row">
-                      <Target size={14} className="meta-icon" />
-                      <span>{photo.meta.focalLength}</span>
-                      <Timer size={14} className="meta-icon" />
-                      <span>{photo.meta.shutterspeed}</span>
-                    </div>
-                  </div>
-                  
-                  {/* Bottom Right Corner */}
-                  <div className="photo-meta-corner bottom-right">
-                    <div className="meta-row">
-                      <Frame size={14} className="meta-icon" />
-                      <span>ISO {photo.meta.iso}</span>
-                      <Aperture size={14} className="meta-icon" />
-                      <span>{photo.meta.aperture}</span>
-                    </div>
-                    {photo.meta.country && (
+              <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <img 
+                  ref={imgRef}
+                  src={photo.src} 
+                  alt="" 
+                  className={`photo-full-image ${imageLoaded ? 'loaded' : ''}`}
+                  loading="eager" 
+                  decoding="async" 
+                  onLoad={handleImageLoad}
+                  style={{ userSelect: "none", WebkitUserSelect: "none" }}
+                  draggable="false"
+                />
+                
+                {imageLoaded && (
+                  <>
+                    {/* Top Left Corner */}
+                    <div className="photo-meta-corner top-left">
                       <div className="meta-row">
-                        <MapPin size={14} className="meta-icon" />
-                        <span>{photo.meta.country}</span>
+                        <Camera size={14} className="meta-icon" />
+                        <span>{photo.meta.camera}</span>
                       </div>
-                    )}
-                  </div>
-                </>
-              )}
+                    </div>
+                    
+                    {/* Top Right Corner */}
+                    <div className="photo-meta-corner top-right">
+                      <div className="meta-row">
+                        <Maximize2 size={14} className="meta-icon" />
+                        <span>{photo.meta.resolution}</span>
+                      </div>
+                    </div>
+                    
+                    {/* Bottom Left Corner */}
+                    <div className="photo-meta-corner bottom-left">
+                      <div className="meta-row">
+                        <Target size={14} className="meta-icon" />
+                        <span>{photo.meta.focalLength}</span>
+                        <Timer size={14} className="meta-icon" />
+                        <span>{photo.meta.shutterspeed}</span>
+                      </div>
+                    </div>
+                    
+                    {/* Bottom Right Corner */}
+                    <div className="photo-meta-corner bottom-right">
+                      <div className="meta-row">
+                        <Frame size={14} className="meta-icon" />
+                        <span>ISO {photo.meta.iso}</span>
+                        <Aperture size={14} className="meta-icon" />
+                        <span>{photo.meta.aperture}</span>
+                      </div>
+                      {photo.meta.country && (
+                        <div className="meta-row">
+                          <MapPin size={14} className="meta-icon" />
+                          <span>{photo.meta.country}</span>
+                        </div>
+                      )}
+                    </div>
+                  </>
+                )}
+              </div>
             </motion.div>
           </div>
         </div>
