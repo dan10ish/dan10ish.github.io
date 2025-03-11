@@ -135,7 +135,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
             </button>
             <div className="project-modal-content">
               <div className="project-video-container">
-                {hasVideo && shouldLoadVideo ? (
+                {hasVideo ? (
                   <div
                     className={`video-wrapper ${videoLoaded ? "loaded" : ""}`}
                   >
@@ -148,21 +148,23 @@ export default function ProjectModal({ project, isOpen, onClose }) {
                         />
                       </div>
                     )}
-                    <video
-                      ref={videoRef}
-                      className="project-video"
-                      src={`/project-videos/${project.video}`}
-                      playsInline
-                      autoPlay
-                      muted
-                      loop
-                      disablePictureInPicture
-                      disableRemotePlayback
-                      controlsList="nodownload noplaybackrate nofullscreen noremoteplayback"
-                      preload="auto"
-                      onLoadedData={handleVideoLoad}
-                      onError={handleVideoError}
-                    />
+                    {shouldLoadVideo && (
+                      <video
+                        ref={videoRef}
+                        className="project-video"
+                        src={`/project-videos/${project.video}`}
+                        playsInline
+                        autoPlay
+                        muted
+                        loop
+                        disablePictureInPicture
+                        disableRemotePlayback
+                        controlsList="nodownload noplaybackrate nofullscreen noremoteplayback"
+                        preload="auto"
+                        onLoadedData={handleVideoLoad}
+                        onError={handleVideoError}
+                      />
+                    )}
                   </div>
                 ) : (
                   <div className="video-placeholder">
