@@ -3163,6 +3163,13 @@ a[data-footnote-ref] {
   justify-content: center;
   max-width: min(80%, var(--max-width, 800px));
   max-height: 85vh;
+  padding: 0;
+  margin: 0;
+}
+
+.photo-content img {
+  padding: 0;
+  margin: 0;
 }
 
 .photo-full-image {
@@ -3241,6 +3248,24 @@ a[data-footnote-ref] {
   transform: translate(0, 0);
 }
 
+.photo-modal-close {
+  position: fixed;
+  bottom: 1rem;
+  right: max(1rem, calc((100% - var(--max-width)) / 2));
+  background: var(--code-background-color);
+  border: 1px solid rgba(var(--color-text-rgb), 0.1);
+  color: var(--color-text);
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  padding: 0;
+  z-index: 10;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -3272,10 +3297,8 @@ a[data-footnote-ref] {
   }
 
   .photo-modal-close {
-    bottom: 20px;
-    right: max(20px, calc((100% - var(--max-width, 900px)) / 2 + 20px));
-    width: 35px;
-    height: 35px;
+    bottom: 2rem;
+    right: max(2rem, calc((100% - var(--max-width)) / 2));
   }
 
   .top-left {
@@ -3306,24 +3329,6 @@ a[data-footnote-ref] {
   justify-content: center;
   max-width: min(80%, var(--max-width, 800px));
   max-height: 85vh;
-}
-
-.photo-modal-close {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  background: var(--code-background-color);
-  border: 1px solid rgba(var(--color-text-rgb), 0.1);
-  color: var(--color-text);
-  cursor: pointer;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  padding: 0;
-  z-index: 10;
 }
 
 .photo-placeholder {

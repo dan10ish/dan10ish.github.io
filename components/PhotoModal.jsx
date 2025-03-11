@@ -14,6 +14,7 @@ export default function PhotoModal({ photo, isOpen, onClose }) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const imgRef = useRef(null);
   const [imageDimensions, setImageDimensions] = useState({ width: 0, height: 0 });
+  const [showCloseButton, setShowCloseButton] = useState(false);
 
   const handleClickOutside = useCallback((e) => {
     if (photoRef.current && !photoRef.current.contains(e.target)) {
@@ -27,6 +28,7 @@ export default function PhotoModal({ photo, isOpen, onClose }) {
       document.body.style.overflow = "hidden";
       document.addEventListener("mousedown", handleClickOutside);
       setImageLoaded(false);
+      setShowCloseButton(false);
       
       if (photo && photo.src) {
         const preloadImg = new Image();
@@ -34,6 +36,10 @@ export default function PhotoModal({ photo, isOpen, onClose }) {
           if (imgRef.current) {
             imgRef.current.src = photo.src;
             setImageLoaded(true);
+            
+            setTimeout(() => {
+              setShowCloseButton(true);
+            }, 200);
           }
         };
         preloadImg.src = photo.src;
@@ -59,6 +65,11 @@ export default function PhotoModal({ photo, isOpen, onClose }) {
         height: rect.height
       });
     }
+    
+    // Show close button after image is loaded + 0.5 seconds
+    setTimeout(() => {
+      setShowCloseButton(true);
+    }, 500);
   }, []);
 
   if (!photo) return null;
@@ -102,13 +113,25 @@ export default function PhotoModal({ photo, isOpen, onClose }) {
                 mass: 0.8,
               }}
             >
-              <button
-                className="photo-modal-close"
-                onClick={onClose}
-                aria-label="Close photo details"
-              >
-                <LucideIcon icon={X} size={18} />
-              </button>
+              <AnimatePresence>
+                {showCloseButton && (
+                  <motion.button
+                    className="photo-modal-close"
+                    onClick={onClose}
+                    aria-label="Close photo details"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 400,
+                      damping: 25,
+                    }}
+                  >
+                    <LucideIcon icon={X} size={18} />
+                  </motion.button>
+                )}
+              </AnimatePresence>
               
               <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <img 
