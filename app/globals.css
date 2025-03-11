@@ -812,11 +812,6 @@ th {
     gap: 0.25rem;
     padding: 0.4rem;
   }
-
-  .project-modal-close {
-    top: -16px;
-    right: -10px;
-  }
 }
 
 .table-max::-webkit-scrollbar {
@@ -2938,18 +2933,19 @@ a[data-footnote-ref] {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  top: -5%;
 }
 
 .project-modal-close {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
+  position: fixed;
+  bottom: 2rem;
+  right: max(2rem, calc((100% - var(--max-width)) / 2));
   background: var(--code-background-color);
   border: 1px solid rgba(var(--color-text-rgb), 0.1);
   color: var(--color-text);
   cursor: pointer;
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3162,11 +3158,9 @@ a[data-footnote-ref] {
     flex: 1;
   }
 
-  .project-modal-close {
-    position: absolute;
-    top: 0.8rem;
-    right: 1rem;
-    background: rgba(var(--color-text-rgb), 0.04);
+  .photo-modal-close {
+    top: 2.5rem;
+    right: max(2rem, calc((100% - var(--max-width)) / 2));
   }
 }
 
@@ -3174,11 +3168,11 @@ a[data-footnote-ref] {
   .project-modal {
     max-width: 680px;
   }
-  
+
   .project-video-container {
     width: 50%;
   }
-  
+
   .project-details {
     flex: 1;
     padding: 20px;
@@ -3263,12 +3257,12 @@ a[data-footnote-ref] {
   backdrop-filter: blur(8px);
   padding: 3px 10px;
   border-radius: var(--border-radius);
-  color: #FFCC00;
+  color: #ffcc00;
   display: flex;
   flex-direction: column;
   z-index: 3;
   max-width: 49%;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.75);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.75);
   transform: translate(0, 0);
   pointer-events: none;
 }
@@ -3279,13 +3273,13 @@ a[data-footnote-ref] {
   font-size: calc(var(--font-size-mobile) * 0.75);
   gap: 4px;
   flex-wrap: wrap;
-  color: #FFCC00;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.75);
+  color: #ffcc00;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.75);
 }
 
 .photo-meta-corner .meta-icon {
-  color: #FFCC00;
-  filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.75));
+  color: #ffcc00;
+  filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.75));
 }
 
 .top-left {
@@ -3343,6 +3337,7 @@ a[data-footnote-ref] {
   .photo-content {
     max-width: min(60%, calc(var(--max-width, 900px) * 0.9));
     max-height: 70vh;
+    top: 0;
   }
 
   .photo-full-image {
@@ -3360,8 +3355,13 @@ a[data-footnote-ref] {
     line-height: 1.6;
   }
 
-  .photo-modal-close {
-    bottom: 3rem;
+  .project-modal {
+    top: 0;
+  }
+
+  .photo-modal-close,
+  .project-modal-close {
+    top: 2.5rem;
     right: max(2rem, calc((100% - var(--max-width)) / 2));
   }
 

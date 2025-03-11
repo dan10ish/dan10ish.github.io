@@ -36,10 +36,7 @@ export default function PhotoModal({ photo, isOpen, onClose }) {
           if (imgRef.current) {
             imgRef.current.src = photo.src;
             setImageLoaded(true);
-            
-            setTimeout(() => {
-              setShowCloseButton(true);
-            }, 200);
+            setShowCloseButton(true);
           }
         };
         preloadImg.src = photo.src;
@@ -66,10 +63,8 @@ export default function PhotoModal({ photo, isOpen, onClose }) {
       });
     }
     
-    // Show close button after image is loaded + 0.5 seconds
-    setTimeout(() => {
-      setShowCloseButton(true);
-    }, 500);
+    // Show close button immediately after image is loaded
+    setShowCloseButton(true);
   }, []);
 
   if (!photo) return null;
