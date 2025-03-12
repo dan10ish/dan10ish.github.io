@@ -2427,13 +2427,8 @@ a[data-footnote-ref] {
     cursor: default;
   }
 
-  .project-modal-close:hover {
-    transform: scale(1.1);
-    color: #ff0000;
-  }
-
-  .photo-modal-close:hover {
-    transform: scale(1.1);
+  .modal-close:hover {
+    scale: 1.1;
     color: #ff0000;
   }
 
@@ -2936,9 +2931,9 @@ a[data-footnote-ref] {
   top: -5%;
 }
 
-.project-modal-close {
+.modal-close {
   position: fixed;
-  bottom: 2rem;
+  bottom: 2.5rem;
   right: max(2rem, calc((100% - var(--max-width)) / 2));
   background: var(--code-background-color);
   border: 1px solid rgba(var(--color-text-rgb), 0.1);
@@ -3157,11 +3152,6 @@ a[data-footnote-ref] {
   .project-description {
     flex: 1;
   }
-
-  .photo-modal-close {
-    top: 2.5rem;
-    right: max(2rem, calc((100% - var(--max-width)) / 2));
-  }
 }
 
 @media (min-width: 1024px) {
@@ -3306,24 +3296,6 @@ a[data-footnote-ref] {
   transform: translate(0, 0);
 }
 
-.photo-modal-close {
-  position: fixed;
-  bottom: 2rem;
-  right: max(2rem, calc((100% - var(--max-width)) / 2));
-  background: var(--code-background-color);
-  border: 1px solid rgba(var(--color-text-rgb), 0.1);
-  color: var(--color-text);
-  cursor: pointer;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  padding: 0;
-  z-index: 10;
-}
-
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -3359,12 +3331,6 @@ a[data-footnote-ref] {
     top: 0;
   }
 
-  .photo-modal-close,
-  .project-modal-close {
-    top: 2.5rem;
-    right: max(2rem, calc((100% - var(--max-width)) / 2));
-  }
-
   .top-left {
     top: 0;
     left: 0;
@@ -3383,6 +3349,11 @@ a[data-footnote-ref] {
   .bottom-right {
     bottom: 0;
     right: 0;
+  }
+
+  .modal-close {
+    top: 2.5rem;
+    right: max(2rem, calc((100% - var(--max-width)) / 2));
   }
 }
 

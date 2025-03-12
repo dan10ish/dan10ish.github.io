@@ -41,8 +41,6 @@ export default function ProjectModal({ project, isOpen, onClose }) {
       setVideoLoaded(false);
       setVideoError(false);
       
-      // Delay setting shouldLoadVideo until modal is visible
-      // to prevent unnecessary loading during animation
       const timer = setTimeout(() => {
         setShouldLoadVideo(true);
       }, 50);
@@ -126,13 +124,6 @@ export default function ProjectModal({ project, isOpen, onClose }) {
               },
             }}
           >
-            <button
-              className="project-modal-close"
-              onClick={onClose}
-              aria-label="Close project details"
-            >
-              <LucideIcon icon={X} size={18} />
-            </button>
             <div className="project-modal-content">
               <div className="project-video-container">
                 <div className="video-wrapper">
@@ -214,6 +205,21 @@ export default function ProjectModal({ project, isOpen, onClose }) {
               </div>
             </div>
           </motion.div>
+          
+          <motion.button
+            className="modal-close"
+            onClick={onClose}
+            aria-label="Close project details"
+            initial={{ opacity: 0, scale: 0.99 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.98 }}
+            transition={{
+              delay: 0,
+              duration: 0.15,
+            }}
+          >
+            <LucideIcon icon={X} size={18} />
+          </motion.button>
         </div>
       )}
     </AnimatePresence>

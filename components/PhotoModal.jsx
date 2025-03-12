@@ -14,7 +14,6 @@ export default function PhotoModal({ photo, isOpen, onClose }) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const imgRef = useRef(null);
   const [imageDimensions, setImageDimensions] = useState({ width: 0, height: 0 });
-  const [showCloseButton, setShowCloseButton] = useState(false);
 
   const handleClickOutside = useCallback((e) => {
     if (photoRef.current && !photoRef.current.contains(e.target)) {
@@ -28,7 +27,6 @@ export default function PhotoModal({ photo, isOpen, onClose }) {
       document.body.classList.add('body-modal-open');
       document.addEventListener("mousedown", handleClickOutside);
       setImageLoaded(false);
-      setShowCloseButton(false);
       
       if (photo && photo.src) {
         const preloadImg = new Image();
@@ -36,7 +34,6 @@ export default function PhotoModal({ photo, isOpen, onClose }) {
           if (imgRef.current) {
             imgRef.current.src = photo.src;
             setImageLoaded(true);
-            setShowCloseButton(true);
           }
         };
         preloadImg.src = photo.src;
@@ -62,9 +59,6 @@ export default function PhotoModal({ photo, isOpen, onClose }) {
         height: rect.height
       });
     }
-    
-    // Show close button immediately after image is loaded
-    setShowCloseButton(true);
   }, []);
 
   if (!photo) return null;
@@ -108,26 +102,6 @@ export default function PhotoModal({ photo, isOpen, onClose }) {
                 mass: 0.8,
               }}
             >
-              <AnimatePresence>
-                {showCloseButton && (
-                  <motion.button
-                    className="photo-modal-close"
-                    onClick={onClose}
-                    aria-label="Close photo details"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.8 }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 400,
-                      damping: 25,
-                    }}
-                  >
-                    <LucideIcon icon={X} size={18} />
-                  </motion.button>
-                )}
-              </AnimatePresence>
-              
               <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <img 
                   ref={imgRef}
@@ -188,6 +162,21 @@ export default function PhotoModal({ photo, isOpen, onClose }) {
                 )}
               </div>
             </motion.div>
+            
+            <motion.button
+              className="modal-close"
+              onClick={onClose}
+              aria-label="Close photo details"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{
+                delay: 0,
+                duration: 0.15,
+              }}
+            >
+              <LucideIcon icon={X} size={18} />
+            </motion.button>
           </div>
         </div>
       )}
