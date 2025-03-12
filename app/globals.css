@@ -2904,6 +2904,10 @@ a[data-footnote-ref] {
   display: flex;
   align-items: center;
   justify-content: center;
+  overscroll-behavior: none;
+  touch-action: none;
+  -webkit-overflow-scrolling: none;
+  overflow: hidden;
 }
 
 .project-modal-backdrop {
@@ -3374,8 +3378,12 @@ a[data-footnote-ref] {
 }
 
 .body-modal-open {
+  position: fixed;
+  width: 100%;
   overflow: hidden;
   scrollbar-width: none;
+  touch-action: none;
+  -webkit-overflow-scrolling: none;
 }
 
 .body-modal-open::-webkit-scrollbar {

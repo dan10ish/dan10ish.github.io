@@ -10,7 +10,6 @@ const LucideIcon = ({ icon: Icon, ...props }) => {
 
 export default function PhotoModal({ photo, isOpen, onClose }) {
   const photoRef = useRef(null);
-  const scrollPositionRef = useRef(0);
   const [imageLoaded, setImageLoaded] = useState(false);
   const imgRef = useRef(null);
   const [imageDimensions, setImageDimensions] = useState({ width: 0, height: 0 });
@@ -23,8 +22,7 @@ export default function PhotoModal({ photo, isOpen, onClose }) {
 
   useEffect(() => {
     if (isOpen) {
-      scrollPositionRef.current = window.scrollY;
-      document.body.classList.add('body-modal-open');
+      document.body.style.overflow = 'hidden';
       document.addEventListener("mousedown", handleClickOutside);
       setImageLoaded(false);
       
@@ -39,13 +37,12 @@ export default function PhotoModal({ photo, isOpen, onClose }) {
         preloadImg.src = photo.src;
       }
     } else {
-      document.body.classList.remove('body-modal-open');
-      window.scrollTo(0, scrollPositionRef.current);
+      document.body.style.overflow = '';
       document.removeEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
-      document.body.classList.remove('body-modal-open');
+      document.body.style.overflow = '';
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isOpen, photo, handleClickOutside]);
