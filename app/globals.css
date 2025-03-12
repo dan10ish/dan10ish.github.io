@@ -722,6 +722,7 @@ th {
 .list-header .actions {
   text-align: center;
   justify-content: center;
+  display: flex !important;
 }
 
 .project-list .list-row .actions {
@@ -737,6 +738,10 @@ th {
   justify-content: center !important;
   align-items: center !important;
   white-space: nowrap !important;
+}
+
+.project-list .list-row .title {
+  line-height: 1.4;
 }
 
 .action-link {
@@ -800,6 +805,12 @@ th {
   display: flex !important;
 }
 
+.project-list .list-header span.actions {
+  text-align: center !important;
+  justify-content: center !important;
+  display: flex !important;
+}
+
 @media (max-width: 768px) {
   .list-header,
   .list-row {
@@ -820,6 +831,10 @@ th {
   .option-switcher {
     gap: 0.25rem;
     padding: 0.4rem;
+  }
+  
+  .project-list .list-row .actions {
+    gap: 0rem;
   }
 }
 
@@ -3473,6 +3488,21 @@ a[data-footnote-ref] {
   color: rgba(255, 204, 0, 0.9);
 }
 
+html:not(.dark) .status-pill.live {
+  background-color: rgba(40, 167, 69, 0.15);
+  color: rgba(40, 167, 69, 1);
+}
+
+html:not(.dark) .status-pill.archive {
+  background-color: rgba(220, 53, 69, 0.15);
+  color: rgba(220, 53, 69, 1);
+}
+
+html:not(.dark) .status-pill.offline {
+  background-color: rgba(232, 170, 0, 0.15);
+  color: rgba(232, 170, 0, 1);
+}
+
 html.dark .status-pill.live {
   background-color: rgba(52, 199, 89, 0.15);
   color: rgba(52, 199, 89, 0.9);
@@ -3493,7 +3523,7 @@ html.dark .status-pill.offline {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  
+  gap: 0.25rem !important;
   flex-shrink: 0 !important;
 }
 
@@ -3505,19 +3535,39 @@ html.dark .status-pill.offline {
   position: relative;
 }
 
+.list-header .table-status-dot {
+  background-color: rgba(var(--color-text-rgb), 0.2);
+  box-shadow: 0 0 2px rgba(var(--color-text-rgb), 0.2);
+}
+
 .table-status-dot.live {
-  background-color: rgba(52, 199, 89, 0.8);
-  box-shadow: 0 0 4px rgba(52, 199, 89, 0.4);
+  background-color: rgba(52, 199, 89, 0.9);
+  box-shadow: 0 0 4px rgba(52, 199, 89, 0.5);
 }
 
 .table-status-dot.archive {
-  background-color: rgba(255, 69, 58, 0.8);
-  box-shadow: 0 0 4px rgba(255, 69, 58, 0.4);
+  background-color: rgba(255, 69, 58, 0.9);
+  box-shadow: 0 0 4px rgba(255, 69, 58, 0.5);
 }
 
 .table-status-dot.offline {
-  background-color: rgba(255, 204, 0, 0.8);
-  box-shadow: 0 0 4px rgba(255, 204, 0, 0.4);
+  background-color: rgba(255, 204, 0, 0.9);
+  box-shadow: 0 0 4px rgba(255, 204, 0, 0.5);
+}
+
+[data-theme="light"] .table-status-dot.live {
+  background-color: rgba(40, 167, 69, 1);
+  box-shadow: 0 0 4px rgba(40, 167, 69, 0.7);
+}
+
+[data-theme="light"] .table-status-dot.archive {
+  background-color: rgba(220, 53, 69, 1);
+  box-shadow: 0 0 4px rgba(220, 53, 69, 0.7);
+}
+
+[data-theme="light"] .table-status-dot.offline {
+  background-color: rgba(232, 170, 0, 1);
+  box-shadow: 0 0 4px rgba(232, 170, 0, 0.7);
 }
 
 .status-column-spacer {
@@ -3536,6 +3586,10 @@ html.dark .status-pill.offline {
   position: relative;
 }
 
+.status-pill {
+  font-weight: 600;
+}
+
 .status-pill.live .status-dot {
   background-color: rgba(52, 199, 89, 0.8);
   box-shadow: 0 0 4px rgba(52, 199, 89, 0.4);
@@ -3549,4 +3603,24 @@ html.dark .status-pill.offline {
 .status-pill.offline .status-dot {
   background-color: rgba(255, 204, 0, 0.8);
   box-shadow: 0 0 4px rgba(255, 204, 0, 0.4);
+}
+
+[data-theme="light"] .status-pill.live .status-dot {
+  background-color: rgba(40, 167, 69, 1);
+  box-shadow: 0 0 4px rgba(40, 167, 69, 0.7);
+}
+
+[data-theme="light"] .status-pill.archive .status-dot {
+  background-color: rgba(220, 53, 69, 1);
+  box-shadow: 0 0 4px rgba(220, 53, 69, 0.7);
+}
+
+[data-theme="light"] .status-pill.offline .status-dot {
+  background-color: rgba(232, 170, 0, 1);
+  box-shadow: 0 0 4px rgba(232, 170, 0, 0.7);
+}
+
+html.dark .status-pill.live {
+  background-color: rgba(52, 199, 89, 0.15);
+  color: rgba(52, 199, 89, 0.9);
 }

@@ -530,7 +530,14 @@ const ProjectList = memo(
             )}
             tags
           </span>
-          <span className="status-column-spacer"></span>
+          <span 
+            className="status-dot-container" 
+            onClick={() => handleSort("status")} 
+            style={{ cursor: "pointer" }}
+          >
+            <span className="table-status-dot"></span>
+            <SortIcon columnKey="status" sortConfig={sortConfig} />
+          </span>
         </div>
         <div className="table-max" ref={tableRef}>
           {projects.map((project) => (
@@ -667,6 +674,15 @@ const Content = memo(({ posts, projects }) => {
         return sortConfig.direction === "asc"
           ? tagsA.localeCompare(tagsB)
           : tagsB.localeCompare(tagsA);
+      });
+    } else if (sortConfig?.key === "status") {
+      filtered = [...filtered].sort((a, b) => {
+        const statusOrder = { live: 1, offline: 2, archive: 3 };
+        const statusA = statusOrder[a.status] || 999;
+        const statusB = statusOrder[b.status] || 999;
+        return sortConfig.direction === "asc"
+          ? statusA - statusB
+          : statusB - statusA;
       });
     }
     return filtered;
