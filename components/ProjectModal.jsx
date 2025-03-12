@@ -177,6 +177,15 @@ export default function ProjectModal({ project, isOpen, onClose }) {
                   <p>{project.description}</p>
                 </div>
 
+                <div className="project-status">
+                  <div className={`status-pill ${project.status}`}>
+                    <span className="status-dot"></span>
+                    <span className="status-text">
+                      {project.status.charAt(0).toUpperCase() + project.status.slice(1)}
+                    </span>
+                  </div>
+                </div>
+
                 <div className="project-links">
                   {project.sourceLink && (
                     <a

@@ -710,8 +710,9 @@ th {
 
 .project-list .list-header,
 .project-list .list-row {
-  grid-template-columns: minmax(0, 1fr) 50px 70px;
-  gap: 2rem;
+  grid-template-columns: minmax(0, 1fr) 70px 90px 16px !important;
+  gap: 1rem !important;
+  display: grid !important;
 }
 
 .project-list .list-row {
@@ -724,18 +725,18 @@ th {
 }
 
 .project-list .list-row .actions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
 }
 
 .project-list .list-row .tags {
-  display: flex;
-  gap: 0.5rem;
-  justify-content: flex-end;
-  align-items: center;
-  white-space: nowrap;
+  display: flex !important;
+  gap: 0.5rem !important;
+  justify-content: center !important;
+  align-items: center !important;
+  white-space: nowrap !important;
 }
 
 .action-link {
@@ -791,6 +792,14 @@ th {
   justify-content: flex-end !important;
 }
 
+/* Override for tags header in project list */
+.project-list .list-header .tags,
+.project-list .list-header span.tags {
+  text-align: center !important;
+  justify-content: center !important;
+  display: flex !important;
+}
+
 @media (max-width: 768px) {
   .list-header,
   .list-row {
@@ -800,8 +809,8 @@ th {
 
   .project-list .list-header,
   .project-list .list-row {
-    grid-template-columns: minmax(0, 1fr) 30px 55px;
-    gap: 2rem;
+    grid-template-columns: minmax(0, 1fr) 60px 80px 8px !important;
+    gap: 0.25rem !important;
   }
 
   .action-link {
@@ -2551,6 +2560,10 @@ a[data-footnote-ref] {
     text-decoration: none;
   }
 
+  .list-row:hover .table-status-dot{
+    transform: scale(1.15);
+  }
+
   .list-row:hover .tag {
     background: var(--color-bg);
   }
@@ -2937,7 +2950,7 @@ a[data-footnote-ref] {
 
 .modal-close {
   position: fixed;
-  bottom: 2.5rem;
+  bottom: 1.5rem;
   right: max(2rem, calc((100% - var(--max-width)) / 2));
   background: var(--code-background-color);
   border: 1px solid rgba(var(--color-text-rgb), 0.1);
@@ -2950,7 +2963,7 @@ a[data-footnote-ref] {
   justify-content: center;
   border-radius: 50%;
   padding: 0;
-  z-index: 10;
+  z-index: 100;
 }
 
 .project-modal-content {
@@ -3079,7 +3092,6 @@ a[data-footnote-ref] {
 }
 
 .project-tag {
-  font-size: 12px;
   background: none;
   border: 1px solid rgba(var(--color-text-rgb), 0.1);
   font-size: calc(var(--font-size-mobile) * 0.9);
@@ -3388,4 +3400,153 @@ a[data-footnote-ref] {
 
 .body-modal-open::-webkit-scrollbar {
   display: none;
+}
+
+/* Project Status Styles */
+.status {
+  display: flex;
+  align-items: center;
+  min-width: 100px;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: relative;
+}
+
+.status-indicator.live .status-dot {
+  background-color: rgba(52, 199, 89, 0.8);
+  box-shadow: 0 0 4px rgba(52, 199, 89, 0.4);
+}
+
+.status-indicator.archive .status-dot {
+  background-color: rgba(255, 69, 58, 0.8);
+  box-shadow: 0 0 4px rgba(255, 69, 58, 0.4);
+}
+
+.status-indicator.offline .status-dot {
+  background-color: rgba(255, 204, 0, 0.8);
+  box-shadow: 0 0 4px rgba(255, 204, 0, 0.4);
+}
+
+.status-text {
+  opacity: 0.75;
+}
+
+/* Project Status Pill in Modal */
+.project-status {
+  margin-bottom: 1rem;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 12px;
+  gap: 6px;
+  font-size: 0.85rem;
+}
+
+.status-pill.live {
+  background-color: rgba(52, 199, 89, 0.15);
+  color: rgba(52, 199, 89, 0.9);
+}
+
+.status-pill.archive {
+  background-color: rgba(255, 69, 58, 0.15);
+  color: rgba(255, 69, 58, 0.9);
+}
+
+.status-pill.offline {
+  background-color: rgba(255, 204, 0, 0.15);
+  color: rgba(255, 204, 0, 0.9);
+}
+
+html.dark .status-pill.live {
+  background-color: rgba(52, 199, 89, 0.15);
+  color: rgba(52, 199, 89, 0.9);
+}
+
+html.dark .status-pill.archive {
+  background-color: rgba(255, 69, 58, 0.15);
+  color: rgba(255, 69, 58, 0.9);
+}
+
+html.dark .status-pill.offline {
+  background-color: rgba(255, 204, 0, 0.15);
+  color: rgba(255, 204, 0, 0.9);
+}
+
+/* Status styles */
+.status-dot-container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  
+  flex-shrink: 0 !important;
+}
+
+.table-status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: relative;
+}
+
+.table-status-dot.live {
+  background-color: rgba(52, 199, 89, 0.8);
+  box-shadow: 0 0 4px rgba(52, 199, 89, 0.4);
+}
+
+.table-status-dot.archive {
+  background-color: rgba(255, 69, 58, 0.8);
+  box-shadow: 0 0 4px rgba(255, 69, 58, 0.4);
+}
+
+.table-status-dot.offline {
+  background-color: rgba(255, 204, 0, 0.8);
+  box-shadow: 0 0 4px rgba(255, 204, 0, 0.4);
+}
+
+.status-column-spacer {
+  width: 24px !important;
+  min-width: 24px !important;
+  flex-shrink: 0 !important;
+}
+
+
+/* Status pill in modal */
+.status-pill .status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: relative;
+}
+
+.status-pill.live .status-dot {
+  background-color: rgba(52, 199, 89, 0.8);
+  box-shadow: 0 0 4px rgba(52, 199, 89, 0.4);
+}
+
+.status-pill.archive .status-dot {
+  background-color: rgba(255, 69, 58, 0.8);
+  box-shadow: 0 0 4px rgba(255, 69, 58, 0.4);
+}
+
+.status-pill.offline .status-dot {
+  background-color: rgba(255, 204, 0, 0.8);
+  box-shadow: 0 0 4px rgba(255, 204, 0, 0.4);
 }

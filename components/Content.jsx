@@ -475,6 +475,9 @@ const ProjectListItem = memo(({ project, selectedTag, handleTagClick, handleProj
         </span>
       ))}
     </span>
+    <span className="status-dot-container">
+      <span className={`table-status-dot ${project.status}`} title={project.status}></span>
+    </span>
   </div>
 ));
 
@@ -527,6 +530,7 @@ const ProjectList = memo(
             )}
             tags
           </span>
+          <span className="status-column-spacer"></span>
         </div>
         <div className="table-max" ref={tableRef}>
           {projects.map((project) => (
