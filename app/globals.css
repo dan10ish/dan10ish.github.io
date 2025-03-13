@@ -3097,9 +3097,10 @@ a[data-footnote-ref] {
 .project-tag {
   background: none;
   border: 1px solid rgba(var(--color-text-rgb), 0.1);
-  font-size: calc(var(--font-size-mobile) * 0.9);
-  padding: 0.1rem 0.6rem;
-  border-radius: 4px;
+  font-size: calc(var(--font-size-mobile) * 0.95);
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-weight: 600;
 }
 
 .project-description {
@@ -3116,22 +3117,6 @@ a[data-footnote-ref] {
 .project-links {
   display: flex;
   gap: 8px;
-}
-
-.project-link {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  border: 1px solid rgba(var(--color-text-rgb), 0.1);
-  background: rgba(var(--color-text-rgb), 0.04);
-  padding: 0.5rem 1rem;
-  color: rgba(var(--color-text-rgb), 1);
-  text-decoration: none;
-  border-radius: 6px;
-  font-size: calc(var(--font-size-mobile) * 0.9);
-  font-weight: 500;
 }
 
 @media (min-width: 768px) {
@@ -3456,24 +3441,28 @@ a[data-footnote-ref] {
   display: inline-flex;
   align-items: center;
   padding: 4px 10px;
-  border-radius: 12px;
+  border-radius: 8px;
   gap: 6px;
-  font-size: 0.85rem;
+  font-size: calc(var(--font-size-mobile) * 0.95);
+  font-weight: 600;
 }
 
 .status-pill.live {
   background-color: rgba(52, 199, 89, 0.15);
   color: rgba(52, 199, 89, 0.9);
+  border: 1px solid rgba(52, 199, 89, 0.2);
 }
 
 .status-pill.archive {
   background-color: rgba(255, 69, 58, 0.15);
   color: rgba(255, 69, 58, 0.9);
+  border: 1px solid rgba(255, 69, 58, 0.2);
 }
 
 .status-pill.offline {
   background-color: rgba(255, 204, 0, 0.15);
   color: rgba(255, 204, 0, 0.9);
+  border: 1px solid rgba(255, 204, 0, 0.2);
 }
 
 html:not(.dark) .status-pill.live {
@@ -3572,10 +3561,6 @@ html.dark .status-pill.offline {
   height: 8px;
   border-radius: 50%;
   position: relative;
-}
-
-.status-pill {
-  font-weight: 600;
 }
 
 .status-pill.live .status-dot {

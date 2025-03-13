@@ -195,7 +195,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
                         rel="noopener noreferrer"
                         className="project-icon-link"
                       >
-                        <LucideIcon icon={Github} size={20} />
+                        <LucideIcon icon={Github} size={22} />
                       </a>
                     )}
 
@@ -206,7 +206,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
                         rel="noopener noreferrer"
                         className="project-icon-link link-icon"
                       >
-                        <LucideIcon icon={Globe} size={20} />
+                        <LucideIcon icon={Globe} size={22} />
                       </a>
                     )}
                   </div>
