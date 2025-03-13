@@ -99,20 +99,14 @@ export default function ProjectModal({ project, isOpen, onClose }) {
           <motion.div
             className="project-modal"
             ref={modalRef}
-            initial={{ opacity: 0, y: 10, scale: 0.99 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -8, scale: 0.98 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
             transition={{
               type: "spring",
-              stiffness: 500,
-              damping: 25,
+              stiffness: 400,
+              damping: 30,
               mass: 0.8,
-              opacity: { duration: 0.15 },
-              exit: {
-                type: "tween",
-                ease: "easeInOut",
-                duration: 0.12,
-              },
             }}
           >
             <div className="project-modal-content">
@@ -210,9 +204,9 @@ export default function ProjectModal({ project, isOpen, onClose }) {
             className="modal-close"
             onClick={onClose}
             aria-label="Close project details"
-            initial={{ opacity: 0, scale: 0.99 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.98 }}
+            exit={{ opacity: 0, scale: 0.95 }}
             transition={{
               delay: 0,
               duration: 0.15,
