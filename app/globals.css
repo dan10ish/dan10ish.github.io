@@ -583,7 +583,7 @@ th {
 
 .option-btn {
   all: unset;
-  padding: 0.3rem 0.6rem;
+  padding: 0.3rem 0.7rem;
   border-radius: 12px;
   cursor: pointer;
   font-size: var(--font-size-mobile);

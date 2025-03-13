@@ -351,14 +351,6 @@ const SortIcon = memo(({ columnKey, sortConfig }) => (
 
 SortIcon.displayName = "SortIcon";
 
-const formatNumber = (num) => {
-  if (num === null || num === undefined)
-    return <span className="infinity-symbol">∞</span>;
-  if (num >= 1000000) return (num / 1000000).toFixed(2) + "M";
-  if (num >= 1000) return (num / 1000).toFixed(2) + "K";
-  return num;
-};
-
 const ProjectListItem = memo(({ project, selectedTag, handleTagClick, handleProjectClick }) => (
   <div className="list-row" onClick={() => handleProjectClick(project)}>
     <span className="title">
