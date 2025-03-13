@@ -387,6 +387,7 @@ const ProjectListItem = memo(({ project, selectedTag, handleTagClick, handleProj
             e.preventDefault();
           }
         }}
+        aria-label={`View source code for ${project.title} on GitHub`}
       >
         <LucideIcon icon={Github} size={20} />
       </a>
@@ -403,6 +404,7 @@ const ProjectListItem = memo(({ project, selectedTag, handleTagClick, handleProj
             e.preventDefault();
           }
         }}
+        aria-label={`Visit live website for ${project.title}`}
       >
         <LucideIcon icon={Globe} size={20} />
       </a>

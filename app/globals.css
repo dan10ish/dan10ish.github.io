@@ -595,9 +595,31 @@ th {
   position: relative;
 }
 
+[data-theme="light"] .option-btn {
+  color: rgba(var(--color-text-rgb), 0.75);
+  font-weight: 450;
+}
+
 .option-btn.active {
   color: var(--color-text);
   font-weight: 500;
+}
+
+[data-theme="light"] .option-btn.active {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .option-btn:hover:not(.active) {
+    color: var(--color-text);
+    font-weight: 500;
+  }
+
+  [data-theme="light"] .option-btn:hover:not(.active) {
+    color: var(--color-text);
+    font-weight: 550;
+  }
 }
 
 .mono-list {
