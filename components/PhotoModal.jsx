@@ -12,7 +12,6 @@ export default function PhotoModal({ photo, isOpen, onClose }) {
   const photoRef = useRef(null);
   const [imageLoaded, setImageLoaded] = useState(false);
   const imgRef = useRef(null);
-  const [imageDimensions, setImageDimensions] = useState({ width: 0, height: 0 });
 
   const handleClickOutside = useCallback((e) => {
     if (photoRef.current && !photoRef.current.contains(e.target)) {
@@ -36,11 +35,7 @@ export default function PhotoModal({ photo, isOpen, onClose }) {
         };
         preloadImg.src = photo.src;
       }
-    } else {
-      document.body.style.overflow = '';
-      document.removeEventListener("mousedown", handleClickOutside);
     }
-
     return () => {
       document.body.style.overflow = '';
       document.removeEventListener("mousedown", handleClickOutside);
@@ -49,13 +44,6 @@ export default function PhotoModal({ photo, isOpen, onClose }) {
 
   const handleImageLoad = useCallback(() => {
     setImageLoaded(true);
-    if (imgRef.current) {
-      const rect = imgRef.current.getBoundingClientRect();
-      setImageDimensions({
-        width: rect.width,
-        height: rect.height
-      });
-    }
   }, []);
 
   if (!photo) return null;

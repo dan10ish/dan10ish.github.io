@@ -118,9 +118,7 @@ const PhotoGrid = () => {
 
   const formatMetadata = (tags, customData = {}) => {
     const getValue = (obj, path, defaultValue = "Unknown") => {
-      return (
-        path.split(".").reduce((acc, key) => acc?.[key], obj) ?? defaultValue
-      );
+      return path.split(".").reduce((acc, key) => acc?.[key], obj) ?? defaultValue;
     };
 
     const formatNumber = (value, decimals = 2) => {
@@ -129,43 +127,17 @@ const PhotoGrid = () => {
       return isNaN(num) ? "Unknown" : num.toFixed(decimals);
     };
 
-    const focalLength = getValue(tags, "FocalLength.description", "").split(
-      " "
-    )[0];
-    const aperture = getValue(tags, "FNumber.description", "").replace(
-      "f/",
-      ""
-    );
-
-    // Try to extract country from GPS data if available
-    let country = null;
-    try {
-      if (tags.GPSLatitude && tags.GPSLongitude) {
-        // This is a simplified approach and might not be accurate
-        // For a production app, you'd want to use a geocoding service
-        const lat = tags.GPSLatitude.description;
-        const lng = tags.GPSLongitude.description;
-        if (customData.country) {
-          country = customData.country;
-        }
-      }
-    } catch (e) {}
+    const focalLength = getValue(tags, "FocalLength.description", "").split(" ")[0];
+    const aperture = getValue(tags, "FNumber.description", "").replace("f/", "");
 
     return {
-      camera:
-        customData.camera ||
-        getValue(tags, "Model.description", "Unknown").split(" back")[0],
-      resolution: `${getValue(tags, "ImageWidth.value")} × ${getValue(
-        tags,
-        "ImageHeight.value"
-      )}`,
+      camera: customData.camera || getValue(tags, "Model.description", "Unknown").split(" back")[0],
+      resolution: `${getValue(tags, "ImageWidth.value")} × ${getValue(tags, "ImageHeight.value")}`,
       iso: customData.iso || getValue(tags, "ISOSpeedRatings.value"),
-      focalLength:
-        customData.focalLength || `${formatNumber(focalLength, 1)}mm`,
+      focalLength: customData.focalLength || `${formatNumber(focalLength, 1)}mm`,
       aperture: customData.aperture || `f/${formatNumber(aperture)}`,
-      shutterspeed:
-        customData.shutterspeed || getValue(tags, "ExposureTime.description"),
-      country: customData.country || country,
+      shutterspeed: customData.shutterspeed || getValue(tags, "ExposureTime.description"),
+      country: customData.country || null
     };
   };
 

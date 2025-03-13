@@ -48,10 +48,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
       if (videoRef.current) {
         try {
           videoRef.current.currentTime = 0;
-          const playPromise = videoRef.current.play();
-          if (playPromise !== undefined) {
-            playPromise.catch(() => {});
-          }
+          videoRef.current.play().catch(() => {});
         } catch {}
       }
       
@@ -80,12 +77,6 @@ export default function ProjectModal({ project, isOpen, onClose }) {
     return () => {
       document.body.classList.remove('body-modal-open');
       document.removeEventListener("mousedown", handleClickOutside);
-
-      if (videoRef.current) {
-        try {
-          videoRef.current.pause();
-        } catch {}
-      }
     };
   }, [handleClickOutside]);
 

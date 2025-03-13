@@ -31,9 +31,7 @@ import PhotoGrid from "./PhotoGrid";
 import { SiX } from "@icons-pack/react-simple-icons";
 import ProjectModal from "./ProjectModal";
 
-const LucideIcon = memo(({ icon: Icon, ...props }) => {
-  return <Icon strokeWidth={`var(--icon-stroke-width)`} {...props} />;
-});
+const LucideIcon = memo(({ icon: Icon, ...props }) => <Icon strokeWidth="var(--icon-stroke-width)" {...props} />);
 
 LucideIcon.displayName = "LucideIcon";
 
