@@ -14,31 +14,14 @@ const config = {
     };
   },
   additionalPaths: async (config) => {
-    let blogPaths = [];
-    try {
-      console.log("Fetching blog posts...");
-      const posts = require("./lib/posts").getBlogPosts();
-      console.log(`Found ${posts.length} blog posts`);
-      blogPaths = posts.map((post) => `/post/${post.slug}`);
-    } catch (error) {
-      console.error("Error fetching blog posts:", error);
-    }
 
     const staticPaths = [
-      "/books",
-      "/notes",
       "/photos",
       "/projects",
-      "/resources",
-      "/robotics",
-      "/ml",
-      "/finance",
-      "/planes",
-      "/posts",
     ];
 
-    const allPaths = [...staticPaths, ...blogPaths];
-    console.log(`Generated ${allPaths.length} paths for sitemap`); // Debug logging
+    const allPaths = [...staticPaths];
+    console.log(`Generated ${allPaths.length} paths for sitemap`); 
 
     return allPaths.map((path) => config.transform(config, path));
   },

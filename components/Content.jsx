@@ -9,7 +9,6 @@ import {
   Suspense,
   useRef,
 } from "react";
-import { supabase } from "@/lib/supabase";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import {
@@ -26,7 +25,6 @@ import {
   Mail,
   UserIcon,
 } from "lucide-react";
-import Footer from "./Footer";
 import ScrollIndicator from "./ScrollIndicator";
 import { motion } from "framer-motion";
 import PhotoGrid from "./PhotoGrid";
@@ -133,12 +131,6 @@ const OptionSwitcher = memo(({ selectedOption, handleOptionChange }) => {
         />
       )}
       <div className="option-left" ref={optionsContainerRef}>
-        <button
-          onClick={() => handleOptionChange("posts")}
-          className={`option-btn${selectedOption === "posts" ? " active" : ""}`}
-        >
-          Posts
-        </button>
         <button
           onClick={() => handleOptionChange("projects")}
           className={`option-btn${
@@ -369,52 +361,6 @@ const formatNumber = (num) => {
   return num;
 };
 
-const BlogListItem = memo(({ post, viewCount }) => (
-  <Link href={`/post/${post.slug}`} className="list-row" prefetch>
-    <span className="date">{post.year}</span>
-    <span className="title">{post.title}</span>
-    <span className="views">{formatNumber(viewCount)}</span>
-  </Link>
-));
-
-BlogListItem.displayName = "BlogListItem";
-
-const BlogList = memo(({ posts, viewsData, sortConfig, handleSort }) => {
-  const tableRef = useRef(null);
-
-  return (
-    <div className="mono-list">
-      <div className="list-header">
-        <span onClick={() => handleSort("date")} style={{ cursor: "pointer" }}>
-          date <SortIcon columnKey="date" sortConfig={sortConfig} />
-        </span>
-        <span onClick={() => handleSort("title")} style={{ cursor: "pointer" }}>
-          title <SortIcon columnKey="title" sortConfig={sortConfig} />
-        </span>
-        <span
-          onClick={() => handleSort("views")}
-          style={{ cursor: "pointer" }}
-          className="views"
-        >
-          <SortIcon columnKey="views" sortConfig={sortConfig} /> views
-        </span>
-      </div>
-      <div className="table-max" ref={tableRef}>
-        {posts.map((post) => (
-          <BlogListItem
-            key={post.slug}
-            post={post}
-            viewCount={viewsData[post.slug]}
-          />
-        ))}
-      </div>
-      <ScrollIndicator containerRef={tableRef} />
-    </div>
-  );
-});
-
-BlogList.displayName = "BlogList";
-
 const ProjectListItem = memo(({ project, selectedTag, handleTagClick, handleProjectClick }) => (
   <div className="list-row" onClick={() => handleProjectClick(project)}>
     <span className="title">
@@ -563,12 +509,11 @@ const ProjectList = memo(
 
 ProjectList.displayName = "ProjectList";
 
-const Content = memo(({ posts, projects }) => {
+const Content = memo(({ projects }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const initialTab = searchParams.get("tab") || "posts";
+  const initialTab = searchParams.get("tab") || "projects";
   const [selectedOption, setSelectedOption] = useState(initialTab);
-  const [viewsData, setViewsData] = useState({});
   const [sortConfig, setSortConfig] = useState({ key: null, direction: null });
   const [selectedTag, setSelectedTag] = useState(null);
   const contentRef = useRef(null);
@@ -580,31 +525,6 @@ const Content = memo(({ posts, projects }) => {
       }, 100);
     }
   }, [selectedOption]);
-
-  useEffect(() => {
-    const fetchViews = async () => {
-      try {
-        const viewsPromises = posts.map(async (post) => {
-          const { data } = await supabase
-            .from("page_stats")
-            .select("views")
-            .eq("id", `post-${post.slug}`)
-            .single();
-          return { slug: post.slug, views: data?.views };
-        });
-
-        const views = await Promise.all(viewsPromises);
-        setViewsData(
-          views.reduce(
-            (acc, { slug, views }) => ({ ...acc, [slug]: views }),
-            {}
-          )
-        );
-      } catch {}
-    };
-
-    fetchViews();
-  }, [posts]);
 
   const handleOptionChange = useCallback(
     (option) => {
@@ -630,29 +550,6 @@ const Content = memo(({ posts, projects }) => {
     event.preventDefault();
     setSelectedTag((current) => (current === tag ? null : tag));
   }, []);
-
-  const sortedPosts = useMemo(() => {
-    if (!sortConfig.key) return posts;
-    const key = sortConfig.key;
-    const direction = sortConfig.direction;
-
-    return [...posts].sort((a, b) => {
-      if (key === "date") {
-        const dateA = new Date(a.date);
-        const dateB = new Date(b.date);
-        return direction === "asc" ? dateA - dateB : dateB - dateA;
-      } else if (key === "title") {
-        return direction === "asc"
-          ? a.title.localeCompare(b.title)
-          : b.title.localeCompare(a.title);
-      } else if (key === "views") {
-        const viewsA = viewsData[a.slug] || 0;
-        const viewsB = viewsData[b.slug] || 0;
-        return direction === "asc" ? viewsA - viewsB : viewsB - viewsA;
-      }
-      return 0;
-    });
-  }, [posts, sortConfig, viewsData]);
 
   const filteredProjects = useMemo(() => {
     let filtered = projects;
@@ -698,14 +595,7 @@ const Content = memo(({ posts, projects }) => {
           />
         </div>
         <div className="content-area">
-          {selectedOption === "posts" ? (
-            <BlogList
-              posts={sortedPosts}
-              viewsData={viewsData}
-              sortConfig={sortConfig}
-              handleSort={handleSort}
-            />
-          ) : selectedOption === "projects" ? (
+          {selectedOption === "projects" ? (
             <ProjectList
               projects={filteredProjects}
               selectedTag={selectedTag}
@@ -720,21 +610,16 @@ const Content = memo(({ posts, projects }) => {
           )}
         </div>
       </div>
-      {selectedOption === "about" && (
-        <div>
-          <Footer />
-        </div>
-      )}
     </div>
   );
 });
 
 Content.displayName = "Content";
 
-export default function ContentWrapper({ posts, projects }) {
+export default function ContentWrapper({ projects }) {
   return (
     <Suspense fallback={null}>
-      <Content posts={posts} projects={projects} />
+      <Content projects={projects} />
     </Suspense>
   );
 }

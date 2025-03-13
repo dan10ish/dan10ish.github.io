@@ -81,18 +81,6 @@ export default function RootLayout({ children }) {
           fetchPriority="high"
           crossOrigin="anonymous"
         />
-        <link
-          rel="preconnect"
-          href="https://github.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preconnect"
-          href="https://api.github.com"
-          crossOrigin="anonymous"
-        />
-        <link rel="dns-prefetch" href="https://github.com" />
-        <link rel="dns-prefetch" href="https://api.github.com" />
         <link rel="icon" type="image/png" href="/icons/icon.png" />
       </head>
       <body>

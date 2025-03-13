@@ -8,38 +8,45 @@ This repository contains the source code for my [personal website](https://dan10
 
 - `/app` - Next.js 13+ app directory containing the main application routes and pages
   - `/api` - API routes and endpoints
-  - `/planes` - Aviation-related content
-  - `/notes` - Personal notes and documentation
+    - `/photos` - Photo gallery API endpoints
   - `/photos` - Photo gallery and visual content
-  - `/finance` - Financial-related content
-  - `/post` - Blog post pages
 
 - `/components` - Reusable React components
-  - Content rendering components (Content.jsx, BlogPost.jsx)
-  - UI components (Footer.js, ThemeHandler.jsx)
-  - Code highlighting (HighlightCode.js, CodeBlock.jsx)
-  - Photo gallery components (PhotoGrid.js, Gallery.jsx)
-  - Navigation and UI elements (ScrollToTop.js, TOCButton.jsx)
+  - `Content.jsx` - Main content rendering component
+  - `PhotoGrid.js` - Photo gallery grid layout
+  - `ProjectModal.jsx` - Modal for displaying project details
+  - `PhotoModal.jsx` - Modal for displaying photos
+  - `ScrollToTop.js` - Navigation component to scroll back to top
+  - `ButtonsContainer.jsx` - Container for navigation buttons
+  - `PageTransition.jsx` - Component for smooth page transitions
+  - `ScrollIndicator.jsx` - Visual scroll progress indicator
+  - `HomeButton.jsx` - Navigation button for returning home
+  - `GradientOverlay.js` - Gradient overlay component for visual effects
+
+- `/hooks` - Custom React hooks
+  - `useScrollAnimation.js` - Hook for scroll-based animations
 
 - `/lib` - Utility functions and data management
-  - MDX utilities for content processing
-  - Supabase integration for backend services
-  - Data management for posts, projects, and library content
+  - `projects.js` - Project data management
+  - `photo-meta.js` - Photo metadata utilities
 
-- `/content` - Content management
-  - `/blog` - Blog post content in MDX format
+- `/public` - Static assets
+  - `/photos` - Photo assets
+  - `/icons` - Icon assets
+  - `/fonts` - Font assets
+  - `/notes` - Static note assets
+  - `/project-videos` - Project video assets
 
 ### Features
 
 - Modern Next.js 13+ App Router implementation
-- MDX support for content creation
-- Responsive design with dark/light theme support
+- Responsive design with visual animations
 - Photo gallery with grid layout
+- Project showcase with detailed modals
 - Code syntax highlighting
-- Blog post system with MDX support
-- Supabase integration for backend services
-- SEO optimization with sitemap generation
 - Smooth page transitions and animations
+- SEO optimization with sitemap generation
+- Custom error and 404 pages
 
 ## Getting Started
 
@@ -60,10 +67,9 @@ This repository contains the source code for my [personal website](https://dan10
 
 - Next.js 13+
 - React
-- MDX
-- Supabase
-- Tailwind CSS
-- Various UI components and utilities
+- Tailwind CSS (based on globals.css)
+- Custom React Hooks
+- Modern JavaScript features
 
 ## License
 

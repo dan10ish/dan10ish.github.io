@@ -3,7 +3,6 @@
 import { useState, useEffect, memo, useCallback } from "react";
 import ExifReader from "exifreader";
 import Masonry from "react-masonry-css";
-import { MapPin } from "lucide-react";
 import { photoMetadata } from "@/lib/photo-meta";
 import ButtonsContainer from "./ButtonsContainer";
 import PhotoModal from "./PhotoModal";
