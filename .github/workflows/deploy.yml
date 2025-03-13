@@ -8,51 +8,27 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    env:
-      NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
-      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
-      NEXT_PUBLIC_INFINITE_FLIGHT_API_KEY: ${{ secrets.NEXT_PUBLIC_INFINITE_FLIGHT_API_KEY }}
     steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 1
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: "18"
           cache: "npm"
-      - name: Cache
-        uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           path: |
             ~/.npm
-            ${{ github.workspace }}/.next/cache
-            ${{ github.workspace }}/node_modules
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}
+            .next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
             ${{ runner.os }}-nextjs-
-      - name: Clear and Install
-        run: |
-          rm -rf node_modules
-          rm -f package-lock.json
-          npm cache clean --force
-          npm install
-          npm install react@18.3.1 react-dom@18.3.1 next@14.2.15 --save-exact
-      - name: Setup and Build
-        run: |
-          echo "NEXT_PUBLIC_SUPABASE_URL=${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}" > .env.production
-          echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}" >> .env.production
-          npm run build
-      - name: Prepare deployment
-        run: |
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git config --global user.name "github-actions[bot]"
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Install
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
           folder: out
           clean: true
-          clean-exclude: |
-            .nojekyll
-          commit-message: "Deploy to GitHub Pages [skip ci] - sitemap updated"
+          clean-exclude: .nojekyll
