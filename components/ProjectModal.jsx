@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Github, Globe, Loader2, VideoOff } from "lucide-react";
 
 const LucideIcon = memo(({ icon: Icon, ...props }) => {
-  return <Icon strokeWidth={`var(--icon-stroke-width)`} {...props} />;
+  return <Icon strokeWidth={`var(--icon-stroke-width)`} style={{ minWidth: props.size, minHeight: props.size }} {...props} />;
 });
 
 export default function ProjectModal({ project, isOpen, onClose }) {
