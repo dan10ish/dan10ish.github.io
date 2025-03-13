@@ -168,48 +168,48 @@ export default function ProjectModal({ project, isOpen, onClose }) {
               <div className="project-details">
                 <div className="project-title-container">
                   <h2>{project.title}</h2>
-                  {project.tags && project.tags.length > 0 && (
-                    <div className="project-tag">{project.tags[0]}</div>
-                  )}
                 </div>
 
                 <div className="project-description">
                   <p>{project.description}</p>
                 </div>
 
-                <div className="project-status">
-                  <div className={`status-pill ${project.status}`}>
-                    <span className="status-dot"></span>
-                    <span className="status-text">
-                      {project.status.charAt(0).toUpperCase() + project.status.slice(1)}
-                    </span>
+                <div className="tag-status-row">
+                  <div className="left-items">
+                    {project.tags && project.tags.length > 0 && (
+                      <div className="project-tag">{project.tags[0]}</div>
+                    )}
+                    <div className={`status-pill ${project.status}`}>
+                      <span className="status-dot"></span>
+                      <span className="status-text">
+                        {project.status.charAt(0).toUpperCase() + project.status.slice(1)}
+                      </span>
+                    </div>
                   </div>
-                </div>
+                  
+                  <div className="right-items">
+                    {project.sourceLink && (
+                      <a
+                        href={project.sourceLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="project-icon-link"
+                      >
+                        <LucideIcon icon={Github} size={20} />
+                      </a>
+                    )}
 
-                <div className="project-links">
-                  {project.sourceLink && (
-                    <a
-                      href={project.sourceLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="project-link source-link"
-                    >
-                      <LucideIcon icon={Github} size={16} />
-                      <span>Source</span>
-                    </a>
-                  )}
-
-                  {project.projectLink && (
-                    <a
-                      href={project.projectLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="project-link demo-link"
-                    >
-                      <LucideIcon icon={Globe} size={16} />
-                      <span>Live</span>
-                    </a>
-                  )}
+                    {project.projectLink && (
+                      <a
+                        href={project.projectLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="project-icon-link link-icon"
+                      >
+                        <LucideIcon icon={Globe} size={20} />
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
