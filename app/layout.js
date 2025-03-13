@@ -1,12 +1,25 @@
-import { Suspense } from 'react';
+import { Suspense } from "react";
 import "./globals.css";
-import GradientOverlay from '@/components/GradientOverlay';
+import GradientOverlay from "@/components/GradientOverlay";
 
 export const metadata = {
   metadataBase: new URL("https://danish.bio"),
   title: "Danish",
-  description: "Danish is a mechatronics engineer exploring machine learning, robotics and finance. Discover his projects, writings, and technical insights.",
-  keywords: ["Danish", "ai", "artificial intelligence", "Danish Ansari", "Danish Mumbai", "mechatronics", "robotics", "machine learning", "developer", "engineer", "portfolio"],
+  description:
+    "Danish is a mechatronics engineer exploring machine learning, robotics and finance. Discover his projects, writings, and technical insights.",
+  keywords: [
+    "Danish",
+    "ai",
+    "artificial intelligence",
+    "Danish Ansari",
+    "Danish Mumbai",
+    "mechatronics",
+    "robotics",
+    "machine learning",
+    "developer",
+    "engineer",
+    "portfolio",
+  ],
   robots: {
     index: true,
     follow: true,
@@ -25,22 +38,26 @@ export const metadata = {
     site: "@dan10ish",
     creator: "@dan10ish",
     title: "Danish",
-    description: "Danish's personal website featuring his projects, technical writings, and insights in robotics and machine learning.",
+    description:
+      "Danish's personal website featuring his projects, technical writings, and insights in robotics and machine learning.",
     images: ["https://i.ibb.co/vmBrhSd/OG.png"],
   },
   openGraph: {
     type: "website",
     siteName: "Danish",
     title: "Danish",
-    description: "Danish's personal website featuring his projects, technical writings, and insights in robotics and machine learning.",
+    description:
+      "Danish's personal website featuring his projects, technical writings, and insights in robotics and machine learning.",
     url: "https://danish.bio",
-    images: [{
-      url: "https://i.ibb.co/vmBrhSd/OG.png",
-      width: 1200,
-      height: 675,
-      type: "image/png",
-      alt: "Danish's Portfolio Preview",
-    }],
+    images: [
+      {
+        url: "https://i.ibb.co/vmBrhSd/OG.png",
+        width: 1200,
+        height: 675,
+        type: "image/png",
+        alt: "Danish's Portfolio Preview",
+      },
+    ],
   },
   other: {
     "profile:username": "dan10ish",
@@ -63,16 +80,24 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: `(function(){
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){
           // Set theme only on initial page load - no listeners for changes
           document.documentElement.setAttribute("data-theme", window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-        })()` }} />
-        <script dangerouslySetInnerHTML={{ __html: `(function(){
+        })()`,
+          }}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){
           const metaThemeColor = document.createElement('meta');
           metaThemeColor.name = 'theme-color';
           metaThemeColor.content = document.documentElement.dataset.theme === 'dark' ? '#1c1c1c' : '#ffffff';
           document.head.appendChild(metaThemeColor);
-        })()` }} />
+        })()`,
+          }}
+        />
         <link
           rel="preload"
           href="/fonts/SFMono-Regular.woff2"
@@ -82,6 +107,11 @@ export default function RootLayout({ children }) {
           crossOrigin="anonymous"
         />
         <link rel="icon" type="image/png" href="/icons/icon.png" />
+        <script
+          data-collect-dnt="true"
+          async
+          src="https://scripts.simpleanalyticscdn.com/latest.js"
+        ></script>
       </head>
       <body>
         <GradientOverlay />
