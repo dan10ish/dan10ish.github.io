@@ -313,7 +313,7 @@ const AboutContent = memo(() => {
               </div>
             </span>
           </div>
-          <div className="detail-item">
+          {/* <div className="detail-item">
             <span className="detail-label">
               <XIcon />
             </span>
@@ -330,7 +330,7 @@ const AboutContent = memo(() => {
                 </a>
               </div>
             </span>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
