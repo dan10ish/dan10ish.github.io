@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://danish.bio/robots.txt</loc><lastmod>2025-03-13T20:30:47.968Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-<url><loc>https://danish.bio/api/photos</loc><lastmod>2025-03-13T20:30:47.968Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-<url><loc>https://danish.bio/photos</loc><lastmod>2025-03-13T20:30:47.968Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-<url><loc>https://danish.bio</loc><lastmod>2025-03-13T20:30:47.968Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://danish.bio/api/photos</loc><lastmod>2025-03-14T00:26:06.456Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>https://danish.bio/robots.txt</loc><lastmod>2025-03-14T00:26:06.456Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>https://danish.bio</loc><lastmod>2025-03-14T00:26:06.456Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://danish.bio/photos</loc><lastmod>2025-03-14T00:26:06.456Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
 </urlset>
