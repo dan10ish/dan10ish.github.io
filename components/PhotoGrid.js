@@ -47,7 +47,7 @@ const PhotoCard = memo(({ photo, onClick }) => {
 
 const PhotoGrid = () => {
   const [loading, setLoading] = useState(true);
-  const [totalPhotos, setTotalPhotos] = useState(16);
+  const [totalPhotos, setTotalPhotos] = useState(24);
   const [loadedPhotos, setLoadedPhotos] = useState([]);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
