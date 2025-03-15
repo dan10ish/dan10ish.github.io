@@ -1016,6 +1016,14 @@ th {
   border-radius: 12px;
 }
 
+.photo-card.keyboard-selected .photo-container img {
+  transform: scale(1.02);
+}
+
+.photo-card.keyboard-selected {
+  outline: 2px solid var(--accent-color, var(--color-link));
+}
+
 .photo-container {
   position: relative;
   border-radius: 12px;
@@ -2336,5 +2344,4 @@ html.dark .status-pill.live {
 
 .mono-list .list-row.selected {
   background-color: rgba(var(--color-text-rgb), 0.03);
-  outline: 1px solid var(--accent-color);
 }

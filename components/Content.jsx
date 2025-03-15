@@ -589,6 +589,23 @@ const Content = memo(({ projects }) => {
     [router]
   );
 
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Tab' && !e.shiftKey) {
+        e.preventDefault();
+        const options = ["projects", "photos", "about"];
+        const currentIndex = options.indexOf(selectedOption);
+        const nextIndex = (currentIndex + 1) % options.length;
+        handleOptionChange(options[nextIndex]);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedOption, handleOptionChange]);
+
   const handleSort = useCallback((key) => {
     setSortConfig((current) => ({
       key: current.key === key && current.direction === "desc" ? null : key,

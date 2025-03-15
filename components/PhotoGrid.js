@@ -15,7 +15,7 @@ const Skeleton = memo(() => (
   </div>
 ));
 
-const PhotoCard = memo(({ photo, onClick }) => {
+const PhotoCard = memo(({ photo, onClick, isSelected }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   
   const handleImageLoad = useCallback(() => {
@@ -29,7 +29,7 @@ const PhotoCard = memo(({ photo, onClick }) => {
   }, [isLoaded, onClick, photo]);
   
   return (
-    <div className="photo-card">
+    <div className={`photo-card ${isSelected ? "keyboard-selected" : ""}`}>
       <div className="photo-container">
         <img 
           src={photo.src} 
@@ -51,6 +51,7 @@ const PhotoGrid = () => {
   const [loadedPhotos, setLoadedPhotos] = useState([]);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPhotoIndex, setSelectedPhotoIndex] = useState(null);
 
   const breakpointColumns = {
     default: 3,
@@ -84,6 +85,58 @@ const PhotoGrid = () => {
   const handleCloseModal = useCallback(() => {
     setIsModalOpen(false);
   }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (isModalOpen) {
+        if (e.key === 'Escape') {
+          handleCloseModal();
+        }
+        return;
+      }
+
+      if (loadedPhotos.length === 0) return;
+
+      switch (e.key) {
+        case 'ArrowRight':
+        case 'ArrowDown':
+          e.preventDefault();
+          setSelectedPhotoIndex(prev => 
+            prev === null ? 0 : Math.min(prev + 1, loadedPhotos.length - 1)
+          );
+          break;
+        case 'ArrowLeft':
+        case 'ArrowUp':
+          e.preventDefault();
+          setSelectedPhotoIndex(prev => 
+            prev === null ? loadedPhotos.length - 1 : Math.max(prev - 1, 0)
+          );
+          break;
+        case 'Enter':
+          if (selectedPhotoIndex !== null) {
+            handlePhotoClick(loadedPhotos[selectedPhotoIndex]);
+          }
+          break;
+        case 'Escape':
+          setSelectedPhotoIndex(null);
+          break;
+      }
+    };
+
+    const handleMouseMove = () => {
+      if (selectedPhotoIndex !== null) {
+        setSelectedPhotoIndex(null);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, [selectedPhotoIndex, loadedPhotos, isModalOpen, handleCloseModal, handlePhotoClick]);
 
   const processPhoto = useCallback(async (src, index) => {
     try {
@@ -194,6 +247,7 @@ const PhotoGrid = () => {
               key={`photo-${index}`} 
               photo={loadedPhotos[index]} 
               onClick={handlePhotoClick}
+              isSelected={selectedPhotoIndex === index}
             />
           ) : (
             <Skeleton key={`skeleton-${index}`} />
