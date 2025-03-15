@@ -29,6 +29,7 @@ import ScrollIndicator from "./ScrollIndicator";
 import { motion } from "framer-motion";
 import PhotoGrid from "./PhotoGrid";
 import ProjectModal from "./ProjectModal";
+import KeyboardIcon from "./KeyboardIcon";
 
 const LucideIcon = memo(({ icon: Icon, ...props }) => <Icon strokeWidth="var(--icon-stroke-width)" {...props} />);
 
@@ -682,6 +683,7 @@ const Content = memo(({ projects }) => {
           )}
         </div>
       </div>
+      {selectedOption === "projects" && <KeyboardIcon />}
     </div>
   );
 });
