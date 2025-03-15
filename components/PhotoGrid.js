@@ -57,7 +57,6 @@ const PhotoGrid = () => {
   const [selectedPhotoIndex, setSelectedPhotoIndex] = useState(null);
   const [isKeyboardNavigating, setIsKeyboardNavigating] = useState(false);
   
-  // Store previous scroll position to detect user-initiated scrolls
   const lastScrollPosition = useRef(0);
   const isAutoScrolling = useRef(false);
 
@@ -67,7 +66,6 @@ const PhotoGrid = () => {
     700: 2,
   };
 
-  // Define handlePhotoClick first so it can be used in dependencies below
   const handlePhotoClick = useCallback((photo) => {
     if (photo && photo.src) {
       const cachedImg = new Image();
@@ -105,7 +103,6 @@ const PhotoGrid = () => {
         return;
       }
 
-      // Enter keyboard navigation mode on first arrow key press
       if (!isKeyboardNavigating && 
           (e.key === 'ArrowDown' || e.key === 'ArrowUp' || 
            e.key === 'ArrowLeft' || e.key === 'ArrowRight')) {
@@ -139,7 +136,6 @@ const PhotoGrid = () => {
       }
     };
 
-    // Only track actual mouse clicks, not movements
     const handleMouseDown = () => {
       if (isKeyboardNavigating) {
         setIsKeyboardNavigating(false);
@@ -160,7 +156,6 @@ const PhotoGrid = () => {
   useEffect(() => {
     if (!isKeyboardNavigating || selectedPhotoIndex === null) return;
 
-    // Delay to ensure the DOM is updated
     const timer = setTimeout(() => {
       try {
         const selectedElement = document.querySelector('.photo-card.keyboard-selected');
@@ -168,45 +163,34 @@ const PhotoGrid = () => {
 
         const rect = selectedElement.getBoundingClientRect();
         const windowHeight = window.innerHeight;
+        const margin = 50;
         
-        // Check if element is fully visible
-        const isFullyVisible = (
-          rect.top >= 50 && // Add a small margin for header
-          rect.bottom <= windowHeight - 50 // Add small margin at bottom
-        );
+        if (rect.top >= margin && rect.bottom <= windowHeight - margin) return;
         
-        if (!isFullyVisible) {
-          isAutoScrolling.current = true;
-          lastScrollPosition.current = window.scrollY;
-          
-          // If element is mostly below the viewport, scroll it to 1/3 from top
-          // If element is mostly above the viewport, scroll it to 2/3 from top
-          let targetPosition;
-          
-          if (rect.top > windowHeight) {
-            // Element is below viewport
-            targetPosition = window.scrollY + rect.top - (windowHeight * 0.33);
-          } else if (rect.bottom < 0) {
-            // Element is above viewport
-            targetPosition = window.scrollY + rect.top - (windowHeight * 0.66);
-          } else if (rect.bottom > windowHeight) {
-            // Element is partially below
-            targetPosition = window.scrollY + (rect.bottom - windowHeight) + 50;
-          } else {
-            // Element is partially above
-            targetPosition = window.scrollY + rect.top - 50;
-          }
-          
-          window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
-          });
-          
-          // Reset auto-scrolling flag after animation completes
-          setTimeout(() => {
-            isAutoScrolling.current = false;
-          }, 300);
+        isAutoScrolling.current = true;
+        
+        const scrollY = window.scrollY;
+        let targetPosition;
+        
+        if (rect.top > windowHeight) {
+          // Far below viewport
+          targetPosition = scrollY + rect.top - windowHeight/3;
+        } else if (rect.bottom < 0) {
+          // Far above viewport
+          targetPosition = scrollY + rect.top - windowHeight*0.66;
+        } else {
+          // Partially visible
+          targetPosition = rect.bottom > windowHeight - margin 
+            ? scrollY + (rect.bottom - windowHeight) + margin 
+            : Math.max(0, scrollY + rect.top - margin);
         }
+        
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+        
+        setTimeout(() => isAutoScrolling.current = false, 300);
       } catch (error) {
         console.error('Error scrolling to selected photo:', error);
       }
