@@ -74,11 +74,17 @@ export default function ProjectModal({ project, isOpen, onClose }) {
   }, [isOpen, handleClickOutside]);
 
   useEffect(() => {
-    return () => {
-      document.body.classList.remove('body-modal-open');
-      document.removeEventListener("mousedown", handleClickOutside);
+    const handleKeyDown = (e) => {
+      if (isOpen && e.key === 'Escape') {
+        onClose();
+      }
     };
-  }, [handleClickOutside]);
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen, onClose]);
 
   if (!project) return null;
 

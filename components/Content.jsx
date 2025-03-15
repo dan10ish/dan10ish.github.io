@@ -362,8 +362,8 @@ const SortIcon = memo(({ columnKey, sortConfig }) => (
 
 SortIcon.displayName = "SortIcon";
 
-const ProjectListItem = memo(({ project, selectedTag, handleTagClick, handleProjectClick }) => (
-  <div className="list-row" onClick={() => handleProjectClick(project)}>
+const ProjectListItem = memo(({ project, selectedTag, handleTagClick, handleProjectClick, isSelected }) => (
+  <div className={`list-row ${isSelected ? "selected" : ""}`} onClick={() => handleProjectClick(project)}>
     <span className="title">
       <div>{project.title}</div>
       <div>
@@ -437,6 +437,7 @@ const ProjectList = memo(
     const tableRef = useRef(null);
     const [selectedProject, setSelectedProject] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedRowIndex, setSelectedRowIndex] = useState(null);
 
     const handleProjectClick = (project) => {
       setSelectedProject(project);
@@ -446,6 +447,56 @@ const ProjectList = memo(
     const handleCloseModal = () => {
       setIsModalOpen(false);
     };
+
+    useEffect(() => {
+      const handleKeyDown = (e) => {
+        if (isModalOpen) {
+          if (e.key === 'Escape') {
+            handleCloseModal();
+          }
+          return;
+        }
+
+        if (projects.length === 0) return;
+
+        switch (e.key) {
+          case 'ArrowDown':
+            e.preventDefault();
+            setSelectedRowIndex(prev => 
+              prev === null ? 0 : Math.min(prev + 1, projects.length - 1)
+            );
+            break;
+          case 'ArrowUp':
+            e.preventDefault();
+            setSelectedRowIndex(prev => 
+              prev === null ? projects.length - 1 : Math.max(prev - 1, 0)
+            );
+            break;
+          case 'Enter':
+            if (selectedRowIndex !== null) {
+              handleProjectClick(projects[selectedRowIndex]);
+            }
+            break;
+          case 'Escape':
+            setSelectedRowIndex(null);
+            break;
+        }
+      };
+
+      const handleMouseMove = () => {
+        if (selectedRowIndex !== null) {
+          setSelectedRowIndex(null);
+        }
+      };
+
+      document.addEventListener('keydown', handleKeyDown);
+      document.addEventListener('mousemove', handleMouseMove);
+
+      return () => {
+        document.removeEventListener('keydown', handleKeyDown);
+        document.removeEventListener('mousemove', handleMouseMove);
+      };
+    }, [selectedRowIndex, projects, isModalOpen]);
 
     return (
       <div className="mono-list project-list">
@@ -489,13 +540,14 @@ const ProjectList = memo(
           </span>
         </div>
         <div className="table-max" ref={tableRef}>
-          {projects.map((project) => (
+          {projects.map((project, index) => (
             <ProjectListItem
               key={project.title}
               project={project}
               selectedTag={selectedTag}
               handleTagClick={handleTagClick}
               handleProjectClick={handleProjectClick}
+              isSelected={index === selectedRowIndex}
             />
           ))}
         </div>

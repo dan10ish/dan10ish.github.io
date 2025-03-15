@@ -1397,10 +1397,6 @@ th {
     transform: scale(1.15);
   }
   
-  .project-icon-link.link-icon:hover {
-    color: var(--color-link-hover, var(--color-link));
-  }
-
   .project-link:not(.project-no-link):hover {
     opacity: 1;
     color: var(--color-link);
@@ -1524,6 +1520,11 @@ th {
   .action-link.disabled {
     opacity: 0.5;
     cursor: not-allowed;
+  }
+
+  .mono-list .list-row:hover {
+    background-color: rgba(var(--color-text-rgb), 0.03);
+    text-decoration: none;
   }
 }
 
@@ -2331,4 +2332,9 @@ html.dark .status-pill.live {
 
 .project-icon-link.link-icon {
   color: var(--color-link);
+}
+
+.mono-list .list-row.selected {
+  background-color: rgba(var(--color-text-rgb), 0.03);
+  outline: 1px solid var(--accent-color);
 }
