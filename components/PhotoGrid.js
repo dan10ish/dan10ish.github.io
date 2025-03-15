@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, memo, useCallback } from "react";
+import { useState, useEffect, memo, useCallback, useRef } from "react";
 import ExifReader from "exifreader";
 import Masonry from "react-masonry-css";
 import { photoMetadata } from "@/lib/photo-meta";
@@ -29,7 +29,10 @@ const PhotoCard = memo(({ photo, onClick, isSelected }) => {
   }, [isLoaded, onClick, photo]);
   
   return (
-    <div className={`photo-card ${isSelected ? "keyboard-selected" : ""}`}>
+    <div 
+      className={`photo-card ${isSelected ? "keyboard-selected" : ""}`}
+      data-id={photo.index}
+    >
       <div className="photo-container">
         <img 
           src={photo.src} 
@@ -52,6 +55,11 @@ const PhotoGrid = () => {
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPhotoIndex, setSelectedPhotoIndex] = useState(null);
+  const [isKeyboardNavigating, setIsKeyboardNavigating] = useState(false);
+  
+  // Store previous scroll position to detect user-initiated scrolls
+  const lastScrollPosition = useRef(0);
+  const isAutoScrolling = useRef(false);
 
   const breakpointColumns = {
     default: 3,
@@ -59,9 +67,9 @@ const PhotoGrid = () => {
     700: 2,
   };
 
+  // Define handlePhotoClick first so it can be used in dependencies below
   const handlePhotoClick = useCallback((photo) => {
     if (photo && photo.src) {
-      // Use cached image when possible
       const cachedImg = new Image();
       cachedImg.onload = () => {
         setSelectedPhoto(photo);
@@ -73,7 +81,6 @@ const PhotoGrid = () => {
         setIsModalOpen(true);
       };
       
-      // Check if image is already loaded in browser cache
       cachedImg.src = photo.src;
       if (cachedImg.complete) {
         setSelectedPhoto(photo);
@@ -86,7 +93,10 @@ const PhotoGrid = () => {
     setIsModalOpen(false);
   }, []);
 
+  // Handle keyboard navigation
   useEffect(() => {
+    if (!loadedPhotos.length) return;
+
     const handleKeyDown = (e) => {
       if (isModalOpen) {
         if (e.key === 'Escape') {
@@ -95,48 +105,115 @@ const PhotoGrid = () => {
         return;
       }
 
-      if (loadedPhotos.length === 0) return;
+      // Enter keyboard navigation mode on first arrow key press
+      if (!isKeyboardNavigating && 
+          (e.key === 'ArrowDown' || e.key === 'ArrowUp' || 
+           e.key === 'ArrowLeft' || e.key === 'ArrowRight')) {
+        setIsKeyboardNavigating(true);
+      }
 
+      let newIndex = selectedPhotoIndex;
+      
       switch (e.key) {
         case 'ArrowRight':
         case 'ArrowDown':
           e.preventDefault();
-          setSelectedPhotoIndex(prev => 
-            prev === null ? 0 : Math.min(prev + 1, loadedPhotos.length - 1)
-          );
+          newIndex = selectedPhotoIndex === null ? 0 : Math.min(selectedPhotoIndex + 1, loadedPhotos.length - 1);
+          setSelectedPhotoIndex(newIndex);
           break;
         case 'ArrowLeft':
         case 'ArrowUp':
           e.preventDefault();
-          setSelectedPhotoIndex(prev => 
-            prev === null ? loadedPhotos.length - 1 : Math.max(prev - 1, 0)
-          );
+          newIndex = selectedPhotoIndex === null ? loadedPhotos.length - 1 : Math.max(selectedPhotoIndex - 1, 0);
+          setSelectedPhotoIndex(newIndex);
           break;
         case 'Enter':
-          if (selectedPhotoIndex !== null) {
+          if (selectedPhotoIndex !== null && loadedPhotos[selectedPhotoIndex]) {
             handlePhotoClick(loadedPhotos[selectedPhotoIndex]);
           }
           break;
         case 'Escape':
+          setIsKeyboardNavigating(false);
           setSelectedPhotoIndex(null);
           break;
       }
     };
 
-    const handleMouseMove = () => {
-      if (selectedPhotoIndex !== null) {
+    // Only track actual mouse clicks, not movements
+    const handleMouseDown = () => {
+      if (isKeyboardNavigating) {
+        setIsKeyboardNavigating(false);
         setSelectedPhotoIndex(null);
       }
     };
 
     document.addEventListener('keydown', handleKeyDown);
-    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mousedown', handleMouseDown);
 
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
-      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mousedown', handleMouseDown);
     };
-  }, [selectedPhotoIndex, loadedPhotos, isModalOpen, handleCloseModal, handlePhotoClick]);
+  }, [selectedPhotoIndex, loadedPhotos, isModalOpen, handleCloseModal, handlePhotoClick, isKeyboardNavigating]);
+
+  // Scroll to selected photo when selectedPhotoIndex changes
+  useEffect(() => {
+    if (!isKeyboardNavigating || selectedPhotoIndex === null) return;
+
+    // Delay to ensure the DOM is updated
+    const timer = setTimeout(() => {
+      try {
+        const selectedElement = document.querySelector('.photo-card.keyboard-selected');
+        if (!selectedElement) return;
+
+        const rect = selectedElement.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        
+        // Check if element is fully visible
+        const isFullyVisible = (
+          rect.top >= 50 && // Add a small margin for header
+          rect.bottom <= windowHeight - 50 // Add small margin at bottom
+        );
+        
+        if (!isFullyVisible) {
+          isAutoScrolling.current = true;
+          lastScrollPosition.current = window.scrollY;
+          
+          // If element is mostly below the viewport, scroll it to 1/3 from top
+          // If element is mostly above the viewport, scroll it to 2/3 from top
+          let targetPosition;
+          
+          if (rect.top > windowHeight) {
+            // Element is below viewport
+            targetPosition = window.scrollY + rect.top - (windowHeight * 0.33);
+          } else if (rect.bottom < 0) {
+            // Element is above viewport
+            targetPosition = window.scrollY + rect.top - (windowHeight * 0.66);
+          } else if (rect.bottom > windowHeight) {
+            // Element is partially below
+            targetPosition = window.scrollY + (rect.bottom - windowHeight) + 50;
+          } else {
+            // Element is partially above
+            targetPosition = window.scrollY + rect.top - 50;
+          }
+          
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+          
+          // Reset auto-scrolling flag after animation completes
+          setTimeout(() => {
+            isAutoScrolling.current = false;
+          }, 300);
+        }
+      } catch (error) {
+        console.error('Error scrolling to selected photo:', error);
+      }
+    }, 50);
+    
+    return () => clearTimeout(timer);
+  }, [selectedPhotoIndex, isKeyboardNavigating]);
 
   const processPhoto = useCallback(async (src, index) => {
     try {
@@ -241,8 +318,8 @@ const PhotoGrid = () => {
         className="photo-grid"
         columnClassName="photo-grid-column"
       >
-        {[...Array(totalPhotos)].map((_, index) =>
-          loadedPhotos[index] ? (
+        {[...Array(totalPhotos)].map((_, index) => {
+          return loadedPhotos[index] ? (
             <PhotoCard 
               key={`photo-${index}`} 
               photo={loadedPhotos[index]} 
@@ -251,8 +328,8 @@ const PhotoGrid = () => {
             />
           ) : (
             <Skeleton key={`skeleton-${index}`} />
-          )
-        )}
+          );
+        })}
       </Masonry>
       <PhotoModal
         photo={selectedPhoto}
