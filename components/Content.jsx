@@ -55,125 +55,29 @@ const XIcon = memo((props) => (
 XIcon.displayName = "XIcon";
 
 const OptionSwitcher = memo(({ selectedOption, handleOptionChange }) => {
-  const containerRef = useRef(null);
-  const optionsContainerRef = useRef(null);
-  const [dimensions, setDimensions] = useState(null);
-  const [isInitialRender, setIsInitialRender] = useState(true);
-  const resizeObserverRef = useRef(null);
-
-  const updateDimensions = useCallback(() => {
-    if (!containerRef.current || !optionsContainerRef.current) {
-      setDimensions(null);
-      return;
-    }
-
-    const activeButton =
-      containerRef.current.querySelector(".option-btn.active");
-    if (!activeButton) return;
-
-    const rect = activeButton.getBoundingClientRect();
-    const containerRect = containerRef.current.getBoundingClientRect();
-
-    setDimensions({
-      width: rect.width,
-      left: rect.left - containerRect.left,
-      top: rect.top - containerRect.top + rect.height / 2,
-      height: rect.height,
-    });
-  }, []);
-
-  useEffect(() => {
-    const currentRef = containerRef.current;
-    const optionsRef = optionsContainerRef.current;
-    if (!currentRef || !optionsRef) return;
-
-    const handleResize = () => {
-      window.requestAnimationFrame(updateDimensions);
-    };
-    window.addEventListener("resize", handleResize);
-
-    resizeObserverRef.current = new ResizeObserver(() => {
-      window.requestAnimationFrame(updateDimensions);
-    });
-
-    resizeObserverRef.current.observe(currentRef);
-    resizeObserverRef.current.observe(optionsRef);
-    if (currentRef.parentElement) {
-      resizeObserverRef.current.observe(currentRef.parentElement);
-    }
-
-    setTimeout(updateDimensions, 50);
-    setTimeout(updateDimensions, 200);
-
-    return () => {
-      resizeObserverRef.current?.disconnect();
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [updateDimensions]);
-
-  useEffect(() => {
-    updateDimensions();
-    if (isInitialRender) {
-      const timer = setTimeout(() => {
-        setIsInitialRender(false);
-        updateDimensions();
-      }, 100);
-      return () => clearTimeout(timer);
-    }
-  }, [selectedOption, isInitialRender, updateDimensions]);
-
   return (
-    <div className="option-switcher" ref={containerRef}>
-      {dimensions && (
-        <motion.div
-          className="option-background"
-          initial={
-            isInitialRender
-              ? {
-                  width: dimensions.width,
-                  height: dimensions.height,
-                  x: dimensions.left,
-                  y: dimensions.top - dimensions.height / 2,
-                }
-              : false
-          }
-          animate={{
-            width: dimensions.width,
-            height: dimensions.height,
-            x: dimensions.left,
-            y: dimensions.top - dimensions.height / 2,
-          }}
-          transition={{ type: "spring", stiffness: 500, damping: 30 }}
-          layout
-        />
-      )}
-      <div className="option-left" ref={optionsContainerRef}>
+    <nav className="nav">
+      <div className="nav-container">
         <button
+          className={`nav-item${selectedOption === "projects" ? " active" : ""}`}
           onClick={() => handleOptionChange("projects")}
-          className={`option-btn${
-            selectedOption === "projects" ? " active" : ""
-          }`}
         >
-          Projects
+          projects
         </button>
         <button
+          className={`nav-item${selectedOption === "photos" ? " active" : ""}`}
           onClick={() => handleOptionChange("photos")}
-          className={`option-btn${
-            selectedOption === "photos" ? " active" : ""
-          }`}
         >
-          Photos
+          photos
         </button>
-      </div>
-      <div className="option-right">
         <button
+          className={`nav-item${selectedOption === "about" ? " active" : ""}`}
           onClick={() => handleOptionChange("about")}
-          className={`option-btn${selectedOption === "about" ? " active" : ""}`}
         >
-          About
+          about
         </button>
       </div>
-    </div>
+    </nav>
   );
 });
 

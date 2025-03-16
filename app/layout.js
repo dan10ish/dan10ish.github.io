@@ -93,7 +93,7 @@ export default function RootLayout({ children }) {
             __html: `(function(){
           const metaThemeColor = document.createElement('meta');
           metaThemeColor.name = 'theme-color';
-          metaThemeColor.content = document.documentElement.dataset.theme === 'dark' ? '#1c1c1c' : '#ffffff';
+          metaThemeColor.content = document.documentElement.dataset.theme === 'dark' ? '#141414' : '#ffffff';
           document.head.appendChild(metaThemeColor);
         })()`,
           }}
@@ -107,15 +107,20 @@ export default function RootLayout({ children }) {
           crossOrigin="anonymous"
         />
         <link rel="icon" type="image/png" href="/icons/icon.png" />
-        <script
-          data-collect-dnt="true"
-          async
-          src="https://scripts.simpleanalyticscdn.com/latest.js"
-        ></script>
+        <link 
+          rel="preconnect" 
+          href="https://scripts.simpleanalyticscdn.com"
+        />
       </head>
       <body>
         <GradientOverlay />
         <main className="container">{children}</main>
+        <script
+          data-collect-dnt="true"
+          async
+          defer
+          src="https://scripts.simpleanalyticscdn.com/latest.js"
+        ></script>
       </body>
     </html>
   );
