@@ -448,6 +448,7 @@ const ProjectList = memo(
     const [selectedProject, setSelectedProject] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedRowIndex, setSelectedRowIndex] = useState(null);
+    const isAutoScrolling = useRef(false);
 
     const handleProjectClick = (project) => {
       setSelectedProject(project);
@@ -507,6 +508,43 @@ const ProjectList = memo(
         document.removeEventListener('mousemove', handleMouseMove);
       };
     }, [selectedRowIndex, projects, isModalOpen]);
+
+    useEffect(() => {
+      if (selectedRowIndex === null) return;
+
+      const timer = setTimeout(() => {
+        try {
+          const selectedElement = document.querySelector('.list-row.selected');
+          if (!selectedElement) return;
+
+          const rect = selectedElement.getBoundingClientRect();
+          const containerRect = tableRef.current.getBoundingClientRect();
+          const margin = 20;
+
+          if (rect.top >= containerRect.top + margin && rect.bottom <= containerRect.bottom - margin) return;
+
+          isAutoScrolling.current = true;
+
+          let targetPosition;
+          if (rect.top < containerRect.top + margin) {
+            targetPosition = tableRef.current.scrollTop + (rect.top - containerRect.top) - margin;
+          } else {
+            targetPosition = tableRef.current.scrollTop + (rect.bottom - containerRect.bottom) + margin;
+          }
+
+          tableRef.current.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+
+          setTimeout(() => isAutoScrolling.current = false, 300);
+        } catch (error) {
+          console.error('Error scrolling to selected project:', error);
+        }
+      }, 50);
+
+      return () => clearTimeout(timer);
+    }, [selectedRowIndex]);
 
     return (
       <div className="mono-list project-list">
