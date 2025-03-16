@@ -693,7 +693,7 @@ const Content = memo(({ projects }) => {
           )}
         </div>
       </div>
-      {selectedOption === "projects" && <KeyboardIcon />}
+      {(selectedOption === "projects" || selectedOption === "photos") && <KeyboardIcon />}
     </div>
   );
 });
