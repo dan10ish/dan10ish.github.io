@@ -2237,19 +2237,19 @@ th {
 .keyboard-icon-button {
   position: fixed;
   bottom: 20px;
-  right: 20px;
+  left: 20px;
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: none;
-  border: none;
+  background: var(--color-bg);
+  border: 1px solid rgba(var(--color-text-rgb), 0.1);
   color: var(--color-text);
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   z-index: 100;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   transition: all 0.2s ease;
 }
 
@@ -2267,20 +2267,21 @@ th {
 .keyboard-icon-button:hover {
   background-color: rgba(var(--color-text-rgb), 0.05);
   transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
 }
 
 .keyboard-icon-button.active {
   background-color: rgba(var(--color-text-rgb), 0.05);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
 }
 
 .keyboard-shortcuts-overlay {
   position: fixed;
   bottom: 80px;
-  right: 20px;
+  left: 20px;
   z-index: 1000;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: flex-end;
 }
 

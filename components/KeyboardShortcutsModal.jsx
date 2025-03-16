@@ -21,7 +21,7 @@ const KeyboardShortcutsModal = ({ isOpen, onClose }) => {
         transition={{ type: "spring", stiffness: 500, damping: 30 }}
       >
         <div className="keyboard-shortcuts-header">
-          <h3>Keyboard Shortcuts</h3>
+          <h3>keyboard shortcuts</h3>
         </div>
         <div className="keyboard-shortcuts-content">
           <div className="shortcut-group">
@@ -34,22 +34,22 @@ const KeyboardShortcutsModal = ({ isOpen, onClose }) => {
                   <ShortcutKey className="arrow-key"><ArrowRight size={12} /></ShortcutKey>
                 </div>
               </div>
-              <span className="shortcut-description">Navigate projects & photos</span>
+              <span className="shortcut-description">navigate projects & photos</span>
             </div>
             
             <div className="shortcut-row">
-              <ShortcutKey className="text-key">Enter</ShortcutKey>
-              <span className="shortcut-description">Open selected item</span>
+              <ShortcutKey className="text-key">enter</ShortcutKey>
+              <span className="shortcut-description">open selected item</span>
             </div>
             
             <div className="shortcut-row">
-              <ShortcutKey className="text-key">Esc</ShortcutKey>
-              <span className="shortcut-description">Close or exit</span>
+              <ShortcutKey className="text-key">esc</ShortcutKey>
+              <span className="shortcut-description">close or exit</span>
             </div>
             
             <div className="shortcut-row">
-              <ShortcutKey className="text-key">Tab</ShortcutKey>
-              <span className="shortcut-description">Switch tabs</span>
+              <ShortcutKey className="text-key">tab</ShortcutKey>
+              <span className="shortcut-description">switch tabs</span>
             </div>
           </div>
         </div>

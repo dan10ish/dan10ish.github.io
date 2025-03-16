@@ -158,11 +158,11 @@ export default function ProjectModal({ project, isOpen, onClose }) {
 
               <div className="project-details">
                 <div className="project-title-container">
-                  <h2>{project.title}</h2>
+                  <h2>{project.title.toLowerCase()}</h2>
                 </div>
 
                 <div className="project-description">
-                  <p>{project.description}</p>
+                  <p>{project.description.toLowerCase()}</p>
                 </div>
 
                 <div className="tag-status-row">
@@ -173,7 +173,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
                     <div className={`status-pill ${project.status}`}>
                       <span className="status-dot"></span>
                       <span className="status-text">
-                        {project.status.charAt(0).toUpperCase() + project.status.slice(1)}
+                        {project.status.toLowerCase()}
                       </span>
                     </div>
                   </div>

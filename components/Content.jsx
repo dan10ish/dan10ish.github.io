@@ -138,17 +138,17 @@ const AboutContent = memo(() => {
   const details = [
     {
       label: <LucideIcon icon={GraduationCap} />,
-      content: "Mechatronics Engineer",
+      content: "mechatronics engineer",
     },
     {
       label: <LucideIcon icon={Hammer} />,
-      content: ["Machine Learning", "Robotics", "Finance"],
+      content: ["machine learning", "robotics", "finance"],
       isPills: true,
       className: "no-center-align",
     },
     {
       label: <LucideIcon icon={UserIcon} />,
-      content: "Generalist bridging code and hardware",
+      content: "generalist bridging code and hardware",
       className: "no-center-align",
     },
   ];
@@ -218,24 +218,6 @@ const AboutContent = memo(() => {
               </div>
             </span>
           </div>
-          {/* <div className="detail-item">
-            <span className="detail-label">
-              <XIcon />
-            </span>
-            <span className="detail-content">
-              <div className="about-social-link-wrapper">
-                <a
-                  href="https://x.com/dan10ish"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="about-social-link"
-                  aria-label="Visit my X profile"
-                >
-                  dan10ish
-                </a>
-              </div>
-            </span>
-          </div> */}
         </div>
       </div>
     </div>
@@ -270,7 +252,7 @@ SortIcon.displayName = "SortIcon";
 const ProjectListItem = memo(({ project, selectedTag, handleTagClick, handleProjectClick, isSelected }) => (
   <div className={`list-row ${isSelected ? "selected" : ""}`} onClick={() => handleProjectClick(project)}>
     <span className="title">
-      <div>{project.title}</div>
+      <div>{project.title.toLowerCase()}</div>
       <div>
         {project.highlight && (
           <span className="highlight-star" title="Highlighted Project">
@@ -336,7 +318,7 @@ const ProjectListItem = memo(({ project, selectedTag, handleTagClick, handleProj
       <span className="status-pill-container">
         <span className={`status-pill ${project.status}`}>
           <span className="status-text">
-            {project.status.charAt(0).toUpperCase() + project.status.slice(1)}
+            {project.status.toLowerCase()}
           </span>
         </span>
       </span>
