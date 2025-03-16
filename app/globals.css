@@ -376,7 +376,7 @@ th {
   }
   
   .nav-container {
-    gap: 2rem;
+    gap: 1.5rem;
     font-size: calc(var(--font-size-mobile) * 0.95);
   }
 }
@@ -822,7 +822,7 @@ th {
   scrollbar-gutter: stable;
   min-height: 200px;
   margin: 0;
-  padding-top: 5.75rem;
+  padding-top: 5.5rem;
 }
 
 .list-header,
