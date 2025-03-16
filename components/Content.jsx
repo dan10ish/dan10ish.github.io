@@ -425,8 +425,17 @@ const ProjectListItem = memo(({ project, selectedTag, handleTagClick, handleProj
         </span>
       ))}
     </span>
-    <span className="status-dot-container">
-      <span className={`table-status-dot ${project.status}`} title={project.status}></span>
+    <span className="status-header">
+      <span className="status-dot-container">
+        <span className={`table-status-dot ${project.status}`} title={project.status}></span>
+      </span>
+      <span className="status-pill-container">
+        <span className={`status-pill ${project.status}`}>
+          <span className="status-text">
+            {project.status.charAt(0).toUpperCase() + project.status.slice(1)}
+          </span>
+        </span>
+      </span>
     </span>
   </div>
 ));
@@ -527,16 +536,17 @@ const ProjectList = memo(
                 }}
               />
             ) : (
-              <SortIcon columnKey="tags" sortConfig={sortConfig} />
+              <>
+                tags <SortIcon columnKey="tags" sortConfig={sortConfig} />
+              </>
             )}
-            tags
           </span>
           <span 
-            className="status-dot-container" 
+            className="status-header" 
             onClick={() => handleSort("status")} 
             style={{ cursor: "pointer" }}
           >
-            <span className="table-status-dot"></span>
+            <span className="status-label">status</span> 
             <SortIcon columnKey="status" sortConfig={sortConfig} />
           </span>
         </div>
