@@ -157,9 +157,9 @@ const AboutContent = memo(() => {
           </div>
           
           <div className="contact-info">
-            <span className="email-wrapper"><a href={`mailto:${email}`} className="contact-link">{email}</a><EmailCopyButton email={email} /></span>
-            <span className="contact-wrapper"><a href="https://github.com/dan10ish" target="_blank" rel="noopener noreferrer" className="contact-link"><LucideIcon icon={Github} size={20} style={{ verticalAlign: 'middle', marginRight: '4px' }} /> @dan10ish</a></span>
-            <span className="contact-wrapper"><a href="https://x.com/dan10ish" target="_blank" rel="noopener noreferrer" className="contact-link"><XIcon width={20} height={20} style={{ verticalAlign: 'middle', marginRight: '4px' }} /> @dan10ish</a></span>
+            <span className="email-wrapper"><a href={`mailto:${email}`} target="_blank" rel="noopener noreferrer" className="contact-link"><LucideIcon icon={Mail} size={20} style={{ verticalAlign: 'middle', marginRight: '8px' }} />{email}</a><EmailCopyButton email={email} /></span>
+            <span className="contact-wrapper"><a href="https://github.com/dan10ish" target="_blank" rel="noopener noreferrer" className="contact-link"><LucideIcon icon={Github} size={20} style={{ verticalAlign: 'middle', marginRight: '8px' }} />dan10ish</a></span>
+            <span className="contact-wrapper"><a href="https://x.com/dan10ish" target="_blank" rel="noopener noreferrer" className="contact-link"><XIcon width={20} height={20} style={{ verticalAlign: 'middle', marginRight: '8px' }} />dan10ish</a></span>
           </div>
         </div>
       </div>

@@ -2080,8 +2080,8 @@ th {
 }
 
 .copy-icon {
-  width: 1rem;
-  height: 1rem;
+  width: 0.8rem;
+  height: 0.8rem;
   stroke: var(--code-color);
   opacity: 0.7;
 }
