@@ -149,7 +149,7 @@ const AboutContent = memo(() => {
           <span className="name">Danish Ansari</span>
           
           <div className="multilingual-greeting">
-            Hi, <span style={{ fontFamily: "'Noto Sans Devanagari', sans-serif" }}>नमस्ते</span>, <span style={{ fontFamily: "'Noto Sans Arabic', sans-serif" }}>مرحبا</span>, Jambo
+            Hi, <span style={{ fontFamily: "'Noto Sans Devanagari', sans-serif" }}>नमस्ते</span>, <span style={{ fontFamily: "'Noto Sans Arabic', sans-serif" }}>سلام</span>, Jambo
           </div>
           
           <div className="about-description">
