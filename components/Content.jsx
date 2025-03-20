@@ -135,92 +135,35 @@ const EmailCopyButton = memo(({ email }) => {
 EmailCopyButton.displayName = "EmailCopyButton";
 
 const AboutContent = memo(() => {
-  const details = [
-    {
-      label: <LucideIcon icon={GraduationCap} />,
-      content: "mechatronics engineer",
-    },
-    {
-      label: <LucideIcon icon={Hammer} />,
-      content: ["machine learning", "robotics", "finance"],
-      isPills: true,
-      className: "no-center-align",
-    },
-    {
-      label: <LucideIcon icon={UserIcon} />,
-      content: "generalist bridging code and hardware",
-      className: "no-center-align",
-    },
-  ];
-
   const email = "aansaridan@gmail.com";
+  const [copied, setCopied] = useState(false);
 
   return (
-    <div className="about-container">
-      <div className="about-content">
-        <span className="name">Danish Ansari</span>
-        <div className="about-details">
-          {details.map((detail, index) => (
-            <div
-              key={index}
-              className={`detail-item ${detail.className || ""}`}
-            >
-              <span className="detail-label">{detail.label}</span>
-              {detail.isPills ? (
-                <span className="detail-content pills-container">
-                  {detail.content.map((pill, i) => (
-                    <span key={i} className="skill-pill">
-                      {pill}
-                    </span>
-                  ))}
-                </span>
-              ) : (
-                <span className="detail-content">{detail.content}</span>
-              )}
-            </div>
-          ))}
-        </div>
-        <div className="about-details">
-          <div className="detail-item">
-            <span className="detail-label">
-              <LucideIcon icon={Github} />
-            </span>
-            <span className="detail-content">
-              <div className="about-social-link-wrapper">
-                <a
-                  href="https://github.com/dan10ish"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="about-social-link"
-                  aria-label="Visit my GitHub profile"
-                >
-                  dan10ish
-                </a>
-              </div>
-            </span>
+    <>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari&family=Noto+Sans+Arabic&display=swap"
+        rel="stylesheet"
+      />
+      <div className="about-container">
+        <div className="about-content">
+          <span className="name">Danish Ansari</span>
+          
+          <div className="multilingual-greeting">
+            Hi, <span style={{ fontFamily: "'Noto Sans Devanagari', sans-serif" }}>नमस्ते</span>, <span style={{ fontFamily: "'Noto Sans Arabic', sans-serif" }}>مرحبا</span>, Jambo
           </div>
-          <div className="detail-item">
-            <span className="detail-label">
-              <LucideIcon icon={Mail} />
-            </span>
-            <span className="detail-content">
-              <div className="about-email-container">
-                <a
-                  href={`mailto:${email}`}
-                  className="about-social-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Connect via email"
-                >
-                  {email}
-                </a>
-                <EmailCopyButton email={email} />
-              </div>
-            </span>
+          
+          <div className="about-description">
+            I'm a mechatronics engineer and generalist bridging code and hardware with interests in machine learning, robotics, and finance.
+          </div>
+          
+          <div className="contact-info">
+            <span className="email-wrapper"><a href={`mailto:${email}`} className="contact-link">{email}</a><EmailCopyButton email={email} /></span>
+            <span className="contact-wrapper"><a href="https://github.com/dan10ish" target="_blank" rel="noopener noreferrer" className="contact-link"><LucideIcon icon={Github} size={20} style={{ verticalAlign: 'middle', marginRight: '4px' }} /> @dan10ish</a></span>
+            <span className="contact-wrapper"><a href="https://x.com/dan10ish" target="_blank" rel="noopener noreferrer" className="contact-link"><XIcon width={20} height={20} style={{ verticalAlign: 'middle', marginRight: '4px' }} /> @dan10ish</a></span>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 });
 
