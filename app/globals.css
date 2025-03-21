@@ -454,6 +454,10 @@ th {
   margin: 0 2px;
 }
 
+.contact-info svg{
+  color: rgba(var(--color-text-rgb), 0.7);
+}
+
 .section-title {
   font-size: calc(var(--font-size-mobile) * 1.1);
   font-weight: 600;
