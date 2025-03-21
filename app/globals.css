@@ -363,7 +363,6 @@ th {
   font-family: var(--font-normal);
   font-size: var(--font-size-mobile);
   cursor: pointer;
-  transition: color 0.2s ease;
 }
 
 .nav-item.active {
