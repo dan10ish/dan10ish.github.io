@@ -10,23 +10,18 @@ import {
   useRef,
 } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import Link from "next/link";
 import {
   Globe,
   X,
   Star,
-  GraduationCap,
-  Hammer,
   ChevronUp,
   ChevronDown,
   Copy,
   Check,
   Github,
   Mail,
-  UserIcon,
 } from "lucide-react";
 import ScrollIndicator from "./ScrollIndicator";
-import { motion } from "framer-motion";
 import PhotoGrid from "./PhotoGrid";
 import ProjectModal from "./ProjectModal";
 import KeyboardIcon from "./KeyboardIcon";
@@ -632,9 +627,7 @@ const Content = memo(({ projects }) => {
           )}
         </div>
       </div>
-      {(selectedOption === "projects" || selectedOption === "photos") && (
-        <KeyboardIcon />
-      )}
+      <KeyboardIcon />
     </div>
   );
 });
