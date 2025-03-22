@@ -31,7 +31,9 @@ import PhotoGrid from "./PhotoGrid";
 import ProjectModal from "./ProjectModal";
 import KeyboardIcon from "./KeyboardIcon";
 
-const LucideIcon = memo(({ icon: Icon, ...props }) => <Icon strokeWidth="var(--icon-stroke-width)" {...props} />);
+const LucideIcon = memo(({ icon: Icon, ...props }) => (
+  <Icon strokeWidth="var(--icon-stroke-width)" {...props} />
+));
 
 LucideIcon.displayName = "LucideIcon";
 
@@ -147,19 +149,71 @@ const AboutContent = memo(() => {
       <div className="about-container">
         <div className="about-content">
           <span className="name">Danish Ansari</span>
-          
+
           <div className="multilingual-greeting">
-            Hi, <span style={{ fontFamily: "'Noto Sans Devanagari', sans-serif" }}>नमस्ते</span>, <span style={{ fontFamily: "'Noto Sans Arabic', sans-serif" }}>سلام</span>, Jambo
+            Hi,{" "}
+            <span style={{ fontFamily: "'Noto Sans Devanagari', sans-serif" }}>
+              नमस्ते
+            </span>
+            ,{" "}
+            <span style={{ fontFamily: "'Noto Sans Arabic', sans-serif" }}>
+              سلام
+            </span>
+            , Jambo
           </div>
-          
+
           <div className="about-description">
-            I'm a mechatronics engineer and generalist bridging code and hardware with interests in machine learning, robotics, and finance.
+            I'm a mechatronics engineer and generalist bridging code and
+            hardware with interests in machine learning, robotics, and finance.
           </div>
-          
+
           <div className="contact-info">
-            <span className="email-wrapper"><a href={`mailto:${email}`} target="_blank" rel="noopener noreferrer" className="contact-link"><LucideIcon icon={Mail} size={20} style={{ verticalAlign: 'middle', marginRight: '8px' }} />{email}</a><EmailCopyButton email={email} /></span>
-            <span className="contact-wrapper"><a href="https://github.com/dan10ish" target="_blank" rel="noopener noreferrer" className="contact-link"><LucideIcon icon={Github} size={20} style={{ verticalAlign: 'middle', marginRight: '8px' }} />dan10ish</a></span>
-            <span className="contact-wrapper"><a href="https://x.com/dan10ish" target="_blank" rel="noopener noreferrer" className="contact-link"><XIcon width={20} height={20} style={{ verticalAlign: 'middle', marginRight: '8px' }} />dan10ish</a></span>
+            <span className="email-wrapper">
+              <a
+                href={`mailto:${email}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact-link"
+              >
+                <LucideIcon
+                  icon={Mail}
+                  size={20}
+                  style={{ verticalAlign: "middle", marginRight: "8px" }}
+                />
+                {email}
+              </a>
+              <EmailCopyButton email={email} />
+            </span>
+            <span className="contact-wrapper">
+              <a
+                href="https://github.com/dan10ish"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact-link"
+              >
+                <LucideIcon
+                  icon={Github}
+                  size={20}
+                  style={{ verticalAlign: "middle", marginRight: "8px" }}
+                />
+                dan10ish
+              </a>
+            </span>
+            <span className="contact-wrapper">
+              <a
+                href="https://x.com/dan10ish"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact-link"
+              >
+                <XIcon
+                  width={20}
+                  height={20}
+                  style={{ verticalAlign: "middle", marginRight: "8px" }}
+                />
+                dan10ish
+              </a>
+            </span>
           </div>
         </div>
       </div>
@@ -192,82 +246,94 @@ const SortIcon = memo(({ columnKey, sortConfig }) => (
 
 SortIcon.displayName = "SortIcon";
 
-const ProjectListItem = memo(({ project, selectedTag, handleTagClick, handleProjectClick, isSelected }) => (
-  <div className={`list-row ${isSelected ? "selected" : ""}`} onClick={() => handleProjectClick(project)}>
-    <span className="title">
-      <div>{project.title.toLowerCase()}</div>
-      <div>
-        {project.highlight && (
-          <span className="highlight-star" title="Highlighted Project">
-            <LucideIcon icon={Star} size={14} fill="currentColor" />
-          </span>
-        )}
-      </div>
-    </span>
-    <span className="actions">
-      <a
-        href={project.sourceLink || "#"}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={`action-link github ${
-          !project.sourceLink ? "disabled" : ""
-        }`}
-        onClick={(e) => {
-          e.stopPropagation();
-          if (!project.sourceLink) {
-            e.preventDefault();
-          }
-        }}
-        aria-label={`View source code for ${project.title} on GitHub`}
-      >
-        <LucideIcon icon={Github} size={20} />
-      </a>
-      <a
-        href={project.projectLink || "#"}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={`action-link globe ${
-          !project.projectLink ? "disabled" : ""
-        }`}
-        onClick={(e) => {
-          e.stopPropagation();
-          if (!project.projectLink) {
-            e.preventDefault();
-          }
-        }}
-        aria-label={`Visit live website for ${project.title}`}
-      >
-        <LucideIcon icon={Globe} size={20} />
-      </a>
-    </span>
-    <span className="tags">
-      {project.tags.map((tag) => (
-        <span
-          key={tag}
-          className={`tag ${selectedTag === tag ? "selected" : ""}`}
+const ProjectListItem = memo(
+  ({
+    project,
+    selectedTag,
+    handleTagClick,
+    handleProjectClick,
+    isSelected,
+  }) => (
+    <div
+      className={`list-row ${isSelected ? "selected" : ""}`}
+      onClick={() => handleProjectClick(project)}
+    >
+      <span className="title">
+        <div>{project.title.toLowerCase()}</div>
+        <div>
+          {project.highlight && (
+            <span className="highlight-star" title="Highlighted Project">
+              <LucideIcon icon={Star} size={14} fill="currentColor" />
+            </span>
+          )}
+        </div>
+      </span>
+      <span className="actions">
+        <a
+          href={project.sourceLink || "#"}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`action-link github ${
+            !project.sourceLink ? "disabled" : ""
+          }`}
           onClick={(e) => {
             e.stopPropagation();
-            handleTagClick(tag, e);
+            if (!project.sourceLink) {
+              e.preventDefault();
+            }
           }}
+          aria-label={`View source code for ${project.title} on GitHub`}
         >
-          {tag}
-        </span>
-      ))}
-    </span>
-    <span className="status-header">
-      <span className="status-dot-container">
-        <span className={`table-status-dot ${project.status}`} title={project.status}></span>
+          <LucideIcon icon={Github} size={20} />
+        </a>
+        <a
+          href={project.projectLink || "#"}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`action-link globe ${
+            !project.projectLink ? "disabled" : ""
+          }`}
+          onClick={(e) => {
+            e.stopPropagation();
+            if (!project.projectLink) {
+              e.preventDefault();
+            }
+          }}
+          aria-label={`Visit live website for ${project.title}`}
+        >
+          <LucideIcon icon={Globe} size={20} />
+        </a>
       </span>
-      <span className="status-pill-container">
-        <span className={`status-pill ${project.status}`}>
-          <span className="status-text">
-            {project.status.toLowerCase()}
+      <span className="tags">
+        {project.tags.map((tag) => (
+          <span
+            key={tag}
+            className={`tag ${selectedTag === tag ? "selected" : ""}`}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleTagClick(tag, e);
+            }}
+          >
+            {tag}
+          </span>
+        ))}
+      </span>
+      <span className="status-header">
+        <span className="status-dot-container">
+          <span
+            className={`table-status-dot ${project.status}`}
+            title={project.status}
+          ></span>
+        </span>
+        <span className="status-pill-container">
+          <span className={`status-pill ${project.status}`}>
+            <span className="status-text">{project.status.toLowerCase()}</span>
           </span>
         </span>
       </span>
-    </span>
-  </div>
-));
+    </div>
+  ),
+);
 
 ProjectListItem.displayName = "ProjectListItem";
 
@@ -291,7 +357,7 @@ const ProjectList = memo(
     useEffect(() => {
       const handleKeyDown = (e) => {
         if (isModalOpen) {
-          if (e.key === 'Escape') {
+          if (e.key === "Escape") {
             handleCloseModal();
           }
           return;
@@ -300,24 +366,24 @@ const ProjectList = memo(
         if (projects.length === 0) return;
 
         switch (e.key) {
-          case 'ArrowDown':
+          case "ArrowDown":
             e.preventDefault();
-            setSelectedRowIndex(prev => 
-              prev === null ? 0 : Math.min(prev + 1, projects.length - 1)
+            setSelectedRowIndex((prev) =>
+              prev === null ? 0 : Math.min(prev + 1, projects.length - 1),
             );
             break;
-          case 'ArrowUp':
+          case "ArrowUp":
             e.preventDefault();
-            setSelectedRowIndex(prev => 
-              prev === null ? projects.length - 1 : Math.max(prev - 1, 0)
+            setSelectedRowIndex((prev) =>
+              prev === null ? projects.length - 1 : Math.max(prev - 1, 0),
             );
             break;
-          case 'Enter':
+          case "Enter":
             if (selectedRowIndex !== null) {
               handleProjectClick(projects[selectedRowIndex]);
             }
             break;
-          case 'Escape':
+          case "Escape":
             setSelectedRowIndex(null);
             break;
         }
@@ -329,12 +395,12 @@ const ProjectList = memo(
         }
       };
 
-      document.addEventListener('keydown', handleKeyDown);
-      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener("keydown", handleKeyDown);
+      document.addEventListener("mousemove", handleMouseMove);
 
       return () => {
-        document.removeEventListener('keydown', handleKeyDown);
-        document.removeEventListener('mousemove', handleMouseMove);
+        document.removeEventListener("keydown", handleKeyDown);
+        document.removeEventListener("mousemove", handleMouseMove);
       };
     }, [selectedRowIndex, projects, isModalOpen]);
 
@@ -343,32 +409,42 @@ const ProjectList = memo(
 
       const timer = setTimeout(() => {
         try {
-          const selectedElement = document.querySelector('.list-row.selected');
+          const selectedElement = document.querySelector(".list-row.selected");
           if (!selectedElement) return;
 
           const rect = selectedElement.getBoundingClientRect();
           const containerRect = tableRef.current.getBoundingClientRect();
           const margin = 20;
 
-          if (rect.top >= containerRect.top + margin && rect.bottom <= containerRect.bottom - margin) return;
+          if (
+            rect.top >= containerRect.top + margin &&
+            rect.bottom <= containerRect.bottom - margin
+          )
+            return;
 
           isAutoScrolling.current = true;
 
           let targetPosition;
           if (rect.top < containerRect.top + margin) {
-            targetPosition = tableRef.current.scrollTop + (rect.top - containerRect.top) - margin;
+            targetPosition =
+              tableRef.current.scrollTop +
+              (rect.top - containerRect.top) -
+              margin;
           } else {
-            targetPosition = tableRef.current.scrollTop + (rect.bottom - containerRect.bottom) + margin;
+            targetPosition =
+              tableRef.current.scrollTop +
+              (rect.bottom - containerRect.bottom) +
+              margin;
           }
 
           tableRef.current.scrollTo({
             top: targetPosition,
-            behavior: 'smooth'
+            behavior: "smooth",
           });
 
-          setTimeout(() => isAutoScrolling.current = false, 300);
+          setTimeout(() => (isAutoScrolling.current = false), 300);
         } catch (error) {
-          console.error('Error scrolling to selected project:', error);
+          console.error("Error scrolling to selected project:", error);
         }
       }, 50);
 
@@ -408,12 +484,8 @@ const ProjectList = memo(
               </>
             )}
           </span>
-          <span 
-            className="status-header" 
-            onClick={() => handleSort("status")} 
-            style={{ cursor: "pointer" }}
-          >
-            <span className="status-label">status</span> 
+          <span className="status-header" onClick={() => handleSort("status")}>
+            <span className="status-label">status</span>
             <SortIcon columnKey="status" sortConfig={sortConfig} />
           </span>
         </div>
@@ -437,7 +509,7 @@ const ProjectList = memo(
         />
       </div>
     );
-  }
+  },
 );
 
 ProjectList.displayName = "ProjectList";
@@ -464,12 +536,12 @@ const Content = memo(({ projects }) => {
       setSelectedOption(option);
       router.push(`/?tab=${option}`, { scroll: false });
     },
-    [router]
+    [router],
   );
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === 'Tab' && !e.shiftKey) {
+      if (e.key === "Tab" && !e.shiftKey) {
         e.preventDefault();
         const options = ["projects", "photos", "about"];
         const currentIndex = options.indexOf(selectedOption);
@@ -478,9 +550,9 @@ const Content = memo(({ projects }) => {
       }
     };
 
-    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener("keydown", handleKeyDown);
     };
   }, [selectedOption, handleOptionChange]);
 
@@ -505,7 +577,7 @@ const Content = memo(({ projects }) => {
     let filtered = projects;
     if (selectedTag) {
       filtered = projects.filter((project) =>
-        project.tags.includes(selectedTag)
+        project.tags.includes(selectedTag),
       );
     }
     if (sortConfig?.key === "title") {
@@ -560,7 +632,9 @@ const Content = memo(({ projects }) => {
           )}
         </div>
       </div>
-      {(selectedOption === "projects" || selectedOption === "photos") && <KeyboardIcon />}
+      {(selectedOption === "projects" || selectedOption === "photos") && (
+        <KeyboardIcon />
+      )}
     </div>
   );
 });

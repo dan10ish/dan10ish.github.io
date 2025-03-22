@@ -115,7 +115,7 @@ html {
 }
 
 [data-theme="dark"] {
-  --gradient-start: rgba(20,20,20, 0);
+  --gradient-start: rgba(20, 20, 20, 0);
   --gradient-end: rgba(20, 20, 20, 0.9);
   --color-bg: #141414;
   --color-text: #fafafa;
@@ -134,7 +134,7 @@ html {
   --syntax-symbol: #60a5fa;
   --syntax-builtin: #c084fc;
   --syntax-meta: #94a3b8;
-  --color-bg-rgb: 20,20,20;
+  --color-bg-rgb: 20, 20, 20;
   --color-text-rgb: 250, 250, 250;
   --github-border: rgba(250, 250, 250, 0.1);
   --github-hover-bg: #27272a;
@@ -374,7 +374,7 @@ th {
   .nav {
     padding: 1rem 1.5rem;
   }
-  
+
   .nav-container {
     gap: 1.5rem;
     font-size: calc(var(--font-size-mobile) * 0.95);
@@ -455,7 +455,7 @@ th {
   margin: 0 2px;
 }
 
-.contact-info svg{
+.contact-info svg {
   color: rgba(var(--color-text-rgb), 0.7);
 }
 
@@ -845,18 +845,18 @@ th {
 
   .project-list .list-header,
   .project-list .list-row {
-    grid-template-columns: minmax(0, 1fr) 60px 80px 8px !important;
+    grid-template-columns: minmax(0, 1fr) 80px 60px !important;
     gap: 0.25rem !important;
   }
-  
+
   .status-pill-container {
     display: none !important;
   }
-  
+
   .status-label {
     display: none !important;
   }
-  
+
   .status-dot-container {
     display: flex !important;
   }
@@ -864,7 +864,7 @@ th {
   .action-link {
     padding: 0.15rem;
   }
-  
+
   .project-list .list-row .actions {
     gap: 0rem;
   }
@@ -966,7 +966,9 @@ th {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
 }
 
 .home-button,
@@ -1422,7 +1424,7 @@ th {
     color: rgba(var(--color-text-rgb), 1);
     transform: scale(1.15);
   }
-  
+
   .project-link:not(.project-no-link):hover {
     opacity: 1;
     color: var(--color-link);
@@ -1470,7 +1472,7 @@ th {
     text-decoration: none;
   }
 
-  .list-row:hover .table-status-dot{
+  .list-row:hover .table-status-dot {
     transform: scale(1.15);
   }
 
@@ -2231,14 +2233,14 @@ th {
     display: inline;
     margin-right: 2px;
   }
-  
+
   .status-pill-container {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     flex-shrink: 0 !important;
   }
-  
+
   .status-dot-container {
     display: none !important;
   }
@@ -2246,7 +2248,11 @@ th {
 
 @media (max-width: 768px) {
   .status-dot-container {
-    display: flex !important;
+    display: none !important;
+  }
+
+  .status-header {
+    display: none !important;
   }
 }
 
@@ -2482,13 +2488,6 @@ th {
   box-shadow: 0 0 4px rgba(232, 170, 0, 0.7);
 }
 
-.status-header {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  flex-shrink: 0 !important;
-}
-
 .status-label {
   display: none;
 }
@@ -2497,22 +2496,16 @@ th {
   .status-label {
     display: inline;
   }
-  
+
   .status-pill-container {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     flex-shrink: 0 !important;
   }
-  
+
   .status-dot-container {
     display: none !important;
-  }
-}
-
-@media (max-width: 768px) {
-  .status-dot-container {
-    display: flex !important;
   }
 }
 
