@@ -59,19 +59,19 @@ const OptionSwitcher = memo(({ selectedOption, handleOptionChange }) => {
           className={`nav-item${selectedOption === "projects" ? " active" : ""}`}
           onClick={() => handleOptionChange("projects")}
         >
-          projects
+          Builds
         </button>
         <button
           className={`nav-item${selectedOption === "photos" ? " active" : ""}`}
           onClick={() => handleOptionChange("photos")}
         >
-          photos
+          Photos
         </button>
         <button
           className={`nav-item${selectedOption === "about" ? " active" : ""}`}
           onClick={() => handleOptionChange("about")}
         >
-          about
+          Info
         </button>
       </div>
     </nav>
