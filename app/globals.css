@@ -316,14 +316,13 @@ body {
   font-size: calc(var(--font-size-mobile) * 0.95);
   line-height: 1.5;
   text-align: left;
-  color: var(--color-text);
+  color: rgba(var(--color-text-rgb), 0.7);
 }
 
 .contact-info {
-  font-size: calc(var(--font-size-mobile) * 0.95);
   display: flex;
   flex-direction: row;
-  gap: 1rem;
+  gap: 0.5rem;
   align-items: center;
   color: rgba(var(--color-text-rgb), 1);
 }

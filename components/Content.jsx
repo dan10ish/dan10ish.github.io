@@ -19,6 +19,7 @@ import {
   Check,
   Github,
   Mail,
+  Instagram,
 } from "lucide-react";
 import ScrollIndicator from "./ScrollIndicator";
 import ProjectModal from "./ProjectModal";
@@ -97,6 +98,18 @@ const AboutContent = memo(() => {
                 <XIcon
                   width={20}
                   height={20}
+                  style={{ verticalAlign: "middle", marginRight: "8px" }}
+                />
+              </a>
+              <a
+                href="https://instagram.com/dan10ish"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact-link"
+              >
+                <LucideIcon
+                  icon={Instagram}
+                  size={19}
                   style={{ verticalAlign: "middle", marginRight: "8px" }}
                 />
               </a>
