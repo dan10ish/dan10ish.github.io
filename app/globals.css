@@ -303,8 +303,13 @@ body {
   font-size: calc(var(--font-size-mobile) * 1.2);
   font-weight: 700;
   display: flex;
-  padding-bottom: 0.5rem;
   color: var(--color-text);
+}
+
+.about-header {
+  display: flex;
+  align-items: center !important;
+  justify-content: space-between;
 }
 
 .about-description {
@@ -316,40 +321,25 @@ body {
 
 .contact-info {
   font-size: calc(var(--font-size-mobile) * 0.95);
-  line-height: 1.5;
   display: flex;
   flex-direction: row;
   gap: 1rem;
-  flex-wrap: wrap;
-  justify-content: center;
+  align-items: center;
   color: rgba(var(--color-text-rgb), 1);
 }
 
 .contact-link {
-  color: var(--color-link);
   text-decoration: none;
   display: flex;
   align-items: center;
-}
-
-.contact-info .email-wrapper {
-  display: inline-flex;
-  align-items: center;
-  white-space: nowrap;
-  gap: 0.25rem;
-}
-
-.contact-info .copy-code-button {
-  transform: translateY(1px);
-  margin: 0 2px;
 }
 
 .contact-info svg {
   color: rgba(var(--color-text-rgb), 0.7);
 }
 
-.mono-list{
-  margin-top: 3rem;
+.mono-list {
+  margin-top: 2rem;
 }
 
 .table-max {
@@ -908,6 +898,11 @@ body {
     text-decoration: underline;
   }
 
+  .contact-info a:hover svg{
+    color: var(--color-link);
+    transform: scale(1.1);
+  }
+
   .project-icon-link:hover {
     color: rgba(var(--color-text-rgb), 1);
     transform: scale(1.15);
@@ -995,13 +990,13 @@ body {
 /* Media Queries */
 @media (min-height: 480px) {
   .table-max {
-    height: 20.9rem;
+    height: 23.9rem;
   }
 }
 
 @media (min-height: 768px) {
   .table-max {
-    height: 32.9rem;
+    height: 35.9rem;
   }
 }
 
@@ -1016,7 +1011,7 @@ body {
 
   .contact-info {
     flex-direction: row;
-    gap: 2rem;
+    gap: 1rem;
     flex-wrap: wrap;
     text-align: left;
     color: rgba(var(--color-text-rgb), 1);

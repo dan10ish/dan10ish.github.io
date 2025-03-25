@@ -9,7 +9,6 @@ import {
   Suspense,
   useRef,
 } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
 import {
   Globe,
   X,
@@ -50,60 +49,8 @@ const XIcon = memo((props) => (
 
 XIcon.displayName = "XIcon";
 
-const EmailCopyButton = memo(({ email }) => {
-  const [copied, setCopied] = useState(false);
-
-  const copyToClipboard = useCallback(async () => {
-    if (!email) return;
-
-    try {
-      await navigator.clipboard.writeText(email);
-      setCopied(true);
-      setTimeout(() => {
-        setCopied(false);
-      }, 2000);
-    } catch (err) {
-      const textArea = document.createElement("textarea");
-      textArea.value = email;
-      textArea.style.position = "fixed";
-      textArea.style.left = "-999999px";
-      textArea.style.top = "-999999px";
-      textArea.style.opacity = "0";
-      textArea.style.pointerEvents = "none";
-      document.body.appendChild(textArea);
-      textArea.select();
-      try {
-        document.execCommand("copy");
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-      } finally {
-        document.body.removeChild(textArea);
-      }
-    }
-  }, [email]);
-
-  return (
-    <button
-      type="button"
-      onClick={copyToClipboard}
-      className="copy-code-button"
-      aria-label={copied ? "Copied!" : "Copy email"}
-      title={copied ? "Copied!" : "Copy email"}
-    >
-      {copied ? (
-        <Check className="copy-icon" strokeWidth={2.5} />
-      ) : (
-        <Copy className="copy-icon" strokeWidth={2} />
-      )}
-    </button>
-  );
-});
-
-EmailCopyButton.displayName = "EmailCopyButton";
-
 const AboutContent = memo(() => {
   const email = "aansaridan@gmail.com";
-  const [copied, setCopied] = useState(false);
 
   return (
     <>
@@ -113,15 +60,10 @@ const AboutContent = memo(() => {
       />
       <div className="about-container">
         <div className="about-content">
-          <span className="name">Danish Ansari</span>
+          <div className="about-header">
+            <span className="name">Danish Ansari</span>
 
-          <div className="about-description">
-            Mechatronics engineer and generalist bridging code and hardware with
-            interests in machine learning, robotics, and finance.
-          </div>
-
-          <div className="contact-info">
-            <span className="email-wrapper">
+            <div className="contact-info">
               <a
                 href={`mailto:${email}`}
                 target="_blank"
@@ -133,11 +75,7 @@ const AboutContent = memo(() => {
                   size={20}
                   style={{ verticalAlign: "middle", marginRight: "8px" }}
                 />
-                Email
               </a>
-              <EmailCopyButton email={email} />
-            </span>
-            <span className="contact-wrapper">
               <a
                 href="https://github.com/dan10ish"
                 target="_blank"
@@ -146,13 +84,10 @@ const AboutContent = memo(() => {
               >
                 <LucideIcon
                   icon={Github}
-                  size={20}
+                  size={19}
                   style={{ verticalAlign: "middle", marginRight: "8px" }}
                 />
-                dan10ish
               </a>
-            </span>
-            <span className="contact-wrapper">
               <a
                 href="https://x.com/dan10ish"
                 target="_blank"
@@ -164,9 +99,12 @@ const AboutContent = memo(() => {
                   height={20}
                   style={{ verticalAlign: "middle", marginRight: "8px" }}
                 />
-                dan10ish
               </a>
-            </span>
+            </div>
+          </div>
+          <div className="about-description">
+            Mechatronics engineer and generalist bridging code and hardware,
+            with interests in machine learning, robotics, and finance.
           </div>
         </div>
       </div>
