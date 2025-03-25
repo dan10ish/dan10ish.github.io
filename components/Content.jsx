@@ -22,7 +22,6 @@ import {
   Mail,
 } from "lucide-react";
 import ScrollIndicator from "./ScrollIndicator";
-import PhotoGrid from "./PhotoGrid";
 import ProjectModal from "./ProjectModal";
 import KeyboardIcon from "./KeyboardIcon";
 
@@ -50,35 +49,6 @@ const XIcon = memo((props) => (
 ));
 
 XIcon.displayName = "XIcon";
-
-const OptionSwitcher = memo(({ selectedOption, handleOptionChange }) => {
-  return (
-    <nav className="nav">
-      <div className="nav-container">
-        <button
-          className={`nav-item${selectedOption === "projects" ? " active" : ""}`}
-          onClick={() => handleOptionChange("projects")}
-        >
-          Builds
-        </button>
-        <button
-          className={`nav-item${selectedOption === "photos" ? " active" : ""}`}
-          onClick={() => handleOptionChange("photos")}
-        >
-          Photos
-        </button>
-        <button
-          className={`nav-item${selectedOption === "about" ? " active" : ""}`}
-          onClick={() => handleOptionChange("about")}
-        >
-          Info
-        </button>
-      </div>
-    </nav>
-  );
-});
-
-OptionSwitcher.displayName = "OptionSwitcher";
 
 const EmailCopyButton = memo(({ email }) => {
   const [copied, setCopied] = useState(false);
@@ -145,21 +115,9 @@ const AboutContent = memo(() => {
         <div className="about-content">
           <span className="name">Danish Ansari</span>
 
-          <div className="multilingual-greeting">
-            Hi,{" "}
-            <span style={{ fontFamily: "'Noto Sans Devanagari', sans-serif" }}>
-              नमस्ते
-            </span>
-            ,{" "}
-            <span style={{ fontFamily: "'Noto Sans Arabic', sans-serif" }}>
-              سلام
-            </span>
-            , Jambo
-          </div>
-
           <div className="about-description">
-            I'm a mechatronics engineer and generalist bridging code and
-            hardware with interests in machine learning, robotics, and finance.
+            Mechatronics engineer and generalist bridging code and hardware with
+            interests in machine learning, robotics, and finance.
           </div>
 
           <div className="contact-info">
@@ -175,7 +133,7 @@ const AboutContent = memo(() => {
                   size={20}
                   style={{ verticalAlign: "middle", marginRight: "8px" }}
                 />
-                {email}
+                Email
               </a>
               <EmailCopyButton email={email} />
             </span>
@@ -510,46 +468,9 @@ const ProjectList = memo(
 ProjectList.displayName = "ProjectList";
 
 const Content = memo(({ projects }) => {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const initialTab = searchParams.get("tab") || "projects";
-  const [selectedOption, setSelectedOption] = useState(initialTab);
   const [sortConfig, setSortConfig] = useState({ key: null, direction: null });
   const [selectedTag, setSelectedTag] = useState(null);
   const contentRef = useRef(null);
-
-  useEffect(() => {
-    if (selectedOption === "photos") {
-      setTimeout(() => {
-        window.dispatchEvent(new Event("resize"));
-      }, 100);
-    }
-  }, [selectedOption]);
-
-  const handleOptionChange = useCallback(
-    (option) => {
-      setSelectedOption(option);
-      router.push(`/?tab=${option}`, { scroll: false });
-    },
-    [router],
-  );
-
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === "Tab" && !e.shiftKey) {
-        e.preventDefault();
-        const options = ["projects", "photos", "about"];
-        const currentIndex = options.indexOf(selectedOption);
-        const nextIndex = (currentIndex + 1) % options.length;
-        handleOptionChange(options[nextIndex]);
-      }
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [selectedOption, handleOptionChange]);
 
   const handleSort = useCallback((key) => {
     setSortConfig((current) => ({
@@ -604,28 +525,15 @@ const Content = memo(({ projects }) => {
 
   return (
     <div className="content-wrapper">
-      <div className="content-header-table">
-        <div className="content-header">
-          <OptionSwitcher
-            selectedOption={selectedOption}
-            handleOptionChange={handleOptionChange}
-          />
-        </div>
-        <div className="content-area">
-          {selectedOption === "projects" ? (
-            <ProjectList
-              projects={filteredProjects}
-              selectedTag={selectedTag}
-              handleTagClick={handleTagClick}
-              sortConfig={sortConfig}
-              handleSort={handleSort}
-            />
-          ) : selectedOption === "photos" ? (
-            <PhotoGrid />
-          ) : (
-            <AboutContent />
-          )}
-        </div>
+      <div className="content-area">
+        <AboutContent />
+        <ProjectList
+          projects={filteredProjects}
+          selectedTag={selectedTag}
+          handleTagClick={handleTagClick}
+          sortConfig={sortConfig}
+          handleSort={handleSort}
+        />
       </div>
       <KeyboardIcon />
     </div>
