@@ -58,7 +58,7 @@ const AboutContent = memo(() => {
       <div className="about-container">
         <div className="about-content">
           <div className="about-header">
-            <span className="name">Danish Ansari</span>
+            <span className="name">Danish</span>
             <div className="contact-info">
               <a
                 href={`mailto:${email}`}
@@ -145,7 +145,7 @@ const ProjectListItem = memo(
       onClick={() => handleProjectClick(project)}
     >
       <span className="title">
-        <div>{project.title.toLowerCase()}</div>
+        <div>{project.title}</div>
         <div>
           {project.highlight && (
             <span className="highlight-star" title="Highlighted Project">
@@ -213,7 +213,7 @@ const ProjectListItem = memo(
         </span>
         <span className="status-pill-container">
           <span className={`status-pill ${project.status}`}>
-            <span className="status-text">{project.status.toLowerCase()}</span>
+            <span className="status-text">{project.status}</span>
           </span>
         </span>
       </span>

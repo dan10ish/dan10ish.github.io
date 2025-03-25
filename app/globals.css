@@ -197,7 +197,7 @@ img {
 
 .name {
   font-size: calc(var(--font-size-mobile) * 1.2);
-  font-weight: 700;
+  font-weight: 600;
   display: flex;
   color: var(--color-text);
 }
@@ -1590,6 +1590,11 @@ img {
 
   .project-description {
     flex: 1;
+  }
+
+  .modal-close {
+    top: 3rem;
+    right: max(2rem, calc((100% - var(--max-width)) / 2));
   }
 }
 

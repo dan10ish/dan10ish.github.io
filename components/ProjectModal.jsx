@@ -5,7 +5,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Github, Globe, Loader2, VideoOff } from "lucide-react";
 
 const LucideIcon = memo(({ icon: Icon, ...props }) => {
-  return <Icon strokeWidth={`var(--icon-stroke-width)`} style={{ minWidth: props.size, minHeight: props.size }} {...props} />;
+  return (
+    <Icon
+      strokeWidth={`var(--icon-stroke-width)`}
+      style={{ minWidth: props.size, minHeight: props.size }}
+      {...props}
+    />
+  );
 });
 
 export default function ProjectModal({ project, isOpen, onClose }) {
@@ -27,20 +33,23 @@ export default function ProjectModal({ project, isOpen, onClose }) {
     setVideoError(true);
   }, []);
 
-  const handleClickOutside = useCallback((e) => {
-    if (modalRef.current && !modalRef.current.contains(e.target)) {
-      onClose();
-    }
-  }, [onClose]);
+  const handleClickOutside = useCallback(
+    (e) => {
+      if (modalRef.current && !modalRef.current.contains(e.target)) {
+        onClose();
+      }
+    },
+    [onClose],
+  );
 
   useEffect(() => {
     if (isOpen) {
-      document.body.classList.add('body-modal-open');
+      document.body.classList.add("body-modal-open");
       document.addEventListener("mousedown", handleClickOutside);
 
       setVideoLoaded(false);
       setVideoError(false);
-      
+
       const timer = setTimeout(() => {
         setShouldLoadVideo(true);
       }, 50);
@@ -51,10 +60,10 @@ export default function ProjectModal({ project, isOpen, onClose }) {
           videoRef.current.play().catch(() => {});
         } catch {}
       }
-      
+
       return () => clearTimeout(timer);
     } else {
-      document.body.classList.remove('body-modal-open');
+      document.body.classList.remove("body-modal-open");
       document.removeEventListener("mousedown", handleClickOutside);
 
       if (videoRef.current) {
@@ -68,21 +77,21 @@ export default function ProjectModal({ project, isOpen, onClose }) {
           setShouldLoadVideo(false);
         }
       }, 150);
-      
+
       return () => clearTimeout(timer);
     }
   }, [isOpen, handleClickOutside]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (isOpen && e.key === 'Escape') {
+      if (isOpen && e.key === "Escape") {
         onClose();
       }
     };
 
-    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener("keydown", handleKeyDown);
     };
   }, [isOpen, onClose]);
 
@@ -158,11 +167,11 @@ export default function ProjectModal({ project, isOpen, onClose }) {
 
               <div className="project-details">
                 <div className="project-title-container">
-                  <h2>{project.title.toLowerCase()}</h2>
+                  <h2>{project.title}</h2>
                 </div>
 
                 <div className="project-description">
-                  <p>{project.description.toLowerCase()}</p>
+                  <p>{project.description}</p>
                 </div>
 
                 <div className="tag-status-row">
@@ -172,12 +181,10 @@ export default function ProjectModal({ project, isOpen, onClose }) {
                     )}
                     <div className={`status-pill ${project.status}`}>
                       <span className="status-dot"></span>
-                      <span className="status-text">
-                        {project.status.toLowerCase()}
-                      </span>
+                      <span className="status-text">{project.status}</span>
                     </div>
                   </div>
-                  
+
                   <div className="right-items">
                     {project.sourceLink && (
                       <a
@@ -205,7 +212,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
               </div>
             </div>
           </motion.div>
-          
+
           <motion.button
             className="modal-close"
             onClick={onClose}
