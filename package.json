@@ -12,20 +12,15 @@
     "deploy": "npm run build && npm run postbuild && touch out/.nojekyll && gh-pages -d out -t true"
   },
   "dependencies": {
-    "@icons-pack/react-simple-icons": "^12.2.0",
-    "exifreader": "^4.26.2",
     "framer-motion": "^12.4.10",
     "lucide-react": "^0.479.0",
     "next": "^15.2.1",
     "next-sitemap": "^4.2.3",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-masonry-css": "^1.0.16",
-    "webpack": "^5.98.0"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "gh-pages": "^6.3.0",
-    "raw-loader": "^4.0.2",
-    "typescript": "^5.8.2"
+    "raw-loader": "^4.0.2"
   }
 }
