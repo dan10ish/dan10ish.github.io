@@ -55,63 +55,46 @@ const AboutContent = memo(() => {
 
   return (
     <>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari&family=Noto+Sans+Arabic&display=swap"
-        rel="stylesheet"
-      />
       <div className="about-container">
         <div className="about-content">
           <div className="about-header">
             <span className="name">Danish Ansari</span>
-
             <div className="contact-info">
               <a
                 href={`mailto:${email}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="contact-link"
+                aria-label="Send email"
               >
-                <LucideIcon
-                  icon={Mail}
-                  size={20}
-                  style={{ verticalAlign: "middle", marginRight: "8px" }}
-                />
+                <LucideIcon icon={Mail} size={20} />
               </a>
               <a
                 href="https://github.com/dan10ish"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="contact-link"
+                aria-label="Visit GitHub profile"
               >
-                <LucideIcon
-                  icon={Github}
-                  size={19}
-                  style={{ verticalAlign: "middle", marginRight: "8px" }}
-                />
+                <LucideIcon icon={Github} size={19} />
               </a>
               <a
                 href="https://x.com/dan10ish"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="contact-link"
+                aria-label="Visit X/Twitter profile"
               >
-                <XIcon
-                  width={20}
-                  height={20}
-                  style={{ verticalAlign: "middle", marginRight: "8px" }}
-                />
+                <XIcon width={20} height={20} />
               </a>
               <a
                 href="https://instagram.com/dan10ish"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="contact-link"
+                aria-label="Visit Instagram profile"
               >
-                <LucideIcon
-                  icon={Instagram}
-                  size={19}
-                  style={{ verticalAlign: "middle", marginRight: "8px" }}
-                />
+                <LucideIcon icon={Instagram} size={19} />
               </a>
             </div>
           </div>
