@@ -1,6 +1,4 @@
-import { Suspense } from "react";
 import "./globals.css";
-import GradientOverlay from "@/components/GradientOverlay";
 
 export const metadata = {
   metadataBase: new URL("https://danish.bio"),
@@ -107,20 +105,9 @@ export default function RootLayout({ children }) {
           crossOrigin="anonymous"
         />
         <link rel="icon" type="image/png" href="/icons/icon.png" />
-        <link 
-          rel="preconnect" 
-          href="https://scripts.simpleanalyticscdn.com"
-        />
       </head>
       <body>
-        <GradientOverlay />
         <main className="container">{children}</main>
-        <script
-          data-collect-dnt="true"
-          async
-          defer
-          src="https://scripts.simpleanalyticscdn.com/latest.js"
-        ></script>
       </body>
     </html>
   );

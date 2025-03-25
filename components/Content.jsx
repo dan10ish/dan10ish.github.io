@@ -15,8 +15,6 @@ import {
   Star,
   ChevronUp,
   ChevronDown,
-  Copy,
-  Check,
   Github,
   Mail,
   Instagram,
@@ -54,56 +52,54 @@ const AboutContent = memo(() => {
   const email = "aansaridan@gmail.com";
 
   return (
-    <>
-      <div className="about-container">
-        <div className="about-content">
-          <div className="about-header">
-            <span className="name">Danish</span>
-            <div className="contact-info">
-              <a
-                href={`mailto:${email}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="contact-link"
-                aria-label="Send email"
-              >
-                <LucideIcon icon={Mail} size={20} />
-              </a>
-              <a
-                href="https://github.com/dan10ish"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="contact-link"
-                aria-label="Visit GitHub profile"
-              >
-                <LucideIcon icon={Github} size={19} />
-              </a>
-              <a
-                href="https://x.com/dan10ish"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="contact-link"
-                aria-label="Visit X/Twitter profile"
-              >
-                <XIcon width={20} height={20} />
-              </a>
-              <a
-                href="https://instagram.com/dan10ish"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="contact-link"
-                aria-label="Visit Instagram profile"
-              >
-                <LucideIcon icon={Instagram} size={19} />
-              </a>
-            </div>
-          </div>
-          <div className="about-description">
-            Mechatronics engineer and generalist bridging code and hardware.
+    <div className="about-container">
+      <div className="about-content">
+        <div className="about-header">
+          <span className="name">Danish</span>
+          <div className="contact-info">
+            <a
+              href="https://github.com/dan10ish"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="contact-link"
+              aria-label="Visit GitHub profile"
+            >
+              <LucideIcon icon={Github} size={19} />
+            </a>
+            <a
+              href={`mailto:${email}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="contact-link"
+              aria-label="Send email"
+            >
+              <LucideIcon icon={Mail} size={20} />
+            </a>
+            <a
+              href="https://x.com/dan10ish"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="contact-link"
+              aria-label="Visit X/Twitter profile"
+            >
+              <XIcon width={20} height={20} />
+            </a>
+            <a
+              href="https://instagram.com/dan10ish"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="contact-link"
+              aria-label="Visit Instagram profile"
+            >
+              <LucideIcon icon={Instagram} size={19} />
+            </a>
           </div>
         </div>
+        <div className="about-description">
+          Mechatronics engineer and generalist bridging code and hardware.
+        </div>
       </div>
-    </>
+    </div>
   );
 });
 
@@ -159,14 +155,10 @@ const ProjectListItem = memo(
           href={project.sourceLink || "#"}
           target="_blank"
           rel="noopener noreferrer"
-          className={`action-link github ${
-            !project.sourceLink ? "disabled" : ""
-          }`}
+          className={`action-link github ${!project.sourceLink ? "disabled" : ""}`}
           onClick={(e) => {
             e.stopPropagation();
-            if (!project.sourceLink) {
-              e.preventDefault();
-            }
+            if (!project.sourceLink) e.preventDefault();
           }}
           aria-label={`View source code for ${project.title} on GitHub`}
         >
@@ -176,14 +168,10 @@ const ProjectListItem = memo(
           href={project.projectLink || "#"}
           target="_blank"
           rel="noopener noreferrer"
-          className={`action-link globe ${
-            !project.projectLink ? "disabled" : ""
-          }`}
+          className={`action-link globe ${!project.projectLink ? "disabled" : ""}`}
           onClick={(e) => {
             e.stopPropagation();
-            if (!project.projectLink) {
-              e.preventDefault();
-            }
+            if (!project.projectLink) e.preventDefault();
           }}
           aria-label={`Visit live website for ${project.title}`}
         >
@@ -231,21 +219,17 @@ const ProjectList = memo(
     const [selectedRowIndex, setSelectedRowIndex] = useState(null);
     const isAutoScrolling = useRef(false);
 
-    const handleProjectClick = (project) => {
+    const handleProjectClick = useCallback((project) => {
       setSelectedProject(project);
       setIsModalOpen(true);
-    };
+    }, []);
 
-    const handleCloseModal = () => {
-      setIsModalOpen(false);
-    };
+    const handleCloseModal = useCallback(() => setIsModalOpen(false), []);
 
     useEffect(() => {
       const handleKeyDown = (e) => {
         if (isModalOpen) {
-          if (e.key === "Escape") {
-            handleCloseModal();
-          }
+          if (e.key === "Escape") handleCloseModal();
           return;
         }
 
@@ -275,63 +259,57 @@ const ProjectList = memo(
         }
       };
 
-      const handleMouseMove = () => {
-        if (selectedRowIndex !== null) {
-          setSelectedRowIndex(null);
-        }
-      };
-
       document.addEventListener("keydown", handleKeyDown);
+      const handleMouseMove = () =>
+        selectedRowIndex !== null && setSelectedRowIndex(null);
       document.addEventListener("mousemove", handleMouseMove);
 
       return () => {
         document.removeEventListener("keydown", handleKeyDown);
         document.removeEventListener("mousemove", handleMouseMove);
       };
-    }, [selectedRowIndex, projects, isModalOpen]);
+    }, [
+      selectedRowIndex,
+      projects,
+      isModalOpen,
+      handleCloseModal,
+      handleProjectClick,
+    ]);
 
     useEffect(() => {
       if (selectedRowIndex === null) return;
 
       const timer = setTimeout(() => {
-        try {
-          const selectedElement = document.querySelector(".list-row.selected");
-          if (!selectedElement) return;
+        const selectedElement = document.querySelector(".list-row.selected");
+        if (!selectedElement || !tableRef.current) return;
 
-          const rect = selectedElement.getBoundingClientRect();
-          const containerRect = tableRef.current.getBoundingClientRect();
-          const margin = 20;
+        const rect = selectedElement.getBoundingClientRect();
+        const containerRect = tableRef.current.getBoundingClientRect();
+        const margin = 20;
 
-          if (
-            rect.top >= containerRect.top + margin &&
-            rect.bottom <= containerRect.bottom - margin
-          )
-            return;
+        if (
+          rect.top >= containerRect.top + margin &&
+          rect.bottom <= containerRect.bottom - margin
+        )
+          return;
 
-          isAutoScrolling.current = true;
+        isAutoScrolling.current = true;
 
-          let targetPosition;
-          if (rect.top < containerRect.top + margin) {
-            targetPosition =
-              tableRef.current.scrollTop +
+        const targetPosition =
+          rect.top < containerRect.top + margin
+            ? tableRef.current.scrollTop +
               (rect.top - containerRect.top) -
-              margin;
-          } else {
-            targetPosition =
-              tableRef.current.scrollTop +
+              margin
+            : tableRef.current.scrollTop +
               (rect.bottom - containerRect.bottom) +
               margin;
-          }
 
-          tableRef.current.scrollTo({
-            top: targetPosition,
-            behavior: "smooth",
-          });
+        tableRef.current.scrollTo({
+          top: targetPosition,
+          behavior: "smooth",
+        });
 
-          setTimeout(() => (isAutoScrolling.current = false), 300);
-        } catch (error) {
-          console.error("Error scrolling to selected project:", error);
-        }
+        setTimeout(() => (isAutoScrolling.current = false), 300);
       }, 50);
 
       return () => clearTimeout(timer);
@@ -403,7 +381,6 @@ ProjectList.displayName = "ProjectList";
 const Content = memo(({ projects }) => {
   const [sortConfig, setSortConfig] = useState({ key: null, direction: null });
   const [selectedTag, setSelectedTag] = useState(null);
-  const contentRef = useRef(null);
 
   const handleSort = useCallback((key) => {
     setSortConfig((current) => ({
@@ -423,37 +400,38 @@ const Content = memo(({ projects }) => {
   }, []);
 
   const filteredProjects = useMemo(() => {
-    let filtered = projects;
-    if (selectedTag) {
-      filtered = projects.filter((project) =>
-        project.tags.includes(selectedTag),
-      );
-    }
-    if (sortConfig?.key === "title") {
-      filtered = [...filtered].sort((a, b) => {
+    let filtered = selectedTag
+      ? projects.filter((project) => project.tags.includes(selectedTag))
+      : projects;
+
+    if (!sortConfig?.key) return filtered;
+
+    return [...filtered].sort((a, b) => {
+      if (sortConfig.key === "title") {
         return sortConfig.direction === "asc"
           ? a.title.localeCompare(b.title)
           : b.title.localeCompare(a.title);
-      });
-    } else if (sortConfig?.key === "tags") {
-      filtered = [...filtered].sort((a, b) => {
+      }
+
+      if (sortConfig.key === "tags") {
         const tagsA = a.tags.join(",");
         const tagsB = b.tags.join(",");
         return sortConfig.direction === "asc"
           ? tagsA.localeCompare(tagsB)
           : tagsB.localeCompare(tagsA);
-      });
-    } else if (sortConfig?.key === "status") {
-      filtered = [...filtered].sort((a, b) => {
+      }
+
+      if (sortConfig.key === "status") {
         const statusOrder = { live: 1, offline: 2, archive: 3 };
         const statusA = statusOrder[a.status] || 999;
         const statusB = statusOrder[b.status] || 999;
         return sortConfig.direction === "asc"
           ? statusA - statusB
           : statusB - statusA;
-      });
-    }
-    return filtered;
+      }
+
+      return 0;
+    });
   }, [projects, selectedTag, sortConfig]);
 
   return (

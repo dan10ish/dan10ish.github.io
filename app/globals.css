@@ -72,7 +72,6 @@ html {
   scroll-behavior: smooth;
   background: var(--color-bg);
   color: var(--color-text);
-  overflow-y: scroll;
 }
 
 *,
@@ -89,7 +88,6 @@ body {
   margin: 0;
   padding: 0 25px;
   font-size: var(--font-size-mobile);
-  margin-right: calc(100vw - 100%);
   scrollbar-width: thin;
   overscroll-behavior: none;
   -webkit-overflow-scrolling: touch;
@@ -422,7 +420,7 @@ img {
   scrollbar-gutter: stable;
   min-height: 200px;
   margin: 0;
-  padding-top: 2rem;
+  padding-top: 1.5rem;
 }
 
 .highlight-star {
@@ -1512,7 +1510,7 @@ img {
 
 @media (min-height: 480px) {
   .table-max {
-    height: 23.9rem;
+    height: 26.9rem;
   }
 }
 
@@ -1528,7 +1526,7 @@ img {
   }
 
   .content-area {
-    padding-top: 2rem;
+    padding-top: 1.5rem;
   }
 
   .contact-info {
