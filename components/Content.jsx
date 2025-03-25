@@ -116,8 +116,7 @@ const AboutContent = memo(() => {
             </div>
           </div>
           <div className="about-description">
-            Mechatronics engineer and generalist bridging code and hardware,
-            with interests in machine learning, robotics, and finance.
+            Mechatronics engineer and generalist bridging code and hardware.
           </div>
         </div>
       </div>
