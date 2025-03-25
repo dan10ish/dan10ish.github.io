@@ -194,7 +194,7 @@ img {
 }
 
 .name {
-  font-size: calc(var(--font-size-mobile) * 1.2);
+  font-size: calc(var(--font-size-mobile) * 1.3);
   font-weight: 600;
   display: flex;
   color: var(--color-text);

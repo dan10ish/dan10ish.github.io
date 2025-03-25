@@ -64,7 +64,7 @@ const AboutContent = memo(() => {
               className="contact-link"
               aria-label="Visit GitHub profile"
             >
-              <LucideIcon icon={Github} size={19} />
+              <LucideIcon icon={Github} size={22} />
             </a>
             <a
               href={`mailto:${email}`}
@@ -73,7 +73,7 @@ const AboutContent = memo(() => {
               className="contact-link"
               aria-label="Send email"
             >
-              <LucideIcon icon={Mail} size={20} />
+              <LucideIcon icon={Mail} size={22} />
             </a>
             <a
               href="https://x.com/dan10ish"
@@ -82,7 +82,7 @@ const AboutContent = memo(() => {
               className="contact-link"
               aria-label="Visit X/Twitter profile"
             >
-              <XIcon width={20} height={20} />
+              <XIcon width={22} height={22} />
             </a>
             <a
               href="https://instagram.com/dan10ish"
@@ -91,7 +91,7 @@ const AboutContent = memo(() => {
               className="contact-link"
               aria-label="Visit Instagram profile"
             >
-              <LucideIcon icon={Instagram} size={19} />
+              <LucideIcon icon={Instagram} size={22} />
             </a>
           </div>
         </div>
