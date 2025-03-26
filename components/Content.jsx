@@ -63,6 +63,7 @@ const AboutContent = memo(() => {
               rel="noopener noreferrer"
               className="contact-link"
               aria-label="Visit GitHub profile"
+              title="GitHub: @dan10ish"
             >
               <LucideIcon icon={Github} size={22} />
             </a>
@@ -72,10 +73,11 @@ const AboutContent = memo(() => {
               rel="noopener noreferrer"
               className="contact-link"
               aria-label="Send email"
+              title="aansaridan@gmail.com"
             >
               <LucideIcon icon={Mail} size={22} />
             </a>
-            <a
+            {/* <a
               href="https://x.com/dan10ish"
               target="_blank"
               rel="noopener noreferrer"
@@ -83,13 +85,14 @@ const AboutContent = memo(() => {
               aria-label="Visit X/Twitter profile"
             >
               <XIcon width={22} height={22} />
-            </a>
+            </a> */}
             <a
               href="https://instagram.com/dan10ish"
               target="_blank"
               rel="noopener noreferrer"
               className="contact-link"
               aria-label="Visit Instagram profile"
+              title="Instagram: @dan10ish"
             >
               <LucideIcon icon={Instagram} size={22} />
             </a>
@@ -161,6 +164,7 @@ const ProjectListItem = memo(
             if (!project.sourceLink) e.preventDefault();
           }}
           aria-label={`View source code for ${project.title} on GitHub`}
+          title="View source code on GitHub"
         >
           <LucideIcon icon={Github} size={20} />
         </a>
@@ -174,6 +178,7 @@ const ProjectListItem = memo(
             if (!project.projectLink) e.preventDefault();
           }}
           aria-label={`Visit live website for ${project.title}`}
+          title="View live project"
         >
           <LucideIcon icon={Globe} size={20} />
         </a>
