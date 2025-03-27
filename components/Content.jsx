@@ -77,7 +77,7 @@ const AboutContent = memo(() => {
             >
               <LucideIcon icon={Mail} size={22} />
             </a>
-            {/* <a
+            <a
               href="https://x.com/dan10ish"
               target="_blank"
               rel="noopener noreferrer"
@@ -85,7 +85,7 @@ const AboutContent = memo(() => {
               aria-label="Visit X/Twitter profile"
             >
               <XIcon width={22} height={22} />
-            </a> */}
+            </a>
             <a
               href="https://instagram.com/dan10ish"
               target="_blank"
