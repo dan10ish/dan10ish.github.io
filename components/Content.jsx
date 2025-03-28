@@ -60,96 +60,69 @@ const AboutContent = memo(() => {
             <motion.svg
               width="110"
               height="45"
-              viewBox="0 0 164 80"
+              viewBox="0 0 111 41"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               style={{
                 overflow: "visible",
-                transform: "rotate(23deg)",
+                transform: "rotate(0deg)",
                 transformOrigin: "center",
                 margin: "0 -5px",
               }}
             >
               <motion.path
-                d="M34.3064 64.9999C33.0838 60.5 29.1074 47.6967 33.7226 63C34.9064 66.9251 36.4137 72.4657 35.7494 76.7838C35.4545 78.7008 29.6736 70.5187 29.1989 69.866"
-                stroke="rgba(var(--color-text-rgb), 0.6)"
-                strokeWidth="2.75"
+                d="M23.6658 19.5568C24.184 18.3907 23.7076 16.8809 23.6658 18.6784C23.6143 20.8899 23.9127 23.2085 23.6383 25.4035C23.4632 26.8046 21.1091 20.9763 20.8934 20.545C19.4973 17.7527 11.743 11.8525 15.7604 9.07119C23.2034 3.91831 35.9047 3.41693 44.3624 5.5577C47.3218 6.30674 51.4936 7.83684 53.0364 10.773C55.0268 14.5612 50.8297 18.4111 48.0955 20.243C36.8401 27.7842 22.558 31.2353 10.0784 36.1635C7.07567 37.3493 4.1614 38.5262 1.02019 39.2653C0.82501 39.3112 2.1014 39.3202 2.4201 39.3202"
+                stroke="rgba(var(--color-text-rgb), 0.7)"
+                strokeWidth="2"
                 strokeLinecap="round"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: 1 }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
+                transition={{ duration: 0.8, ease: "easeInOut" }}
               />
               <motion.path
-                d="M20.3832 65.4582C15.6226 63.2709 -0.90962 60.7617 2.44582 52.5408C6.20772 43.3242 20.1944 35.5523 28.3418 31.1751C38.2802 25.8357 52.4563 20.49 63.7881 24.6246C87.4576 33.2608 47.0013 74.3708 40.8306 81.3753C27.5945 96.4002 33.5035 89.964 20.3832 105.089"
-                stroke="rgba(var(--color-text-rgb), 0.6)"
-                strokeWidth="2.75"
+                d="M64.4263 16.6339C63.5779 13.1557 60.7209 13.3335 58.7303 16.281C56.2311 19.9818 60.731 23.8048 63.4433 20.4144C64.3358 19.2988 64.2834 14.046 64.4515 16.7347C64.6565 20.0151 67.8321 24.0413 70.6767 20.1623C71.5016 19.0374 71.7571 14.7004 71.332 16.029C71.1337 16.6487 71.8339 20.2254 71.9369 20.1371C73.0086 19.2185 74.565 13.0333 77.0783 14.29C78.3705 14.936 79.0368 19.2757 79.3971 20.7168"
+                stroke="rgba(var(--color-text-rgb), 0.7)"
+                strokeWidth="2"
                 strokeLinecap="round"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: 1 }}
-                transition={{ duration: 0.8, ease: "easeInOut", delay: 0.2 }}
+                transition={{ duration: 0.8, ease: "easeInOut", delay: 0.6 }}
               />
               <motion.path
-                d="M76.8987 44.8412C76.6592 47.5235 76.427 51.2235 76.349 53.8412C75.8028 58.7537 76.6613 48.4288 76.7983 46.2027C76.8854 44.7865 77.7068 32.6321 80.465 36.7693C83.1975 40.8681 85.7163 45.0834 88.7984 48.9361"
-                stroke="rgba(var(--color-text-rgb), 0.6)"
-                strokeWidth="2.75"
-                strokeLinecap="round"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: 1, opacity: 1 }}
-                transition={{ duration: 0.6, ease: "easeInOut", delay: 0.8 }}
-              />
-              <motion.path
-                d="M75.5979 50.7362C72.1331 51.0512 75.0925 49.9843 77.0646 48.6696C81.2262 45.8952 83.6516 43.1027 88.3486 41.3413"
-                stroke="rgba(var(--color-text-rgb), 0.6)"
-                strokeWidth="2.75"
+                d="M82.5726 14.8192C82.5726 13.3223 82.7558 15.8654 82.8247 16.1801C83.1276 17.5649 83.4193 18.9774 83.9336 20.2631"
+                stroke="rgba(var(--color-text-rgb), 0.7)"
+                strokeWidth="2"
                 strokeLinecap="round"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: 1 }}
                 transition={{ duration: 0.4, ease: "easeInOut", delay: 1.2 }}
               />
               <motion.path
-                d="M91.2136 35.8413C91.2136 33.3161 94.3008 42.3762 94.8486 44.8413C95.1332 46.1219 92.9083 40.7916 92.4314 39.5695C92.2343 39.0645 90.1388 33.6028 91.3314 33.6028C94.5102 33.6028 98.6534 35.5554 101.731 36.3361C102.289 36.4775 109.003 39.6498 108.349 38.3413C106.821 35.2855 103.349 29.8413 102.849 25.8413"
-                stroke="rgba(var(--color-text-rgb), 0.6)"
-                strokeWidth="2.75"
+                d="M84.3873 7.56058C83.5393 6.71263 83.0281 6.05144 83.9336 7.56058"
+                stroke="rgba(var(--color-text-rgb), 0.7)"
+                strokeWidth="2"
                 strokeLinecap="round"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: 1 }}
-                transition={{ duration: 0.6, ease: "easeInOut", delay: 1.4 }}
+                transition={{ duration: 0.4, ease: "easeInOut", delay: 1.4 }}
               />
               <motion.path
-                d="M109.807 23.5952C107.807 20.0952 112.967 29.8625 113.556 30.8566C115.307 34.0952 115.307 36.5952 115.307 35.5952"
-                stroke="rgba(var(--color-text-rgb), 0.6)"
-                strokeWidth="2.75"
+                d="M91.9923 13.1211C91.9923 11.922 91.0266 11.6815 90.0769 12.4154C87.059 14.7474 88.1454 16.693 91.2614 18.061C93.68 19.1228 94.9167 19.8991 91.7655 21.2618C88.1505 22.825 87.0855 22.3312 88.8001 20.6166"
+                stroke="rgba(var(--color-text-rgb), 0.7)"
+                strokeWidth="2"
                 strokeLinecap="round"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: 1 }}
-                transition={{ duration: 0.4, ease: "easeInOut", delay: 1.8 }}
+                transition={{ duration: 0.6, ease: "easeInOut", delay: 1.8 }}
               />
               <motion.path
-                d="M130.798 12.9358C127.349 13.8412 121.8 18.5911 119.849 21.3412C116.849 28.3412 128.946 20.756 130.798 20.5502C133.349 19.8412 133.892 23.0543 133.732 23.5359C133.102 25.4248 130.009 27.5528 128.632 28.8692C126.436 30.9678 123.849 32.8412 120.998 35.3412"
-                stroke="rgba(var(--color-text-rgb), 0.6)"
-                strokeWidth="2.75"
+                d="M98.1349 1C97.0711 4.44473 96.6171 9.76923 97.38 13.2566C97.5036 13.8217 98.3063 21.7286 99.6349 21C100.481 20.5359 106.046 10.6826 106.68 14.0631C107.137 16.5018 106.893 20.357 109.427 21.6241"
+                stroke="rgba(var(--color-text-rgb), 0.7)"
+                strokeWidth="2"
                 strokeLinecap="round"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: 1 }}
-                transition={{ duration: 0.6, ease: "easeInOut", delay: 2.0 }}
-              />
-              <motion.path
-                d="M138.349 8.34143C138.91 9.48014 144.768 23.9706 143.349 21.8414"
-                stroke="rgba(var(--color-text-rgb), 0.6)"
-                strokeWidth="2.75"
-                strokeLinecap="round"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: 1, opacity: 1 }}
-                transition={{ duration: 0.4, ease: "easeInOut", delay: 2.4 }}
-              />
-              <motion.path
-                d="M137.349 18.3414C137.849 16.3414 151.949 12.0393 152.349 8.84125C148.849 0.841247 148.849 0.341237 150.849 4.84127C152.849 9.34131 156 16 157 20"
-                stroke="rgba(var(--color-text-rgb), 0.6)"
-                strokeWidth="2.75"
-                strokeLinecap="round"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: 1, opacity: 1 }}
-                transition={{ duration: 0.6, ease: "easeInOut", delay: 2.6 }}
+                transition={{ duration: 0.6, ease: "easeInOut", delay: 2.2 }}
               />
             </motion.svg>
           </span>
