@@ -34,22 +34,22 @@ export default function SocialLinks({ github, email, x, instagram }: SocialLinks
   return (
     <div className="flex items-center gap-3">
       {github && (
-        <Link href={`https://github.com/${github}`} target="_blank" className="flex items-center justify-center">
+        <Link href={`https://github.com/${github}`} target="_blank" className="flex items-center justify-center" aria-label={`GitHub profile of ${github}`}>
           <Github size={20} />
         </Link>
       )}
       {email && (
-        <Link href={`mailto:${email}`} className="flex items-center justify-center">
+        <Link href={`mailto:${email}`} className="flex items-center justify-center" aria-label={`Send email to ${email}`}>
           <Mail size={20} />
         </Link>
       )}
       {x && (
-        <Link href={`https://x.com/${x}`} target="_blank" className="flex items-center justify-center">
+        <Link href={`https://x.com/${x}`} target="_blank" className="flex items-center justify-center" aria-label={`X (Twitter) profile of ${x}`}>
           <XIcon />
         </Link>
       )}
       {instagram && (
-        <Link href={`https://instagram.com/${instagram}`} target="_blank" className="flex items-center justify-center">
+        <Link href={`https://instagram.com/${instagram}`} target="_blank" className="flex items-center justify-center" aria-label={`Instagram profile of ${instagram}`}>
           <Instagram size={20} />
         </Link>
       )}
