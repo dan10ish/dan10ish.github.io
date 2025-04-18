@@ -44,7 +44,7 @@ export const projects = [
   {
     name: "College Notes",
     sourceCode: "https://github.com/dan10ish/college",
-    liveDemo: "https://danish.bio/college/"
+    liveDemo: "https://dan10ish.github.io/college/"
   },
   {
     name: "Comment Toxicity",
