@@ -66,6 +66,7 @@ svg {
   button:hover svg {
     color: var(--link-blue);
     opacity: 1;
+    transform: scale(1.1);
   }
 }
 
