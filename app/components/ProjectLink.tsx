@@ -13,8 +13,8 @@ export default function ProjectLink({ name, sourceCode, liveDemo }: ProjectLinkP
   return (
     <div className="flex items-center mb-4">
       <div className="text-[0.9rem] flex-shrink-0">{name.toLowerCase()}</div>
-      <div className="w-3 flex-shrink-0"></div>
-      <div className="flex items-center gap-3">
+      <div className="w-2 flex-shrink-0"></div>
+      <div className="flex items-center gap-2">
         {sourceCode && (
           <Link href={sourceCode} target="_blank" className="flex items-center justify-center" aria-label={`View source code for ${name}`}>
             <Github size={20} />

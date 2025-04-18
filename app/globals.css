@@ -83,11 +83,11 @@ h1, h2, p, span {
 
 h1 {
   font-weight: 700;
-  margin-bottom: 0;
+  margin-bottom: 0.5rem;
 }
 
-h2 {
-  margin-bottom: 0.5rem;
+.header-text {
+  margin-bottom: 0 !important;
 }
 
 p {

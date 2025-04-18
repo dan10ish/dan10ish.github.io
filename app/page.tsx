@@ -8,7 +8,7 @@ export default function Home() {
       <main className="space-y-6">
         {/* Header */}
         <section className="space-y-0">
-          <h1 className="text-base font-bold mb-0">{personalInfo.name}</h1>
+          <h1 className="text-base font-bold header-text">{personalInfo.name}</h1>
           <p className="text-base opacity-70 mt-0">{personalInfo.location}</p>
         </section>
 
@@ -21,7 +21,7 @@ export default function Home() {
 
         {/* Contact */}
         <section>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <div className="text-[0.9rem] mb-0 flex items-center">get in touch:</div>
             <SocialLinks 
               github={personalInfo.socials.github}
@@ -34,7 +34,7 @@ export default function Home() {
 
         {/* Projects */}
         <section>
-          <h2 className="text-base opacity-70 mb-2">projects</h2>
+          <h1 className="text-base opacity-70">projects</h1>
           <div className="mt-1 project-list">
             {projects.map((project, index) => (
               <ProjectLink 
