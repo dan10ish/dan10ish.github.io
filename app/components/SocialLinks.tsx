@@ -21,6 +21,8 @@ const XIcon = memo((props) => (
   </svg>
 ));
 
+XIcon.displayName = 'XIcon';
+
 interface SocialLinksProps {
   github?: string;
   email?: string;

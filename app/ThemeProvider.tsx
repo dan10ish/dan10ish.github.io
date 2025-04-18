@@ -18,10 +18,8 @@ const ThemeContext = createContext<ThemeContextType>(defaultContextValue);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>('dark');
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
     document.documentElement.setAttribute('data-theme', theme);
     
     // Update meta theme-color tag when theme changes
