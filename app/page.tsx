@@ -4,7 +4,7 @@ import { personalInfo, projects } from './data';
 
 export default function Home() {
   return (
-    <div className="min-h-screen max-w-2xl mx-auto">
+    <div className="h-fit max-w-2xl mx-auto">
       <main className="space-y-6">
         {/* Header */}
         <section className="space-y-0">
