@@ -2,7 +2,7 @@ export const personalInfo = {
   name: "danish",
   location: "mumbai, india",
   profession: "mechatronics engineer",
-  about: "i'm a generalist interested in connecting hardware and software.",
+  about: "i'm a generalist interested in bridging hardware and software.",
   socials: {
     github: "dan10ish",
     x: "dan10ish",
