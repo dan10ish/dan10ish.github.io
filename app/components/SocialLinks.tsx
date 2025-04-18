@@ -11,8 +11,8 @@ const XIcon = memo((props) => (
     height="20"
     viewBox="0 0 256 256"
     fill="currentColor"
-    stroke="none"
-    strokeWidth="var(--icon-stroke-width)"
+    stroke="currentColor"
+    strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
     {...props}

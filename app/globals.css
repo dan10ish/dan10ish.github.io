@@ -11,6 +11,7 @@
   --spacing-md: 1.5rem;
   --spacing-lg: 2rem;
   --spacing-xl: 3rem;
+  --max-width: 700px;
 }
 
 [data-theme="dark"] {
@@ -30,6 +31,9 @@ body {
   font-size: 14px;
   line-height: 1.5;
   padding: var(--spacing-lg);
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 a {
