@@ -15,7 +15,7 @@ export default function Home() {
         {/* Bio */}
         <section>
           <p className="text-base">
-            {personalInfo.profession}. {personalInfo.about}
+            {personalInfo.about}
           </p>
         </section>
 
