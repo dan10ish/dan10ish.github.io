@@ -1,8 +1,12 @@
+import Link from 'next/link'
 import ProjectLink from './components/ProjectLink';
 import SocialLinks from './components/SocialLinks';
 import { personalInfo, projects } from './data';
+import { getSortedWritingsData } from '../lib/writings';
 
 export default function Home() {
+  const writings = getSortedWritingsData();
+
   return (
     <div className="h-fit max-w-2xl mx-auto">
       <main className="space-y-6">
@@ -41,6 +45,25 @@ export default function Home() {
             ))}
           </div>
         </section>
+
+        <section>
+          <h1 className="text-base opacity-70">writings</h1>
+          <div className="mt-1 space-y-1">
+            {writings.map(({ slug, title, date }) => (
+              <Link href={`/writings/${slug}`} key={slug} className="block group">
+                <div className="flex justify-between items-center w-full">
+                  <span className="text-link-blue group-hover:underline truncate">
+                    {title}
+                  </span>
+                  <span className="text-secondary text-sm flex-shrink-0 ml-2">
+                    {date}
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+
       </main>
     </div>
   );

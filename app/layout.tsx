@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "./ThemeProvider";
-import { ThemeToggle } from "./ThemeToggle";
+import { HeaderControls } from "./components/HeaderControls";
 
 const sfMono = localFont({
   src: [
@@ -105,13 +105,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="dark">
+    <html lang="en" data-theme="dark" suppressHydrationWarning>
       <head>
         <meta name="theme-color" content="#1c1c1c" />
       </head>
       <body className={`${sfMono.variable}`}>
         <ThemeProvider>
-          <ThemeToggle />
+          <HeaderControls />
           {children}
         </ThemeProvider>
       </body>
