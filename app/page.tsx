@@ -34,26 +34,12 @@ export default function Home() {
         </section>
 
         <section>
-          <h1 className="text-base opacity-70">projects</h1>
-          <div className="mt-1 project-list">
-            {projects.map((project, index) => (
-              <ProjectLink 
-                key={index} 
-                name={project.name}
-                sourceCode={project.sourceCode}
-                liveDemo={project.liveDemo}
-              />
-            ))}
-          </div>
-        </section>
-
-        <section>
           <h1 className="text-base opacity-70">writings</h1>
           <div className="mt-1 space-y-1">
             {writings.map(({ slug, title, date }) => (
               <Link href={`/writings/${slug}`} key={slug} className="block group">
                 <div className="flex justify-between items-center w-full">
-                  <span className="text-link-blue group-hover:underline truncate">
+                  <span className="text-primary group-hover:underline truncate">
                     {title}
                   </span>
                   <span className="text-secondary text-sm flex-shrink-0 ml-2">
@@ -61,6 +47,20 @@ export default function Home() {
                   </span>
                 </div>
               </Link>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h1 className="text-base opacity-70">projects</h1>
+          <div className="mt-1 project-list">
+            {projects.map((project, index) => (
+              <ProjectLink
+                key={index}
+                name={project.name}
+                sourceCode={project.sourceCode}
+                liveDemo={project.liveDemo}
+              />
             ))}
           </div>
         </section>
