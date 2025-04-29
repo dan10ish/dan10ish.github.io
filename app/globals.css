@@ -21,6 +21,13 @@
   --link-blue: #007FFF;
 }
 
+[data-theme="solarized"] {
+  --background: #01242E; /* Solarized Dark background */
+  --foreground: #fdf6e3; /* Solarized Light (base3) for text */
+  --secondary: #93a1a1;  /* Solarized Base1 for secondary text */
+  --link-blue: #2aa198;  /* Solarized Cyan for links */
+}
+
 html {
   overflow-x: hidden;
 }

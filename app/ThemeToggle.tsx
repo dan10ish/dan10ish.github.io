@@ -1,6 +1,6 @@
 'use client';
 
-import { Moon, Sun } from 'lucide-react';
+import { Moon, Sun, Monitor, Palette } from 'lucide-react';
 import { useTheme } from './ThemeProvider';
 import { useEffect, useState } from 'react';
 
@@ -31,7 +31,8 @@ export function ThemeToggle() {
       className="fixed top-5 right-5 p-2 rounded-full bg-background text-foreground border border-foreground/20"
       aria-label="Toggle theme"
     >
-      {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+      {/* Cycle through Dark (Sun icon) -> Light (Palette icon) -> Solarized (Moon icon) */} 
+      {theme === 'dark' ? <Sun size={20} /> : theme === 'light' ? <Palette size={20} /> : <Moon size={20} />}
     </button>
   );
 } 

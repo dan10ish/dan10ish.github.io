@@ -9,7 +9,7 @@ export default function Home() {
         {/* Header */}
         <section className="space-y-0">
           <h1 className="text-base font-bold header-text">{personalInfo.name}</h1>
-          <p className="text-base opacity-70 mt-0">{personalInfo.location}</p>
+          {/* <p className="text-base opacity-70 mt-0">{personalInfo.location}</p> */}
         </section>
 
         {/* Bio */}

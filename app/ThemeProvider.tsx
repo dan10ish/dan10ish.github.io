@@ -1,8 +1,9 @@
 'use client';
 
 import { createContext, useContext, useEffect, useState } from 'react';
+import { Monitor } from 'lucide-react'; // Import Monitor icon if needed elsewhere, though toggle is in ThemeToggle
 
-type Theme = 'light' | 'dark';
+type Theme = 'light' | 'dark' | 'solarized'; // Add 'solarized'
 type ThemeContextType = {
   theme: Theme;
   toggleTheme: () => void;
@@ -17,31 +18,50 @@ const defaultContextValue: ThemeContextType = {
 const ThemeContext = createContext<ThemeContextType>(defaultContextValue);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('dark');
+  const [theme, setTheme] = useState<Theme>('dark'); // Keep default as dark
+
+  useEffect(() => {
+    const currentTheme = document.documentElement.getAttribute('data-theme') as Theme || 'dark';
+    setTheme(currentTheme); // Initialize state from HTML attribute
+  }, []);
+
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
-    
+
     // Update meta theme-color tag when theme changes
     const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    let color;
+    switch (theme) {
+      case 'light':
+        color = '#F7F7F7';
+        break;
+      case 'dark':
+        color = '#1c1c1c';
+        break;
+      case 'solarized':
+        color = '#01242E'; // Solarized dark background
+        break;
+      default:
+        color = '#1c1c1c'; // Default to dark
+    }
+
     if (metaThemeColor) {
-      metaThemeColor.setAttribute(
-        'content', 
-        theme === 'light' ? '#F7F7F7' : '#1c1c1c'
-      );
+      metaThemeColor.setAttribute('content', color);
     } else {
       // Create meta tag if it doesn't exist
       const meta = document.createElement('meta');
       meta.name = 'theme-color';
-      meta.content = theme === 'light' ? '#F7F7F7' : '#1c1c1c';
+      meta.content = color;
       document.head.appendChild(meta);
     }
   }, [theme]);
 
   const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
+    // Cycle through dark -> light -> solarized -> dark
+    const newTheme = theme === 'dark' ? 'light' : theme === 'light' ? 'solarized' : 'dark';
     setTheme(newTheme);
-    document.documentElement.setAttribute('data-theme', newTheme);
+    // No need to set attribute here, useEffect handles it
   };
 
   // Create context value
