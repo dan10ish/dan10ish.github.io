@@ -15,7 +15,7 @@ export function HeaderControls() {
       {isWritingPage && (
         <Link href="/" aria-label="Go home" 
               className="flex items-center justify-center w-9 h-9 rounded-full bg-background border border-secondary transition-colors hover:bg-secondary/50">
-          <Home className="w-4 h-4 text-foreground" />
+          <Home className="w-5 h-5 text-foreground" />
         </Link>
       )}
     </div>

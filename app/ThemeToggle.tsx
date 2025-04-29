@@ -18,7 +18,7 @@ export function ThemeToggle() {
     // Render a placeholder or null during SSR/hydration mismatch
     return (
         <div className={`${buttonClasses} opacity-0 pointer-events-none`}>
-            <Sun className="w-4 h-4 text-foreground" /> 
+            <Sun className="w-5 h-5 text-foreground" /> 
         </div>
     );
   }
@@ -29,7 +29,7 @@ export function ThemeToggle() {
       className={buttonClasses} // Use shared classes, remove fixed positioning
       aria-label="Toggle theme"
     >
-      {theme === 'dark' ? <Sun className="w-4 h-4 text-foreground" /> : theme === 'light' ? <Palette className="w-4 h-4 text-foreground" /> : <Moon className="w-4 h-4 text-foreground" />}
+      {theme === 'dark' ? <Sun className="w-5 h-5 text-foreground" /> : theme === 'light' ? <Palette className="w-5 h-5 text-foreground" /> : <Moon className="w-5 h-5 text-foreground" />}
     </button>
   );
 } 

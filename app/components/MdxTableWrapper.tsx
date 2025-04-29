@@ -2,7 +2,7 @@ import React from 'react'
 
 export const MdxTableWrapper = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="overflow-x-auto">
+    <div className="table-wrapper">
       <table>{children}</table>
     </div>
   )

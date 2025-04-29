@@ -7,6 +7,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypePrettyCode from 'rehype-pretty-code'
 import Link from 'next/link'
 import { MdxTableWrapper } from '../../components/MdxTableWrapper'
+import { formatDate } from '../../../lib/utils'
 
 interface WritingPageProps {
   params: {
@@ -84,8 +85,10 @@ export default async function WritingPage({ params: { slug } }: WritingPageProps
 
   return (
     <article className="prose prose-quoteless prose-neutral dark:prose-invert max-w-none">
-      <h1 className="text-2xl font-bold mb-2">{title}</h1>
-      <p className="text-sm text-secondary mt-0 mb-8">{date}</p>
+      <h1 className="!mt-0 mb-2 text-2xl font-bold">{title}</h1>
+      <p className="text-sm text-secondary mt-0 mb-8">
+        {formatDate(date)}
+      </p>
       {/* @ts-expect-error Server Component */}
       <MDXRemote source={content} options={options} components={components} />
     </article>

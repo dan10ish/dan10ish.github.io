@@ -3,6 +3,7 @@ import ProjectLink from './components/ProjectLink';
 import SocialLinks from './components/SocialLinks';
 import { personalInfo, projects } from './data';
 import { getSortedWritingsData } from '../lib/writings';
+import { formatDate } from '../lib/utils';
 
 export default function Home() {
   const writings = getSortedWritingsData();
@@ -56,7 +57,7 @@ export default function Home() {
                     {title}
                   </span>
                   <span className="text-secondary text-sm flex-shrink-0 ml-2">
-                    {date}
+                    {formatDate(date)}
                   </span>
                 </div>
               </Link>
