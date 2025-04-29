@@ -98,4 +98,4 @@ export default async function WritingPage({ params }: { params: Promise<{ slug: 
 }
 
 // Add prose-quoteless styles (optional, removes default quote styling if desired)
-// Add necessary global styles for prose customization if needed, e.g., in globals.css 
+// Add necessary global styles for prose customization if needed, e.g., in globals.css

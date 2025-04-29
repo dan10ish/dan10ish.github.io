@@ -110,8 +110,7 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="dark" suppressHydrationWarning>
       <head>
-        {/* Remove meta theme-color tag */}
-        {/* <meta name="theme-color" content="#1c1c1c" /> */}
+
       </head>
       <body className={`${sfMono.variable}`}>
         <ThemeProvider>

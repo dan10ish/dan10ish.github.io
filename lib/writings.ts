@@ -15,7 +15,7 @@ export interface WritingData {
 export function getSortedWritingsData(): Omit<WritingData, 'content'>[] {
   const fileNames = fs.readdirSync(writingsDirectory)
   const allWritingsData = fileNames
-    .filter((fileName) => fileName.endsWith('.mdx')) // Only include .mdx files
+    .filter((fileName) => fileName.endsWith('.mdx'))
     .map((fileName) => {
       const slug = fileName.replace(/\.mdx$/, '')
       const fullPath = path.join(writingsDirectory, fileName)
