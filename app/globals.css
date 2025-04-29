@@ -22,10 +22,10 @@
 }
 
 [data-theme="solarized"] {
-  --background: #01242E; /* Solarized Dark background */
-  --foreground: #fdf6e3; /* Solarized Light (base3) for text */
-  --secondary: #93a1a1;  /* Solarized Base1 for secondary text */
-  --link-blue: #2aa198;  /* Solarized Cyan for links */
+  --background: #01242E;
+  --foreground: #fdf6e3;
+  --secondary: #93a1a1;
+  --link-blue: #2aa198;
 }
 
 html {
@@ -54,7 +54,6 @@ a {
   text-decoration: none;
 }
 
-/* Icon styling - make all icons use secondary color */
 svg {
   color: var(--secondary);
 }
@@ -74,7 +73,6 @@ svg {
     opacity: 0.8;
   }
   
-  /* Icon hover styling */
   a:hover svg, 
   button:hover svg {
     color: var(--link-blue);
