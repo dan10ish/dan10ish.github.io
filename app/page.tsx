@@ -33,23 +33,25 @@ export default function Home() {
           </div>
         </section>
 
-        <section>
-          <h1 className="text-base opacity-70">writings</h1>
-          <div className="mt-1 space-y-1">
-            {writings.map(({ slug, title, date }) => (
-              <Link href={`/writings/${slug}`} key={slug} className="block group">
-                <div className="flex justify-between items-center w-full">
-                  <span className="text-primary group-hover:underline truncate">
-                    {title}
-                  </span>
-                  <span className="text-secondary text-sm flex-shrink-0 ml-2">
-                    {formatDate(date)}
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
+        {writings.length > 0 && (
+          <section>
+            <h1 className="text-base opacity-70">writings</h1>
+            <div className="mt-1 space-y-1">
+              {writings.map(({ slug, title, date }) => (
+                <Link href={`/writings/${slug}`} key={slug} className="block group">
+                  <div className="flex justify-between items-center w-full">
+                    <span className="text-primary group-hover:underline truncate">
+                      {title}
+                    </span>
+                    <span className="text-secondary text-sm flex-shrink-0 ml-2">
+                      {formatDate(date)}
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
 
         <section>
           <h1 className="text-base opacity-70">projects</h1>
