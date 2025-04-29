@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 
-const writingsDirectory = path.join(process.cwd(), 'content/writings')
+const writingsDirectory = path.join(process.cwd(), 'writings')
 
 export interface WritingData {
   slug: string
@@ -40,15 +40,17 @@ export function getSortedWritingsData(): Omit<WritingData, 'content'>[] {
 }
 
 export async function getWritingData(slug: string): Promise<WritingData> {
-  const fullPath = path.join(writingsDirectory, `${slug}.mdx`)
-  const fileContents = fs.readFileSync(fullPath, 'utf8')
-  const matterResult = matter(fileContents)
+  return new Promise((resolve) => {
+    const fullPath = path.join(writingsDirectory, `${slug}.mdx`)
+    const fileContents = fs.readFileSync(fullPath, 'utf8')
+    const matterResult = matter(fileContents)
 
-  return {
-    slug,
-    title: matterResult.data.title as string,
-    date: matterResult.data.date as string,
-    summary: matterResult.data.summary as string,
-    content: matterResult.content,
-  }
+    resolve({
+      slug,
+      title: matterResult.data.title as string,
+      date: matterResult.data.date as string,
+      summary: matterResult.data.summary as string,
+      content: matterResult.content,
+    })
+  })
 } 

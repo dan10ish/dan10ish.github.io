@@ -22,7 +22,8 @@ export async function generateStaticParams() {
   }))
 }
 
-export async function generateMetadata({ params: { slug } }: WritingPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params
   const writing = await getWritingData(slug)
   return {
     title: writing.title,
@@ -48,7 +49,8 @@ const CustomLink = (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
   return <a target="_blank" rel="noopener noreferrer" {...props} />
 }
 
-export default async function WritingPage({ params: { slug } }: WritingPageProps) {
+export default async function WritingPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
   const { title, date, content } = await getWritingData(slug)
 
   const options = {

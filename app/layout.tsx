@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "./ThemeProvider";
@@ -96,6 +96,9 @@ export const metadata: Metadata = {
     "profile:username": "dan10ish",
     "profile:first_name": "Danish",
   },
+};
+
+export const viewport: Viewport = {
   themeColor: '#1c1c1c',
 };
 
@@ -107,7 +110,8 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="dark" suppressHydrationWarning>
       <head>
-        <meta name="theme-color" content="#1c1c1c" />
+        {/* Remove meta theme-color tag */}
+        {/* <meta name="theme-color" content="#1c1c1c" /> */}
       </head>
       <body className={`${sfMono.variable}`}>
         <ThemeProvider>
