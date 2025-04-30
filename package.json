@@ -26,10 +26,12 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4.1.4",
     "@tailwindcss/typography": "^0.5.16",
     "@types/node": "^20",
     "@types/react": "^19.1.2",
     "gh-pages": "^6.3.0",
-    "tailwindcss": "^4"
+    "tailwindcss": "^4",
+    "typescript": "5.8.3"
   }
 }

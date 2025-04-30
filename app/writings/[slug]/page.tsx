@@ -9,7 +9,7 @@ import Link from 'next/link'
 import { MdxTableWrapper } from '../../components/MdxTableWrapper'
 import { formatDate } from '../../../lib/utils'
 import { notFound } from 'next/navigation'
-import FloatingButtons from '@/app/components/FloatingButtons'
+import FloatingButtons from '../../components/FloatingButtons'
 
 interface WritingPageProps {
   params: Promise<{ slug: string }>;
