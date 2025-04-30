@@ -250,10 +250,9 @@ section {
 
 .prose ul,
 .prose ol {
-  margin-top: 0.5em; 
-  margin-bottom: 0.5em;
-  padding-left: 0; 
-  list-style-position: inside; 
+  margin-top: 0.75em; 
+  margin-bottom: 0.75em;
+  padding-left: 1.5em; 
 }
 
 .prose li {
@@ -263,35 +262,43 @@ section {
 }
 
 .prose ul li {
-  list-style-type: none; 
+  list-style-type: disc; 
 }
 
 .prose ul li::before {
-  content: "-";
-  display: inline-block;
-  color: var(--secondary);
-  position: absolute;
-  margin-left: -1em; 
+  content: "";
 }
 
 .prose ol li {
-  list-style-type: none; 
-  counter-increment: list-counter; 
+  list-style-type: decimal; 
 }
 
 .prose ol li::before {
-  content: counter(list-counter) "."; 
-  display: inline-block;
-  color: var(--secondary);
-  font-weight: 400;
-  position: absolute;
-  margin-left: -1.5em; 
-  width: 1em;
-  text-align: right;
+ content: "";
+}
+
+.prose ul ul,
+.prose ul ol,
+.prose ol ul,
+.prose ol ol {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: 1.5em; 
+}
+
+.prose ul ul li {
+  list-style-type: circle;
+}
+
+.prose ol ol li {
+  list-style-type: lower-alpha;
+}
+
+.prose ol ul li {
+  list-style-type: square;
 }
 
 .prose ol {
-  counter-reset: list-counter; 
 }
 
 .prose img {
@@ -319,19 +326,20 @@ section {
 .prose h4,
 .prose h5,
 .prose h6 {
-  font-weight: 600;
   margin-top: 1.5em; 
   margin-bottom: 0.5em;
+  padding-top: 0.5em; 
+  padding-bottom: 0.25em;
   line-height: 1.3; 
-  color: var(--foreground);
+  color: var(--secondary);
 }
 
-.prose h1 { font-weight: 700; } 
-.prose h2 { font-weight: 600; } 
-.prose h3 { font-weight: 600; } 
-.prose h4 { font-weight: 600; } 
-.prose h5 { font-weight: 600; } 
-.prose h6 { font-weight: 600; color: var(--secondary); } 
+.prose h1 { font-weight: 900; color: var(--foreground); } 
+.prose h2 { font-weight: 900; } 
+.prose h3 { font-weight: 800; } 
+.prose h4 { font-weight: 700; } 
+.prose h5 { font-weight: 500; } 
+.prose h6 { font-weight: 400; color: var(--secondary); } 
 
 .prose p {
   margin-top: 0.5em;
