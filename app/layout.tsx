@@ -1,8 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { ThemeProvider } from "./ThemeProvider";
-import { HeaderControls } from "./components/HeaderControls";
+import { ThemeColorUpdater } from "./components/ThemeColorUpdater";
 
 const sfMono = localFont({
   src: [
@@ -99,7 +98,6 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#1c1c1c',
 };
 
 export default function RootLayout({
@@ -108,15 +106,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="dark" suppressHydrationWarning>
+    <html lang="en">
       <head>
-
+        <ThemeColorUpdater />
       </head>
       <body className={`${sfMono.variable}`}>
-        <ThemeProvider>
-          <HeaderControls />
-          {children}
-        </ThemeProvider>
+        {children}
       </body>
     </html>
   );
