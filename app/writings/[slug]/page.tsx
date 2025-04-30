@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { MDXRemote } from 'next-mdx-remote/rsc'
-import { getSortedWritingsData, getWritingData } from '../../../lib/writings'
+import { getSortedWritingsData, getWritingData, WritingData } from '../../../lib/writings'
 import remarkGfm from 'remark-gfm'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
@@ -8,26 +8,41 @@ import rehypePrettyCode from 'rehype-pretty-code'
 import Link from 'next/link'
 import { MdxTableWrapper } from '../../components/MdxTableWrapper'
 import { formatDate } from '../../../lib/utils'
+import { notFound } from 'next/navigation'
 
 interface WritingPageProps {
-  params: {
-    slug: string
-  }
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
 export async function generateStaticParams() {
   const writings = getSortedWritingsData()
-  return writings.map((writing) => ({
-    slug: writing.slug,
-  }))
+  return writings.map((writing) => {
+    if (typeof writing.slug !== 'string') {
+      console.warn(`Invalid slug type found: ${typeof writing.slug}. Skipping.`);
+      return null;
+    }
+    return { slug: writing.slug };
+  }).filter(Boolean) as { slug: string }[];
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const { slug } = await params
-  const writing = await getWritingData(slug)
-  return {
-    title: writing.title,
-    description: writing.summary,
+export async function generateMetadata({ params }: WritingPageProps): Promise<Metadata> {
+  let slug: string | undefined;
+  try {
+    const paramsObj = await params;
+    slug = paramsObj.slug;
+    const writing = await getWritingData(slug)
+    return {
+      title: writing.title,
+      description: writing.summary,
+    }
+  } catch (error) {
+    const errorMessage = slug ? `Failed to generate metadata for slug "${slug}":` : "Failed to generate metadata:";
+    console.error(errorMessage, error);
+    return {
+      title: "Error",
+      description: "Could not load writing metadata."
+    }
   }
 }
 
@@ -49,9 +64,19 @@ const CustomLink = (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
   return <a target="_blank" rel="noopener noreferrer" {...props} />
 }
 
-export default async function WritingPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params
-  const { title, date, content } = await getWritingData(slug)
+export default async function WritingPage({ params }: WritingPageProps) {
+  let writing: WritingData;
+  try {
+    // Await params first to get the slug
+    const { slug } = await params;
+    // Fetch data within the component using the awaited slug
+    writing = await getWritingData(slug);
+  } catch (error) {
+    // If data fetching fails (e.g., file not found), trigger a 404
+    notFound();
+  }
+
+  const { title, date, content } = writing;
 
   const options = {
     mdxOptions: {
@@ -91,7 +116,7 @@ export default async function WritingPage({ params }: { params: Promise<{ slug: 
       <p className="text-sm text-secondary mt-0 mb-8">
         {formatDate(date)}
       </p>
-      {/* @ts-expect-error Server Component */}
+      {/* @ts-expect-error Async Server Component */}
       <MDXRemote source={content} options={options} components={components} />
     </article>
   )
