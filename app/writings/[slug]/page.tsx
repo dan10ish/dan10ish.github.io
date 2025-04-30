@@ -9,6 +9,7 @@ import Link from 'next/link'
 import { MdxTableWrapper } from '../../components/MdxTableWrapper'
 import { formatDate } from '../../../lib/utils'
 import { notFound } from 'next/navigation'
+import FloatingButtons from '@/app/components/FloatingButtons'
 
 interface WritingPageProps {
   params: Promise<{ slug: string }>;
@@ -118,6 +119,7 @@ export default async function WritingPage({ params }: WritingPageProps) {
       </p>
       {/* @ts-expect-error Async Server Component */}
       <MDXRemote source={content} options={options} components={components} />
+      <FloatingButtons />
     </article>
   )
 }
