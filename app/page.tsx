@@ -49,7 +49,7 @@ export default function Home() {
                     <span className="text-secondary text-sm flex-shrink-0">
                       {formatDate(date)}
                     </span>
-                    <span className="text-link-blue group-hover:underline truncate">
+                    <span className="text-primary group-hover:underline truncate">
                       {title}
                     </span>
                   </div>
