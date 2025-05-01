@@ -1,7 +1,6 @@
 export const personalInfo = {
-  name: "danish ansari",
-  location: "mumbai, india",
-  about: "mechatronics engineer and generalist interested in bridging hardware and software.",
+  name: "Danish Ansari",
+  about: "Mechatronics engineer and generalist interested in bridging hardware and software.",
   socials: {
     github: "dan10ish",
     x: "dan10ish",
