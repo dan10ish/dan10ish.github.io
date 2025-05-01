@@ -9,8 +9,11 @@ export interface WritingData {
   title: string
   date: string
   summary: string
+  ogImage?: string
   content: string
 }
+
+const defaultOgImage = "https://i.ibb.co/vmBrhSd/OG.png";
 
 export function getSortedWritingsData(): Omit<WritingData, 'content'>[] {
   const fileNames = fs.readdirSync(writingsDirectory)
@@ -27,6 +30,7 @@ export function getSortedWritingsData(): Omit<WritingData, 'content'>[] {
         title: matterResult.data.title as string,
         date: matterResult.data.date as string,
         summary: matterResult.data.summary as string,
+        ogImage: matterResult.data.ogImage as string || defaultOgImage,
       }
     })
 
@@ -50,6 +54,7 @@ export async function getWritingData(slug: string): Promise<WritingData> {
       title: matterResult.data.title as string,
       date: matterResult.data.date as string,
       summary: matterResult.data.summary as string,
+      ogImage: matterResult.data.ogImage as string || defaultOgImage,
       content: matterResult.content,
     })
   })

@@ -33,9 +33,35 @@ export async function generateMetadata({ params }: WritingPageProps): Promise<Me
     const paramsObj = await params;
     slug = paramsObj.slug;
     const writing = await getWritingData(slug)
+    
+    const pageTitle = `${writing.title} | Danish`;
+    const pageDescription = writing.summary;
+    const ogImageUrl = writing.ogImage || "https://i.ibb.co/vmBrhSd/OG.png"; // Fallback just in case
+
     return {
-      title: writing.title,
-      description: writing.summary,
+      title: pageTitle,
+      description: pageDescription,
+      openGraph: {
+        title: pageTitle,
+        description: pageDescription,
+        type: 'article',
+        publishedTime: writing.date,
+        url: `https://danish.bio/writings/${slug}`,
+        images: [
+          {
+            url: ogImageUrl,
+            width: 1200,
+            height: 630,
+            alt: writing.title,
+          },
+        ],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: pageTitle,
+        description: pageDescription,
+        images: [ogImageUrl],
+      },
     }
   } catch (error) {
     const errorMessage = slug ? `Failed to generate metadata for slug "${slug}":` : "Failed to generate metadata:";
@@ -68,12 +94,9 @@ const CustomLink = (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
 export default async function WritingPage({ params }: WritingPageProps) {
   let writing: WritingData;
   try {
-    // Await params first to get the slug
     const { slug } = await params;
-    // Fetch data within the component using the awaited slug
     writing = await getWritingData(slug);
   } catch (error) {
-    // If data fetching fails (e.g., file not found), trigger a 404
     notFound();
   }
 
@@ -123,6 +146,3 @@ export default async function WritingPage({ params }: WritingPageProps) {
     </article>
   )
 }
-
-// Add prose-quoteless styles (optional, removes default quote styling if desired)
-// Add necessary global styles for prose customization if needed, e.g., in globals.css
