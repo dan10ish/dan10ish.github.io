@@ -34,7 +34,7 @@ export default function FloatingButtons() {
       {isVisible && (
         <button
           onClick={scrollToTop}
-          className="flex items-center justify-center p-2 rounded-full bg-background border border-foreground/10 shadow-sm hover:shadow-md transition-shadow duration-200 animate-fade-in"
+          className="flex items-center justify-center p-2 rounded-full bg-background duration-200 animate-fade-in"
           aria-label="Scroll to top"
         >
           <ChevronUp size={20} />
@@ -42,7 +42,7 @@ export default function FloatingButtons() {
       )}
       <Link 
         href="/"
-        className="flex items-center justify-center p-2 rounded-full bg-background border border-foreground/10 shadow-sm hover:shadow-md transition-shadow duration-200"
+        className="flex items-center justify-center p-2 rounded-full bg-background duration-200"
         aria-label="Go to homepage"
       >
         <Home size={20} />

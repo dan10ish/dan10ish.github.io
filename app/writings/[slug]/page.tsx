@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: WritingPageProps): Promise<Me
     
     const pageTitle = `${writing.title} | Danish`;
     const pageDescription = writing.summary;
-    const ogImageUrl = writing.ogImage || "https://i.ibb.co/vmBrhSd/OG.png"; // Fallback just in case
+    const ogImageUrl = writing.ogImage || "https://i.ibb.co/vmBrhSd/OG.png";
 
     return {
       title: pageTitle,
