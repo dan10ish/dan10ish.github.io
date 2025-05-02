@@ -11,6 +11,7 @@ export interface WritingData {
   summary: string
   ogImage?: string
   content: string
+  tags?: string[]
 }
 
 const defaultOgImage = "https://i.ibb.co/vmBrhSd/OG.png";
@@ -25,12 +26,15 @@ export function getSortedWritingsData(): Omit<WritingData, 'content'>[] {
       const fileContents = fs.readFileSync(fullPath, 'utf8')
       const matterResult = matter(fileContents)
 
+      const tags = (matterResult.data.tags as string[] | undefined) || [];
+
       return {
         slug,
         title: matterResult.data.title as string,
         date: matterResult.data.date as string,
         summary: matterResult.data.summary as string,
         ogImage: matterResult.data.ogImage as string || defaultOgImage,
+        tags: tags,
       }
     })
 
@@ -49,6 +53,8 @@ export async function getWritingData(slug: string): Promise<WritingData> {
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     const matterResult = matter(fileContents)
 
+    const tags = (matterResult.data.tags as string[] | undefined) || [];
+
     resolve({
       slug,
       title: matterResult.data.title as string,
@@ -56,6 +62,7 @@ export async function getWritingData(slug: string): Promise<WritingData> {
       summary: matterResult.data.summary as string,
       ogImage: matterResult.data.ogImage as string || defaultOgImage,
       content: matterResult.content,
+      tags: tags,
     })
   })
 } 

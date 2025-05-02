@@ -32,21 +32,29 @@ export async function generateMetadata({ params }: WritingPageProps): Promise<Me
   try {
     const paramsObj = await params;
     slug = paramsObj.slug;
+    if (!slug) {
+      throw new Error("Slug is undefined");
+    }
     const writing = await getWritingData(slug)
-    
+
     const pageTitle = `${writing.title} | Danish`;
     const pageDescription = writing.summary;
     const ogImageUrl = writing.ogImage || "https://i.ibb.co/vmBrhSd/OG.png";
+    const writingUrl = `https://danish.bio/writings/${slug}`;
 
     return {
       title: pageTitle,
       description: pageDescription,
+      keywords: writing.tags || [],
+      authors: [{ name: 'Danish', url: 'https://danish.bio' }],
+      alternates: {
+        canonical: writingUrl,
+      },
       openGraph: {
         title: pageTitle,
         description: pageDescription,
-        type: 'article',
-        publishedTime: writing.date,
-        url: `https://danish.bio/writings/${slug}`,
+        url: writingUrl,
+        siteName: 'Danish',
         images: [
           {
             url: ogImageUrl,
@@ -55,20 +63,41 @@ export async function generateMetadata({ params }: WritingPageProps): Promise<Me
             alt: writing.title,
           },
         ],
+        locale: 'en_US',
+        type: 'article',
+        publishedTime: writing.date,
+        authors: ['Danish'],
       },
       twitter: {
         card: "summary_large_image",
         title: pageTitle,
         description: pageDescription,
+        site: "@dan10ish", 
+        creator: "@dan10ish", 
         images: [ogImageUrl],
+      },
+      robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          "max-video-preview": -1,
+          "max-image-preview": "large",
+          "max-snippet": -1,
+        },
       },
     }
   } catch (error) {
     const errorMessage = slug ? `Failed to generate metadata for slug "${slug}":` : "Failed to generate metadata:";
     console.error(errorMessage, error);
+    // Return minimal metadata on error
     return {
-      title: "Error",
-      description: "Could not load writing metadata."
+      title: "Error | Danish",
+      description: "Could not load writing metadata.",
+       alternates: {
+        canonical: slug ? `https://danish.bio/writings/${slug}` : undefined,
+      },
     }
   }
 }
