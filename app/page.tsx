@@ -43,13 +43,13 @@ export default function Home() {
                 <Link
                   href={`/writings/${slug}`}
                   key={slug}
-                  className="block group"
+                  className="block group writing-link"
                 >
                   <div className="flex gap-4 items-center w-full">
                     <span className="text-secondary text-sm flex-shrink-0">
                       {formatDate(date)}
                     </span>
-                    <span className="text-primary group-hover:underline truncate">
+                    <span className="text-primary group-hover:text-[var(--link-blue)] truncate">
                       {title}
                     </span>
                   </div>

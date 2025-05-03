@@ -58,6 +58,10 @@ svg {
   a:hover {
     opacity: 0.8;
   }
+
+  a.writing-link:hover {
+    opacity: 1;
+  }
   
   .hover-underline:hover {
     text-decoration: underline;
