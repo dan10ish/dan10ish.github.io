@@ -12,14 +12,32 @@
   --spacing-lg: 2rem;
   --spacing-xl: 3rem;
   --max-width: 700px;
-  --code-bg: rgb(230, 230, 230);
+  --code-bg: #fafafa;
+  --sh-class: #2d5e9d;
+  --sh-identifier: #354150;
+  --sh-sign: #8996a3;
+  --sh-property: #0550ae;
+  --sh-entity: #249a97;
+  --sh-jsxliterals: #6266d1;
+  --sh-string: #00a99a;
+  --sh-keyword: #f47067;
+  --sh-comment: #a19595;
 
   @media (prefers-color-scheme: dark) {
     --background: #1c1c1c;
     --foreground: #F7F7F7;
     --secondary: #999999;
     --link-blue: #007FFF;
-    --code-bg: rgb(37, 37, 37);
+    --code-bg: #222;
+    --sh-class: #5a86c4;
+    --sh-identifier: #d1dce8;
+    --sh-sign: #8996a3;
+    --sh-property: #8cb3e7;
+    --sh-entity: #6eafad;
+    --sh-jsxliterals: #bf7db6;
+    --sh-string: #00a99a;
+    --sh-keyword: #f47067;
+    --sh-comment: #a19595;
   }
 }
 
@@ -156,8 +174,7 @@ section {
 .prose figure[data-rehype-pretty-code-figure] > pre code span {
   font-size: 0.95em !important;
   line-height: 1.4 !important;
-  color: var(--secondary) !important;
-  background-color: var(--code-bg);
+  background-color: var(--code-bg) !important;
 }
 
 .prose :where(code):not(:where(pre code)) {
@@ -333,3 +350,21 @@ section {
 
 .text-link-blue { color: var(--link-blue); }
 .text-secondary { color: var(--secondary); }
+
+.sh__line {
+  display: block;
+}
+
+.sh__token--keyword { color: var(--sh-keyword); }
+.sh__token--string { color: var(--sh-string); }
+.sh__token--class { color: var(--sh-class); }
+.sh__token--property { color: var(--sh-property); }
+.sh__token--entity { color: var(--sh-entity); }
+.sh__token--identifier { color: var(--sh-identifier); }
+.sh__token--comment { color: var(--sh-comment); font-style: italic; }
+.sh__token--sign { color: var(--sh-sign); }
+.sh__token--jsxliterals { color: var(--sh-jsxliterals); }
+
+.prose code {
+  color: inherit;
+}

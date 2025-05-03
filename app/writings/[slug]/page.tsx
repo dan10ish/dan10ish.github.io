@@ -4,12 +4,13 @@ import { getSortedWritingsData, getWritingData, WritingData } from '../../../lib
 import remarkGfm from 'remark-gfm'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
-import rehypePrettyCode from 'rehype-pretty-code'
 import Link from 'next/link'
 import { MdxTableWrapper } from '../../components/MdxTableWrapper'
 import { formatDate } from '../../../lib/utils'
 import { notFound } from 'next/navigation'
 import FloatingButtons from '../../components/FloatingButtons'
+import { highlight } from 'sugar-high'
+import React from 'react'
 
 interface WritingPageProps {
   params: Promise<{ slug: string }>;
@@ -132,6 +133,46 @@ const CustomLink = (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
   return <a target="_blank" rel="noopener noreferrer" {...props} />
 }
 
+const CustomPre = (props: React.HTMLAttributes<HTMLPreElement>) => {
+  const children = props.children
+  let code = ''
+  let lang = ''
+
+  if (React.isValidElement(children) && children.props) {
+    const codeElement = children as React.ReactElement<React.HTMLAttributes<HTMLElement>>;
+    const elementProps = codeElement.props;
+
+    if (elementProps.className) {
+      const className = elementProps.className as string
+      const match = className.match(/language-(\w+)/)
+      if (match) {
+        lang = match[1]
+      }
+    }
+    if (typeof elementProps.children === 'string') {
+      code = elementProps.children.trim()
+    }
+  }
+
+  if (!code) {
+    if (typeof children === 'string') {
+      code = children.trim();
+    } else {
+      return <pre {...props} />
+    }
+  }
+
+  const highlightedHtml = highlight(code)
+
+  return (
+    <figure data-rehype-pretty-code-figure> 
+      <pre {...props} className={lang ? `language-${lang}` : ''}>
+        <code dangerouslySetInnerHTML={{ __html: highlightedHtml }} />
+      </pre>
+    </figure>
+  )
+}
+
 export default async function WritingPage({ params }: WritingPageProps) {
   let writing: WritingData;
   try {
@@ -156,16 +197,6 @@ export default async function WritingPage({ params }: WritingPageProps) {
             },
           },
         ],
-        [
-          rehypePrettyCode,
-          {
-            theme: {
-              dark: 'github-dark',
-              light: 'github-light',
-            },
-            keepBackground: true,
-          },
-        ],
       ],
     },
   }
@@ -173,6 +204,7 @@ export default async function WritingPage({ params }: WritingPageProps) {
   const components = {
     a: CustomLink,
     table: MdxTableWrapper,
+    pre: CustomPre,
   }
 
   return (
