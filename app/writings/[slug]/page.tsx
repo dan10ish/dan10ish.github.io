@@ -39,8 +39,20 @@ export async function generateMetadata({ params }: WritingPageProps): Promise<Me
 
     const pageTitle = `${writing.title} | Danish`;
     const pageDescription = writing.summary;
-    const ogImageUrl = writing.ogImage || "https://i.ibb.co/vmBrhSd/OG.png";
     const writingUrl = `https://danish.bio/writings/${slug}`;
+    
+    let ogImageUrl: string;
+    const defaultOgImage = "https://i.ibb.co/vmBrhSd/OG.png";
+
+    if (writing.ogImage) {
+      if (writing.ogImage.startsWith('/')) {
+        ogImageUrl = `https://danish.bio${writing.ogImage}`;
+      } else {
+        ogImageUrl = writing.ogImage;
+      }
+    } else {
+      ogImageUrl = defaultOgImage;
+    }
 
     return {
       title: pageTitle,
