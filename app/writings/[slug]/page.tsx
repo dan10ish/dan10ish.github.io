@@ -104,11 +104,10 @@ export async function generateMetadata({ params }: WritingPageProps): Promise<Me
   } catch (error) {
     const errorMessage = slug ? `Failed to generate metadata for slug "${slug}":` : "Failed to generate metadata:";
     console.error(errorMessage, error);
-    // Return minimal metadata on error
     return {
       title: "Error | Danish",
       description: "Could not load writing metadata.",
-       alternates: {
+      alternates: {
         canonical: slug ? `https://danish.bio/writings/${slug}` : undefined,
       },
     }

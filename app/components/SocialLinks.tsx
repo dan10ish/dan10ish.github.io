@@ -23,14 +23,38 @@ const XIcon = memo((props) => (
 
 XIcon.displayName = 'XIcon';
 
+const LinkedInIcon = memo((props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <rect x="2" y="2" width="20" height="20" rx="2" />
+    <path d="M8 11v5" />
+    <path d="M8 8v.01" />
+    <path d="M12 16v-5" />
+    <path d="M16 16v-3a2 2 0 0 0-4 0" />
+  </svg>
+));
+
+LinkedInIcon.displayName = 'LinkedInIcon';
+
 interface SocialLinksProps {
   github?: string;
   email?: string;
   x?: string;
   instagram?: string;
+  linkedin?: string;
 }
 
-export default function SocialLinks({ github, email, x, instagram }: SocialLinksProps) {
+export default function SocialLinks({ github, email, x, instagram, linkedin }: SocialLinksProps) {
   return (
     <div className="flex items-center gap-2">
       {github && (
@@ -41,6 +65,11 @@ export default function SocialLinks({ github, email, x, instagram }: SocialLinks
       {email && (
         <Link href={`mailto:${email}`} className="flex items-center justify-center" aria-label={`Send email to ${email}`}>
           <Mail size={20} />
+        </Link>
+      )}
+      {linkedin && (
+        <Link href={`https://www.linkedin.com/in/${linkedin}`} target="_blank" className="flex items-center justify-center" aria-label={`LinkedIn profile of ${linkedin}`}>
+          <LinkedInIcon />
         </Link>
       )}
       {x && (

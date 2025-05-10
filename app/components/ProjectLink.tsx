@@ -12,7 +12,7 @@ interface ProjectLinkProps {
 export default function ProjectLink({ name, sourceCode, liveDemo }: ProjectLinkProps) {
   return (
     <div className="flex items-center mb-4">
-      <div className="text-[0.9rem] flex-shrink-0">{name.toLowerCase()}</div>
+      <div className="text-[0.85rem] flex-shrink-0">{name.toLowerCase()}</div>
       <div className="w-2 flex-shrink-0"></div>
       <div className="flex items-center gap-2">
         {sourceCode && (

@@ -31,6 +31,7 @@ export default function Home() {
               email={personalInfo.socials.email}
               x={personalInfo.socials.x}
               instagram={personalInfo.socials.instagram}
+              linkedin={personalInfo.socials.linkedin}
             />
           </div>
         </section>
