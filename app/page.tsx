@@ -50,7 +50,7 @@ export default function Home() {
                     <span className="text-secondary text-sm flex-shrink-0">
                       {formatDate(date)}
                     </span>
-                    <span className="text-primary group-hover:text-[var(--link-blue)] truncate">
+                    <span className="font-semibold text-secondary group-hover:text-[var(--link-blue)] truncate">
                       {title}
                     </span>
                   </div>
