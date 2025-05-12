@@ -67,6 +67,7 @@ export default function Home() {
               <ProjectLink
                 key={index}
                 name={project.name}
+                tag={project.tag}
                 sourceCode={project.sourceCode}
                 liveDemo={project.liveDemo}
               />
