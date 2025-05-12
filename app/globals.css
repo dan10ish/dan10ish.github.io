@@ -138,7 +138,7 @@ section {
 @media (max-width: 640px) {
   body {
     font-size: 0.85rem;
-    padding: 1rem;
+    padding: var(--spacing-md);
   }
   
   .space-y-6 > * + * {

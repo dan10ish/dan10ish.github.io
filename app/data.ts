@@ -26,7 +26,7 @@ export const projects = [
   {
     name: "3DOF Robotic Arm",
     sourceCode: "https://github.com/dan10ish/3DOF-RoboticArm-C",
-    tag: "college"
+    tag: "robotics"
   },
   {
     name: "Pathfinder",
@@ -44,7 +44,7 @@ export const projects = [
     name: "Arm Visualizer",
     sourceCode: "https://github.com/dan10ish/RoboticArm",
     liveDemo: "https://dan10ish.github.io/RoboticArm/",
-    tag: "web"
+    tag: "robotics"
   },
   {
     name: "College Notes",
