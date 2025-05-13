@@ -113,6 +113,7 @@ export default function RootLayout({
       </head>
       <body className={`${sfMono.variable}`}>
         <PageWrapper>{children}</PageWrapper>
+        <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
       </body>
     </html>
   );
