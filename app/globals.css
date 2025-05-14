@@ -22,6 +22,8 @@
   --sh-string: #00a99a;
   --sh-keyword: #f47067;
   --sh-comment: #a19595;
+  --clear-filter-bg: #FFDCD9; 
+  --clear-filter-text: #D32F2F;
 
   @media (prefers-color-scheme: dark) {
     --background: #121212;
@@ -38,6 +40,8 @@
     --sh-string: #00a99a;
     --sh-keyword: #f47067;
     --sh-comment: #a19595;
+    --clear-filter-bg: #522A2A; 
+    --clear-filter-text: #FFB5B5;
   }
 }
 

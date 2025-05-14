@@ -8,15 +8,19 @@ interface ProjectLinkProps {
   tag: string;
   sourceCode?: string;
   liveDemo?: string;
+  onTagClick?: (tag: string) => void;
 }
 
-export default function ProjectLink({ name, tag, sourceCode, liveDemo }: ProjectLinkProps) {
+export default function ProjectLink({ name, tag, sourceCode, liveDemo, onTagClick }: ProjectLinkProps) {
   return (
     <div className="flex items-center justify-between mb-2 md:mb-1">
       <div className="text-[0.85rem] flex-shrink-0 mr-4 truncate">{name.toLowerCase()}</div>
       <div className="flex items-center gap-3 md:gap-6 flex-shrink-0">
         <div className="w-20 flex justify-center">
-          <div className="text-[0.88em] bg-[var(--code-bg)] text-[var(--secondary)] !px-1.5 !py-0.5 rounded-md whitespace-nowrap">
+          <div 
+            className="text-[0.88em] bg-[var(--code-bg)] text-[var(--secondary)] !px-1.5 !py-0.5 rounded-md whitespace-nowrap cursor-pointer"
+            onClick={() => onTagClick && onTagClick(tag)}
+          >
             {tag}
           </div>
         </div>

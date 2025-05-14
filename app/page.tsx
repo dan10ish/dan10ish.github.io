@@ -1,9 +1,9 @@
 import Link from "next/link";
-import ProjectLink from "./components/ProjectLink";
 import SocialLinks from "./components/SocialLinks";
 import { personalInfo, projects } from "./data";
 import { getSortedWritingsData } from "../lib/writings";
 import { formatDate } from "../lib/utils";
+import ProjectListClient from "./components/ProjectListClient";
 
 export default function Home() {
   const writings = getSortedWritingsData();
@@ -60,20 +60,7 @@ export default function Home() {
           </section>
         )}
 
-        <section>
-          <h1 className="text-base opacity-70">Projects</h1>
-          <div className="mt-1 project-list">
-            {projects.map((project, index) => (
-              <ProjectLink
-                key={index}
-                name={project.name}
-                tag={project.tag}
-                sourceCode={project.sourceCode}
-                liveDemo={project.liveDemo}
-              />
-            ))}
-          </div>
-        </section>
+        <ProjectListClient initialProjects={projects} />
       </main>
     </div>
   );
