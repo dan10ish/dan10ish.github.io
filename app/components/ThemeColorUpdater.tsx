@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 
 const LIGHT_THEME_COLOR = '#F7F7F7'; 
-const DARK_THEME_COLOR = '#1c1c1c';
+const DARK_THEME_COLOR = '#121212';
 
 export function ThemeColorUpdater() {
   useEffect(() => {

@@ -5,7 +5,7 @@
   --background: #F7F7F7;
   --foreground: #1c1c1c;
   --secondary: #666666;
-  --link-blue: #0055FF;
+  --link-blue: #007AFF;
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
   --spacing-md: 1.5rem;
@@ -24,9 +24,9 @@
   --sh-comment: #a19595;
 
   @media (prefers-color-scheme: dark) {
-    --background: #1c1c1c;
-    --foreground: #F7F7F7;
-    --secondary: #999999;
+    --background: #121212;
+    --foreground: #FFFFFF;
+    --secondary: #AAAAAA;
     --link-blue: #007FFF;
     --code-bg: #272727;
     --sh-class: #5a86c4;

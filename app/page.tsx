@@ -46,8 +46,8 @@ export default function Home() {
                   key={slug}
                   className="block group writing-link"
                 >
-                  <div className="flex gap-4 items-center w-full">
-                    <span className="text-secondary text-sm flex-shrink-0">
+                  <div className="flex gap-4 w-full items-baseline">
+                    <span className="text-secondary !text-[0.82rem] flex-shrink-0">
                       {formatDate(date)}
                     </span>
                     <span className="font-semibold text-secondary group-hover:text-[var(--link-blue)] group-hover:underline truncate">
