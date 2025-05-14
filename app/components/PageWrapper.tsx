@@ -12,9 +12,9 @@ export const PageWrapper = ({
     <AnimatePresence>
       <motion.div
         key={pathname}
-        initial={{ opacity: 0, y: 5 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.25, ease: "easeInOut" }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.15, ease: "easeInOut" }}
       >
         {children}
       </motion.div>
