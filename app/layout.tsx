@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
+import Script from "next/script";
 import "./globals.css";
 import { ThemeColorUpdater } from "./components/ThemeColorUpdater";
 import { PageWrapper } from "./components/PageWrapper";
@@ -113,7 +114,7 @@ export default function RootLayout({
       </head>
       <body className={`${sfMono.variable}`}>
         <PageWrapper>{children}</PageWrapper>
-        <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+        <Script async defer strategy="afterInteractive" src="https://scripts.simpleanalyticscdn.com/latest.js" />
       </body>
     </html>
   );
