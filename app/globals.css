@@ -91,16 +91,16 @@ svg {
     text-underline-offset: 4px;
     opacity: 1;
   }
-
-  button:hover {
-    opacity: 0.8;
-  }
   
   a:hover svg, 
   button:hover svg {
     color: var(--link-blue);
     opacity: 1;
     transform: scale(1.1);
+  }
+
+  a:hover, button:hover {
+    cursor: pointer;
   }
 }
 

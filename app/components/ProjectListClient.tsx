@@ -45,7 +45,7 @@ export default function ProjectListClient({ initialProjects }: ProjectListClient
         {activeTag && (
           <button
             onClick={handleClearFilter}
-            className="!text-[0.88em] !px-1.5 !py-0.5 !rounded-md"
+            className="!text-[0.88em] !px-1.5 !py-0.5 !rounded-md transform transition-transform duration-0 hover:scale-105"
             style={{
               backgroundColor: 'var(--clear-filter-bg)',
               color: 'var(--clear-filter-text)',
@@ -64,6 +64,7 @@ export default function ProjectListClient({ initialProjects }: ProjectListClient
             sourceCode={project.sourceCode}
             liveDemo={project.liveDemo}
             onTagClick={handleTagClick}
+            isActiveTag={activeTag === project.tag}
           />
         ))}
       </div>
