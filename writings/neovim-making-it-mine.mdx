@@ -2,13 +2,13 @@
 title: 'Neovim: Making It Mine'
 date: '16-05-2025'
 summary: "My personal Neovim setup: stripping it down, beefing it up, and making it actually work for me. Here's how my init.lua ticks."
-ogImage: '/og/nvim-setup.png'
+ogImage: '/og/nvim-2025.png'
 tags: ["nvim", "neovim", "dotfiles", "lua", "setup", "productivity", "editor"]
 ---
 
 > Neovim out of the box? A bit like a wild horse. Powerful, sure, but it needs some serious taming before it's rideable. This is how I did it.
 
-My Neovim configuration is all about control and efficiency. No fluff, just the tools I need to get things done without the editor getting in my way. The goal is a fast, intuitive environment that feels like an extension of my thoughts. You can find the [complete configuration in my dotfiles repository](https://github.com/dan10ish/dotfiles/blob/master/nvim/init.lua) if you want to see every last detail.
+My Neovim configuration is all about control and efficiency. No fluff, just the tools I need to get things done without the editor getting in my way. The goal is a fast, intuitive environment that feels like an extension of my thoughts. You can find the [complete configuration in my dotfiles repository](https://github.com/dan10ish/dotfiles/blob/master/nvim/init.lua).
 
 ## Laying the Foundation: Packer & Core Settings
 
@@ -82,7 +82,7 @@ require('null-ls').setup({
 })
 ```
 
-It looks like this:
+Preview:
 
 ![terminal](/writing-assets/LSP.png)
 
@@ -100,7 +100,7 @@ keymap_set('n', '<leader>ff', ':Telescope find_files<CR>') -- Find files with Te
 keymap_set('n', '<C-h>', '<C-w>h')                      -- Navigate window splits
 ```
 
-It looks like this:
+Preview:
 
 ![terminal](/writing-assets/FileGrep.png)
 
@@ -124,10 +124,10 @@ This setup is lean, mean, and tailored to how I work. It didn't happen overnight
 
 > Maybe Neovim doesn't entirely suck after all. With the right tweaks, it's pretty sharp.
 
-Here is what it looks like in the [Ghostty](https://ghostty.org) terminal
+Preview in the [Ghostty](https://ghostty.org) terminal
 
 ![terminal](/writing-assets/Overall.png)
 
-And here is how it looks like in Mac's default Terminal app.
+Preview in Mac's default Terminal app.
 
 ![terminal](/writing-assets/MacTerminal.png)
