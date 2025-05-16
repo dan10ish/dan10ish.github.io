@@ -39,12 +39,12 @@ export default function Home() {
         {writings.length > 0 && (
           <section>
             <h1 className="text-base opacity-70">Writings</h1>
-            <div className="mt-1 space-y-1">
+            <div className="mt-1">
               {writings.map(({ slug, title, date }) => (
                 <Link
                   href={`/writings/${slug}`}
                   key={slug}
-                  className="block group writing-link"
+                  className="block group writing-link !mb-1"
                 >
                   <div className="flex gap-4 w-full items-baseline">
                     <span className="text-secondary !text-[0.82rem] flex-shrink-0">
