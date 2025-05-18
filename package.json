@@ -13,11 +13,11 @@
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
-    "lucide-react": "^0.488.0",
+    "lucide-react": "^0.511.0",
     "next": "^15.3.2",
     "next-mdx-remote": "^5.0.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-slug": "^6.0.0",
     "remark-gfm": "^4.0.1",
@@ -25,10 +25,10 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@tailwindcss/postcss": "^4.1.4",
+    "@tailwindcss/postcss": "^4.1.7",
     "@tailwindcss/typography": "^0.5.16",
-    "@types/node": "^20",
-    "@types/react": "^19.1.2",
+    "@types/node": "^22",
+    "@types/react": "^19.1.4",
     "gh-pages": "^6.3.0",
     "tailwindcss": "^4",
     "typescript": "5.8.3"
