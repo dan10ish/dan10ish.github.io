@@ -16,13 +16,15 @@ interface ProjectListClientProps {
 
 export default function ProjectListClient({ initialProjects }: ProjectListClientProps) {
   const [activeTag, setActiveTag] = useState<string | null>(null);
-  const [filteredProjects, setFilteredProjects] = useState<Project[]>(initialProjects);
+  const [projectsToDisplay, setProjectsToDisplay] = useState<Project[]>(initialProjects);
 
   useEffect(() => {
     if (activeTag) {
-      setFilteredProjects(initialProjects.filter(project => project.tag === activeTag));
+      const taggedProjects = initialProjects.filter(project => project.tag === activeTag);
+      const otherProjects = initialProjects.filter(project => project.tag !== activeTag);
+      setProjectsToDisplay([...taggedProjects, ...otherProjects]);
     } else {
-      setFilteredProjects(initialProjects);
+      setProjectsToDisplay(initialProjects);
     }
   }, [activeTag, initialProjects]);
 
@@ -56,18 +58,25 @@ export default function ProjectListClient({ initialProjects }: ProjectListClient
         )}
       </div>
       <div className="mt-1 project-list">
-        {filteredProjects.map((project, index) => (
-          <ProjectLink
-            key={index}
-            name={project.name}
-            tag={project.tag}
-            sourceCode={project.sourceCode}
-            liveDemo={project.liveDemo}
-            onTagClick={handleTagClick}
-            isActiveTag={activeTag === project.tag}
-          />
-        ))}
+        {projectsToDisplay.map((project, index) => {
+          const isDimmed = activeTag !== null && project.tag !== activeTag;
+          return (
+            <div
+              key={index}
+              style={isDimmed ? { opacity: 0.4, pointerEvents: 'none' } : {}}
+            >
+              <ProjectLink
+                name={project.name}
+                tag={project.tag}
+                sourceCode={project.sourceCode}
+                liveDemo={project.liveDemo}
+                onTagClick={handleTagClick}
+                isActiveTag={activeTag === project.tag}
+              />
+            </div>
+          );
+        })}
       </div>
     </section>
   );
-} 
+}
