@@ -1,6 +1,6 @@
 import Link from "next/link";
 import SocialLinks from "./components/SocialLinks";
-import { personalInfo, projects } from "./data";
+import { personalInfo, projects, workExperience } from "./data";
 import { getSortedWritingsData } from "../lib/writings";
 import { formatDate } from "../lib/utils";
 import ProjectListClient from "./components/ProjectListClient";
@@ -36,6 +36,28 @@ export default function Home() {
           </div>
         </section>
 
+        <section>
+          <h1 className="text-base opacity-70">Work</h1>
+          {workExperience.map((job, index) => (
+            <div key={index} className="mt-1">
+              <div className="flex gap-2 w-full items-baseline justify-between">
+                <div>
+                  <span className="text-secondary !text-[0.82rem] flex-shrink-0">
+                    {job.role}
+                  </span>
+                  <span className="text-secondary !text-[0.82rem] flex-shrink-0"> @ </span>
+                  <span className="text-base">
+                    {job.company}
+                  </span>
+                </div>
+                <span className="text-secondary !text-[0.82rem] flex-shrink-0">
+                  {job.year}
+                </span>
+              </div>
+            </div>
+          ))}
+        </section>
+
         {writings.length > 0 && (
           <section>
             <h1 className="text-base opacity-70">Writings</h1>
@@ -50,7 +72,7 @@ export default function Home() {
                     <span className="text-secondary !text-[0.82rem] flex-shrink-0">
                       {formatDate(date)}
                     </span>
-                    <span className="font-semibold text-secondary group-hover:text-[var(--link-blue)] group-hover:underline truncate">
+                    <span className="font-semibold hover:underline text-secondary group-hover:text-[var(--link-blue)] group-hover:underline truncate">
                       {title}
                     </span>
                   </div>
