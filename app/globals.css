@@ -2,47 +2,28 @@
 @import "tailwindcss";
 
 :root {
-  --background: #F7F7F7;
-  --foreground: #1c1c1c;
-  --secondary: #666666;
-  --link-blue: #0080ff;
+  --background: #bbb;
+  --foreground: #000;
+  --secondary: #555555;
+  --link-blue: #0066cc;
   --spacing-xs: 0.6rem;
   --spacing-sm: 1.2rem;
   --spacing-md: 1.8rem;
   --spacing-lg: 2.4rem;
   --spacing-xl: 3.6rem;
   --max-width: 700px;
-  --code-bg: #e7e7e7;
-  --sh-class: #2d5e9d;
-  --sh-identifier: #354150;
-  --sh-sign: #8996a3;
-  --sh-property: #0550ae;
-  --sh-entity: #249a97;
-  --sh-jsxliterals: #6266d1;
-  --sh-string: #00a99a;
-  --sh-keyword: #f47067;
-  --sh-comment: #a19595;
-  --clear-filter-bg: #FFDCD9; 
-  --clear-filter-text: #D32F2F;
-
-  @media (prefers-color-scheme: dark) {
-    --background: #121212;
-    --foreground: #FFFFFF;
-    --secondary: #AAAAAA;
-    --link-blue: #007FFF;
-    --code-bg: #272727;
-    --sh-class: #5a86c4;
-    --sh-identifier: #d1dce8;
-    --sh-sign: #8996a3;
-    --sh-property: #8cb3e7;
-    --sh-entity: #6eafad;
-    --sh-jsxliterals: #bf7db6;
-    --sh-string: #00a99a;
-    --sh-keyword: #f47067;
-    --sh-comment: #a19595;
-    --clear-filter-bg: #522A2A; 
-    --clear-filter-text: #FFB5B5;
-  }
+  --code-bg: #AFAFAF;
+  --sh-class: #1a4480;
+  --sh-identifier: #000;
+  --sh-sign: #444444;
+  --sh-property: #0066cc;
+  --sh-entity: #006b5c;
+  --sh-jsxliterals: #4a148c;
+  --sh-string: #006b5c;
+  --sh-keyword: #c62828;
+  --sh-comment: #666666;
+  --clear-filter-bg: #d4af37; 
+  --clear-filter-text: #8b4513;
 }
 
 html {
