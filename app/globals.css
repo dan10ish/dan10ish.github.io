@@ -24,25 +24,25 @@
   --sh-comment: #a19595;
   --clear-filter-bg: #FFDCD9; 
   --clear-filter-text: #D32F2F;
+}
 
-  @media (prefers-color-scheme: dark) {
-    --background: #121212;
-    --foreground: #FFFFFF;
-    --secondary: #AAAAAA;
-    --link-blue: #007FFF;
-    --code-bg: #272727;
-    --sh-class: #5a86c4;
-    --sh-identifier: #d1dce8;
-    --sh-sign: #8996a3;
-    --sh-property: #8cb3e7;
-    --sh-entity: #6eafad;
-    --sh-jsxliterals: #bf7db6;
-    --sh-string: #00a99a;
-    --sh-keyword: #f47067;
-    --sh-comment: #a19595;
-    --clear-filter-bg: #522A2A; 
-    --clear-filter-text: #FFB5B5;
-  }
+.dark {
+  --background: #121212;
+  --foreground: #FFFFFF;
+  --secondary: #AAAAAA;
+  --link-blue: #007FFF;
+  --code-bg: #272727;
+  --sh-class: #5a86c4;
+  --sh-identifier: #d1dce8;
+  --sh-sign: #8996a3;
+  --sh-property: #8cb3e7;
+  --sh-entity: #6eafad;
+  --sh-jsxliterals: #bf7db6;
+  --sh-string: #00a99a;
+  --sh-keyword: #f47067;
+  --sh-comment: #a19595;
+  --clear-filter-bg: #522A2A; 
+  --clear-filter-text: #FFB5B5;
 }
 
 html {

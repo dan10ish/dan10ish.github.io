@@ -2,8 +2,9 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import Script from "next/script";
 import "./globals.css";
-import { ThemeColorUpdater } from "./components/ThemeColorUpdater";
 import { PageWrapper } from "./components/PageWrapper";
+import { ThemeProvider } from "./components/ThemeProvider";
+import FloatingButtons from "./components/FloatingButtons";
 
 const sfMono = localFont({
   src: [
@@ -108,12 +109,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
-        <ThemeColorUpdater />
-      </head>
+    <html lang="en" suppressHydrationWarning>
       <body className={`${sfMono.variable}`}>
-        <PageWrapper>{children}</PageWrapper>
+        <ThemeProvider>
+          <PageWrapper>{children}</PageWrapper>
+          <FloatingButtons />
+        </ThemeProvider>
         <Script async defer strategy="afterInteractive" src="https://scripts.simpleanalyticscdn.com/latest.js" />
       </body>
     </html>
