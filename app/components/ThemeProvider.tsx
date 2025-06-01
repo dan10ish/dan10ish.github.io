@@ -1,7 +1,18 @@
 'use client';
 
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
+
+function ThemeStorageCleaner() {
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('theme');
+      sessionStorage.removeItem('theme');
+    }
+  }, []);
+
+  return null;
+}
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   return (
@@ -15,6 +26,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         dark: '#121212'
       }}
     >
+      <ThemeStorageCleaner />
       {children}
     </NextThemesProvider>
   );
