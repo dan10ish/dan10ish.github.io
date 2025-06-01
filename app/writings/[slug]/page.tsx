@@ -8,7 +8,6 @@ import Link from 'next/link'
 import { MdxTableWrapper } from '../../components/MdxTableWrapper'
 import { formatDate } from '../../../lib/utils'
 import { notFound } from 'next/navigation'
-import FloatingButtons from '../../components/FloatingButtons'
 import { highlight } from 'sugar-high'
 import React from 'react'
 
@@ -214,7 +213,6 @@ export default async function WritingPage({ params }: WritingPageProps) {
       </p>
       {/* @ts-expect-error Async Server Component */}
       <MDXRemote source={content} options={options} components={components} />
-      <FloatingButtons />
     </article>
   )
 }
