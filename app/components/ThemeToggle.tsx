@@ -24,7 +24,6 @@ export function ThemeToggle() {
     <button
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
       className="flex items-center justify-center p-2 rounded-full duration-200"
-      style={{ background: 'var(--background)' }}
       aria-label="Toggle theme"
     >
       {resolvedTheme === 'dark' ? (

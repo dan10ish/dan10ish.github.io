@@ -53,7 +53,7 @@ export default function ProjectListClient({ initialProjects }: ProjectListClient
               color: 'var(--clear-filter-text)',
             }}
           >
-            Clear Filter
+            Clear
           </button>
         )}
       </div>

@@ -12,12 +12,6 @@ export const personalInfo = {
 
 export const projects = [
   {
-    name: "Cold Mail Bot",
-    sourceCode: "https://github.com/dan10ish/coldmailbot",
-    liveDemo: "https://mailbot.streamlit.app",
-    tag: "web"
-  },
-  {
     name: "Code",
     sourceCode: "https://github.com/dan10ish/code",
     liveDemo: "http://dan10ish.github.io/code",
