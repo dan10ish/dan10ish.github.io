@@ -1,11 +1,11 @@
 'use client';
 
 import { useTheme } from 'next-themes';
-import { Sun, Moon } from 'lucide-react';
+import { Sun, Moon, Palette } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 export function ThemeToggle() {
-  const { theme, setTheme, resolvedTheme } = useTheme();
+  const { theme, setTheme, resolvedTheme, systemTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -20,17 +20,46 @@ export function ThemeToggle() {
     );
   }
 
+  const cycleTheme = () => {
+    let currentTheme = resolvedTheme;
+    if (!currentTheme && theme === 'system') {
+      currentTheme = systemTheme;
+    }
+    
+    if (currentTheme === 'light') {
+      setTheme('dark');
+    } else if (currentTheme === 'dark') {
+      setTheme('solarized');
+    } else {
+      setTheme('light');
+    }
+  };
+
+  const getIcon = () => {
+    let currentTheme = resolvedTheme;
+    if (!currentTheme && theme === 'system') {
+      currentTheme = systemTheme;
+    }
+    
+    if (currentTheme === 'light') {
+      return <Moon size={20} />;
+    } else if (currentTheme === 'dark') {
+      return <Palette size={20} />;
+    } else if (currentTheme === 'solarized') {
+      return <Sun size={20} />;
+    } else {
+      return <Moon size={20} />;
+    }
+  };
+
   return (
     <button
-      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+      onClick={cycleTheme}
       className="flex items-center justify-center p-2 rounded-full duration-200"
+      style={{ background: 'var(--background)' }}
       aria-label="Toggle theme"
     >
-      {resolvedTheme === 'dark' ? (
-        <Sun size={20} />
-      ) : (
-        <Moon size={20} />
-      )}
+      {getIcon()}
     </button>
   );
 } 

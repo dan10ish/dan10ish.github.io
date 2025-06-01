@@ -45,6 +45,25 @@
   --clear-filter-text: #FFB5B5;
 }
 
+.solarized {
+  --background: #002b36;
+  --foreground: #fdf6e3;
+  --secondary: #93a1a1;
+  --link-blue: #268bd2;
+  --code-bg: #073642;
+  --sh-class: #b58900;
+  --sh-identifier: #fdf6e3;
+  --sh-sign: #93a1a1;
+  --sh-property: #268bd2;
+  --sh-entity: #2aa198;
+  --sh-jsxliterals: #d33682;
+  --sh-string: #2aa198;
+  --sh-keyword: #859900;
+  --sh-comment: #586e75;
+  --clear-filter-bg: #dc322f; 
+  --clear-filter-text: #fdf6e3;
+}
+
 html {
   overflow-x: hidden;
 }
