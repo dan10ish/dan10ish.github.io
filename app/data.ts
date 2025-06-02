@@ -1,8 +1,8 @@
 export const personalInfo = {
   name: "Danish Ansari",
   about: "Mechatronics engineer and generalist interested in bridging hardware and software.",
-  extendedAbout: "I'm passionate about creating innovative solutions that seamlessly integrate mechanical systems with intelligent software. My journey spans from designing robotic arms and embedded systems to building modern web applications and exploring machine learning.",
-  skills: ["React", "TypeScript", "Python", "C/C++", "Arduino", "ROS", "MATLAB", "SolidWorks", "3D Printing", "Machine Learning", "Embedded Systems", "Robotics"],
+  extendedAbout: "My journey spans from designing robotic arms and embedded systems to building modern web applications and exploring machine learning.",
+  skills: ["Robotics", "Machine Learning", "Embedded Systems", "Full Stack Web Development", "3D Modelling", "Data Analytics", "UI/UX Design"],
   socials: {
     github: "dan10ish",
     x: "dan10ish",
