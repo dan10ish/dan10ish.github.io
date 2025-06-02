@@ -20,7 +20,7 @@ export default function ExpandableAbout() {
           {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
         </button>
       </div>
-      
+
       <AnimatePresence>
         {isExpanded && (
           <motion.div
@@ -31,19 +31,15 @@ export default function ExpandableAbout() {
             className="overflow-hidden"
           >
             <div className="!pt-4 space-y-4">
-              <p className="text-base">{personalInfo.extendedAbout}</p>
-              
-              <div>
-                <div className="mt-1 flex flex-wrap gap-2">
-                  {personalInfo.skills.map((skill) => (
-                    <div
-                      key={skill}
-                      className="text-[0.88em] bg-[var(--code-bg)] text-[var(--secondary)] !px-1.5 !py-0.5 rounded-md whitespace-nowrap"
-                    >
-                      {skill}
-                    </div>
-                  ))}
-                </div>
+              <div className="mt-1 flex flex-wrap gap-2">
+                {personalInfo.skills.map((skill) => (
+                  <div
+                    key={skill}
+                    className="text-[0.88em] bg-[var(--code-bg)] text-[var(--secondary)] !px-1.5 !py-0.5 rounded-md whitespace-nowrap"
+                  >
+                    {skill}
+                  </div>
+                ))}
               </div>
             </div>
           </motion.div>
