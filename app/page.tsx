@@ -1,5 +1,6 @@
 import Link from "next/link";
 import SocialLinks from "./components/SocialLinks";
+import ExpandableAbout from "./components/ExpandableAbout";
 import { personalInfo, projects } from "./data";
 import { getSortedWritingsData } from "../lib/writings";
 import { formatDate } from "../lib/utils";
@@ -17,9 +18,7 @@ export default function Home() {
           </h1>
         </section>
 
-        <section>
-          <p className="text-base">{personalInfo.about}</p>
-        </section>
+        <ExpandableAbout />
 
         <section>
           <div className="flex items-center gap-2">
@@ -44,13 +43,13 @@ export default function Home() {
                 <Link
                   href={`/writings/${slug}`}
                   key={slug}
-                  className="block group writing-link !mb-1"
+                  className="block group writing-link !mb-1 hover:bg-[var(--code-bg)] rounded-md !px-2 !-mx-2"
                 >
                   <div className="flex gap-4 w-full items-baseline">
                     <span className="text-secondary !text-[0.82rem] flex-shrink-0">
                       {formatDate(date)}
                     </span>
-                    <span className="font-semibold text-secondary group-hover:text-[var(--link-blue)] group-hover:underline truncate">
+                    <span className="font-semibold text-secondary truncate">
                       {title}
                     </span>
                   </div>
