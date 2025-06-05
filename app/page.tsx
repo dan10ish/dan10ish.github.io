@@ -1,6 +1,7 @@
 import Link from "next/link";
 import SocialLinks from "./components/SocialLinks";
 import ExpandableAbout from "./components/ExpandableAbout";
+import AsciiGalaxy from "./components/AsciiGalaxy";
 import { personalInfo, projects } from "./data";
 import { getSortedWritingsData } from "../lib/writings";
 import { formatDate } from "../lib/utils";
@@ -17,6 +18,8 @@ export default function Home() {
             {personalInfo.name}
           </h1>
         </section>
+
+        <AsciiGalaxy />
 
         <ExpandableAbout />
 

@@ -12,6 +12,8 @@
     "deploy": "gh-pages -d out"
   },
   "dependencies": {
+    "@react-three/drei": "^10.1.2",
+    "@react-three/fiber": "^9.1.2",
     "framer-motion": "^12.16.0",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.513.0",
@@ -23,7 +25,8 @@
     "rehype-autolink-headings": "^7.1.0",
     "rehype-slug": "^6.0.0",
     "remark-gfm": "^4.0.1",
-    "sugar-high": "^0.9.3"
+    "sugar-high": "^0.9.3",
+    "three": "^0.177.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -31,6 +34,7 @@
     "@tailwindcss/typography": "^0.5.16",
     "@types/node": "^22",
     "@types/react": "^19.1.6",
+    "@types/three": "^0.177.0",
     "gh-pages": "^6.3.0",
     "tailwindcss": "^4",
     "typescript": "5.8.3"
