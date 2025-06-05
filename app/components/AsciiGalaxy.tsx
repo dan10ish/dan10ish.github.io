@@ -95,8 +95,8 @@ function OptimizedGalaxy() {
     const opacities = new Float32Array(particleCount);
     const offsets = new Float32Array(particleCount * 3);
     
-    const spiralArms = 4;
-    const maxRadius = 3.5;
+    const spiralArms = 5;
+    const maxRadius = 3.85;
     const height = 0.3;
     
     for (let i = 0; i < particleCount; i++) {
@@ -226,7 +226,7 @@ function OptimizedGalaxy() {
 export default function AsciiGalaxy() {
   const galaxyPosition = {
     x: 0,
-    y: 2,
+    y: 2.2,
     z: 6
   };
 
