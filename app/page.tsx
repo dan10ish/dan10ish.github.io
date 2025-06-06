@@ -1,6 +1,6 @@
 import Link from "next/link";
 import SocialLinks from "./components/SocialLinks";
-import ExpandableAbout from "./components/ExpandableAbout";
+import About from "./components/About";
 import AsciiGalaxy from "./components/AsciiGalaxy";
 import { personalInfo, projects } from "./data";
 import { getSortedWritingsData } from "../lib/writings";
@@ -21,7 +21,7 @@ export default function Home() {
 
         <AsciiGalaxy />
 
-        <ExpandableAbout />
+        <About />
 
         <section>
           <div className="flex items-center gap-2">

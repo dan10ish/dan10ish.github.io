@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import Script from "next/script";
 import "./globals.css";
-import { PageWrapper } from "./components/PageWrapper";
 import { ThemeProvider } from "./components/ThemeProvider";
 import FloatingButtons from "./components/FloatingButtons";
 
@@ -112,7 +111,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${sfMono.variable}`}>
         <ThemeProvider>
-          <PageWrapper>{children}</PageWrapper>
+          {children}
           <FloatingButtons />
         </ThemeProvider>
         <Script async defer strategy="afterInteractive" src="https://scripts.simpleanalyticscdn.com/latest.js" />
