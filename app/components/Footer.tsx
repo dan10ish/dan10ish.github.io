@@ -43,7 +43,7 @@ export default function Footer() {
           animation: blink 1s infinite;
         }
       `}</style>
-      <footer className="!pt-4 !pb-0 text-[0.75rem] opacity-60">
+      <footer className="!pt-4 !pb-0 text-[0.75rem] opacity-80">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-1">
             <Copyright size={12} />

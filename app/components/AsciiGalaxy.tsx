@@ -87,7 +87,7 @@ function OptimizedGalaxy() {
   }, []);
 
   const { geometry } = useMemo(() => {
-    const particleCount = 700;
+    const particleCount = 500;
     const geometry = new THREE.BufferGeometry();
     
     const positions = new Float32Array(particleCount * 3);
@@ -95,7 +95,7 @@ function OptimizedGalaxy() {
     const opacities = new Float32Array(particleCount);
     const offsets = new Float32Array(particleCount * 3);
     
-    const spiralArms = 5;
+    const spiralArms = 4;
     const maxRadius = 3.85;
     const height = 0.3;
     
@@ -105,7 +105,7 @@ function OptimizedGalaxy() {
       const radius = progress * maxRadius;
       
       const baseAngle = (armIndex / spiralArms) * Math.PI * 2;
-      const spiralAngle = progress * Math.PI * 4;
+      const spiralAngle = progress * Math.PI * 3.5;
       const angle = baseAngle + spiralAngle + (Math.random() - 0.5) * 0.3;
       
       const x = Math.cos(angle) * radius;
@@ -120,7 +120,7 @@ function OptimizedGalaxy() {
       offsets[i * 3 + 1] = y;
       offsets[i * 3 + 2] = z;
       
-      charIndices[i] = Math.floor(Math.random() * 6);
+      charIndices[i] = Math.floor(Math.random() * 5);
       opacities[i] = 0.4 + progress * 0.6;
     }
     

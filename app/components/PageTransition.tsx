@@ -9,11 +9,11 @@ export const PageTransition = ({
 }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.99 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.99 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       transition={{
-        duration: 0.2,
+        duration: 0.15,
         ease: "easeOut",
       }}
     >

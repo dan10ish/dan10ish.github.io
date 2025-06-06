@@ -3,6 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://dan10ish.github.io",
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "not op_mini all",
+    "> 0.5%",
+    "last 2 versions"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",

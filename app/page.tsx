@@ -1,7 +1,7 @@
 import Link from "next/link";
 import SocialLinks from "./components/SocialLinks";
 import About from "./components/About";
-import AsciiGalaxy from "./components/AsciiGalaxy";
+import AsciiGalaxy from "./components/AsciiGalaxyWrapper";
 import { personalInfo, projects } from "./data";
 import { getSortedWritingsData } from "../lib/writings";
 import { formatDate } from "../lib/utils";

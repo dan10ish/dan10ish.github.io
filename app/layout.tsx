@@ -30,7 +30,8 @@ const sfMono = localFont({
   ],
   variable: '--font-sf-mono',
   display: 'swap',
-  fallback: ['monospace'],
+  fallback: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -109,12 +110,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <meta httpEquiv="x-ua-compatible" content="ie=edge" />
+        <link rel="preconnect" href="https://scripts.simpleanalyticscdn.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://scripts.simpleanalyticscdn.com" />
+      </head>
       <body className={`${sfMono.variable}`}>
         <ThemeProvider>
           {children}
           <FloatingButtons />
         </ThemeProvider>
-        <Script async defer strategy="afterInteractive" src="https://scripts.simpleanalyticscdn.com/latest.js" />
+        <Script 
+          src="https://scripts.simpleanalyticscdn.com/latest.js" 
+          strategy="afterInteractive"
+          defer
+        />
       </body>
     </html>
   );
