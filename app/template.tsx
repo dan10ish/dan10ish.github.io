@@ -22,12 +22,8 @@ export default function Template({
   
   return (
     <PageTransition>
-      <div className="flex flex-col">
-        <div className="flex-1">
-          {children}
-        </div>
-        {showFooter && <Footer />}
-      </div>
+      {children}
+      {showFooter && <Footer />}
     </PageTransition>
   );
 } 
