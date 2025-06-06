@@ -14,7 +14,7 @@ export function ThemeToggle() {
 
   if (!mounted) {
     return (
-      <button className="flex items-center justify-center p-2 rounded-full duration-200" style={{ background: 'var(--background)' }}>
+      <button className="flex items-center justify-center p-2 rounded-full duration-200">
         <div className="w-5 h-5" />
       </button>
     );
@@ -56,7 +56,6 @@ export function ThemeToggle() {
     <button
       onClick={cycleTheme}
       className="flex items-center justify-center p-2 rounded-full duration-200"
-      style={{ background: 'var(--background)' }}
       aria-label="Toggle theme"
     >
       {getIcon()}
