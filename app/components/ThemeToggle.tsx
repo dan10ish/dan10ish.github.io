@@ -5,7 +5,7 @@ import { Sun, Moon, Palette } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 export function ThemeToggle() {
-  const { theme, setTheme, resolvedTheme, systemTheme } = useTheme();
+  const { theme, setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -14,21 +14,16 @@ export function ThemeToggle() {
 
   if (!mounted) {
     return (
-      <button className="flex items-center justify-center p-2 rounded-full duration-200">
+      <button className="flex items-center justify-center p-2 rounded-full duration-200" style={{ background: 'var(--background)' }}>
         <div className="w-5 h-5" />
       </button>
     );
   }
 
   const cycleTheme = () => {
-    let currentTheme = resolvedTheme;
-    if (!currentTheme && theme === 'system') {
-      currentTheme = systemTheme;
-    }
-    
-    if (currentTheme === 'light') {
+    if (resolvedTheme === 'light') {
       setTheme('dark');
-    } else if (currentTheme === 'dark') {
+    } else if (resolvedTheme === 'dark') {
       setTheme('solarized');
     } else {
       setTheme('light');
@@ -36,26 +31,16 @@ export function ThemeToggle() {
   };
 
   const getIcon = () => {
-    let currentTheme = resolvedTheme;
-    if (!currentTheme && theme === 'system') {
-      currentTheme = systemTheme;
-    }
-    
-    if (currentTheme === 'light') {
-      return <Moon size={20} />;
-    } else if (currentTheme === 'dark') {
-      return <Palette size={20} />;
-    } else if (currentTheme === 'solarized') {
-      return <Sun size={20} />;
-    } else {
-      return <Moon size={20} />;
-    }
+    if (resolvedTheme === 'light') return <Moon size={20} />;
+    if (resolvedTheme === 'dark') return <Palette size={20} />;
+    return <Sun size={20} />;
   };
 
   return (
     <button
       onClick={cycleTheme}
       className="flex items-center justify-center p-2 rounded-full duration-200"
+      style={{ background: 'var(--background)' }}
       aria-label="Toggle theme"
     >
       {getIcon()}

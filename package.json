@@ -4,11 +4,11 @@
   "private": true,
   "homepage": "https://dan10ish.github.io",
   "browserslist": [
-    "defaults",
+    "> 1%",
+    "last 2 versions",
     "not IE 11",
     "not op_mini all",
-    "> 0.5%",
-    "last 2 versions"
+    "not dead"
   ],
   "scripts": {
     "dev": "next dev",

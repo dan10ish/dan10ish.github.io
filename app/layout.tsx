@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import { ThemeProvider } from "./components/ThemeProvider";
 import FloatingButtons from "./components/FloatingButtons";
+import ThemeColorMeta from "./components/ThemeColorMeta";
 
 const sfMono = localFont({
   src: [
@@ -100,8 +101,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const viewport: Viewport = {
-};
+export const viewport: Viewport = {};
 
 export default function RootLayout({
   children,
@@ -118,12 +118,13 @@ export default function RootLayout({
       </head>
       <body className={`${sfMono.variable}`}>
         <ThemeProvider>
+          <ThemeColorMeta />
           {children}
           <FloatingButtons />
         </ThemeProvider>
         <Script 
           src="https://scripts.simpleanalyticscdn.com/latest.js" 
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           defer
         />
       </body>
