@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
+import SocialLinks from './components/SocialLinks';
+import { personalInfo } from './data';
 
 export default function NotFound() {
   return (
@@ -16,6 +18,16 @@ export default function NotFound() {
           <ArrowLeft size={16} className="!mr-2" />
           <span>Back to home</span>
         </Link>
+
+        <div className="!mt-10 flex justify-center">
+          <SocialLinks
+            github={personalInfo.socials.github}
+            email={personalInfo.socials.email}
+            x={personalInfo.socials.x}
+            instagram={personalInfo.socials.instagram}
+            linkedin={personalInfo.socials.linkedin}
+          />
+        </div>
       </div>
     </main>
   );

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Home, ChevronUp } from 'lucide-react';
@@ -8,6 +8,7 @@ import { ThemeToggle } from './ThemeToggle';
 
 export default function FloatingButtons() {
   const [isVisible, setIsVisible] = useState(false);
+  const [isNotFoundPage, setIsNotFoundPage] = useState(true);
   const pathname = usePathname();
 
   const toggleVisibility = () => {
@@ -25,6 +26,16 @@ export default function FloatingButtons() {
     });
   };
 
+  useLayoutEffect(() => {
+    const checkIfNotFound = () => {
+      const isNotFound = document.querySelector('main')?.classList.contains('fixed') && 
+                        document.querySelector('h1')?.textContent === '404';
+      setIsNotFoundPage(isNotFound || false);
+    };
+
+    checkIfNotFound();
+  }, [pathname]);
+
   useEffect(() => {
     window.addEventListener('scroll', toggleVisibility);
     return () => {
@@ -41,7 +52,7 @@ export default function FloatingButtons() {
       </div>
       
       <div className="fixed bottom-4 right-5 flex flex-col items-center space-y-4 z-50">
-        {isVisible && (
+        {isVisible && !isNotFoundPage && (
           <button
             onClick={scrollToTop}
             className="flex items-center justify-center p-2 rounded-full bg-background duration-200 animate-fade-in"
@@ -50,7 +61,7 @@ export default function FloatingButtons() {
             <ChevronUp size={20} />
           </button>
         )}
-        {!isHomepage && (
+        {!isHomepage && !isNotFoundPage && (
           <Link 
             href="/"
             className="flex items-center justify-center p-2 rounded-full bg-background duration-200"
