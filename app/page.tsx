@@ -1,6 +1,5 @@
 import Link from "next/link";
 import SocialLinks from "./components/SocialLinks";
-import ExpandableAbout from "./components/ExpandableAbout";
 import { personalInfo, projects } from "./data";
 import { getSortedWritingsData } from "../lib/writings";
 import { formatDate } from "../lib/utils";
@@ -18,7 +17,21 @@ export default function Home() {
           </h1>
         </section>
 
-        <ExpandableAbout />
+        <section>
+          <p className="text-base">{personalInfo.about}</p>
+          <div className="!pt-4 space-y-4">
+            <div className="mt-1 flex flex-wrap gap-2">
+              {personalInfo.skills.map((skill) => (
+                <div
+                  key={skill}
+                  className="text-[0.88em] bg-[var(--code-bg)] text-[var(--secondary)] !px-1.5 !py-0.5 rounded-md whitespace-nowrap"
+                >
+                  {skill}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         <section>
           <div className="flex items-center gap-2">
