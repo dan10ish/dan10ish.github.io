@@ -10,7 +10,7 @@ export default function NotFound() {
         
         <Link 
           href="/" 
-          className="inline-flex items-center hover:bg-[var(--code-bg)] rounded-lg !px-2 !-mx-2 !py-1" 
+          className="inline-flex items-center bg-[var(--code-bg)] rounded-lg !px-2 !-mx-2 !py-1 hover:scale-102 transition-all duration-50" 
           aria-label="Go back to home page"
         >
           <ArrowLeft size={16} className="!mr-2" />

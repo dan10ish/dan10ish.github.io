@@ -115,7 +115,7 @@ export default function RootLayout({
           <PageWrapper>{children}</PageWrapper>
           <FloatingButtons />
         </ThemeProvider>
-        <Script async defer strategy="afterInteractive" src="https://scripts.simpleanalyticscdn.com/latest.js" />
+
       </body>
     </html>
   );
