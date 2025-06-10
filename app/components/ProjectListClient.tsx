@@ -8,7 +8,7 @@ interface Project {
   tag: string;
   sourceCode?: string;
   liveDemo?: string;
-  video?: string;
+  video?: string | null;
 }
 
 interface ProjectListClientProps {

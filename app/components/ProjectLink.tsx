@@ -10,7 +10,7 @@ interface ProjectLinkProps {
   tag: string;
   sourceCode?: string;
   liveDemo?: string;
-  video?: string;
+  video?: string | null;
   onTagClick?: (tag: string) => void;
   isActiveTag?: boolean;
 }
@@ -19,17 +19,30 @@ export default function ProjectLink({ name, tag, sourceCode, liveDemo, video, on
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   const handleVideoClick = () => {
-    if (video) {
+    if (video && video !== null) {
       setIsVideoOpen(true);
     }
   };
 
+  const hasValidVideo = video && video !== null;
+
   return (
     <>
       <div className="flex items-center justify-between mb-2 md:mb-1">
-        <div className="text-[0.85rem] flex-shrink-0 mr-4 truncate">{name.toLowerCase()}</div>
-        <div className="flex items-center gap-3 md:gap-6 flex-shrink-0">
-          <div className="w-20 flex justify-center">
+        <div className="text-[0.85rem] flex-shrink-0 mr-3 truncate">{name.toLowerCase()}</div>
+        <div className="flex items-center gap-2 sm:gap-3 md:gap-4 flex-shrink-0">
+          <div className="flex items-center justify-center w-[18px]">
+            {(video !== undefined) && (
+              <button
+                onClick={handleVideoClick}
+                className={`flex items-center justify-center transform transition-transform duration-0 hover:scale-105 ${!hasValidVideo ? 'cursor-default' : ''}`}
+                aria-label={hasValidVideo ? `Watch ${name} showcase video` : `No video available for ${name}`}
+              >
+                <Film size={18} className={hasValidVideo ? '' : 'opacity-30'} />
+              </button>
+            )}
+          </div>
+          <div className="flex justify-center min-w-[60px] sm:min-w-[70px]">
             <div
               className={`text-[0.88em] bg-[var(--code-bg)] text-[var(--secondary)] !px-1.5 !py-0.5 rounded-md whitespace-nowrap cursor-pointer transform transition-transform duration-0 hover:scale-105`}
               onClick={() => onTagClick && onTagClick(tag)}
@@ -38,15 +51,6 @@ export default function ProjectLink({ name, tag, sourceCode, liveDemo, video, on
             </div>
           </div>
           <div className="flex items-center gap-2">
-            {video && (
-              <button
-                onClick={handleVideoClick}
-                className="flex items-center justify-center transform transition-transform duration-0 hover:scale-105"
-                aria-label={`Watch ${name} showcase video`}
-              >
-                <Film size={18} />
-              </button>
-            )}
             {sourceCode && (
               <Link href={sourceCode} target="_blank" className="flex items-center justify-center" aria-label={`View source code for ${name}`}>
                 <Github size={18} />
@@ -65,7 +69,7 @@ export default function ProjectLink({ name, tag, sourceCode, liveDemo, video, on
         </div>
       </div>
 
-      {video && (
+      {hasValidVideo && (
         <VideoShowcase
           isOpen={isVideoOpen}
           onClose={() => setIsVideoOpen(false)}

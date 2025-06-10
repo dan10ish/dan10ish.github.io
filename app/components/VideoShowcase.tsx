@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { VideoOff, Loader2, Github } from 'lucide-react';
-import Link from 'next/link';
+import { Loader2 } from 'lucide-react';
 
 interface VideoShowcaseProps {
   isOpen: boolean;
@@ -13,7 +12,7 @@ interface VideoShowcaseProps {
   githubUrl?: string;
 }
 
-export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName, githubUrl }: VideoShowcaseProps) {
+export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName }: VideoShowcaseProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
@@ -21,24 +20,24 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName, 
     if (isOpen) {
       setIsLoading(true);
       setHasError(false);
-      
-      if (!videoSrc || videoSrc === '/videos/' || videoSrc === '/videos/undefined' || videoSrc === '/videos/null') {
-        setIsLoading(false);
-        setHasError(true);
-      }
-      
       document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
       document.documentElement.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'unset';
-      document.documentElement.style.overflow = 'unset';
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.documentElement.style.overflow = '';
     }
 
     return () => {
-      document.body.style.overflow = 'unset';
-      document.documentElement.style.overflow = 'unset';
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.documentElement.style.overflow = '';
     };
-  }, [isOpen, videoSrc || '']);
+  }, [isOpen]);
 
   const handleVideoLoad = () => {
     setIsLoading(false);
@@ -55,8 +54,6 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName, 
     }
   };
 
-  const showNoVideo = hasError || !videoSrc || videoSrc === '/videos/' || videoSrc === '/videos/undefined' || videoSrc === '/videos/null';
-
   return (
     <AnimatePresence>
       {isOpen && (
@@ -65,7 +62,7 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName, 
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-hidden"
           style={{ 
             backgroundColor: 'var(--background)',
             position: 'fixed',
@@ -77,7 +74,7 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName, 
           onClick={handleBackdropClick}
         >
           <div className="relative">
-            <div className="absolute -top-12 right-0 z-10">
+            <div className="absolute -top-12 sm:-top-16 right-0 z-10">
               <button
                 onClick={onClose}
                 className="!text-[0.88em] !px-1.5 !py-0.5 !rounded-md transform transition-transform duration-0 hover:scale-105"
@@ -95,29 +92,22 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName, 
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.2 }}
-              className="relative w-full max-w-md aspect-square rounded-lg overflow-hidden"
-              style={{ backgroundColor: 'var(--code-bg)' }}
+              className="relative w-full max-w-[85vw] sm:max-w-md aspect-square rounded-lg overflow-hidden"
+              style={{ 
+                backgroundColor: 'var(--code-bg)',
+                maxHeight: '85vh',
+                width: 'min(85vw, 85vh)'
+              }}
             >
-              {isLoading && !showNoVideo && (
+              {isLoading && (
                 <div className="absolute inset-0 flex items-center justify-center">
                   <Loader2 size={24} className="animate-spin opacity-70" />
                 </div>
               )}
 
-              {showNoVideo ? (
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-sm opacity-70 px-4 text-center gap-3">
-                  <VideoOff size={24} />
-                  <div>No video for this project</div>
-                  {githubUrl && (
-                    <Link 
-                      href={githubUrl} 
-                      target="_blank" 
-                      className="flex items-center gap-2 text-sm hover:opacity-100 transition-opacity"
-                    >
-                      <Github size={16} />
-                      Visit GitHub page
-                    </Link>
-                  )}
+              {hasError ? (
+                <div className="absolute inset-0 flex items-center justify-center text-sm opacity-70">
+                  Video failed to load
                 </div>
               ) : (
                 <video
@@ -137,7 +127,7 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName, 
                 />
               )}
 
-              <div className="absolute bottom-3 left-3 text-xs opacity-70">
+              <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 text-xs opacity-70">
                 {projectName.toLowerCase()}
               </div>
             </motion.div>
