@@ -85,6 +85,8 @@ export default function ProjectLink({ name, tag, sourceCode, liveDemo, video, on
             videoSrc={hasValidVideo ? `/videos/${video}` : null}
             projectName={name}
             githubUrl={sourceCode}
+            sourceCode={sourceCode}
+            liveDemo={liveDemo}
           />
         )}
       </AnimatePresence>

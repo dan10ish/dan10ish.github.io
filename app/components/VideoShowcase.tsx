@@ -10,9 +10,11 @@ interface VideoShowcaseProps {
   videoSrc: string | null;
   projectName: string;
   githubUrl?: string;
+  sourceCode?: string;
+  liveDemo?: string;
 }
 
-export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName, githubUrl }: VideoShowcaseProps) {
+export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName, githubUrl, sourceCode, liveDemo }: VideoShowcaseProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
@@ -117,16 +119,6 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName, 
               <div className="text-center">
                 <div className="mb-2 !text-xs">No video available</div>
               </div>
-              {githubUrl && (
-                <a
-                  href={githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex !text-xs !items-center gap-2 bg-[var(--background)] !text-[var(--primary)] !px-2 !py-1 rounded-md hover:scale-102 duration-75"
-                >
-                  View on GitHub
-                </a>
-              )}
             </motion.div>
           ) : hasError ? (
             <motion.div
@@ -137,32 +129,81 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName, 
               Video failed to load
             </motion.div>
           ) : (
-            <video
-              key={videoSrc}
-              src={videoSrc}
-              className="w-full h-full object-cover"
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="metadata"
-              controls={false}
-              controlsList="nodownload nofullscreen noremoteplaybook"
-              disablePictureInPicture
-              onLoadedData={() => setIsLoading(false)}
-              onError={() => { setIsLoading(false); setHasError(true); }}
-              onContextMenu={(e) => e.preventDefault()}
-              style={{ display: isLoading ? 'none' : 'block' }}
-            />
+            <>
+              <video
+                key={videoSrc}
+                src={videoSrc}
+                className="w-full h-full object-cover"
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
+                controls={false}
+                controlsList="nodownload nofullscreen noremoteplaybook"
+                disablePictureInPicture
+                onLoadedData={() => setIsLoading(false)}
+                onError={() => { setIsLoading(false); setHasError(true); }}
+                onContextMenu={(e) => e.preventDefault()}
+                style={{ display: isLoading ? 'none' : 'block' }}
+              />
+
+            </>
           )}
         </motion.div>
         <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0 }}
-        className="!text-xs text-secondary pointer-events-none !mt-6 !px-0"
+        className="flex items-center justify-between !mt-6 !px-0"
       >
-        {projectName.toLowerCase()}
+        <div className="!text-xs text-secondary pointer-events-none">
+          {projectName.toLowerCase()}
+        </div>
+        <div className="flex items-center gap-2">
+          <div
+            className={`!text-xs bg-[var(--code-bg)] border border-[var(--code-bg)] !px-2 !py-1 rounded-md ${
+              sourceCode 
+                ? '!text-xs text-primary hover:scale-105 duration-0 cursor-pointer' 
+                : '!text-xs text-primary opacity-30 cursor-not-allowed'
+            }`}
+            onClick={sourceCode ? undefined : (e) => e.preventDefault()}
+          >
+            {sourceCode ? (
+              <a
+                href={sourceCode}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
+              >
+                Source
+              </a>
+            ) : (
+              <span className="!text-xs text-primary">Source</span>
+            )}
+          </div>
+          <div
+            className={`!text-xs bg-[var(--code-bg)] border border-[var(--code-bg)] !px-2 !py-1 rounded-md ${
+              liveDemo 
+                ? '!text-xs text-primary hover:scale-105 duration-0 cursor-pointer' 
+                : '!text-xs text-primary opacity-30 cursor-not-allowed'
+            }`}
+            onClick={liveDemo ? undefined : (e) => e.preventDefault()}
+          >
+            {liveDemo ? (
+              <a
+                href={liveDemo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
+              >
+                Live
+              </a>
+            ) : (
+              <span className="!text-xs text-primary">Live</span>
+            )}
+          </div>
+        </div>
       </motion.div>
       </div>
     </motion.div>
