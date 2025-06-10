@@ -30,9 +30,6 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName }
     document.body.style.overflow = 'hidden';
     document.documentElement.style.overflow = 'hidden';
 
-    const themeToggle = document.querySelector('[aria-label="Toggle theme"]') as HTMLElement;
-    if (themeToggle) themeToggle.style.visibility = 'hidden';
-
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') handleClose();
     };
@@ -43,24 +40,6 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName }
       document.body.style.overflow = '';
       document.documentElement.style.overflow = '';
       document.removeEventListener('keydown', handleKeyDown);
-
-      if (themeToggle) {
-        themeToggle.style.visibility = 'visible';
-        themeToggle.style.transform = 'scale(0.85)';
-        themeToggle.style.opacity = '0';
-        themeToggle.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease';
-
-        requestAnimationFrame(() => {
-          themeToggle.style.transform = 'scale(1)';
-          themeToggle.style.opacity = '1';
-        });
-
-        setTimeout(() => {
-          themeToggle.style.transition = '';
-          themeToggle.style.transform = '';
-          themeToggle.style.opacity = '';
-        }, 300);
-      }
     };
   }, [isOpen, handleClose]);
 
