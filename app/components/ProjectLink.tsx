@@ -22,7 +22,6 @@ export default function ProjectLink({ name, tag, sourceCode, liveDemo, video, on
   const handleRowClick = (e: React.MouseEvent) => {
     const target = e.target as HTMLElement;
     
-    // Prevent opening modal if clicking on interactive elements
     if (
       target.closest('a') ||
       target.closest('button') ||

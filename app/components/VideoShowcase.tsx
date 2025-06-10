@@ -67,18 +67,20 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName }
       const themeToggle = document.querySelector('[aria-label="Toggle theme"]') as HTMLElement;
       if (themeToggle) {
         themeToggle.style.visibility = 'visible';
-        themeToggle.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+        themeToggle.style.transform = 'scale(0.85)';
         themeToggle.style.opacity = '0';
-        themeToggle.style.transform = 'scale(0.9)';
+        themeToggle.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
         
         requestAnimationFrame(() => {
-          themeToggle.style.opacity = '1';
           themeToggle.style.transform = 'scale(1)';
+          themeToggle.style.opacity = '1';
         });
         
         setTimeout(() => {
           themeToggle.style.transition = '';
-        }, 250);
+          themeToggle.style.transform = '';
+          themeToggle.style.opacity = '';
+        }, 300);
       }
     }
 
@@ -133,7 +135,7 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName }
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.12 }}
+      transition={{ duration: 0.15 }}
       className="fixed inset-0 z-[70] flex items-center justify-center p-4"
       style={{ 
         backgroundColor: 'var(--background)',
@@ -143,9 +145,9 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName }
     >
       <div className="relative">
         <motion.button
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1, duration: 0.15 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.15 }}
           onClick={handleClose}
           className="absolute -top-12 sm:-top-14 right-0 z-10 !text-[0.88em] !px-1.5 !py-0.5 !rounded-md transition-transform duration-75 hover:scale-105"
           style={{
@@ -160,7 +162,7 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName }
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.96 }}
-          transition={{ duration: 0.12 }}
+          transition={{ duration: 0.15 }}
           className="relative aspect-square rounded-lg overflow-hidden shadow-2xl"
           style={{ 
             backgroundColor: 'var(--code-bg)',
@@ -171,13 +173,10 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName }
           {isLoading && (
             <div className="absolute inset-0 flex items-center justify-center">
               <motion.div
-                initial={{ opacity: 0 }}
                 animate={{ 
-                  opacity: 1,
                   rotate: 360
                 }}
                 transition={{
-                  opacity: { duration: 0.2 },
                   rotate: { 
                     duration: 1.2,
                     repeat: Infinity,
@@ -221,7 +220,7 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName }
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.15 }}
+            transition={{ delay: 0.2 }}
             className="absolute bottom-3 left-3 text-xs opacity-65 pointer-events-none"
           >
             {projectName.toLowerCase()}
