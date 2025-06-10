@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { Loader2, Github } from 'lucide-react';
+import { Loader2, Github, Globe } from 'lucide-react';
 
 interface VideoShowcaseProps {
   isOpen: boolean;
@@ -14,7 +14,41 @@ interface VideoShowcaseProps {
   liveDemo?: string;
 }
 
-export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName, githubUrl, sourceCode, liveDemo }: VideoShowcaseProps) {
+interface ActionButtonProps {
+  isActive: boolean;
+  onClick: () => void;
+  icon: React.ReactNode;
+  label: string;
+}
+
+const ActionButton = ({ isActive, onClick, icon, label }: ActionButtonProps) => (
+  <button
+    className={`
+      !flex !items-center !gap-1 !text-xs !bg-[var(--code-bg)] !border !border-[var(--code-bg)] 
+      !px-2 !py-1 !rounded-md !transition-transform !duration-0
+      ${isActive 
+        ? '!text-primary hover:!scale-105 hover:!bg-[var(--link-blue)] !cursor-pointer' 
+        : '!text-primary !opacity-30 !cursor-not-allowed !pointer-events-none'
+      }
+    `}
+    onClick={isActive ? onClick : undefined}
+    disabled={!isActive}
+  >
+    <span className="![color:var(--secondary)] [&>svg]:![color:var(--secondary)] [&>svg]:!hover:[color:var(--secondary)] [&>svg]:![transform:none] [&>svg]:!hover:[transform:none]">
+      {icon}
+    </span>
+    {label}
+  </button>
+);
+
+export default function VideoShowcase({ 
+  isOpen, 
+  onClose, 
+  videoSrc, 
+  projectName, 
+  sourceCode, 
+  liveDemo 
+}: VideoShowcaseProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
@@ -30,7 +64,8 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName, 
     setIsLoading(!!videoSrc);
     setHasError(false);
 
-    const originalStyle = window.getComputedStyle(document.body);
+    const originalOverflow = document.body.style.overflow;
+    const originalPaddingRight = document.body.style.paddingRight;
     const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
 
     document.body.style.overflow = 'hidden';
@@ -39,20 +74,17 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName, 
     }
 
     const preventDefault = (e: Event) => e.preventDefault();
-
-    document.addEventListener('touchmove', preventDefault, { passive: false });
-    document.addEventListener('wheel', preventDefault, { passive: false });
-
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') handleClose();
     };
 
+    document.addEventListener('touchmove', preventDefault, { passive: false });
+    document.addEventListener('wheel', preventDefault, { passive: false });
     document.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      document.body.style.overflow = originalStyle.overflow;
-      document.body.style.paddingRight = originalStyle.paddingRight;
-
+      document.body.style.overflow = originalOverflow;
+      document.body.style.paddingRight = originalPaddingRight;
       document.removeEventListener('touchmove', preventDefault);
       document.removeEventListener('wheel', preventDefault);
       document.removeEventListener('keydown', handleKeyDown);
@@ -63,7 +95,13 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName, 
     if (e.target === e.currentTarget) handleClose();
   }, [handleClose]);
 
+  const openLink = useCallback((url: string) => {
+    window.open(url, '_blank');
+  }, []);
+
   if (!isOpen) return null;
+
+  const spacing = '!mt-6';
 
   return (
     <motion.div
@@ -71,17 +109,17 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName, 
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.15 }}
-      className="fixed inset-0 z-[70] flex flex-col items-center justify-center p-4"
+      className="!fixed !inset-0 !z-[70] !flex !flex-col !items-center !justify-center !p-4"
       style={{ backgroundColor: 'var(--background)', backdropFilter: 'blur(1px)' }}
       onClick={handleBackdropClick}
     >
-      <div className="relative">
+      <div className="!relative">
         <motion.button
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.15 }}
           onClick={handleClose}
-          className="absolute -top-12 sm:-top-14 right-0 z-10 !text-[0.88em] !px-1.5 !py-0.5 !rounded-md transition-transform duration-75 hover:scale-105"
+          className={`!absolute !right-0 !z-10 !text-[0.88em] !px-1.5 !py-0.5 !rounded-md !transition-transform !duration-75 hover:!scale-105 !-top-12 sm:!-top-14`}
           style={{ backgroundColor: 'var(--clear-filter-bg)', color: 'var(--clear-filter-text)' }}
         >
           Close
@@ -92,7 +130,7 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName, 
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.96 }}
           transition={{ duration: 0.15 }}
-          className="relative aspect-square rounded-lg overflow-hidden shadow-2xl"
+          className="!relative !aspect-square !rounded-lg !overflow-hidden !shadow-2xl"
           style={{
             backgroundColor: 'var(--code-bg)',
             width: 'min(82vw, 82vh, 26rem)',
@@ -100,12 +138,12 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName, 
           }}
         >
           {isLoading && videoSrc && (
-            <div className="absolute inset-0 flex items-center justify-center">
+            <div className="!absolute !inset-0 !flex !items-center !justify-center">
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 1.2, repeat: Infinity, ease: "linear" }}
               >
-                <Loader2 size={28} className="opacity-65" />
+                <Loader2 size={28} className="!opacity-65" />
               </motion.div>
             </div>
           )}
@@ -114,97 +152,63 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName, 
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="absolute inset-0 flex flex-col items-center justify-center text-sm opacity-75 gap-4"
+              className="!absolute !inset-0 !flex !items-center !justify-center !text-xs !opacity-75"
             >
-              <div className="text-center">
-                <div className="mb-2 !text-xs">No video available</div>
-              </div>
+              No video available
             </motion.div>
           ) : hasError ? (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="absolute inset-0 flex items-center justify-center text-sm opacity-65"
+              className="!absolute !inset-0 !flex !items-center !justify-center !text-sm !opacity-65"
             >
               Video failed to load
             </motion.div>
           ) : (
-            <>
-              <video
-                key={videoSrc}
-                src={videoSrc}
-                className="w-full h-full object-cover"
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="metadata"
-                controls={false}
-                controlsList="nodownload nofullscreen noremoteplaybook"
-                disablePictureInPicture
-                onLoadedData={() => setIsLoading(false)}
-                onError={() => { setIsLoading(false); setHasError(true); }}
-                onContextMenu={(e) => e.preventDefault()}
-                style={{ display: isLoading ? 'none' : 'block' }}
-              />
-
-            </>
+            <video
+              key={videoSrc}
+              src={videoSrc}
+              className="!w-full !h-full !object-cover"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="metadata"
+              controls={false}
+              controlsList="nodownload nofullscreen noremoteplaybook"
+              disablePictureInPicture
+              onLoadedData={() => setIsLoading(false)}
+              onError={() => { setIsLoading(false); setHasError(true); }}
+              onContextMenu={(e) => e.preventDefault()}
+              style={{ display: isLoading ? 'none' : 'block' }}
+            />
           )}
         </motion.div>
+
         <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0 }}
-        className="flex items-center justify-between !mt-6 !px-0"
-      >
-        <div className="!text-xs text-secondary pointer-events-none">
-          {projectName.toLowerCase()}
-        </div>
-        <div className="flex items-center gap-2">
-          <div
-            className={`!text-xs bg-[var(--code-bg)] border border-[var(--code-bg)] !px-2 !py-1 rounded-md ${
-              sourceCode 
-                ? '!text-xs text-primary hover:scale-105 duration-0 cursor-pointer' 
-                : '!text-xs text-primary opacity-30 cursor-not-allowed'
-            }`}
-            onClick={sourceCode ? undefined : (e) => e.preventDefault()}
-          >
-            {sourceCode ? (
-              <a
-                href={sourceCode}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block"
-              >
-                Source
-              </a>
-            ) : (
-              <span className="!text-xs text-primary">Source</span>
-            )}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0 }}
+          className={`!flex !items-center !justify-between !px-0 ${spacing}`}
+        >
+                      <div className="!text-xs !text-secondary !pointer-events-none">
+            {projectName.toLowerCase()}
           </div>
-          <div
-            className={`!text-xs bg-[var(--code-bg)] border border-[var(--code-bg)] !px-2 !py-1 rounded-md ${
-              liveDemo 
-                ? '!text-xs text-primary hover:scale-105 duration-0 cursor-pointer' 
-                : '!text-xs text-primary opacity-30 cursor-not-allowed'
-            }`}
-            onClick={liveDemo ? undefined : (e) => e.preventDefault()}
-          >
-            {liveDemo ? (
-              <a
-                href={liveDemo}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block"
-              >
-                Live
-              </a>
-            ) : (
-              <span className="!text-xs text-primary">Live</span>
-            )}
+                      <div className="!flex !items-center !gap-2">
+            <ActionButton
+              isActive={!!sourceCode}
+              onClick={() => sourceCode && openLink(sourceCode)}
+              icon={<Github size={14} />}
+              label="Source"
+            />
+            <ActionButton
+              isActive={!!liveDemo}
+              onClick={() => liveDemo && openLink(liveDemo)}
+              icon={<Globe size={14} />}
+              label="Live"
+            />
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
       </div>
     </motion.div>
   );
