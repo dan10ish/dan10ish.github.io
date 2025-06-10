@@ -17,68 +17,80 @@ export const projects = [
     name: "Code",
     sourceCode: "https://github.com/dan10ish/code",
     liveDemo: "http://dan10ish.github.io/code",
-    tag: "web"
+    tag: "web",
+    video: "code.mp4"
   },
   {
     name: "3DOF Robotic Arm",
     sourceCode: "https://github.com/dan10ish/3DOF-RoboticArm-C",
-    tag: "robotics"
+    tag: "robotics",
+    video: "3dof.mp4"
   },
   {
     name: "Pathfinder",
     sourceCode: "https://github.com/dan10ish/pathfinding-visualizer",
     liveDemo: "https://dan10ish.github.io/pathfinding-visualizer/",
-    tag: "algorithm"
+    tag: "algorithm",
+    video: "path.mp4"
   },
   {
     name: "macOS Portfolio",
     sourceCode: "https://github.com/dan10ish/os",
     liveDemo: "https://os.danish.bio",
-    tag: "web"
+    tag: "web",
+    video: "mac.mp4"
   },
   {
     name: "Arm Visualizer",
     sourceCode: "https://github.com/dan10ish/RoboticArm",
     liveDemo: "https://dan10ish.github.io/RoboticArm/",
-    tag: "robotics"
+    tag: "robotics",
+    video: "rob-visual.mp4"
   },
   {
     name: "College Notes",
     sourceCode: "https://github.com/dan10ish/college",
     liveDemo: "https://dan10ish.github.io/college/",
-    tag: "college"
+    tag: "college",
+    video: "notes.mp4"
   },
   {
     name: "Comment Toxicity",
     sourceCode: "https://github.com/dan10ish/CommentToxicity",
-    tag: "ml"
+    tag: "ml",
+    video: null
   },
   {
     name: "Terminal Hacker",
     sourceCode: "https://github.com/dan10ish/Unity-Terminal_Hacker",
-    tag: "game"
+    tag: "game",
+    video: "terminal.mp4"
   },
   {
     name: "Office",
     sourceCode: "https://github.com/dan10ish/Office",
     liveDemo: "https://dan10ish.github.io/Office/",
-    tag: "game"
+    tag: "game",
+    video: "office.mp4"
   },
   {
     name: "Cube Runner",
     sourceCode: "https://github.com/dan10ish/Unity-ProjectRun",
-    tag: "game"
+    tag: "game",
+    video: "cube.mp4"
   },
   {
     name: "Galaxy",
     sourceCode: "https://github.com/dan10ish/Galaxy",
     liveDemo: "https://dan10ish.github.io/Galaxy/",
-    tag: "web"
+    tag: "web",
+    video: "galaxy.mp4"
   },
   {
     name: "Personal Website",
     sourceCode: "https://github.com/dan10ish/dan10ish.github.io",
     liveDemo: "https://dan10ish.github.io",
-    tag: "web"
+    tag: "web",
+    video: "web.mp4"
   }
 ];

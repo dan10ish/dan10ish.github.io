@@ -8,6 +8,7 @@ interface Project {
   tag: string;
   sourceCode?: string;
   liveDemo?: string;
+  video?: string;
 }
 
 interface ProjectListClientProps {
@@ -70,6 +71,7 @@ export default function ProjectListClient({ initialProjects }: ProjectListClient
                 tag={project.tag}
                 sourceCode={project.sourceCode}
                 liveDemo={project.liveDemo}
+                video={project.video}
                 onTagClick={handleTagClick}
                 isActiveTag={activeTag === project.tag}
               />
