@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Loader2 } from 'lucide-react';
 
@@ -14,8 +14,6 @@ interface VideoShowcaseProps {
 export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName }: VideoShowcaseProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
-  const scrollRef = useRef<number>(0);
-  const containerRef = useRef<HTMLDivElement>(null);
 
   const handleClose = useCallback(() => {
     setIsLoading(true);
@@ -24,123 +22,62 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName }
   }, [onClose]);
 
   useEffect(() => {
-    if (isOpen) {
-      setIsLoading(true);
-      setHasError(false);
-      
-      scrollRef.current = window.pageYOffset;
-      
-      const root = document.documentElement;
-      root.style.setProperty('--scroll-y', `-${scrollRef.current}px`);
-      
-      document.body.classList.add('modal-open');
-      
-      const style = document.createElement('style');
-      style.id = 'modal-scroll-lock';
-      style.textContent = `
-        .modal-open {
-          position: fixed !important;
-          top: var(--scroll-y) !important;
-          left: 0 !important;
-          right: 0 !important;
-          width: 100% !important;
-          height: 100% !important;
-          overflow: hidden !important;
-        }
-      `;
-      document.head.appendChild(style);
-      
-      const themeToggle = document.querySelector('[aria-label="Toggle theme"]') as HTMLElement;
-      if (themeToggle) {
-        themeToggle.style.visibility = 'hidden';
-      }
-    } else {
-      document.body.classList.remove('modal-open');
-      
-      const style = document.getElementById('modal-scroll-lock');
-      if (style) {
-        style.remove();
-      }
-      
-      window.scrollTo(0, scrollRef.current);
-      
-      const themeToggle = document.querySelector('[aria-label="Toggle theme"]') as HTMLElement;
+    if (!isOpen) return;
+
+    setIsLoading(true);
+    setHasError(false);
+
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+
+    const themeToggle = document.querySelector('[aria-label="Toggle theme"]') as HTMLElement;
+    if (themeToggle) themeToggle.style.visibility = 'hidden';
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') handleClose();
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      document.removeEventListener('keydown', handleKeyDown);
+
       if (themeToggle) {
         themeToggle.style.visibility = 'visible';
         themeToggle.style.transform = 'scale(0.85)';
         themeToggle.style.opacity = '0';
-        themeToggle.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-        
+        themeToggle.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease';
+
         requestAnimationFrame(() => {
           themeToggle.style.transform = 'scale(1)';
           themeToggle.style.opacity = '1';
         });
-        
+
         setTimeout(() => {
           themeToggle.style.transition = '';
           themeToggle.style.transform = '';
           themeToggle.style.opacity = '';
         }, 300);
       }
-    }
-
-    return () => {
-      document.body.classList.remove('modal-open');
-      const style = document.getElementById('modal-scroll-lock');
-      if (style) style.remove();
-      
-      const themeToggle = document.querySelector('[aria-label="Toggle theme"]') as HTMLElement;
-      if (themeToggle) {
-        themeToggle.style.visibility = '';
-        themeToggle.style.transition = '';
-        themeToggle.style.opacity = '';
-        themeToggle.style.transform = '';
-      }
     };
-  }, [isOpen]);
-
-  const handleVideoLoad = useCallback(() => {
-    setIsLoading(false);
-  }, []);
-
-  const handleVideoError = useCallback(() => {
-    setIsLoading(false);
-    setHasError(true);
-  }, []);
+  }, [isOpen, handleClose]);
 
   const handleBackdropClick = useCallback((e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) {
-      handleClose();
-    }
+    if (e.target === e.currentTarget) handleClose();
   }, [handleClose]);
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        handleClose();
-      }
-    };
-
-    if (isOpen) {
-      document.addEventListener('keydown', handleKeyDown);
-      return () => document.removeEventListener('keydown', handleKeyDown);
-    }
-  }, [isOpen, handleClose]);
 
   if (!isOpen) return null;
 
   return (
     <motion.div
-      ref={containerRef}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.15 }}
       className="fixed inset-0 z-[70] flex items-center justify-center p-4"
-      style={{ 
-        backgroundColor: 'var(--background)',
-        backdropFilter: 'blur(1px)'
-      }}
+      style={{ backgroundColor: 'var(--background)', backdropFilter: 'blur(1px)' }}
       onClick={handleBackdropClick}
     >
       <div className="relative">
@@ -150,10 +87,7 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName }
           transition={{ duration: 0.15 }}
           onClick={handleClose}
           className="absolute -top-12 sm:-top-14 right-0 z-10 !text-[0.88em] !px-1.5 !py-0.5 !rounded-md transition-transform duration-75 hover:scale-105"
-          style={{
-            backgroundColor: 'var(--clear-filter-bg)',
-            color: 'var(--clear-filter-text)',
-          }}
+          style={{ backgroundColor: 'var(--clear-filter-bg)', color: 'var(--clear-filter-text)' }}
         >
           Close
         </motion.button>
@@ -173,16 +107,8 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName }
           {isLoading && (
             <div className="absolute inset-0 flex items-center justify-center">
               <motion.div
-                animate={{ 
-                  rotate: 360
-                }}
-                transition={{
-                  rotate: { 
-                    duration: 1.2,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }
-                }}
+                animate={{ rotate: 360 }}
+                transition={{ duration: 1.2, repeat: Infinity, ease: "linear" }}
               >
                 <Loader2 size={28} className="opacity-65" />
               </motion.div>
@@ -210,8 +136,8 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName }
               controls={false}
               controlsList="nodownload nofullscreen noremoteplaybook"
               disablePictureInPicture
-              onLoadedData={handleVideoLoad}
-              onError={handleVideoError}
+              onLoadedData={() => setIsLoading(false)}
+              onError={() => { setIsLoading(false); setHasError(true); }}
               onContextMenu={(e) => e.preventDefault()}
               style={{ display: isLoading ? 'none' : 'block' }}
             />
