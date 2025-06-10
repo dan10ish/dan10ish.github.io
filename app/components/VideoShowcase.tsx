@@ -27,8 +27,18 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName }
     setIsLoading(true);
     setHasError(false);
 
+    const originalStyle = window.getComputedStyle(document.body);
+    const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
+
     document.body.style.overflow = 'hidden';
-    document.documentElement.style.overflow = 'hidden';
+    if (scrollBarWidth > 0) {
+      document.body.style.paddingRight = `${scrollBarWidth}px`;
+    }
+
+    const preventDefault = (e: Event) => e.preventDefault();
+    
+    document.addEventListener('touchmove', preventDefault, { passive: false });
+    document.addEventListener('wheel', preventDefault, { passive: false });
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') handleClose();
@@ -37,8 +47,11 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName }
     document.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      document.body.style.overflow = '';
-      document.documentElement.style.overflow = '';
+      document.body.style.overflow = originalStyle.overflow;
+      document.body.style.paddingRight = originalStyle.paddingRight;
+      
+      document.removeEventListener('touchmove', preventDefault);
+      document.removeEventListener('wheel', preventDefault);
       document.removeEventListener('keydown', handleKeyDown);
     };
   }, [isOpen, handleClose]);
