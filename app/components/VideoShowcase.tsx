@@ -37,7 +37,7 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName, 
     }
 
     const preventDefault = (e: Event) => e.preventDefault();
-    
+
     document.addEventListener('touchmove', preventDefault, { passive: false });
     document.addEventListener('wheel', preventDefault, { passive: false });
 
@@ -50,7 +50,7 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName, 
     return () => {
       document.body.style.overflow = originalStyle.overflow;
       document.body.style.paddingRight = originalStyle.paddingRight;
-      
+
       document.removeEventListener('touchmove', preventDefault);
       document.removeEventListener('wheel', preventDefault);
       document.removeEventListener('keydown', handleKeyDown);
@@ -69,7 +69,7 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName, 
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.15 }}
-      className="fixed inset-0 z-[70] flex items-center justify-center p-4"
+      className="fixed inset-0 z-[70] flex flex-col items-center justify-center p-4"
       style={{ backgroundColor: 'var(--background)', backdropFilter: 'blur(1px)' }}
       onClick={handleBackdropClick}
     >
@@ -91,7 +91,7 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName, 
           exit={{ opacity: 0, scale: 0.96 }}
           transition={{ duration: 0.15 }}
           className="relative aspect-square rounded-lg overflow-hidden shadow-2xl"
-          style={{ 
+          style={{
             backgroundColor: 'var(--code-bg)',
             width: 'min(82vw, 82vh, 26rem)',
             maxWidth: '26rem'
@@ -109,27 +109,27 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName, 
           )}
 
           {!videoSrc ? (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               className="absolute inset-0 flex flex-col items-center justify-center text-sm opacity-75 gap-4"
             >
               <div className="text-center">
-                <div className="mb-2">No video available</div>
+                <div className="mb-2 !text-xs">No video available</div>
               </div>
               {githubUrl && (
                 <a
                   href={githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex !items-center gap-2 bg-[var(--background)] !text-[var(--primary)] !px-2 !py-1 rounded-md hover:scale-102 duration-75"
+                  className="flex !text-xs !items-center gap-2 bg-[var(--background)] !text-[var(--primary)] !px-2 !py-1 rounded-md hover:scale-102 duration-75"
                 >
                   View on GitHub
                 </a>
               )}
             </motion.div>
           ) : hasError ? (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               className="absolute inset-0 flex items-center justify-center text-sm opacity-65"
@@ -155,16 +155,15 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName, 
               style={{ display: isLoading ? 'none' : 'block' }}
             />
           )}
-
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="absolute bottom-3 left-3 text-xs opacity-65 pointer-events-none"
-          >
-            {projectName.toLowerCase()}
-          </motion.div>
         </motion.div>
+        <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0 }}
+        className="!text-xs text-secondary pointer-events-none !mt-6 !px-0"
+      >
+        {projectName.toLowerCase()}
+      </motion.div>
       </div>
     </motion.div>
   );
