@@ -9,37 +9,9 @@ interface VideoShowcaseProps {
   onClose: () => void;
   videoSrc: string | null;
   projectName: string;
-  githubUrl?: string;
   sourceCode?: string;
   liveDemo?: string;
 }
-
-interface ActionButtonProps {
-  isActive: boolean;
-  onClick: () => void;
-  icon: React.ReactNode;
-  label: string;
-}
-
-const ActionButton = ({ isActive, onClick, icon, label }: ActionButtonProps) => (
-  <button
-    className={`
-      !flex !items-center !gap-1 !text-xs !bg-[var(--code-bg)] !border !border-[var(--code-bg)] 
-      !px-2 !py-1 !rounded-md !transition-transform !duration-0
-      ${isActive 
-        ? '!text-primary hover:!scale-105 hover:!bg-[var(--link-blue)] !cursor-pointer' 
-        : '!text-primary !opacity-30 !cursor-not-allowed !pointer-events-none'
-      }
-    `}
-    onClick={isActive ? onClick : undefined}
-    disabled={!isActive}
-  >
-    <span className="![color:var(--secondary)] [&>svg]:![color:var(--secondary)] [&>svg]:!hover:[color:var(--secondary)] [&>svg]:![transform:none] [&>svg]:!hover:[transform:none]">
-      {icon}
-    </span>
-    {label}
-  </button>
-);
 
 export default function VideoShowcase({ 
   isOpen, 
@@ -95,13 +67,7 @@ export default function VideoShowcase({
     if (e.target === e.currentTarget) handleClose();
   }, [handleClose]);
 
-  const openLink = useCallback((url: string) => {
-    window.open(url, '_blank');
-  }, []);
-
   if (!isOpen) return null;
-
-  const spacing = '!mt-6';
 
   return (
     <motion.div
@@ -119,8 +85,21 @@ export default function VideoShowcase({
           animate={{ opacity: 1 }}
           transition={{ duration: 0.15 }}
           onClick={handleClose}
-          className={`!absolute !right-0 !z-10 !text-[0.88em] !px-1.5 !py-0.5 !rounded-md !transition-transform !duration-75 hover:!scale-105 !-top-12 sm:!-top-14`}
-          style={{ backgroundColor: 'var(--clear-filter-bg)', color: 'var(--clear-filter-text)' }}
+          className="!absolute !right-0 !z-10 !text-[0.88em] !px-1.5 !py-0.5 !rounded-md !transition-transform !duration-75 !-top-12 sm:!-top-14"
+          style={{ 
+            backgroundColor: 'var(--clear-filter-bg)', 
+            color: 'var(--clear-filter-text)'
+          }}
+          onMouseEnter={(e) => {
+            if (window.matchMedia('(hover: hover)').matches) {
+              e.currentTarget.style.transform = 'scale(1.05)';
+            }
+          }}
+          onMouseLeave={(e) => {
+            if (window.matchMedia('(hover: hover)').matches) {
+              e.currentTarget.style.transform = 'scale(1)';
+            }
+          }}
         >
           Close
         </motion.button>
@@ -130,7 +109,7 @@ export default function VideoShowcase({
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.96 }}
           transition={{ duration: 0.15 }}
-          className="!relative !aspect-square !rounded-lg !overflow-hidden !shadow-2xl"
+          className="!relative !aspect-square !rounded-lg !overflow-hidden !shadow-lg"
           style={{
             backgroundColor: 'var(--code-bg)',
             width: 'min(82vw, 82vh, 26rem)',
@@ -185,30 +164,69 @@ export default function VideoShowcase({
           )}
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0 }}
-          className={`!flex !items-center !justify-between !px-0 ${spacing}`}
-        >
-                      <div className="!text-xs !text-secondary !pointer-events-none">
+        <div className="!flex !items-center !justify-between !px-0 !mt-8">
+          <div className="!text-xs !pointer-events-none" style={{ color: 'var(--secondary)' }}>
             {projectName.toLowerCase()}
           </div>
-                      <div className="!flex !items-center !gap-2">
-            <ActionButton
-              isActive={!!sourceCode}
-              onClick={() => sourceCode && openLink(sourceCode)}
-              icon={<Github size={14} />}
-              label="Source"
-            />
-            <ActionButton
-              isActive={!!liveDemo}
-              onClick={() => liveDemo && openLink(liveDemo)}
-              icon={<Globe size={14} />}
-              label="Live"
-            />
+          <div className="!flex !items-center !gap-2">
+            <button
+              className="action-button !flex !items-center !gap-1 !text-xs !px-2 !py-1 !rounded-md !border-0"
+              style={{
+                backgroundColor: 'var(--code-bg)',
+                color: 'var(--foreground)',
+                opacity: sourceCode ? '1' : '0.3',
+                cursor: sourceCode ? 'pointer' : 'not-allowed',
+                pointerEvents: sourceCode ? 'auto' : 'none',
+                transition: 'none'
+              }}
+              onMouseEnter={(e) => {
+                if (sourceCode && window.matchMedia('(hover: hover)').matches) {
+                  e.currentTarget.style.backgroundColor = 'var(--link-blue)';
+                  e.currentTarget.style.transform = 'scale(1.05)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (sourceCode && window.matchMedia('(hover: hover)').matches) {
+                  e.currentTarget.style.backgroundColor = 'var(--code-bg)';
+                  e.currentTarget.style.transform = 'scale(1)';
+                }
+              }}
+              onClick={() => sourceCode && window.open(sourceCode, '_blank')}
+              disabled={!sourceCode}
+            >
+              <Github size={14} style={{ color: 'var(--foreground)' }} />
+              Source
+            </button>
+            <button
+              className="action-button !flex !items-center !gap-1 !text-xs !px-2 !py-1 !rounded-md !border-0"
+              style={{
+                backgroundColor: 'var(--code-bg)',
+                color: 'var(--foreground)',
+                opacity: liveDemo ? '1' : '0.3',
+                cursor: liveDemo ? 'pointer' : 'not-allowed',
+                pointerEvents: liveDemo ? 'auto' : 'none',
+                transition: 'none'
+              }}
+              onMouseEnter={(e) => {
+                if (liveDemo && window.matchMedia('(hover: hover)').matches) {
+                  e.currentTarget.style.backgroundColor = 'var(--link-blue)';
+                  e.currentTarget.style.transform = 'scale(1.05)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (liveDemo && window.matchMedia('(hover: hover)').matches) {
+                  e.currentTarget.style.backgroundColor = 'var(--code-bg)';
+                  e.currentTarget.style.transform = 'scale(1)';
+                }
+              }}
+              onClick={() => liveDemo && window.open(liveDemo, '_blank')}
+              disabled={!liveDemo}
+            >
+              <Globe size={14} style={{ color: 'var(--foreground)' }} />
+              Live
+            </button>
           </div>
-        </motion.div>
+        </div>
       </div>
     </motion.div>
   );
