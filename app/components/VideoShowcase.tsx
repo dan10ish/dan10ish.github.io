@@ -2,16 +2,17 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Github } from 'lucide-react';
 
 interface VideoShowcaseProps {
   isOpen: boolean;
   onClose: () => void;
-  videoSrc: string;
+  videoSrc: string | null;
   projectName: string;
+  githubUrl?: string;
 }
 
-export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName }: VideoShowcaseProps) {
+export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName, githubUrl }: VideoShowcaseProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
@@ -24,7 +25,7 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName }
   useEffect(() => {
     if (!isOpen) return;
 
-    setIsLoading(true);
+    setIsLoading(!!videoSrc);
     setHasError(false);
 
     const originalStyle = window.getComputedStyle(document.body);
@@ -96,7 +97,7 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName }
             maxWidth: '26rem'
           }}
         >
-          {isLoading && (
+          {isLoading && videoSrc && (
             <div className="absolute inset-0 flex items-center justify-center">
               <motion.div
                 animate={{ rotate: 360 }}
@@ -107,7 +108,27 @@ export default function VideoShowcase({ isOpen, onClose, videoSrc, projectName }
             </div>
           )}
 
-          {hasError ? (
+          {!videoSrc ? (
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="absolute inset-0 flex flex-col items-center justify-center text-sm opacity-75 gap-4"
+            >
+              <div className="text-center">
+                <div className="mb-2">No video available</div>
+              </div>
+              {githubUrl && (
+                <a
+                  href={githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex !items-center gap-2 bg-[var(--background)] !text-[var(--primary)] !px-2 !py-1 rounded-md hover:scale-102 duration-75"
+                >
+                  View on GitHub
+                </a>
+              )}
+            </motion.div>
+          ) : hasError ? (
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}

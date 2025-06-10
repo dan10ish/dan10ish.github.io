@@ -33,9 +33,7 @@ export default function ProjectLink({ name, tag, sourceCode, liveDemo, video, on
       return;
     }
     
-    if (video && video !== null) {
-      setIsVideoOpen(true);
-    }
+    setIsVideoOpen(true);
   };
 
   const hasValidVideo = video && video !== null;
@@ -43,9 +41,7 @@ export default function ProjectLink({ name, tag, sourceCode, liveDemo, video, on
   return (
     <>
       <div 
-        className={`group flex items-center justify-between !mb-2 !md:mb-1 ${
-          hasValidVideo ? 'cursor-pointer duration-100 rounded-md' : ''
-        }`}
+        className="group flex items-center justify-between !mb-2 !md:mb-1 cursor-pointer duration-100 rounded-md"
         onClick={handleRowClick}
       >
         <div className="text-[0.85rem] flex-shrink-0 mr-4 truncate group-hover:bg-[var(--code-bg)] group-hover:px-1.5 group-hover:py-0.5 group-hover:rounded-md transition-all duration-100 !px-2 !-mx-2">{name.toLowerCase()}</div>
@@ -81,18 +77,17 @@ export default function ProjectLink({ name, tag, sourceCode, liveDemo, video, on
         </div>
       </div>
 
-      {hasValidVideo && (
-        <AnimatePresence>
-          {isVideoOpen && (
-            <VideoShowcase
-              isOpen={isVideoOpen}
-              onClose={() => setIsVideoOpen(false)}
-              videoSrc={`/videos/${video}`}
-              projectName={name}
-            />
-          )}
-        </AnimatePresence>
-      )}
+      <AnimatePresence>
+        {isVideoOpen && (
+          <VideoShowcase
+            isOpen={isVideoOpen}
+            onClose={() => setIsVideoOpen(false)}
+            videoSrc={hasValidVideo ? `/videos/${video}` : null}
+            projectName={name}
+            githubUrl={sourceCode}
+          />
+        )}
+      </AnimatePresence>
     </>
   );
 } 
