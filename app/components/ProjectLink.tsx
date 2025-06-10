@@ -43,12 +43,12 @@ export default function ProjectLink({ name, tag, sourceCode, liveDemo, video, on
   return (
     <>
       <div 
-        className={`flex items-center justify-between mb-2 md:mb-1 ${
-          hasValidVideo ? 'cursor-pointer hover:opacity-80 transition-opacity duration-200' : ''
+        className={`group flex items-center justify-between !mb-2 !md:mb-1 ${
+          hasValidVideo ? 'cursor-pointer duration-100 rounded-md' : ''
         }`}
         onClick={handleRowClick}
       >
-        <div className="text-[0.85rem] flex-shrink-0 mr-4 truncate">{name.toLowerCase()}</div>
+        <div className="text-[0.85rem] flex-shrink-0 mr-4 truncate group-hover:bg-[var(--code-bg)] group-hover:px-1.5 group-hover:py-0.5 group-hover:rounded-md transition-all duration-100 !px-2 !-mx-2">{name.toLowerCase()}</div>
         <div className="flex items-center gap-4 md:gap-5 flex-shrink-0">
           <div className="flex justify-center min-w-[70px]">
             <div
