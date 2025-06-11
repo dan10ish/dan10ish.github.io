@@ -183,12 +183,23 @@ export default function VideoShowcase({
                 if (sourceCode && window.matchMedia('(hover: hover)').matches) {
                   e.currentTarget.style.backgroundColor = 'var(--link-blue)';
                   e.currentTarget.style.transform = 'scale(1.05)';
+                  // Check if light mode
+                  const computedStyle = getComputedStyle(document.documentElement);
+                  const bgColor = computedStyle.getPropertyValue('--background').trim();
+                  if (bgColor === '#F7F7F7') {
+                    e.currentTarget.style.color = 'white';
+                    const svg = e.currentTarget.querySelector('svg');
+                    if (svg) svg.style.color = 'white';
+                  }
                 }
               }}
               onMouseLeave={(e) => {
                 if (sourceCode && window.matchMedia('(hover: hover)').matches) {
                   e.currentTarget.style.backgroundColor = 'var(--code-bg)';
                   e.currentTarget.style.transform = 'scale(1)';
+                  e.currentTarget.style.color = 'var(--foreground)';
+                  const svg = e.currentTarget.querySelector('svg');
+                  if (svg) svg.style.color = 'var(--foreground)';
                 }
               }}
               onClick={() => sourceCode && window.open(sourceCode, '_blank')}
@@ -211,12 +222,23 @@ export default function VideoShowcase({
                 if (liveDemo && window.matchMedia('(hover: hover)').matches) {
                   e.currentTarget.style.backgroundColor = 'var(--link-blue)';
                   e.currentTarget.style.transform = 'scale(1.05)';
+                  // Check if light mode
+                  const computedStyle = getComputedStyle(document.documentElement);
+                  const bgColor = computedStyle.getPropertyValue('--background').trim();
+                  if (bgColor === '#F7F7F7') {
+                    e.currentTarget.style.color = 'white';
+                    const svg = e.currentTarget.querySelector('svg');
+                    if (svg) svg.style.color = 'white';
+                  }
                 }
               }}
               onMouseLeave={(e) => {
                 if (liveDemo && window.matchMedia('(hover: hover)').matches) {
                   e.currentTarget.style.backgroundColor = 'var(--code-bg)';
                   e.currentTarget.style.transform = 'scale(1)';
+                  e.currentTarget.style.color = 'var(--foreground)';
+                  const svg = e.currentTarget.querySelector('svg');
+                  if (svg) svg.style.color = 'var(--foreground)';
                 }
               }}
               onClick={() => liveDemo && window.open(liveDemo, '_blank')}
