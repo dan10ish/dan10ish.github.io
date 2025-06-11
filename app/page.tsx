@@ -24,7 +24,7 @@ export default function Home() {
               {personalInfo.skills.map((skill) => (
                 <div
                   key={skill}
-                  className="text-[0.88em] bg-[var(--code-bg)] text-[var(--secondary)] !px-1.5 !py-0.5 rounded-md whitespace-nowrap"
+                  className="text-[0.88em] bg-[var(--code-bg)] text-[var(--primary)] !px-1.5 !py-0.5 rounded-md whitespace-nowrap"
                 >
                   {skill}
                 </div>
@@ -35,9 +35,9 @@ export default function Home() {
 
         <section>
           <div className="flex items-center gap-2">
-            <div className="text-[0.9rem] mb-0 flex items-center">
+            <p className="!text-[0.85rem]">
               Get in touch:
-            </div>
+            </p>
             <SocialLinks
               github={personalInfo.socials.github}
               email={personalInfo.socials.email}

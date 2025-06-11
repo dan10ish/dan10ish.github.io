@@ -48,7 +48,7 @@ export default function ProjectLink({ name, tag, sourceCode, liveDemo, video, on
         <div className="flex items-center gap-4 md:gap-5 flex-shrink-0">
           <div className="flex justify-center min-w-[70px]">
             <div
-              className="text-[0.88em] bg-[var(--code-bg)] group-hover:!bg-[var(--background)] group-hover:rounded-md text-[var(--secondary)] !px-1.5 !py-0.5 rounded-md whitespace-nowrap cursor-pointer transform transition-transform duration-0 hover:scale-105"
+              className="text-[0.88em] bg-[var(--code-bg)] group-hover:!bg-[var(--background)] group-hover:rounded-md text-[var(--primary)] !px-1.5 !py-0.5 rounded-md whitespace-nowrap cursor-pointer transform transition-transform duration-0 hover:scale-105"
               onClick={(e) => {
                 e.stopPropagation();
                 onTagClick && onTagClick(tag);
