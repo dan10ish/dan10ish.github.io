@@ -41,14 +41,14 @@ export default function ProjectLink({ name, tag, sourceCode, liveDemo, video, on
   return (
     <>
       <div 
-        className="group flex items-center justify-between !mb-2 !md:mb-1 cursor-pointer duration-100 rounded-md !px-3 !-mx-3 hover:!bg-[var(--code-bg)] !py-0.5 !-my-1"
+        className="group flex items-center justify-between !mb-2 !md:mb-1 cursor-pointer duration-100 rounded-md"
         onClick={handleRowClick}
       >
-        <div className="text-[0.85rem] flex-shrink-0 mr-4 truncate transition-all duration-100 !px-2 !-mx-2">{name.toLowerCase()}</div>
+        <div className="text-[0.85rem] flex-shrink-0 mr-4 truncate transition-all duration-100 !px-2 !-mx-2 group-hover:bg-[var(--code-bg)] group-hover:rounded-md group-hover:px-3 group-hover:-mx-3 group-hover:py-0.5 group-hover:-my-1">{name.toLowerCase()}</div>
         <div className="flex items-center gap-4 md:gap-5 flex-shrink-0">
           <div className="flex justify-center min-w-[70px]">
             <div
-              className="text-[0.88em] bg-[var(--code-bg)] group-hover:!bg-[var(--background)] group-hover:rounded-md text-[var(--primary)] !px-1.5 !py-0.5 rounded-md whitespace-nowrap cursor-pointer transform transition-transform duration-0 hover:scale-105"
+              className="text-[0.88em] bg-[var(--code-bg)] text-[var(--primary)] !px-1.5 !py-0.5 rounded-md whitespace-nowrap cursor-pointer transform transition-transform duration-0 hover:scale-105 hover:!font-semibold"
               onClick={(e) => {
                 e.stopPropagation();
                 onTagClick && onTagClick(tag);

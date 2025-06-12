@@ -56,13 +56,13 @@ export default function Home() {
                 <Link
                   href={`/writings/${slug}`}
                   key={slug}
-                  className="block group writing-link !mb-1 hover:bg-[var(--code-bg)] rounded-md !px-2 !-mx-2"
+                  className="block group writing-link !mb-1 hover:rounded-md !px-2 !-mx-2"
                 >
                   <div className="flex gap-4 w-full items-baseline">
                     <span className="text-secondary !text-[0.82rem] flex-shrink-0">
                       {formatDate(date)}
                     </span>
-                    <span className="font-semibold text-secondary truncate">
+                    <span className="font-semibold text-secondary truncate group-hover:bg-[var(--code-bg)] group-hover:rounded-md !px-2 !-mx-2">
                       {title}
                     </span>
                   </div>

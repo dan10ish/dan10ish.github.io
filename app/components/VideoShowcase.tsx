@@ -85,7 +85,7 @@ export default function VideoShowcase({
           animate={{ opacity: 1 }}
           transition={{ duration: 0.15 }}
           onClick={handleClose}
-          className="!absolute !right-0 !z-10 !text-[0.88em] !px-1.5 !py-0.5 !rounded-md !transition-transform !duration-75 !-top-12 sm:!-top-14"
+          className="!absolute !right-0 !z-10 !text-[0.88em] !px-2 !py-0.5 !rounded-md !transition-transform !duration-0 !-top-12 sm:!-top-14"
           style={{ 
             backgroundColor: 'var(--clear-filter-bg)', 
             color: 'var(--clear-filter-text)'
@@ -170,7 +170,7 @@ export default function VideoShowcase({
           </div>
           <div className="!flex !items-center !gap-2">
             <button
-              className="action-button !flex !items-center !gap-1 !text-xs !px-2 !py-1 !rounded-md !border-0"
+              className="action-button !flex !items-center !gap-1 !text-xs !px-3 !py-1.5 !rounded-md !border-0"
               style={{
                 backgroundColor: 'var(--code-bg)',
                 color: 'var(--foreground)',
@@ -209,7 +209,7 @@ export default function VideoShowcase({
               Source
             </button>
             <button
-              className="action-button !flex !items-center !gap-1 !text-xs !px-2 !py-1 !rounded-md !border-0"
+              className="action-button !flex !items-center !gap-1 !text-xs !px-3 !py-1.5 !rounded-md !border-0"
               style={{
                 backgroundColor: 'var(--code-bg)',
                 color: 'var(--foreground)',
