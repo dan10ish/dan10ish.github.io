@@ -95,60 +95,39 @@ export default function WritingsCarousel({ writings }: WritingsCarouselProps) {
               key={writing.slug}
               className="!w-3/4 md:!w-3/5 lg:!w-1/2 flex-shrink-0 !pr-3"
             >
-                                          <Link
+                                                        <Link
                 href={`/writings/${writing.slug}`}
                 className="block group"
                 prefetch={true}
               >
-                                <div className="!rounded-2xl !overflow-hidden hover:opacity-90 transition-all duration-300 hover:shadow-lg relative !bg-transparent">
-                                    <div className="aspect-[3/2] sm:aspect-[5/2] md:aspect-[7/4] lg:aspect-[8/5] relative !w-full !h-full">
-                                        <Image
-                                            src={writing.ogImage || '/og/default.png'}
-                                            alt={writing.title}
-                                            fill
-                                            className="!object-cover !w-full !h-full group-hover:!scale-[1.02] !transition-transform !duration-300 !transform-gpu"
-                                            sizes="(max-width: 640px) 75vw, (max-width: 1024px) 60vw, 500px"
-                                            priority={currentIndex === writings.findIndex(w => w.slug === writing.slug)}
-                                            style={{
-                                                objectFit: 'cover',
-                                                width: '100%',
-                                                height: '100%'
-                                            }}
-                                        />
-                                    </div>
-
-                                    <div 
-                                        className="!absolute !bottom-0 !left-0 !right-0 !p-3 sm:!p-4"
-                                        style={{
-                                            background: 'linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4), transparent)',
-                                            backdropFilter: 'blur(8px)',
-                                            WebkitBackdropFilter: 'blur(8px)'
-                                        }}
-                                    >
-                                        <div className="flex items-center justify-between !mb-2">
-                                            <span className="!text-[0.75rem] !text-white !opacity-90">
-                                                {formatDate(writing.date)}
-                                            </span>
-                                            {writing.tags && writing.tags.length > 0 && (
-                                                <span
-                                                    className="!text-[0.88em] !text-white !px-1.5 !py-0.5 !rounded-md whitespace-nowrap"
-                                                    style={{
-                                                        backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                                                        backdropFilter: 'blur(4px)',
-                                                        WebkitBackdropFilter: 'blur(4px)'
-                                                    }}
-                                                >
-                                                    {writing.tags[0]}
-                                                </span>
-                                            )}
-                                        </div>
-
-                                        <h2 className="!font-semibold !text-[0.85rem] sm:!text-[0.9rem] !mb-0 !text-white group-hover:!text-blue-200 transition-colors !leading-tight">
-                                            {writing.title}
-                                        </h2>
-                                    </div>
-                                </div>
-                            </Link>
+                <div className="!relative !aspect-[3/2] sm:!aspect-[5/2] md:!aspect-[7/4] lg:!aspect-[8/5] !rounded-2xl !overflow-hidden !hover:opacity-90 !transition-all !duration-300 hover:!shadow-lg">
+                  <Image
+                    src={writing.ogImage || '/og/default.png'}
+                    alt={writing.title}
+                    fill
+                    className="!object-cover !rounded-2xl group-hover:!scale-[1.02] !transition-transform !duration-300"
+                    sizes="(max-width: 640px) 75vw, (max-width: 1024px) 60vw, 500px"
+                    priority={currentIndex === writings.findIndex(w => w.slug === writing.slug)}
+                  />
+                  
+                  <div className="!absolute !bottom-0 !left-0 !right-0 !p-3 sm:!p-4 !bg-gradient-to-t !from-black/80 !via-black/40 !to-transparent !backdrop-blur-sm !rounded-b-2xl">
+                    <div className="!flex !items-center !justify-between !mb-2">
+                      <span className="!text-xs !text-white/90">
+                        {formatDate(writing.date)}
+                      </span>
+                      {writing.tags && writing.tags.length > 0 && (
+                        <span className="!text-xs !text-white !px-1.5 !py-0.5 !rounded-2xl !whitespace-nowrap !bg-white/20 !backdrop-blur-sm">
+                          {writing.tags[0]}
+                        </span>
+                      )}
+                    </div>
+                    
+                    <h2 className="!font-semibold !text-sm sm:!text-base !text-white group-hover:!text-blue-200 !transition-colors !leading-tight !mb-0">
+                      {writing.title}
+                    </h2>
+                  </div>
+                </div>
+              </Link>
                         </div>
                     ))}
                 </div>
