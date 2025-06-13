@@ -80,28 +80,28 @@ export default function WritingsCarousel({ writings }: WritingsCarouselProps) {
         <section className="relative !mb-6">
             <h1 className="text-base opacity-70 !mb-2">Writings</h1>
 
-            <div
-                className="relative overflow-hidden !rounded-md"
-                onTouchStart={handleTouchStart}
-            >
-                <div
-                    className="flex transition-transform duration-300 ease-in-out"
-                    style={{
-                        transform: `translateX(calc(${currentIndex === 0 ? '0%' : '12.5%'} - ${currentIndex * 75}%))`,
-                    }}
-                >
+                  <div 
+        className="relative overflow-hidden !rounded-md carousel-responsive"
+        onTouchStart={handleTouchStart}
+      >
+        <div 
+          className="flex transition-transform duration-300 ease-in-out"
+          style={{
+            transform: `translateX(calc(${currentIndex === 0 ? '0%' : 'var(--offset)'} - ${currentIndex} * var(--card-width)))`,
+          }}
+        >
                     {writings.map((writing) => (
-                        <div
-                            key={writing.slug}
-                            className="!w-3/4 flex-shrink-0 !pr-3"
-                        >
+                                    <div
+              key={writing.slug}
+              className="!w-3/4 md:!w-3/5 lg:!w-1/2 flex-shrink-0 !pr-3"
+            >
                                           <Link
                 href={`/writings/${writing.slug}`}
                 className="block group"
                 prefetch={true}
               >
                                 <div className="bg-[var(--code-bg)] !rounded-md overflow-hidden hover:opacity-90 transition-all duration-300 hover:shadow-sm">
-                                    <div className="aspect-[3/2] sm:aspect-[5/2] relative overflow-hidden">
+                                    <div className="aspect-[3/2] sm:aspect-[5/2] md:aspect-[7/4] lg:aspect-[8/5] relative overflow-hidden">
                                         <Image
                                             src={writing.ogImage || '/og/default.png'}
                                             alt={writing.title}

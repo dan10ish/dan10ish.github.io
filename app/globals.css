@@ -397,6 +397,25 @@ section {
   overflow: hidden;
 }
 
+.carousel-responsive {
+  --card-width: 75%;
+  --offset: 12.5%;
+}
+
+@media (min-width: 768px) {
+  .carousel-responsive {
+    --card-width: 60%;
+    --offset: 20%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .carousel-responsive {
+    --card-width: 50%;
+    --offset: 25%;
+  }
+}
+
 .prose code, .prose pre, pre, code, .prose figure[data-rehype-pretty-code-figure] > pre code span {
   font-size: 0.8rem !important;
 }
