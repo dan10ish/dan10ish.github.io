@@ -79,7 +79,7 @@ export default function WritingsCarousel({ writings }: WritingsCarouselProps) {
 
   return (
     <section className="relative !mb-6">
-      <h1 className="text-base opacity-70 !mb-2">Writings</h1>
+      <h1 className="text-base opacity-70 !mb-4">Writings</h1>
 
       <div
         className="relative overflow-hidden !rounded-md carousel-responsive"
@@ -123,7 +123,7 @@ export default function WritingsCarousel({ writings }: WritingsCarouselProps) {
                       )}
                     </div>
 
-                    <h2 className="!font-semibold !text-sm sm:!text-base !text-white group-hover:!text-blue-200 !transition-colors !leading-tight !mb-0">
+                    <h2 className="!font-semibold !text-sm sm:!text-base !text-white group-hover:!text-blue-400 !transition-colors !leading-tight !mb-0">
                       {writing.title}
                     </h2>
                   </div>
@@ -135,7 +135,7 @@ export default function WritingsCarousel({ writings }: WritingsCarouselProps) {
       </div>
 
       {writings.length > 1 && (
-        <div className="flex justify-between items-center !mt-2">
+        <div className="flex justify-between items-center !mt-4">
           <div className="flex gap-1.5">
             {writings.map((_, index) => (
               <div
