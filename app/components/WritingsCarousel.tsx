@@ -95,10 +95,11 @@ export default function WritingsCarousel({ writings }: WritingsCarouselProps) {
                             key={writing.slug}
                             className="!w-3/4 flex-shrink-0 !pr-3"
                         >
-                            <Link
-                                href={`/writings/${writing.slug}`}
-                                className="block group"
-                            >
+                                          <Link
+                href={`/writings/${writing.slug}`}
+                className="block group"
+                prefetch={true}
+              >
                                 <div className="bg-[var(--code-bg)] !rounded-md overflow-hidden hover:opacity-90 transition-all duration-300 hover:shadow-sm">
                                     <div className="aspect-[3/2] sm:aspect-[5/2] relative overflow-hidden">
                                         <Image
