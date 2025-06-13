@@ -14,7 +14,7 @@ export interface WritingData {
   tags?: string[]
 }
 
-const defaultOgImage = "https://i.ibb.co/vmBrhSd/OG.png";
+const defaultOgImage = "/og/default.webp";
 
 export function getSortedWritingsData(): Omit<WritingData, 'content'>[] {
   const fileNames = fs.readdirSync(writingsDirectory)

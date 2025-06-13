@@ -90,7 +90,7 @@ export default function WritingsCarousel({ writings }: WritingsCarouselProps) {
             transform: `translateX(calc(${currentIndex === 0 ? '0%' : 'var(--offset)'} - ${currentIndex} * var(--card-width)))`,
           }}
         >
-          {writings.map((writing) => (
+          {writings.map((writing, index) => (
             <div
               key={writing.slug}
               className="!w-3/4 md:!w-3/5 lg:!w-1/2 flex-shrink-0 !pr-3"
@@ -98,16 +98,16 @@ export default function WritingsCarousel({ writings }: WritingsCarouselProps) {
               <Link
                 href={`/writings/${writing.slug}`}
                 className="block group"
-                prefetch={true}
+                prefetch={index <= 2}
               >
                 <div className="!relative !aspect-[3/2] sm:!aspect-[5/2] md:!aspect-[7/4] lg:!aspect-[8/5] !rounded-2xl !overflow-hidden !hover:opacity-90 !transition-all !duration-300 hover:!shadow-lg">
                   <Image
-                    src={writing.ogImage || '/og/default.png'}
+                    src={writing.ogImage || '/og/default.webp'}
                     alt={writing.title}
                     fill
                     className="!object-cover !rounded-2xl group-hover:!scale-[1.02] !transition-transform !duration-300"
                     sizes="(max-width: 640px) 75vw, (max-width: 1024px) 60vw, 500px"
-                    priority={currentIndex === writings.findIndex(w => w.slug === writing.slug)}
+                    priority={index === 0}
                   />
 
                   <div className="!absolute !bottom-0 !left-0 !right-0 !m-0 !p-3 sm:!p-4 !bg-gradient-to-t !from-black/80 !via-black/40 !to-transparent !backdrop-blur-sm !rounded-b-2xl">
@@ -134,54 +134,58 @@ export default function WritingsCarousel({ writings }: WritingsCarouselProps) {
       </div>
 
       {writings.length > 1 && (
-                        <div className="flex justify-between items-center !mt-2">
-                    <div className="flex gap-1.5">
-                        {writings.map((_, index) => (
-                            <div
-                                key={index}
-                                className="!h-2 !rounded-full !block"
-                                style={{
-                                    backgroundColor: index === currentIndex ? 'var(--foreground)' : 'var(--secondary)',
-                                    width: index === currentIndex ? '16px' : '8px',
-                                    height: '8px',
-                                    opacity: index === currentIndex ? 1 : 0.8,
-                                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
-                                }}
-                            />
-                        ))}
-                    </div>
+        <div className="flex justify-between items-center !mt-2">
+          <div className="flex gap-1.5">
+            {writings.map((_, index) => (
+              <div
+                key={index}
+                className="!h-2 !rounded-full !block"
+                style={{
+                  backgroundColor: index === currentIndex ? 'var(--foreground)' : 'var(--secondary)',
+                  width: index === currentIndex ? '16px' : '8px',
+                  height: '8px',
+                  opacity: index === currentIndex ? 1 : 0.8,
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+                }}
+              />
+            ))}
+          </div>
 
           <div className="flex gap-1.5">
             <button
               onClick={prevSlide}
               disabled={currentIndex === 0}
-              className={`!p-2 !rounded-full !bg-[var(--code-bg)] transition-all duration-200 ${currentIndex === 0
-                  ? '!opacity-40 !cursor-not-allowed'
+              className={`!p-2 !rounded-full !bg-[var(--code-bg)] transition-all duration-200 ${
+                currentIndex === 0 
+                  ? '!opacity-40 !cursor-not-allowed' 
                   : 'group hover:!scale-110'
-                }`}
+              }`}
               aria-label="Previous writing"
             >
-              <ChevronLeft
-                className={`!w-4 !h-4 !stroke-2 !text-[var(--secondary)] ${currentIndex === 0 ? '' : 'transition-colors group-hover:!text-[var(--foreground)]'
-                  }`}
+              <ChevronLeft 
+                className={`!w-4 !h-4 !stroke-2 !text-[var(--secondary)] ${
+                  currentIndex === 0 ? '' : 'transition-colors group-hover:!text-[var(--foreground)]'
+                }`} 
                 style={{
                   color: currentIndex === 0 ? 'var(--secondary)' : undefined
                 }}
               />
             </button>
-
+            
             <button
               onClick={nextSlide}
               disabled={currentIndex === writings.length - 1}
-              className={`!p-2 !rounded-full !bg-[var(--code-bg)] transition-all duration-200 ${currentIndex === writings.length - 1
-                  ? '!opacity-40 !cursor-not-allowed'
+              className={`!p-2 !rounded-full !bg-[var(--code-bg)] transition-all duration-200 ${
+                currentIndex === writings.length - 1 
+                  ? '!opacity-40 !cursor-not-allowed' 
                   : 'group hover:!scale-110'
-                }`}
+              }`}
               aria-label="Next writing"
             >
-              <ChevronRight
-                className={`!w-4 !h-4 !stroke-2 !text-[var(--secondary)] ${currentIndex === writings.length - 1 ? '' : 'transition-colors group-hover:!text-[var(--foreground)]'
-                  }`}
+              <ChevronRight 
+                className={`!w-4 !h-4 !stroke-2 !text-[var(--secondary)] ${
+                  currentIndex === writings.length - 1 ? '' : 'transition-colors group-hover:!text-[var(--foreground)]'
+                }`} 
                 style={{
                   color: currentIndex === writings.length - 1 ? 'var(--secondary)' : undefined
                 }}
