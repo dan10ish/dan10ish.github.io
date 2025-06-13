@@ -390,6 +390,13 @@ section {
 .sh__token--sign { color: var(--sh-sign); }
 .sh__token--jsxliterals { color: var(--sh-jsxliterals); }
 
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 .prose code, .prose pre, pre, code, .prose figure[data-rehype-pretty-code-figure] > pre code span {
   font-size: 0.8rem !important;
 }

@@ -4,6 +4,7 @@ import { personalInfo, projects } from "./data";
 import { getSortedWritingsData } from "../lib/writings";
 import { formatDate } from "../lib/utils";
 import ProjectListClient from "./components/ProjectListClient";
+import WritingsCarousel from "./components/WritingsCarousel";
 
 export default function Home() {
   const writings = getSortedWritingsData();
@@ -48,29 +49,7 @@ export default function Home() {
           </div>
         </section>
 
-        {writings.length > 0 && (
-          <section>
-            <h1 className="text-base opacity-70">Writings</h1>
-            <div className="mt-1">
-              {writings.map(({ slug, title, date }) => (
-                <Link
-                  href={`/writings/${slug}`}
-                  key={slug}
-                  className="block group writing-link !mb-1 hover:rounded-md !px-2 !-mx-2"
-                >
-                  <div className="flex gap-4 w-full items-baseline">
-                    <span className="text-secondary !text-[0.82rem] flex-shrink-0">
-                      {formatDate(date)}
-                    </span>
-                    <span className="font-semibold text-secondary truncate group-hover:bg-[var(--code-bg)] group-hover:rounded-md !px-2 !-mx-2">
-                      {title}
-                    </span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </section>
-        )}
+        <WritingsCarousel writings={writings} />
 
         <ProjectListClient initialProjects={projects} />
       </main>
