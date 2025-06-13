@@ -6,12 +6,13 @@ import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface Writing {
-  slug: string;
-  title: string;
-  date: string;
-  summary: string;
-  ogImage?: string;
-  tags?: string[];
+    slug: string;
+    title: string;
+    date: string;
+    summary: string;
+    ogImage?: string;
+    displayImage?: string;
+    tags?: string[];
 }
 
 interface WritingsCarouselProps {
@@ -101,9 +102,9 @@ export default function WritingsCarousel({ writings }: WritingsCarouselProps) {
                 prefetch={index <= 2}
               >
                 <div className="!relative !aspect-[3/2] sm:!aspect-[5/2] md:!aspect-[7/4] lg:!aspect-[8/5] !rounded-2xl !overflow-hidden !hover:opacity-90 !transition-all !duration-300 hover:!shadow-lg">
-                  <Image
-                    src={writing.ogImage || '/og/default.webp'}
-                    alt={writing.title}
+                                                      <Image
+                                        src={writing.displayImage || writing.ogImage || '/og/default.webp'}
+                                        alt={writing.title}
                     fill
                     className="!object-cover !rounded-2xl group-hover:!scale-[1.02] !transition-transform !duration-300"
                     sizes="(max-width: 640px) 75vw, (max-width: 1024px) 60vw, 500px"

@@ -10,8 +10,16 @@ export interface WritingData {
   date: string
   summary: string
   ogImage?: string
+  displayImage?: string
   content: string
   tags?: string[]
+  author?: string
+  readTime?: string
+  type?: string
+  locale?: string
+  alternateLocales?: string[]
+  keywords?: string[]
+  canonicalUrl?: string
 }
 
 const defaultOgImage = "/og/default.webp";
@@ -27,6 +35,8 @@ export function getSortedWritingsData(): Omit<WritingData, 'content'>[] {
       const matterResult = matter(fileContents)
 
       const tags = (matterResult.data.tags as string[] | undefined) || [];
+      const keywords = (matterResult.data.keywords as string[] | undefined) || [];
+      const alternateLocales = (matterResult.data.alternateLocales as string[] | undefined) || [];
 
       return {
         slug,
@@ -34,7 +44,15 @@ export function getSortedWritingsData(): Omit<WritingData, 'content'>[] {
         date: matterResult.data.date as string,
         summary: matterResult.data.summary as string,
         ogImage: matterResult.data.ogImage as string || defaultOgImage,
+        displayImage: matterResult.data.displayImage as string,
         tags: tags,
+        author: matterResult.data.author as string,
+        readTime: matterResult.data.readTime as string,
+        type: matterResult.data.type as string,
+        locale: matterResult.data.locale as string,
+        alternateLocales: alternateLocales,
+        keywords: keywords,
+        canonicalUrl: matterResult.data.canonicalUrl as string,
       }
     })
 
@@ -52,6 +70,8 @@ export async function getWritingData(slug: string): Promise<WritingData> {
     const matterResult = matter(fileContents)
 
     const tags = (matterResult.data.tags as string[] | undefined) || [];
+    const keywords = (matterResult.data.keywords as string[] | undefined) || [];
+    const alternateLocales = (matterResult.data.alternateLocales as string[] | undefined) || [];
 
     resolve({
       slug,
@@ -59,8 +79,16 @@ export async function getWritingData(slug: string): Promise<WritingData> {
       date: matterResult.data.date as string,
       summary: matterResult.data.summary as string,
       ogImage: matterResult.data.ogImage as string || defaultOgImage,
+      displayImage: matterResult.data.displayImage as string,
       content: matterResult.content,
       tags: tags,
+      author: matterResult.data.author as string,
+      readTime: matterResult.data.readTime as string,
+      type: matterResult.data.type as string,
+      locale: matterResult.data.locale as string,
+      alternateLocales: alternateLocales,
+      keywords: keywords,
+      canonicalUrl: matterResult.data.canonicalUrl as string,
     })
   })
 } 

@@ -39,14 +39,15 @@ export async function generateMetadata({ params }: WritingPageProps): Promise<Me
 
     const pageTitle = `${writing.title} | Danish`;
     const pageDescription = writing.summary;
-    const writingUrl = `https://danish.bio/writings/${slug}`;
+    const writingUrl = writing.canonicalUrl || `https://danish.bio/writings/${slug}`;
+    const siteUrl = "https://danish.bio";
     
     let ogImageUrl: string;
     const defaultOgImage = "https://i.ibb.co/vmBrhSd/OG.png";
 
     if (writing.ogImage) {
       if (writing.ogImage.startsWith('/')) {
-        ogImageUrl = `https://danish.bio${writing.ogImage}`;
+        ogImageUrl = `${siteUrl}${writing.ogImage}`;
       } else {
         ogImageUrl = writing.ogImage;
       }
@@ -54,39 +55,64 @@ export async function generateMetadata({ params }: WritingPageProps): Promise<Me
       ogImageUrl = defaultOgImage;
     }
 
+    const parseDate = (dateString: string): Date => {
+      if (dateString.includes('-') && dateString.split('-').length === 3) {
+        const [day, month, year] = dateString.split('-');
+        return new Date(`${year}-${month}-${day}`);
+      }
+      return new Date(dateString);
+    };
+
+    const publishedTime = parseDate(writing.date).toISOString();
+    const modifiedTime = publishedTime;
+
     return {
       title: pageTitle,
       description: pageDescription,
-      keywords: writing.tags || [],
-      authors: [{ name: 'Danish', url: 'https://danish.bio' }],
+      keywords: writing.keywords || writing.tags || [],
+      authors: [{ name: writing.author || 'Danish', url: siteUrl }],
+      creator: writing.author || 'Danish',
+      publisher: 'Danish',
+      category: 'Technology',
       alternates: {
         canonical: writingUrl,
+        languages: writing.alternateLocales?.reduce((acc, locale) => {
+          acc[locale] = `${writingUrl}?lang=${locale}`;
+          return acc;
+        }, {} as Record<string, string>) || {},
       },
       openGraph: {
-        title: pageTitle,
+        title: writing.title,
         description: pageDescription,
         url: writingUrl,
-        siteName: 'Danish',
+        siteName: 'Danish - Developer & Writer',
         images: [
           {
             url: ogImageUrl,
             width: 1200,
             height: 630,
             alt: writing.title,
+            type: 'image/png',
           },
         ],
-        locale: 'en_US',
+        locale: writing.locale || 'en_US',
         type: 'article',
-        publishedTime: writing.date,
-        authors: ['Danish'],
+        publishedTime: publishedTime,
+        modifiedTime: modifiedTime,
+        authors: [writing.author || 'Danish'],
+        section: 'Technology',
+        tags: writing.tags || [],
       },
       twitter: {
         card: "summary_large_image",
-        title: pageTitle,
+        title: writing.title,
         description: pageDescription,
         site: "@dan10ish", 
         creator: "@dan10ish", 
-        images: [ogImageUrl],
+        images: [{
+          url: ogImageUrl,
+          alt: writing.title,
+        }],
       },
       robots: {
         index: true,
@@ -98,6 +124,14 @@ export async function generateMetadata({ params }: WritingPageProps): Promise<Me
           "max-image-preview": "large",
           "max-snippet": -1,
         },
+      },
+      other: {
+        'article:author': writing.author || 'Danish',
+        'article:published_time': publishedTime,
+        'article:modified_time': modifiedTime,
+        'article:section': 'Technology',
+        'article:tag': writing.tags?.join(', ') || '',
+        'og:updated_time': modifiedTime,
       },
     }
   } catch (error) {
