@@ -5,6 +5,7 @@ import remarkGfm from 'remark-gfm'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import Link from 'next/link'
+import Image from 'next/image'
 import { MdxTableWrapper } from '../../components/MdxTableWrapper'
 import { formatDate } from '../../../lib/utils'
 import { notFound } from 'next/navigation'
@@ -214,7 +215,7 @@ export default async function WritingPage({ params }: WritingPageProps) {
     notFound();
   }
 
-  const { title, date, content } = writing;
+  const { title, date, content, displayImage, ogImage } = writing;
 
   const options = {
     mdxOptions: {
@@ -239,14 +240,38 @@ export default async function WritingPage({ params }: WritingPageProps) {
     pre: CustomPre,
   }
 
+  const coverImage = displayImage || ogImage || '/og/default.webp';
+
   return (
-    <article className="prose prose-quoteless prose-neutral dark:prose-invert max-w-none">
-      <h1 className="!mt-0 !mb-0 !pt-0 !pb-0 text-2xl font-bold">{title}</h1>
-      <p className="text-sm text-secondary mt-2 mb-8">
-        {formatDate(date)}
-      </p>
-      {/* @ts-expect-error Async Server Component */}
-      <MDXRemote source={content} options={options} components={components} />
-    </article>
+    <div className="w-full">
+      <div className="relative w-full h-[25vh] sm:h-[35vh] md:h-[45vh] min-h-[200px] overflow-hidden !rounded-2xl">
+        <Image
+          src={coverImage}
+          alt={title}
+          fill
+          className="object-cover !rounded-2xl"
+          priority
+          sizes="100vw"
+        />
+        
+        <div className="absolute bottom-0 left-0 right-0 !p-4 sm:!p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent backdrop-blur-sm !rounded-b-2xl">
+          <div className="max-w-4xl mx-auto">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-tight !mb-2">
+              {title}
+            </h1>
+            <p className="text-sm text-white/90 !mt-2">
+              {formatDate(date)}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-4xl mx-auto px-6 py-8">
+        <article className="prose prose-quoteless prose-neutral dark:prose-invert max-w-none">
+          {/* @ts-expect-error Async Server Component */}
+          <MDXRemote source={content} options={options} components={components} />
+        </article>
+      </div>
+    </div>
   )
 }
