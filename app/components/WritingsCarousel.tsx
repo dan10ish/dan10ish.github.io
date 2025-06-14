@@ -117,7 +117,7 @@ export default function WritingsCarousel({ writings }: WritingsCarouselProps) {
                     priority={index === 0}
                   />
 
-                  <div className="!absolute !bottom-0 !left-0 !right-0 !m-0 !p-3 sm:!p-4 !bg-gradient-to-t !from-black/80 !via-black/40 !to-transparent !backdrop-blur-sm">
+                  <div className="!absolute !bottom-0 !left-0 !right-0 !m-0 !p-3 sm:!p-4 !backdrop-blur-sm">
                     <div className="!flex !items-center !justify-between !mb-2">
                       <span className="!text-xs !text-white/90">
                         {formatDate(writing.date)}

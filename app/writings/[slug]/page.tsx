@@ -254,7 +254,7 @@ export default async function WritingPage({ params }: WritingPageProps) {
           sizes="100vw"
         />
         
-        <div className="absolute bottom-0 left-0 right-0 !p-4 sm:!p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent backdrop-blur-sm !rounded-b-2xl">
+        <div className="absolute bottom-0 left-0 right-0 !p-4 sm:!p-6 bg-gradient-to-t from-black/40 to-transparent backdrop-blur-sm !rounded-b-2xl">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-tight !mb-2">
               {title}
