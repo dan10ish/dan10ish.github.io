@@ -6,13 +6,13 @@ import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface Writing {
-    slug: string;
-    title: string;
-    date: string;
-    summary: string;
-    ogImage?: string;
-    displayImage?: string;
-    tags?: string[];
+  slug: string;
+  title: string;
+  date: string;
+  summary: string;
+  ogImage?: string;
+  displayImage?: string;
+  tags?: string[];
 }
 
 interface WritingsCarouselProps {
@@ -82,7 +82,7 @@ export default function WritingsCarousel({ writings }: WritingsCarouselProps) {
       <h1 className="text-base opacity-70 !mb-4">Writings</h1>
 
       <div
-        className="relative overflow-hidden !rounded-md carousel-responsive"
+        className="relative overflow-hidden carousel-responsive"
         onTouchStart={handleTouchStart}
       >
         <div
@@ -101,23 +101,23 @@ export default function WritingsCarousel({ writings }: WritingsCarouselProps) {
                 className="block group"
                 prefetch={index <= 2}
               >
-                <div className="!relative !aspect-[3/2] sm:!aspect-[5/2] md:!aspect-[7/4] lg:!aspect-[8/5] !rounded-2xl !overflow-hidden !hover:opacity-90 !transition-all !duration-300 hover:!shadow-lg">
-                                                      <Image
-                                        src={writing.displayImage || writing.ogImage || '/og/default.webp'}
-                                        alt={writing.title}
+                <div className="!relative !aspect-[3/2] sm:!aspect-[5/2] md:!aspect-[7/4] lg:!aspect-[8/5] !overflow-hidden !hover:opacity-90 !transition-all !duration-300 hover:!shadow-lg !rounded-2xl">
+                  <Image
+                    src={writing.displayImage || writing.ogImage || '/og/default.webp'}
+                    alt={writing.title}
                     fill
-                    className="!object-cover !rounded-2xl group-hover:!scale-[1.02] !transition-transform !duration-300"
+                    className="!object-cover group-hover:!scale-[1.02] !transition-transform !duration-300"
                     sizes="(max-width: 640px) 75vw, (max-width: 1024px) 60vw, 500px"
                     priority={index === 0}
                   />
 
-                  <div className="!absolute !bottom-0 !left-0 !right-0 !m-0 !p-3 sm:!p-4 !bg-gradient-to-t !from-black/80 !via-black/40 !to-transparent !backdrop-blur-sm !rounded-b-2xl">
+                  <div className="!absolute !bottom-0 !left-0 !right-0 !m-0 !p-3 sm:!p-4 !bg-gradient-to-t !from-black/80 !via-black/40 !to-transparent !backdrop-blur-sm">
                     <div className="!flex !items-center !justify-between !mb-2">
                       <span className="!text-xs !text-white/90">
                         {formatDate(writing.date)}
                       </span>
                       {writing.tags && writing.tags.length > 0 && (
-                        <span className="!text-xs !text-white !px-1.5 !py-0.5 !rounded-2xl !whitespace-nowrap !bg-white/20 !backdrop-blur-sm">
+                        <span className="!text-xs !text-white !px-1.5 !py-0.5 !rounded-md !whitespace-nowrap !bg-white/20 !backdrop-blur-sm">
                           {writing.tags[0]}
                         </span>
                       )}
@@ -156,37 +156,33 @@ export default function WritingsCarousel({ writings }: WritingsCarouselProps) {
             <button
               onClick={prevSlide}
               disabled={currentIndex === 0}
-              className={`!p-2 !rounded-full !bg-[var(--code-bg)] transition-all duration-200 ${
-                currentIndex === 0 
-                  ? '!opacity-40 !cursor-not-allowed' 
+              className={`!p-2 !rounded-full !bg-[var(--code-bg)] transition-all duration-200 ${currentIndex === 0
+                  ? '!opacity-40 !cursor-not-allowed'
                   : 'group hover:!scale-110'
-              }`}
+                }`}
               aria-label="Previous writing"
             >
-              <ChevronLeft 
-                className={`!w-4 !h-4 !stroke-2 !text-[var(--secondary)] ${
-                  currentIndex === 0 ? '' : 'transition-colors group-hover:!text-[var(--foreground)]'
-                }`} 
+              <ChevronLeft
+                className={`!w-4 !h-4 !stroke-2 !text-[var(--secondary)] ${currentIndex === 0 ? '' : 'transition-colors group-hover:!text-[var(--foreground)]'
+                  }`}
                 style={{
                   color: currentIndex === 0 ? 'var(--secondary)' : undefined
                 }}
               />
             </button>
-            
+
             <button
               onClick={nextSlide}
               disabled={currentIndex === writings.length - 1}
-              className={`!p-2 !rounded-full !bg-[var(--code-bg)] transition-all duration-200 ${
-                currentIndex === writings.length - 1 
-                  ? '!opacity-40 !cursor-not-allowed' 
+              className={`!p-2 !rounded-full !bg-[var(--code-bg)] transition-all duration-200 ${currentIndex === writings.length - 1
+                  ? '!opacity-40 !cursor-not-allowed'
                   : 'group hover:!scale-110'
-              }`}
+                }`}
               aria-label="Next writing"
             >
-              <ChevronRight 
-                className={`!w-4 !h-4 !stroke-2 !text-[var(--secondary)] ${
-                  currentIndex === writings.length - 1 ? '' : 'transition-colors group-hover:!text-[var(--foreground)]'
-                }`} 
+              <ChevronRight
+                className={`!w-4 !h-4 !stroke-2 !text-[var(--secondary)] ${currentIndex === writings.length - 1 ? '' : 'transition-colors group-hover:!text-[var(--foreground)]'
+                  }`}
                 style={{
                   color: currentIndex === writings.length - 1 ? 'var(--secondary)' : undefined
                 }}
