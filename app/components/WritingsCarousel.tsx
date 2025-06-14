@@ -20,9 +20,15 @@ interface WritingsCarouselProps {
 }
 
 export default function WritingsCarousel({ writings }: WritingsCarouselProps) {
+  const sortedWritings = [...writings].sort((a, b) => {
+    const dateA = new Date(a.date.split('-').reverse().join('-'));
+    const dateB = new Date(b.date.split('-').reverse().join('-'));
+    return dateB.getTime() - dateA.getTime();
+  });
+
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  if (writings.length === 0) return null;
+  if (sortedWritings.length === 0) return null;
 
   const formatDate = (dateString: string) => {
     const months = [
@@ -36,11 +42,11 @@ export default function WritingsCarousel({ writings }: WritingsCarouselProps) {
   };
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % writings.length);
+    setCurrentIndex((prev) => (prev + 1) % sortedWritings.length);
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + writings.length) % writings.length);
+    setCurrentIndex((prev) => (prev - 1 + sortedWritings.length) % sortedWritings.length);
   };
 
   useEffect(() => {
@@ -91,7 +97,7 @@ export default function WritingsCarousel({ writings }: WritingsCarouselProps) {
             transform: `translateX(calc(${currentIndex === 0 ? '0%' : 'var(--offset)'} - ${currentIndex} * var(--card-width)))`,
           }}
         >
-          {writings.map((writing, index) => (
+          {sortedWritings.map((writing, index) => (
             <div
               key={writing.slug}
               className="!w-3/4 md:!w-3/5 lg:!w-1/2 flex-shrink-0 !pr-3"
@@ -134,10 +140,10 @@ export default function WritingsCarousel({ writings }: WritingsCarouselProps) {
         </div>
       </div>
 
-      {writings.length > 1 && (
+      {sortedWritings.length > 1 && (
         <div className="flex justify-between items-center !mt-4">
           <div className="flex gap-1.5">
-            {writings.map((_, index) => (
+            {sortedWritings.map((_, index) => (
               <div
                 key={index}
                 className="!h-2 !rounded-full !block"
@@ -173,18 +179,18 @@ export default function WritingsCarousel({ writings }: WritingsCarouselProps) {
 
             <button
               onClick={nextSlide}
-              disabled={currentIndex === writings.length - 1}
-              className={`!p-2 !rounded-full !bg-[var(--code-bg)] transition-all duration-200 ${currentIndex === writings.length - 1
+              disabled={currentIndex === sortedWritings.length - 1}
+              className={`!p-2 !rounded-full !bg-[var(--code-bg)] transition-all duration-200 ${currentIndex === sortedWritings.length - 1
                   ? '!opacity-40 !cursor-not-allowed'
                   : 'group hover:!scale-110'
                 }`}
               aria-label="Next writing"
             >
               <ChevronRight
-                className={`!w-4 !h-4 !stroke-2 !text-[var(--secondary)] ${currentIndex === writings.length - 1 ? '' : 'transition-colors group-hover:!text-[var(--foreground)]'
+                className={`!w-4 !h-4 !stroke-2 !text-[var(--secondary)] ${currentIndex === sortedWritings.length - 1 ? '' : 'transition-colors group-hover:!text-[var(--foreground)]'
                   }`}
                 style={{
-                  color: currentIndex === writings.length - 1 ? 'var(--secondary)' : undefined
+                  color: currentIndex === sortedWritings.length - 1 ? 'var(--secondary)' : undefined
                 }}
               />
             </button>
