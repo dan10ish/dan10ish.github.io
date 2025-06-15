@@ -254,12 +254,12 @@ export default async function WritingPage({ params }: WritingPageProps) {
           sizes="100vw"
         />
         
-        <div className="absolute bottom-0 left-0 right-0 !p-4 sm:!p-6 bg-gradient-to-t from-black/40 to-transparent backdrop-blur-sm !rounded-b-2xl">
+        <div className="absolute bottom-0 left-0 right-0 !p-4 sm:!p-6 bg-gradient-to-t from-black/40 to-transparent !rounded-b-2xl">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-tight !mb-2">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-tight !mb-2 [text-shadow:0_2px_5px_rgba(0,0,0,0.6)]">
               {title}
             </h1>
-            <p className="text-sm text-white/90 !mt-2">
+            <p className="!text-xs text-white/90 !mt-2 [text-shadow:0_1px_3px_rgba(0,0,0,0.6)]">
               {formatDate(date)}
             </p>
           </div>

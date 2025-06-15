@@ -117,9 +117,9 @@ export default function WritingsCarousel({ writings }: WritingsCarouselProps) {
                     priority={index === 0}
                   />
 
-                  <div className="!absolute !bottom-0 !left-0 !right-0 !m-0 !p-3 sm:!p-4 !backdrop-blur-sm">
+                  <div className="!absolute !bottom-0 !left-0 !right-0 !m-0 !p-3 sm:!p-4 !bg-gradient-to-t from-black/40 to-transparent !rounded-b-2xl">
                     <div className="!flex !items-center !justify-between !mb-2">
-                      <span className="!text-xs !text-white/90">
+                      <span className="!text-xs !text-white/90 [text-shadow:0_1px_3px_rgba(0,0,0,0.6)]">
                         {formatDate(writing.date)}
                       </span>
                       {writing.tags && writing.tags.length > 0 && (
@@ -129,7 +129,7 @@ export default function WritingsCarousel({ writings }: WritingsCarouselProps) {
                       )}
                     </div>
 
-                    <h2 className="!font-semibold !text-sm sm:!text-base !text-white group-hover:!text-blue-400 !transition-colors !leading-tight !mb-0">
+                    <h2 className="!font-semibold !text-sm sm:!text-base !text-white group-hover:!text-blue-400 !transition-colors !leading-tight !mb-0 [text-shadow:0_2px_5px_rgba(0,0,0,0.6)]">
                       {writing.title}
                     </h2>
                   </div>
