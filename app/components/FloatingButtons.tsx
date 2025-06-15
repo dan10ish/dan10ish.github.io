@@ -3,13 +3,15 @@
 import { useState, useEffect, useLayoutEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, ChevronUp } from 'lucide-react';
-import { ThemeToggle } from './ThemeToggle';
+import { Home, ChevronUp, Sun, Moon, Palette } from 'lucide-react';
+import { useTheme } from 'next-themes';
 
 export default function FloatingButtons() {
   const [isVisible, setIsVisible] = useState(false);
   const [isNotFoundPage, setIsNotFoundPage] = useState(true);
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
+  const { theme, setTheme, resolvedTheme, systemTheme } = useTheme();
 
   const toggleVisibility = () => {
     if (window.scrollY > 300) {
@@ -26,6 +28,38 @@ export default function FloatingButtons() {
     });
   };
 
+  const cycleTheme = () => {
+    let currentTheme = resolvedTheme;
+    if (!currentTheme && theme === 'system') {
+      currentTheme = systemTheme;
+    }
+    
+    if (currentTheme === 'light') {
+      setTheme('dark');
+    } else if (currentTheme === 'dark') {
+      setTheme('solarized');
+    } else {
+      setTheme('light');
+    }
+  };
+
+  const getThemeIcon = () => {
+    let currentTheme = resolvedTheme;
+    if (!currentTheme && theme === 'system') {
+      currentTheme = systemTheme;
+    }
+    
+    if (currentTheme === 'light') {
+      return <Moon size={20} />;
+    } else if (currentTheme === 'dark') {
+      return <Palette size={20} />;
+    } else if (currentTheme === 'solarized') {
+      return <Sun size={20} />;
+    } else {
+      return <Moon size={20} />;
+    }
+  };
+
   useLayoutEffect(() => {
     const checkIfNotFound = () => {
       const isNotFound = document.querySelector('main')?.classList.contains('fixed') && 
@@ -37,6 +71,7 @@ export default function FloatingButtons() {
   }, [pathname]);
 
   useEffect(() => {
+    setMounted(true);
     window.addEventListener('scroll', toggleVisibility);
     return () => {
       window.removeEventListener('scroll', toggleVisibility);
@@ -46,28 +81,38 @@ export default function FloatingButtons() {
   const isHomepage = pathname === '/';
 
   return (
-    <div className="fixed bottom-4 right-5 flex flex-col items-center space-y-4 z-50">
+    <div className="fixed bottom-4 right-5 flex flex-col items-center !space-y-3 z-50">
       {isVisible && !isNotFoundPage && (
         <button
           onClick={scrollToTop}
-          className="flex items-center justify-center p-2 rounded-full bg-background duration-200 animate-fade-in"
+          className="flex items-center justify-center !p-2 sm:!p-3 !rounded-full !bg-background/80 !backdrop-blur-md !border !border-white/10 !shadow-lg !duration-200 animate-fade-in hover:!bg-background/90 hover:!scale-105 active:!scale-95"
           aria-label="Scroll to top"
         >
-          <ChevronUp size={20} />
+          <ChevronUp size={20} className="hover:!text-[var(--link-blue)] !transition-colors" />
         </button>
       )}
       {!isHomepage && !isNotFoundPage && (
         <Link 
           href="/"
-          className="flex items-center justify-center p-2 rounded-full bg-background duration-200"
+          className="flex items-center justify-center !p-2 sm:!p-3 !rounded-full !bg-background/80 !backdrop-blur-md !border !border-white/10 !shadow-lg !duration-200 hover:!bg-background/90 hover:!scale-105 active:!scale-95"
           aria-label="Go to homepage"
         >
-          <Home size={20} />
+          <Home size={20} className="hover:!text-[var(--link-blue)] !transition-colors" />
         </Link>
       )}
-      <div className="flex items-center justify-center p-2 rounded-full bg-background duration-200">
-        <ThemeToggle />
-      </div>
+      <button
+        onClick={cycleTheme}
+        className="flex items-center justify-center !p-2 sm:!p-3 !rounded-full !bg-background/80 !backdrop-blur-md !border !border-white/10 !shadow-lg !duration-200 hover:!bg-background/90 hover:!scale-105 active:!scale-95"
+        aria-label="Toggle theme"
+      >
+        {mounted ? (
+          <span className="hover:!text-[var(--link-blue)] !transition-colors">
+            {getThemeIcon()}
+          </span>
+        ) : (
+          <div className="w-5 h-5" />
+        )}
+      </button>
       <style jsx>{`
         @keyframes fade-in {
           from { opacity: 0; transform: translateY(10px); }
