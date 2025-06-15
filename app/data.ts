@@ -16,7 +16,6 @@ export const projects = [
   {
     name: "AlgoSim",
     sourceCode: "https://github.com/dan10ish/AlgoSim",
-    liveDemo: null,
     tag: "algorithm",
     video: "algosim.mp4"
   },
@@ -64,8 +63,7 @@ export const projects = [
   {
     name: "Comment Toxicity",
     sourceCode: "https://github.com/dan10ish/CommentToxicity",
-    tag: "ml",
-    video: null
+    tag: "ml"
   },
   {
     name: "Terminal Hacker",
