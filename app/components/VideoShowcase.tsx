@@ -109,11 +109,12 @@ export default function VideoShowcase({
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.96 }}
           transition={{ duration: 0.15 }}
-          className="!relative !aspect-square !rounded-lg !overflow-hidden !shadow-lg"
+          className="!relative !aspect-square !rounded-lg !overflow-hidden !shadow-lg !w-[min(82vw,82vh,26rem)] md:!w-[min(70vw,70vh,22rem)] lg:!w-[min(65vw,65vh,20rem)]"
           style={{
             backgroundColor: 'var(--code-bg)',
-            width: 'min(82vw, 82vh, 26rem)',
-            maxWidth: '26rem'
+            maxWidth: '26rem',
+            borderColor: 'var(--glass-border)',
+            borderWidth: '1px'
           }}
         >
           {isLoading && videoSrc && (
@@ -170,14 +171,13 @@ export default function VideoShowcase({
           </div>
           <div className="!flex !items-center !gap-2">
             <button
-              className="action-button !flex !items-center !gap-1 !text-xs !px-3 !py-1.5 !rounded-md !border-0"
+              className="action-button !flex !items-center !gap-1 !text-xs !px-3 !py-1.5 !rounded-md !bg-background/80 !backdrop-blur-md !border !shadow-lg !transition-all !duration-200"
               style={{
-                backgroundColor: 'var(--code-bg)',
+                borderColor: 'var(--glass-border)',
                 color: 'var(--foreground)',
                 opacity: sourceCode ? '1' : '0.3',
                 cursor: sourceCode ? 'pointer' : 'not-allowed',
-                pointerEvents: sourceCode ? 'auto' : 'none',
-                transition: 'none'
+                pointerEvents: sourceCode ? 'auto' : 'none'
               }}
               onMouseEnter={(e) => {
                 if (sourceCode && window.matchMedia('(hover: hover)').matches) {
@@ -195,7 +195,7 @@ export default function VideoShowcase({
               }}
               onMouseLeave={(e) => {
                 if (sourceCode && window.matchMedia('(hover: hover)').matches) {
-                  e.currentTarget.style.backgroundColor = 'var(--code-bg)';
+                  e.currentTarget.style.backgroundColor = '';
                   e.currentTarget.style.transform = 'scale(1)';
                   e.currentTarget.style.color = 'var(--foreground)';
                   const svg = e.currentTarget.querySelector('svg');
@@ -209,14 +209,13 @@ export default function VideoShowcase({
               Source
             </button>
             <button
-              className="action-button !flex !items-center !gap-1 !text-xs !px-3 !py-1.5 !rounded-md !border-0"
+              className="action-button !flex !items-center !gap-1 !text-xs !px-3 !py-1.5 !rounded-md !bg-background/80 !backdrop-blur-md !border !shadow-lg !transition-all !duration-200"
               style={{
-                backgroundColor: 'var(--code-bg)',
+                borderColor: 'var(--glass-border)',
                 color: 'var(--foreground)',
                 opacity: liveDemo ? '1' : '0.3',
                 cursor: liveDemo ? 'pointer' : 'not-allowed',
-                pointerEvents: liveDemo ? 'auto' : 'none',
-                transition: 'none'
+                pointerEvents: liveDemo ? 'auto' : 'none'
               }}
               onMouseEnter={(e) => {
                 if (liveDemo && window.matchMedia('(hover: hover)').matches) {
@@ -234,7 +233,7 @@ export default function VideoShowcase({
               }}
               onMouseLeave={(e) => {
                 if (liveDemo && window.matchMedia('(hover: hover)').matches) {
-                  e.currentTarget.style.backgroundColor = 'var(--code-bg)';
+                  e.currentTarget.style.backgroundColor = '';
                   e.currentTarget.style.transform = 'scale(1)';
                   e.currentTarget.style.color = 'var(--foreground)';
                   const svg = e.currentTarget.querySelector('svg');

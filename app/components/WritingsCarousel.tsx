@@ -162,14 +162,15 @@ export default function WritingsCarousel({ writings }: WritingsCarouselProps) {
             <button
               onClick={prevSlide}
               disabled={currentIndex === 0}
-              className={`!p-2 !rounded-full !bg-[var(--code-bg)] transition-all duration-200 ${currentIndex === 0
+              className={`!p-2 !rounded-full !bg-background/80 !backdrop-blur-md !border !shadow-lg transition-all duration-200 ${currentIndex === 0
                   ? '!opacity-40 !cursor-not-allowed'
-                  : 'group hover:!scale-110'
+                  : 'group hover:!scale-110 hover:!bg-background/90'
                 }`}
+              style={{ borderColor: 'var(--glass-border)' }}
               aria-label="Previous writing"
             >
               <ChevronLeft
-                className={`!w-4 !h-4 !stroke-2 !text-[var(--secondary)] ${currentIndex === 0 ? '' : 'transition-colors group-hover:!text-[var(--foreground)]'
+                className={`!w-4 !h-4 !stroke-2 !text-[var(--secondary)] ${currentIndex === 0 ? '' : 'transition-colors group-hover:!text-[var(--link-blue)]'
                   }`}
                 style={{
                   color: currentIndex === 0 ? 'var(--secondary)' : undefined
@@ -180,14 +181,15 @@ export default function WritingsCarousel({ writings }: WritingsCarouselProps) {
             <button
               onClick={nextSlide}
               disabled={currentIndex === sortedWritings.length - 1}
-              className={`!p-2 !rounded-full !bg-[var(--code-bg)] transition-all duration-200 ${currentIndex === sortedWritings.length - 1
+              className={`!p-2 !rounded-full !bg-background/80 !backdrop-blur-md !border !shadow-lg transition-all duration-200 ${currentIndex === sortedWritings.length - 1
                   ? '!opacity-40 !cursor-not-allowed'
-                  : 'group hover:!scale-110'
+                  : 'group hover:!scale-110 hover:!bg-background/90'
                 }`}
+              style={{ borderColor: 'var(--glass-border)' }}
               aria-label="Next writing"
             >
               <ChevronRight
-                className={`!w-4 !h-4 !stroke-2 !text-[var(--secondary)] ${currentIndex === sortedWritings.length - 1 ? '' : 'transition-colors group-hover:!text-[var(--foreground)]'
+                className={`!w-4 !h-4 !stroke-2 !text-[var(--secondary)] ${currentIndex === sortedWritings.length - 1 ? '' : 'transition-colors group-hover:!text-[var(--link-blue)]'
                   }`}
                 style={{
                   color: currentIndex === sortedWritings.length - 1 ? 'var(--secondary)' : undefined

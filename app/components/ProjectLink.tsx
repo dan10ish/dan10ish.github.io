@@ -48,7 +48,8 @@ export default function ProjectLink({ name, tag, sourceCode, liveDemo, video, on
         <div className="flex items-center gap-4 md:gap-5 flex-shrink-0">
           <div className="flex justify-center min-w-[70px]">
             <div
-              className="text-[0.88em] bg-[var(--code-bg)] text-[var(--primary)] !px-1.5 !py-0.5 rounded-md whitespace-nowrap cursor-pointer transform transition-transform duration-0 hover:scale-105 hover:!font-semibold"
+              className="text-[0.88em] !bg-background/80 !backdrop-blur-md !border !shadow-lg text-[var(--primary)] !px-1.5 !py-0.5 rounded-md whitespace-nowrap cursor-pointer transform transition-all duration-200 hover:!scale-105 hover:!bg-background/90 hover:!font-semibold"
+              style={{ borderColor: 'var(--glass-border)' }}
               onClick={(e) => {
                 e.stopPropagation();
                 onTagClick && onTagClick(tag);

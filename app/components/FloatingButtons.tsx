@@ -82,27 +82,30 @@ export default function FloatingButtons() {
 
   return (
     <div className="fixed bottom-4 right-5 flex flex-col items-center !space-y-3 z-50">
-      {isVisible && !isNotFoundPage && (
-        <button
-          onClick={scrollToTop}
-          className="flex items-center justify-center !p-2 sm:!p-3 !rounded-full !bg-background/80 !backdrop-blur-md !border !border-white/10 !shadow-lg !duration-200 animate-fade-in hover:!bg-background/90 hover:!scale-105 active:!scale-95"
-          aria-label="Scroll to top"
-        >
+        {isVisible && !isNotFoundPage && (
+          <button
+            onClick={scrollToTop}
+            className="flex items-center justify-center !p-2 sm:!p-3 !rounded-full !bg-background/80 !backdrop-blur-md !border !shadow-lg !duration-200 animate-fade-in hover:!bg-background/90 hover:!scale-105 active:!scale-95"
+            style={{ borderColor: 'var(--glass-border)' }}
+            aria-label="Scroll to top"
+          >
           <ChevronUp size={20} className="hover:!text-[var(--link-blue)] !transition-colors" />
-        </button>
-      )}
-      {!isHomepage && !isNotFoundPage && (
-        <Link 
-          href="/"
-          className="flex items-center justify-center !p-2 sm:!p-3 !rounded-full !bg-background/80 !backdrop-blur-md !border !border-white/10 !shadow-lg !duration-200 hover:!bg-background/90 hover:!scale-105 active:!scale-95"
-          aria-label="Go to homepage"
-        >
+          </button>
+        )}
+        {!isHomepage && !isNotFoundPage && (
+          <Link 
+            href="/"
+            className="flex items-center justify-center !p-2 sm:!p-3 !rounded-full !bg-background/80 !backdrop-blur-md !border !shadow-lg !duration-200 hover:!bg-background/90 hover:!scale-105 active:!scale-95"
+            style={{ borderColor: 'var(--glass-border)' }}
+            aria-label="Go to homepage"
+          >
           <Home size={20} className="hover:!text-[var(--link-blue)] !transition-colors" />
-        </Link>
-      )}
+          </Link>
+        )}
       <button
         onClick={cycleTheme}
-        className="flex items-center justify-center !p-2 sm:!p-3 !rounded-full !bg-background/80 !backdrop-blur-md !border !border-white/10 !shadow-lg !duration-200 hover:!bg-background/90 hover:!scale-105 active:!scale-95"
+        className="flex items-center justify-center !p-2 sm:!p-3 !rounded-full !bg-background/80 !backdrop-blur-md !border !shadow-lg !duration-200 hover:!bg-background/90 hover:!scale-105 active:!scale-95"
+        style={{ borderColor: 'var(--glass-border)' }}
         aria-label="Toggle theme"
       >
         {mounted ? (
@@ -113,15 +116,15 @@ export default function FloatingButtons() {
           <div className="w-5 h-5" />
         )}
       </button>
-      <style jsx>{`
-        @keyframes fade-in {
-          from { opacity: 0; transform: translateY(10px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in {
-          animation: fade-in 0.3s ease-out;
-        }
-      `}</style>
-    </div>
+        <style jsx>{`
+          @keyframes fade-in {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          .animate-fade-in {
+            animation: fade-in 0.3s ease-out;
+          }
+        `}</style>
+      </div>
   );
 } 
