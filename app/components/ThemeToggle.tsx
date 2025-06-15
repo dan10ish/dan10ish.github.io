@@ -14,7 +14,7 @@ export function ThemeToggle() {
 
   if (!mounted) {
     return (
-      <button className="flex items-center justify-center p-2 rounded-full duration-200">
+      <button className="flex items-center justify-center duration-200">
         <div className="w-5 h-5" />
       </button>
     );
@@ -55,7 +55,7 @@ export function ThemeToggle() {
   return (
     <button
       onClick={cycleTheme}
-      className="flex items-center justify-center p-2 rounded-full duration-200"
+      className="flex items-center justify-center duration-200"
       aria-label="Toggle theme"
     >
       {getIcon()}
