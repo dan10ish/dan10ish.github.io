@@ -14,6 +14,13 @@ export const personalInfo = {
 
 export const projects = [
   {
+    name: "AlgoSim",
+    sourceCode: "https://github.com/dan10ish/AlgoSim",
+    liveDemo: null,
+    tag: "algorithm",
+    video: "algosim.mp4"
+  },
+  {
     name: "Code",
     sourceCode: "https://github.com/dan10ish/code",
     liveDemo: "http://dan10ish.github.io/code",
