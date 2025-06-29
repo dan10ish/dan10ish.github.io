@@ -140,21 +140,13 @@ h1 {
   margin-bottom: 0 !important;
 }
 
-p, span, .prose, .project-list > *, .text-secondary, .text-link-blue, code, pre, .prose code, .prose pre, td, th, li, blockquote {
+p, span, .prose, .text-secondary, .text-link-blue, code, pre, .prose code, .prose pre, td, th, li, blockquote {
   font-size: 0.85rem;
   letter-spacing: 0.02em;
 }
 
 section {
   margin-bottom: var(--spacing-md);
-}
-
-.project-list > * {
-  margin-bottom: 0.6rem;
-}
-
-.project-list > *:last-child {
-  margin-bottom: 0;
 }
 
 .space-y-4 > * + * {

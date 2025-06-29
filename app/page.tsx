@@ -3,7 +3,7 @@ import SocialLinks from "./components/SocialLinks";
 import { personalInfo, projects } from "./data";
 import { getSortedWritingsData } from "../lib/writings";
 import { formatDate } from "../lib/utils";
-import ProjectListClient from "./components/ProjectListClient";
+import Projects from "./components/Projects";
 import WritingsCarousel from "./components/WritingsCarousel";
 
 export default function Home() {
@@ -51,7 +51,7 @@ export default function Home() {
 
         <WritingsCarousel writings={writings} />
 
-        <ProjectListClient initialProjects={projects} />
+        <Projects projects={projects} />
       </main>
     </div>
   );
