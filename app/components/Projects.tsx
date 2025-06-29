@@ -55,7 +55,7 @@ export default function Projects({ projects }: ProjectsProps) {
           {activeTag && (
             <button
               onClick={() => setActiveTag(null)}
-              className="!text-[0.88em] !px-2 !py-1 !rounded-md !transition-transform !duration-200"
+              className="!text-[0.88em] !px-2 !py-1 !rounded-md"
               style={{
                 backgroundColor: 'var(--clear-filter-bg)',
                 color: 'var(--clear-filter-text)',
@@ -82,10 +82,10 @@ export default function Projects({ projects }: ProjectsProps) {
             <button
               key={tag}
               onClick={() => handleTagClick(tag)}
-              className="!text-[0.88em] !px-3 !py-1 !rounded-md !transition-all !duration-200"
+              className="!text-[0.88em] !px-2 !py-0.75 !rounded-md"
               style={{
                 backgroundColor: activeTag === tag ? 'var(--code-bg)' : 'var(--background)',
-                borderWidth: '1px',
+                borderWidth: '1.5px',
                 borderColor: 'var(--glass-border)',
                 color: 'var(--foreground)',
                 boxShadow: activeTag === tag ? '0 2px 8px rgba(0,0,0,0.1)' : '0 1px 3px rgba(0,0,0,0.05)'

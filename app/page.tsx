@@ -9,6 +9,28 @@ import WritingsCarousel from "./components/WritingsCarousel";
 export default function Home() {
   const writings = getSortedWritingsData();
 
+  const formatSkillsList = (skills: string[]) => {
+    if (skills.length === 0) return null;
+    if (skills.length === 1) return <strong>{skills[0].toLowerCase()}</strong>;
+    if (skills.length === 2) return (
+      <>
+        <strong>{skills[0].toLowerCase()}</strong> and <strong>{skills[1].toLowerCase()}</strong>
+      </>
+    );
+    
+    return (
+      <>
+        {skills.slice(0, -1).map((skill, index) => (
+          <span key={index}>
+            <strong>{skill.toLowerCase()}</strong>
+            {index < skills.length - 2 ? ', ' : ' and '}
+          </span>
+        ))}
+        <strong>{skills[skills.length - 1].toLowerCase()}</strong>
+      </>
+    );
+  };
+
   return (
     <div className="h-fit max-w-2xl mx-auto">
       <main className="space-y-6 !pb-16 sm:!pb-0">
@@ -19,8 +41,7 @@ export default function Home() {
         </section>
 
         <section>
-          <p className="text-base">{personalInfo.about}</p>
-          <p className="text-base !mt-4">I am interested in {personalInfo.skills.join(', ').toLowerCase()}.</p>
+          <p className="text-base">{personalInfo.about}, interested in {formatSkillsList(personalInfo.skills)}.</p>
         </section>
 
         <section>
