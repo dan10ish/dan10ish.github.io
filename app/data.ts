@@ -20,6 +20,12 @@ export const projects = [
     video: "algosim.mp4"
   },
   {
+    name: "CogniCart",
+    sourceCode: "https://github.com/dan10ish/cogni-cart",
+    tag: "machine learning",
+    video: "cognicart.mp4"
+  },
+  {
     name: "Code",
     sourceCode: "https://github.com/dan10ish/code",
     liveDemo: "http://dan10ish.github.io/code",
@@ -63,7 +69,7 @@ export const projects = [
   {
     name: "Comment Toxicity",
     sourceCode: "https://github.com/dan10ish/CommentToxicity",
-    tag: "ml"
+    tag: "machine learning"
   },
   {
     name: "Terminal Hacker",

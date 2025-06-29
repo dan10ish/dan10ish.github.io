@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Play, Github, Globe } from 'lucide-react';
+import { Video, Github, Globe } from 'lucide-react';
 import { AnimatePresence } from 'framer-motion';
 import VideoShowcase from './VideoShowcase';
 
@@ -107,7 +107,7 @@ export default function Projects({ projects }: ProjectsProps) {
         </div>
 
         {/* Projects List */}
-        <div className="!space-y-2">
+        <div className="!space-y-1">
           {sortedProjects.map((project, index) => {
             const isFiltered = activeTag !== null && project.tag !== activeTag;
             const isLastProject = index === sortedProjects.length - 1;
@@ -115,21 +115,10 @@ export default function Projects({ projects }: ProjectsProps) {
             return (
               <div key={project.name} className="!group">
                 <div 
-                  className="!flex !items-center !justify-between !py-1.5 !px-2 !rounded-lg !transition-all !duration-200"
+                  className="!flex !items-center !justify-between !py-1 !px-2 !rounded-md"
                   style={{ 
-                    backgroundColor: 'transparent',
                     opacity: isFiltered ? 0.4 : 1,
                     pointerEvents: isFiltered ? 'none' : 'auto'
-                  }}
-                  onMouseEnter={(e) => {
-                    if (!isFiltered && window.matchMedia('(hover: hover)').matches) {
-                      e.currentTarget.style.backgroundColor = 'var(--code-bg)';
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (window.matchMedia('(hover: hover)').matches) {
-                      e.currentTarget.style.backgroundColor = 'transparent';
-                    }
                   }}
                 >
                   {/* Project Name */}
@@ -169,7 +158,7 @@ export default function Projects({ projects }: ProjectsProps) {
                         }
                       }}
                     >
-                      <Play 
+                      <Video 
                         size={18} 
                         style={{ color: 'var(--secondary)' }}
                       />
@@ -248,7 +237,7 @@ export default function Projects({ projects }: ProjectsProps) {
                 {/* Divider (except for last item) */}
                 {!isLastProject && (
                   <div 
-                    className="!h-px !mx-2 !my-1.5"
+                    className="!h-px !mx-2 !my-1"
                     style={{ 
                       backgroundColor: 'var(--glass-border)',
                       opacity: 0.4
