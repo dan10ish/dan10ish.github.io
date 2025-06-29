@@ -20,18 +20,7 @@ export default function Home() {
 
         <section>
           <p className="text-base">{personalInfo.about}</p>
-          <div className="!pt-4 space-y-4">
-            <div className="mt-1 flex flex-wrap gap-2">
-              {personalInfo.skills.map((skill) => (
-                <div
-                  key={skill}
-                  className="text-[0.88em] bg-[var(--code-bg)] text-[var(--primary)] !px-1.5 !py-0.5 rounded-md whitespace-nowrap"
-                >
-                  {skill}
-                </div>
-              ))}
-            </div>
-          </div>
+          <p className="text-base !mt-4">I am interested in {personalInfo.skills.join(', ').toLowerCase()}.</p>
         </section>
 
         <section>

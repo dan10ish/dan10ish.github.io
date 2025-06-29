@@ -75,8 +75,19 @@ export default function VideoShowcase({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.15 }}
-      className="!fixed !inset-0 !z-[70] !flex !flex-col !items-center !justify-center !p-4"
-      style={{ backgroundColor: 'var(--background)', backdropFilter: 'blur(1px)' }}
+      className="!fixed !z-[70] !flex !flex-col !items-center !justify-center !p-4"
+      style={{ 
+        backgroundColor: 'var(--background)', 
+        backdropFilter: 'blur(1px)',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        width: '100vw',
+        height: '100vh',
+        margin: 0,
+        padding: '1rem'
+      }}
       onClick={handleBackdropClick}
     >
       <div className="!relative">
@@ -109,10 +120,9 @@ export default function VideoShowcase({
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.96 }}
           transition={{ duration: 0.15 }}
-          className="!relative !aspect-square !rounded-lg !overflow-hidden !shadow-lg !w-[min(82vw,82vh,26rem)] md:!w-[min(70vw,70vh,22rem)] lg:!w-[min(65vw,65vh,20rem)]"
+          className="!relative !aspect-square !rounded-lg !overflow-hidden !shadow-lg !w-[min(85vw,85vh,24rem)] md:!w-[min(75vw,75vh,28rem)] lg:!w-[min(70vw,70vh,32rem)]"
           style={{
             backgroundColor: 'var(--code-bg)',
-            maxWidth: '26rem',
             borderColor: 'var(--glass-border)',
             borderWidth: '1px'
           }}
