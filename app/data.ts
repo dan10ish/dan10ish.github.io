@@ -47,7 +47,7 @@ export const projects = [
   {
     name: "macOS Portfolio",
     sourceCode: "https://github.com/dan10ish/os",
-    liveDemo: "https://os.danish.bio",
+    liveDemo: "https://os-danishs-projects-31d8c677.vercel.app/",
     tag: "web",
     video: "mac.mp4"
   },
