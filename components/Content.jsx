@@ -21,7 +21,6 @@ import {
 } from "lucide-react";
 import ScrollIndicator from "./ScrollIndicator";
 import ProjectModal from "./ProjectModal";
-import KeyboardIcon from "./KeyboardIcon";
 import { motion } from "framer-motion";
 
 const LucideIcon = memo(({ icon: Icon, ...props }) => (
@@ -271,19 +270,6 @@ const ProjectListItem = memo(
           </span>
         ))}
       </span>
-      <span className="status-header">
-        <span className="status-dot-container">
-          <span
-            className={`table-status-dot ${project.status}`}
-            title={project.status}
-          ></span>
-        </span>
-        <span className="status-pill-container">
-          <span className={`status-pill ${project.status}`}>
-            <span className="status-text">{project.status}</span>
-          </span>
-        </span>
-      </span>
     </div>
   ),
 );
@@ -427,10 +413,6 @@ const ProjectList = memo(
               </>
             )}
           </span>
-          <span className="status-header" onClick={() => handleSort("status")}>
-            <span className="status-label">status</span>
-            <SortIcon columnKey="status" sortConfig={sortConfig} />
-          </span>
         </div>
         <div className="table-max" ref={tableRef}>
           {projects.map((project, index) => (
@@ -499,16 +481,6 @@ const Content = memo(({ projects }) => {
           ? tagsA.localeCompare(tagsB)
           : tagsB.localeCompare(tagsA);
       }
-
-      if (sortConfig.key === "status") {
-        const statusOrder = { live: 1, offline: 2, archive: 3 };
-        const statusA = statusOrder[a.status] || 999;
-        const statusB = statusOrder[b.status] || 999;
-        return sortConfig.direction === "asc"
-          ? statusA - statusB
-          : statusB - statusA;
-      }
-
       return 0;
     });
   }, [projects, selectedTag, sortConfig]);
@@ -525,7 +497,6 @@ const Content = memo(({ projects }) => {
           handleSort={handleSort}
         />
       </div>
-      <KeyboardIcon />
     </div>
   );
 });

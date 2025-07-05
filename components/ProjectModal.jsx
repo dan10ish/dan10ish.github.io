@@ -242,17 +242,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
                   <p>{project.description}</p>
                 </div>
 
-                <div className="tag-status-row">
-                  <div className="left-items">
-                    {project.tags && project.tags.length > 0 && (
-                      <div className="project-tag">{project.tags[0]}</div>
-                    )}
-                    <div className={`status-pill ${project.status}`}>
-                      <span className="status-dot"></span>
-                      <span className="status-text">{project.status}</span>
-                    </div>
-                  </div>
-
+                <div className="tag-row">
                   <div className="right-items">
                     {project.sourceLink && (
                       <a
