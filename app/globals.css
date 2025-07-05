@@ -213,6 +213,12 @@ img {
   color: rgba(var(--color-text-rgb), 0.7);
 }
 
+.about-description .tag {
+  margin: 0 2px;
+  cursor: pointer;
+  display: inline-block;
+}
+
 .contact-info {
   display: flex;
   flex-direction: row;
@@ -959,6 +965,11 @@ img {
 
 .mono-list .list-row.selected {
   background-color: rgba(var(--color-text-rgb), 0.03);
+}
+
+.mono-list .list-row.filtered {
+  opacity: 0.3;
+  pointer-events: none;
 }
 
 [data-theme="light"] {

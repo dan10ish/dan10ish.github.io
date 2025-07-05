@@ -48,8 +48,16 @@ const XIcon = memo((props) => (
 
 XIcon.displayName = "XIcon";
 
-const AboutContent = memo(() => {
+const AboutContent = memo(({ projects, selectedTag, handleTagClick }) => {
   const email = "aansaridan@gmail.com";
+  
+  const uniqueTags = useMemo(() => {
+    const tags = new Set();
+    projects.forEach(project => {
+      project.tags.forEach(tag => tags.add(tag));
+    });
+    return Array.from(tags).sort();
+  }, [projects]);
 
   return (
     <div className="about-container">
@@ -168,7 +176,19 @@ const AboutContent = memo(() => {
           </div>
         </div>
         <div className="about-description">
-          Mechatronics engineer and generalist bridging code and hardware.
+          Mechatronics engineer interested in{" "}
+          {uniqueTags.map((tag, index) => (
+            <span key={tag}>
+              <span
+                className={`tag ${selectedTag === tag ? "selected" : ""}`}
+                onClick={(e) => handleTagClick(tag, e)}
+              >
+                {tag}
+              </span>
+              {index < uniqueTags.length - 1 && ", "}
+            </span>
+          ))}
+          .
         </div>
       </div>
     </div>
@@ -207,71 +227,83 @@ const ProjectListItem = memo(
     handleTagClick,
     handleProjectClick,
     isSelected,
-  }) => (
-    <div
-      className={`list-row ${isSelected ? "selected" : ""}`}
-      onClick={() => handleProjectClick(project)}
-    >
-      <span className="title">
-        <div>{project.title}</div>
-        <div>
-          {project.highlight && (
-            <span className="highlight-star" title="Highlighted Project">
-              <LucideIcon icon={Star} size={14} fill="currentColor" />
-            </span>
-          )}
-        </div>
-      </span>
-      <span className="actions">
-        <a
-          href={project.sourceLink || "#"}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`action-link github ${
-            !project.sourceLink ? "disabled" : ""
-          }`}
-          onClick={(e) => {
-            e.stopPropagation();
-            if (!project.sourceLink) e.preventDefault();
-          }}
-          aria-label={`View source code for ${project.title} on GitHub`}
-          title="View source code on GitHub"
-        >
-          <LucideIcon icon={Github} size={20} />
-        </a>
-        <a
-          href={project.projectLink || "#"}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`action-link globe ${
-            !project.projectLink ? "disabled" : ""
-          }`}
-          onClick={(e) => {
-            e.stopPropagation();
-            if (!project.projectLink) e.preventDefault();
-          }}
-          aria-label={`Visit live website for ${project.title}`}
-          title="View live project"
-        >
-          <LucideIcon icon={Globe} size={20} />
-        </a>
-      </span>
-      <span className="tags">
-        {project.tags.map((tag) => (
-          <span
-            key={tag}
-            className={`tag ${selectedTag === tag ? "selected" : ""}`}
+    isFiltered,
+  }) => {
+    const handleClick = () => {
+      if (!isFiltered) {
+        handleProjectClick(project);
+      }
+    };
+
+    return (
+      <div
+        className={`list-row ${isSelected ? "selected" : ""} ${
+          isFiltered ? "filtered" : ""
+        }`}
+        onClick={handleClick}
+        style={{ cursor: isFiltered ? "default" : "pointer" }}
+      >
+        <span className="title">
+          <div>{project.title}</div>
+          <div>
+            {project.highlight && (
+              <span className="highlight-star" title="Highlighted Project">
+                <LucideIcon icon={Star} size={14} fill="currentColor" />
+              </span>
+            )}
+          </div>
+        </span>
+        <span className="actions">
+          <a
+            href={project.sourceLink || "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`action-link github ${
+              !project.sourceLink || isFiltered ? "disabled" : ""
+            }`}
             onClick={(e) => {
               e.stopPropagation();
-              handleTagClick(tag, e);
+              if (!project.sourceLink || isFiltered) e.preventDefault();
             }}
+            aria-label={`View source code for ${project.title} on GitHub`}
+            title="View source code on GitHub"
           >
-            {tag}
-          </span>
-        ))}
-      </span>
-    </div>
-  ),
+            <LucideIcon icon={Github} size={20} />
+          </a>
+          <a
+            href={project.projectLink || "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`action-link globe ${
+              !project.projectLink || isFiltered ? "disabled" : ""
+            }`}
+            onClick={(e) => {
+              e.stopPropagation();
+              if (!project.projectLink || isFiltered) e.preventDefault();
+            }}
+            aria-label={`Visit live website for ${project.title}`}
+            title="View live project"
+          >
+            <LucideIcon icon={Globe} size={20} />
+          </a>
+        </span>
+        <span className="tags">
+          {project.tags.map((tag) => (
+            <span
+              key={tag}
+              className={`tag ${selectedTag === tag ? "selected" : ""}`}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleTagClick(tag, e);
+              }}
+            >
+              {tag}
+            </span>
+          ))}
+        </span>
+      </div>
+    );
+  },
 );
 
 ProjectListItem.displayName = "ProjectListItem";
@@ -415,16 +447,20 @@ const ProjectList = memo(
           </span>
         </div>
         <div className="table-max" ref={tableRef}>
-          {projects.map((project, index) => (
-            <ProjectListItem
-              key={project.title}
-              project={project}
-              selectedTag={selectedTag}
-              handleTagClick={handleTagClick}
-              handleProjectClick={handleProjectClick}
-              isSelected={index === selectedRowIndex}
-            />
-          ))}
+          {projects.map((project, index) => {
+            const isFiltered = selectedTag && !project.tags.includes(selectedTag);
+            return (
+              <ProjectListItem
+                key={project.title}
+                project={project}
+                selectedTag={selectedTag}
+                handleTagClick={handleTagClick}
+                handleProjectClick={handleProjectClick}
+                isSelected={index === selectedRowIndex}
+                isFiltered={isFiltered}
+              />
+            );
+          })}
         </div>
         <ScrollIndicator containerRef={tableRef} />
         <ProjectModal
@@ -461,25 +497,53 @@ const Content = memo(({ projects }) => {
   }, []);
 
   const filteredProjects = useMemo(() => {
-    let filtered = selectedTag
-      ? projects.filter((project) => project.tags.includes(selectedTag))
-      : projects;
+    let result = [...projects];
 
-    if (!sortConfig?.key) return filtered;
+    if (selectedTag) {
+      result = result.sort((a, b) => {
+        const aHasTag = a.tags.includes(selectedTag);
+        const bHasTag = b.tags.includes(selectedTag);
+        if (aHasTag && !bHasTag) return -1;
+        if (!aHasTag && bHasTag) return 1;
+        return 0;
+      });
+    }
 
-    return [...filtered].sort((a, b) => {
-      if (sortConfig.key === "title") {
-        return sortConfig.direction === "asc"
-          ? a.title.localeCompare(b.title)
-          : b.title.localeCompare(a.title);
-      }
+    if (!sortConfig?.key) return result;
 
-      if (sortConfig.key === "tags") {
-        const tagsA = a.tags.join(",");
-        const tagsB = b.tags.join(",");
-        return sortConfig.direction === "asc"
-          ? tagsA.localeCompare(tagsB)
-          : tagsB.localeCompare(tagsA);
+    return result.sort((a, b) => {
+      if (selectedTag) {
+        const aHasTag = a.tags.includes(selectedTag);
+        const bHasTag = b.tags.includes(selectedTag);
+        if (aHasTag && !bHasTag) return -1;
+        if (!aHasTag && bHasTag) return 1;
+        if (aHasTag === bHasTag) {
+          if (sortConfig.key === "title") {
+            return sortConfig.direction === "asc"
+              ? a.title.localeCompare(b.title)
+              : b.title.localeCompare(a.title);
+          }
+          if (sortConfig.key === "tags") {
+            const tagsA = a.tags.join(",");
+            const tagsB = b.tags.join(",");
+            return sortConfig.direction === "asc"
+              ? tagsA.localeCompare(tagsB)
+              : tagsB.localeCompare(tagsA);
+          }
+        }
+      } else {
+        if (sortConfig.key === "title") {
+          return sortConfig.direction === "asc"
+            ? a.title.localeCompare(b.title)
+            : b.title.localeCompare(a.title);
+        }
+        if (sortConfig.key === "tags") {
+          const tagsA = a.tags.join(",");
+          const tagsB = b.tags.join(",");
+          return sortConfig.direction === "asc"
+            ? tagsA.localeCompare(tagsB)
+            : tagsB.localeCompare(tagsA);
+        }
       }
       return 0;
     });
@@ -488,7 +552,11 @@ const Content = memo(({ projects }) => {
   return (
     <div className="content-wrapper">
       <div className="content-area">
-        <AboutContent />
+        <AboutContent
+          projects={projects}
+          selectedTag={selectedTag}
+          handleTagClick={handleTagClick}
+        />
         <ProjectList
           projects={filteredProjects}
           selectedTag={selectedTag}
