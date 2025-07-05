@@ -196,7 +196,8 @@ img {
 }
 
 .tag.selected {
-  background: rgba(var(--color-text-rgb), 0.04);
+  background: rgba(var(--color-text-rgb), 0.08);
+  transform: scale(1.02);
 }
 
 .mono-list {
