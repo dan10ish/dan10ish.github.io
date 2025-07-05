@@ -287,20 +287,6 @@ const ProjectListItem = memo(
             <LucideIcon icon={Globe} size={20} />
           </a>
         </span>
-        <span className="tags">
-          {project.tags.map((tag) => (
-            <span
-              key={tag}
-              className={`tag ${selectedTag === tag ? "selected" : ""}`}
-              onClick={(e) => {
-                e.stopPropagation();
-                handleTagClick(tag, e);
-              }}
-            >
-              {tag}
-            </span>
-          ))}
-        </span>
       </div>
     );
   },
@@ -424,27 +410,6 @@ const ProjectList = memo(
           <span className="actions" style={{ cursor: "default" }}>
             links
           </span>
-          <span
-            className="sort-header tags"
-            onClick={() => !selectedTag && handleSort("tags")}
-            style={{ cursor: selectedTag ? "default" : "pointer" }}
-          >
-            {selectedTag ? (
-              <LucideIcon
-                icon={X}
-                size={16}
-                className="tag-reset"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleTagClick(null, e);
-                }}
-              />
-            ) : (
-              <>
-                tags <SortIcon columnKey="tags" sortConfig={sortConfig} />
-              </>
-            )}
-          </span>
         </div>
         <div className="table-max" ref={tableRef}>
           {projects.map((project, index) => {
@@ -523,26 +488,12 @@ const Content = memo(({ projects }) => {
               ? a.title.localeCompare(b.title)
               : b.title.localeCompare(a.title);
           }
-          if (sortConfig.key === "tags") {
-            const tagsA = a.tags.join(",");
-            const tagsB = b.tags.join(",");
-            return sortConfig.direction === "asc"
-              ? tagsA.localeCompare(tagsB)
-              : tagsB.localeCompare(tagsA);
-          }
         }
       } else {
         if (sortConfig.key === "title") {
           return sortConfig.direction === "asc"
             ? a.title.localeCompare(b.title)
             : b.title.localeCompare(a.title);
-        }
-        if (sortConfig.key === "tags") {
-          const tagsA = a.tags.join(",");
-          const tagsB = b.tags.join(",");
-          return sortConfig.direction === "asc"
-            ? tagsA.localeCompare(tagsB)
-            : tagsB.localeCompare(tagsA);
         }
       }
       return 0;
