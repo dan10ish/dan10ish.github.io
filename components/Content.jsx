@@ -8,6 +8,7 @@ import {
   memo,
   Suspense,
   useRef,
+  forwardRef,
 } from "react";
 import {
   Globe,
@@ -18,6 +19,7 @@ import {
   Github,
   Mail,
   Instagram,
+  Video,
 } from "lucide-react";
 import ScrollIndicator from "./ScrollIndicator";
 import ProjectModal from "./ProjectModal";
@@ -229,7 +231,8 @@ const ProjectListItem = memo(
     isSelected,
     isFiltered,
   }) => {
-    const handleClick = () => {
+    const handleVideoClick = (e) => {
+      e.stopPropagation();
       if (!isFiltered) {
         handleProjectClick(project);
       }
@@ -240,8 +243,6 @@ const ProjectListItem = memo(
         className={`list-row ${isSelected ? "selected" : ""} ${
           isFiltered ? "filtered" : ""
         }`}
-        onClick={handleClick}
-        style={{ cursor: isFiltered ? "default" : "pointer" }}
       >
         <span className="title">
           <div>{project.title}</div>
@@ -252,6 +253,17 @@ const ProjectListItem = memo(
               </span>
             )}
           </div>
+        </span>
+        <span className="video-column">
+          <button
+            className={`action-link video ${isFiltered ? "disabled" : ""}`}
+            onClick={handleVideoClick}
+            aria-label={`View ${project.title} project demo`}
+            title="View project demo"
+            disabled={isFiltered}
+          >
+            <LucideIcon icon={Video} size={20} />
+          </button>
         </span>
         <span className="actions">
           <a
@@ -295,7 +307,7 @@ const ProjectListItem = memo(
 ProjectListItem.displayName = "ProjectListItem";
 
 const ProjectList = memo(
-  ({ projects, selectedTag, handleTagClick, handleSort, sortConfig }) => {
+  forwardRef(({ projects, selectedTag, handleTagClick, handleSort, sortConfig }, ref) => {
     const tableRef = useRef(null);
     const [selectedProject, setSelectedProject] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -399,13 +411,15 @@ const ProjectList = memo(
     }, [selectedRowIndex]);
 
     return (
-      <div className="mono-list project-list">
+      <div className="mono-list project-list" ref={ref}>
         <div className="list-header">
           <span
             onClick={() => handleSort("title")}
             style={{ cursor: "pointer" }}
           >
             title <SortIcon columnKey="title" sortConfig={sortConfig} />
+          </span>
+          <span className="video-column" style={{ cursor: "default" }}>
           </span>
           <span className="actions" style={{ cursor: "default" }}>
             links
@@ -435,7 +449,7 @@ const ProjectList = memo(
         />
       </div>
     );
-  },
+  })
 );
 
 ProjectList.displayName = "ProjectList";
@@ -443,6 +457,7 @@ ProjectList.displayName = "ProjectList";
 const Content = memo(({ projects }) => {
   const [sortConfig, setSortConfig] = useState({ key: null, direction: null });
   const [selectedTag, setSelectedTag] = useState(null);
+  const projectListRef = useRef(null);
 
   const handleSort = useCallback((key) => {
     setSortConfig((current) => ({
@@ -459,6 +474,16 @@ const Content = memo(({ projects }) => {
   const handleTagClick = useCallback((tag, event) => {
     event.preventDefault();
     setSelectedTag((current) => (current === tag ? null : tag));
+    
+    if (projectListRef.current) {
+      const tableElement = projectListRef.current.querySelector('.table-max');
+      if (tableElement) {
+        tableElement.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
+    }
   }, []);
 
   const filteredProjects = useMemo(() => {
@@ -514,6 +539,7 @@ const Content = memo(({ projects }) => {
           handleTagClick={handleTagClick}
           sortConfig={sortConfig}
           handleSort={handleSort}
+          ref={projectListRef}
         />
       </div>
     </div>

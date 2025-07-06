@@ -21,45 +21,23 @@ const backdrop = {
 };
 
 const modalVariant = {
-  hidden: { opacity: 0, y: 20, scale: 0.98 },
+  hidden: { opacity: 0, scale: 0.95 },
   visible: { 
     opacity: 1, 
-    y: 0, 
     scale: 1,
     transition: { 
       type: "spring", 
       stiffness: 400, 
-      damping: 25, 
-      mass: 0.8 
+      damping: 30 
     } 
   },
   exit: { 
     opacity: 0, 
-    y: 10, 
-    scale: 0.98, 
+    scale: 0.95, 
     transition: { 
       duration: 0.15 
     } 
   },
-};
-
-const closeButtonVariant = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: { 
-    opacity: 1, 
-    scale: 1, 
-    transition: { 
-      delay: 0.1, 
-      duration: 0.2 
-    } 
-  },
-  exit: { 
-    opacity: 0, 
-    scale: 0.8, 
-    transition: { 
-      duration: 0.1 
-    } 
-  }
 };
 
 const VideoSection = memo(({ project, shouldLoadVideo }) => {
@@ -99,7 +77,7 @@ const VideoSection = memo(({ project, shouldLoadVideo }) => {
     return (
       <div className="video-placeholder">
         <LucideIcon icon={VideoOff} size={24} />
-        <p className="no-preview-text">Preview not available</p>
+        <span>No preview available</span>
       </div>
     );
   }
@@ -108,17 +86,20 @@ const VideoSection = memo(({ project, shouldLoadVideo }) => {
     <>
       {!videoLoaded && !videoError && (
         <div className="video-placeholder">
-          <LucideIcon
-            icon={Loader2}
-            size={24}
-            className="loading-icon"
-          />
+          <LucideIcon icon={Loader2} size={24} className="loading-icon" />
+          <span>Loading...</span>
+        </div>
+      )}
+      {videoError && (
+        <div className="video-placeholder">
+          <LucideIcon icon={VideoOff} size={24} />
+          <span>Failed to load</span>
         </div>
       )}
       {shouldLoadVideo && (
         <video
           ref={videoRef}
-          className={`project-video ${videoLoaded ? "loaded" : "hidden"}`}
+          className={`modal-video ${videoLoaded ? "loaded" : ""}`}
           src={`/project-videos/${project.video}`}
           playsInline
           autoPlay
@@ -141,7 +122,6 @@ VideoSection.displayName = "VideoSection";
 export default function ProjectModal({ project, isOpen, onClose }) {
   const modalRef = useRef(null);
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
-  const scrollbarCompensationRef = useRef(null);
 
   const handleClickOutside = useCallback(
     (e) => {
@@ -153,46 +133,19 @@ export default function ProjectModal({ project, isOpen, onClose }) {
   );
 
   useEffect(() => {
-    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-    const html = document.documentElement;
-    
     if (isOpen) {
-      scrollbarCompensationRef.current = scrollbarWidth;
-      
-      const originalStyles = {
-        overflow: document.body.style.overflow,
-        paddingRight: document.body.style.paddingRight,
-        htmlOverflow: html.style.overflow,
-        htmlPaddingRight: html.style.paddingRight
-      };
-      
       document.addEventListener("mousedown", handleClickOutside);
-      
       document.body.style.overflow = "hidden";
-      html.style.overflow = "hidden";
       
-      if (scrollbarWidth > 0) {
-        document.body.style.paddingRight = `${scrollbarWidth}px`;
-        html.style.paddingRight = `${scrollbarWidth}px`;
-      }
-      
-      const timer = setTimeout(() => setShouldLoadVideo(true), 50);
+      const timer = setTimeout(() => setShouldLoadVideo(true), 100);
       
       return () => {
         clearTimeout(timer);
         document.removeEventListener("mousedown", handleClickOutside);
-        
-        document.body.style.overflow = originalStyles.overflow;
-        document.body.style.paddingRight = originalStyles.paddingRight;
-        html.style.overflow = originalStyles.htmlOverflow;
-        html.style.paddingRight = originalStyles.htmlPaddingRight;
+        document.body.style.overflow = "";
       };
     } else {
-      const timerVideo = setTimeout(() => {
-        setShouldLoadVideo(false);
-      }, 200);
-      
-      return () => clearTimeout(timerVideo);
+      setShouldLoadVideo(false);
     }
   }, [isOpen, handleClickOutside]);
 
@@ -210,78 +163,55 @@ export default function ProjectModal({ project, isOpen, onClose }) {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="project-modal-container">
+        <div className="modal-overlay">
           <motion.div
-            className="project-modal-backdrop"
+            className="modal-backdrop"
             variants={backdrop}
             initial="hidden"
             animate="visible"
             exit="exit"
           />
+          
           <motion.div
-            className="project-modal"
+            className="modal"
             ref={modalRef}
             variants={modalVariant}
             initial="hidden"
             animate="visible"
             exit="exit"
           >
-            <div className="project-modal-content">
-              <div className="project-video-container">
-                <div className="video-wrapper">
-                  <VideoSection project={project} shouldLoadVideo={shouldLoadVideo} />
-                </div>
-              </div>
+            <button className="modal-close-btn" onClick={onClose}>
+              <LucideIcon icon={X} size={20} />
+            </button>
 
-              <div className="project-details">
-                <div className="project-title-container">
-                  <h2>{project.title}</h2>
-                </div>
+            <div className="modal-video-container">
+              <VideoSection project={project} shouldLoadVideo={shouldLoadVideo} />
+            </div>
 
-                <div className="project-description">
-                  <p>{project.description}</p>
-                </div>
-
-                <div className="tag-row">
-                  <div className="right-items">
-                    {project.sourceLink && (
-                      <a
-                        href={project.sourceLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="project-icon-link"
-                      >
-                        <LucideIcon icon={Github} size={22} />
-                      </a>
-                    )}
-
-                    {project.projectLink && (
-                      <a
-                        href={project.projectLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="project-icon-link link-icon"
-                      >
-                        <LucideIcon icon={Globe} size={22} />
-                      </a>
-                    )}
-                  </div>
-                </div>
+            <div className="modal-footer">
+              <h3 className="modal-title">{project.title}</h3>
+              <div className="modal-links">
+                <a
+                  href={project.sourceLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`modal-link ${!project.sourceLink ? 'disabled' : ''}`}
+                  onClick={(e) => !project.sourceLink && e.preventDefault()}
+                >
+                  <LucideIcon icon={Github} size={20} />
+                </a>
+                <a
+                  href={project.projectLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`modal-link ${!project.projectLink ? 'disabled' : ''}`}
+                  onClick={(e) => !project.projectLink && e.preventDefault()}
+                >
+                  <LucideIcon icon={Globe} size={20} />
+                </a>
               </div>
             </div>
           </motion.div>
-
-          <motion.button
-            className="modal-close"
-            onClick={onClose}
-            aria-label="Close project details"
-            variants={closeButtonVariant}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-          >
-            <LucideIcon icon={X} size={18} />
-          </motion.button>
         </div>
       )}
     </AnimatePresence>
