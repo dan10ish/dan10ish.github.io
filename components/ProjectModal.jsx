@@ -14,32 +14,6 @@ const LucideIcon = memo(({ icon: Icon, ...props }) => (
 
 LucideIcon.displayName = "LucideIcon";
 
-const backdrop = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.2 } },
-  exit: { opacity: 0, transition: { duration: 0.15 } },
-};
-
-const modalVariant = {
-  hidden: { opacity: 0, scale: 0.95 },
-  visible: { 
-    opacity: 1, 
-    scale: 1,
-    transition: { 
-      type: "spring", 
-      stiffness: 400, 
-      damping: 30 
-    } 
-  },
-  exit: { 
-    opacity: 0, 
-    scale: 0.95, 
-    transition: { 
-      duration: 0.15 
-    } 
-  },
-};
-
 const VideoSection = memo(({ project, shouldLoadVideo }) => {
   const videoRef = useRef(null);
   const [videoLoaded, setVideoLoaded] = useState(false);
@@ -76,7 +50,7 @@ const VideoSection = memo(({ project, shouldLoadVideo }) => {
   if (!hasVideo) {
     return (
       <div className="video-placeholder">
-        <LucideIcon icon={VideoOff} size={24} />
+        <LucideIcon icon={VideoOff} size={20} />
         <span>No preview available</span>
       </div>
     );
@@ -86,13 +60,13 @@ const VideoSection = memo(({ project, shouldLoadVideo }) => {
     <>
       {!videoLoaded && !videoError && (
         <div className="video-placeholder">
-          <LucideIcon icon={Loader2} size={24} className="loading-icon" />
+          <LucideIcon icon={Loader2} size={20} className="loading-icon" />
           <span>Loading...</span>
         </div>
       )}
       {videoError && (
         <div className="video-placeholder">
-          <LucideIcon icon={VideoOff} size={24} />
+          <LucideIcon icon={VideoOff} size={20} />
           <span>Failed to load</span>
         </div>
       )}
@@ -137,7 +111,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
       document.addEventListener("mousedown", handleClickOutside);
       document.body.style.overflow = "hidden";
       
-      const timer = setTimeout(() => setShouldLoadVideo(true), 100);
+      const timer = setTimeout(() => setShouldLoadVideo(true), 150);
       
       return () => {
         clearTimeout(timer);
@@ -161,35 +135,27 @@ export default function ProjectModal({ project, isOpen, onClose }) {
   if (!project) return null;
 
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       {isOpen && (
-        <div className="modal-overlay">
-          <motion.div
-            className="modal-backdrop"
-            variants={backdrop}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-          />
-          
-          <motion.div
-            className="modal"
-            ref={modalRef}
-            variants={modalVariant}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-          >
+        <motion.div
+          className="modal-overlay"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          <div className="modal-container" ref={modalRef}>
             <button className="modal-close-btn" onClick={onClose}>
-              <LucideIcon icon={X} size={20} />
+              <span>Close</span>
             </button>
 
-            <div className="modal-video-container">
+            <div className="modal-video-wrapper">
               <VideoSection project={project} shouldLoadVideo={shouldLoadVideo} />
             </div>
 
-            <div className="modal-footer">
+            <div className="modal-content-footer">
               <h3 className="modal-title">{project.title}</h3>
+              
               <div className="modal-links">
                 <a
                   href={project.sourceLink}
@@ -198,21 +164,21 @@ export default function ProjectModal({ project, isOpen, onClose }) {
                   className={`modal-link ${!project.sourceLink ? 'disabled' : ''}`}
                   onClick={(e) => !project.sourceLink && e.preventDefault()}
                 >
-                  <LucideIcon icon={Github} size={20} />
+                  <LucideIcon icon={Github} size={18} />
                 </a>
                 <a
                   href={project.projectLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`modal-link ${!project.projectLink ? 'disabled' : ''}`}
+                  className={`modal-link modal-link-globe ${!project.projectLink ? 'disabled' : ''}`}
                   onClick={(e) => !project.projectLink && e.preventDefault()}
                 >
-                  <LucideIcon icon={Globe} size={20} />
+                  <LucideIcon icon={Globe} size={18} />
                 </a>
               </div>
             </div>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       )}
     </AnimatePresence>
   );
