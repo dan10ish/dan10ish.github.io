@@ -179,7 +179,7 @@ img {
 }
 
 .about-description .tag {
-  margin: 0 2px;
+  margin: 0 2px 4px 0;
   cursor: pointer;
   display: inline-block;
 }
@@ -635,13 +635,13 @@ img {
 
 @media (min-height: 480px) {
   .table-max {
-    height: 26.9rem;
+    height: 23.9rem;
   }
 }
 
 @media (min-height: 768px) {
   .table-max {
-    height: 35.9rem;
+    height: 32.9rem;
   }
 }
 
