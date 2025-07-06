@@ -186,7 +186,7 @@ img {
 
 .tag {
   font-size: calc(var(--font-size-mobile) * 0.9);
-  padding: 4px 8px;
+  padding: 2px 8px;
   border-radius: 8px;
   border: 1px solid rgba(var(--color-text-rgb), 0.1);
   color: rgba(var(--color-text-rgb), 0.8);
@@ -197,7 +197,6 @@ img {
 
 .tag.selected {
   background: rgba(var(--color-text-rgb), 0.08);
-  transform: scale(1.02);
 }
 
 .mono-list {
