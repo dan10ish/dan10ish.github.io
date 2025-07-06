@@ -187,10 +187,8 @@ const AboutContent = memo(({ projects, selectedTag, handleTagClick }) => {
               >
                 {tag}
               </span>
-              {index < uniqueTags.length - 1 && ", "}
             </span>
           ))}
-          .
         </div>
       </div>
     </div>

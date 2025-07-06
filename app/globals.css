@@ -176,12 +176,18 @@ img {
   line-height: 1.5;
   text-align: left;
   color: rgba(var(--color-text-rgb), 0.7);
+  hyphens: none;
+  word-break: keep-all;
 }
 
 .about-description .tag {
-  margin: 0 2px 4px 0;
+  margin: 6px 6px 2px 0;
   cursor: pointer;
   display: inline-block;
+}
+
+.about-description > span {
+  white-space: nowrap;
 }
 
 .tag {
@@ -389,7 +395,7 @@ img {
   justify-content: center;
   background: linear-gradient(to bottom, transparent, var(--color-bg));
   pointer-events: none;
-  margin-top: 1rem;
+  margin-top: 0.75rem;
 }
 
 .scroll-indicator svg {
