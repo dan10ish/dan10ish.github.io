@@ -1,29 +1,21 @@
 {
-  "name": "ANDY MCCUNE",
+  "name": "DANISH ANSARI",
   "bio": [
-    "IN SEARCH OF SOMETHING",
-    "MULTI-DISCIPLINARY CREATIVE",
-    "CONNECTING THE DOTS"
+    "MECHATRONICS ENGINEER",
+    "BUILDING WITH MACHINE LEARNING,",
+    "ROBOTICS AND CODE"
   ],
   "current": [
     {
-      "title": "CEO, COSMOS"
-    },
-    {
-      "title": "OWNER, KYUKA"
+      "title": "FRONTEND ENGINEER, CRIDAA"
     }
   ],
   "past": [
     {
-      "title": "CO-FOUNDER, UNFOLD",
-      "meta": "ACQ BY SQSP"
+      "title": "SWE, INNOVATIO LABS"
     },
     {
-      "title": "FOUNDER, EARTH",
-      "meta": "ACQ BY SEED"
-    },
-    {
-      "title": "CO-FOUNDER, GALERIE WAS"
+      "title": "SWE, ACCELUS ROBOTICS"
     }
   ],
   "projects": [

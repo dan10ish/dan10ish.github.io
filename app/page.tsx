@@ -6,7 +6,7 @@ interface Data {
   name: string;
   bio: string[];
   current: { title: string }[];
-  past: { title: string; meta?: string }[];
+  past: { title: string }[];
   projects: { title: string; live?: string; source?: string }[];
   contact: { name: string; url: string }[];
 }
@@ -15,13 +15,6 @@ const Section: React.FC<{ title: string; children: React.ReactNode }> = ({ title
   <div className="grid grid-cols-[110px_1fr] gap-x-6">
     <h2 className="font-semibold uppercase tracking-widest text-gray-500 text-right">{title}</h2>
     <div>{children}</div>
-  </div>
-);
-
-const PastEntry: React.FC<{ title: string; meta?: string }> = ({ title, meta }) => (
-  <div className="flex items-baseline gap-x-2">
-    <p className="font-medium">{title}</p>
-    {meta && <p className="text-xs text-gray-500">{meta}</p>}
   </div>
 );
 
@@ -54,7 +47,9 @@ export default async function Home() {
         <Section title="Past">
           <div className="space-y-1">
             {data.past.map((item, index) => (
-              <PastEntry key={index} title={item.title} meta={item.meta} />
+              <p key={index} className="font-medium">
+                {item.title}
+              </p>
             ))}
           </div>
         </Section>
