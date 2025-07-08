@@ -10,18 +10,19 @@
   --foreground: 248 248 248;
 }
 
-* {
-  border-color: theme('colors.gray.200');
-}
-
-.dark * {
-  border-color: theme('colors.gray.800');
-}
-
 html {
   color-scheme: light;
 }
 
 .dark html {
   color-scheme: dark;
+}
+
+.dark h2{
+  color: #aaaaaa;
+}
+
+h2{
+  color: #888888;
+  letter-spacing: 1px;
 }
