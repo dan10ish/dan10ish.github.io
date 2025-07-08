@@ -1,5 +1,4 @@
 User-Agent: *
 Allow: /
 
-Host: https://danish.bio
-Sitemap: https://danish.bio/sitemap.xml
+Sitemap: https://dan10ish.github.io/sitemap.xml
