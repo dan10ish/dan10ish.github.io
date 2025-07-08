@@ -59,24 +59,36 @@ export default async function Home() {
             {data.projects.map((project, index) => (
               <div key={index} className="flex items-center space-x-4">
                 <p className="font-medium flex-grow">{project.title}</p>
-                <a
-                  href={project.live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={!project.live ? 'opacity-30 pointer-events-none' : 'hover:opacity-70 transition-opacity'}
-                  aria-disabled={!project.live}
-                >
-                  <Link size={16} />
-                </a>
-                <a
-                  href={project.source}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={!project.source ? 'opacity-30 pointer-events-none' : 'hover:opacity-70 transition-opacity'}
-                  aria-disabled={!project.source}
-                >
-                  <Github size={16} />
-                </a>
+                {project.live ? (
+                  <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:opacity-70 transition-opacity"
+                    aria-label={`View live demo of ${project.title}`}
+                  >
+                    <Link size={16} />
+                  </a>
+                ) : (
+                  <span className="opacity-30" aria-hidden="true">
+                    <Link size={16} />
+                  </span>
+                )}
+                {project.source ? (
+                  <a
+                    href={project.source}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:opacity-70 transition-opacity"
+                    aria-label={`View source code of ${project.title} on GitHub`}
+                  >
+                    <Github size={16} />
+                  </a>
+                ) : (
+                  <span className="opacity-30" aria-hidden="true">
+                    <Github size={16} />
+                  </span>
+                )}
               </div>
             ))}
           </div>
@@ -91,6 +103,7 @@ export default async function Home() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-medium hover:opacity-70 transition-opacity"
+                  aria-label={`Contact via ${item.name}`}
                 >
                   {item.name}
                 </a>
