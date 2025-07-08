@@ -20,29 +20,36 @@
   ],
   "projects": [
     {
-      "title": "SEED",
-      "live": "https://seed.com",
-      "source": "https://github.com/seed"
+      "title": "ALGOSIM",
+      "source": "https://github.com/dan10ish/AlgoSim"
     },
     {
-      "title": "OTHERSHIP",
-      "live": "https://othership.us"
+      "title": "COGNICART",
+      "source": "https://github.com/dan10ish/cogni-cart"
     },
     {
-      "title": "MADRE MEZCAL",
-      "source": "https://github.com/madre"
+      "title": "CODE EDITOR",
+      "source": "https://github.com/dan10ish/code",
+      "live": "http://dan10ish.github.io/code"
     },
     {
-      "title": "INFINITE MACHINE"
+      "title": "3DOF ROBOTIC ARM",
+      "source": "https://github.com/dan10ish/3DOF-RoboticArm-C"
     },
     {
-      "title": "SUPERPOWER"
+      "title": "PATHFINDER",
+      "source": "https://github.com/dan10ish/pathfinding-visualizer",
+      "live": "https://dan10ish.github.io/pathfinding-visualizer/"
     },
     {
-      "title": "MAINFRAME"
+      "title": "ARM VISUALIZER",
+      "source": "https://github.com/dan10ish/RoboticArm",
+      "live": "https://dan10ish.github.io/RoboticArm/"
     },
     {
-      "title": "COMETEER"
+      "title": "COLLEGE NOTES",
+      "source": "https://github.com/dan10ish/college",
+      "live": "https://dan10ish.github.io/college/"
     }
   ],
   "contact": [
