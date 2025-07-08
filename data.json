@@ -1,0 +1,78 @@
+{
+  "name": "ANDY MCCUNE",
+  "bio": [
+    "IN SEARCH OF SOMETHING",
+    "MULTI-DISCIPLINARY CREATIVE",
+    "CONNECTING THE DOTS"
+  ],
+  "current": [
+    {
+      "title": "CEO, COSMOS"
+    },
+    {
+      "title": "OWNER, KYUKA"
+    }
+  ],
+  "past": [
+    {
+      "title": "CO-FOUNDER, UNFOLD",
+      "meta": "ACQ BY SQSP"
+    },
+    {
+      "title": "FOUNDER, EARTH",
+      "meta": "ACQ BY SEED"
+    },
+    {
+      "title": "CO-FOUNDER, GALERIE WAS"
+    }
+  ],
+  "projects": [
+    {
+      "title": "SEED",
+      "live": "https://seed.com",
+      "source": "https://github.com/seed"
+    },
+    {
+      "title": "OTHERSHIP",
+      "live": "https://othership.us"
+    },
+    {
+      "title": "MADRE MEZCAL",
+      "source": "https://github.com/madre"
+    },
+    {
+      "title": "INFINITE MACHINE"
+    },
+    {
+      "title": "SUPERPOWER"
+    },
+    {
+      "title": "MAINFRAME"
+    },
+    {
+      "title": "COMETEER"
+    }
+  ],
+  "contact": [
+    {
+      "name": "A@ANDYMCCUNE.COM",
+      "url": "mailto:a@andymccune.com"
+    },
+    {
+      "name": "INSTAGRAM",
+      "url": "https://instagram.com"
+    },
+    {
+      "name": "TWITTER",
+      "url": "https://twitter.com"
+    },
+    {
+      "name": "LINKEDIN",
+      "url": "https://linkedin.com"
+    },
+    {
+      "name": "COSMOS",
+      "url": "https://cosmos.com"
+    }
+  ]
+} 
