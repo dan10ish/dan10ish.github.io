@@ -26,14 +26,14 @@ export default async function Home() {
     <main className="font-mono p-8 md:p-12 max-w-3xl mx-auto text-sm">
       <div className="grid grid-cols-[90px_1fr] gap-x-6">
         <h1 className="font-semibold text-right text-gray-500">{data.name}</h1>
-        <div>
+        <div className="font-medium">
           {data.bio.map((line, index) => (
             <p key={index}>{line}</p>
           ))}
         </div>
       </div>
 
-      <div className="mt-12 space-y-6">
+      <div className="mt-6 space-y-6">
         <Section title="Current">
           <div className="space-y-1">
             {data.current.map((item, index) => (
