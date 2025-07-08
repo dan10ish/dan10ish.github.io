@@ -34,15 +34,12 @@ export function ThemeToggle() {
   return (
     <button
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      className={`fixed bottom-5 right-5 w-5 h-5 rounded-full border-2 transition-all duration-100 hover:scale-110 hover:shadow-lg z-50 flex items-center justify-center ${
+      className={`fixed bottom-5 right-5 w-5 h-5 rounded-full transition-all duration-100 hover:scale-110 hover:shadow-lg z-50 flex items-center justify-center ring-2 ring-gray-300 ${
         theme === 'dark' 
           ? 'bg-[#f8f8f8] border-gray-300 hover:bg-gray-100' 
           : 'bg-[#171717] border-gray-600 hover:bg-gray-900'
       }`}
       aria-label="Toggle theme"
-    >
-      <span className={`text-lg select-none ${theme === 'dark' ? 'text-gray-800' : 'text-gray-200'}`}>
-      </span>
-    </button>
+    />
   );
 } 
