@@ -1,1 +1,27 @@
 @import "tailwindcss";
+
+:root {
+  --background: 248 248 248;
+  --foreground: 23 23 23;
+}
+
+.dark {
+  --background: 23 23 23;
+  --foreground: 248 248 248;
+}
+
+* {
+  border-color: theme('colors.gray.200');
+}
+
+.dark * {
+  border-color: theme('colors.gray.800');
+}
+
+html {
+  color-scheme: light;
+}
+
+.dark html {
+  color-scheme: dark;
+}

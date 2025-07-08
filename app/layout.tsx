@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from "next";
+import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { ThemeProvider } from "./components/ThemeProvider";
 import { ThemeToggle } from './components/ThemeToggle';
@@ -25,12 +25,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const viewport: Viewport = {
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#f8f8f8' },
-    { media: '(prefers-color-scheme: dark)', color: '#171717' },
-  ],
-};
+
 
 export default function RootLayout({
   children,
@@ -40,9 +35,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${sfMono.variable} antialiased bg-[#f8f8f8] text-[#171717] dark:bg-[#171717] dark:text-[#f8f8f8] transition-colors`}
+        className={`${sfMono.variable} antialiased bg-[rgb(var(--background))] text-[rgb(var(--foreground))] transition-colors duration-300`}
       >
-        <ThemeProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           {children}
           <ThemeToggle />
         </ThemeProvider>

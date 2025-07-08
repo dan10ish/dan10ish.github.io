@@ -11,21 +11,39 @@ export function ThemeToggle() {
     setMounted(true);
   }, []);
 
-  if (!mounted) {
-    return (
-      <div className="fixed bottom-6 right-6 w-4 h-4 rounded-full border border-gray-500 bg-gray-300" />
-    );
-  }
+  useEffect(() => {
+    if (!mounted) return;
 
-  const isDark = theme === 'dark';
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (!metaThemeColor) {
+      const meta = document.createElement('meta');
+      meta.name = 'theme-color';
+      document.head.appendChild(meta);
+    }
+
+    const themeColorMeta = document.querySelector('meta[name="theme-color"]') as HTMLMetaElement;
+    if (themeColorMeta) {
+      themeColorMeta.content = theme === 'dark' ? '#171717' : '#f8f8f8';
+    }
+  }, [theme, mounted]);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <button
-      onClick={() => setTheme(isDark ? 'light' : 'dark')}
-      className={`fixed bottom-6 right-6 w-4 h-4 rounded-full border border-gray-500 transition-colors ${
-        isDark ? 'bg-white' : 'bg-black'
+      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+      className={`fixed bottom-6 right-6 w-12 h-12 rounded-full border-2 transition-all duration-300 hover:scale-110 hover:shadow-lg z-50 flex items-center justify-center ${
+        theme === 'dark' 
+          ? 'bg-[#f8f8f8] border-gray-300 hover:bg-gray-100' 
+          : 'bg-[#171717] border-gray-600 hover:bg-gray-900'
       }`}
-      aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
-    />
+      aria-label="Toggle theme"
+    >
+      <span className={`text-lg select-none ${theme === 'dark' ? 'text-gray-800' : 'text-gray-200'}`}>
+        {theme === 'dark' ? '☀️' : '🌙'}
+      </span>
+    </button>
   );
 } 
