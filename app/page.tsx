@@ -12,8 +12,8 @@ interface Data {
 }
 
 const Section: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => (
-  <div className="grid grid-cols-[150px_1fr] gap-x-8">
-    <h2 className="text-sm font-semibold uppercase tracking-widest text-gray-500 text-right">{title}</h2>
+  <div className="grid grid-cols-[110px_1fr] gap-x-6">
+    <h2 className="font-semibold uppercase tracking-widest text-gray-500 text-right">{title}</h2>
     <div>{children}</div>
   </div>
 );
@@ -30,19 +30,17 @@ export default async function Home() {
   const data: Data = JSON.parse(file);
 
   return (
-    <main className="font-mono p-16 max-w-3xl">
-      <div className="grid grid-cols-[150px_1fr] gap-x-8">
-        <h1 className="text-lg font-bold text-right">{data.name}</h1>
+    <main className="font-mono p-8 md:p-12 max-w-3xl mx-auto text-sm">
+      <div className="grid grid-cols-[110px_1fr] gap-x-6">
+        <h1 className="font-bold text-right">{data.name}</h1>
         <div>
           {data.bio.map((line, index) => (
-            <p key={index} className="text-sm">
-              {line}
-            </p>
+            <p key={index}>{line}</p>
           ))}
         </div>
       </div>
 
-      <div className="mt-16 space-y-8">
+      <div className="mt-12 space-y-6">
         <Section title="Current">
           <div className="space-y-1">
             {data.current.map((item, index) => (
