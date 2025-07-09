@@ -8,8 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d out"
+    "deploy": "npm run build && gh-pages -d out"
   },
   "dependencies": {
     "lucide-react": "^0.525.0",

@@ -18,11 +18,11 @@ html {
   color-scheme: dark;
 }
 
-.dark h2{
-  color: #aaaaaa;
-}
-
-h2{
+h2 {
   color: #555555;
   letter-spacing: 1px;
+}
+
+.dark h2 {
+  color: #aaaaaa;
 }

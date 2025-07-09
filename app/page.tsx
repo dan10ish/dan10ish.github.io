@@ -1,6 +1,7 @@
 import { promises as fs } from 'fs';
 import { Github, Link } from 'lucide-react';
 import path from 'path';
+import { memo } from 'react';
 
 interface Data {
   name: string;
@@ -11,12 +12,14 @@ interface Data {
   contact: { name: string; url: string }[];
 }
 
-const Section: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => (
+const Section = memo<{ title: string; children: React.ReactNode }>(({ title, children }) => (
   <div className="grid grid-cols-[90px_1fr] gap-x-6">
     <h2 className="font-semibold uppercase tracking-widest text-right">{title}</h2>
     <div>{children}</div>
   </div>
-);
+));
+
+Section.displayName = 'Section';
 
 export default async function Home() {
   const file = await fs.readFile(path.join(process.cwd(), 'app/data.json'), 'utf8');
