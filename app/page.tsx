@@ -64,13 +64,13 @@ export default async function Home() {
                     href={project.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:opacity-70 transition-opacity"
+                    className="hover:opacity-70 transition-opacity p-1 -mt-1"
                     aria-label={`View live demo of ${project.title}`}
                   >
                     <Link size={16} />
                   </a>
                 ) : (
-                  <span className="opacity-30" aria-hidden="true">
+                  <span className="opacity-30 p-1 -mt-1" aria-hidden="true">
                     <Link size={16} />
                   </span>
                 )}
@@ -79,13 +79,13 @@ export default async function Home() {
                     href={project.source}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:opacity-70 transition-opacity"
+                    className="hover:opacity-70 transition-opacity p-1 -mt-1 -ml-1"
                     aria-label={`View source code of ${project.title} on GitHub`}
                   >
                     <Github size={16} />
                   </a>
                 ) : (
-                  <span className="opacity-30" aria-hidden="true">
+                  <span className="opacity-30 p-1 -mt-1 -ml-1" aria-hidden="true">
                     <Github size={16} />
                   </span>
                 )}
