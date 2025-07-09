@@ -1,5 +1,5 @@
 import { promises as fs } from 'fs';
-import { Github, Link } from 'lucide-react';
+import { Github, Link, ArrowUpRight } from 'lucide-react';
 import path from 'path';
 import { memo } from 'react';
 
@@ -67,7 +67,7 @@ export default async function Home() {
                     href={project.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:ring-1 hover:ring-gray-300 hover:text-blue-400 p-1 -mt-1 mr-2 rounded-md"
+                    className="hover:scale-110 hover:text-blue-600 dark:hover:text-blue-300 p-1 -mt-1 mr-2 rounded-md"
                     aria-label={`View live demo of ${project.title}`}
                   >
                     <Link size={16} />
@@ -82,7 +82,7 @@ export default async function Home() {
                     href={project.source}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:ring-1 hover:ring-gray-300 hover:text-blue-400 p-1 -mt-1 -ml-1 rounded-md"
+                    className="hover:scale-110 hover:text-blue-600 dark:hover:text-blue-300 p-1 -mt-1 -ml-1 rounded-md"
                     aria-label={`View source code of ${project.title} on GitHub`}
                   >
                     <Github size={16} />
@@ -105,10 +105,11 @@ export default async function Home() {
                   href={item.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-medium hover:underline hover:text-blue-400"
+                  className="font-medium hover:text-blue-600 dark:hover:text-blue-300 group inline-flex items-center gap-1 transition-colors"
                   aria-label={`Contact via ${item.name}`}
                 >
                   {item.name}
+                  <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
               </div>
             ))}
