@@ -64,13 +64,13 @@ export default async function Home() {
                     href={project.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:opacity-70 transition-opacity p-1 -mt-1"
+                    className="hover:ring-1 hover:ring-gray-300 hover:text-blue-400 p-1 -mt-1 mr-2 rounded-md"
                     aria-label={`View live demo of ${project.title}`}
                   >
                     <Link size={16} />
                   </a>
                 ) : (
-                  <span className="opacity-30 p-1 -mt-1" aria-hidden="true">
+                  <span className="opacity-30 p-1 -mt-1 mr-2" aria-hidden="true">
                     <Link size={16} />
                   </span>
                 )}
@@ -79,7 +79,7 @@ export default async function Home() {
                     href={project.source}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:opacity-70 transition-opacity p-1 -mt-1 -ml-1"
+                    className="hover:ring-1 hover:ring-gray-300 hover:text-blue-400 p-1 -mt-1 -ml-1 rounded-md"
                     aria-label={`View source code of ${project.title} on GitHub`}
                   >
                     <Github size={16} />
@@ -102,7 +102,7 @@ export default async function Home() {
                   href={item.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-medium hover:opacity-70 transition-opacity"
+                  className="font-medium hover:underline hover:text-blue-400"
                   aria-label={`Contact via ${item.name}`}
                 >
                   {item.name}
