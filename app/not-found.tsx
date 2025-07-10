@@ -17,7 +17,7 @@ export default function NotFound() {
       <div className="absolute bottom-4 left-0 right-0 pb-16 text-center space-y-6">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 px-6 py-2 border border-gray-300 dark:border-gray-700 hover:border-[rgb(var(--foreground))] transition-all duration-200 text-sm rounded-md"
+          className="inline-flex items-center gap-2 px-6 py-2 border border-gray-300 dark:border-gray-700 hover:scale-110 hover:text-blue-600 dark:hover:text-blue-300 text-sm rounded-md"
         >
           Homepage
           <ArrowUpRight size={14} />
