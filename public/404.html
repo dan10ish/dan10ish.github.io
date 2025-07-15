@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 | Danish</title>
+    <script>(function(){document.documentElement.setAttribute("data-theme", window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")})()</script>
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#141414" />
+    <link rel="icon" type="image/png" href="/icons/icon.png" />
+    <link rel="stylesheet" href="./error.css" />
+    <script>
+      var redirect = function () {
+        var segmentCount = 0;
+        var l = window.location;
+        if (l.hostname === "dan10ish.github.io") {
+          l.replace(
+            l.protocol +
+              "//" +
+              l.hostname +
+              (l.port ? ":" + l.port : "") +
+              l.pathname
+                .split("/")
+                .slice(0, 1 + segmentCount)
+                .join("/") +
+              "/?/" +
+              l.pathname
+                .slice(1)
+                .split("/")
+                .slice(segmentCount)
+                .join("/")
+                .replace(/&/g, "~and~") +
+              (l.search ? "&" + l.search.slice(1).replace(/&/g, "~and~") : "") +
+              l.hash,
+          );
+        }
+      };
+      window.onload = redirect;
+    </script>
+  </head>
+  <body>
+    <div class="error-container">
+      <div class="ghost-face">
+        <div class="meta"></div>
+        <div class="meta"></div>
+      </div>
+      <div class="error-title">
+        <div>Oops!</div>
+        <span class="p-nf">Page not found</span>
+      </div>
+      <div class="error-nav">
+        <a href="/" class="return-link">← Go Back</a>
+      </div>
+    </div>
+  </body>
+</html>

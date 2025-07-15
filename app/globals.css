@@ -3,11 +3,13 @@
 :root {
   --background: 248 248 248;
   --foreground: 23 23 23;
+  --link-hover: #1e4fff;
 }
 
 .dark {
   --background: 23 23 23;
   --foreground: 248 248 248;
+  --link-hover: #00a2ff;
 }
 
 html {
@@ -16,6 +18,14 @@ html {
 
 .dark html {
   color-scheme: dark;
+}
+
+a {
+  transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+  color: var(--link-hover);
 }
 
 h2 {
