@@ -13,7 +13,7 @@ interface Data {
 }
 
 const Section = memo<{ title: string; children: React.ReactNode }>(({ title, children }) => (
-  <div className="grid grid-cols-[90px_1fr] gap-x-6">
+  <div className="grid grid-cols-[80px_1fr] gap-x-6">
     <h2 className="font-semibold uppercase tracking-widest text-right">{title}</h2>
     <div>{children}</div>
   </div>
@@ -27,7 +27,7 @@ export default async function Home() {
 
   return (
     <main className="font-sans p-8 md:p-12 max-w-3xl mx-auto text-sm">
-      <div className="grid grid-cols-[90px_1fr] gap-x-6">
+      <div className="grid grid-cols-[80px_1fr] gap-x-6">
       <h2 className="font-semibold uppercase tracking-widest text-right">{data.name}</h2>
         <div className="font-medium">
           {data.bio.map((line, index) => (

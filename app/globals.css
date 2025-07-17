@@ -3,6 +3,7 @@
 :root {
   --background: 248 248 248;
   --foreground: 23 23 23;
+  --secondary: 220 220 220;
   --link-hover: #1e4fff;
   --letter-spacing: 0em;
 }
@@ -10,6 +11,7 @@
 .dark {
   --background: 23 23 23;
   --foreground: 248 248 248;
+  --secondary: 40 40 40;
   --link-hover: #00a2ff;
 }
 
