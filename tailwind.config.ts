@@ -8,20 +8,10 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        mono: [
-          'Helvetica Neue',
-          'HelveticaNeue',
-          'Helvetica',
-          'Arial',
-          'sans-serif'
-        ],
         sans: [
           'Helvetica Neue',
-          'HelveticaNeue',
-          'Helvetica',
-          'Arial',
-          'sans-serif'
-        ]
+          'Verdana',
+        ],
       },
     },
   },

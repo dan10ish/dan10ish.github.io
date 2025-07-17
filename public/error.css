@@ -35,8 +35,8 @@
 }
 
 :root {
-  --font-normal: "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif;
-  --font-heading: "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif;
+  --font-normal: "Helvetica Neue", Verdana, HelveticaNeue, Helvetica, Arial, sans-serif;
+  --font-heading: "Helvetica Neue", Verdana, HelveticaNeue, Helvetica, Arial, sans-serif;
   --padding-small: 0.5rem;
   --padding-medium: 1rem;
   --padding-large: 2rem;
@@ -322,7 +322,7 @@ body {
 }
 
 .at {
-  font-family: "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Verdana, HelveticaNeue, Helvetica, Arial, sans-serif;
 }
 
 @keyframes eye {
