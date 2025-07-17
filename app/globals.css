@@ -4,6 +4,7 @@
   --background: 248 248 248;
   --foreground: 23 23 23;
   --link-hover: #1e4fff;
+  --letter-spacing: 0em;
 }
 
 .dark {
@@ -14,6 +15,10 @@
 
 html {
   color-scheme: light;
+}
+
+body {
+  letter-spacing: var(--letter-spacing);
 }
 
 .dark html {

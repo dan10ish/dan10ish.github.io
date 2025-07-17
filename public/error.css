@@ -1,54 +1,42 @@
 @font-face {
-  font-family: "SF Mono";
-  src: url("/fonts/SFMono-Regular.woff2") format("woff2");
+  font-family: "Helvetica Neue";
+  src: url("/fonts/helveticaneue.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
-
 @font-face {
-  font-family: "SF Mono";
-  src: url("/fonts/SFMono-Medium.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "SF Mono";
-  src: url("/fonts/SFMono-Semibold.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "SF Mono";
-  src: url("/fonts/SFMono-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "SF Mono";
-  src: url("/fonts/SFMono-Light.woff2") format("woff2");
+  font-family: "Helvetica Neue";
+  src: url("/fonts/helveticaneue-light.woff2") format("woff2");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
-
 @font-face {
-  font-family: "SF Mono";
-  src: url("/fonts/SFMono-Heavy.woff2") format("woff2");
-  font-weight: 800;
+  font-family: "Helvetica Neue";
+  src: url("/fonts/helveticaneue-medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/fonts/helveticaneue-bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/fonts/helveticaneue-thin.woff2") format("woff2");
+  font-weight: 100;
   font-style: normal;
   font-display: swap;
 }
 
 :root {
-  --font-normal: "SF Mono", ui-monospace, Menlo, monospace;
-  --font-heading: "SF Mono", ui-monospace, Menlo, monospace;
+  --font-normal: "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif;
+  --font-heading: "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif;
   --padding-small: 0.5rem;
   --padding-medium: 1rem;
   --padding-large: 2rem;
@@ -334,7 +322,7 @@ body {
 }
 
 .at {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif;
 }
 
 @keyframes eye {

@@ -6,7 +6,7 @@ export default function NotFound() {
   const socialLinks = data.contact.filter(contact => contact.name !== 'AANSARIDAN@GMAIL.COM');
 
   return (
-    <main className="font-mono h-[100dvh] overflow-hidden relative bg-[rgb(var(--background))] text-[rgb(var(--foreground))] transition-colors duration-300">
+    <main className="font-sans h-[100dvh] overflow-hidden relative bg-[rgb(var(--background))] text-[rgb(var(--foreground))] transition-colors duration-300">
       <div className="absolute inset-0 flex items-center justify-center -translate-y-12">
         <div className="text-center space-y-2">
           <div className="text-6xl font-bold">404</div>

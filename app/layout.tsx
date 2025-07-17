@@ -113,7 +113,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${sfMono.variable} antialiased bg-[rgb(var(--background))] text-[rgb(var(--foreground))] transition-colors duration-300`}
+        className="antialiased bg-[rgb(var(--background))] text-[rgb(var(--foreground))] transition-colors duration-300 font-sans"
       >
         <ThemeProvider
           attribute="class"

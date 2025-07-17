@@ -26,7 +26,7 @@ export default async function Home() {
   const data: Data = JSON.parse(file);
 
   return (
-    <main className="font-mono p-8 md:p-12 max-w-3xl mx-auto text-sm">
+    <main className="font-sans p-8 md:p-12 max-w-3xl mx-auto text-sm">
       <div className="grid grid-cols-[90px_1fr] gap-x-6">
       <h2 className="font-semibold uppercase tracking-widest text-right">{data.name}</h2>
         <div className="font-medium">

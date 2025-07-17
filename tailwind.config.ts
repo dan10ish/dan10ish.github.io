@@ -8,7 +8,20 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        mono: ['var(--font-sf-mono)', 'monospace'],
+        mono: [
+          'Helvetica Neue',
+          'HelveticaNeue',
+          'Helvetica',
+          'Arial',
+          'sans-serif'
+        ],
+        sans: [
+          'Helvetica Neue',
+          'HelveticaNeue',
+          'Helvetica',
+          'Arial',
+          'sans-serif'
+        ]
       },
     },
   },
