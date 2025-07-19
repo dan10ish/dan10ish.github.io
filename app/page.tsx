@@ -57,7 +57,7 @@ export default async function Home() {
           </div>
         </Section>
 
-        <Section title="Select Projects">
+        <Section title="Projects">
           <div className="space-y-2">
             {data.projects.map((project, index) => (
               <div key={index} className="flex items-center space-x-4">
