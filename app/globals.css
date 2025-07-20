@@ -27,19 +27,17 @@ body {
   color-scheme: dark;
 }
 
-a {
-  transition: color 0.2s ease-in-out;
-}
-
-a:hover {
-  color: var(--link-hover);
-}
-
 h2 {
   color: #555555;
-  letter-spacing: 1px;
+  letter-spacing: var(--letter-spacing);
 }
 
 .dark h2 {
   color: #aaaaaa;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  a:hover {
+    color: var(--link-hover);
+  }
 }
