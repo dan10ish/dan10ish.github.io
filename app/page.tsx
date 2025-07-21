@@ -8,8 +8,8 @@ interface Data {
   bio: string;
   website: string;
   experience: { year: string; title: string; location: string }[];
-  projects: { year: string; title: string; description?: string; live?: string; source?: string }[];
-  education: { year: string; title: string; location: string }[];
+  projects: { title: string; description?: string; live?: string; source?: string }[];
+  education: { year: string; institution: string; degree: string; location: string }[];
   contact: { platform: string; handle: string; url: string }[];
 }
 
@@ -29,7 +29,7 @@ const ProfileHeader = memo<{ data: Data }>(({ data }) => (
       </div>
     </div>
     <div>
-      <h2 className="text-sm font-semibold mb-1 text-heading">About</h2>
+      <h2 className="text-sm font-semibold mb-4 md:mb-6 text-heading">About</h2>
       <p className="text-sm text-secondary leading-relaxed">
         {data.bio}
       </p>
@@ -46,31 +46,45 @@ const Section = memo<{ title: string; children: React.ReactNode; className?: str
   </div>
 ));
 
-const TimelineItem = memo<{ 
+const WorkItem = memo<{ 
   year: string; 
   title: string; 
   location?: string; 
-  description?: string;
-  live?: string;
-  source?: string;
-  isClickable?: boolean;
   isFirst?: boolean;
-}>(({ year, title, location, description, live, source, isClickable = true, isFirst = false }) => (
+}>(({ year, title, location, isFirst = false }) => (
   <div className={`flex flex-col md:flex-row gap-4 md:gap-9 ${!isFirst ? 'pt-6 md:pt-6' : ''}`}>
     <div className="w-full md:w-28 flex-shrink-0">
       <p className="text-sm text-tertiary">{year}</p>
     </div>
     <div className="flex-1 pb-0 md:pb-3">
+      <div className="mb-2">
+        <h3 className="text-sm font-normal text-foreground leading-relaxed">
+          {title}
+        </h3>
+      </div>
+      {location && (
+        <p className="text-sm text-secondary mb-2">{location}</p>
+      )}
+    </div>
+  </div>
+));
+
+const ProjectItem = memo<{ 
+  title: string; 
+  description?: string;
+  live?: string;
+  source?: string;
+  isFirst?: boolean;
+}>(({ title, description, live, source, isFirst = false }) => (
+  <div className={`flex flex-col md:flex-row gap-4 md:gap-9 ${!isFirst ? 'pt-6 md:pt-6' : ''}`}>
+    <div className="w-full md:w-28 flex-shrink-0">
+      <p className="text-sm text-tertiary">{title}</p>
+    </div>
+    <div className="flex-1 pb-0 md:pb-3">
       <div className="flex items-start justify-between gap-4 mb-2">
         <div className="flex-1">
-          {isClickable ? (
-            <h3 className="text-sm font-normal text-foreground leading-relaxed hover:text-link-hover transition-colors cursor-pointer">
-              {title}
-            </h3>
-          ) : (
-            <h3 className="text-sm font-normal text-foreground leading-relaxed">
-              {title}
-            </h3>
+          {description && (
+            <p className="text-sm text-secondary mb-3">{description}</p>
           )}
         </div>
         {(live || source) && (
@@ -80,7 +94,7 @@ const TimelineItem = memo<{
                 href={live}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-secondary hover:text-link-hover transition-all text-xs hover:scale-105"
+                className="flex items-center gap-1.5 text-secondary hover:text-link-hover text-xs"
                 aria-label="View live demo"
               >
                 <Link size={12} />
@@ -92,7 +106,7 @@ const TimelineItem = memo<{
                 href={source}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-secondary hover:text-link-hover transition-all text-xs hover:scale-105"
+                className="flex items-center gap-1.5 text-secondary hover:text-link-hover text-xs"
                 aria-label="View source code"
               >
                 <Github size={12} />
@@ -102,12 +116,31 @@ const TimelineItem = memo<{
           </div>
         )}
       </div>
-      {location && (
-        <p className="text-sm text-secondary mb-2">{location}</p>
-      )}
-      {description && (
-        <p className="text-sm text-secondary mb-3">{description}</p>
-      )}
+    </div>
+  </div>
+));
+
+const EducationItem = memo<{ 
+  year: string; 
+  institution: string; 
+  degree: string;
+  location: string; 
+  isFirst?: boolean;
+}>(({ year, institution, degree, location, isFirst = false }) => (
+  <div className={`flex flex-col md:flex-row gap-4 md:gap-9 ${!isFirst ? 'pt-6 md:pt-6' : ''}`}>
+    <div className="w-full md:w-28 flex-shrink-0">
+      <p className="text-sm text-tertiary">{year}</p>
+    </div>
+    <div className="flex-1 pb-0 md:pb-3">
+      <div className="mb-2">
+        <h3 className="text-sm font-normal text-foreground leading-relaxed mb-1">
+          {institution}
+        </h3>
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+          <p className="text-sm text-secondary">{degree}</p>
+          <p className="text-sm text-secondary md:text-right">{location}</p>
+        </div>
+      </div>
     </div>
   </div>
 ));
@@ -122,10 +155,10 @@ const ContactItem = memo<{ platform: string; handle: string; url: string; isFirs
         href={url}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-sm font-normal text-foreground hover:text-link-hover transition-colors group inline-flex items-center gap-1"
+        className="text-sm font-normal text-foreground hover:text-link-hover group inline-flex items-center gap-1"
       >
         {handle}
-        <ArrowUpRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+        <ArrowUpRight size={12} className="opacity-0 group-hover:opacity-100" />
       </a>
     </div>
   </div>
@@ -133,7 +166,9 @@ const ContactItem = memo<{ platform: string; handle: string; url: string; isFirs
 
 ProfileHeader.displayName = 'ProfileHeader';
 Section.displayName = 'Section';
-TimelineItem.displayName = 'TimelineItem';
+WorkItem.displayName = 'WorkItem';
+ProjectItem.displayName = 'ProjectItem';
+EducationItem.displayName = 'EducationItem';
 ContactItem.displayName = 'ContactItem';
 
 export default async function Home() {
@@ -141,13 +176,13 @@ export default async function Home() {
   const data: Data = JSON.parse(file);
 
   return (
-    <main className="max-w-sm md:max-w-2xl mx-auto px-6 md:px-12 py-6 md:py-18 font-sans text-sm bg-background text-foreground transition-colors min-h-screen">
+    <main className="max-w-sm md:max-w-2xl mx-auto px-6 md:px-12 py-6 md:py-18 font-sans text-sm bg-background text-foreground min-h-screen">
       <div className="max-w-md md:max-w-none mx-auto">
         <ProfileHeader data={data} />
 
         <Section title="Work Experience">
           {data.experience.map((item, index) => (
-            <TimelineItem
+            <WorkItem
               key={index}
               year={item.year}
               title={item.title}
@@ -159,9 +194,8 @@ export default async function Home() {
 
         <Section title="Projects">
           {data.projects.map((project, index) => (
-            <TimelineItem
+            <ProjectItem
               key={index}
-              year={project.year}
               title={project.title}
               description={project.description}
               live={project.live}
@@ -173,12 +207,12 @@ export default async function Home() {
 
         <Section title="Education">
           {data.education.map((item, index) => (
-            <TimelineItem
+            <EducationItem
               key={index}
               year={item.year}
-              title={item.title}
+              institution={item.institution}
+              degree={item.degree}
               location={item.location}
-              isClickable={false}
               isFirst={index === 0}
             />
           ))}

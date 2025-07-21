@@ -21,46 +21,39 @@
   ],
   "projects": [
     {
-      "year": "2024",
       "title": "AlgoSim",
       "description": "Algorithm visualization platform",
       "source": "https://github.com/dan10ish/AlgoSim"
     },
     {
-      "year": "2024",
       "title": "CogniCart", 
       "description": "AI-powered shopping assistant",
       "source": "https://github.com/dan10ish/cogni-cart"
     },
     {
-      "year": "2024",
       "title": "Code Editor",
       "description": "Web-based code editor with syntax highlighting",
       "source": "https://github.com/dan10ish/code",
       "live": "http://dan10ish.github.io/code"
     },
     {
-      "year": "2023",
       "title": "3DOF Robotic Arm",
       "description": "Computer vision controlled robotic arm",
       "source": "https://github.com/dan10ish/3DOF-RoboticArm-C"
     },
     {
-      "year": "2023",
       "title": "Pathfinder",
       "description": "Pathfinding algorithm visualizer",
       "source": "https://github.com/dan10ish/pathfinding-visualizer",
       "live": "https://dan10ish.github.io/pathfinding-visualizer/"
     },
     {
-      "year": "2023",
       "title": "ARM Visualizer",
       "description": "3D robotic arm kinematics simulator",
       "source": "https://github.com/dan10ish/RoboticArm",
       "live": "https://dan10ish.github.io/RoboticArm/"
     },
     {
-      "year": "2022",
       "title": "College Notes",
       "description": "Digital collection of engineering coursework",
       "source": "https://github.com/dan10ish/college",
@@ -70,7 +63,8 @@
   "education": [
     {
       "year": "2020 — 2024",
-      "title": "Bachelor in Mechatronics Engineering at Mumbai University",
+      "institution": "Narsee Monjee Institute of Management Studies",
+      "degree": "B.Tech Mechatronics Engineering",
       "location": "Mumbai, India"
     }
   ],

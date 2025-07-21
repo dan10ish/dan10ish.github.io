@@ -72,3 +72,9 @@ h1, h2, h3 {
 .hover\:text-link-hover:hover {
   color: var(--link-hover);
 }
+
+@media (hover: hover) and (pointer: fine) {
+  a:hover {
+    cursor: pointer;
+  }
+}
