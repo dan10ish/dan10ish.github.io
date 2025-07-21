@@ -93,7 +93,7 @@ export default function RootLayout({
                   
                   var meta = document.createElement('meta');
                   meta.name = 'theme-color';
-                  meta.content = isDark ? '#171717' : '#f8f8f8';
+                  meta.content = isDark ? '#111111' : '#f8f8f8';
                   document.head.appendChild(meta);
                 } catch (e) {}
               })();
@@ -111,8 +111,8 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
-          <ThemeToggle />
           <ScrollToTop />
+          <ThemeToggle />
         </ThemeProvider>
       </body>
     </html>
