@@ -9,7 +9,7 @@ interface Data {
   bio: string;
   website: string;
   experience: { year: string; title: string; location: string }[];
-  projects: { title: string; description?: string; live?: string; source?: string }[];
+  projects: { title: string; live?: string; source?: string }[];
   education: { year: string; institution: string; degree: string }[];
   contact: { platform: string; handle: string; url: string }[];
 }
@@ -32,12 +32,12 @@ const ProfileHeader = memo<{ data: Data }>(({ data }) => (
   </div>
 ));
 
-const Section = memo<{ title: string; children: React.ReactNode; isLast?: boolean }>(({ title, children, isLast = false }) => (
+const Section = memo<{ title: string; children: React.ReactNode; isLast?: boolean; gap?: string }>(({ title, children, isLast = false, gap }) => (
   <div style={{ marginBottom: isLast ? '0' : 'var(--section-gap)' }}>
     <h2 className="font-bold text-heading" style={{ marginBottom: 'var(--heading-gap)', fontSize: 'var(--font-heading)' }}>
       {title}
     </h2>
-    <div className="flex flex-col" style={{ gap: 'var(--item-gap)' }}>
+    <div className="flex flex-col" style={{ gap: gap || 'var(--item-gap)' }}>
       {children}
     </div>
   </div>
@@ -55,42 +55,45 @@ const WorkItem = memo<{ year: string; title: string; location?: string }>(({ yea
   </div>
 ));
 
-const ProjectItem = memo<{ title: string; description?: string; live?: string; source?: string }>(({ title, description, live, source }) => (
+const ProjectItem = memo<{ title: string; live?: string; source?: string }>(({ title, live, source }) => (
   <div>
     <div className="flex items-center justify-between gap-4 mb-2">
       <h3 className="font-normal text-foreground leading-relaxed flex-1" style={{ fontSize: 'var(--font-sm)' }}>{title}</h3>
-      {(live || source) && (
-        <div className="flex items-center gap-4 md:gap-5 flex-shrink-0">
-          {live && (
-            <a
-              href={live}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-secondary hover-pointer"
-              style={{ fontSize: 'var(--font-xs)' }}
-              aria-label="View live demo"
-            >
-              <Link size={12} />
-              <span>Live</span>
-            </a>
-          )}
-          {source && (
-            <a
-              href={source}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-secondary hover-pointer"
-              style={{ fontSize: 'var(--font-xs)' }}
-              aria-label="View source code"
-            >
-              <Github size={12} />
-              <span>Source</span>
-            </a>
-          )}
-        </div>
-      )}
+      <div className="flex items-center gap-4 md:gap-5 flex-shrink-0">
+        {live ? (
+          <a
+            href={live}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center text-secondary hover-pointer"
+            style={{ fontSize: 'var(--font-xs)' }}
+            aria-label="View live demo"
+          >
+            <Link size={16} />
+          </a>
+        ) : (
+          <span className="flex items-center text-secondary opacity-40 select-none cursor-default" style={{ fontSize: 'var(--font-xs)' }}>
+            <Link size={16} />
+          </span>
+        )}
+        {source ? (
+          <a
+            href={source}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center text-secondary hover-pointer"
+            style={{ fontSize: 'var(--font-xs)' }}
+            aria-label="View source code"
+          >
+            <Github size={16} />
+          </a>
+        ) : (
+          <span className="flex items-center text-secondary opacity-40 select-none cursor-default" style={{ fontSize: 'var(--font-xs)' }}>
+            <Github size={16} />
+          </span>
+        )}
+      </div>
     </div>
-    {description && <p className="text-secondary" style={{ fontSize: 'var(--font-sm)' }}>{description}</p>}
   </div>
 ));
 
@@ -148,12 +151,11 @@ export default async function Home() {
           ))}
         </Section>
 
-        <Section title="Projects">
+        <Section title="Projects" gap="1.1rem">
           {data.projects.map((project, index) => (
             <ProjectItem
               key={index}
               title={project.title}
-              description={project.description}
               live={project.live}
               source={project.source}
             />

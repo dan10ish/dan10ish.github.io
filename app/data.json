@@ -22,40 +22,33 @@
   "projects": [
     {
       "title": "AlgoSim",
-      "description": "Algorithm visualization platform",
       "source": "https://github.com/dan10ish/AlgoSim"
     },
     {
       "title": "CogniCart", 
-      "description": "AI-powered shopping assistant",
       "source": "https://github.com/dan10ish/cogni-cart"
     },
     {
       "title": "Code Editor",
-      "description": "Web-based code editor with syntax highlighting",
       "source": "https://github.com/dan10ish/code",
       "live": "http://dan10ish.github.io/code"
     },
     {
       "title": "3DOF Robotic Arm",
-      "description": "Computer vision controlled robotic arm",
       "source": "https://github.com/dan10ish/3DOF-RoboticArm-C"
     },
     {
       "title": "Pathfinder",
-      "description": "Pathfinding algorithm visualizer",
       "source": "https://github.com/dan10ish/pathfinding-visualizer",
       "live": "https://dan10ish.github.io/pathfinding-visualizer/"
     },
     {
       "title": "ARM Visualizer",
-      "description": "3D robotic arm kinematics simulator",
       "source": "https://github.com/dan10ish/RoboticArm",
       "live": "https://dan10ish.github.io/RoboticArm/"
     },
     {
       "title": "College Notes",
-      "description": "Digital collection of engineering coursework",
       "source": "https://github.com/dan10ish/college",
       "live": "https://dan10ish.github.io/college/"
     }
