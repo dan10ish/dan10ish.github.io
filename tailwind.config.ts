@@ -10,7 +10,12 @@ const config: Config = {
       fontFamily: {
         sans: [
           'Helvetica Neue',
-          'Verdana',
+          'system-ui',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          'Segoe UI',
+          'Roboto',
+          'sans-serif',
         ],
       },
       width: {
