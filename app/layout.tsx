@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { ThemeProvider } from "./components/ThemeProvider";
-import { ThemeToggle } from './components/ThemeToggle';
 import { ScrollToTop } from './components/ScrollToTop';
 import "./globals.css";
 
@@ -76,44 +74,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  var theme = localStorage.getItem('theme');
-                  var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                  var isDark = theme === 'dark' || (!theme && systemDark);
-                  
-                  if (isDark) {
-                    document.documentElement.classList.add('dark');
-                  }
-                  
-                  var meta = document.createElement('meta');
-                  meta.name = 'theme-color';
-                  meta.content = isDark ? '#171717' : '#ffffff';
-                  document.head.appendChild(meta);
-                } catch (e) {}
-              })();
-            `,
-          }}
-        />
+        <meta name="theme-color" content="#ffffff" />
       </head>
       <body
-        className="antialiased bg-[rgb(var(--background))] text-[rgb(var(--foreground))] transition-colors duration-300 font-sans"
+        className="antialiased bg-[rgb(var(--background))] text-[rgb(var(--foreground))] font-sans"
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-          <ScrollToTop />
-          <ThemeToggle />
-        </ThemeProvider>
+        {children}
+        <ScrollToTop />
       </body>
     </html>
   );

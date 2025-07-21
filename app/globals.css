@@ -69,16 +69,6 @@
   --font-heading: 0.83rem;
 }
 
-.dark {
-  --background: 23 23 23;
-  --foreground: 248 248 248;
-  --secondary: 115 115 115;
-  --tertiary: 153 153 153;
-  --surface: 40 40 40;
-  --heading: 204 204 204;
-  --link-hover: #60a5fa;
-}
-
 @media (min-width: 768px) {
   :root {
     --section-gap: 3rem;
@@ -93,10 +83,6 @@
 html {
   color-scheme: light;
   scroll-behavior: smooth;
-}
-
-.dark html {
-  color-scheme: dark;
 }
 
 body {
