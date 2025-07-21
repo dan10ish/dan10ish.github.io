@@ -18,23 +18,23 @@ const ProfileHeader = memo<{ data: Data }>(({ data }) => (
   <div style={{ marginBottom: 'var(--section-gap)' }}>
     <div className="flex items-center gap-4" style={{ marginBottom: 'var(--profile-gap)' }}>
       <div className="flex-1">
-        <h1 className="text-lg md:text-xl font-normal mb-1 text-foreground leading-tight">
+        <h1 className="font-normal mb-1 text-foreground leading-tight" style={{ fontSize: 'var(--font-lg)' }}>
           {data.name}
         </h1>
       </div>
     </div>
     <div>
-      <h2 className="text-sm font-bold text-heading" style={{ marginBottom: 'var(--heading-gap)' }}>
+      <h2 className="font-bold text-heading" style={{ marginBottom: 'var(--heading-gap)', fontSize: 'var(--font-heading)' }}>
         About
       </h2>
-      <p className="text-sm text-secondary leading-relaxed">{data.bio}</p>
+      <p className="text-secondary leading-relaxed" style={{ fontSize: 'var(--font-sm)' }}>{data.bio}</p>
     </div>
   </div>
 ));
 
 const Section = memo<{ title: string; children: React.ReactNode; isLast?: boolean }>(({ title, children, isLast = false }) => (
   <div style={{ marginBottom: isLast ? '0' : 'var(--section-gap)' }}>
-    <h2 className="text-sm font-bold text-heading" style={{ marginBottom: 'var(--heading-gap)' }}>
+    <h2 className="font-bold text-heading" style={{ marginBottom: 'var(--heading-gap)', fontSize: 'var(--font-heading)' }}>
       {title}
     </h2>
     <div className="flex flex-col" style={{ gap: 'var(--item-gap)' }}>
@@ -46,11 +46,11 @@ const Section = memo<{ title: string; children: React.ReactNode; isLast?: boolea
 const WorkItem = memo<{ year: string; title: string; location?: string }>(({ year, title, location }) => (
   <div className="flex flex-col md:flex-row gap-3 md:gap-9">
     <div className="w-full md:w-28 flex-shrink-0">
-      <p className="text-sm text-tertiary">{year}</p>
+      <p className="text-tertiary" style={{ fontSize: 'var(--font-sm)' }}>{year}</p>
     </div>
     <div className="flex-1">
-      <h3 className="text-sm font-normal text-foreground leading-relaxed mb-1">{title}</h3>
-      {location && <p className="text-sm text-secondary">{location}</p>}
+      <h3 className="font-normal text-foreground leading-relaxed mb-1" style={{ fontSize: 'var(--font-sm)' }}>{title}</h3>
+      {location && <p className="text-secondary" style={{ fontSize: 'var(--font-sm)' }}>{location}</p>}
     </div>
   </div>
 ));
@@ -58,15 +58,16 @@ const WorkItem = memo<{ year: string; title: string; location?: string }>(({ yea
 const ProjectItem = memo<{ title: string; description?: string; live?: string; source?: string }>(({ title, description, live, source }) => (
   <div>
     <div className="flex items-center justify-between gap-4 mb-2">
-      <h3 className="text-sm font-normal text-foreground leading-relaxed flex-1">{title}</h3>
+      <h3 className="font-normal text-foreground leading-relaxed flex-1" style={{ fontSize: 'var(--font-sm)' }}>{title}</h3>
       {(live || source) && (
-        <div className="flex items-center gap-3 flex-shrink-0">
+        <div className="flex items-center gap-4 md:gap-5 flex-shrink-0">
           {live && (
             <a
               href={live}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-secondary text-xs hover-pointer"
+              className="flex items-center gap-1.5 text-secondary hover-pointer"
+              style={{ fontSize: 'var(--font-xs)' }}
               aria-label="View live demo"
             >
               <Link size={12} />
@@ -78,7 +79,8 @@ const ProjectItem = memo<{ title: string; description?: string; live?: string; s
               href={source}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-secondary text-xs hover-pointer"
+              className="flex items-center gap-1.5 text-secondary hover-pointer"
+              style={{ fontSize: 'var(--font-xs)' }}
               aria-label="View source code"
             >
               <Github size={12} />
@@ -88,33 +90,34 @@ const ProjectItem = memo<{ title: string; description?: string; live?: string; s
         </div>
       )}
     </div>
-    {description && <p className="text-sm text-secondary">{description}</p>}
+    {description && <p className="text-secondary" style={{ fontSize: 'var(--font-sm)' }}>{description}</p>}
   </div>
 ));
 
 const EducationItem = memo<{ year: string; institution: string; degree: string }>(({ year, institution, degree }) => (
   <div className="flex flex-col md:flex-row gap-3 md:gap-9">
     <div className="w-full md:w-28 flex-shrink-0">
-      <p className="text-sm text-tertiary">{year}</p>
+      <p className="text-tertiary" style={{ fontSize: 'var(--font-sm)' }}>{year}</p>
     </div>
     <div className="flex-1">
-      <h3 className="text-sm font-normal text-foreground leading-relaxed mb-1">{institution}</h3>
-      <p className="text-sm text-secondary">{degree}</p>
+      <h3 className="font-normal text-foreground leading-relaxed mb-1" style={{ fontSize: 'var(--font-sm)' }}>{institution}</h3>
+      <p className="text-secondary" style={{ fontSize: 'var(--font-sm)' }}>{degree}</p>
     </div>
   </div>
 ));
 
 const ContactItem = memo<{ platform: string; handle: string; url: string }>(({ platform, handle, url }) => (
-  <div className="flex flex-row gap-3 md:gap-9">
+  <div className="flex flex-row gap-5 md:gap-9">
     <div className="w-20 md:w-28 flex-shrink-0">
-      <p className="text-sm text-tertiary">{platform}</p>
+      <p className="text-tertiary" style={{ fontSize: 'var(--font-sm)' }}>{platform}</p>
     </div>
     <div className="flex-1">
       <a
         href={url}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-sm font-normal text-foreground hover-pointer group inline-flex items-center gap-1"
+        className="font-normal text-foreground hover-pointer group inline-flex items-center gap-1"
+        style={{ fontSize: 'var(--font-sm)' }}
       >
         {handle}
         <ArrowUpRight size={12} className="opacity-0 group-hover-show" />
@@ -135,7 +138,7 @@ export default async function Home() {
   const data: Data = JSON.parse(file);
 
   return (
-    <main className="max-w-sm md:max-w-2xl mx-auto px-7 md:px-12 py-10 md:py-18 text-sm bg-background text-foreground min-h-screen">
+    <main className="max-w-sm md:max-w-2xl mx-auto px-7 md:px-12 py-12  md:py-18 bg-background text-foreground min-h-screen">
       <div className="max-w-md md:max-w-none mx-auto">
         <ProfileHeader data={data} />
 

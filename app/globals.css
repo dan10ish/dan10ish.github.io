@@ -61,6 +61,12 @@
   --heading-gap: 1.25rem;
   --item-gap: 2rem;
   --profile-gap: 3rem;
+  
+  --font-xs: 0.75rem;
+  --font-sm: 0.83rem;
+  --font-base: 0.83rem;
+  --font-lg: 1.125rem;
+  --font-heading: 0.83rem;
 }
 
 .dark {
@@ -79,6 +85,8 @@
     --heading-gap: 1.5rem;
     --item-gap: 1.5rem;
     --profile-gap: 3rem;
+    
+    --font-lg: 1.25rem;
   }
 }
 
@@ -97,13 +105,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-display: swap;
+  font-size: var(--font-base);
 }
 
 h1, h2, h3 {
-  letter-spacing: -0.01em;
-}
-
-h2{
   font-weight: 600;
   color: rgb(var(--heading));
 }
