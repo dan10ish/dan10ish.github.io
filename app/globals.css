@@ -1,43 +1,68 @@
 @import "tailwindcss";
 
 :root {
-  --background: 248 248 248;
-  --foreground: 23 23 23;
-  --secondary: 220 220 220;
-  --link-hover: #1e4fff;
-  --letter-spacing: 0em;
+  --background: 255 255 255;
+  --foreground: 17 17 17;
+  --secondary: 85 85 85;
+  --tertiary: 153 153 153;
+  --surface: 246 246 246;
+  --link-hover: #2563eb;
 }
 
 .dark {
   --background: 23 23 23;
   --foreground: 248 248 248;
-  --secondary: 40 40 40;
-  --link-hover: #00a2ff;
+  --secondary: 115 115 115;
+  --tertiary: 153 153 153;
+  --surface: 40 40 40;
+  --link-hover: #60a5fa;
 }
 
 html {
   color-scheme: light;
-}
-
-body {
-  letter-spacing: var(--letter-spacing);
+  scroll-behavior: smooth;
 }
 
 .dark html {
   color-scheme: dark;
 }
 
-h2 {
-  color: #555555;
-  letter-spacing: var(--letter-spacing);
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.dark h2 {
-  color: #aaaaaa;
+h1, h2, h3 {
+  font-weight: 400;
+  letter-spacing: -0.01em;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  a:hover {
-    color: var(--link-hover);
-  }
+.text-foreground {
+  color: rgb(var(--foreground));
+}
+
+.text-secondary {
+  color: rgb(var(--secondary));
+}
+
+.text-tertiary {
+  color: rgb(var(--tertiary));
+}
+
+.bg-background {
+  background-color: rgb(var(--background));
+}
+
+.bg-surface {
+  background-color: rgb(var(--surface));
+}
+
+.text-link-hover {
+  color: var(--link-hover);
+}
+
+.hover\:text-link-hover:hover {
+  color: var(--link-hover);
 }

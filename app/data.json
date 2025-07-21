@@ -1,77 +1,104 @@
 {
-  "name": "DANISH",
-  "bio": [
-    "MECHATRONICS ENGINEER",
-    "BUILDING WITH MACHINE LEARNING,",
-    "ROBOTICS AND CODE"
-  ],
-  "current": [
+  "name": "Danish Ansari",
+  "bio": "I'm a mechatronics engineer exploring machine learning, robotics and finance. Building innovative solutions at the intersection of hardware and software.",
+  "website": "dan10ish.github.io",
+  "experience": [
     {
-      "title": "FRONTEND SWE, CRIDAA"
-    }
-  ],
-  "past": [
-    {
-      "title": "SWE, INNOVATIO LABS"
+      "year": "2024 — Now",
+      "title": "Frontend Software Engineer at Cridaa",
+      "location": "Mumbai, India"
     },
     {
-      "title": "SWE, ACCELUS ROBOTICS"
+      "year": "2023 — 2024", 
+      "title": "Software Engineer at Innovatio Labs",
+      "location": "Mumbai, India"
+    },
+    {
+      "year": "2023",
+      "title": "Software Engineer at Accelus Robotics", 
+      "location": "Mumbai, India"
     }
   ],
   "projects": [
     {
-      "title": "ALGOSIM",
+      "year": "2024",
+      "title": "AlgoSim",
+      "description": "Algorithm visualization platform",
       "source": "https://github.com/dan10ish/AlgoSim"
     },
     {
-      "title": "COGNICART",
+      "year": "2024",
+      "title": "CogniCart", 
+      "description": "AI-powered shopping assistant",
       "source": "https://github.com/dan10ish/cogni-cart"
     },
     {
-      "title": "CODE EDITOR",
+      "year": "2024",
+      "title": "Code Editor",
+      "description": "Web-based code editor with syntax highlighting",
       "source": "https://github.com/dan10ish/code",
       "live": "http://dan10ish.github.io/code"
     },
     {
-      "title": "3DOF ROBOTIC ARM",
+      "year": "2023",
+      "title": "3DOF Robotic Arm",
+      "description": "Computer vision controlled robotic arm",
       "source": "https://github.com/dan10ish/3DOF-RoboticArm-C"
     },
     {
-      "title": "PATHFINDER",
+      "year": "2023",
+      "title": "Pathfinder",
+      "description": "Pathfinding algorithm visualizer",
       "source": "https://github.com/dan10ish/pathfinding-visualizer",
       "live": "https://dan10ish.github.io/pathfinding-visualizer/"
     },
     {
-      "title": "ARM VISUALIZER",
+      "year": "2023",
+      "title": "ARM Visualizer",
+      "description": "3D robotic arm kinematics simulator",
       "source": "https://github.com/dan10ish/RoboticArm",
       "live": "https://dan10ish.github.io/RoboticArm/"
     },
     {
-      "title": "COLLEGE NOTES",
+      "year": "2022",
+      "title": "College Notes",
+      "description": "Digital collection of engineering coursework",
       "source": "https://github.com/dan10ish/college",
       "live": "https://dan10ish.github.io/college/"
     }
   ],
+  "education": [
+    {
+      "year": "2020 — 2024",
+      "title": "Bachelor in Mechatronics Engineering at Mumbai University",
+      "location": "Mumbai, India"
+    }
+  ],
   "contact": [
     {
-      "name": "AANSARIDAN@GMAIL.COM",
+      "platform": "Email",
+      "handle": "aansaridan@gmail.com",
       "url": "mailto:aansaridan@gmail.com"
     },
     {
-      "name": "INSTAGRAM",
-      "url": "https://instagram.com/dan10ish"
+      "platform": "GitHub", 
+      "handle": "dan10ish",
+      "url": "https://github.com/dan10ish"
     },
     {
-      "name": "X",
-      "url": "https://x.com/dan10ish"
-    },
-    {
-      "name": "LINKEDIN",
+      "platform": "LinkedIn",
+      "handle": "dan10ish", 
       "url": "https://linkedin.com/in/dan10ish"
     },
     {
-      "name": "GITHUB",
-      "url": "https://github.com/dan10ish"
+      "platform": "X",
+      "handle": "dan10ish",
+      "url": "https://x.com/dan10ish"
+    },
+    {
+      "platform": "Instagram",
+      "handle": "dan10ish",
+      "url": "https://instagram.com/dan10ish"
     }
   ]
 } 

@@ -13,6 +13,13 @@ const config: Config = {
           'Verdana',
         ],
       },
+      width: {
+        '22': '5.5rem',
+        '28': '7rem',
+      },
+      spacing: {
+        '18': '4.5rem',
+      },
     },
   },
   plugins: [],

@@ -5,115 +5,196 @@ import { memo } from 'react';
 
 interface Data {
   name: string;
-  bio: string[];
-  current: { title: string }[];
-  past: { title: string }[];
-  projects: { title: string; live?: string; source?: string }[];
-  contact: { name: string; url: string }[];
+  bio: string;
+  website: string;
+  experience: { year: string; title: string; location: string }[];
+  projects: { year: string; title: string; description?: string; live?: string; source?: string }[];
+  education: { year: string; title: string; location: string }[];
+  contact: { platform: string; handle: string; url: string }[];
 }
 
-const Section = memo<{ title: string; children: React.ReactNode }>(({ title, children }) => (
-  <div className="grid grid-cols-[80px_1fr] gap-x-6">
-    <h2 className="font-semibold uppercase tracking-widest text-right">{title}</h2>
-    <div>{children}</div>
+const ProfileHeader = memo<{ data: Data }>(({ data }) => (
+  <div className="mb-8 md:mb-12">
+    <div className="flex items-center gap-4 mb-6 md:mb-9">
+      <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white font-semibold text-base md:text-lg">
+        {data.name.split(' ').map(n => n[0]).join('')}
+      </div>
+      <div className="flex-1">
+        <h1 className="text-lg md:text-xl font-normal mb-1 text-foreground leading-tight">
+          {data.name}
+        </h1>
+        <p className="text-sm text-secondary mb-2 leading-relaxed">
+          Mechatronics Engineer in Mumbai
+        </p>
+        <div className="inline-block bg-surface px-2.5 py-1 rounded-lg">
+          <span className="text-xs text-secondary">
+            {data.website}
+          </span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h2 className="text-sm font-normal mb-1 text-foreground">About</h2>
+      <p className="text-sm text-secondary leading-relaxed">
+        {data.bio}
+      </p>
+    </div>
   </div>
 ));
 
+const Section = memo<{ title: string; children: React.ReactNode; className?: string }>(({ title, children, className = "" }) => (
+  <div className={`mb-8 md:mb-12 ${className}`}>
+    <h2 className="text-sm font-normal mb-4 md:mb-6 text-foreground">{title}</h2>
+    <div className="space-y-6 md:space-y-0">
+      {children}
+    </div>
+  </div>
+));
+
+const TimelineItem = memo<{ 
+  year: string; 
+  title: string; 
+  location?: string; 
+  description?: string;
+  live?: string;
+  source?: string;
+  isClickable?: boolean;
+  isFirst?: boolean;
+}>(({ year, title, location, description, live, source, isClickable = true, isFirst = false }) => (
+  <div className={`flex flex-col md:flex-row gap-4 md:gap-9 ${!isFirst ? 'pt-6 md:pt-6' : ''}`}>
+    <div className="w-full md:w-28 flex-shrink-0">
+      <p className="text-sm text-tertiary">{year}</p>
+    </div>
+    <div className="flex-1 pb-0 md:pb-3">
+      <div className="mb-2">
+        {isClickable ? (
+          <h3 className="text-sm font-normal text-foreground leading-relaxed hover:text-link-hover transition-colors cursor-pointer">
+            {title}
+          </h3>
+        ) : (
+          <h3 className="text-sm font-normal text-foreground leading-relaxed">
+            {title}
+          </h3>
+        )}
+      </div>
+      {location && (
+        <p className="text-sm text-secondary mb-2">{location}</p>
+      )}
+      {description && (
+        <p className="text-sm text-secondary mb-3">{description}</p>
+      )}
+      {(live || source) && (
+        <div className="flex items-center gap-3">
+          {live && (
+            <a
+              href={live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:scale-110 text-secondary hover:text-link-hover transition-all p-1 -ml-1"
+              aria-label="View live demo"
+            >
+              <Link size={14} />
+            </a>
+          )}
+          {source && (
+            <a
+              href={source}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:scale-110 text-secondary hover:text-link-hover transition-all p-1 -ml-1"
+              aria-label="View source code"
+            >
+              <Github size={14} />
+            </a>
+          )}
+        </div>
+      )}
+    </div>
+  </div>
+));
+
+const ContactItem = memo<{ platform: string; handle: string; url: string; isFirst?: boolean }>(({ platform, handle, url, isFirst = false }) => (
+  <div className={`flex flex-col md:flex-row gap-2 md:gap-9 ${!isFirst ? 'py-2 md:py-2' : 'pb-2 md:pb-2'}`}>
+    <div className="w-full md:w-28 flex-shrink-0">
+      <p className="text-sm text-tertiary">{platform}</p>
+    </div>
+    <div className="flex-1">
+      <a
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-sm font-normal text-foreground hover:text-link-hover transition-colors group inline-flex items-center gap-1"
+      >
+        {handle}
+        <ArrowUpRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+      </a>
+    </div>
+  </div>
+));
+
+ProfileHeader.displayName = 'ProfileHeader';
 Section.displayName = 'Section';
+TimelineItem.displayName = 'TimelineItem';
+ContactItem.displayName = 'ContactItem';
 
 export default async function Home() {
   const file = await fs.readFile(path.join(process.cwd(), 'app/data.json'), 'utf8');
   const data: Data = JSON.parse(file);
 
   return (
-    <main className="font-sans p-8 md:p-12 max-w-3xl mx-auto text-sm">
-      <div className="grid grid-cols-[80px_1fr] gap-x-6">
-      <h2 className="font-semibold uppercase tracking-widest text-right">{data.name}</h2>
-        <div className="font-medium">
-          {data.bio.map((line, index) => (
-            <p key={index}>{line}</p>
+    <main className="max-w-sm md:max-w-2xl mx-auto px-6 md:px-12 py-6 md:py-18 font-sans text-sm bg-background text-foreground transition-colors min-h-screen">
+      <div className="max-w-md md:max-w-none mx-auto">
+        <ProfileHeader data={data} />
+
+        <Section title="Work Experience">
+          {data.experience.map((item, index) => (
+            <TimelineItem
+              key={index}
+              year={item.year}
+              title={item.title}
+              location={item.location}
+              isFirst={index === 0}
+            />
           ))}
-        </div>
-      </div>
-
-      <div className="mt-6 space-y-6">
-        <Section title="Current">
-          <div className="space-y-1">
-            {data.current.map((item, index) => (
-              <p key={index} className="font-medium">
-                {item.title}
-              </p>
-            ))}
-          </div>
-        </Section>
-
-        <Section title="Past">
-          <div className="space-y-1">
-            {data.past.map((item, index) => (
-              <p key={index} className="font-medium">
-                {item.title}
-              </p>
-            ))}
-          </div>
         </Section>
 
         <Section title="Projects">
-          <div className="space-y-2">
-            {data.projects.map((project, index) => (
-              <div key={index} className="flex items-center space-x-4">
-                <p className="font-medium flex-grow">{project.title}</p>
-                {project.live ? (
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:scale-110 hover:text-blue-600 dark:hover:text-blue-300 p-1 -mt-1 mr-2 rounded-md"
-                    aria-label={`View live demo of ${project.title}`}
-                  >
-                    <Link size={16} />
-                  </a>
-                ) : (
-                  <span className="opacity-30 p-1 -mt-1 mr-2" aria-hidden="true">
-                    <Link size={16} />
-                  </span>
-                )}
-                {project.source ? (
-                  <a
-                    href={project.source}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:scale-110 hover:text-blue-600 dark:hover:text-blue-300 p-1 -mt-1 -ml-1 rounded-md"
-                    aria-label={`View source code of ${project.title} on GitHub`}
-                  >
-                    <Github size={16} />
-                  </a>
-                ) : (
-                  <span className="opacity-30 p-1 -mt-1 -ml-1" aria-hidden="true">
-                    <Github size={16} />
-                  </span>
-                )}
-              </div>
-            ))}
-          </div>
+          {data.projects.map((project, index) => (
+            <TimelineItem
+              key={index}
+              year={project.year}
+              title={project.title}
+              description={project.description}
+              live={project.live}
+              source={project.source}
+              isFirst={index === 0}
+            />
+          ))}
         </Section>
 
-        <Section title="Contact">
-          <div className="space-y-1">
-            {data.contact.map((item, index) => (
-              <div key={index}>
-                <a
-                  href={item.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-medium hover:text-blue-600 dark:hover:text-blue-300 group inline-flex items-center gap-1 transition-colors"
-                  aria-label={`Contact via ${item.name}`}
-                >
-                  {item.name}
-                  <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-                </a>
-              </div>
-            ))}
-          </div>
+        <Section title="Education">
+          {data.education.map((item, index) => (
+            <TimelineItem
+              key={index}
+              year={item.year}
+              title={item.title}
+              location={item.location}
+              isClickable={false}
+              isFirst={index === 0}
+            />
+          ))}
+        </Section>
+
+        <Section title="Contact" className="mb-6">
+          {data.contact.map((item, index) => (
+            <ContactItem
+              key={index}
+              platform={item.platform}
+              handle={item.handle}
+              url={item.url}
+              isFirst={index === 0}
+            />
+          ))}
         </Section>
       </div>
     </main>
