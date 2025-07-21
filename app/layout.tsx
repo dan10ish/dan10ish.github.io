@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "./components/ThemeProvider";
 import { ThemeToggle } from './components/ThemeToggle';
+import { ScrollToTop } from './components/ScrollToTop';
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -92,7 +93,7 @@ export default function RootLayout({
                   
                   var meta = document.createElement('meta');
                   meta.name = 'theme-color';
-                  meta.content = isDark ? '#171717' : '#f8f8f8';
+                  meta.content = isDark ? '#171717' : '#ffffff';
                   document.head.appendChild(meta);
                 } catch (e) {}
               })();
@@ -110,6 +111,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <ScrollToTop />
           <ThemeToggle />
         </ThemeProvider>
       </body>

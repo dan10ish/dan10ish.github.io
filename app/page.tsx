@@ -26,15 +26,10 @@ const ProfileHeader = memo<{ data: Data }>(({ data }) => (
         <p className="text-sm text-secondary mb-2 leading-relaxed">
           Mechatronics Engineer in Mumbai
         </p>
-        <div className="inline-block bg-surface px-2.5 py-1 rounded-lg">
-          <span className="text-xs text-secondary">
-            {data.website}
-          </span>
-        </div>
       </div>
     </div>
     <div>
-      <h2 className="text-sm font-normal mb-1 text-foreground">About</h2>
+      <h2 className="text-sm font-semibold mb-1 text-heading">About</h2>
       <p className="text-sm text-secondary leading-relaxed">
         {data.bio}
       </p>
@@ -44,7 +39,7 @@ const ProfileHeader = memo<{ data: Data }>(({ data }) => (
 
 const Section = memo<{ title: string; children: React.ReactNode; className?: string }>(({ title, children, className = "" }) => (
   <div className={`mb-8 md:mb-12 ${className}`}>
-    <h2 className="text-sm font-normal mb-4 md:mb-6 text-foreground">{title}</h2>
+    <h2 className="text-sm font-semibold mb-4 md:mb-6 text-heading">{title}</h2>
     <div className="space-y-6 md:space-y-0">
       {children}
     </div>
@@ -66,15 +61,45 @@ const TimelineItem = memo<{
       <p className="text-sm text-tertiary">{year}</p>
     </div>
     <div className="flex-1 pb-0 md:pb-3">
-      <div className="mb-2">
-        {isClickable ? (
-          <h3 className="text-sm font-normal text-foreground leading-relaxed hover:text-link-hover transition-colors cursor-pointer">
-            {title}
-          </h3>
-        ) : (
-          <h3 className="text-sm font-normal text-foreground leading-relaxed">
-            {title}
-          </h3>
+      <div className="flex items-start justify-between gap-4 mb-2">
+        <div className="flex-1">
+          {isClickable ? (
+            <h3 className="text-sm font-normal text-foreground leading-relaxed hover:text-link-hover transition-colors cursor-pointer">
+              {title}
+            </h3>
+          ) : (
+            <h3 className="text-sm font-normal text-foreground leading-relaxed">
+              {title}
+            </h3>
+          )}
+        </div>
+        {(live || source) && (
+          <div className="flex items-center gap-4 flex-shrink-0">
+            {live && (
+              <a
+                href={live}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 text-secondary hover:text-link-hover transition-all text-xs hover:scale-105"
+                aria-label="View live demo"
+              >
+                <Link size={12} />
+                <span>Live</span>
+              </a>
+            )}
+            {source && (
+              <a
+                href={source}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 text-secondary hover:text-link-hover transition-all text-xs hover:scale-105"
+                aria-label="View source code"
+              >
+                <Github size={12} />
+                <span>Source</span>
+              </a>
+            )}
+          </div>
         )}
       </div>
       {location && (
@@ -83,39 +108,13 @@ const TimelineItem = memo<{
       {description && (
         <p className="text-sm text-secondary mb-3">{description}</p>
       )}
-      {(live || source) && (
-        <div className="flex items-center gap-3">
-          {live && (
-            <a
-              href={live}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:scale-110 text-secondary hover:text-link-hover transition-all p-1 -ml-1"
-              aria-label="View live demo"
-            >
-              <Link size={14} />
-            </a>
-          )}
-          {source && (
-            <a
-              href={source}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:scale-110 text-secondary hover:text-link-hover transition-all p-1 -ml-1"
-              aria-label="View source code"
-            >
-              <Github size={14} />
-            </a>
-          )}
-        </div>
-      )}
     </div>
   </div>
 ));
 
 const ContactItem = memo<{ platform: string; handle: string; url: string; isFirst?: boolean }>(({ platform, handle, url, isFirst = false }) => (
-  <div className={`flex flex-col md:flex-row gap-2 md:gap-9 ${!isFirst ? 'py-2 md:py-2' : 'pb-2 md:pb-2'}`}>
-    <div className="w-full md:w-28 flex-shrink-0">
+  <div className={`flex flex-row gap-4 md:gap-9 ${!isFirst ? 'py-2 md:py-2' : 'pb-2 md:pb-2'}`}>
+    <div className="w-20 md:w-28 flex-shrink-0">
       <p className="text-sm text-tertiary">{platform}</p>
     </div>
     <div className="flex-1">
