@@ -9,13 +9,11 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: [
-          'Helvetica Neue',
-          'system-ui',
-          '-apple-system',
-          'BlinkMacSystemFont',
-          'Segoe UI',
-          'Roboto',
-          'sans-serif',
+          'SF Mono',
+          'Menlo',
+          'Monaco',
+          'Courier New',
+          'monospace',
         ],
       },
       width: {

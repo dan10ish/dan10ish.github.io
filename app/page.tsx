@@ -2,6 +2,7 @@ import { promises as fs } from 'fs';
 import { Github, Link, ArrowUpRight } from 'lucide-react';
 import path from 'path';
 import { memo } from 'react';
+import Image from 'next/image';
 
 interface Data {
   name: string;
@@ -16,16 +17,10 @@ interface Data {
 const ProfileHeader = memo<{ data: Data }>(({ data }) => (
   <div style={{ marginBottom: 'var(--section-gap)' }}>
     <div className="flex items-center gap-4" style={{ marginBottom: 'var(--profile-gap)' }}>
-      <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white font-semibold text-base md:text-lg">
-        {data.name.split(' ').map(n => n[0]).join('')}
-      </div>
       <div className="flex-1">
         <h1 className="text-lg md:text-xl font-normal mb-1 text-foreground leading-tight">
           {data.name}
         </h1>
-        <p className="text-sm text-secondary mb-2 leading-relaxed">
-          Mechatronics Engineer in Mumbai
-        </p>
       </div>
     </div>
     <div>
