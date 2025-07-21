@@ -5,7 +5,10 @@
   --foreground: 23 23 23;
   --secondary: 220 220 220;
   --link-hover: #1e4fff;
-  --letter-spacing: 0em;
+  --letter-spacing: 0.04em;
+  --left-font: 600;
+  --right-font: 500;
+  --font-size: 0.85rem;
 }
 
 .dark {
@@ -21,6 +24,7 @@ html {
 
 body {
   letter-spacing: var(--letter-spacing);
+  font-size: var(--font-size);
 }
 
 .dark html {
@@ -30,10 +34,15 @@ body {
 h2 {
   color: #555555;
   letter-spacing: var(--letter-spacing);
+  font-weight: var(--left-font);
 }
 
 .dark h2 {
   color: #aaaaaa;
+}
+
+.font-medium {
+  font-weight: var(--right-font) !important;
 }
 
 @media (hover: hover) and (pointer: fine) {
