@@ -3,39 +3,6 @@ import { Github, Link, ArrowUpRight } from 'lucide-react';
 import path from 'path';
 import { memo } from 'react';
 
-const SPACING = {
-  sectionGap: {
-    mobile: 'mb-8',
-    desktop: 'mb-12'
-  },
-  headingToContent: {
-    mobile: 'mb-5',
-    desktop: 'mb-6'
-  },
-  itemGap: {
-    mobile: 'space-y-5',
-    desktop: 'space-y-0'
-  },
-  itemRowGap: {
-    mobile: 'pt-5',
-    desktop: 'pt-6'
-  },
-  profileHeader: {
-    sectionGap: {
-      mobile: 'mb-8',
-      desktop: 'mb-12'
-    },
-    avatarToAbout: {
-      mobile: 'mb-6',
-      desktop: 'mb-9'
-    },
-    aboutHeading: {
-      mobile: 'mb-5',
-      desktop: 'mb-6'
-    }
-  }
-};
-
 interface Data {
   name: string;
   bio: string;
@@ -47,8 +14,8 @@ interface Data {
 }
 
 const ProfileHeader = memo<{ data: Data }>(({ data }) => (
-  <div className={`${SPACING.profileHeader.sectionGap.mobile} md:${SPACING.profileHeader.sectionGap.desktop}`}>
-    <div className={`flex items-center gap-4 ${SPACING.profileHeader.avatarToAbout.mobile} md:${SPACING.profileHeader.avatarToAbout.desktop}`}>
+  <div style={{ marginBottom: 'var(--section-gap)' }}>
+    <div className="flex items-center gap-4" style={{ marginBottom: 'var(--profile-gap)' }}>
       <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white font-semibold text-base md:text-lg">
         {data.name.split(' ').map(n => n[0]).join('')}
       </div>
@@ -62,58 +29,41 @@ const ProfileHeader = memo<{ data: Data }>(({ data }) => (
       </div>
     </div>
     <div>
-      <h2 className={`text-sm font-bold ${SPACING.profileHeader.aboutHeading.mobile} md:${SPACING.profileHeader.aboutHeading.desktop} text-heading`}>About</h2>
-      <p className="text-sm text-secondary leading-relaxed">
-        {data.bio}
-      </p>
+      <h2 className="text-sm font-bold text-heading" style={{ marginBottom: 'var(--heading-gap)' }}>
+        About
+      </h2>
+      <p className="text-sm text-secondary leading-relaxed">{data.bio}</p>
     </div>
   </div>
 ));
 
 const Section = memo<{ title: string; children: React.ReactNode; isLast?: boolean }>(({ title, children, isLast = false }) => (
-  <div className={isLast ? '' : `${SPACING.sectionGap.mobile} md:${SPACING.sectionGap.desktop}`}>
-    <h2 className={`text-sm font-bold ${SPACING.headingToContent.mobile} md:${SPACING.headingToContent.desktop} text-heading`}>{title}</h2>
-    <div className={`${SPACING.itemGap.mobile} md:${SPACING.itemGap.desktop}`}>
+  <div style={{ marginBottom: isLast ? '0' : 'var(--section-gap)' }}>
+    <h2 className="text-sm font-bold text-heading" style={{ marginBottom: 'var(--heading-gap)' }}>
+      {title}
+    </h2>
+    <div className="flex flex-col" style={{ gap: 'var(--item-gap)' }}>
       {children}
     </div>
   </div>
 ));
 
-const WorkItem = memo<{ 
-  year: string; 
-  title: string; 
-  location?: string; 
-  isFirst?: boolean;
-}>(({ year, title, location, isFirst = false }) => (
-  <div className={`flex flex-col md:flex-row gap-3 md:gap-9 ${!isFirst ? `${SPACING.itemRowGap.mobile} md:${SPACING.itemRowGap.desktop}` : ''}`}>
+const WorkItem = memo<{ year: string; title: string; location?: string }>(({ year, title, location }) => (
+  <div className="flex flex-col md:flex-row gap-3 md:gap-9">
     <div className="w-full md:w-28 flex-shrink-0">
       <p className="text-sm text-tertiary">{year}</p>
     </div>
-    <div className="flex-1 pb-0 md:pb-3">
-      <div className="mb-1">
-        <h3 className="text-sm font-normal text-foreground leading-relaxed">
-          {title}
-        </h3>
-      </div>
-      {location && (
-        <p className="text-sm text-secondary">{location}</p>
-      )}
+    <div className="flex-1">
+      <h3 className="text-sm font-normal text-foreground leading-relaxed mb-1">{title}</h3>
+      {location && <p className="text-sm text-secondary">{location}</p>}
     </div>
   </div>
 ));
 
-const ProjectItem = memo<{ 
-  title: string; 
-  description?: string;
-  live?: string;
-  source?: string;
-  isFirst?: boolean;
-}>(({ title, description, live, source, isFirst = false }) => (
-  <div className={`${!isFirst ? `${SPACING.itemRowGap.mobile} md:${SPACING.itemRowGap.desktop}` : ''}`}>
+const ProjectItem = memo<{ title: string; description?: string; live?: string; source?: string }>(({ title, description, live, source }) => (
+  <div>
     <div className="flex items-center justify-between gap-4 mb-2">
-      <h3 className="text-sm font-normal text-foreground leading-relaxed flex-1">
-        {title}
-      </h3>
+      <h3 className="text-sm font-normal text-foreground leading-relaxed flex-1">{title}</h3>
       {(live || source) && (
         <div className="flex items-center gap-3 flex-shrink-0">
           {live && (
@@ -121,7 +71,7 @@ const ProjectItem = memo<{
               href={live}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-secondary hover:text-link-hover text-xs"
+              className="flex items-center gap-1.5 text-secondary text-xs hover-pointer"
               aria-label="View live demo"
             >
               <Link size={12} />
@@ -133,7 +83,7 @@ const ProjectItem = memo<{
               href={source}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-secondary hover:text-link-hover text-xs"
+              className="flex items-center gap-1.5 text-secondary text-xs hover-pointer"
               aria-label="View source code"
             >
               <Github size={12} />
@@ -143,35 +93,24 @@ const ProjectItem = memo<{
         </div>
       )}
     </div>
-    {description && (
-      <p className="text-sm text-secondary">{description}</p>
-    )}
+    {description && <p className="text-sm text-secondary">{description}</p>}
   </div>
 ));
 
-const EducationItem = memo<{ 
-  year: string; 
-  institution: string; 
-  degree: string;
-  isFirst?: boolean;
-}>(({ year, institution, degree, isFirst = false }) => (
-  <div className={`flex flex-col md:flex-row gap-3 md:gap-9 ${!isFirst ? `${SPACING.itemRowGap.mobile} md:${SPACING.itemRowGap.desktop}` : ''}`}>
+const EducationItem = memo<{ year: string; institution: string; degree: string }>(({ year, institution, degree }) => (
+  <div className="flex flex-col md:flex-row gap-3 md:gap-9">
     <div className="w-full md:w-28 flex-shrink-0">
       <p className="text-sm text-tertiary">{year}</p>
     </div>
-    <div className="flex-1 pb-0 md:pb-3">
-      <div className="mb-1">
-        <h3 className="text-sm font-normal text-foreground leading-relaxed mb-1">
-          {institution}
-        </h3>
-        <p className="text-sm text-secondary">{degree}</p>
-      </div>
+    <div className="flex-1">
+      <h3 className="text-sm font-normal text-foreground leading-relaxed mb-1">{institution}</h3>
+      <p className="text-sm text-secondary">{degree}</p>
     </div>
   </div>
 ));
 
-const ContactItem = memo<{ platform: string; handle: string; url: string; isFirst?: boolean }>(({ platform, handle, url, isFirst = false }) => (
-  <div className={`flex flex-row gap-3 md:gap-9 ${!isFirst ? 'py-2 md:py-2' : 'pb-2 md:pb-2'}`}>
+const ContactItem = memo<{ platform: string; handle: string; url: string }>(({ platform, handle, url }) => (
+  <div className="flex flex-row gap-3 md:gap-9 py-1">
     <div className="w-20 md:w-28 flex-shrink-0">
       <p className="text-sm text-tertiary">{platform}</p>
     </div>
@@ -180,10 +119,10 @@ const ContactItem = memo<{ platform: string; handle: string; url: string; isFirs
         href={url}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-sm font-normal text-foreground hover:text-link-hover group inline-flex items-center gap-1"
+        className="text-sm font-normal text-foreground hover-pointer group inline-flex items-center gap-1"
       >
         {handle}
-        <ArrowUpRight size={12} className="opacity-0 group-hover:opacity-100" />
+        <ArrowUpRight size={12} className="opacity-0 group-hover-show" />
       </a>
     </div>
   </div>
@@ -201,19 +140,13 @@ export default async function Home() {
   const data: Data = JSON.parse(file);
 
   return (
-    <main className="max-w-sm md:max-w-2xl mx-auto px-7 md:px-12 py-10 md:py-18 font-sans text-sm bg-background text-foreground min-h-screen">
+    <main className="max-w-sm md:max-w-2xl mx-auto px-6 md:px-12 py-6 md:py-18 font-sans text-sm bg-background text-foreground min-h-screen">
       <div className="max-w-md md:max-w-none mx-auto">
         <ProfileHeader data={data} />
 
         <Section title="Work Experience">
           {data.experience.map((item, index) => (
-            <WorkItem
-              key={index}
-              year={item.year}
-              title={item.title}
-              location={item.location}
-              isFirst={index === 0}
-            />
+            <WorkItem key={index} year={item.year} title={item.title} location={item.location} />
           ))}
         </Section>
 
@@ -225,32 +158,19 @@ export default async function Home() {
               description={project.description}
               live={project.live}
               source={project.source}
-              isFirst={index === 0}
             />
           ))}
         </Section>
 
         <Section title="Education">
           {data.education.map((item, index) => (
-            <EducationItem
-              key={index}
-              year={item.year}
-              institution={item.institution}
-              degree={item.degree}
-              isFirst={index === 0}
-            />
+            <EducationItem key={index} year={item.year} institution={item.institution} degree={item.degree} />
           ))}
         </Section>
 
         <Section title="Contact" isLast={true}>
           {data.contact.map((item, index) => (
-            <ContactItem
-              key={index}
-              platform={item.platform}
-              handle={item.handle}
-              url={item.url}
-              isFirst={index === 0}
-            />
+            <ContactItem key={index} platform={item.platform} handle={item.handle} url={item.url} />
           ))}
         </Section>
       </div>

@@ -48,6 +48,11 @@
   --surface: 246 246 246;
   --heading: 51 51 51;
   --link-hover: #2563eb;
+  
+  --section-gap: 3rem;
+  --heading-gap: 1.25rem;
+  --item-gap: 2rem;
+  --profile-gap: 3rem;
 }
 
 .dark {
@@ -58,6 +63,15 @@
   --surface: 40 40 40;
   --heading: 204 204 204;
   --link-hover: #60a5fa;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --section-gap: 3rem;
+    --heading-gap: 1.5rem;
+    --item-gap: 1.5rem;
+    --profile-gap: 3rem;
+  }
 }
 
 html {
@@ -109,12 +123,25 @@ h1, h2, h3 {
   color: var(--link-hover);
 }
 
-.hover\:text-link-hover:hover {
-  color: var(--link-hover);
-}
-
 @media (hover: hover) and (pointer: fine) {
-  a:hover {
+  .hover-pointer:hover {
     cursor: pointer;
+    color: var(--link-hover);
+  }
+  
+  .hover-scale:hover {
+    transform: scale(1.05);
+  }
+  
+  .hover-shadow:hover {
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  }
+  
+  .hover-bg:hover {
+    background-color: rgb(var(--secondary) / 0.2);
+  }
+  
+  .group:hover .group-hover-show {
+    opacity: 1;
   }
 }
