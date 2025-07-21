@@ -110,7 +110,7 @@ const EducationItem = memo<{ year: string; institution: string; degree: string }
 ));
 
 const ContactItem = memo<{ platform: string; handle: string; url: string }>(({ platform, handle, url }) => (
-  <div className="flex flex-row gap-3 md:gap-9 py-1">
+  <div className="flex flex-row gap-3 md:gap-9">
     <div className="w-20 md:w-28 flex-shrink-0">
       <p className="text-sm text-tertiary">{platform}</p>
     </div>
@@ -140,7 +140,7 @@ export default async function Home() {
   const data: Data = JSON.parse(file);
 
   return (
-    <main className="max-w-sm md:max-w-2xl mx-auto px-6 md:px-12 py-6 md:py-18 font-sans text-sm bg-background text-foreground min-h-screen">
+    <main className="max-w-sm md:max-w-2xl mx-auto px-7 md:px-12 py-10 md:py-18 text-sm bg-background text-foreground min-h-screen">
       <div className="max-w-md md:max-w-none mx-auto">
         <ProfileHeader data={data} />
 
