@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { ScrollToTop } from './components/ScrollToTop';
+import { ThemeProvider } from "./components/ThemeProvider";
+import { ThemeToggle } from './components/ThemeToggle';
 import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://dan10ish.github.io"),
   title: "Danish Ansari",
   description:
-  "Danish is a mechatronics engineer exploring machine learning, robotics and finance. This is his personal website.",
+    "Danish is a mechatronics engineer exploring machine learning, robotics and finance. This is his personal website.",
   icons: {
     icon: '/icon.png',
   },
@@ -74,15 +76,44 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
-        <meta name="theme-color" content="#ffffff" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var theme = localStorage.getItem('theme');
+                  var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  var isDark = theme === 'dark' || (!theme && systemDark);
+                  
+                  if (isDark) {
+                    document.documentElement.classList.add('dark');
+                  }
+                  
+                  var meta = document.createElement('meta');
+                  meta.name = 'theme-color';
+                  meta.content = isDark ? '#171717' : '#f8f8f8';
+                  document.head.appendChild(meta);
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
       </head>
       <body
         className="antialiased bg-[rgb(var(--background))] text-[rgb(var(--foreground))] font-sans"
       >
-        {children}
-        <ScrollToTop />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+          <ThemeToggle />
+          <ScrollToTop />
+        </ThemeProvider>
       </body>
     </html>
   );

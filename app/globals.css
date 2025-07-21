@@ -49,7 +49,7 @@
 }
 
 :root {
-  --background: 255 255 255;
+  --background: 248 248 248;
   --foreground: 17 17 17;
   --secondary: 85 85 85;
   --tertiary: 153 153 153;
@@ -69,6 +69,16 @@
   --font-heading: 0.83rem;
 }
 
+.dark {
+  --background: 17 17 17;
+  --foreground: 248 248 248;
+  --secondary: 161 161 170;
+  --tertiary: 113 113 122;
+  --surface: 39 39 42;
+  --heading: 228 228 231;
+  --link-hover: #60a5fa;
+}
+
 @media (min-width: 768px) {
   :root {
     --section-gap: 3rem;
@@ -83,6 +93,10 @@
 html {
   color-scheme: light;
   scroll-behavior: smooth;
+}
+
+html.dark {
+  color-scheme: dark;
 }
 
 body {
