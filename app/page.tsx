@@ -11,6 +11,7 @@ interface Data {
   education?: { title: string }[];
   projects: { title: string; live?: string; source?: string }[];
   contact: { name: string; url: string }[];
+  interests?: string[];
 }
 
 const Section = memo<{ title: string; children: React.ReactNode }>(({ title, children }) => (
@@ -33,6 +34,14 @@ export default async function Home() {
         <div style={{ fontWeight: 'var(--right-font)', fontSize: 'var(--font-size)' }}>
           {data.bio.map((line, index) => (
             <p key={index} style={{ fontSize: 'var(--font-size)' }}>{line}</p>
+          ))}
+        </div>
+      </div>
+      <div className="grid grid-cols-[80px_1fr] gap-x-6 mt-6">
+        <h2 className="font-semibold uppercase tracking-widest text-right">INTERESTS</h2>
+        <div style={{ fontWeight: 'var(--right-font)', fontSize: 'var(--font-size)' }}>
+          {data.interests && data.interests.map((interest, index) => (
+            <p key={index} style={{ fontSize: 'var(--font-size)' }}>{interest}</p>
           ))}
         </div>
       </div>

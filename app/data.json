@@ -1,9 +1,12 @@
 {
   "name": "DANISH",
+  "interests": [
+    "ML, ROBOTICS, FINANCE"
+  ],
   "bio": [
-    "BUILDING SOLUTIONS WITH",
-    "MACHINE LEARNING,",
-    "ROBOTICS AND CODE"
+    "BUILDING SOLUTIONS AT",
+    "THE INTERSECTION OF",
+    "HARDWARE AND SOFTWARE"
   ],
   "current": [
     {
