@@ -2,18 +2,18 @@
 
 :root {
   --background: 248 248 248;
-  --foreground: 23 23 23;
+  --foreground: 60 60 60;
   --secondary: 220 220 220;
   --link-hover: #1e4fff;
   --letter-spacing: 0.04em;
-  --left-font: 600;
+  --left-font: 700;
   --right-font: 500;
   --font-size: 0.85rem;
 }
 
 .dark {
   --background: 23 23 23;
-  --foreground: 248 248 248;
+  --foreground: 220 220 220;
   --secondary: 40 40 40;
   --link-hover: #00a2ff;
 }
@@ -25,6 +25,7 @@ html {
 body {
   letter-spacing: var(--letter-spacing);
   font-size: var(--font-size);
+  color: rgb(var(--foreground));
 }
 
 .dark html {
