@@ -65,7 +65,7 @@ const ProjectItem = memo<{ title: string; live?: string; source?: string }>(({ t
             href={live}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center text-secondary hover-pointer"
+            className="flex items-center text-secondary hover-pointer hover:scale-110"
             style={{ fontSize: 'var(--font-xs)' }}
             aria-label="View live demo"
           >
@@ -81,7 +81,7 @@ const ProjectItem = memo<{ title: string; live?: string; source?: string }>(({ t
             href={source}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center text-secondary hover-pointer"
+            className="flex items-center text-secondary hover-pointer hover:scale-110"
             style={{ fontSize: 'var(--font-xs)' }}
             aria-label="View source code"
           >

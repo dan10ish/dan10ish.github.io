@@ -58,15 +58,15 @@
   --link-hover: #2563eb;
   
   --section-gap: 3rem;
-  --heading-gap: 1.25rem;
-  --item-gap: 2rem;
+  --heading-gap: 1rem;
+  --item-gap: 1rem;
   --profile-gap: 3rem;
   
   --font-xs: 0.75rem;
-  --font-sm: 0.83rem;
-  --font-base: 0.83rem;
+  --font-sm: 0.85rem;
+  --font-base: 0.85rem;
   --font-lg: 0.875rem;
-  --font-heading: 0.83rem;
+  --font-heading: 0.85rem;
 }
 
 .dark {
@@ -86,7 +86,7 @@
     --item-gap: 1.5rem;
     --profile-gap: 3rem;
     
-    --font-lg: 1.25rem;
+    --font-lg: 1rem;
   }
 }
 
