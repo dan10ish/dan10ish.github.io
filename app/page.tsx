@@ -9,7 +9,7 @@ interface Data {
   bio: string;
   website: string;
   experience: { year: string; title: string; location: string }[];
-  projects: { title: string; live?: string; source?: string }[];
+  projects: { title: string; year: string; live?: string; source?: string }[];
   education: { year: string; institution: string; degree: string }[];
   contact: { platform: string; handle: string; url: string }[];
 }
@@ -55,44 +55,47 @@ const WorkItem = memo<{ year: string; title: string; location?: string }>(({ yea
   </div>
 ));
 
-const ProjectItem = memo<{ title: string; live?: string; source?: string }>(({ title, live, source }) => (
-  <div>
-    <div className="flex items-center justify-between gap-4 mb-2">
-      <h3 className="font-normal text-foreground leading-relaxed flex-1" style={{ fontSize: 'var(--font-sm)' }}>{title}</h3>
-      <div className="flex items-center gap-4 md:gap-5 flex-shrink-0">
-        {live ? (
-          <a
-            href={live}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center text-secondary hover-pointer hover:scale-110"
-            style={{ fontSize: 'var(--font-xs)' }}
-            aria-label="View live demo"
-          >
-            <Link size={16} />
-          </a>
-        ) : (
-          <span className="flex items-center text-secondary opacity-40 select-none cursor-default" style={{ fontSize: 'var(--font-xs)' }}>
-            <Link size={16} />
-          </span>
-        )}
-        {source ? (
-          <a
-            href={source}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center text-secondary hover-pointer hover:scale-110"
-            style={{ fontSize: 'var(--font-xs)' }}
-            aria-label="View source code"
-          >
-            <Github size={16} />
-          </a>
-        ) : (
-          <span className="flex items-center text-secondary opacity-40 select-none cursor-default" style={{ fontSize: 'var(--font-xs)' }}>
-            <Github size={16} />
-          </span>
-        )}
-      </div>
+const ProjectItem = memo<{ title: string; year: string; live?: string; source?: string }>(({ title, year, live, source }) => (
+  <div className="flex flex-row gap-3 md:gap-9 items-center">
+    <div className="w-28 flex-shrink-0">
+      <p className="text-tertiary" style={{ fontSize: 'var(--font-sm)' }}>{year}</p>
+    </div>
+    <div className="flex-1">
+      <h3 className="font-normal text-foreground leading-relaxed" style={{ fontSize: 'var(--font-sm)' }}>{title}</h3>
+    </div>
+    <div className="flex items-center gap-4 md:gap-5 flex-shrink-0">
+      {live ? (
+        <a
+          href={live}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center text-secondary hover-pointer hover:scale-110"
+          style={{ fontSize: 'var(--font-xs)' }}
+          aria-label="View live demo"
+        >
+          <Link size={16} />
+        </a>
+      ) : (
+        <span className="flex items-center text-secondary opacity-40 select-none cursor-default" style={{ fontSize: 'var(--font-xs)' }}>
+          <Link size={16} />
+        </span>
+      )}
+      {source ? (
+        <a
+          href={source}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center text-secondary hover-pointer hover:scale-110"
+          style={{ fontSize: 'var(--font-xs)' }}
+          aria-label="View source code"
+        >
+          <Github size={16} />
+        </a>
+      ) : (
+        <span className="flex items-center text-secondary opacity-40 select-none cursor-default" style={{ fontSize: 'var(--font-xs)' }}>
+          <Github size={16} />
+        </span>
+      )}
     </div>
   </div>
 ));
@@ -156,6 +159,7 @@ export default async function Home() {
             <ProjectItem
               key={index}
               title={project.title}
+              year={project.year}
               live={project.live}
               source={project.source}
             />
