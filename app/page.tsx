@@ -44,8 +44,8 @@ const Section = memo<{ title: string; children: React.ReactNode; isLast?: boolea
 ));
 
 const WorkItem = memo<{ year: string; title: string; location?: string }>(({ year, title, location }) => (
-  <div className="flex flex-col md:flex-row gap-3 md:gap-9">
-    <div className="w-full md:w-28 flex-shrink-0">
+  <div className="flex flex-row gap-3 md:gap-9">
+    <div className="w-28 flex-shrink-0">
       <p className="text-tertiary" style={{ fontSize: 'var(--font-sm)' }}>{year}</p>
     </div>
     <div className="flex-1">
@@ -98,8 +98,8 @@ const ProjectItem = memo<{ title: string; live?: string; source?: string }>(({ t
 ));
 
 const EducationItem = memo<{ year: string; institution: string; degree: string }>(({ year, institution, degree }) => (
-  <div className="flex flex-col md:flex-row gap-3 md:gap-9">
-    <div className="w-full md:w-28 flex-shrink-0">
+  <div className="flex flex-row gap-3 md:gap-9">
+    <div className="w-28 flex-shrink-0">
       <p className="text-tertiary" style={{ fontSize: 'var(--font-sm)' }}>{year}</p>
     </div>
     <div className="flex-1">
@@ -110,8 +110,8 @@ const EducationItem = memo<{ year: string; institution: string; degree: string }
 ));
 
 const ContactItem = memo<{ platform: string; handle: string; url: string }>(({ platform, handle, url }) => (
-  <div className="flex flex-row gap-5 md:gap-9">
-    <div className="w-20 md:w-28 flex-shrink-0">
+  <div className="flex flex-row gap-3 md:gap-9">
+    <div className="w-28 flex-shrink-0">
       <p className="text-tertiary" style={{ fontSize: 'var(--font-sm)' }}>{platform}</p>
     </div>
     <div className="flex-1">
