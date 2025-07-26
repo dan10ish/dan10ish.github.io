@@ -1,7 +1,7 @@
 "use client";
 
 import { memo, useState, useEffect, useRef } from "react";
-import { Github, Link, ArrowUpRight, ChevronDown } from "lucide-react";
+import { Github, Link, ChevronDown } from "lucide-react";
 
 interface Project {
   title: string;
