@@ -1,7 +1,7 @@
 import { promises as fs } from "fs";
 import path from "path";
 import { ArrowUpRight } from "lucide-react";
-import { Section, ProjectsSection } from "./components/InteractiveSections";
+import { Section, ProjectsSection } from "./components/Sections";
 
 interface Data {
   name: string;
@@ -24,7 +24,11 @@ export default async function Home() {
   return (
     <main
       className="font-sans p-8 md:p-12 max-w-3xl mx-auto pb-12"
-      style={{ fontSize: "var(--font-size)" }}
+      style={{
+        fontSize: "var(--font-size)",
+        backgroundColor: "rgb(var(--background))",
+        color: "rgb(var(--foreground))",
+      }}
     >
       <div className="grid grid-cols-[80px_1fr] gap-x-6">
         <h2
@@ -32,6 +36,7 @@ export default async function Home() {
           style={{
             fontWeight: "var(--left-font)",
             fontSize: "var(--font-size)",
+            color: "var(--heading-color)",
           }}
         >
           {data.name}
@@ -50,7 +55,10 @@ export default async function Home() {
         </div>
       </div>
       <div className="grid grid-cols-[80px_1fr] gap-x-6 mt-6">
-        <h2 className="font-semibold uppercase tracking-widest text-right">
+        <h2
+          className="font-semibold uppercase tracking-widest text-right"
+          style={{ color: "var(--heading-color)" }}
+        >
           INTERESTS
         </h2>
         <div
@@ -128,7 +136,7 @@ export default async function Home() {
                   href={item.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-blue-600 dark:hover:text-blue-300 group inline-flex items-center gap-1 transition-colors"
+                  className="group inline-flex items-center gap-1 transition-colors"
                   style={{
                     fontWeight: "var(--right-font)",
                     fontSize: "var(--font-size)",

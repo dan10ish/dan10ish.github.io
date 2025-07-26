@@ -12,7 +12,10 @@ interface Project {
 export const Section = memo<{ title: string; children: React.ReactNode }>(
   ({ title, children }) => (
     <div className="grid grid-cols-[80px_1fr] gap-x-6">
-      <h2 className="font-semibold uppercase tracking-widest text-right">
+      <h2
+        className="font-semibold uppercase tracking-widest text-right"
+        style={{ color: "var(--heading-color)" }}
+      >
         {title}
       </h2>
       <div>{children}</div>
@@ -65,7 +68,7 @@ export const ProjectsSection = ({ projects }: { projects: Project[] }) => {
       <div className="relative">
         <div
           ref={scrollContainerRef}
-          className="space-y-2 max-h-[170px] md:max-h-[200px] overflow-auto p-2 -m-2 scrollbar-hide"
+          className="space-y-2 max-h-[160px] md:max-h-[190px] overflow-auto scrollbar-hide"
         >
           {projects.map((project, index) => (
             <div
@@ -86,7 +89,7 @@ export const ProjectsSection = ({ projects }: { projects: Project[] }) => {
                   href={project.live}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="transition-transform hover:scale-110 hover:text-blue-600 dark:hover:text-blue-300 p-1 -mt-1 mr-2 rounded-md"
+                  className="transition-transform hover:scale-110 p-1 -mt-1 mr-2 rounded-md"
                   aria-label={`View live demo of ${project.title}`}
                 >
                   <Link size={16} />
@@ -101,7 +104,7 @@ export const ProjectsSection = ({ projects }: { projects: Project[] }) => {
                   href={project.source}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="transition-transform hover:scale-110 hover:text-blue-600 dark:hover:text-blue-300 p-1 -mt-1 -ml-1 rounded-md"
+                  className="transition-transform hover:scale-110 p-1 -mt-1 -ml-1 rounded-md"
                   aria-label={`View source code of ${project.title} on GitHub`}
                 >
                   <Github size={16} />
@@ -121,8 +124,9 @@ export const ProjectsSection = ({ projects }: { projects: Project[] }) => {
             className="absolute -bottom-0.5 -left-10 p-1 rounded-full hover:cursor-pointer"
           >
             <ChevronDown
-              className="animate-bounce text-[#555555] dark:text-[#777777]"
-              size={18}
+              className="animate-bounce"
+              size={16}
+              style={{ color: "var(--heading-color)" }}
             />
           </button>
         )}
