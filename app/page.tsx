@@ -28,7 +28,7 @@ export default async function Home() {
   const data: Data = JSON.parse(file);
 
   return (
-    <main className="font-sans p-8 md:p-12 max-w-3xl mx-auto" style={{ fontSize: 'var(--font-size)' }}>
+    <main className="font-sans p-8 md:p-12 max-w-3xl mx-auto pb-12" style={{ fontSize: 'var(--font-size)' }}>
       <div className="grid grid-cols-[80px_1fr] gap-x-6">
         <h2 className="uppercase tracking-widest text-right" style={{ fontWeight: 'var(--left-font)', fontSize: 'var(--font-size)' }}>{data.name}</h2>
         <div style={{ fontWeight: 'var(--right-font)', fontSize: 'var(--font-size)' }}>
