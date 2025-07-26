@@ -58,6 +58,38 @@
       "title": "COLLEGE NOTES",
       "source": "https://github.com/dan10ish/college",
       "live": "https://dan10ish.github.io/college/"
+    },
+    {
+      "title": "MACOS PORTFOLIO",
+      "source": "https://github.com/dan10ish/os",
+      "live": "https://os-danishs-projects-31d8c677.vercel.app/"
+    },
+    {
+      "title": "COMMENT TOXICITY",
+      "source": "https://github.com/dan10ish/CommentToxicity"
+    },
+    {
+      "title": "TERMINAL HACKER",
+      "source": "https://github.com/dan10ish/Unity-Terminal_Hacker"
+    },
+    {
+      "title": "OFFICE",
+      "source": "https://github.com/dan10ish/Office",
+      "live": "https://dan10ish.github.io/Office/"
+    },
+    {
+      "title": "CUBE RUNNER",
+      "source": "https://github.com/dan10ish/Unity-ProjectRun"
+    },
+    {
+      "title": "GALAXY",
+      "source": "https://github.com/dan10ish/Galaxy",
+      "live": "https://dan10ish.github.io/Galaxy/"
+    },
+    {
+      "title": "PERSONAL WEBSITE",
+      "source": "https://github.com/dan10ish/dan10ish.github.io",
+      "live": "https://dan10ish.github.io"
     }
   ],
   "contact": [

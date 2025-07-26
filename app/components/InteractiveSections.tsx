@@ -65,7 +65,7 @@ export const ProjectsSection = ({ projects }: { projects: Project[] }) => {
       <div className="relative">
         <div
           ref={scrollContainerRef}
-          className="space-y-2 max-h-[170px] md:max-h-[220px] overflow-auto p-2 -m-2 scrollbar-hide"
+          className="space-y-2 max-h-[170px] md:max-h-[200px] overflow-auto p-2 -m-2 scrollbar-hide"
         >
           {projects.map((project, index) => (
             <div
@@ -118,11 +118,11 @@ export const ProjectsSection = ({ projects }: { projects: Project[] }) => {
           <button
             onClick={handleScrollDown}
             aria-label="Scroll to bottom"
-            className="absolute bottom-0 -left-10 p-1 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-offset-gray-800"
+            className="absolute -bottom-0.5 -left-10 p-1 rounded-full hover:cursor-pointer"
           >
             <ChevronDown
               className="animate-bounce text-[#555555] dark:text-[#777777]"
-              size={20}
+              size={18}
             />
           </button>
         )}
