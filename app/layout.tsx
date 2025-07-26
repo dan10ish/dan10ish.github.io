@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "./components/ThemeProvider";
-import { ThemeToggle } from './components/ThemeToggle';
+import { ThemeToggle } from "./components/ThemeToggle";
 import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://dan10ish.github.io"),
   title: "Danish Ansari",
   description:
-  "Danish is a mechatronics engineer exploring machine learning, robotics and finance. This is his personal website.",
+    "Danish is a mechatronics engineer exploring machine learning, robotics and finance. This is his personal website.",
   icons: {
-    icon: '/icon.png',
+    icon: "/icon.png",
   },
   keywords: [
     "Danish",
@@ -92,7 +92,7 @@ export default function RootLayout({
                   
                   var meta = document.createElement('meta');
                   meta.name = 'theme-color';
-                  meta.content = isDark ? '#171717' : '#f8f8f8';
+                  meta.content = isDark ? '#060606' : '#f8f8f8';
                   document.head.appendChild(meta);
                 } catch (e) {}
               })();
@@ -100,9 +100,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body
-        className="antialiased bg-[rgb(var(--background))] text-[rgb(var(--foreground))] transition-colors duration-300 font-sans"
-      >
+      <body className="antialiased bg-[rgb(var(--background))] text-[rgb(var(--foreground))] transition-colors duration-300 font-sans">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

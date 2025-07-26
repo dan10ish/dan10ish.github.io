@@ -1,0 +1,132 @@
+"use client";
+
+import { memo, useState, useEffect, useRef } from "react";
+import { Github, Link, ArrowUpRight, ChevronDown } from "lucide-react";
+
+interface Project {
+  title: string;
+  live?: string;
+  source?: string;
+}
+
+export const Section = memo<{ title: string; children: React.ReactNode }>(
+  ({ title, children }) => (
+    <div className="grid grid-cols-[80px_1fr] gap-x-6">
+      <h2 className="font-semibold uppercase tracking-widest text-right">
+        {title}
+      </h2>
+      <div>{children}</div>
+    </div>
+  )
+);
+Section.displayName = "Section";
+
+export const ProjectsSection = ({ projects }: { projects: Project[] }) => {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [showScrollIndicator, setShowScrollIndicator] = useState(false);
+
+  const handleScrollDown = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTo({
+        top: scrollContainerRef.current.scrollHeight,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const updateIndicatorVisibility = () => {
+      const isScrollable = container.scrollHeight > container.clientHeight;
+      const isAtBottom =
+        container.scrollHeight - Math.ceil(container.scrollTop) <=
+        container.clientHeight + 1;
+
+      setShowScrollIndicator(isScrollable && !isAtBottom);
+    };
+
+    updateIndicatorVisibility();
+
+    container.addEventListener("scroll", updateIndicatorVisibility);
+    window.addEventListener("resize", updateIndicatorVisibility);
+
+    return () => {
+      if (container) {
+        container.removeEventListener("scroll", updateIndicatorVisibility);
+      }
+      window.removeEventListener("resize", updateIndicatorVisibility);
+    };
+  }, [projects]);
+
+  return (
+    <Section title="Projects">
+      <div className="relative">
+        <div
+          ref={scrollContainerRef}
+          className="space-y-2 max-h-[170px] md:max-h-[220px] overflow-auto p-2 -m-2 scrollbar-hide"
+        >
+          {projects.map((project, index) => (
+            <div
+              key={index}
+              className="flex items-center space-x-4 max-w-[450px]"
+            >
+              <p
+                className="flex-grow"
+                style={{
+                  fontWeight: "var(--right-font)",
+                  fontSize: "var(--font-size)",
+                }}
+              >
+                {project.title}
+              </p>
+              {project.live ? (
+                <a
+                  href={project.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-transform hover:scale-110 hover:text-blue-600 dark:hover:text-blue-300 p-1 -mt-1 mr-2 rounded-md"
+                  aria-label={`View live demo of ${project.title}`}
+                >
+                  <Link size={16} />
+                </a>
+              ) : (
+                <span className="opacity-30 p-1 -mt-1 mr-2" aria-hidden="true">
+                  <Link size={16} />
+                </span>
+              )}
+              {project.source ? (
+                <a
+                  href={project.source}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-transform hover:scale-110 hover:text-blue-600 dark:hover:text-blue-300 p-1 -mt-1 -ml-1 rounded-md"
+                  aria-label={`View source code of ${project.title} on GitHub`}
+                >
+                  <Github size={16} />
+                </a>
+              ) : (
+                <span className="opacity-30 p-1 -mt-1 -ml-1" aria-hidden="true">
+                  <Github size={16} />
+                </span>
+              )}
+            </div>
+          ))}
+        </div>
+        {showScrollIndicator && (
+          <button
+            onClick={handleScrollDown}
+            aria-label="Scroll to bottom"
+            className="absolute bottom-0 -left-10 p-1 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-offset-gray-800"
+          >
+            <ChevronDown
+              className="animate-bounce text-[#555555] dark:text-[#777777]"
+              size={20}
+            />
+          </button>
+        )}
+      </div>
+    </Section>
+  );
+};

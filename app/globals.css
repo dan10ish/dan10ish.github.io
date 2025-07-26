@@ -9,13 +9,15 @@
   --left-font: 700;
   --right-font: 500;
   --font-size: 0.85rem;
+  --heading-color: #555555;
 }
 
 .dark {
-  --background: 23 23 23;
+  --background: 6 6 6;
   --foreground: 220 220 220;
   --secondary: 40 40 40;
   --link-hover: #00a2ff;
+  --heading-color: #777;
 }
 
 html {
@@ -33,13 +35,9 @@ body {
 }
 
 h2 {
-  color: #555555;
+  color: var(--heading-color);
   letter-spacing: var(--letter-spacing);
   font-weight: var(--left-font);
-}
-
-.dark h2 {
-  color: #aaaaaa;
 }
 
 .font-medium {
@@ -50,4 +48,13 @@ h2 {
   a:hover {
     color: var(--link-hover);
   }
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
