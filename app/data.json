@@ -22,40 +22,40 @@
   "projects": [
     {
       "title": "AlgoSim",
-      "year": "2024",
+      "tag": "Algorithm",
       "source": "https://github.com/dan10ish/AlgoSim"
     },
     {
       "title": "CogniCart",
-      "year": "2023",
+      "tag": "AI",
       "source": "https://github.com/dan10ish/cogni-cart"
     },
     {
       "title": "Code Editor",
-      "year": "2023",
+      "tag": "Web",
       "source": "https://github.com/dan10ish/code",
       "live": "http://dan10ish.github.io/code"
     },
     {
       "title": "3DOF Robotic Arm",
-      "year": "2022",
+      "tag": "Robotics",
       "source": "https://github.com/dan10ish/3DOF-RoboticArm-C"
     },
     {
       "title": "Pathfinder",
-      "year": "2022",
+      "tag": "Algorithm",
       "source": "https://github.com/dan10ish/pathfinding-visualizer",
       "live": "https://dan10ish.github.io/pathfinding-visualizer/"
     },
     {
       "title": "ARM Visualizer",
-      "year": "2021",
+      "tag": "Robotics",
       "source": "https://github.com/dan10ish/RoboticArm",
       "live": "https://dan10ish.github.io/RoboticArm/"
     },
     {
       "title": "College Notes",
-      "year": "2021",
+      "tag": "Education",
       "source": "https://github.com/dan10ish/college",
       "live": "https://dan10ish.github.io/college/"
     }
