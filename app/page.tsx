@@ -3,6 +3,7 @@ import { Github, Link, ArrowUpRight } from 'lucide-react';
 import path from 'path';
 import { memo } from 'react';
 import Image from 'next/image';
+import { ThemeToggle } from './components/ThemeToggle';
 
 interface Data {
   name: string;
@@ -22,6 +23,7 @@ const ProfileHeader = memo<{ data: Data }>(({ data }) => (
           {data.name}
         </h1>
       </div>
+      <ThemeToggle />
     </div>
     <div>
       <h2 className="font-bold text-heading" style={{ marginBottom: 'var(--heading-gap)', fontSize: 'var(--font-heading)' }}>

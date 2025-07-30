@@ -34,7 +34,7 @@ export function ScrollToTop() {
   return (
     <button
       onClick={scrollToTop}
-      className="fixed bottom-16 right-5 p-2 rounded-full bg-[rgb(var(--surface))] text-foreground hover-shadow hover-scale hover-bg transition-all duration-200 z-60"
+      className="fixed bottom-5 right-5 p-2 rounded-full bg-[rgb(var(--surface))] text-foreground hover-shadow hover-scale hover-bg transition-all duration-200 z-60"
       aria-label="Scroll to top"
     >
       <ChevronUp size={16} />

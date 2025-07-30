@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { ScrollToTop } from './components/ScrollToTop';
 import { ThemeProvider } from "./components/ThemeProvider";
-import { ThemeToggle } from './components/ThemeToggle';
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -112,7 +111,6 @@ export default function RootLayout({
         >
           {children}
           <ScrollToTop />
-          <ThemeToggle />
         </ThemeProvider>
       </body>
     </html>
