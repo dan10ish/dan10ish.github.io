@@ -9,8 +9,8 @@ const PowerButton = ({ onClick }) => (
     alt="Power"
     className="power-button"
     onClick={onClick}
-    width="60"
-    height="60"
+    width="50"
+    height="50"
   />
 );
 

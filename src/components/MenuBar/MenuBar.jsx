@@ -30,8 +30,7 @@ const MenuBar = ({ onShutdown }) => {
   const handleShutdown = () => {
     setIsShuttingDown(true);
     setTimeout(() => {
-      onShutdown();
-      setIsShuttingDown(false);
+      window.location.reload();
     }, 1000);
   };
 
@@ -51,7 +50,7 @@ const MenuBar = ({ onShutdown }) => {
             {isShuttingDown && (
               <div className="shutdown-dropdown">
                 <Loader2 className="shutdown-spinner" size={12} />
-                <span>Shutting down...</span>
+                <span>Shutting down</span>
               </div>
             )}
           </div>

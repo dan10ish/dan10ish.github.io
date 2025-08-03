@@ -4,7 +4,7 @@
   left: 0;
   width: 100vw;
   height: 100dvh;
-  background: #cccccc;
+  background: #181818;
   display: flex;
   justify-content: center;
   z-index: 10000;
@@ -38,19 +38,20 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 40px;
+    gap: 50px;
     max-width: 350px;
     padding-top: 40px;
   }
 
-  .startup-label, .startup-value{
+  .startup-label,
+  .startup-value {
     font-size: 14px !important;
   }
 }
 
 .startup-label {
   font-size: 15px;
-  color: #666666;
+  color: #888888;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 500;
@@ -60,7 +61,7 @@
 
 .startup-value {
   font-size: 15px;
-  color: #333333;
+  color: #eee;
   line-height: 1.6;
   letter-spacing: 1px;
 }
@@ -71,7 +72,7 @@
 
 .contact-link {
   display: block;
-  color: #333333;
+  color: #eee;
   text-decoration: none;
   margin-bottom: 4px;
   transition: color 0.2s ease;
@@ -88,6 +89,7 @@
 .power-button-container {
   display: flex;
   justify-content: center;
+  border-radius: 10px;
 }
 
 .power-button {
@@ -98,5 +100,5 @@
 
 .power-button:hover {
   transform: scale(1.1);
-  filter: invert(0.3);
+  filter: invert(0.9);
 }
