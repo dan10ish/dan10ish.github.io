@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Play, Pause } from "lucide-react";
 import "./MusicPlayer.css";
-import albumArt from "./assets/soundtrack-cover.jpg";
-import songFile from "./assets/soundtrack.mp3";
+const albumArt = "/assets/music/soundtrack-cover.jpg";
+const songFile = "/assets/music/soundtrack.mp3";
 
 const MusicPlayer = () => {
     const [isPlaying, setIsPlaying] = useState(false);

@@ -1,7 +1,7 @@
 import React from "react";
 import { ArrowUpRight } from "lucide-react";
 import "./About.css";
-import profilePic from "../About/assets/profile.jpg"
+const profilePic = "/assets/about/profile.jpg"
 
 const About = () => {
   return (
