@@ -3,11 +3,13 @@ import { Loader2 } from "lucide-react";
 import MenuBar from "./components/MenuBar/MenuBar";
 import Desktop from "./components/Desktop/Desktop";
 import Window from "./components/Window/Window";
+import { StartupScreen, LoadingScreen } from "./components/Startup";
 import { getApps } from "./apps/apps.jsx";
 import wallpaper from "./assets/wallpaper.png";
 import "./index.css";
 
 const App = () => {
+  const [startupPhase, setStartupPhase] = useState("startup");
   const [openApps, setOpenApps] = useState({});
   const [focusOrder, setFocusOrder] = useState([]);
   const [loadingApps, setLoadingApps] = useState({});
@@ -95,6 +97,22 @@ const App = () => {
   }, [focusOrder]);
 
   const openAppEntries = useMemo(() => Object.entries(openApps), [openApps]);
+
+  const handlePowerOn = () => {
+    setStartupPhase("loading");
+  };
+
+  const handleLoadComplete = () => {
+    setStartupPhase("desktop");
+  };
+
+  if (startupPhase === "startup") {
+    return <StartupScreen onPowerOn={handlePowerOn} />;
+  }
+
+  if (startupPhase === "loading") {
+    return <LoadingScreen onLoadComplete={handleLoadComplete} />;
+  }
 
   return (
     <>
