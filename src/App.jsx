@@ -106,6 +106,13 @@ const App = () => {
     setStartupPhase("desktop");
   };
 
+  const handleShutdown = () => {
+    setOpenApps({});
+    setFocusOrder([]);
+    setLoadingApps({});
+    setStartupPhase("startup");
+  };
+
   useEffect(() => {
     const metaThemeColor = document.querySelector('meta[name="theme-color"]');
     if (metaThemeColor) {
@@ -130,7 +137,7 @@ const App = () => {
   return (
     <>
       <div className="desktop" style={{ backgroundImage: `url(${wallpaper})` }}>
-        <MenuBar />
+        <MenuBar onShutdown={handleShutdown} />
         <Desktop onOpenApp={handleOpenApp} apps={apps} />
       </div>
 
