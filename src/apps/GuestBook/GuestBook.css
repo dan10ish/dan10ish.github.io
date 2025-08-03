@@ -1,0 +1,389 @@
+.guestbook-app {
+  padding: 20px;
+  font-family: Helvetica, sans-serif;
+  color: #fff;
+  max-width: 500px;
+}
+
+.guestbook-header {
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: center;
+}
+
+.leave-message-button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: #fff;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 300px;
+  justify-content: center;
+}
+
+@media (hover: hover) {
+  .leave-message-button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #4A9EFF;
+    color: #4A9EFF;
+  }
+}
+
+.guestbook-messages-section {
+  margin-top: 0;
+}
+
+#guestbooks___guestbook-messages-container {
+  color: #fff;
+  margin-bottom: 20px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+#guestbooks___guestbook-messages-container.loaded {
+  opacity: 1;
+}
+
+#guestbooks___guestbook-messages-container>div {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 14px;
+  margin-bottom: 14px;
+  font-size: 13px;
+}
+
+#guestbooks___guestbook-messages-container>div:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+#guestbooks___guestbook-messages-container strong {
+  color: #4A9EFF;
+  font-weight: 600;
+  font-size: 14px;
+  display: block;
+  margin-bottom: 4px;
+}
+
+#guestbooks___guestbook-messages-container small {
+  color: #888;
+  font-size: 11px;
+  display: block;
+  margin: 0 0 6px 0;
+  font-weight: 400;
+}
+
+#guestbooks___guestbook-messages-container small::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin-top: 6px;
+}
+
+#guestbooks___guestbook-messages-container div,
+#guestbooks___guestbook-messages-container p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 13px;
+  line-height: 1.4;
+  margin: 6px 0 0 0;
+  word-wrap: break-word;
+}
+
+#guestbooks___guestbook-messages-container a {
+  color: #4A9EFF;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+#guestbooks___guestbook-messages-container a:hover {
+  color: #4A9EFF;
+  text-decoration: underline;
+}
+
+
+#guestbooks___guestbook-made-with {
+  text-align: center;
+  margin: 30px 0 0 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#guestbooks___guestbook-made-with small {
+  color: #666;
+  font-size: 12px;
+}
+
+#guestbooks___guestbook-made-with a {
+  color: #666;
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  #guestbooks___guestbook-made-with a:hover {
+    color: #888;
+  }
+}
+
+/* Message Form Styles */
+.message-form {
+  padding: 20px;
+  font-family: Helvetica, sans-serif;
+  color: #fff;
+  max-width: 450px;
+}
+
+
+
+.message-form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-field {
+  width: 100%;
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  font-family: inherit;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: #999;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: #4A9EFF;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.1);
+}
+
+.form-field textarea {
+  resize: vertical;
+  min-height: 100px;
+  line-height: 1.5;
+}
+
+/* Instagram field styling */
+.instagram-field {
+  position: relative;
+}
+
+.instagram-input-container {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 12px 16px;
+  gap: 10px;
+  transition: all 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.instagram-input-container:focus-within {
+  border-color: #4A9EFF;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.1);
+}
+
+.instagram-icon {
+  color: #E4405F;
+  flex-shrink: 0;
+}
+
+.instagram-prefix {
+  color: #aaa;
+  font-size: 14px;
+  flex-shrink: 0;
+  font-weight: 500;
+}
+
+.instagram-input-container input {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #fff;
+  font-size: 14px;
+  font-family: inherit;
+  flex-grow: 1;
+  min-width: 0;
+  width: 100%;
+  padding: 5px 10px;
+}
+
+.instagram-input-container input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.instagram-input-container input::placeholder {
+  color: #777;
+}
+
+/* Challenge field styling */
+.challenge-field {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.challenge-label {
+  color: #888;
+  font-size: 14px;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.challenge-hint {
+  color: #888;
+  font-size: 12px;
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+.challenge-field input {
+  margin-top: 0;
+}
+
+.submit-button {
+  background: linear-gradient(135deg, rgba(74, 158, 255, 0.8) 0%, rgba(74, 158, 255, 0.6) 100%);
+  border: 1px solid rgba(74, 158, 255, 0.3);
+  border-radius: 8px;
+  color: #fff;
+  padding: 14px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.submit-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+@media (hover: hover) {
+  .submit-button:hover:not(:disabled) {
+    background: linear-gradient(135deg, rgba(74, 158, 255, 0.9) 0%, rgba(74, 158, 255, 0.7) 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(74, 158, 255, 0.3);
+  }
+}
+
+.error-message {
+  color: #ff6b6b;
+  font-size: 13px;
+  background: rgba(255, 107, 107, 0.1);
+  border: 1px solid rgba(255, 107, 107, 0.2);
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-top: -8px;
+  text-align: center;
+}
+
+.success-message {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.success-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(74, 158, 255, 0.2) 0%, rgba(74, 158, 255, 0.1) 100%);
+  color: #4A9EFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0 auto 24px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(74, 158, 255, 0.2);
+}
+
+.success-message h3 {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 12px 0;
+}
+
+.success-message p {
+  color: #999;
+  font-size: 14px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.guestbook-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.loading-spinner {
+  color: #4A9EFF;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.challenge-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.challenge-loading .loading-spinner {
+  color: #4A9EFF;
+  flex-shrink: 0;
+}
+
+.success-last {
+  margin-top: 20px !important;
+}

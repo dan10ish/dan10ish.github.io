@@ -1,0 +1,102 @@
+.about-app {
+  padding: 20px;
+  font-family: Helvetica, sans-serif;
+  color: #fff;
+  max-width: 500px;
+}
+
+.profile-section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.profile-image {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+  margin-left: 10px;
+}
+
+.profile-name {
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0;
+  color: #fff;
+}
+
+.social-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.social-label {
+  color: #888;
+  font-size: 14px;
+  width: 80px;
+  text-align: right;
+  margin-right: 15px;
+}
+
+.social-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.social-icon {
+  color: #fff;
+  opacity: 1;
+}
+
+@media (hover: hover) {
+  .social-icon {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .social-link:hover {
+    color: #4A9EFF;
+  }
+
+  .social-link:hover .social-icon {
+    color: #4A9EFF;
+    opacity: 1;
+  }
+}
+
+.about-section {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.about-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.about-label {
+  color: #888;
+  font-size: 14px;
+  width: 80px;
+  text-align: right;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.about-text {
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.4;
+  max-width: 350px;
+}
+
