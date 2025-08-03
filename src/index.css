@@ -1,48 +1,40 @@
 @font-face {
-  font-family: 'Helvetica';
-  src: url('/fonts/Helvetica.woff2') format('woff2');
-  font-weight: 400;
+  font-family: 'Helvetica Neue';
+  src: url('/fonts/helveticaneue-thin.woff2') format('woff2');
+  font-weight: 100;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Helvetica';
-  src: url('/fonts/Helvetica-Bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Helvetica';
-  src: url('/fonts/Helvetica-Light.woff2') format('woff2');
+  font-family: 'Helvetica Neue';
+  src: url('/fonts/helveticaneue-light.woff2') format('woff2');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Helvetica';
-  src: url('/fonts/Helvetica-Oblique.woff2') format('woff2');
+  font-family: 'Helvetica Neue';
+  src: url('/fonts/helveticaneue.woff2') format('woff2');
   font-weight: 400;
-  font-style: italic;
+  font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Helvetica';
-  src: url('/fonts/Helvetica-BoldOblique.woff2') format('woff2');
+  font-family: 'Helvetica Neue';
+  src: url('/fonts/helveticaneue-medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: url('/fonts/helveticaneue-bold.woff2') format('woff2');
   font-weight: 700;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Helvetica';
-  src: url('/fonts/Helvetica-LightOblique.woff2') format('woff2');
-  font-weight: 300;
-  font-style: italic;
+  font-style: normal;
   font-display: swap;
 }
 
@@ -63,11 +55,11 @@
   --window-header-bg: rgba(44, 44, 46, 0.9);
   --border-color: rgba(255, 255, 255, 0.1);
   --shadow-color: rgba(0, 0, 0, 0.3);
-  --font-family: Helvetica, sans-serif;
+  --font-family: 'Helvetica Neue', sans-serif;
 }
 
 body {
-  font-family: Helvetica, sans-serif;
+  font-family: 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;

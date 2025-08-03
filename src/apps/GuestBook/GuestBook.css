@@ -1,6 +1,6 @@
 .guestbook-app {
   padding: 20px;
-  font-family: Helvetica, sans-serif;
+  font-family: 'Helvetica Neue', sans-serif;
   color: #fff;
   max-width: 500px;
 }
@@ -138,7 +138,7 @@
 /* Message Form Styles */
 .message-form {
   padding: 20px;
-  font-family: Helvetica, sans-serif;
+  font-family: 'Helvetica Neue', sans-serif;
   color: #fff;
   max-width: 450px;
 }

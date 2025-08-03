@@ -15,9 +15,11 @@ const LoadingScreen = ({ onLoadComplete }) => {
 
   useEffect(() => {
     const assetsToLoad = [
-      "/fonts/Helvetica.woff2",
-      "/fonts/Helvetica-Bold.woff2",
-      "/fonts/Helvetica-Light.woff2",
+      "/fonts/helveticaneue-thin.woff2",
+      "/fonts/helveticaneue-light.woff2",
+      "/fonts/helveticaneue.woff2",
+      "/fonts/helveticaneue-medium.woff2",
+      "/fonts/helveticaneue-bold.woff2",
       "/icon.png",
       appleIcon,
       powerIcon,
@@ -38,7 +40,7 @@ const LoadingScreen = ({ onLoadComplete }) => {
     const loadAsset = (src) => {
       return new Promise((resolve) => {
         if (src.endsWith('.woff2')) {
-          const font = new FontFace('Helvetica', `url(${src})`);
+          const font = new FontFace('Helvetica Neue', `url(${src})`);
           font.load().then(() => {
             document.fonts.add(font);
             resolve();
