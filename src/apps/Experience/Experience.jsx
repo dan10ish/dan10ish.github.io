@@ -76,7 +76,7 @@ const TechnologyIcon = ({ technology }) => {
   return (
     <div className="technology-item">
       <img 
-        src={`/src/apps/Experience/assets/${technology.icon}`}
+        src={`/icons/technologies/${technology.icon}`}
         alt={technology.name}
         className="technology-icon"
         width="16" 
