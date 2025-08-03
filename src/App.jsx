@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState, useCallback, useMemo, useEffect } from "react";
 import { Loader2 } from "lucide-react";
 import MenuBar from "./components/MenuBar/MenuBar";
 import Desktop from "./components/Desktop/Desktop";
@@ -105,6 +105,19 @@ const App = () => {
   const handleLoadComplete = () => {
     setStartupPhase("desktop");
   };
+
+  useEffect(() => {
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (metaThemeColor) {
+      if (startupPhase === "startup") {
+        metaThemeColor.setAttribute('content', '#ccc');
+      } else if (startupPhase === "loading") {
+        metaThemeColor.setAttribute('content', '#000');
+      } else {
+        metaThemeColor.setAttribute('content', '#11112D');
+      }
+    }
+  }, [startupPhase]);
 
   if (startupPhase === "startup") {
     return <StartupScreen onPowerOn={handlePowerOn} />;

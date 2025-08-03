@@ -16,25 +16,11 @@
   flex-direction: column;
   align-items: center;
   gap: 60px;
-}
-
-.apple-logo {
-  animation: pulse 2s ease-in-out infinite;
+  transform: translateY(-20%);
 }
 
 .apple-logo img {
-  filter: invert(0.8);
-}
-
-@keyframes pulse {
-  0%, 100% {
-    opacity: 0.6;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.05);
-  }
+  filter: invert(1);
 }
 
 .loading-bar-container {
@@ -72,6 +58,7 @@
   0% {
     transform: translateX(-100%);
   }
+
   100% {
     transform: translateX(100%);
   }
