@@ -15,43 +15,47 @@ const PowerButton = ({ onClick }) => (
 );
 
 const StartupScreen = ({ onPowerOn }) => {
+  const getContactLink = (platform, username) => {
+    const links = {
+      email: `mailto:${username}`,
+      instagram: `https://instagram.com/${username}`,
+      x: `https://x.com/${username}`,
+      linkedin: `https://linkedin.com/in/${username}`,
+      github: `https://github.com/${username}`
+    };
+    return links[platform] || '#';
+  };
+
   return (
     <div className="startup-screen">
       <div className="startup-content">
         <div className="startup-info">
-          <div className="startup-name">{data.name}</div>
-          <div className="startup-title">{data.title}</div>
-          <div className="startup-details">
-            <div className="startup-row">
-              <span className="startup-label">interests</span>
-              <span className="startup-value">{data.interests}</span>
-            </div>
-            <div className="startup-row">
-              <span className="startup-label">current</span>
-              <span className="startup-value">{data.current}</span>
-            </div>
-            <div className="startup-row">
-              <span className="startup-label">past</span>
-              <div className="startup-value">
-                {data.past.map((item, index) => (
-                  <div key={index}>{item}</div>
-                ))}
-              </div>
-            </div>
-            <div className="startup-row">
-              <span className="startup-label">education</span>
-              <span className="startup-value">{data.education}</span>
-            </div>
-            <div className="startup-row">
-              <span className="startup-label">contact</span>
-              <div className="startup-value">
-                <div>{data.contact.email}</div>
-                <div>{data.contact.instagram}</div>
-                <div>{data.contact.x}</div>
-                <div>{data.contact.linkedin}</div>
-                <div>{data.contact.github}</div>
-              </div>
-            </div>
+          <div className="startup-label">{data.name}</div>
+          <div className="startup-value">{data.title}</div>
+          
+          <div className="startup-label">interests</div>
+          <div className="startup-value">{data.interests}</div>
+          
+          <div className="startup-label">current</div>
+          <div className="startup-value">{data.current}</div>
+          
+          <div className="startup-label">past</div>
+          <div className="startup-value">
+            {data.past.map((item, index) => (
+              <div key={index}>{item}</div>
+            ))}
+          </div>
+          
+          <div className="startup-label">education</div>
+          <div className="startup-value">{data.education}</div>
+          
+          <div className="startup-label">contact</div>
+          <div className="startup-value">
+            <a href={getContactLink('email', data.contact.email)} className="contact-link">{data.contact.email}</a>
+            <a href={getContactLink('instagram', data.contact.instagram)} target="_blank" rel="noopener noreferrer" className="contact-link">Instagram</a>
+            <a href={getContactLink('x', data.contact.x)} target="_blank" rel="noopener noreferrer" className="contact-link">X</a>
+            <a href={getContactLink('linkedin', data.contact.linkedin)} target="_blank" rel="noopener noreferrer" className="contact-link">LinkedIn</a>
+            <a href={getContactLink('github', data.contact.github)} target="_blank" rel="noopener noreferrer" className="contact-link">GitHub</a>
           </div>
         </div>
         <div className="power-button-container">

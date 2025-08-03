@@ -3,8 +3,8 @@
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
-  background: #000;
+  height: 100dvh;
+  background: #c9c9c9;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,56 +21,45 @@
 }
 
 .startup-info {
-  text-align: left;
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 20px 40px;
+  align-items: start;
   width: 100%;
 }
 
-.startup-name {
-  font-size: 24px;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 8px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-.startup-title {
-  font-size: 14px;
-  color: #888;
-  margin-bottom: 40px;
-  line-height: 1.4;
-}
-
-.startup-details {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.startup-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 40px;
-}
-
 .startup-label {
-  font-size: 12px;
-  color: #666;
+  font-size: 15px;
+  color: #555555;
   text-transform: uppercase;
   letter-spacing: 1px;
-  min-width: 80px;
   font-weight: 500;
+  text-align: right;
 }
 
 .startup-value {
-  font-size: 12px;
+  font-size: 16px;
   color: #fff;
   line-height: 1.6;
-  flex: 1;
 }
 
 .startup-value div {
-  margin-bottom: 2px;
+  margin-bottom: 4px;
+}
+
+.contact-link {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  margin-bottom: 4px;
+  transition: color 0.2s ease;
+}
+
+@media (hover: hover) {
+  .contact-link:hover {
+    color: #007AFF;
+    text-decoration: underline;
+  }
 }
 
 .power-button-container {
