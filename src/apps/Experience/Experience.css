@@ -1,6 +1,7 @@
 .experience-app {
   padding: 20px;
   font-family: 'Helvetica Neue', sans-serif;
+  font-weight: 400;
   color: #fff;
   max-width: 500px;
 }
@@ -28,6 +29,7 @@
 .experience-label {
   color: #888;
   font-size: 14px;
+  font-weight: 400;
   width: 70px;
   text-align: right;
   margin-right: 15px;
@@ -52,32 +54,53 @@
 
 .company-info {
   display: flex;
-  flex-direction: column;
-  gap: 2px;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .company-role {
   color: #fff;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.company-separator {
+  color: #666;
+  font-size: 14px;
+  font-weight: 300;
   line-height: 1.4;
 }
 
 .company-name {
   color: #888;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 300;
   letter-spacing: 0.3px;
-  line-height: 1.3;
+  line-height: 1.4;
 }
 
 @media (hover: hover) {
   .company-item:hover {
     background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    transition: all 0.2s ease;
   }
 
   .company-item:hover .company-role {
     color: #4A9EFF;
+    transition: color 0.2s ease;
+  }
+
+  .company-item:hover .company-separator {
+    color: #4A9EFF;
+    transition: color 0.2s ease;
+  }
+
+  .company-item:hover .company-name {
+    color: #ccc;
+    transition: color 0.2s ease;
   }
 }
 
@@ -92,7 +115,6 @@
   align-items: flex-start;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   padding: 8px 6px;
-  cursor: pointer;
 }
 
 .education-item:last-child {
@@ -102,6 +124,7 @@
 .education-label {
   color: #888;
   font-size: 14px;
+  font-weight: 400;
   width: 70px;
   text-align: right;
   margin-right: 15px;
@@ -109,40 +132,62 @@
 }
 
 .education-content {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
+  cursor: pointer;
+  padding: 4px 8px;
+  margin: -4px -8px;
+  border-radius: 4px;
   flex-grow: 1;
 }
 
 .education-info {
   display: flex;
-  flex-direction: column;
-  gap: 2px;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .education-degree {
   color: #fff;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.education-separator {
+  color: #666;
+  font-size: 14px;
+  font-weight: 300;
   line-height: 1.4;
 }
 
 .education-institution {
   color: #888;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 300;
   letter-spacing: 0.3px;
-  line-height: 1.3;
+  line-height: 1.4;
 }
 
 @media (hover: hover) {
-  .education-item:hover {
+  .education-content:hover {
     background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    transition: all 0.2s ease;
   }
 
-  .education-item:hover .education-degree {
+  .education-content:hover .education-degree {
     color: #4A9EFF;
+    transition: color 0.2s ease;
+  }
+
+  .education-content:hover .education-separator {
+    color: #4A9EFF;
+    transition: color 0.2s ease;
+  }
+
+  .education-content:hover .education-institution {
+    color: #ccc;
+    transition: color 0.2s ease;
   }
 }
 
@@ -151,6 +196,7 @@
 .education-detail {
   padding: 20px;
   font-family: 'Helvetica Neue', sans-serif;
+  font-weight: 400;
   color: #fff;
   max-width: 500px;
 }
@@ -171,6 +217,7 @@
 .education-detail-label {
   color: #888;
   font-size: 14px;
+  font-weight: 400;
   width: 80px;
   text-align: right;
   margin-right: 15px;
@@ -181,6 +228,7 @@
 .education-detail-text {
   color: #fff;
   font-size: 14px;
+  font-weight: 400;
   line-height: 1.4;
   max-width: 350px;
 }
@@ -211,7 +259,7 @@
 .technology-name {
   color: #fff;
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 300;
 }
 
 .experience-image-container,

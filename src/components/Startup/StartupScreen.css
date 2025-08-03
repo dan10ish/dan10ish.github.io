@@ -5,6 +5,7 @@
   width: 100vw;
   height: 100dvh;
   background: #181818;
+  font-weight: 400;
   display: flex;
   justify-content: center;
   z-index: 10000;
@@ -16,7 +17,7 @@
   align-items: center;
   gap: 60px;
   max-width: 600px;
-  padding-top: 100px;
+  padding-top: 50px;
   text-transform: uppercase;
 }
 
@@ -54,7 +55,7 @@
   color: #888888;
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-weight: 500;
+  font-weight: 400;
   text-align: right;
   line-height: 1.6;
 }
@@ -62,18 +63,21 @@
 .startup-value {
   font-size: 15px;
   color: #eee;
+  font-weight: 400;
   line-height: 1.6;
   letter-spacing: 1px;
 }
 
 .startup-value div {
   margin-bottom: 4px;
+  font-weight: 400;
 }
 
 .contact-link {
   display: block;
   color: #eee;
   text-decoration: none;
+  font-weight: 400;
   margin-bottom: 4px;
   transition: color 0.2s ease;
   letter-spacing: 1px;

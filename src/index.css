@@ -60,6 +60,7 @@
 
 body {
   font-family: 'Helvetica Neue', sans-serif;
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
@@ -79,6 +80,7 @@ body {
   gap: 12px;
   color: #e0e0e0;
   font-size: 14px;
+  font-weight: 400;
 }
 
 .loading-spinner {

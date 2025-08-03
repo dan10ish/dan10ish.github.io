@@ -1,6 +1,7 @@
 .about-app {
   padding: 20px;
   font-family: 'Helvetica Neue', sans-serif;
+  font-weight: 400;
   color: #fff;
   max-width: 500px;
 }
@@ -36,6 +37,7 @@
 .social-label {
   color: #888;
   font-size: 14px;
+  font-weight: 400;
   width: 80px;
   text-align: right;
   margin-right: 15px;
@@ -45,6 +47,7 @@
   color: #fff;
   text-decoration: none;
   font-size: 14px;
+  font-weight: 400;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -87,6 +90,7 @@
 .about-label {
   color: #888;
   font-size: 14px;
+  font-weight: 400;
   width: 80px;
   text-align: right;
   margin-right: 15px;
@@ -96,6 +100,7 @@
 .about-text {
   color: #fff;
   font-size: 14px;
+  font-weight: 400;
   line-height: 1.4;
   max-width: 350px;
 }

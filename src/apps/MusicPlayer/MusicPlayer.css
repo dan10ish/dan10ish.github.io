@@ -47,6 +47,7 @@
   background: rgba(255, 255, 255, 0.2);
   border: rgba(255, 255, 255, 0.1) solid 1px;
   color: #cacaca;
+  font-weight: 400;
   display: flex;
   align-items: center;
   justify-content: center;

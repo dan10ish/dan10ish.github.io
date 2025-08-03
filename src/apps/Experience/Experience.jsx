@@ -41,6 +41,7 @@ const Experience = ({ onOpenWindow }) => {
                   >
                     <div className="company-info">
                       <span className="company-role">{company.role}</span>
+                      <span className="company-separator">@</span>
                       <span className="company-name">{company.company}</span>
                     </div>
                   </div>
@@ -61,7 +62,8 @@ const Experience = ({ onOpenWindow }) => {
             <span className="education-label">education</span>
             <div className="education-content">
               <div className="education-info">
-                <span className="education-degree">{education.degree} in {education.field}</span>
+                <span className="education-degree">{education.field}</span>
+                <span className="education-separator">@</span>
                 <span className="education-institution">{education.institution}</span>
               </div>
             </div>
