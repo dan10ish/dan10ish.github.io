@@ -56,26 +56,36 @@ const StartupScreen = ({ onPowerOn }) => {
           
           <div className="startup-label">contact</div>
           <div className="startup-value">
-            <a href={getContactLink('email', data.contact.email)} className="contact-link">
-              {data.contact.email}
+            <div className="contact-item">
+              <a href={getContactLink('email', data.contact.email)} className="contact-link">
+                {data.contact.email}
+              </a>
               <ArrowUpRight className="contact-icon" size={12} />
-            </a>
-            <a href={getContactLink('instagram', data.contact.instagram)} target="_blank" rel="noopener noreferrer" className="contact-link">
-              Instagram
+            </div>
+            <div className="contact-item">
+              <a href={getContactLink('instagram', data.contact.instagram)} target="_blank" rel="noopener noreferrer" className="contact-link">
+                Instagram
+              </a>
               <ArrowUpRight className="contact-icon" size={12} />
-            </a>
-            <a href={getContactLink('x', data.contact.x)} target="_blank" rel="noopener noreferrer" className="contact-link">
-              X
+            </div>
+            <div className="contact-item">
+              <a href={getContactLink('x', data.contact.x)} target="_blank" rel="noopener noreferrer" className="contact-link">
+                X
+              </a>
               <ArrowUpRight className="contact-icon" size={12} />
-            </a>
-            <a href={getContactLink('linkedin', data.contact.linkedin)} target="_blank" rel="noopener noreferrer" className="contact-link">
-              LinkedIn
+            </div>
+            <div className="contact-item">
+              <a href={getContactLink('linkedin', data.contact.linkedin)} target="_blank" rel="noopener noreferrer" className="contact-link">
+                LinkedIn
+              </a>
               <ArrowUpRight className="contact-icon" size={12} />
-            </a>
-            <a href={getContactLink('github', data.contact.github)} target="_blank" rel="noopener noreferrer" className="contact-link">
-              GitHub
+            </div>
+            <div className="contact-item">
+              <a href={getContactLink('github', data.contact.github)} target="_blank" rel="noopener noreferrer" className="contact-link">
+                GitHub
+              </a>
               <ArrowUpRight className="contact-icon" size={12} />
-            </a>
+            </div>
           </div>
         </div>
         <div className="power-button-container">
