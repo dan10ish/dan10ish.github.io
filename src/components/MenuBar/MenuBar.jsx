@@ -47,7 +47,7 @@ const MenuBar = ({ onShutdown }) => {
             >
               <img src={powerIcon} alt="Power" width="18" height="18" />
             </button>
-            {isShuttingDown && (
+            {!isShuttingDown && (
               <div className="shutdown-dropdown">
                 <Loader2 className="shutdown-spinner" size={12} />
                 <span>Shutting down</span>

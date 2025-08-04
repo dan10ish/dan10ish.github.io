@@ -117,9 +117,9 @@ const App = () => {
     const metaThemeColor = document.querySelector('meta[name="theme-color"]');
     if (metaThemeColor) {
       if (startupPhase === "startup") {
-        metaThemeColor.setAttribute('content', '#181818');
+        metaThemeColor.setAttribute('content', '#000000');
       } else if (startupPhase === "loading") {
-        metaThemeColor.setAttribute('content', '#181818');
+        metaThemeColor.setAttribute('content', '#000000');
       } else {
         metaThemeColor.setAttribute('content', '#11112D');
       }
