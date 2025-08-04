@@ -52,7 +52,9 @@
 }
 
 .contact-link {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 4px;
   color: #eee;
   text-decoration: none;
   font-weight: 400;
@@ -60,10 +62,23 @@
   letter-spacing: 1px;
 }
 
+.contact-icon {
+  color: #eee;
+  opacity: 1;
+}
+
 @media (hover: hover) {
+  .contact-icon {
+    opacity: 0;
+  }
+
   .contact-link:hover {
     color: #1c8aff;
-    text-decoration: underline;
+  }
+
+  .contact-link:hover .contact-icon {
+    color: #1c8aff;
+    opacity: 1;
   }
 }
 
