@@ -5,14 +5,18 @@ import powerIcon from "../../assets/icons/power.svg";
 import "./StartupScreen.css";
 
 const PowerButton = ({ onClick }) => (
-  <img
-    src={powerIcon}
-    alt="Power"
-    className="power-button"
-    onClick={onClick}
-    width="50"
-    height="50"
-  />
+  <div className="power-toggle">
+    <div className="power-button-bg"></div>
+    <button className="power-button" onClick={onClick}>
+      <img
+        src={powerIcon}
+        alt="Power"
+        className="power-icon"
+        width="24"
+        height="24"
+      />
+    </button>
+  </div>
 );
 
 const StartupScreen = ({ onPowerOn }) => {
