@@ -1,6 +1,7 @@
 import React from "react";
 import { Github, Globe, ArrowUpRight } from "lucide-react";
 import projectsData from "./projectsData.json";
+import folderIcon from "../../assets/folder.png";
 import "./Projects.css";
 
 const Projects = ({ onOpenWindow }) => {
@@ -32,11 +33,12 @@ const Projects = ({ onOpenWindow }) => {
             className="project-item"
             onClick={(e) => handleRowClick(project, e)}
           >
-            <span className="project-label">{project.tag.toLowerCase()}</span>
             <div className="project-content">
               <span className="project-name">
+                <img src={folderIcon} alt="Folder" className="folder-icon" />
                 {project.title}
               </span>
+              <span className="project-label">{project.tag.toLowerCase()}</span>
               <div className="project-links">
                 <div className={`project-link ${!project.live ? 'disabled' : ''}`}>
                   {project.live ? (
