@@ -1,185 +1,153 @@
 .experience-app {
   color: #fff;
+  padding-top: 10px;
 }
 
 .experience-section {
   margin-top: 0;
 }
 
-.experience-group {
-  margin-bottom: 0;
-}
-
-.experience-group-item {
-  display: flex;
-  align-items: flex-start;
+.experience-item {
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   padding: 8px 6px;
-  min-height: 40px;
+  cursor: pointer;
 }
 
-.experience-group:last-child .experience-group-item {
+.experience-item:last-child {
   border: none;
 }
 
-.experience-label {
-  color: #888;
-  font-size: 14px;
-  font-weight: 400;
-  width: 70px;
-  text-align: right;
-  margin-right: 15px;
-  flex-shrink: 0;
-}
-
-.experience-companies {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  flex-grow: 1;
-  margin: -4px 0;
-}
-
-.company-item {
-  cursor: pointer;
-  padding: 4px 0;
-  border-radius: 4px;
-  padding: 4px 8px;
-  margin: 0 -8px;
-}
-
-.company-info {
+.experience-content {
   display: flex;
   align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
+  width: 100%;
+  gap: 15px;
 }
 
-.company-role {
+.experience-role {
   color: #fff;
   font-size: 14px;
   font-weight: 400;
-  line-height: 1.4;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.company-separator {
-  color: #666;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.4;
+.folder-icon {
+  width: 16px;
+  height: 16px;
+  opacity: 0.8;
+  flex-shrink: 0;
 }
 
-.company-name {
+.experience-company {
   color: #888;
   font-size: 14px;
   font-weight: 400;
-  letter-spacing: 0.3px;
-  line-height: 1.4;
+  text-align: center;
+  width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.experience-duration {
+  color: #888;
+  font-size: 14px;
+  font-weight: 400;
+  width: 100px;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 @media (hover: hover) {
-  .company-item:hover {
+  .experience-item:hover {
     background-color: rgba(255, 255, 255, 0.05);
-    border-radius: 6px;
   }
 
-  .company-item:hover .company-role {
+  .experience-item:hover .experience-role {
     color: #4A9EFF;
-  }
-
-  .company-item:hover .company-separator {
-    color: #4A9EFF;
-  }
-
-  .company-item:hover .company-name {
-    color: #ccc;
   }
 }
 
 .education-section {
-  margin-top: 8px;
-  padding-top: 8px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  /* margin-top: 8px;
+  padding-top: 8px; */
+  padding-top: 20px;
+  /* border-top: 1px solid rgba(255, 255, 255, 0.08); */
+}
+
+.education-section h2, .experience-section h2{
+  font-size: 16px;
+  margin-left: 5px;
+  padding-bottom: 6px;
 }
 
 .education-item {
-  display: flex;
-  align-items: flex-start;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   padding: 8px 6px;
+  cursor: pointer;
 }
 
 .education-item:last-child {
   border: none;
 }
 
-.education-label {
-  color: #888;
-  font-size: 14px;
-  font-weight: 400;
-  width: 70px;
-  text-align: right;
-  margin-right: 15px;
-  flex-shrink: 0;
-}
-
 .education-content {
-  cursor: pointer;
-  padding: 4px 8px;
-  margin: -4px -8px;
-  border-radius: 4px;
-  flex-grow: 1;
-}
-
-.education-info {
   display: flex;
   align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
+  width: 100%;
+  gap: 15px;
 }
 
-.education-degree {
+.education-field {
   color: #fff;
   font-size: 14px;
   font-weight: 400;
-  line-height: 1.4;
-}
-
-.education-separator {
-  color: #666;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.4;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .education-institution {
   color: #888;
   font-size: 14px;
   font-weight: 400;
-  letter-spacing: 0.3px;
-  line-height: 1.4;
+  text-align: center;
+  width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.education-duration {
+  color: #888;
+  font-size: 14px;
+  font-weight: 400;
+  width: 100px;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 @media (hover: hover) {
-  .education-content:hover {
+  .education-item:hover {
     background-color: rgba(255, 255, 255, 0.05);
-    border-radius: 6px;
-    transition: all 0.2s ease;
   }
 
-  .education-content:hover .education-degree {
+  .education-item:hover .education-field {
     color: #4A9EFF;
-    transition: color 0.2s ease;
-  }
-
-  .education-content:hover .education-separator {
-    color: #4A9EFF;
-    transition: color 0.2s ease;
-  }
-
-  .education-content:hover .education-institution {
-    color: #ccc;
-    transition: color 0.2s ease;
   }
 }
 

@@ -1,5 +1,7 @@
 import React from "react";
 import experienceData from "./experienceData.json";
+import folderIcon from "../../assets/folder.png";
+import bookFolderIcon from "../../assets/icons/bookFolder.png";
 import "./Experience.css";
 
 const Experience = ({ onOpenWindow }) => {
@@ -28,44 +30,40 @@ const Experience = ({ onOpenWindow }) => {
   return (
     <div className="experience-app">
       <div className="experience-section">
-        {experienceData.experienceGroups.map((group, groupIndex) => (
-          <div key={groupIndex} className="experience-group">
-            <div className="experience-group-item">
-              <span className="experience-label">{group.type}</span>
-              <div className="experience-companies">
-                {group.companies.map((company, companyIndex) => (
-                  <div 
-                    key={companyIndex} 
-                    className="company-item"
-                    onClick={() => handleExperienceClick(company)}
-                  >
-                    <div className="company-info">
-                      <span className="company-role">{company.role}</span>
-                      <span className="company-separator">@</span>
-                      <span className="company-name">{company.company}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
+      <h2>Experience</h2>
+        {experienceData.experience.map((experience, index) => (
+          <div 
+            key={index} 
+            className="experience-item"
+            onClick={() => handleExperienceClick(experience)}
+          >
+            <div className="experience-content">
+              <span className="experience-role">
+                <img src={folderIcon} alt="Folder" className="folder-icon" />
+                {experience.role}
+              </span>
+              <span className="experience-company">{experience.company}</span>
+              <span className="experience-duration">{experience.duration}</span>
             </div>
           </div>
         ))}
       </div>
 
       <div className="education-section">
+      <h2>Education</h2>
         {experienceData.education.map((education, index) => (
           <div 
             key={index} 
             className="education-item"
             onClick={() => handleEducationClick(education)}
           >
-            <span className="education-label">education</span>
             <div className="education-content">
-              <div className="education-info">
-                <span className="education-degree">{education.field}</span>
-                <span className="education-separator">@</span>
-                <span className="education-institution">{education.institution}</span>
-              </div>
+              <span className="education-field">
+                <img src={bookFolderIcon} alt="Folder" className="folder-icon" />
+                {education.field}
+              </span>
+              <span className="education-institution">{education.institution}</span>
+              <span className="education-duration">{education.duration}</span>
             </div>
           </div>
         ))}
