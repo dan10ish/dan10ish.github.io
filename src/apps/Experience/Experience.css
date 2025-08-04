@@ -1,7 +1,5 @@
 .experience-app {
-  padding: 20px;
   color: #fff;
-  max-width: 500px;
 }
 
 .experience-section {
@@ -83,22 +81,18 @@
   .company-item:hover {
     background-color: rgba(255, 255, 255, 0.05);
     border-radius: 6px;
-    transition: all 0.2s ease;
   }
 
   .company-item:hover .company-role {
     color: #4A9EFF;
-    transition: color 0.2s ease;
   }
 
   .company-item:hover .company-separator {
     color: #4A9EFF;
-    transition: color 0.2s ease;
   }
 
   .company-item:hover .company-name {
     color: #ccc;
-    transition: color 0.2s ease;
   }
 }
 

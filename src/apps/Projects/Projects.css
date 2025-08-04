@@ -1,7 +1,5 @@
 .projects-app {
-  padding: 20px;
   color: #fff;
-  max-width: 500px;
 }
 
 .projects-section {
@@ -10,7 +8,7 @@
 
 .project-item {
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 8px 6px;
+  padding: 8px 10px;
   cursor: pointer;
 }
 
