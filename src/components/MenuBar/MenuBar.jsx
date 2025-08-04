@@ -39,7 +39,7 @@ const MenuBar = ({ onShutdown }) => {
       <div className="menu-bar">
         <div className="menu-bar-left">
           <span>Danish Ansari</span>
-          <div className="power-button-container">
+          <div className="power-button-container-menu">
             <button
               className="power-button-menu"
               onClick={handleShutdown}

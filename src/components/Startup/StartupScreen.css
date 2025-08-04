@@ -17,7 +17,7 @@
   align-items: center;
   gap: 60px;
   max-width: 600px;
-  padding-top: 50px;
+  padding-top: 60px;
   text-transform: uppercase;
 }
 
@@ -25,29 +25,6 @@
   display: grid;
   grid-template-columns: 120px 1fr;
   gap: 20px 40px;
-}
-
-@media (max-width:768px) {
-  .startup-info {
-    display: grid;
-    grid-template-columns: 100px 1fr;
-    row-gap: 20px;
-    column-gap: 20px;
-  }
-
-  .startup-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 50px;
-    max-width: 350px;
-    padding-top: 40px;
-  }
-
-  .startup-label,
-  .startup-value {
-    font-size: 14px !important;
-  }
 }
 
 .startup-label {
@@ -66,6 +43,7 @@
   font-weight: 400;
   line-height: 1.6;
   letter-spacing: 1px;
+  padding-right: 20px;
 }
 
 .startup-value div {
@@ -79,20 +57,23 @@
   text-decoration: none;
   font-weight: 400;
   margin-bottom: 4px;
-  transition: color 0.2s ease;
   letter-spacing: 1px;
 }
 
 @media (hover: hover) {
   .contact-link:hover {
-    color: #007AFF;
+    color: #1c8aff;
     text-decoration: underline;
   }
 }
 
 .power-button-container {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
   display: flex;
   justify-content: center;
+  align-items: center;
   border-radius: 10px;
 }
 
@@ -105,4 +86,28 @@
 .power-button:hover {
   transform: scale(1.1);
   filter: invert(0.9);
+}
+
+
+@media (max-width:768px) {
+  .startup-info {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    row-gap: 20px;
+    column-gap: 20px;
+  }
+
+  .startup-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    max-width: 360px;
+    padding-top: 40px;
+  }
+
+  .startup-label,
+  .startup-value {
+    font-size: 14px !important;
+  }
 }

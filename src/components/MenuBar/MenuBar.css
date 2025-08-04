@@ -16,14 +16,15 @@
 }
 
 .menu-bar-left {
-  font-weight: 600;
+  font-weight: 500;
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-.power-button-container {
+.power-button-container-menu {
   position: relative;
+  top: 1px;
 }
 
 .power-button-menu {
@@ -35,11 +36,11 @@
   align-items: center;
   padding: 2px;
   border-radius: 4px;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .power-button-menu:hover:not(:disabled) {
-  background-color: rgba(255, 255, 255, 0.1);
+  scale: 1.2;
 }
 
 .power-button-menu:disabled {

@@ -1,7 +1,5 @@
 .experience-app {
   padding: 20px;
-  font-family: 'Helvetica Neue', sans-serif;
-  font-weight: 400;
   color: #fff;
   max-width: 500px;
 }
@@ -156,14 +154,14 @@
 .education-separator {
   color: #666;
   font-size: 14px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.4;
 }
 
 .education-institution {
   color: #888;
   font-size: 14px;
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: 0.3px;
   line-height: 1.4;
 }
@@ -195,8 +193,6 @@
 .experience-detail,
 .education-detail {
   padding: 20px;
-  font-family: 'Helvetica Neue', sans-serif;
-  font-weight: 400;
   color: #fff;
   max-width: 500px;
 }
@@ -259,7 +255,7 @@
 .technology-name {
   color: #fff;
   font-size: 12px;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .experience-image-container,

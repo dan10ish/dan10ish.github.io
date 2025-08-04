@@ -9,7 +9,7 @@ const Experience = ({ onOpenWindow }) => {
         id: `experience-${experience.id}`,
         name: experience.company,
         component: <ExperienceDetail experience={experience} />,
-        defaultSize: [320, 450]
+        defaultSize: [350, 480]
       });
     }
   };
@@ -20,7 +20,7 @@ const Experience = ({ onOpenWindow }) => {
         id: `education-${education.id}`,
         name: education.institution,
         component: <EducationDetail education={education} />,
-        defaultSize: [320, 450]
+        defaultSize: [320, 350]
       });
     }
   };

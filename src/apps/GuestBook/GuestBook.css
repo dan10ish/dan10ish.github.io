@@ -1,7 +1,5 @@
 .guestbook-app {
   padding: 20px;
-  font-family: 'Helvetica Neue', sans-serif;
-  font-weight: 400;
   color: #fff;
   max-width: 500px;
 }
@@ -70,7 +68,7 @@
 
 #guestbooks___guestbook-messages-container strong {
   color: #4A9EFF;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 14px;
   display: block;
   margin-bottom: 4px;
@@ -144,8 +142,6 @@
 /* Message Form Styles */
 .message-form {
   padding: 20px;
-  font-family: 'Helvetica Neue', sans-serif;
-  font-weight: 400;
   color: #fff;
   max-width: 450px;
 }
@@ -274,7 +270,7 @@
 .challenge-hint {
   color: #888;
   font-size: 12px;
-  font-weight: 300;
+  font-weight: 400;
   margin-bottom: 10px;
   font-style: italic;
 }
@@ -341,7 +337,7 @@
   align-items: center;
   justify-content: center;
   font-size: 28px;
-  font-weight: 700;
+  font-weight: 500;
   margin: 0 auto 24px;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
