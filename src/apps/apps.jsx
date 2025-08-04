@@ -57,7 +57,7 @@ export const getApps = (onOpenWindow) => [
     name: "Experience",
     icon: experienceIcon,
     component: <Experience onOpenWindow={onOpenWindow} />,
-    defaultSize: getResponsiveSize(900, 700),
+    defaultSize: getResponsiveSize(900, 600),
   },
   {
     id: "projects",
