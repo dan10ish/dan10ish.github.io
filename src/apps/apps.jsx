@@ -9,6 +9,7 @@ import GuestBook from "./GuestBook/GuestBook";
 import folderIcon from "../assets/folder.png";
 import aboutIcon from "../assets/icons/about.png";
 import musicIcon from "../assets/icons/listen.png";
+import messageIcon from "../assets/icons/messages.png";
 import contactIcon from "../assets/icons/contacts.png";
 import experienceIcon from "../assets/icons/experience.png";
 import developerIcon from "../assets/icons/developer.png";
@@ -76,7 +77,7 @@ export const getApps = (onOpenWindow) => [
   {
     id: "guestbook",
     name: "Guest Book",
-    icon: contactIcon,
+    icon: messageIcon,
     component: <GuestBook onOpenWindow={onOpenWindow} />,
     defaultSize: getResponsiveSize(600, 700),
   },
