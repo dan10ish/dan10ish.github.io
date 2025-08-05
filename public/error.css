@@ -62,7 +62,7 @@ body {
   margin-top: 50px;
 }
 
-@media (hover: hover) {
+@media (hover: hover) and (pointer: fine) {
   .home-button:hover {
     background: rgba(255, 255, 255, 0.15);
     border-color: #007AFF;

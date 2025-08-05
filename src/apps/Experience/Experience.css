@@ -66,15 +66,7 @@
   white-space: nowrap;
 }
 
-@media (hover: hover) {
-  .experience-item:hover {
-    background-color: rgba(255, 255, 255, 0.05);
-  }
 
-  .experience-item:hover .experience-role {
-    color: #4A9EFF;
-  }
-}
 
 .education-section {
   /* margin-top: 8px;
@@ -141,7 +133,7 @@
   white-space: nowrap;
 }
 
-@media (hover: hover) {
+@media (hover: hover) and (pointer: fine) {
   .education-item:hover {
     background-color: rgba(255, 255, 255, 0.05);
   }

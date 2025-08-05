@@ -39,9 +39,7 @@
   transition: all 0.2s ease;
 }
 
-.power-button-menu:hover:not(:disabled) {
-  scale: 1.2;
-}
+
 
 .power-button-menu:disabled {
   cursor: not-allowed;
@@ -92,5 +90,11 @@
 @media (max-width: 768px) {
   .menu-bar {
     padding: 0 20px;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .power-button-menu:hover:not(:disabled) {
+    scale: 1.2;
   }
 }

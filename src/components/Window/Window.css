@@ -92,18 +92,10 @@
   -ms-user-select: none;
 }
 
-.window-control:hover {
-  transform: scale(1.1);
-}
-
 .window-control svg {
   opacity: 0;
   transition: opacity 0.1s ease;
   color: #000;
-}
-
-.window-control:hover svg {
-  opacity: 1;
 }
 
 @media (hover: none) {
@@ -116,24 +108,12 @@
   background-color: #ff5f57;
 }
 
-.close:hover {
-  background-color: #ff4444;
-}
-
 .minimize {
   background-color: #ffbd2e;
 }
 
-.minimize:hover {
-  background-color: #ffb300;
-}
-
 .maximize {
   background-color: #28c940;
-}
-
-.maximize:hover {
-  background-color: #22a336;
 }
 
 .window-body {
@@ -273,5 +253,27 @@
 
   .resizer {
     display: none;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .window-control:hover {
+    transform: scale(1.1);
+  }
+
+  .window-control:hover svg {
+    opacity: 1;
+  }
+
+  .close:hover {
+    background-color: #ff4444;
+  }
+
+  .minimize:hover {
+    background-color: #ffb300;
+  }
+
+  .maximize:hover {
+    background-color: #22a336;
   }
 }

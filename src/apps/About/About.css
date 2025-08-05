@@ -57,7 +57,7 @@
   opacity: 1;
 }
 
-@media (hover: hover) {
+@media (hover: hover) and (pointer: fine) {
   .social-icon {
     opacity: 0;
     transition: opacity 0.2s ease;

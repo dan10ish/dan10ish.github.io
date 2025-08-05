@@ -48,15 +48,7 @@
   margin: 0 15px;
 }
 
-@media (hover: hover) {
-  .project-item:hover {
-    background-color: rgba(255, 255, 255, 0.05);
-  }
 
-  .project-item:hover .project-name {
-    color: #4A9EFF;
-  }
-}
 
 .project-links {
   display: flex;
@@ -83,12 +75,7 @@
   align-items: center;
 }
 
-@media (hover: hover) {
-  .project-link:hover {
-    color: #4A9EFF;
-    opacity: 1;
-  }
-}
+
 
 .project-detail {
   padding: 20px;
@@ -148,21 +135,7 @@
   opacity: 1;
 }
 
-@media (hover: hover) {
-  .project-detail-icon {
-    opacity: 0;
-    transition: opacity 0.2s ease;
-  }
 
-  .project-detail-link:hover {
-    color: #4A9EFF;
-  }
-
-  .project-detail-link:hover .project-detail-icon {
-    color: #4A9EFF;
-    opacity: 1;
-  }
-}
 
 .project-video {
   margin-top: 20px;
@@ -179,4 +152,33 @@
   height: 100%;
   object-fit: cover;
   pointer-events: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .project-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .project-item:hover .project-name {
+    color: #4A9EFF;
+  }
+
+  .project-link:hover {
+    color: #4A9EFF;
+    opacity: 1;
+  }
+
+  .project-detail-icon {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .project-detail-link:hover {
+    color: #4A9EFF;
+  }
+
+  .project-detail-link:hover .project-detail-icon {
+    color: #4A9EFF;
+    opacity: 1;
+  }
 }

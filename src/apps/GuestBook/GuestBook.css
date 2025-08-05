@@ -28,14 +28,6 @@
   justify-content: center;
 }
 
-@media (hover: hover) {
-  .leave-message-button:hover {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: #4A9EFF;
-    color: #4A9EFF;
-  }
-}
-
 .guestbook-messages-section {
   margin-top: 0;
 }
@@ -59,11 +51,6 @@
   margin-bottom: 14px;
   font-size: 13px;
   font-weight: 400;
-}
-
-#guestbooks___guestbook-messages-container>div:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.12);
 }
 
 #guestbooks___guestbook-messages-container strong {
@@ -108,12 +95,6 @@
   font-size: 14px;
 }
 
-#guestbooks___guestbook-messages-container a:hover {
-  color: #4A9EFF;
-  text-decoration: underline;
-}
-
-
 #guestbooks___guestbook-made-with {
   text-align: center;
   margin: 30px 0 0 0;
@@ -131,12 +112,6 @@
   color: #666;
   text-decoration: none;
   font-weight: 400;
-}
-
-@media (hover: hover) {
-  #guestbooks___guestbook-made-with a:hover {
-    color: #888;
-  }
 }
 
 /* Message Form Styles */
@@ -301,13 +276,7 @@
   border-color: rgba(255, 255, 255, 0.2);
 }
 
-@media (hover: hover) {
-  .submit-button:hover:not(:disabled) {
-    background: linear-gradient(135deg, rgba(74, 158, 255, 0.9) 0%, rgba(74, 158, 255, 0.7) 100%);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 15px rgba(74, 158, 255, 0.3);
-  }
-}
+
 
 .error-message {
   color: #ff6b6b;
@@ -395,4 +364,32 @@
 
 .success-last {
   margin-top: 20px !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .leave-message-button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #4A9EFF;
+    color: #4A9EFF;
+  }
+
+  #guestbooks___guestbook-messages-container>div:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  #guestbooks___guestbook-messages-container a:hover {
+    color: #4A9EFF;
+    text-decoration: underline;
+  }
+
+  #guestbooks___guestbook-made-with a:hover {
+    color: #888;
+  }
+
+  .submit-button:hover:not(:disabled) {
+    background: linear-gradient(135deg, rgba(74, 158, 255, 0.9) 0%, rgba(74, 158, 255, 0.7) 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(74, 158, 255, 0.3);
+  }
 }
