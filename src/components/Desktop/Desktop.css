@@ -15,11 +15,17 @@
   position: absolute;
   top: 50px;
   right: 10px;
+  left: 10px;
+  bottom: 20px;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-end;
+  justify-content: flex-start;
   gap: 15px;
   z-index: 1;
   pointer-events: none;
+  overflow: hidden;
 }
 
 .desktop-icon {
@@ -58,5 +64,23 @@
 @media (hover: hover) and (pointer: fine) {
   .desktop-icon:hover {
     background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+@media (max-width: 768px) {
+  .desktop-icons {
+    top: 60px;
+    right: 5px;
+    left: 5px;
+    bottom: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .desktop-icons {
+    top: 70px;
+    right: 5px;
+    left: 5px;
+    bottom: 100px;
   }
 }

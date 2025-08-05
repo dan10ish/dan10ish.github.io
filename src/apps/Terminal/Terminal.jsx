@@ -9,11 +9,8 @@ const Terminal = () => {
   const [commandHistory, setCommandHistory] = useState([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
   const [inputKey, setInputKey] = useState(Math.random());
-  const [isFocused, setIsFocused] = useState(true);
-  const [cursorPosition, setCursorPosition] = useState(0);
   const terminalRef = useRef(null);
   const inputRef = useRef(null);
-  const textMeasureRef = useRef(null);
 
   const fileSystem = {
     "~": {
@@ -541,12 +538,6 @@ Navigation:
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    if (textMeasureRef.current) {
-      setCursorPosition(textMeasureRef.current.offsetWidth);
-    }
-  }, [currentInput]);
-
   const handleTerminalClick = () => {
     if (inputRef.current) {
       inputRef.current.focus();
@@ -596,15 +587,12 @@ Navigation:
           </span>
           <form autoComplete="off" onSubmit={(e) => e.preventDefault()}>
             <div className="terminal-input-container">
-              <span ref={textMeasureRef} className="terminal-input-measure">{currentInput}</span>
               <input
                 ref={inputRef}
                 type="text"
                 value={currentInput}
                 onChange={(e) => setCurrentInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                onFocus={() => setIsFocused(true)}
-                onBlur={() => setIsFocused(false)}
                 className="terminal-input"
                 spellCheck={false}
                 autoComplete="off"
@@ -621,13 +609,6 @@ Navigation:
                 role="textbox"
                 aria-label="Terminal command input"
                 inputMode="text"
-              />
-              <div 
-                className="terminal-cursor" 
-                style={{ 
-                  left: `${cursorPosition}px`,
-                  display: isFocused ? 'block' : 'none'
-                }}
               />
             </div>
           </form>
