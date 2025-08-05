@@ -14,23 +14,12 @@
     height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 .terminal-content::-webkit-scrollbar {
-    width: 8px;
-}
-
-.terminal-content::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.terminal-content::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
-}
-
-.terminal-content::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.3);
+    display: none;
 }
 
 .terminal-welcome {
@@ -92,6 +81,14 @@
     flex-wrap: wrap;
 }
 
+.terminal-input-line form {
+    flex: 1;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+}
+
 .terminal-input {
     background: transparent;
     border: none;
@@ -102,26 +99,67 @@
     flex: 1;
     min-width: 100px;
     margin-left: 2px;
-    caret-color: #ffffff;
+    caret-color: transparent;
 }
 
 .terminal-input::selection {
     background: rgba(74, 158, 255, 0.3);
 }
 
-.terminal-input:focus {
-    animation: blink-caret 1s step-end infinite;
+.terminal-input-container {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
 }
 
-@keyframes blink-caret {
+.terminal-input-measure {
+    position: absolute;
+    visibility: hidden;
+    font-family: inherit;
+    font-size: inherit;
+    white-space: pre;
+    pointer-events: none;
+    left: 0;
+    top: 0;
+}
 
-    from,
-    to {
-        caret-color: transparent;
+.terminal-input-text {
+    position: absolute;
+    color: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    white-space: pre;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.terminal-input {
+    position: relative;
+    z-index: 1;
+}
+
+.terminal-cursor {
+    position: absolute;
+    background: #ffffff;
+    width: 2px;
+    height: 1.3em;
+    top: -1px;
+    animation: terminal-blink 1s infinite;
+    pointer-events: none;
+    z-index: 2;
+}
+
+@keyframes terminal-blink {
+
+    0%,
+    50% {
+        opacity: 1;
     }
 
-    50% {
-        caret-color: #ffffff;
+    51%,
+    100% {
+        opacity: 0;
     }
 }
 

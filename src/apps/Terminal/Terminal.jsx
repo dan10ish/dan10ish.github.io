@@ -8,8 +8,12 @@ const Terminal = () => {
   const [currentDirectory, setCurrentDirectory] = useState("~");
   const [commandHistory, setCommandHistory] = useState([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
+  const [inputKey, setInputKey] = useState(Math.random());
+  const [isFocused, setIsFocused] = useState(true);
+  const [cursorPosition, setCursorPosition] = useState(0);
   const terminalRef = useRef(null);
   const inputRef = useRef(null);
+  const textMeasureRef = useRef(null);
 
   const fileSystem = {
     "~": {
@@ -18,22 +22,22 @@ const Terminal = () => {
         "about.txt": { type: "file", content: `${data.name}\n${data.title}\n\nInterests: ${data.interests}\nCurrent: ${data.current}\nEducation: ${data.education}` },
         "contact.txt": { type: "file", content: `Email: ${data.contact.email}\nGitHub: github.com/${data.contact.github}\nX: x.com/${data.contact.x}\nInstagram: instagram.com/${data.contact.instagram}\nLinkedIn: linkedin.com/in/${data.contact.linkedin}` },
         "resume.txt": { type: "file", content: `${data.name} - Resume\n\nEducation: ${data.education}\nCurrent: ${data.current}\nPrevious Experience:\n${data.past.map(exp => `• ${exp}`).join('\n')}\n\nSkills: React, JavaScript, Python, Machine Learning, Robotics` },
-        "projects": { 
-          type: "directory", 
+        "projects": {
+          type: "directory",
           contents: {
             "website.txt": { type: "file", content: "Personal Portfolio Website\nBuilt with React + Vite\nFeatures: Desktop-like interface, Terminal app, Music player" },
             "terminal.txt": { type: "file", content: "macOS Terminal Clone\nBuilt with React\nFeatures: Command execution, File system simulation, Command history" }
           }
         },
-        "experience": { 
-          type: "directory", 
+        "experience": {
+          type: "directory",
           contents: {
             "current.txt": { type: "file", content: data.current },
             "past.txt": { type: "file", content: data.past.join('\n') }
           }
         },
-        "notes": { 
-          type: "directory", 
+        "notes": {
+          type: "directory",
           contents: {
             "ideas.txt": { type: "file", content: "Project Ideas:\n• AI-powered code assistant\n• Robotics simulation platform\n• Financial analysis tool" }
           }
@@ -92,10 +96,10 @@ Navigation:
       const path = args[0] || currentDirectory;
       const dir = getDirectoryContents(path);
       if (!dir) return { output: `ls: ${path}: No such file or directory`, error: true };
-      
+
       const contents = Object.entries(dir.contents || {});
       if (contents.length === 0) return { output: "" };
-      
+
       const formatted = contents.map(([name, item]) => {
         if (item.type === "directory") {
           return `\x1b[34m${name}/\x1b[0m`;
@@ -103,7 +107,7 @@ Navigation:
           return name;
         }
       });
-      
+
       return { output: formatted.join("  "), colored: true };
     },
 
@@ -114,7 +118,7 @@ Navigation:
         setCurrentDirectory("~");
         return { output: "" };
       }
-      
+
       let newPath;
       if (args[0] === "..") {
         newPath = getParentDirectory(currentDirectory);
@@ -125,24 +129,24 @@ Navigation:
       } else {
         newPath = currentDirectory === "~" ? `~/${args[0]}` : `${currentDirectory}/${args[0]}`;
       }
-      
+
       const dir = getDirectoryContents(newPath);
-      
+
       if (!dir || dir.type !== "directory") {
         return { output: `cd: ${args[0]}: No such file or directory`, error: true };
       }
-      
+
       setCurrentDirectory(newPath);
       return { output: "" };
     },
 
     cat: (args) => {
       if (!args[0]) return { output: "cat: missing file operand", error: true };
-      
+
       const file = getFileContents(args[0]);
       if (!file) return { output: `cat: ${args[0]}: No such file or directory`, error: true };
       if (file.type !== "file") return { output: `cat: ${args[0]}: Is a directory`, error: true };
-      
+
       return { output: file.content || "" };
     },
 
@@ -210,21 +214,21 @@ Navigation:
         if (!dir || !dir.contents) return "";
         const entries = Object.entries(dir.contents);
         let result = "";
-        
+
         entries.forEach(([name, item], index) => {
           const isLastItem = index === entries.length - 1;
           const connector = isLastItem ? "└── " : "├── ";
           result += prefix + connector + name + (item.type === "directory" ? "/" : "") + "\n";
-          
+
           if (item.type === "directory") {
             const newPrefix = prefix + (isLastItem ? "    " : "│   ");
             result += buildTree(item, newPrefix, isLastItem);
           }
         });
-        
+
         return result;
       };
-      
+
       const dir = getDirectoryContents(currentDirectory);
       return { output: currentDirectory + "/\n" + buildTree(dir) };
     },
@@ -233,7 +237,7 @@ Navigation:
       if (!args[0]) return { output: "find: missing argument", error: true };
       const searchTerm = args[0];
       const results = [];
-      
+
       const searchDir = (dir, path = "") => {
         if (!dir?.contents) return;
         Object.entries(dir.contents).forEach(([name, item]) => {
@@ -246,7 +250,7 @@ Navigation:
           }
         });
       };
-      
+
       searchDir(getDirectoryContents(currentDirectory));
       return { output: results.join("\n") || `find: '${searchTerm}' not found` };
     },
@@ -256,53 +260,53 @@ Navigation:
       const pattern = args[0];
       const filename = args[1];
       const file = getFileContents(filename);
-      
+
       if (!file) return { output: `grep: ${filename}: No such file or directory`, error: true };
       if (file.type !== "file") return { output: `grep: ${filename}: Is a directory`, error: true };
-      
+
       const lines = file.content.split("\n");
       const matches = lines.filter(line => line.toLowerCase().includes(pattern.toLowerCase()));
-      
+
       return { output: matches.join("\n") || `grep: no matches found for '${pattern}'` };
     },
 
     wc: (args) => {
       if (!args[0]) return { output: "wc: missing file operand", error: true };
       const file = getFileContents(args[0]);
-      
+
       if (!file) return { output: `wc: ${args[0]}: No such file or directory`, error: true };
       if (file.type !== "file") return { output: `wc: ${args[0]}: Is a directory`, error: true };
-      
+
       const lines = file.content.split("\n").length;
       const words = file.content.split(/\s+/).filter(w => w).length;
       const chars = file.content.length;
-      
+
       return { output: `${lines} ${words} ${chars} ${args[0]}` };
     },
 
     head: (args) => {
       const lines = args.includes("-n") ? parseInt(args[args.indexOf("-n") + 1]) || 10 : 10;
       const filename = args[args.length - 1];
-      
+
       if (!filename || filename.startsWith("-")) return { output: "head: missing file operand", error: true };
-      
+
       const file = getFileContents(filename);
       if (!file) return { output: `head: ${filename}: No such file or directory`, error: true };
       if (file.type !== "file") return { output: `head: ${filename}: Is a directory`, error: true };
-      
+
       return { output: file.content.split("\n").slice(0, lines).join("\n") };
     },
 
     tail: (args) => {
       const lines = args.includes("-n") ? parseInt(args[args.indexOf("-n") + 1]) || 10 : 10;
       const filename = args[args.length - 1];
-      
+
       if (!filename || filename.startsWith("-")) return { output: "tail: missing file operand", error: true };
-      
+
       const file = getFileContents(filename);
       if (!file) return { output: `tail: ${filename}: No such file or directory`, error: true };
       if (file.type !== "file") return { output: `tail: ${filename}: Is a directory`, error: true };
-      
+
       const fileLines = file.content.split("\n");
       return { output: fileLines.slice(-lines).join("\n") };
     },
@@ -334,9 +338,9 @@ Navigation:
     open: (args) => {
       if (!args[0]) return { output: "open: missing file operand", error: true };
       const file = getFileContents(args[0]);
-      
+
       if (!file) return { output: `open: ${args[0]}: No such file or directory`, error: true };
-      
+
       if (file.type === "file") {
         return { output: `Opening ${args[0]}...\n${file.content}` };
       } else {
@@ -347,7 +351,7 @@ Navigation:
     curl: (args) => {
       if (!args[0]) return { output: "curl: missing URL", error: true };
       const url = args[0];
-      
+
       if (url.includes("github.com")) {
         return { output: `Fetching ${url}...\nConnected to GitHub successfully!` };
       } else if (url.includes("linkedin.com")) {
@@ -371,21 +375,21 @@ Navigation:
     git: (args) => {
       if (!args[0]) return { output: "git: missing command", error: true };
       const subcommand = args[0];
-      
+
       const gitCommands = {
         status: "On branch main\nYour branch is up to date with 'origin/main'.\n\nnothing to commit, working tree clean",
         log: "commit abc123 (HEAD -> main, origin/main)\nAuthor: Danish <aansaridan@gmail.com>\nDate: " + new Date().toDateString() + "\n\n    Add terminal app",
         branch: "* main\n  develop",
         remote: "origin\thttps://github.com/dan10ish/portfolio.git (fetch)\norigin\thttps://github.com/dan10ish/portfolio.git (push)"
       };
-      
+
       return { output: gitCommands[subcommand] || `git: '${subcommand}' is not a git command` };
     },
 
     npm: (args) => {
       if (!args[0]) return { output: "npm: missing command", error: true };
       const subcommand = args[0];
-      
+
       if (subcommand === "start" || subcommand === "run") {
         return { output: "Starting development server...\nServer running on http://localhost:5173" };
       } else if (subcommand === "install") {
@@ -393,7 +397,7 @@ Navigation:
       } else if (subcommand === "version") {
         return { output: "npm: 10.2.4\nnode: v20.11.0" };
       }
-      
+
       return { output: `npm: unknown command '${subcommand}'`, error: true };
     }
   };
@@ -456,11 +460,11 @@ Navigation:
     if (cmd) {
       const result = cmd(args);
       if (result === null) return;
-      
+
       historyEntry.output = result.output || "";
       historyEntry.error = result.error || false;
       historyEntry.colored = result.colored || false;
-      
+
       if (result.exit) {
         historyEntry.output = "logout";
       }
@@ -530,6 +534,19 @@ Navigation:
     }
   }, []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setInputKey(Math.random());
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    if (textMeasureRef.current) {
+      setCursorPosition(textMeasureRef.current.offsetWidth);
+    }
+  }, [currentInput]);
+
   const handleTerminalClick = () => {
     if (inputRef.current) {
       inputRef.current.focus();
@@ -542,9 +559,9 @@ Navigation:
         <div className="terminal-welcome">
           Last login: {new Date().toDateString()} on ttys000
           <br />
-          Welcome to Danish's Terminal! Type 'help' to see available commands.
+          Type 'help' to see available commands.
         </div>
-        
+
         {history.map((entry, index) => (
           <div key={index} className="terminal-entry">
             <div className="terminal-prompt">
@@ -569,24 +586,51 @@ Navigation:
             )}
           </div>
         ))}
-        
+
         <div className="terminal-input-line">
           <span className="terminal-prompt">
             <span className="terminal-user">danish@macbook</span>
             <span className="terminal-separator">:</span>
             <span className="terminal-path">{currentDirectory}</span>
-            <span className="terminal-dollar">$</span>
+            <span className="terminal-dollar">%</span>
           </span>
-          <input
-            ref={inputRef}
-            type="text"
-            value={currentInput}
-            onChange={(e) => setCurrentInput(e.target.value)}
-            onKeyDown={handleKeyDown}
-            className="terminal-input"
-            spellCheck={false}
-            autoComplete="off"
-          />
+          <form autoComplete="off" onSubmit={(e) => e.preventDefault()}>
+            <div className="terminal-input-container">
+              <span ref={textMeasureRef} className="terminal-input-measure">{currentInput}</span>
+              <input
+                ref={inputRef}
+                type="text"
+                value={currentInput}
+                onChange={(e) => setCurrentInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                onFocus={() => setIsFocused(true)}
+                onBlur={() => setIsFocused(false)}
+                className="terminal-input"
+                spellCheck={false}
+                autoComplete="off"
+                autoCorrect="off"
+                autoCapitalize="off"
+                autoSave="off"
+                data-form-type="other"
+                data-lpignore="true"
+                data-1p-ignore="true"
+                data-bwignore="true"
+                data-dashlane-ignore="true"
+                name={`terminal-input-${inputKey}`}
+                id={`terminal-input-${inputKey}`}
+                role="textbox"
+                aria-label="Terminal command input"
+                inputMode="text"
+              />
+              <div 
+                className="terminal-cursor" 
+                style={{ 
+                  left: `${cursorPosition}px`,
+                  display: isFocused ? 'block' : 'none'
+                }}
+              />
+            </div>
+          </form>
         </div>
       </div>
     </div>
