@@ -88,7 +88,7 @@ export const getApps = (onOpenWindow) => [
     name: "Terminal",
     icon: terminalIcon,
     component: <Terminal />,
-    defaultSize: getResponsiveSize(800, 500),
+    defaultSize: getResponsiveSize(1000, 700),
   },
 ];
 
