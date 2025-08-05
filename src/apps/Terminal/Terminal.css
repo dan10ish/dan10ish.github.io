@@ -1,0 +1,158 @@
+.terminal-app {
+    background: #1e1e1e;
+    color: #ffffff;
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Source Code Pro', monospace;
+    font-size: 13px;
+    line-height: 1.4;
+    height: 100%;
+    overflow: hidden;
+    cursor: text;
+}
+
+.terminal-content {
+    padding: 12px 16px;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.terminal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.terminal-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.terminal-content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+.terminal-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.terminal-welcome {
+    color: #888;
+    margin-bottom: 8px;
+}
+
+.terminal-entry {
+    margin-bottom: 4px;
+}
+
+.terminal-prompt {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 2px;
+}
+
+.terminal-user {
+    color: #4a9eff;
+    font-weight: 500;
+}
+
+.terminal-separator {
+    color: #ffffff;
+    margin: 0 2px;
+}
+
+.terminal-path {
+    color: #50c878;
+    font-weight: 500;
+}
+
+.terminal-dollar {
+    color: #ffffff;
+    margin: 0 6px 0 4px;
+}
+
+.terminal-command {
+    color: #ffffff;
+    margin-left: 2px;
+}
+
+.terminal-output {
+    color: #ffffff;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin: 2px 0 8px 0;
+    padding-left: 0;
+}
+
+.terminal-error {
+    color: #ff6b6b;
+}
+
+.terminal-input-line {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.terminal-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: inherit;
+    flex: 1;
+    min-width: 100px;
+    margin-left: 2px;
+    caret-color: #ffffff;
+}
+
+.terminal-input::selection {
+    background: rgba(74, 158, 255, 0.3);
+}
+
+.terminal-input:focus {
+    animation: blink-caret 1s step-end infinite;
+}
+
+@keyframes blink-caret {
+
+    from,
+    to {
+        caret-color: transparent;
+    }
+
+    50% {
+        caret-color: #ffffff;
+    }
+}
+
+@media (max-width: 768px) {
+    .terminal-app {
+        font-size: 12px;
+    }
+
+    .terminal-content {
+        padding: 8px 12px;
+    }
+
+    .terminal-prompt {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .terminal-input-line {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .terminal-input {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 2px;
+    }
+}
+
+@media (max-width: 480px) {
+    .terminal-app {
+        font-size: 11px;
+    }
+}

@@ -5,6 +5,7 @@ import Experience from "./Experience/Experience";
 import Projects from "./Projects/Projects";
 import MusicPlayer from "./MusicPlayer/MusicPlayer";
 import GuestBook from "./GuestBook/GuestBook";
+import Terminal from "./Terminal/Terminal";
 
 import folderIcon from "../assets/folder.png";
 import aboutIcon from "../assets/icons/about.png";
@@ -13,6 +14,7 @@ import messageIcon from "../assets/icons/messages.png";
 import contactIcon from "../assets/icons/contacts.png";
 import experienceIcon from "../assets/icons/experience.png";
 import developerIcon from "../assets/icons/developer.png";
+import terminalIcon from "../assets/icons/terminal.png";
 
 const RESPONSIVE_WINDOW_SIZES = {
   largeScreens: 0.5,
@@ -80,6 +82,13 @@ export const getApps = (onOpenWindow) => [
     icon: messageIcon,
     component: <GuestBook onOpenWindow={onOpenWindow} />,
     defaultSize: getResponsiveSize(600, 700),
+  },
+  {
+    id: "terminal",
+    name: "Terminal",
+    icon: terminalIcon,
+    component: <Terminal />,
+    defaultSize: getResponsiveSize(800, 500),
   },
 ];
 
