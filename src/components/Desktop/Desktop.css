@@ -19,10 +19,10 @@
   bottom: 20px;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  align-content: flex-end;
+  flex-wrap: wrap-reverse;
+  align-content: flex-start;
   justify-content: flex-start;
-  gap: 15px;
+  row-gap: 10px;
   z-index: 1;
   pointer-events: none;
   overflow: hidden;
@@ -69,8 +69,8 @@
 
 @media (max-width: 768px) {
   .desktop-icons {
-    top: 60px;
-    right: 5px;
+    top: 50px;
+    right: 10px;
     left: 5px;
     bottom: 80px;
   }
@@ -78,8 +78,8 @@
 
 @media (max-width: 480px) {
   .desktop-icons {
-    top: 70px;
-    right: 5px;
+    top: 50px;
+    right: 10px;
     left: 5px;
     bottom: 100px;
   }
