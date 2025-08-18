@@ -1,6 +1,6 @@
 export const personalInfo = {
   name: "Danish Ansari",
-  about: "Mechatronics engineer and generalist interested in bridging hardware and software.",
+  about: "Mechatronics engineer integrating hardware and software to create applications in machine learning, robotics, and finance.",
   socials: {
     github: "dan10ish",
     x: "dan10ish",
