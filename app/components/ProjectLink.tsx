@@ -15,7 +15,7 @@ interface ProjectLinkProps {
 export default function ProjectLink({ name, tag, sourceCode, liveDemo, onTagClick, isActiveTag }: ProjectLinkProps) {
   return (
     <div className="flex items-center justify-between mb-2 md:mb-1">
-      <div className="text-[0.85rem] flex-shrink-0 mr-4 truncate">{name.toLowerCase()}</div>
+      <div className="text-[0.85rem] flex-shrink-0 mr-4 truncate font-medium">{name.toLowerCase()}</div>
       <div className="flex items-center !gap-4 md:gap-6 flex-shrink-0">
         <div className="w-20 flex justify-center">
           <div

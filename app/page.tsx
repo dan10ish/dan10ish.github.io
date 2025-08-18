@@ -50,7 +50,7 @@ export default function Home() {
                     {job.role}
                   </span>
                   <span className="text-secondary !text-[0.82rem] flex-shrink-0"> @ </span>
-                  <span className="text-base">
+                  <span className="text-base font-medium">
                     {job.company}
                   </span>
                 </div>
@@ -72,12 +72,12 @@ export default function Home() {
                   key={slug}
                   className="block group writing-link !mb-1"
                 >
-                  <div className="flex gap-4 w-full items-baseline">
+                  <div className="flex gap-2 w-full items-baseline justify-between">
+                    <span className="text-primary font-medium hover:underline group-hover:text-[var(--link-blue)] group-hover:underline truncate">
+                      {title}
+                    </span>
                     <span className="text-secondary !text-[0.82rem] flex-shrink-0">
                       {formatDate(date)}
-                    </span>
-                    <span className="font-semibold hover:underline text-secondary group-hover:text-[var(--link-blue)] group-hover:underline truncate">
-                      {title}
                     </span>
                   </div>
                 </Link>
