@@ -27,9 +27,9 @@ export default function Home() {
 
         <section>
           <div className="flex items-center gap-2">
-            <div className="text-[0.9rem] mb-0 flex items-center">
+            <p className="text-base mb-0 flex items-center">
               Get in touch:
-            </div>
+            </p>
             <SocialLinks
               github={personalInfo.socials.github}
               email={personalInfo.socials.email}
