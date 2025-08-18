@@ -2,28 +2,28 @@
 @import "tailwindcss";
 
 :root {
-  --background: #bbb;
-  --foreground: #1a1a1a;
-  --secondary: #555555;
-  --link-blue: #0066cc;
+  --background: #f8f8f8;
+  --foreground: #1f1f1f;
+  --secondary: #6b6b6b;
+  --link-blue: #0070f3;
   --spacing-xs: 0.6rem;
   --spacing-sm: 1.2rem;
   --spacing-md: 1.8rem;
   --spacing-lg: 2.4rem;
   --spacing-xl: 3.6rem;
   --max-width: 700px;
-  --code-bg: #AFAFAF;
-  --sh-class: #1a4480;
-  --sh-identifier: #1a1a1a;
-  --sh-sign: #444444;
-  --sh-property: #0066cc;
-  --sh-entity: #006b5c;
-  --sh-jsxliterals: #4a148c;
-  --sh-string: #006b5c;
-  --sh-keyword: #c62828;
-  --sh-comment: #666666;
-  --clear-filter-bg: #d4af37; 
-  --clear-filter-text: #8b4513;
+  --code-bg: #e5e5e5;
+  --sh-class: #0366d6;
+  --sh-identifier: #1f1f1f;
+  --sh-sign: #6b6b6b;
+  --sh-property: #0070f3;
+  --sh-entity: #22863a;
+  --sh-jsxliterals: #6f42c1;
+  --sh-string: #22863a;
+  --sh-keyword: #d73a49;
+  --sh-comment: #8b8b8b;
+  --clear-filter-bg: #facdcd; 
+  --clear-filter-text: #b91c1c;
 }
 
 .dark {
@@ -41,8 +41,8 @@
   --sh-string: #34d399;
   --sh-keyword: #f87171;
   --sh-comment: #6b7280;
-  --clear-filter-bg: #fbbf24;
-  --clear-filter-text: #7c3aed;
+  --clear-filter-bg: #7f1d1d;
+  --clear-filter-text: #fca5a5;
 }
 
 html {

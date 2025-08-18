@@ -37,7 +37,7 @@ export const projects = [
   {
     name: "CogniCart",
     sourceCode: "https://github.com/dan10ish/cogni-cart",
-    tag: "ai"
+    tag: "ml"
   },
   {
     name: "Code Editor",
@@ -72,7 +72,7 @@ export const projects = [
     name: "macOS Portfolio",
     sourceCode: "https://github.com/dan10ish/os",
     liveDemo: "https://os-danishs-projects-31d8c677.vercel.app/",
-    tag: "portfolio"
+    tag: "web"
   },
   {
     name: "Comment Toxicity",
@@ -99,12 +99,12 @@ export const projects = [
     name: "Galaxy",
     sourceCode: "https://github.com/dan10ish/Galaxy",
     liveDemo: "https://dan10ish.github.io/Galaxy/",
-    tag: "simulation"
+    tag: "algorithm"
   },
   {
     name: "Personal Website",
     sourceCode: "https://github.com/dan10ish/dan10ish.github.io",
     liveDemo: "https://dan10ish.github.io",
-    tag: "portfolio"
+    tag: "web"
   }
 ];
