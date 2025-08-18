@@ -16,10 +16,10 @@ export default function ProjectLink({ name, tag, sourceCode, liveDemo, onTagClic
   return (
     <div className="flex items-center justify-between mb-2 md:mb-1">
       <div className="text-[0.85rem] flex-shrink-0 mr-4 truncate">{name.toLowerCase()}</div>
-      <div className="flex items-center gap-3 md:gap-6 flex-shrink-0">
+      <div className="flex items-center !gap-4 md:gap-6 flex-shrink-0">
         <div className="w-20 flex justify-center">
           <div
-            className={`text-[0.88em] bg-[var(--code-bg)] text-[var(--secondary)] !px-1.5 !py-0.5 rounded-md whitespace-nowrap cursor-pointer transform transition-transform duration-0 hover:scale-105`}
+            className={`text-[0.88em] bg-[var(--code-bg)] text-[var(--primary)] !px-1.5 !py-0.5 rounded-md whitespace-nowrap cursor-pointer transform transition-transform duration-0 hover:scale-105`}
             onClick={() => onTagClick && onTagClick(tag)}
           >
             {tag}

@@ -5,7 +5,7 @@
   --background: #f8f8f8;
   --foreground: #1f1f1f;
   --secondary: #6b6b6b;
-  --link-blue: #0056b3;
+  --link-blue: #0059ff;
   --spacing-xs: 0.6rem;
   --spacing-sm: 1.2rem;
   --spacing-md: 1.8rem;
@@ -30,7 +30,7 @@
   --background: #171717;
   --foreground: #ededed;
   --secondary: #9ca3af;
-  --link-blue: #3b82f6;
+  --link-blue: #009dff;
   --code-bg: #262626;
   --sh-class: #8b5cf6;
   --sh-identifier: #ededed;
@@ -189,7 +189,7 @@ section {
   margin: 0 0.1em;
   border-radius: 0.375rem;
   background-color: var(--code-bg);
-  color: var(--secondary);
+  color: var(--primary);
   white-space: nowrap;
   font-family: inherit;
 }
