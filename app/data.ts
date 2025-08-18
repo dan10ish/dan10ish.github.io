@@ -17,6 +17,11 @@ export const workExperience = [
     year: "2025"
   },
   {
+    role: "SWE",
+    company: "Cridaa",
+    year: "2025"
+  },
+  {
     role: "SWE Intern",
     company: "Accelus Robotics",
     year: "2024"
@@ -25,13 +30,17 @@ export const workExperience = [
 
 export const projects = [
   {
-    name: "Cold Mail Bot",
-    sourceCode: "https://github.com/dan10ish/coldmailbot",
-    liveDemo: "https://mailbot.streamlit.app",
-    tag: "web"
+    name: "AlgoSim",
+    sourceCode: "https://github.com/dan10ish/AlgoSim",
+    tag: "algorithm"
   },
   {
-    name: "Code",
+    name: "CogniCart",
+    sourceCode: "https://github.com/dan10ish/cogni-cart",
+    tag: "ai"
+  },
+  {
+    name: "Code Editor",
     sourceCode: "https://github.com/dan10ish/code",
     liveDemo: "http://dan10ish.github.io/code",
     tag: "web"
@@ -48,12 +57,6 @@ export const projects = [
     tag: "algorithm"
   },
   {
-    name: "macOS Portfolio",
-    sourceCode: "https://github.com/dan10ish/os",
-    liveDemo: "https://os.danish.bio",
-    tag: "web"
-  },
-  {
     name: "Arm Visualizer",
     sourceCode: "https://github.com/dan10ish/RoboticArm",
     liveDemo: "https://dan10ish.github.io/RoboticArm/",
@@ -63,7 +66,13 @@ export const projects = [
     name: "College Notes",
     sourceCode: "https://github.com/dan10ish/college",
     liveDemo: "https://dan10ish.github.io/college/",
-    tag: "college"
+    tag: "education"
+  },
+  {
+    name: "macOS Portfolio",
+    sourceCode: "https://github.com/dan10ish/os",
+    liveDemo: "https://os-danishs-projects-31d8c677.vercel.app/",
+    tag: "portfolio"
   },
   {
     name: "Comment Toxicity",
@@ -79,7 +88,7 @@ export const projects = [
     name: "Office",
     sourceCode: "https://github.com/dan10ish/Office",
     liveDemo: "https://dan10ish.github.io/Office/",
-    tag: "game"
+    tag: "web"
   },
   {
     name: "Cube Runner",
@@ -90,12 +99,12 @@ export const projects = [
     name: "Galaxy",
     sourceCode: "https://github.com/dan10ish/Galaxy",
     liveDemo: "https://dan10ish.github.io/Galaxy/",
-    tag: "web"
+    tag: "simulation"
   },
   {
     name: "Personal Website",
     sourceCode: "https://github.com/dan10ish/dan10ish.github.io",
     liveDemo: "https://dan10ish.github.io",
-    tag: "web"
+    tag: "portfolio"
   }
 ];

@@ -6,8 +6,8 @@ import ProjectLink from "./ProjectLink";
 interface Project {
   name: string;
   tag: string;
-  sourceCode?: string;
-  liveDemo?: string;
+  sourceCode: string;
+  liveDemo: string;
 }
 
 interface ProjectListClientProps {
