@@ -1,34 +1,50 @@
 name: Deploy to GitHub Pages
+
 on:
   push:
-    branches: [main]
+    branches: [ main, master ]
   workflow_dispatch:
+
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: "18"
-          cache: "npm"
-      - uses: actions/cache@v4
-        with:
-          path: |
-            ~/.npm
-            .next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-nextjs-
-      - name: Install
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
         run: npm ci
+
       - name: Build
         run: npm run build
-      - uses: JamesIves/github-pages-deploy-action@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          branch: gh-pages
-          folder: out
-          clean: true
-          clean-exclude: .nojekyll
+          path: ./out
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
