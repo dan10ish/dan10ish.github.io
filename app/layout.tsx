@@ -35,7 +35,7 @@ const sfMono = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://danish.bio"),
+  metadataBase: new URL("https://danish.cv"),
   title: "Danish",
   description:
     "Danish is a mechatronics engineer exploring machine learning, robotics and finance. This is his personal website.",
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  alternates: { canonical: "https://danish.bio" },
+  alternates: { canonical: "https://danish.cv" },
   twitter: {
     card: "summary_large_image",
     site: "@dan10ish",
@@ -83,7 +83,7 @@ export const metadata: Metadata = {
     title: "Danish",
     description:
       "Danish's personal website featuring his projects, technical writings, and insights in robotics and machine learning.",
-    url: "https://danish.bio",
+    url: "https://danish.cv",
     images: [
       {
         url: "https://i.ibb.co/vmBrhSd/OG.png",
@@ -121,7 +121,6 @@ export default function RootLayout({
           <ThemeColorUpdater />
           <PageWrapper>{children}</PageWrapper>
         </ThemeProvider>
-        <Script async defer strategy="afterInteractive" src="https://scripts.simpleanalyticscdn.com/latest.js" />
       </body>
     </html>
   );
