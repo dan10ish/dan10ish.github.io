@@ -27,22 +27,22 @@
 }
 
 .dark {
-  --background: #171717;
-  --foreground: #ededed;
-  --secondary: #9ca3af;
+  --background: #0A0A0A;
+  --foreground: #f5f5f5;
+  --secondary: #b3b3b3;
   --link-blue: #009dff;
-  --code-bg: #262626;
-  --sh-class: #8b5cf6;
-  --sh-identifier: #ededed;
-  --sh-sign: #9ca3af;
-  --sh-property: #3b82f6;
-  --sh-entity: #34d399;
-  --sh-jsxliterals: #c084fc;
-  --sh-string: #34d399;
-  --sh-keyword: #f87171;
-  --sh-comment: #6b7280;
-  --clear-filter-bg: #7f1d1d;
-  --clear-filter-text: #fca5a5;
+  --code-bg: #1f1f1f;
+  --sh-class: #a78bfa;
+  --sh-identifier: #f5f5f5;
+  --sh-sign: #b3b3b3;
+  --sh-property: #009dff;
+  --sh-entity: #4ade80;
+  --sh-jsxliterals: #d8b4fe;
+  --sh-string: #4ade80;
+  --sh-keyword: #fb7185;
+  --sh-comment: #737373;
+  --clear-filter-bg: #991b1b;
+  --clear-filter-text: #f87171;
 }
 
 html {
