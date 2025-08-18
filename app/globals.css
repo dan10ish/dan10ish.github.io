@@ -5,7 +5,7 @@
   --background: #f8f8f8;
   --foreground: #1f1f1f;
   --secondary: #6b6b6b;
-  --link-blue: #0070f3;
+  --link-blue: #0056b3;
   --spacing-xs: 0.6rem;
   --spacing-sm: 1.2rem;
   --spacing-md: 1.8rem;
@@ -16,7 +16,7 @@
   --sh-class: #0366d6;
   --sh-identifier: #1f1f1f;
   --sh-sign: #6b6b6b;
-  --sh-property: #0070f3;
+  --sh-property: #0056b3;
   --sh-entity: #22863a;
   --sh-jsxliterals: #6f42c1;
   --sh-string: #22863a;
@@ -30,12 +30,12 @@
   --background: #171717;
   --foreground: #ededed;
   --secondary: #9ca3af;
-  --link-blue: #60a5fa;
+  --link-blue: #3b82f6;
   --code-bg: #262626;
   --sh-class: #8b5cf6;
   --sh-identifier: #ededed;
   --sh-sign: #9ca3af;
-  --sh-property: #60a5fa;
+  --sh-property: #3b82f6;
   --sh-entity: #34d399;
   --sh-jsxliterals: #c084fc;
   --sh-string: #34d399;
