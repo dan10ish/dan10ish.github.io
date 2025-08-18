@@ -3,7 +3,7 @@
 
 :root {
   --background: #bbb;
-  --foreground: #000;
+  --foreground: #1a1a1a;
   --secondary: #555555;
   --link-blue: #0066cc;
   --spacing-xs: 0.6rem;
@@ -14,7 +14,7 @@
   --max-width: 700px;
   --code-bg: #AFAFAF;
   --sh-class: #1a4480;
-  --sh-identifier: #000;
+  --sh-identifier: #1a1a1a;
   --sh-sign: #444444;
   --sh-property: #0066cc;
   --sh-entity: #006b5c;
@@ -24,6 +24,25 @@
   --sh-comment: #666666;
   --clear-filter-bg: #d4af37; 
   --clear-filter-text: #8b4513;
+}
+
+.dark {
+  --background: #1e1e1e;
+  --foreground: #e5e5e5;
+  --secondary: #a0a0a0;
+  --link-blue: #4da6ff;
+  --code-bg: #2d2d2d;
+  --sh-class: #7bb3f0;
+  --sh-identifier: #e5e5e5;
+  --sh-sign: #a0a0a0;
+  --sh-property: #4da6ff;
+  --sh-entity: #66d9b8;
+  --sh-jsxliterals: #b388ff;
+  --sh-string: #66d9b8;
+  --sh-keyword: #ff7b7b;
+  --sh-comment: #999999;
+  --clear-filter-bg: #f4d03f;
+  --clear-filter-text: #5d4e75;
 }
 
 html {

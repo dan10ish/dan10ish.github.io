@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import { ThemeColorUpdater } from "./components/ThemeColorUpdater";
 import { PageWrapper } from "./components/PageWrapper";
+import { ThemeProvider } from "./components/ThemeProvider";
 
 const sfMono = localFont({
   src: [
@@ -108,12 +109,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
-        <ThemeColorUpdater />
-      </head>
+    <html lang="en" suppressHydrationWarning>
+      <head />
       <body className={`${sfMono.variable}`}>
-        <PageWrapper>{children}</PageWrapper>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem={false}
+          disableTransitionOnChange={false}
+        >
+          <ThemeColorUpdater />
+          <PageWrapper>{children}</PageWrapper>
+        </ThemeProvider>
         <Script async defer strategy="afterInteractive" src="https://scripts.simpleanalyticscdn.com/latest.js" />
       </body>
     </html>

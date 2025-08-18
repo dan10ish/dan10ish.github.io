@@ -4,6 +4,7 @@ import { personalInfo, projects, workExperience } from "./data";
 import { getSortedWritingsData } from "../lib/writings";
 import { formatDate } from "../lib/utils";
 import ProjectListClient from "./components/ProjectListClient";
+import { ThemeToggle } from "./components/ThemeToggle";
 
 export default function Home() {
   const writings = getSortedWritingsData();
@@ -12,9 +13,12 @@ export default function Home() {
     <div className="h-fit max-w-2xl mx-auto">
       <main className="space-y-6">
         <section className="space-y-0">
-          <h1 className="text-base font-bold header-text">
-            {personalInfo.name}
-          </h1>
+          <div className="flex items-center justify-between">
+            <h1 className="text-base font-bold header-text">
+              {personalInfo.name}
+            </h1>
+            <ThemeToggle />
+          </div>
         </section>
 
         <section>

@@ -1,20 +1,52 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useTheme } from 'next-themes';
 
-const THEME_COLOR = '#bbb';
+const LIGHT_THEME_COLOR = '#bbb';
+const DARK_THEME_COLOR = '#1e1e1e';
 
 export function ThemeColorUpdater() {
-  useEffect(() => {
-    let metaThemeColor = document.querySelector('meta[name="theme-color"]');
+  const { theme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
-    if (!metaThemeColor) {
-      metaThemeColor = document.createElement('meta');
-      metaThemeColor.setAttribute('name', 'theme-color');
-      document.head.appendChild(metaThemeColor);
-    }
-    metaThemeColor.setAttribute('content', THEME_COLOR);
+  useEffect(() => {
+    setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
+    const updateThemeColor = () => {
+      let metaThemeColor = document.querySelector('meta[name="theme-color"]');
+
+      if (!metaThemeColor) {
+        metaThemeColor = document.createElement('meta');
+        metaThemeColor.setAttribute('name', 'theme-color');
+        document.head.appendChild(metaThemeColor);
+      }
+
+      const isDark = document.documentElement.classList.contains('dark');
+      const themeColor = isDark ? DARK_THEME_COLOR : LIGHT_THEME_COLOR;
+      metaThemeColor.setAttribute('content', themeColor);
+    };
+
+    const timeoutId = setTimeout(updateThemeColor, 100);
+
+    const observer = new MutationObserver(() => {
+      updateThemeColor();
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+
+    return () => {
+      clearTimeout(timeoutId);
+      observer.disconnect();
+    };
+  }, [theme, resolvedTheme, mounted]);
 
   return null;
 } 

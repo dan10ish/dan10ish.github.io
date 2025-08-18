@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Home, ChevronUp } from 'lucide-react';
+import { ThemeToggle } from './ThemeToggle';
 
 export default function FloatingButtons() {
   const [isVisible, setIsVisible] = useState(false);
@@ -40,6 +41,7 @@ export default function FloatingButtons() {
           <ChevronUp size={20} />
         </button>
       )}
+      <ThemeToggle />
       <Link 
         href="/"
         className="flex items-center justify-center p-2 rounded-full bg-background duration-200"
