@@ -31,7 +31,7 @@ export default function FloatingButtons() {
   }, []);
 
   return (
-    <div className="fixed bottom-4 right-4 flex flex-col items-center space-y-4 z-50">
+    <div className="fixed bottom-7 right-5 flex flex-col items-center space-y-4 z-50">
       {isVisible && (
         <button
           onClick={scrollToTop}

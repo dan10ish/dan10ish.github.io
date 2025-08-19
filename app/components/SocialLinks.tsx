@@ -52,7 +52,7 @@ interface SocialLinksProps {
 
 export default function SocialLinks({ github, email, x, instagram, linkedin }: SocialLinksProps) {
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2 !-mt-1">
       {github && (
         <Link href={`https://github.com/${github}`} target="_blank" className="flex items-center justify-center" aria-label={`GitHub profile of ${github}`}>
           <Github size={20} />

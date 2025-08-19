@@ -22,23 +22,43 @@ export default function Home() {
         </section>
 
         <section>
+          <h1 className="text-base opacity-70">About</h1>
           <p className="text-base">{personalInfo.about}</p>
         </section>
 
         <section>
-          <div className="flex items-center gap-2">
-            <p className="text-base mb-0 flex items-center">
-              Get in touch:
-            </p>
-            <SocialLinks
-              github={personalInfo.socials.github}
-              email={personalInfo.socials.email}
-              x={personalInfo.socials.x}
-              instagram={personalInfo.socials.instagram}
-              linkedin={personalInfo.socials.linkedin}
-            />
-          </div>
+          <SocialLinks
+            github={personalInfo.socials.github}
+            email={personalInfo.socials.email}
+            x={personalInfo.socials.x}
+            instagram={personalInfo.socials.instagram}
+            linkedin={personalInfo.socials.linkedin}
+          />
         </section>
+
+        {writings.length > 0 && (
+          <section>
+            <h1 className="text-base opacity-70">Writings</h1>
+            <div className="mt-1">
+              {writings.map(({ slug, title, date }) => (
+                <Link
+                  href={`/writings/${slug}`}
+                  key={slug}
+                  className="block group writing-link !mb-1"
+                >
+                  <div className="flex gap-2 w-full items-baseline justify-between">
+                    <span className="text-primary font-medium touch-underline group-hover:text-[var(--link-blue)] truncate">
+                      {title}
+                    </span>
+                    <span className="text-secondary !text-[0.82rem] flex-shrink-0">
+                      {formatDate(date)}
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
 
         <section>
           <h1 className="text-base opacity-70">Work</h1>
@@ -61,30 +81,6 @@ export default function Home() {
             </div>
           ))}
         </section>
-
-        {writings.length > 0 && (
-          <section>
-            <h1 className="text-base opacity-70">Writings</h1>
-            <div className="mt-1">
-              {writings.map(({ slug, title, date }) => (
-                <Link
-                  href={`/writings/${slug}`}
-                  key={slug}
-                  className="block group writing-link !mb-1"
-                >
-                  <div className="flex gap-2 w-full items-baseline justify-between">
-                    <span className="text-primary font-medium hover:underline group-hover:text-[var(--link-blue)] group-hover:underline truncate">
-                      {title}
-                    </span>
-                    <span className="text-secondary !text-[0.82rem] flex-shrink-0">
-                      {formatDate(date)}
-                    </span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </section>
-        )}
 
         <ProjectListClient initialProjects={projects} />
       </main>

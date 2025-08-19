@@ -22,7 +22,7 @@
   --sh-string: #22863a;
   --sh-keyword: #d73a49;
   --sh-comment: #8b8b8b;
-  --clear-filter-bg: #facdcd; 
+  --clear-filter-bg: #facdcd;
   --clear-filter-text: #b91c1c;
 }
 
@@ -85,26 +85,33 @@ svg {
   a.writing-link:hover {
     opacity: 1;
   }
-  
+
   .hover-underline:hover {
     text-decoration: underline;
     text-underline-offset: 4px;
     opacity: 1;
   }
-  
-  a:hover svg, 
+
+  a:hover svg,
   button:hover svg {
     color: var(--link-blue);
     opacity: 1;
     transform: scale(1.1);
   }
 
-  a:hover, button:hover {
+  a:hover,
+  button:hover {
     cursor: pointer;
   }
 }
 
-h1, h2 {
+.touch-underline {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+h1,
+h2 {
   font-size: 0.9rem;
   line-height: 1.5;
 }
@@ -118,7 +125,20 @@ h1 {
   margin-bottom: 0 !important;
 }
 
-p, span, .prose, .project-list > *, .text-secondary, .text-link-blue, code, pre, .prose code, .prose pre, td, th, li, blockquote {
+p,
+span,
+.prose,
+.project-list>*,
+.text-secondary,
+.text-link-blue,
+code,
+pre,
+.prose code,
+.prose pre,
+td,
+th,
+li,
+blockquote {
   font-size: 0.85rem;
   letter-spacing: 0.02em;
 }
@@ -127,15 +147,15 @@ section {
   margin-bottom: var(--spacing-md);
 }
 
-.project-list > * {
+.project-list>* {
   margin-bottom: 0.6rem;
 }
 
-.project-list > *:last-child {
+.project-list>*:last-child {
   margin-bottom: 0;
 }
 
-.space-y-4 > * + * {
+.space-y-4>*+* {
   margin-top: 1.2rem !important;
 }
 
@@ -145,8 +165,8 @@ section {
     padding: var(--spacing-md);
     line-height: 1.6;
   }
-  
-  .space-y-6 > * + * {
+
+  .space-y-6>*+* {
     margin-top: 1.2rem;
   }
 }
@@ -160,11 +180,11 @@ section {
   margin-top: 1.2em;
   margin-bottom: 1.2em;
   border-radius: 0.375rem;
-  overflow-x: auto; 
+  overflow-x: auto;
   background-color: var(--code-bg);
 }
 
-.prose figure[data-rehype-pretty-code-figure] > pre {
+.prose figure[data-rehype-pretty-code-figure]>pre {
   margin: 0;
   border-radius: 0;
   padding: 0.7rem 0.9rem;
@@ -174,12 +194,12 @@ section {
   overflow-x: auto;
 }
 
-.prose figure[data-rehype-pretty-code-figure] > pre code {
+.prose figure[data-rehype-pretty-code-figure]>pre code {
   display: grid;
   background-color: var(--code-bg);
 }
 
-.prose figure[data-rehype-pretty-code-figure] > pre code span {
+.prose figure[data-rehype-pretty-code-figure]>pre code span {
   line-height: 1.5 !important;
   background-color: var(--code-bg) !important;
 }
@@ -196,11 +216,13 @@ section {
 
 .prose .table-wrapper {
   overflow-x: auto;
+
   &::-webkit-scrollbar {
-      display: none;
+    display: none;
   }
-  -ms-overflow-style: none; 
-  scrollbar-width: none; 
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .prose table {
@@ -210,12 +232,12 @@ section {
   margin-top: 1.2em;
   margin-bottom: 1.2em;
   border-collapse: collapse;
-  font-size: inherit; 
+  font-size: inherit;
   line-height: 1.5;
 }
 
 .prose thead {
-  border-bottom: 1px solid var(--secondary); 
+  border-bottom: 1px solid var(--secondary);
 }
 
 .prose th {
@@ -232,7 +254,7 @@ section {
 }
 
 .prose tbody tr:last-child td {
-  border-bottom: none; 
+  border-bottom: none;
 }
 
 .prose blockquote {
@@ -254,19 +276,19 @@ section {
 
 .prose ul,
 .prose ol {
-  margin-top: 0.75em; 
+  margin-top: 0.75em;
   margin-bottom: 0.75em;
-  padding-left: 1.5em; 
+  padding-left: 1.5em;
 }
 
 .prose li {
-  margin-top: 0.25em; 
+  margin-top: 0.25em;
   margin-bottom: 0.25em;
-  padding-left: 0.25em; 
+  padding-left: 0.25em;
 }
 
 .prose ul li {
-  list-style-type: disc; 
+  list-style-type: disc;
 }
 
 .prose ul li::before {
@@ -274,11 +296,11 @@ section {
 }
 
 .prose ol li {
-  list-style-type: decimal; 
+  list-style-type: decimal;
 }
 
 .prose ol li::before {
- content: "";
+  content: "";
 }
 
 .prose ul ul,
@@ -287,7 +309,7 @@ section {
 .prose ol ol {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
-  margin-left: 1.5em; 
+  margin-left: 1.5em;
 }
 
 .prose ul ul li {
@@ -307,7 +329,7 @@ section {
   margin-top: 1em;
   margin-bottom: 1em;
   max-width: 100%;
-  border-radius: 0.375rem; 
+  border-radius: 0.375rem;
 }
 
 .prose a {
@@ -327,20 +349,39 @@ section {
 .prose h4,
 .prose h5,
 .prose h6 {
-  margin-top: 1.5em; 
+  margin-top: 1.5em;
   margin-bottom: 0.5em;
-  padding-top: 0.5em; 
+  padding-top: 0.5em;
   padding-bottom: 0.25em;
   line-height: 1.4;
   color: var(--secondary);
 }
 
-.prose h1 { font-weight: 900; color: var(--foreground); } 
-.prose h2 { font-weight: 900; } 
-.prose h3 { font-weight: 800; } 
-.prose h4 { font-weight: 700; } 
-.prose h5 { font-weight: 500; } 
-.prose h6 { font-weight: 400; color: var(--secondary); } 
+.prose h1 {
+  font-weight: 900;
+  color: var(--foreground);
+}
+
+.prose h2 {
+  font-weight: 900;
+}
+
+.prose h3 {
+  font-weight: 800;
+}
+
+.prose h4 {
+  font-weight: 700;
+}
+
+.prose h5 {
+  font-weight: 500;
+}
+
+.prose h6 {
+  font-weight: 400;
+  color: var(--secondary);
+}
 
 .prose p {
   margin-top: 0.5em;
@@ -354,23 +395,59 @@ section {
   margin-bottom: 2em;
 }
 
-.text-link-blue { color: var(--link-blue); }
-.text-secondary { color: var(--secondary); }
+.text-link-blue {
+  color: var(--link-blue);
+}
+
+.text-secondary {
+  color: var(--secondary);
+}
 
 .sh__line {
   display: block;
 }
 
-.sh__token--keyword { color: var(--sh-keyword); }
-.sh__token--string { color: var(--sh-string); }
-.sh__token--class { color: var(--sh-class); }
-.sh__token--property { color: var(--sh-property); }
-.sh__token--entity { color: var(--sh-entity); }
-.sh__token--identifier { color: var(--sh-identifier); }
-.sh__token--comment { color: var(--sh-comment); font-style: italic; }
-.sh__token--sign { color: var(--sh-sign); }
-.sh__token--jsxliterals { color: var(--sh-jsxliterals); }
+.sh__token--keyword {
+  color: var(--sh-keyword);
+}
 
-.prose code, .prose pre, pre, code, .prose figure[data-rehype-pretty-code-figure] > pre code span {
+.sh__token--string {
+  color: var(--sh-string);
+}
+
+.sh__token--class {
+  color: var(--sh-class);
+}
+
+.sh__token--property {
+  color: var(--sh-property);
+}
+
+.sh__token--entity {
+  color: var(--sh-entity);
+}
+
+.sh__token--identifier {
+  color: var(--sh-identifier);
+}
+
+.sh__token--comment {
+  color: var(--sh-comment);
+  font-style: italic;
+}
+
+.sh__token--sign {
+  color: var(--sh-sign);
+}
+
+.sh__token--jsxliterals {
+  color: var(--sh-jsxliterals);
+}
+
+.prose code,
+.prose pre,
+pre,
+code,
+.prose figure[data-rehype-pretty-code-figure]>pre code span {
   font-size: 0.8rem !important;
 }
