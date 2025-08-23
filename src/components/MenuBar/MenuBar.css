@@ -13,7 +13,6 @@
   z-index: 1000;
   color: var(--menu-bar-text);
   font-size: 14px;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .menu-bar-left {

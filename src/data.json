@@ -2,11 +2,11 @@
     "name": "Danish",
     "title": "Building solutions at the intersection of hardware and software",
     "interests": "ML | Robotics | Finance",
-    "current": "SWE, CRIDAA",
-    "past": [
+    "current": [
         "SWE, INNOVATIO LABS",
-        "SWE, ACCELUS ROBOTICS"
+        "SWE, CRIDAA"
     ],
+    "past": "SWE, ACCELUS ROBOTICS",
     "education": "Mechatronics, NMIMS",
     "contact": {
         "email": "aansaridan@gmail.com",

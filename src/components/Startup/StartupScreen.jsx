@@ -40,23 +40,23 @@ const StartupScreen = ({ onPowerOn }) => {
         <div className="startup-info">
           <div className="startup-label">{data.name}</div>
           <div className="startup-value">{data.title}</div>
-          
+
           <div className="startup-label">interests</div>
           <div className="startup-value">{data.interests}</div>
-          
+
           <div className="startup-label">current</div>
-          <div className="startup-value">{data.current}</div>
-          
+          <div className="startup-value">{data.current.map((item, index) => (
+            <div key={index}>{item}</div>
+          ))}</div>
+
           <div className="startup-label">past</div>
           <div className="startup-value">
-            {data.past.map((item, index) => (
-              <div key={index}>{item}</div>
-            ))}
+            {data.past}
           </div>
-          
+
           <div className="startup-label">education</div>
           <div className="startup-value">{data.education}</div>
-          
+
           <div className="startup-label">contact</div>
           <div className="startup-value">
             <div className="contact-item">

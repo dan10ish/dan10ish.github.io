@@ -185,8 +185,12 @@ Navigation:
       output: "Available projects:\n• Personal Website (React + Vite)\n• Terminal App\n• Music Player\n• Guest Book"
     }),
 
+    // experience: () => ({
+    //   output: `Current: ${data.current}\nPast:\n${data.past.map(exp => `• ${exp}`).join("\n")}`
+    // }),
+
     experience: () => ({
-      output: `Current: ${data.current}\nPast:\n${data.past.map(exp => `• ${exp}`).join("\n")}`
+      output: `Current: ${data.current.map(exp => `• ${exp}`).join("\n")}\nPast:\n${data.past}\n`
     }),
 
     uname: () => ({ output: "Darwin danish-macbook 23.1.0 Darwin Kernel Version 23.1.0" }),
