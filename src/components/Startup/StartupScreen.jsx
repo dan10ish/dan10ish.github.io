@@ -1,7 +1,8 @@
 import React from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Sun, Moon } from "lucide-react";
 import data from "../../data.json";
 import powerIcon from "../../assets/icons/power.svg";
+import { useTheme } from "../../contexts/ThemeContext";
 import "./StartupScreen.css";
 
 const PowerButton = ({ onClick }) => (
@@ -20,6 +21,8 @@ const PowerButton = ({ onClick }) => (
 );
 
 const StartupScreen = ({ onPowerOn }) => {
+  const { toggleTheme, isDark } = useTheme();
+
   const getContactLink = (platform, username) => {
     const links = {
       email: `mailto:${username}`,
@@ -92,6 +95,9 @@ const StartupScreen = ({ onPowerOn }) => {
           <PowerButton onClick={onPowerOn} />
         </div>
       </div>
+      <button className="startup-theme-toggle" onClick={toggleTheme}>
+        {isDark ? <Sun size={20} /> : <Moon size={20} />}
+      </button>
     </div>
   );
 };

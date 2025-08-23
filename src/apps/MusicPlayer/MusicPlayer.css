@@ -54,12 +54,23 @@
   cursor: pointer;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  transition: all 0.3s ease;
+}
+
+[data-theme="light"] .play-pause-button {
+  background: rgba(0, 0, 0, 0.2);
+  border: rgba(0, 0, 0, 0.1) solid 1px;
+  color: #666;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .play-pause-button:hover {
     transform: scale(1.05);
     color: #fff;
+  }
+
+  [data-theme="light"] .play-pause-button:hover {
+    color: #000;
   }
 }
 

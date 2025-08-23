@@ -1,5 +1,6 @@
 .projects-app {
-  color: #fff;
+  color: var(--app-text);
+  transition: color 0.3s ease;
 }
 
 .projects-section {
@@ -7,9 +8,10 @@
 }
 
 .project-item {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid var(--app-border);
   padding: 8px 10px;
   cursor: pointer;
+  transition: border-color 0.3s ease;
 }
 
 .project-item:last-child {
@@ -24,13 +26,14 @@
 }
 
 .project-name {
-  color: #fff;
+  color: var(--app-text);
   font-size: 14px;
   font-weight: 400;
   display: flex;
   align-items: center;
   gap: 6px;
   flex: 1;
+  transition: color 0.3s ease;
 }
 
 .folder-icon {
@@ -40,15 +43,14 @@
 }
 
 .project-label {
-  color: #888;
+  color: var(--app-label);
   font-size: 14px;
   font-weight: 400;
   text-align: center;
   flex: 0 0 auto;
   margin: 0 15px;
+  transition: color 0.3s ease;
 }
-
-
 
 .project-links {
   display: flex;
@@ -58,10 +60,11 @@
 }
 
 .project-link {
-  color: #888;
+  color: var(--app-label);
   opacity: 1;
   display: flex;
   align-items: center;
+  transition: color 0.3s ease;
 }
 
 .project-link.disabled {
@@ -75,12 +78,11 @@
   align-items: center;
 }
 
-
-
 .project-detail {
   padding: 20px;
-  color: #fff;
+  color: var(--app-text);
   max-width: 500px;
+  transition: color 0.3s ease;
 }
 
 .project-detail-section {
@@ -94,21 +96,23 @@
 }
 
 .project-detail-label {
-  color: #888;
+  color: var(--app-label);
   font-size: 14px;
   font-weight: 400;
   width: 80px;
   text-align: right;
   margin-right: 15px;
   flex-shrink: 0;
+  transition: color 0.3s ease;
 }
 
 .project-detail-text {
-  color: #fff;
+  color: var(--app-text);
   font-size: 14px;
   font-weight: 400;
   line-height: 1.4;
   max-width: 350px;
+  transition: color 0.3s ease;
 }
 
 .project-detail-links {
@@ -118,7 +122,7 @@
 }
 
 .project-detail-link {
-  color: #fff;
+  color: var(--app-text);
   text-decoration: none;
   font-size: 14px;
   font-weight: 400;
@@ -127,15 +131,14 @@
   grid-template-columns: 90px auto auto;
   align-items: center;
   gap: 4px;
-
+  transition: color 0.3s ease;
 }
 
 .project-detail-icon {
-  color: #fff;
+  color: var(--app-text);
   opacity: 1;
+  transition: color 0.3s ease;
 }
-
-
 
 .project-video {
   margin-top: 20px;
@@ -145,6 +148,11 @@
   background: rgba(255, 255, 255, 0.05);
   max-width: 300px;
   width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+[data-theme="light"] .project-video {
+  background: rgba(0, 0, 0, 0.05);
 }
 
 .project-video-player {
@@ -159,12 +167,16 @@
     background-color: rgba(255, 255, 255, 0.05);
   }
 
+  [data-theme="light"] .project-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
   .project-item:hover .project-name {
-    color: #4A9EFF;
+    color: var(--app-link-hover);
   }
 
   .project-link:hover {
-    color: #4A9EFF;
+    color: var(--app-link-hover);
     opacity: 1;
   }
 
@@ -174,11 +186,11 @@
   }
 
   .project-detail-link:hover {
-    color: #4A9EFF;
+    color: var(--app-link-hover);
   }
 
   .project-detail-link:hover .project-detail-icon {
-    color: #4A9EFF;
+    color: var(--app-link-hover);
     opacity: 1;
   }
 }

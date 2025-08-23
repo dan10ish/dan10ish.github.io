@@ -4,11 +4,12 @@
   left: 0;
   width: 100vw;
   height: 100dvh;
-  background: #000000;
+  background: var(--startup-bg);
   font-weight: 400;
   display: flex;
   justify-content: center;
   z-index: 10000;
+  transition: background-color 0.3s ease;
 }
 
 .startup-content {
@@ -29,21 +30,23 @@
 
 .startup-label {
   font-size: 15px;
-  color: #999999;
+  color: var(--startup-label);
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 400;
   text-align: right;
   line-height: 1.6;
+  transition: color 0.3s ease;
 }
 
 .startup-value {
   font-size: 15px;
-  color: #eee;
+  color: var(--startup-value);
   font-weight: 400;
   line-height: 1.6;
   letter-spacing: 1px;
   padding-right: 20px;
+  transition: color 0.3s ease;
 }
 
 .startup-value div {
@@ -59,15 +62,17 @@
 }
 
 .contact-link {
-  color: #eee;
+  color: var(--startup-link);
   text-decoration: none;
   font-weight: 400;
   letter-spacing: 1px;
+  transition: color 0.3s ease;
 }
 
 .contact-icon {
-  color: #eee;
+  color: var(--startup-link);
   opacity: 1;
+  transition: color 0.3s ease;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -77,12 +82,12 @@
   }
 
   .contact-link:hover {
-    color: #1c8aff;
+    color: var(--startup-link-hover);
     text-decoration: underline;
   }
 
   .contact-link:hover+.contact-icon {
-    color: #1c8aff;
+    color: var(--startup-link-hover);
     opacity: 1;
   }
 }
@@ -96,6 +101,31 @@
   align-items: center;
 }
 
+.startup-theme-toggle {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: none;
+  border: none;
+  color: var(--startup-value);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.startup-theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.1);
+}
+
+[data-theme="light"] .startup-theme-toggle:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
 .power-toggle {
   position: relative;
   height: 80px;
@@ -106,7 +136,7 @@
   content: '';
   box-shadow: 0;
   border-radius: 67.6px;
-  background: #111;
+  background: var(--power-button-bg);
   position: absolute;
   margin-left: -28.8px;
   margin-top: -28.8px;
@@ -115,20 +145,21 @@
   width: 57.6px;
   left: 50%;
   top: 50%;
+  transition: background-color 0.3s ease;
 }
 
 .power-button {
   transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
   box-shadow:
-    0 12px 20px -3px rgba(0, 0, 0, 0.8),
-    inset 0 -2px 3px -1px rgba(0, 0, 0, 0.4),
-    0 -8px 12px -1px rgba(255, 255, 255, 0.1),
-    inset 0 2px 3px -1px rgba(255, 255, 255, 0.15),
-    inset 0 0 4px 1px rgba(255, 255, 255, 0.1),
-    inset 0 16px 24px 0 rgba(255, 255, 255, 0.05);
+    0 12px 20px -3px var(--power-button-shadow),
+    inset 0 -2px 3px -1px var(--power-button-inner-shadow),
+    0 -8px 12px -1px var(--power-button-highlight),
+    inset 0 2px 3px -1px var(--power-button-inner-highlight),
+    inset 0 0 4px 1px var(--power-button-inner-glow),
+    inset 0 16px 24px 0 var(--power-button-inner-radial);
   border-radius: 55px;
   position: absolute;
-  background: #1a1a1a;
+  background: var(--power-button-bg);
   margin-left: -27.5px;
   margin-top: -27.5px;
   display: flex;
@@ -140,33 +171,35 @@
   top: 50%;
   border: none;
   cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .power-icon {
-  filter: invert(0.7);
+  filter: var(--apple-logo-filter);
   transition: filter 200ms ease;
 }
 
 .power-button:hover .power-icon {
-  filter: invert(0.9);
+  filter: var(--apple-logo-filter);
+  opacity: 0.9;
 }
 
 .power-button:active {
   filter: blur(0.4px);
   box-shadow:
-    0 8px 20px -3px rgba(0, 0, 0, 0.6),
-    inset 0 -6px 24px 1px rgba(255, 255, 255, 0.1),
-    0 -8px 12px -1px rgba(255, 255, 255, 0.1),
-    inset 0 6px 20px 0 rgba(0, 0, 0, 0.6),
-    inset 0 0 8px 1px rgba(255, 255, 255, 0.08);
+    0 8px 20px -3px var(--power-button-shadow),
+    inset 0 -6px 24px 1px var(--power-button-highlight),
+    0 -8px 12px -1px var(--power-button-highlight),
+    inset 0 6px 20px 0 var(--power-button-inner-shadow),
+    inset 0 0 8px 1px var(--power-button-inner-glow);
   transform: scale(0.98);
 }
 
 .power-button:active .power-icon {
-  filter: invert(0.5);
+  filter: var(--apple-logo-filter);
+  opacity: 0.5;
   transform: scale(0.95);
 }
-
 
 @media (max-width:768px) {
   .startup-info {

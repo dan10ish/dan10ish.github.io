@@ -1,7 +1,8 @@
 .about-app {
   padding: 20px;
-  color: #fff;
+  color: var(--app-text);
   max-width: 500px;
+  transition: color 0.3s ease;
 }
 
 .profile-section {
@@ -23,7 +24,8 @@
   font-size: 18px;
   font-weight: 400;
   margin: 0;
-  color: #fff;
+  color: var(--app-text);
+  transition: color 0.3s ease;
 }
 
 .social-item {
@@ -33,16 +35,17 @@
 }
 
 .social-label {
-  color: #888;
+  color: var(--app-label);
   font-size: 14px;
   font-weight: 400;
   width: 80px;
   text-align: right;
   margin-right: 15px;
+  transition: color 0.3s ease;
 }
 
 .social-link {
-  color: #fff;
+  color: var(--app-link);
   text-decoration: none;
   font-size: 14px;
   font-weight: 400;
@@ -50,11 +53,13 @@
   display: flex;
   align-items: center;
   gap: 4px;
+  transition: color 0.3s ease;
 }
 
 .social-icon {
-  color: #fff;
+  color: var(--app-link);
   opacity: 1;
+  transition: color 0.3s ease;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -64,11 +69,11 @@
   }
 
   .social-link:hover {
-    color: #4A9EFF;
+    color: var(--app-link-hover);
   }
 
   .social-link:hover .social-icon {
-    color: #4A9EFF;
+    color: var(--app-link-hover);
     opacity: 1;
   }
 }
@@ -76,7 +81,8 @@
 .about-section {
   margin-top: 6px;
   padding-top: 6px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--app-border);
+  transition: border-color 0.3s ease;
 }
 
 .about-item {
@@ -86,20 +92,22 @@
 }
 
 .about-label {
-  color: #888;
+  color: var(--app-label);
   font-size: 14px;
   font-weight: 400;
   width: 80px;
   text-align: right;
   margin-right: 15px;
   flex-shrink: 0;
+  transition: color 0.3s ease;
 }
 
 .about-text {
-  color: #fff;
+  color: var(--app-text);
   font-size: 14px;
   font-weight: 400;
   line-height: 1.4;
   max-width: 350px;
+  transition: color 0.3s ease;
 }
 

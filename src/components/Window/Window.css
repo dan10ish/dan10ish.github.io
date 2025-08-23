@@ -19,6 +19,7 @@
   -ms-user-select: none;
   z-index: 10;
   pointer-events: auto;
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .window.minimized {
@@ -49,6 +50,7 @@
   -ms-user-select: none;
   touch-action: none;
   position: relative;
+  transition: background-color 0.3s ease;
 }
 
 .window-header:active {
@@ -67,12 +69,13 @@
   transform: translateX(-50%);
   font-size: 14px;
   font-weight: 400;
-  color: #fff;
+  color: var(--text-color);
   pointer-events: none;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 200px;
+  transition: color 0.3s ease;
 }
 
 .window-control {

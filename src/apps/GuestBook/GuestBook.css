@@ -1,7 +1,8 @@
 .guestbook-app {
   padding: 20px;
-  color: #fff;
+  color: var(--app-text);
   max-width: 500px;
+  transition: color 0.3s ease;
 }
 
 .guestbook-header {
@@ -14,7 +15,7 @@
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
-  color: #fff;
+  color: var(--app-text);
   padding: 12px 24px;
   font-size: 14px;
   font-weight: 500;
@@ -26,6 +27,12 @@
   width: 100%;
   max-width: 300px;
   justify-content: center;
+  transition: all 0.3s ease;
+}
+
+[data-theme="light"] .leave-message-button {
+  background: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .guestbook-messages-section {
@@ -33,10 +40,10 @@
 }
 
 #guestbooks___guestbook-messages-container {
-  color: #fff;
+  color: var(--app-text);
   margin-bottom: 20px;
   opacity: 0;
-  transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out, color 0.3s ease;
 }
 
 #guestbooks___guestbook-messages-container.loaded {
@@ -51,22 +58,30 @@
   margin-bottom: 14px;
   font-size: 13px;
   font-weight: 400;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+[data-theme="light"] #guestbooks___guestbook-messages-container>div {
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 #guestbooks___guestbook-messages-container strong {
-  color: #4A9EFF;
+  color: var(--app-link-hover);
   font-weight: 500;
   font-size: 14px;
   display: block;
   margin-bottom: 4px;
+  transition: color 0.3s ease;
 }
 
 #guestbooks___guestbook-messages-container small {
-  color: #888;
+  color: var(--app-label);
   font-size: 11px;
   display: block;
   margin: 0 0 6px 0;
   font-weight: 400;
+  transition: color 0.3s ease;
 }
 
 #guestbooks___guestbook-messages-container small::after {
@@ -76,6 +91,11 @@
   height: 1px;
   background: rgba(255, 255, 255, 0.08);
   margin-top: 6px;
+  transition: background-color 0.3s ease;
+}
+
+[data-theme="light"] #guestbooks___guestbook-messages-container small::after {
+  background: rgba(0, 0, 0, 0.08);
 }
 
 #guestbooks___guestbook-messages-container div,
@@ -86,13 +106,20 @@
   line-height: 1.4;
   margin: 6px 0 0 0;
   word-wrap: break-word;
+  transition: color 0.3s ease;
+}
+
+[data-theme="light"] #guestbooks___guestbook-messages-container div,
+[data-theme="light"] #guestbooks___guestbook-messages-container p {
+  color: rgba(0, 0, 0, 0.9);
 }
 
 #guestbooks___guestbook-messages-container a {
-  color: #4A9EFF;
+  color: var(--app-link-hover);
   text-decoration: none;
   font-weight: 500;
   font-size: 14px;
+  transition: color 0.3s ease;
 }
 
 #guestbooks___guestbook-made-with {
@@ -100,6 +127,11 @@
   margin: 30px 0 0 0;
   padding-top: 20px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+  transition: border-color 0.3s ease;
+}
+
+[data-theme="light"] #guestbooks___guestbook-made-with {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 #guestbooks___guestbook-made-with small {
@@ -114,14 +146,12 @@
   font-weight: 400;
 }
 
-/* Message Form Styles */
 .message-form {
   padding: 20px;
-  color: #fff;
+  color: var(--app-text);
   max-width: 450px;
+  transition: color 0.3s ease;
 }
-
-
 
 .message-form-content {
   display: flex;
@@ -140,12 +170,18 @@
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 8px;
-  color: #fff;
+  color: var(--app-text);
   font-size: 14px;
   font-weight: 400;
   font-family: inherit;
   box-sizing: border-box;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+}
+
+[data-theme="light"] .form-field input,
+[data-theme="light"] .form-field textarea {
+  background: rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.15);
 }
 
 .form-field input::placeholder,
@@ -156,9 +192,14 @@
 .form-field input:focus,
 .form-field textarea:focus {
   outline: none;
-  border-color: #4A9EFF;
+  border-color: var(--app-link-hover);
   background: rgba(255, 255, 255, 0.12);
   box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.1);
+}
+
+[data-theme="light"] .form-field input:focus,
+[data-theme="light"] .form-field textarea:focus {
+  background: rgba(0, 0, 0, 0.12);
 }
 
 .form-field textarea {
@@ -167,7 +208,6 @@
   line-height: 1.5;
 }
 
-/* Instagram field styling */
 .instagram-field {
   position: relative;
 }
@@ -180,15 +220,24 @@
   border-radius: 8px;
   padding: 12px 16px;
   gap: 10px;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   width: 100%;
   box-sizing: border-box;
 }
 
+[data-theme="light"] .instagram-input-container {
+  background: rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
 .instagram-input-container:focus-within {
-  border-color: #4A9EFF;
+  border-color: var(--app-link-hover);
   background: rgba(255, 255, 255, 0.12);
   box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.1);
+}
+
+[data-theme="light"] .instagram-input-container:focus-within {
+  background: rgba(0, 0, 0, 0.12);
 }
 
 .instagram-icon {
@@ -207,7 +256,7 @@
   background: none;
   border: none;
   padding: 0;
-  color: #fff;
+  color: var(--app-text);
   font-size: 14px;
   font-weight: 400;
   font-family: inherit;
@@ -215,6 +264,7 @@
   min-width: 0;
   width: 100%;
   padding: 5px 10px;
+  transition: color 0.3s ease;
 }
 
 .instagram-input-container input:focus {
@@ -226,28 +276,35 @@
   color: #777;
 }
 
-/* Challenge field styling */
 .challenge-field {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   padding: 16px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+[data-theme="light"] .challenge-field {
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .challenge-label {
-  color: #888;
+  color: var(--app-label);
   font-size: 14px;
   font-weight: 400;
   display: block;
   margin-bottom: 8px;
+  transition: color 0.3s ease;
 }
 
 .challenge-hint {
-  color: #888;
+  color: var(--app-label);
   font-size: 12px;
   font-weight: 400;
   margin-bottom: 10px;
   font-style: italic;
+  transition: color 0.3s ease;
 }
 
 .challenge-field input {
@@ -264,7 +321,7 @@
   font-weight: 500;
   font-family: inherit;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
@@ -276,7 +333,10 @@
   border-color: rgba(255, 255, 255, 0.2);
 }
 
-
+[data-theme="light"] .submit-button:disabled {
+  background: rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.2);
+}
 
 .error-message {
   color: #ff6b6b;
@@ -301,7 +361,7 @@
   height: 70px;
   border-radius: 50%;
   background: linear-gradient(135deg, rgba(74, 158, 255, 0.2) 0%, rgba(74, 158, 255, 0.1) 100%);
-  color: #4A9EFF;
+  color: var(--app-link-hover);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -311,13 +371,15 @@
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(74, 158, 255, 0.2);
+  transition: color 0.3s ease;
 }
 
 .success-message h3 {
-  color: #fff;
+  color: var(--app-text);
   font-size: 20px;
   font-weight: 500;
   margin: 0 0 12px 0;
+  transition: color 0.3s ease;
 }
 
 .success-message p {
@@ -336,8 +398,9 @@
 }
 
 .loading-spinner {
-  color: #4A9EFF;
+  color: var(--app-link-hover);
   animation: spin 1s linear infinite;
+  transition: color 0.3s ease;
 }
 
 @keyframes spin {
@@ -358,8 +421,9 @@
 }
 
 .challenge-loading .loading-spinner {
-  color: #4A9EFF;
+  color: var(--app-link-hover);
   flex-shrink: 0;
+  transition: color 0.3s ease;
 }
 
 .success-last {
@@ -369,8 +433,12 @@
 @media (hover: hover) and (pointer: fine) {
   .leave-message-button:hover {
     background: rgba(255, 255, 255, 0.15);
-    border-color: #4A9EFF;
-    color: #4A9EFF;
+    border-color: var(--app-link-hover);
+    color: var(--app-link-hover);
+  }
+
+  [data-theme="light"] .leave-message-button:hover {
+    background: rgba(0, 0, 0, 0.15);
   }
 
   #guestbooks___guestbook-messages-container>div:hover {
@@ -378,8 +446,13 @@
     border-color: rgba(255, 255, 255, 0.12);
   }
 
+  [data-theme="light"] #guestbooks___guestbook-messages-container>div:hover {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.12);
+  }
+
   #guestbooks___guestbook-messages-container a:hover {
-    color: #4A9EFF;
+    color: var(--app-link-hover);
     text-decoration: underline;
   }
 

@@ -6,6 +6,7 @@ import Window from "./components/Window/Window";
 import { StartupScreen, LoadingScreen } from "./components/Startup";
 import { getApps } from "./apps/apps.jsx";
 import wallpaper from "./assets/wallpaper.png";
+import { ThemeProvider } from "./contexts/ThemeContext";
 import "./index.css";
 
 const App = () => {
@@ -113,29 +114,24 @@ const App = () => {
     setStartupPhase("startup");
   };
 
-  useEffect(() => {
-    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-    if (metaThemeColor) {
-      if (startupPhase === "startup") {
-        metaThemeColor.setAttribute('content', '#000000');
-      } else if (startupPhase === "loading") {
-        metaThemeColor.setAttribute('content', '#000000');
-      } else {
-        metaThemeColor.setAttribute('content', '#11112D');
-      }
-    }
-  }, [startupPhase]);
-
   if (startupPhase === "startup") {
-    return <StartupScreen onPowerOn={handlePowerOn} />;
+    return (
+      <ThemeProvider>
+        <StartupScreen onPowerOn={handlePowerOn} />
+      </ThemeProvider>
+    );
   }
 
   if (startupPhase === "loading") {
-    return <LoadingScreen onLoadComplete={handleLoadComplete} />;
+    return (
+      <ThemeProvider>
+        <LoadingScreen onLoadComplete={handleLoadComplete} />
+      </ThemeProvider>
+    );
   }
 
   return (
-    <>
+    <ThemeProvider>
       <div className="desktop" style={{ backgroundImage: `url(${wallpaper})` }}>
         <MenuBar onShutdown={handleShutdown} />
         <Desktop onOpenApp={handleOpenApp} apps={apps} />
@@ -167,7 +163,7 @@ const App = () => {
           </Window>
         );
       })}
-    </>
+    </ThemeProvider>
   );
 };
 

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Loader2 } from "lucide-react";
+import { Loader2, Sun, Moon } from "lucide-react";
 import powerIcon from "../../assets/icons/power.svg";
+import { useTheme } from "../../contexts/ThemeContext";
 import "./MenuBar.css";
 
 const MenuBar = ({ onShutdown }) => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [isShuttingDown, setIsShuttingDown] = useState(false);
+  const { theme, toggleTheme, isDark } = useTheme();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -39,6 +41,9 @@ const MenuBar = ({ onShutdown }) => {
       <div className="menu-bar">
         <div className="menu-bar-left">
           <span>Danish Ansari</span>
+          <button className="theme-toggle" onClick={toggleTheme}>
+            {isDark ? <Sun size={16} /> : <Moon size={16} />}
+          </button>
           <div className="power-button-container-menu">
             <button
               className="power-button-menu"

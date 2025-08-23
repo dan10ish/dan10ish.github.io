@@ -1,6 +1,7 @@
 .experience-app {
-  color: #fff;
+  color: var(--app-text);
   padding-top: 10px;
+  transition: color 0.3s ease;
 }
 
 .experience-section {
@@ -8,9 +9,10 @@
 }
 
 .experience-item {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid var(--app-border);
   padding: 8px 6px;
   cursor: pointer;
+  transition: border-color 0.3s ease;
 }
 
 .experience-item:last-child {
@@ -25,7 +27,7 @@
 }
 
 .experience-role {
-  color: #fff;
+  color: var(--app-text);
   font-size: 14px;
   font-weight: 400;
   display: flex;
@@ -35,6 +37,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  transition: color 0.3s ease;
 }
 
 .folder-icon {
@@ -45,7 +48,7 @@
 }
 
 .experience-company {
-  color: #888;
+  color: var(--app-label);
   font-size: 14px;
   font-weight: 400;
   text-align: center;
@@ -53,10 +56,11 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  transition: color 0.3s ease;
 }
 
 .experience-duration {
-  color: #888;
+  color: var(--app-label);
   font-size: 14px;
   font-weight: 400;
   width: 100px;
@@ -64,27 +68,26 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  transition: color 0.3s ease;
 }
 
-
-
 .education-section {
-  /* margin-top: 8px;
-  padding-top: 8px; */
   padding-top: 20px;
-  /* border-top: 1px solid rgba(255, 255, 255, 0.08); */
 }
 
 .education-section h2, .experience-section h2{
   font-size: 16px;
   margin-left: 5px;
   padding-bottom: 6px;
+  color: var(--app-text);
+  transition: color 0.3s ease;
 }
 
 .education-item {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid var(--app-border);
   padding: 8px 6px;
   cursor: pointer;
+  transition: border-color 0.3s ease;
 }
 
 .education-item:last-child {
@@ -99,7 +102,7 @@
 }
 
 .education-field {
-  color: #fff;
+  color: var(--app-text);
   font-size: 14px;
   font-weight: 400;
   display: flex;
@@ -109,10 +112,11 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  transition: color 0.3s ease;
 }
 
 .education-institution {
-  color: #888;
+  color: var(--app-label);
   font-size: 14px;
   font-weight: 400;
   text-align: center;
@@ -120,10 +124,11 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  transition: color 0.3s ease;
 }
 
 .education-duration {
-  color: #888;
+  color: var(--app-label);
   font-size: 14px;
   font-weight: 400;
   width: 100px;
@@ -131,6 +136,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  transition: color 0.3s ease;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -138,17 +144,21 @@
     background-color: rgba(255, 255, 255, 0.05);
   }
 
+  [data-theme="light"] .education-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
   .education-item:hover .education-field {
-    color: #4A9EFF;
+    color: var(--app-link-hover);
   }
 }
 
-/* Detail Views */
 .experience-detail,
 .education-detail {
   padding: 20px;
-  color: #fff;
+  color: var(--app-text);
   max-width: 500px;
+  transition: color 0.3s ease;
 }
 
 .experience-detail-section,
@@ -165,25 +175,25 @@
 
 .experience-detail-label,
 .education-detail-label {
-  color: #888;
+  color: var(--app-label);
   font-size: 14px;
   font-weight: 400;
   width: 80px;
   text-align: right;
   margin-right: 15px;
   flex-shrink: 0;
+  transition: color 0.3s ease;
 }
 
 .experience-detail-text,
 .education-detail-text {
-  color: #fff;
+  color: var(--app-text);
   font-size: 14px;
   font-weight: 400;
   line-height: 1.4;
   max-width: 350px;
+  transition: color 0.3s ease;
 }
-
-
 
 .technologies-grid {
   display: flex;
@@ -200,6 +210,12 @@
   background: rgba(255, 255, 255, 0.05);
   border-radius: 6px;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+[data-theme="light"] .technology-item {
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .technology-icon {
@@ -207,9 +223,10 @@
 }
 
 .technology-name {
-  color: #fff;
+  color: var(--app-text);
   font-size: 12px;
   font-weight: 400;
+  transition: color 0.3s ease;
 }
 
 .experience-image-container,
@@ -218,6 +235,12 @@
   border-radius: 8px;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.05);
+  transition: background-color 0.3s ease;
+}
+
+[data-theme="light"] .experience-image-container,
+[data-theme="light"] .education-image-container {
+  background: rgba(0, 0, 0, 0.05);
 }
 
 .experience-image,

@@ -15,6 +15,61 @@
   --window-header-bg: rgba(44, 44, 46, 0.9);
   --border-color: rgba(255, 255, 255, 0.1);
   --shadow-color: rgba(0, 0, 0, 0.3);
+  --menu-bar-bg: #11112D;
+  --menu-bar-text: #fff;
+  --power-button-bg: #1a1a1a;
+  --power-button-shadow: rgba(0, 0, 0, 0.8);
+  --power-button-inner-shadow: rgba(0, 0, 0, 0.4);
+  --power-button-highlight: rgba(255, 255, 255, 0.1);
+  --power-button-inner-highlight: rgba(255, 255, 255, 0.15);
+  --power-button-inner-glow: rgba(255, 255, 255, 0.1);
+  --power-button-inner-radial: rgba(255, 255, 255, 0.05);
+  --startup-bg: #000000;
+  --startup-label: #999999;
+  --startup-value: #eee;
+  --startup-link: #eee;
+  --startup-link-hover: #1c8aff;
+  --loading-bg: #000000;
+  --loading-bar-bg: rgba(255, 255, 255, 0.1);
+  --loading-progress: linear-gradient(90deg, #007AFF, #00C7FF);
+  --apple-logo-filter: invert(1);
+  --app-text: #fff;
+  --app-label: #888;
+  --app-link: #fff;
+  --app-link-hover: #4A9EFF;
+  --app-border: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="light"] {
+  --background: #f5f5f7;
+  --text-color: #1d1d1f;
+  --window-bg: rgba(255, 255, 255, 0.95);
+  --window-header-bg: rgba(248, 248, 250, 0.9);
+  --border-color: rgba(0, 0, 0, 0.1);
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --menu-bar-bg: #f5f5f7;
+  --menu-bar-text: #1d1d1f;
+  --power-button-bg: #ffffff;
+  --power-button-shadow: rgba(0, 0, 0, 0.1);
+  --power-button-inner-shadow: rgba(0, 0, 0, 0.05);
+  --power-button-highlight: rgba(255, 255, 255, 0.8);
+  --power-button-inner-highlight: rgba(255, 255, 255, 0.9);
+  --power-button-inner-glow: rgba(255, 255, 255, 0.6);
+  --power-button-inner-radial: rgba(255, 255, 255, 0.4);
+  --startup-bg: #f5f5f7;
+  --startup-label: #86868b;
+  --startup-value: #1d1d1f;
+  --startup-link: #1d1d1f;
+  --startup-link-hover: #007AFF;
+  --loading-bg: #f5f5f7;
+  --loading-bar-bg: rgba(0, 0, 0, 0.1);
+  --loading-progress: linear-gradient(90deg, #007AFF, #00C7FF);
+  --apple-logo-filter: invert(0);
+  --app-text: #1d1d1f;
+  --app-label: #86868b;
+  --app-link: #1d1d1f;
+  --app-link-hover: #007AFF;
+  --app-border: rgba(0, 0, 0, 0.08);
 }
 
 body {
@@ -27,6 +82,9 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  background-color: var(--background);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .loading-container {
@@ -36,7 +94,7 @@ body {
   justify-content: center;
   height: 100%;
   gap: 12px;
-  color: #e0e0e0;
+  color: var(--text-color);
   font-size: 14px;
 }
 

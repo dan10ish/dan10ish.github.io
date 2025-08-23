@@ -1,5 +1,5 @@
 .terminal-app {
-    color: #ffffff;
+    color: var(--app-text);
     font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Source Code Pro', monospace;
     font-size: 13px;
     line-height: 1.4;
@@ -7,6 +7,7 @@
     width: 100%;
     overflow: hidden;
     cursor: text;
+    transition: color 0.3s ease;
 }
 
 .terminal-content {
@@ -26,8 +27,9 @@
 }
 
 .terminal-welcome {
-    color: #888;
+    color: var(--app-label);
     margin-bottom: 12px;
+    transition: color 0.3s ease;
 }
 
 .terminal-entry {
@@ -42,13 +44,15 @@
 }
 
 .terminal-user {
-    color: #4a9eff;
+    color: var(--app-link-hover);
     font-weight: 500;
+    transition: color 0.3s ease;
 }
 
 .terminal-separator {
-    color: #ffffff;
+    color: var(--app-text);
     margin: 0 2px;
+    transition: color 0.3s ease;
 }
 
 .terminal-path {
@@ -57,20 +61,23 @@
 }
 
 .terminal-dollar {
-    color: #ffffff;
+    color: var(--app-text);
     margin: 0 6px 0 4px;
+    transition: color 0.3s ease;
 }
 
 .terminal-command {
-    color: #ffffff;
+    color: var(--app-text);
     margin-left: 2px;
+    transition: color 0.3s ease;
 }
 
 .terminal-output {
-    color: #ffffff;
+    color: var(--app-text);
     white-space: pre-wrap;
     word-wrap: break-word;
     margin: 2px 0 8px 0;
+    transition: color 0.3s ease;
 }
 
 .terminal-error {
@@ -101,13 +108,14 @@
     background: transparent;
     border: none;
     outline: none;
-    color: #ffffff;
+    color: var(--app-text);
     font-family: inherit;
     font-size: inherit;
     flex: 1;
     min-width: 100px;
     margin-left: 2px;
-    caret-color: #ffffff;
+    caret-color: var(--app-text);
+    transition: color 0.3s ease;
 }
 
 .terminal-input::selection {
