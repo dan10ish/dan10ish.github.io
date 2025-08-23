@@ -24,7 +24,7 @@
   --power-button-inner-highlight: rgba(255, 255, 255, 0.15);
   --power-button-inner-glow: rgba(255, 255, 255, 0.1);
   --power-button-inner-radial: rgba(255, 255, 255, 0.05);
-  --startup-bg: #000000;
+  --startup-bg: #000;
   --startup-label: #999999;
   --startup-value: #eee;
   --startup-link: #eee;
@@ -50,8 +50,8 @@
   --menu-bar-bg: #f5f5f7;
   --menu-bar-text: #1d1d1f;
   --power-button-bg: #ffffff;
-  --power-button-shadow: rgba(0, 0, 0, 0.1);
-  --power-button-inner-shadow: rgba(0, 0, 0, 0.05);
+  --power-button-shadow: rgba(0, 0, 0, 0.2);
+  --power-button-inner-shadow: rgba(0, 0, 0, 0.2);
   --power-button-highlight: rgba(255, 255, 255, 0.8);
   --power-button-inner-highlight: rgba(255, 255, 255, 0.9);
   --power-button-inner-glow: rgba(255, 255, 255, 0.6);
@@ -84,7 +84,6 @@ body {
   padding: 0;
   background-color: var(--background);
   color: var(--text-color);
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .loading-container {

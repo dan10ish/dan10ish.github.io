@@ -29,20 +29,10 @@
   color: var(--menu-bar-text);
   cursor: pointer;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   padding: 4px;
   border-radius: 4px;
-  transition: all 0.2s ease;
-}
-
-.theme-toggle:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: scale(1.1);
-}
-
-[data-theme="light"] .theme-toggle:hover {
-  background: rgba(0, 0, 0, 0.1);
 }
 
 .power-button-container-menu {
@@ -117,5 +107,10 @@
 @media (hover: hover) and (pointer: fine) {
   .power-button-menu:hover:not(:disabled) {
     scale: 1.2;
+  }
+
+  .theme-toggle:hover {
+    opacity: 1;
+    transform: scale(1.1);
   }
 }

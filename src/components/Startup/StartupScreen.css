@@ -9,7 +9,6 @@
   display: flex;
   justify-content: center;
   z-index: 10000;
-  transition: background-color 0.3s ease;
 }
 
 .startup-content {
@@ -36,7 +35,6 @@
   font-weight: 400;
   text-align: right;
   line-height: 1.6;
-  transition: color 0.3s ease;
 }
 
 .startup-value {
@@ -46,7 +44,6 @@
   line-height: 1.6;
   letter-spacing: 1px;
   padding-right: 20px;
-  transition: color 0.3s ease;
 }
 
 .startup-value div {
@@ -66,30 +63,11 @@
   text-decoration: none;
   font-weight: 400;
   letter-spacing: 1px;
-  transition: color 0.3s ease;
 }
 
 .contact-icon {
   color: var(--startup-link);
   opacity: 1;
-  transition: color 0.3s ease;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .contact-icon {
-    opacity: 0;
-    transition: opacity 0.2s ease;
-  }
-
-  .contact-link:hover {
-    color: var(--startup-link-hover);
-    text-decoration: underline;
-  }
-
-  .contact-link:hover+.contact-icon {
-    color: var(--startup-link-hover);
-    opacity: 1;
-  }
 }
 
 .power-button-container {
@@ -103,7 +81,7 @@
 
 .startup-theme-toggle {
   position: absolute;
-  bottom: 20px;
+  bottom: 40px;
   left: 20px;
   background: none;
   border: none;
@@ -114,16 +92,7 @@
   justify-content: center;
   padding: 8px;
   border-radius: 50%;
-  transition: all 0.3s ease;
-}
-
-.startup-theme-toggle:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: scale(1.1);
-}
-
-[data-theme="light"] .startup-theme-toggle:hover {
-  background: rgba(0, 0, 0, 0.1);
+  opacity: 0.8;
 }
 
 .power-toggle {
@@ -179,11 +148,6 @@
   transition: filter 200ms ease;
 }
 
-.power-button:hover .power-icon {
-  filter: var(--apple-logo-filter);
-  opacity: 0.9;
-}
-
 .power-button:active {
   filter: blur(0.4px);
   box-shadow:
@@ -221,5 +185,37 @@
   .startup-label,
   .startup-value {
     font-size: 14px !important;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .contact-icon {
+    opacity: 0;
+  }
+
+  .contact-link:hover {
+    color: var(--startup-link-hover);
+    text-decoration: underline;
+  }
+
+  .contact-link:hover+.contact-icon {
+    color: var(--startup-link-hover);
+    opacity: 1;
+  }
+
+  .startup-theme-toggle:hover {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  .power-button:hover {
+    transition: all 0.3s ease;
+    scale: 1.1;
+    opacity: 0.8;
+  }
+  
+  .power-button:hover .power-icon {
+    filter: var(--apple-logo-filter);
+    opacity: 0.9;
   }
 }
