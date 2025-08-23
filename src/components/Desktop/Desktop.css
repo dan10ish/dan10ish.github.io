@@ -84,5 +84,77 @@
     right: 10px;
     left: 5px;
     bottom: 100px;
+    row-gap: 8px;
+  }
+  
+  .desktop-icon {
+    width: 80px;
+    height: 80px;
+    gap: 3px;
+    padding: 4px;
+  }
+  
+  .desktop-icon img {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .desktop-icon span {
+    font-size: 12px;
+    width: 80px;
+  }
+}
+
+@media (max-width: 375px) {
+  .desktop-icons {
+    top: 40px;
+    right: 8px;
+    left: 4px;
+    bottom: 90px;
+    row-gap: 6px;
+  }
+  
+  .desktop-icon {
+    width: 70px;
+    height: 70px;
+    gap: 2px;
+    padding: 3px;
+  }
+  
+  .desktop-icon img {
+    width: 42px;
+    height: 42px;
+  }
+  
+  .desktop-icon span {
+    font-size: 11px;
+    width: 70px;
+  }
+}
+
+@media (max-width: 320px) {
+  .desktop-icons {
+    top: 35px;
+    right: 6px;
+    left: 3px;
+    bottom: 80px;
+    row-gap: 5px;
+  }
+  
+  .desktop-icon {
+    width: 60px;
+    height: 60px;
+    gap: 2px;
+    padding: 2px;
+  }
+  
+  .desktop-icon img {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .desktop-icon span {
+    font-size: 10px;
+    width: 60px;
   }
 }
