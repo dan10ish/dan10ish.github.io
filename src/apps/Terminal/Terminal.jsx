@@ -18,7 +18,7 @@ const Terminal = () => {
       contents: {
         "about.txt": { type: "file", content: `${data.name}\n${data.title}\n\nInterests: ${data.interests}\nCurrent: ${data.current}\nEducation: ${data.education}` },
         "contact.txt": { type: "file", content: `Email: ${data.contact.email}\nGitHub: github.com/${data.contact.github}\nX: x.com/${data.contact.x}\nInstagram: instagram.com/${data.contact.instagram}\nLinkedIn: linkedin.com/in/${data.contact.linkedin}` },
-        "resume.txt": { type: "file", content: `${data.name} - Resume\n\nEducation: ${data.education}\nCurrent: ${data.current}\nPrevious Experience:\n${data.past.map(exp => `• ${exp}`).join('\n')}\n\nSkills: React, JavaScript, Python, Machine Learning, Robotics` },
+        "resume.txt": { type: "file", content: `${data.name} - Resume\n\nEducation: ${data.education}\nCurrent: ${data.current}\nPrevious Experience:\n• ${data.past}\n\nSkills: React, JavaScript, Python, Machine Learning, Robotics` },
         "projects": {
           type: "directory",
           contents: {
@@ -30,7 +30,7 @@ const Terminal = () => {
           type: "directory",
           contents: {
             "current.txt": { type: "file", content: data.current },
-            "past.txt": { type: "file", content: data.past.join('\n') }
+            "past.txt": { type: "file", content: data.past }
           }
         },
         "notes": {
@@ -185,12 +185,8 @@ Navigation:
       output: "Available projects:\n• Personal Website (React + Vite)\n• Terminal App\n• Music Player\n• Guest Book"
     }),
 
-    // experience: () => ({
-    //   output: `Current: ${data.current}\nPast:\n${data.past.map(exp => `• ${exp}`).join("\n")}`
-    // }),
-
     experience: () => ({
-      output: `Current: ${data.current.map(exp => `• ${exp}`).join("\n")}\nPast:\n${data.past}\n`
+      output: `Current:\n${data.current.map(exp => `• ${exp}`).join("\n")}\nPast:\n• ${data.past}\n`
     }),
 
     uname: () => ({ output: "Darwin danish-macbook 23.1.0 Darwin Kernel Version 23.1.0" }),
