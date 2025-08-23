@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
-import { X, Minus, ChevronsUpDown } from "lucide-react";
+import { X, Minus, ChevronsUpDown, ChevronsDownUp } from "lucide-react";
 import "./Window.css";
 
 const Window = ({
@@ -7,6 +7,7 @@ const Window = ({
   children,
   onClose,
   onMinimize,
+  onMaximize,
   onFocus,
   zIndex,
   state,
@@ -110,6 +111,9 @@ const Window = ({
   const handleMouseUp = useCallback(() => {
     dragState.current.isDragging = false;
     resizeState.current.isResizing = false;
+    if (windowRef.current) {
+      windowRef.current.classList.remove('dragging');
+    }
     document.body.style.cursor = "";
     document.body.style.userSelect = "";
   }, []);
@@ -120,6 +124,9 @@ const Window = ({
     e.stopPropagation();
 
     onFocus();
+    if (windowRef.current) {
+      windowRef.current.classList.add('dragging');
+    }
     dragState.current = {
       isDragging: true,
       startX: e.clientX,
@@ -158,6 +165,9 @@ const Window = ({
 
     const touch = e.touches[0];
     onFocus();
+    if (windowRef.current) {
+      windowRef.current.classList.add('dragging');
+    }
     dragState.current = {
       isDragging: true,
       startX: touch.clientX,
@@ -182,6 +192,9 @@ const Window = ({
   const handleTouchEnd = useCallback(() => {
     dragState.current.isDragging = false;
     resizeState.current.isResizing = false;
+    if (windowRef.current) {
+      windowRef.current.classList.remove('dragging');
+    }
   }, []);
 
   useEffect(() => {
@@ -228,8 +241,12 @@ const Window = ({
           <div className="window-control minimize" onClick={onMinimize}>
             <Minus size={10} />
           </div>
-          <div className="window-control maximize">
-            <ChevronsUpDown size={10} style={{ transform: 'rotate(45deg)' }} />
+          <div className="window-control maximize" onClick={onMaximize}>
+            {isMaximized ? (
+              <ChevronsDownUp size={10} style={{ transform: 'rotate(45deg)' }} />
+            ) : (
+              <ChevronsUpDown size={10} style={{ transform: 'rotate(45deg)' }} />
+            )}
           </div>
         </div>
         

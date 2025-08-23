@@ -91,6 +91,16 @@ const App = () => {
     setFocusOrder((prev) => [...prev.filter((id) => id !== appId)]);
   }, []);
 
+  const handleMaximizeApp = useCallback((appId) => {
+    setOpenApps((prev) => ({
+      ...prev,
+      [appId]: { 
+        ...prev[appId], 
+        state: prev[appId].state === "maximized" ? "open" : "maximized" 
+      },
+    }));
+  }, []);
+
   const handleFocusApp = useCallback((appId) => {
     if (focusOrder[focusOrder.length - 1] !== appId) {
       setFocusOrder((prev) => [...prev.filter((id) => id !== appId), appId]);
@@ -148,6 +158,7 @@ const App = () => {
             app={appConfig}
             onClose={() => handleCloseApp(appId)}
             onMinimize={() => handleMinimizeApp(appId)}
+            onMaximize={() => handleMaximizeApp(appId)}
             onFocus={() => handleFocusApp(appId)}
             zIndex={zIndex}
             state={appData.state}

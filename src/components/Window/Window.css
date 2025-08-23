@@ -19,7 +19,11 @@
   -ms-user-select: none;
   z-index: 10;
   pointer-events: auto;
-  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: width 0.3s ease, height 0.3s ease, transform 0.3s ease;
+}
+
+.window.dragging {
+  transition: none;
 }
 
 .window.minimized {
@@ -29,10 +33,10 @@
 }
 
 .window.maximized {
-  transform: translate3d(0, 30px, 0) !important;
-  width: 100% !important;
-  height: calc(100vh - 30px) !important;
-  border-radius: 0;
+  transform: translate3d(7.5px, 42px, 0) !important;
+  width: calc(100% - 15px) !important;
+  height: calc(100dvh - 50px) !important;
+  border-radius: 10px;
 }
 
 .window-header {
