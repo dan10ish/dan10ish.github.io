@@ -145,6 +145,9 @@ const Window = ({
     e.stopPropagation();
 
     onFocus();
+    if (windowRef.current) {
+      windowRef.current.classList.add('dragging');
+    }
     resizeState.current = {
       isResizing: true,
       direction,
