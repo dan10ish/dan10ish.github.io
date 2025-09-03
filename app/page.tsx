@@ -1,6 +1,6 @@
 import Link from "next/link";
 import SocialLinks from "./components/SocialLinks";
-import { personalInfo, projects, workExperience } from "./data";
+import { personalInfo, projects } from "./data";
 import { getSortedWritingsData } from "../lib/writings";
 import { formatDate } from "../lib/utils";
 import ProjectListClient from "./components/ProjectListClient";
@@ -60,27 +60,7 @@ export default function Home() {
           </section>
         )}
 
-        <section>
-          <h1 className="text-base opacity-70">Work</h1>
-          {workExperience.map((job, index) => (
-            <div key={index} className="mt-1">
-              <div className="flex gap-2 w-full items-baseline justify-between">
-                <div>
-                  <span className="text-secondary !text-[0.82rem] flex-shrink-0">
-                    {job.role}
-                  </span>
-                  <span className="text-secondary !text-[0.82rem] flex-shrink-0"> @ </span>
-                  <span className="text-base font-medium">
-                    {job.company}
-                  </span>
-                </div>
-                <span className="text-secondary !text-[0.82rem] flex-shrink-0">
-                  {job.year}
-                </span>
-              </div>
-            </div>
-          ))}
-        </section>
+        
 
         <ProjectListClient initialProjects={projects} />
       </main>

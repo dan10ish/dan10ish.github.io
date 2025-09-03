@@ -10,24 +10,6 @@ export const personalInfo = {
   }
 };
 
-export const workExperience = [
-  {
-    role: "SWE",
-    company: "Innovatio Labs",
-    year: "2025"
-  },
-  {
-    role: "SWE",
-    company: "Cridaa",
-    year: "2025"
-  },
-  {
-    role: "SWE Intern",
-    company: "Accelus Robotics",
-    year: "2024"
-  }
-];
-
 export const projects = [
   {
     name: "AlgoSim",
