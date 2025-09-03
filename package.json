@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
+    "katex": "^0.16.22",
     "lucide-react": "^0.542.0",
     "next": "^15.5.2",
     "next-mdx-remote": "^5.0.0",
@@ -21,8 +22,10 @@
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "rehype-autolink-headings": "^7.1.0",
+    "rehype-katex": "^7.0.1",
     "rehype-slug": "^6.0.0",
     "remark-gfm": "^4.0.1",
+    "remark-math": "^6.0.0",
     "sugar-high": "^0.9.3"
   },
   "devDependencies": {

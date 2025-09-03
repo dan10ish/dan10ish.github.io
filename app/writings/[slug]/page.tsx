@@ -2,6 +2,8 @@ import { Metadata } from 'next'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { getSortedWritingsData, getWritingData, WritingData } from '../../../lib/writings'
 import remarkGfm from 'remark-gfm'
+import remarkMath from 'remark-math'
+import rehypeKatex from 'rehype-katex'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import Link from 'next/link'
@@ -185,9 +187,10 @@ export default async function WritingPage({ params }: WritingPageProps) {
 
   const options = {
     mdxOptions: {
-      remarkPlugins: [remarkGfm],
+      remarkPlugins: [remarkGfm, remarkMath],
       rehypePlugins: [
         rehypeSlug,
+        rehypeKatex,
         [
           rehypeAutolinkHeadings,
           {
