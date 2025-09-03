@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
 
 const LIGHT_THEME_COLOR = '#f8f8f8';
-const DARK_THEME_COLOR = '#222222';
+const DARK_THEME_COLOR = '#111111';
 
 export function ThemeColorUpdater() {
   const { theme, resolvedTheme } = useTheme();

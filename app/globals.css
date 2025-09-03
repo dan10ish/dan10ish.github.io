@@ -28,13 +28,13 @@
 }
 
 .dark {
-  --background: #222;
-  --foreground: #e8e8e8;
+  --background: #111111;
+  --foreground: #e5e5e5;
   --secondary: #a0a0a0;
   --link-blue: #4da6ff;
-  --code-bg: #333;
+  --code-bg: #1e1e1e;
   --sh-class: #b794f6;
-  --sh-identifier: #e8e8e8;
+  --sh-identifier: #e5e5e5;
   --sh-sign: #a0a0a0;
   --sh-property: #4da6ff;
   --sh-entity: #68d391;
