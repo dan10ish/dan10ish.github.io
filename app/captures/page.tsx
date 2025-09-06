@@ -109,7 +109,7 @@ export default function CapturesPage() {
       <div className="captures-container">
         <main className="captures-main">
           <section>
-          <h1 className="text-base opacity-70">Captures</h1>
+          <h1 className="text-base opacity-70 !mb-6">Captures</h1>
             <div className="captures-masonry">
               {Array.from({ length: 15 }, (_, i) => (
                 <div key={i} className="captures-masonry-item">
@@ -128,7 +128,7 @@ export default function CapturesPage() {
     <div className="captures-container">
         <main className="captures-main">
         <section>
-          <h1 className="text-base opacity-70">Captures</h1>
+          <h1 className="text-base opacity-70 !mb-6">Captures</h1>
             <div className="captures-masonry">
             {media.map((item) => (
               <div key={item.id} className="captures-masonry-item">
