@@ -5,12 +5,13 @@
   "homepage": "https://dan10ish.github.io",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run generate-manifest && next build",
     "start": "next start",
     "lint": "next lint",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d out",
-    "export": "next build"
+    "export": "next build",
+    "generate-manifest": "node scripts/generate-manifest.js"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",

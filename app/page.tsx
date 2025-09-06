@@ -1,9 +1,8 @@
 import Link from "next/link";
 import SocialLinks from "./components/SocialLinks";
-import { personalInfo, projects } from "./data";
+import { personalInfo } from "./data";
 import { getSortedWritingsData } from "../lib/writings";
 import { formatDate } from "../lib/utils";
-import ProjectListClient from "./components/ProjectListClient";
 import { ThemeToggle } from "./components/ThemeToggle";
 
 export default function Home() {
@@ -60,9 +59,23 @@ export default function Home() {
           </section>
         )}
 
-        
-
-        <ProjectListClient initialProjects={projects} />
+        <section>
+          <h1 className="!text-base !opacity-70">Explore</h1>
+          <div className="!flex !gap-3 !mt-2">
+            <Link 
+              href="/projects"
+              className="!px-4 !py-2 !rounded-full !bg-[var(--code-bg)] !text-[var(--foreground)] hover:!bg-[var(--link-blue)] hover:!text-white !transition-all !duration-200 !text-[0.85rem] !font-medium"
+            >
+              Projects
+            </Link>
+            <Link 
+              href="/videos"
+              className="!px-4 !py-2 !rounded-full !bg-[var(--code-bg)] !text-[var(--foreground)] hover:!bg-[var(--link-blue)] hover:!text-white !transition-all !duration-200 !text-[0.85rem] !font-medium"
+            >
+              Videos
+            </Link>
+          </div>
+        </section>
       </main>
     </div>
   );
