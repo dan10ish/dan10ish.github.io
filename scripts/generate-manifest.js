@@ -3,15 +3,15 @@
 const fs = require('fs');
 const path = require('path');
 
-const videosDir = path.join(__dirname, '..', 'public', 'videos');
-const manifestPath = path.join(videosDir, 'media-manifest.json');
+const capturesDir = path.join(__dirname, '..', 'public', 'captures');
+const manifestPath = path.join(capturesDir, 'media-manifest.json');
 
 const videoExtensions = ['.mp4', '.webm', '.mov', '.avi', '.mkv'];
 const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'];
 const excludeFiles = ['.ds_store', 'thumbs.db', '.gitkeep', '.gitignore', 'media-manifest.json'];
 
 try {
-  const files = fs.readdirSync(videosDir);
+  const files = fs.readdirSync(capturesDir);
   
   const mediaItems = files
     .filter(file => {
@@ -32,7 +32,7 @@ try {
       
       return {
         id: index,
-        src: `/videos/${file}`,
+        src: `/captures/${file}`,
         name: file,
         type: isVideo ? 'video' : 'image'
       };

@@ -1,205 +1,205 @@
 [
   {
     "id": 0,
-    "src": "/videos/1.mp4",
+    "src": "/captures/1.mp4",
     "name": "1.mp4",
     "type": "video"
   },
   {
     "id": 1,
-    "src": "/videos/10.mp4",
+    "src": "/captures/10.mp4",
     "name": "10.mp4",
     "type": "video"
   },
   {
     "id": 2,
-    "src": "/videos/11.mp4",
+    "src": "/captures/11.mp4",
     "name": "11.mp4",
     "type": "video"
   },
   {
     "id": 3,
-    "src": "/videos/12.mp4",
+    "src": "/captures/12.mp4",
     "name": "12.mp4",
     "type": "video"
   },
   {
     "id": 4,
-    "src": "/videos/2.mp4",
+    "src": "/captures/2.mp4",
     "name": "2.mp4",
     "type": "video"
   },
   {
     "id": 5,
-    "src": "/videos/3.mp4",
+    "src": "/captures/3.mp4",
     "name": "3.mp4",
     "type": "video"
   },
   {
     "id": 6,
-    "src": "/videos/4.mp4",
+    "src": "/captures/4.mp4",
     "name": "4.mp4",
     "type": "video"
   },
   {
     "id": 7,
-    "src": "/videos/5.mp4",
+    "src": "/captures/5.mp4",
     "name": "5.mp4",
     "type": "video"
   },
   {
     "id": 8,
-    "src": "/videos/6.mp4",
+    "src": "/captures/6.mp4",
     "name": "6.mp4",
     "type": "video"
   },
   {
     "id": 9,
-    "src": "/videos/7.mp4",
+    "src": "/captures/7.mp4",
     "name": "7.mp4",
     "type": "video"
   },
   {
     "id": 10,
-    "src": "/videos/8.mp4",
+    "src": "/captures/8.mp4",
     "name": "8.mp4",
     "type": "video"
   },
   {
     "id": 11,
-    "src": "/videos/9.mp4",
+    "src": "/captures/9.mp4",
     "name": "9.mp4",
     "type": "video"
   },
   {
     "id": 12,
-    "src": "/videos/Image1.jpeg",
+    "src": "/captures/Image1.jpeg",
     "name": "Image1.jpeg",
     "type": "image"
   },
   {
     "id": 13,
-    "src": "/videos/Image10.jpeg",
+    "src": "/captures/Image10.jpeg",
     "name": "Image10.jpeg",
     "type": "image"
   },
   {
     "id": 14,
-    "src": "/videos/Image11.jpeg",
+    "src": "/captures/Image11.jpeg",
     "name": "Image11.jpeg",
     "type": "image"
   },
   {
     "id": 15,
-    "src": "/videos/Image12.jpeg",
+    "src": "/captures/Image12.jpeg",
     "name": "Image12.jpeg",
     "type": "image"
   },
   {
     "id": 16,
-    "src": "/videos/Image13.jpeg",
+    "src": "/captures/Image13.jpeg",
     "name": "Image13.jpeg",
     "type": "image"
   },
   {
     "id": 17,
-    "src": "/videos/Image14.jpeg",
+    "src": "/captures/Image14.jpeg",
     "name": "Image14.jpeg",
     "type": "image"
   },
   {
     "id": 18,
-    "src": "/videos/Image15.jpeg",
+    "src": "/captures/Image15.jpeg",
     "name": "Image15.jpeg",
     "type": "image"
   },
   {
     "id": 19,
-    "src": "/videos/Image16.jpeg",
+    "src": "/captures/Image16.jpeg",
     "name": "Image16.jpeg",
     "type": "image"
   },
   {
     "id": 20,
-    "src": "/videos/Image17.jpeg",
+    "src": "/captures/Image17.jpeg",
     "name": "Image17.jpeg",
     "type": "image"
   },
   {
     "id": 21,
-    "src": "/videos/Image18.jpeg",
+    "src": "/captures/Image18.jpeg",
     "name": "Image18.jpeg",
     "type": "image"
   },
   {
     "id": 22,
-    "src": "/videos/Image19.jpeg",
+    "src": "/captures/Image19.jpeg",
     "name": "Image19.jpeg",
     "type": "image"
   },
   {
     "id": 23,
-    "src": "/videos/Image2.jpeg",
+    "src": "/captures/Image2.jpeg",
     "name": "Image2.jpeg",
     "type": "image"
   },
   {
     "id": 24,
-    "src": "/videos/Image20.jpeg",
+    "src": "/captures/Image20.jpeg",
     "name": "Image20.jpeg",
     "type": "image"
   },
   {
     "id": 25,
-    "src": "/videos/Image21.jpeg",
+    "src": "/captures/Image21.jpeg",
     "name": "Image21.jpeg",
     "type": "image"
   },
   {
     "id": 26,
-    "src": "/videos/Image22.jpeg",
+    "src": "/captures/Image22.jpeg",
     "name": "Image22.jpeg",
     "type": "image"
   },
   {
     "id": 27,
-    "src": "/videos/Image3.jpeg",
+    "src": "/captures/Image3.jpeg",
     "name": "Image3.jpeg",
     "type": "image"
   },
   {
     "id": 28,
-    "src": "/videos/Image4.jpeg",
+    "src": "/captures/Image4.jpeg",
     "name": "Image4.jpeg",
     "type": "image"
   },
   {
     "id": 29,
-    "src": "/videos/Image5.jpeg",
+    "src": "/captures/Image5.jpeg",
     "name": "Image5.jpeg",
     "type": "image"
   },
   {
     "id": 30,
-    "src": "/videos/Image6.jpeg",
+    "src": "/captures/Image6.jpeg",
     "name": "Image6.jpeg",
     "type": "image"
   },
   {
     "id": 31,
-    "src": "/videos/Image7.jpeg",
+    "src": "/captures/Image7.jpeg",
     "name": "Image7.jpeg",
     "type": "image"
   },
   {
     "id": 32,
-    "src": "/videos/Image8.jpeg",
+    "src": "/captures/Image8.jpeg",
     "name": "Image8.jpeg",
     "type": "image"
   },
   {
     "id": 33,
-    "src": "/videos/Image9.jpeg",
+    "src": "/captures/Image9.jpeg",
     "name": "Image9.jpeg",
     "type": "image"
   }

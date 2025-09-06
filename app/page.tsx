@@ -69,10 +69,10 @@ export default function Home() {
               Projects
             </Link>
             <Link 
-              href="/videos"
+              href="/captures"
               className="!px-4 !py-1.5 !text-primary !font-medium hover:!text-[var(--link-blue)] hover:!scale-105 bg-[var(--code-bg)] !rounded-full"
             >
-              Videos
+              Captures
             </Link>
           </div>
         </section>

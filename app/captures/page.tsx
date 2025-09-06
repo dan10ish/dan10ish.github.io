@@ -10,7 +10,7 @@ interface MediaItem {
   type: 'image' | 'video';
 }
 
-export default function VideosPage() {
+export default function CapturesPage() {
   const [media, setMedia] = useState<MediaItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadedItems, setLoadedItems] = useState<Set<number>>(new Set());
@@ -20,7 +20,7 @@ export default function VideosPage() {
   useEffect(() => {
     const fetchMedia = async () => {
       try {
-        const response = await fetch('/videos/media-manifest.json');
+        const response = await fetch('/captures/media-manifest.json');
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -106,14 +106,14 @@ export default function VideosPage() {
 
   if (loading) {
     return (
-      <div className="videos-container">
-        <main className="videos-main">
+      <div className="captures-container">
+        <main className="captures-main">
           <section>
-          <h1 className="text-base opacity-70">Videos</h1>
-            <div className="videos-masonry">
+          <h1 className="text-base opacity-70">Captures</h1>
+            <div className="captures-masonry">
               {Array.from({ length: 15 }, (_, i) => (
-                <div key={i} className="videos-masonry-item">
-                  <div className="videos-skeleton"></div>
+                <div key={i} className="captures-masonry-item">
+                  <div className="captures-skeleton"></div>
                 </div>
               ))}
             </div>
@@ -125,22 +125,22 @@ export default function VideosPage() {
   }
 
   return (
-    <div className="videos-container">
-      <main className="videos-main">
+    <div className="captures-container">
+        <main className="captures-main">
         <section>
-          <h1 className="text-base opacity-70">Videos</h1>
-          <div className="videos-masonry">
+          <h1 className="text-base opacity-70">Captures</h1>
+            <div className="captures-masonry">
             {media.map((item) => (
-              <div key={item.id} className="videos-masonry-item">
+              <div key={item.id} className="captures-masonry-item">
                 {!loadedItems.has(item.id) && (
-                  <div className="videos-skeleton"></div>
+                  <div className="captures-skeleton"></div>
                 )}
                 
                 {item.type === 'image' ? (
                   <img
                     src={item.src}
                     alt={item.name}
-                    className={`videos-media ${loadedItems.has(item.id) ? 'videos-loaded' : 'videos-loading'}`}
+                    className={`captures-media ${loadedItems.has(item.id) ? 'captures-loaded' : 'captures-loading'}`}
                     loading="lazy"
                     onLoad={() => handleImageLoad(item.id)}
                     onError={() => handleImageError(item.id)}
@@ -148,7 +148,7 @@ export default function VideosPage() {
                 ) : (
                   <video
                     ref={(el) => handleVideoRef(item.id, el)}
-                    className={`videos-media ${loadedItems.has(item.id) ? 'videos-loaded' : 'videos-loading'}`}
+                    className={`captures-media ${loadedItems.has(item.id) ? 'captures-loaded' : 'captures-loading'}`}
                     muted
                     loop
                     playsInline
