@@ -65,13 +65,13 @@ export default function Home() {
           <div className="!flex !gap-3 !mt-2">
             <Link 
               href="/projects"
-              className="!px-4 !py-1.5 !text-primary !font-medium hover:!scale-105 bg-[var(--code-bg)] !rounded-full group"
+              className="!px-3 !py-1 !text-primary !font-medium hover:!scale-105 bg-[var(--code-bg)] !rounded-full group"
             >
               <span className="opacity-70 group-hover:opacity-100 group-hover:font-bold">Projects</span>
             </Link>
             <Link 
               href="/captures"
-              className="!px-4 !py-1.5 !text-primary !font-medium hover:!scale-105 bg-[var(--code-bg)] !rounded-full group"
+              className="!px-3 !py-1 !text-primary !font-medium hover:!scale-105 bg-[var(--code-bg)] !rounded-full group"
             >
               <span className="opacity-70 group-hover:opacity-100 group-hover:font-bold">Captures</span>
             </Link>
