@@ -467,12 +467,6 @@ code,
   flex-direction: column;
 }
 
-.videos-title {
-  font-size: 0.875rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-}
-
 .videos-masonry {
   column-count: 2;
   column-gap: 1rem;

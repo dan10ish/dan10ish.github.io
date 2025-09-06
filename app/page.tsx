@@ -60,17 +60,17 @@ export default function Home() {
         )}
 
         <section>
-          <h1 className="!text-base !opacity-70">Explore</h1>
+          <h1 className="text-base opacity-70">More</h1>
           <div className="!flex !gap-3 !mt-2">
             <Link 
               href="/projects"
-              className="!px-4 !py-2 !rounded-full !bg-[var(--code-bg)] !text-[var(--foreground)] hover:!bg-[var(--link-blue)] hover:!text-white !transition-all !duration-200 !text-[0.85rem] !font-medium"
+              className="!px-4 !py-1.5 !rounded-full !bg-[var(--code-bg)] !text-[var(--foreground)] hover:!bg-[var(--link-blue)] hover:!text-white !transition-all !duration-200 !text-[0.85rem] !font-medium"
             >
               Projects
             </Link>
             <Link 
               href="/videos"
-              className="!px-4 !py-2 !rounded-full !bg-[var(--code-bg)] !text-[var(--foreground)] hover:!bg-[var(--link-blue)] hover:!text-white !transition-all !duration-200 !text-[0.85rem] !font-medium"
+              className="!px-4 !py-1.5 !rounded-full !bg-[var(--code-bg)] !text-[var(--foreground)] hover:!bg-[var(--link-blue)] hover:!text-white !transition-all !duration-200 !text-[0.85rem] !font-medium"
             >
               Videos
             </Link>

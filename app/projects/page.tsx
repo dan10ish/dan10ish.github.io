@@ -44,14 +44,14 @@ export default function ProjectsPage() {
     <div className="!h-fit !max-w-2xl !mx-auto">
       <main className="!space-y-6">
         <section className="!space-y-4">
-          <div className="!flex !items-center !justify-between">
-            <h1 className="!text-base !font-bold">Projects</h1>
+          <div className="flex items-center !justify-between">
+            <h1 className="text-base opacity-70">Projects</h1>
             {activeTag && (
               <button
                 onClick={handleClearFilter}
-                className="!text-[0.82rem] !px-3 !py-1 !rounded-md !bg-[var(--clear-filter-bg)] !text-[var(--clear-filter-text)] hover:!scale-105 !transition-transform"
+                className="!text-[0.88em] !px-1.5 !py-0.5 !rounded-md !bg-[var(--clear-filter-bg)] !text-[var(--clear-filter-text)] hover:!scale-105 !transition-transform"
               >
-                Clear Filter
+                Clear
               </button>
             )}
           </div>
@@ -61,7 +61,7 @@ export default function ProjectsPage() {
               <button
                 key={tag}
                 onClick={() => handleTagClick(tag)}
-                className={`!px-3 !py-1 !rounded-full !text-[0.82rem] !transition-all !duration-200 ${
+                className={`!text-[0.88em] !bg-[var(--code-bg)] !text-[var(--primary)] !px-1.5 !py-0.5 !rounded-md !whitespace-nowrap cursor-pointer transform transition-transform duration-0 hover:scale-105 ${
                   activeTag === tag
                     ? '!bg-[var(--link-blue)] !text-white'
                     : '!bg-[var(--code-bg)] !text-[var(--foreground)] hover:!bg-[var(--link-blue)] hover:!text-white'

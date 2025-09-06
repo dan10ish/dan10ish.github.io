@@ -109,7 +109,7 @@ export default function VideosPage() {
       <div className="videos-container">
         <main className="videos-main">
           <section>
-            <h1 className="videos-title">Videos</h1>
+          <h1 className="text-base opacity-70">Videos</h1>
             <div className="videos-masonry">
               {Array.from({ length: 15 }, (_, i) => (
                 <div key={i} className="videos-masonry-item">
@@ -128,8 +128,7 @@ export default function VideosPage() {
     <div className="videos-container">
       <main className="videos-main">
         <section>
-          <h1 className="videos-title">Videos</h1>
-          
+          <h1 className="text-base opacity-70">Videos</h1>
           <div className="videos-masonry">
             {media.map((item) => (
               <div key={item.id} className="videos-masonry-item">
