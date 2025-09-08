@@ -513,7 +513,6 @@ code,
 
 .captures-skeleton {
   width: 100%;
-  aspect-ratio: 9/16;
   background: linear-gradient(
     90deg,
     var(--code-bg) 0%,

@@ -8,6 +8,9 @@ interface MediaItem {
   src: string;
   name: string;
   type: 'image' | 'video';
+  width: number;
+  height: number;
+  aspectRatio: number;
 }
 
 export default function CapturesPage() {
@@ -133,7 +136,10 @@ export default function CapturesPage() {
             {media.map((item) => (
               <div key={item.id} className="captures-masonry-item">
                 {!loadedItems.has(item.id) && (
-                  <div className="captures-skeleton"></div>
+                  <div 
+                    className="captures-skeleton"
+                    style={{aspectRatio: item.aspectRatio}}
+                  ></div>
                 )}
                 
                 {item.type === 'image' ? (
