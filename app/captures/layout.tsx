@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Captures | Danish",
-  description: "Danish's captures page featuring photos and videos showcasing moments, projects, and visual stories.",
+  description: "Danish's captures page featuring photos and videos showcasing moments and visual stories.",
   keywords: [
     "Danish",
     "captures",
@@ -18,26 +18,30 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://danish.cv/captures",
   },
+  icons: {
+    icon: "/icon.png",
+  },
   openGraph: {
+    type: "website",
     title: "Captures | Danish",
-    description: "Danish's captures page featuring photos and videos showcasing moments, projects, and visual stories.",
+    description: "Danish's captures page featuring photos and videos showcasing moments and visual stories.",
     url: "https://danish.cv/captures",
     siteName: 'Danish',
     images: [
       {
         url: "https://i.ibb.co/LzvcgKNC/og.png",
         width: 1200,
-        height: 630,
+        height: 675,
+        type: "image/png",
         alt: "Danish's Captures Preview",
       },
     ],
     locale: 'en_US',
-    type: 'website',
   },
   twitter: {
     card: "summary_large_image",
     title: "Captures | Danish",
-    description: "Danish's captures page featuring photos and videos showcasing moments, projects, and visual stories.",
+    description: "Danish's captures page featuring photos and videos showcasing moments and visual stories.",
     site: "@dan10ish",
     creator: "@dan10ish",
     images: ["https://i.ibb.co/LzvcgKNC/og.png"],
