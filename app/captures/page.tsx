@@ -158,7 +158,7 @@ export default function CapturesPage() {
                     muted
                     loop
                     playsInline
-                    preload="metadata"
+                    preload="none"
                     controls={false}
                     autoPlay={false}
                   >

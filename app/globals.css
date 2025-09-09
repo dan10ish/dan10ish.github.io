@@ -515,12 +515,12 @@ code,
   width: 100%;
   background: linear-gradient(
     90deg,
-    var(--code-bg) 0%,
-    rgba(255, 255, 255, 0.1) 50%,
-    var(--code-bg) 100%
+    #e8e8e8 0%,
+    #f4f4f4 50%,
+    #e8e8e8 100%
   );
   background-size: 200% 100%;
-  animation: skeleton-loading 1.5s ease-in-out infinite;
+  animation: skeleton-loading 1.8s ease-in-out infinite;
   border-radius: 0.5rem;
   position: relative;
 }
@@ -528,12 +528,12 @@ code,
 .dark .captures-skeleton {
   background: linear-gradient(
     90deg,
-    var(--code-bg) 0%,
-    rgba(255, 255, 255, 0.05) 50%,
-    var(--code-bg) 100%
+    #1a1a1a 0%,
+    #2a2a2a 50%,
+    #1a1a1a 100%
   );
   background-size: 200% 100%;
-  animation: skeleton-loading 1.5s ease-in-out infinite;
+  animation: skeleton-loading 1.8s ease-in-out infinite;
 }
 
 @keyframes skeleton-loading {
