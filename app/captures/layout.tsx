@@ -1,8 +1,13 @@
-import { Metadata } from 'next';
+import type { Metadata, Viewport } from "next";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://danish.cv"),
   title: "Captures | Danish",
   description: "Danish's captures page featuring photos and videos showcasing moments and visual stories.",
+  authors: [{ name: "Danish", url: "https://danish.cv" }],
+  icons: {
+    icon: "/icon.png",
+  },
   keywords: [
     "Danish",
     "captures",
@@ -13,20 +18,40 @@ export const metadata: Metadata = {
     "portfolio",
     "moments",
     "Danish Ansari",
+    "Danish Mumbai",
+    "mechatronics",
+    "robotics",
+    "machine learning",
+    "developer",
+    "engineer",
   ],
-  authors: [{ name: 'Danish', url: 'https://danish.cv' }],
-  alternates: {
-    canonical: "https://danish.cv/captures",
+  robots: {
+    index: true,
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
-  icons: {
-    icon: "/icon.png",
+  alternates: { canonical: "https://danish.cv/captures" },
+  twitter: {
+    card: "summary_large_image",
+    site: "@dan10ish",
+    creator: "@dan10ish",
+    title: "Captures | Danish",
+    description: "Danish's captures page featuring photos and videos showcasing moments and visual stories.",
+    images: ["https://i.ibb.co/LzvcgKNC/og.png"],
   },
   openGraph: {
     type: "website",
+    siteName: "Danish",
     title: "Captures | Danish",
     description: "Danish's captures page featuring photos and videos showcasing moments and visual stories.",
     url: "https://danish.cv/captures",
-    siteName: 'Danish',
     images: [
       {
         url: "https://i.ibb.co/LzvcgKNC/og.png",
@@ -36,27 +61,14 @@ export const metadata: Metadata = {
         alt: "Danish's Captures Preview",
       },
     ],
-    locale: 'en_US',
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Captures | Danish",
-    description: "Danish's captures page featuring photos and videos showcasing moments and visual stories.",
-    site: "@dan10ish",
-    creator: "@dan10ish",
-    images: ["https://i.ibb.co/LzvcgKNC/og.png"],
+  other: {
+    "profile:username": "dan10ish",
+    "profile:first_name": "Danish",
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
+};
+
+export const viewport: Viewport = {
 };
 
 export default function CapturesLayout({
