@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { Loader2 } from 'lucide-react';
 
 interface VideoPlayerProps {
   src: string;
@@ -10,6 +11,7 @@ interface VideoPlayerProps {
 export default function VideoPlayer({ src, className = '' }: VideoPlayerProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isIntersecting, setIsIntersecting] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -40,15 +42,28 @@ export default function VideoPlayer({ src, className = '' }: VideoPlayerProps) {
     }
   }, [isIntersecting]);
 
+  const handleLoadedData = () => {
+    setIsLoading(false);
+  };
+
   return (
-    <video
-      ref={videoRef}
-      src={`/project-videos/${src}`}
-      className={`!w-full !h-full !object-cover ${className}`}
-      muted
-      loop
-      playsInline
-      preload="metadata"
-    />
+    <div className={`!relative !w-full !h-full ${className}`}>
+      {isLoading && (
+        <div className="!absolute !inset-0 !flex !items-center !justify-center !bg-[var(--code-bg)]">
+          <Loader2 size={24} className="!animate-spin !text-[var(--secondary)]" />
+        </div>
+      )}
+      <video
+        ref={videoRef}
+        src={`/project-videos/${src}`}
+        className="!w-full !h-full !object-cover"
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        onLoadedData={handleLoadedData}
+        style={{ opacity: isLoading ? 0 : 1 }}
+      />
+    </div>
   );
 }

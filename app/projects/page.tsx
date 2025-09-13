@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import { projects } from '../data';
 import VideoPlayer from '../components/VideoPlayer';
 import FloatingButtons from '../components/FloatingButtons';
-import { Github, Globe } from 'lucide-react';
+import { Github, Globe, Loader2, VideoOff } from 'lucide-react';
 import Link from 'next/link';
 
 export default function ProjectsPage() {
@@ -82,7 +82,7 @@ export default function ProjectsPage() {
         </section>
 
         <section>
-          <div className="!space-y-0">
+          <div className="!space-y-0 !pb-16">
             {filteredProjects.map((project, index) => (
               <div
                 key={project.name}
@@ -90,11 +90,15 @@ export default function ProjectsPage() {
                   index !== filteredProjects.length - 1 ? '!border-b !border-[var(--border)]' : ''
                 }`}
               >
-                <div className="!w-24 !h-24 !bg-black !rounded !overflow-hidden !flex-shrink-0 !flex !items-center !justify-center">
-                  <VideoPlayer 
-                    src={project.video} 
-                    className="!w-full !h-full !object-cover"
-                  />
+                <div className="!w-24 !h-24 md:!w-28 md:!h-28 lg:!w-32 lg:!h-32 !bg-[var(--code-bg)] !rounded !overflow-hidden !flex-shrink-0 !flex !items-center !justify-center">
+                  {project.video ? (
+                    <VideoPlayer 
+                      src={project.video} 
+                      className="!w-full !h-full !object-cover"
+                    />
+                  ) : (
+                    <VideoOff size={20} className="!text-[var(--secondary)] !opacity-50" />
+                  )}
                 </div>
                 
                 <div className="!flex-1 !min-w-0">
@@ -123,7 +127,7 @@ export default function ProjectsPage() {
                         <Link 
                           href={project.sourceCode} 
                           target="_blank"
-                          className="!opacity-60 hover:!opacity-100 !transition-opacity !text-[var(--foreground)]"
+                          className="!opacity-80 hover:!opacity-100 !transition-opacity !text-[var(--foreground)]"
                           aria-label={`View ${project.name} source code`}
                         >
                           <Github size={19} />
@@ -133,7 +137,7 @@ export default function ProjectsPage() {
                         <Link 
                           href={project.liveDemo} 
                           target="_blank"
-                          className="!opacity-60 hover:!opacity-100 !transition-opacity !text-[var(--foreground)]"
+                          className="!opacity-80 hover:!opacity-100 !transition-opacity !text-[var(--foreground)]"
                           aria-label={`View ${project.name} live demo`}
                         >
                           <Globe size={19} />

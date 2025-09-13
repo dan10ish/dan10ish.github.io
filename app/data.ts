@@ -15,29 +15,29 @@ export const projects = [
   {
     name: "AlgoSim",
     sourceCode: "https://github.com/dan10ish/AlgoSim",
-    year: 2024,
-    tags: ["Algorithm", "Education"],
+    year: 2025,
+    tags: ["Algorithm", "Python"],
     video: "algosim.mp4"
   },
   {
     name: "CogniCart",
     sourceCode: "https://github.com/dan10ish/cogni-cart",
-    year: 2024,
-    tags: ["AI", "ML"],
+    year: 2025,
+    tags: ["ML", "Next.js"],
     video: null
   },
   {
     name: "Code Editor",
     sourceCode: "https://github.com/dan10ish/code",
     liveDemo: "http://dan10ish.github.io/code",
-    year: 2023,
+    year: 2024,
     tags: ["Web", "React"],
     video: "code.mp4"
   },
   {
     name: "3DOF Robotic Arm",
     sourceCode: "https://github.com/dan10ish/3DOF-RoboticArm-C",
-    year: 2023,
+    year: 2024,
     tags: ["Robotics", "C"],
     video: "3dof.mp4"
   },
@@ -45,8 +45,8 @@ export const projects = [
     name: "Pathfinder",
     sourceCode: "https://github.com/dan10ish/pathfinding-visualizer",
     liveDemo: "https://dan10ish.github.io/pathfinding-visualizer/",
-    year: 2023,
-    tags: ["Algorithm", "Web"],
+    year: 2022,
+    tags: ["Algorithm", "React"],
     video: "path.mp4"
   },
   {
@@ -54,15 +54,15 @@ export const projects = [
     sourceCode: "https://github.com/dan10ish/RoboticArm",
     liveDemo: "https://dan10ish.github.io/RoboticArm/",
     year: 2023,
-    tags: ["Robotics", "3D"],
+    tags: ["Robotics", "3D", "Three.js"],
     video: "rob-visual.mp4"
   },
   {
     name: "College Notes",
     sourceCode: "https://github.com/dan10ish/college",
     liveDemo: "https://dan10ish.github.io/college/",
-    year: 2022,
-    tags: ["Education", "Web"],
+    year: 2024,
+    tags: ["Education", "Next.js"],
     video: "notes.mp4"
   },
   {
@@ -70,14 +70,14 @@ export const projects = [
     sourceCode: "https://github.com/dan10ish/os",
     liveDemo: "https://os-danishs-projects-31d8c677.vercel.app/",
     year: 2024,
-    tags: ["Web", "Design"],
+    tags: ["React", "Design"],
     video: "mac.mp4"
   },
   {
     name: "Comment Toxicity",
     sourceCode: "https://github.com/dan10ish/CommentToxicity",
-    year: 2024,
-    tags: ["ML", "NLP"],
+    year: 2023,
+    tags: ["ML", "NLP", "Python"],
     video: null
   },
   {
@@ -92,7 +92,7 @@ export const projects = [
     sourceCode: "https://github.com/dan10ish/Office",
     liveDemo: "https://dan10ish.github.io/Office/",
     year: 2022,
-    tags: ["Web", "Fullstack"],
+    tags: ["3D","React", "Three.js"],
     video: "office.mp4"
   },
   {
@@ -107,7 +107,7 @@ export const projects = [
     sourceCode: "https://github.com/dan10ish/Galaxy",
     liveDemo: "https://dan10ish.github.io/Galaxy/",
     year: 2022,
-    tags: ["Algorithm", "Physics"],
+    tags: ["Algorithm", "Three.js", "Physics"],
     video: "galaxy.mp4"
   },
   {
@@ -115,7 +115,7 @@ export const projects = [
     sourceCode: "https://github.com/dan10ish/dan10ish.github.io",
     liveDemo: "https://dan10ish.github.io",
     year: 2025,
-    tags: ["Web", "Next.js"],
+    tags: ["React", "Next.js"],
     video: "web.mp4"
   }
 ];
