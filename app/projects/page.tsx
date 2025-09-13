@@ -107,9 +107,9 @@ export default function ProjectsPage() {
             {filteredProjects.map((project) => (
               <div
                 key={project.name}
-                className="!bg-[var(--code-bg)] !rounded-md !p-4 !flex !items-center !gap-4"
+                className="!bg-[var(--code-bg)] !rounded-md !p-3 !flex !items-center !gap-4"
               >
-                <div className="!w-20 !h-20 !bg-black !rounded !overflow-hidden !flex-shrink-0 !flex !items-center !justify-center">
+                <div className="!w-24 !h-24 !bg-black !rounded !overflow-hidden !flex-shrink-0 !flex !items-center !justify-center">
                   <VideoPlayer 
                     src={project.video} 
                     className="!w-full !h-full !object-cover"
@@ -117,7 +117,7 @@ export default function ProjectsPage() {
                 </div>
                 
                 <div className="!flex-1 !min-w-0">
-                  <div className="!flex !items-baseline !justify-between !gap-4 !mb-2">
+                  <div className="!flex !items-baseline !justify-between !gap-4 !mb-3">
                     <h3 className="!text-[0.85rem] !font-medium !text-[var(--foreground)]">
                       {project.name}
                     </h3>
@@ -155,10 +155,6 @@ export default function ProjectsPage() {
                       </div>
                     </div>
                   </div>
-                  
-                  <p className="!text-[0.82rem] !text-[var(--secondary)] !truncate !mb-3">
-                    {project.description}
-                  </p>
                   
                   <div className="!flex !flex-wrap !gap-1.5">
                     {project.tags.map(tag => (
