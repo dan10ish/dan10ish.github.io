@@ -10,11 +10,11 @@ import Link from 'next/link';
 export default function ProjectsPage() {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
 
-  const allFilters = useMemo(() => {
-    const locations = projects.map(p => p.location);
-    const years = projects.map(p => String(p.year));
-    const tags = projects.flatMap(p => p.tags);
-    return [...new Set([...locations, ...years, ...tags])].sort();
+  const filterSections = useMemo(() => {
+    const locations = [...new Set(projects.map(p => p.location))];
+    const years = [...new Set(projects.map(p => String(p.year)))].sort((a, b) => Number(b) - Number(a));
+    const tags = [...new Set(projects.flatMap(p => p.tags))].sort();
+    return { locations, years, tags };
   }, []);
 
   const filteredProjects = useMemo(() => {
@@ -42,31 +42,74 @@ export default function ProjectsPage() {
             )}
           </div>
           
-          <div className="!flex !flex-wrap !gap-2">
-            {allFilters.map(filter => (
-              <button
-                key={filter}
-                onClick={() => setActiveFilter(activeFilter === filter ? null : filter)}
-                className={`!text-[0.88em] !bg-[var(--code-bg)] !text-[var(--primary)] !px-1.5 !py-0.5 !rounded-md !whitespace-nowrap !cursor-pointer !transform !transition-transform !duration-0 hover:!scale-105 ${
-                  activeFilter === filter
-                    ? '!bg-[var(--link-blue)] !text-white'
-                    : '!bg-[var(--code-bg)] !text-[var(--foreground)] hover:!bg-[var(--link-blue)] hover:!text-white'
-                }`}
-              >
-                {filter}
-              </button>
-            ))}
+          <div className="!space-y-3">
+            <div className="!flex !items-center !gap-2">
+              <span className="!text-[0.82rem] !opacity-60 !min-w-[70px]">Location:</span>
+              <div className="!flex !flex-wrap !gap-2">
+                {filterSections.locations.map(filter => (
+                  <button
+                    key={filter}
+                    onClick={() => setActiveFilter(activeFilter === filter ? null : filter)}
+                    className={`!text-[0.88em] !px-1.5 !py-0.5 !rounded-md !whitespace-nowrap !cursor-pointer !transform !transition-transform !duration-0 hover:!scale-105 ${
+                      activeFilter === filter
+                        ? '!bg-[var(--link-blue)] !text-white'
+                        : '!bg-[var(--code-bg)] !text-[var(--foreground)] hover:!bg-[var(--link-blue)] hover:!text-white'
+                    }`}
+                  >
+                    {filter}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="!flex !items-center !gap-2">
+              <span className="!text-[0.82rem] !opacity-60 !min-w-[70px]">Years:</span>
+              <div className="!flex !flex-wrap !gap-2">
+                {filterSections.years.map(filter => (
+                  <button
+                    key={filter}
+                    onClick={() => setActiveFilter(activeFilter === filter ? null : filter)}
+                    className={`!text-[0.88em] !px-1.5 !py-0.5 !rounded-md !whitespace-nowrap !cursor-pointer !transform !transition-transform !duration-0 hover:!scale-105 ${
+                      activeFilter === filter
+                        ? '!bg-[var(--link-blue)] !text-white'
+                        : '!bg-[var(--code-bg)] !text-[var(--foreground)] hover:!bg-[var(--link-blue)] hover:!text-white'
+                    }`}
+                  >
+                    {filter}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="!flex !items-center !gap-2">
+              <span className="!text-[0.82rem] !opacity-60 !min-w-[70px]">Tags:</span>
+              <div className="!flex !flex-wrap !gap-2">
+                {filterSections.tags.map(filter => (
+                  <button
+                    key={filter}
+                    onClick={() => setActiveFilter(activeFilter === filter ? null : filter)}
+                    className={`!text-[0.88em] !px-1.5 !py-0.5 !rounded-md !whitespace-nowrap !cursor-pointer !transform !transition-transform !duration-0 hover:!scale-105 ${
+                      activeFilter === filter
+                        ? '!bg-[var(--link-blue)] !text-white'
+                        : '!bg-[var(--code-bg)] !text-[var(--foreground)] hover:!bg-[var(--link-blue)] hover:!text-white'
+                    }`}
+                  >
+                    {filter}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
         <section>
-          <div className="!space-y-4">
+          <div className="!space-y-3">
             {filteredProjects.map((project) => (
               <div
                 key={project.name}
-                className="!flex !items-start !gap-4 !py-3"
+                className="!bg-[var(--code-bg)] !rounded-md !p-4 !flex !items-center !gap-4"
               >
-                <div className="!w-20 !h-20 !bg-black !rounded !overflow-hidden !flex-shrink-0">
+                <div className="!w-20 !h-20 !bg-black !rounded !overflow-hidden !flex-shrink-0 !flex !items-center !justify-center">
                   <VideoPlayer 
                     src={project.video} 
                     className="!w-full !h-full !object-cover"
@@ -113,7 +156,7 @@ export default function ProjectsPage() {
                     </div>
                   </div>
                   
-                  <p className="!text-[0.82rem] !text-[var(--secondary)] !leading-relaxed !mb-3">
+                  <p className="!text-[0.82rem] !text-[var(--secondary)] !truncate !mb-3">
                     {project.description}
                   </p>
                   
@@ -121,7 +164,7 @@ export default function ProjectsPage() {
                     {project.tags.map(tag => (
                       <span
                         key={tag}
-                        className="!text-[0.75rem] !bg-[var(--code-bg)] !text-[var(--foreground)] !px-2 !py-0.5 !rounded-full !opacity-70"
+                        className="!text-[0.75rem] !bg-[var(--background)] !text-[var(--foreground)] !px-2 !py-0.5 !rounded-full !opacity-70"
                       >
                         {tag}
                       </span>

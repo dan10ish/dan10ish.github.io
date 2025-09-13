@@ -14,7 +14,7 @@ export const personalInfo = {
 export const projects = [
   {
     name: "AlgoSim",
-    description: "Interactive algorithm visualization platform for learning data structures and algorithms",
+    description: "Interactive algorithm visualization platform",
     sourceCode: "https://github.com/dan10ish/AlgoSim",
     location: "Personal Project",
     year: 2024,
@@ -23,7 +23,7 @@ export const projects = [
   },
   {
     name: "CogniCart",
-    description: "AI-powered shopping cart that recognizes products using computer vision",
+    description: "AI-powered shopping cart with computer vision",
     sourceCode: "https://github.com/dan10ish/cogni-cart",
     location: "MIT Class",
     year: 2024,
@@ -32,7 +32,7 @@ export const projects = [
   },
   {
     name: "Code Editor",
-    description: "Feature-rich web-based code editor with syntax highlighting and themes",
+    description: "Web-based code editor with syntax highlighting",
     sourceCode: "https://github.com/dan10ish/code",
     liveDemo: "http://dan10ish.github.io/code",
     location: "Personal Project",
@@ -42,7 +42,7 @@ export const projects = [
   },
   {
     name: "3DOF Robotic Arm",
-    description: "Three degree of freedom robotic arm controlled with C programming",
+    description: "Three degree robotic arm with C programming",
     sourceCode: "https://github.com/dan10ish/3DOF-RoboticArm-C",
     location: "College",
     year: 2023,
@@ -51,7 +51,7 @@ export const projects = [
   },
   {
     name: "Pathfinder",
-    description: "Visualizer for pathfinding algorithms including A*, Dijkstra, and BFS",
+    description: "Pathfinding algorithm visualizer with A* and Dijkstra",
     sourceCode: "https://github.com/dan10ish/pathfinding-visualizer",
     liveDemo: "https://dan10ish.github.io/pathfinding-visualizer/",
     location: "Personal Project",
@@ -61,7 +61,7 @@ export const projects = [
   },
   {
     name: "Arm Visualizer",
-    description: "3D robotic arm kinematics visualizer with forward and inverse kinematics",
+    description: "3D robotic arm kinematics visualizer",
     sourceCode: "https://github.com/dan10ish/RoboticArm",
     liveDemo: "https://dan10ish.github.io/RoboticArm/",
     location: "College",
@@ -71,7 +71,7 @@ export const projects = [
   },
   {
     name: "College Notes",
-    description: "Comprehensive digital notes platform for engineering subjects",
+    description: "Digital notes platform for engineering subjects",
     sourceCode: "https://github.com/dan10ish/college",
     liveDemo: "https://dan10ish.github.io/college/",
     location: "College",
@@ -81,7 +81,7 @@ export const projects = [
   },
   {
     name: "macOS Portfolio",
-    description: "Pixel-perfect macOS interface recreation showcasing web development skills",
+    description: "Pixel-perfect macOS interface recreation",
     sourceCode: "https://github.com/dan10ish/os",
     liveDemo: "https://os-danishs-projects-31d8c677.vercel.app/",
     location: "Personal Project",
@@ -91,7 +91,7 @@ export const projects = [
   },
   {
     name: "Comment Toxicity",
-    description: "ML model to detect and classify toxic comments in social media",
+    description: "ML model to detect toxic comments",
     sourceCode: "https://github.com/dan10ish/CommentToxicity",
     location: "MIT Class",
     year: 2024,
@@ -100,7 +100,7 @@ export const projects = [
   },
   {
     name: "Terminal Hacker",
-    description: "Unity-based terminal hacking simulation game with realistic commands",
+    description: "Terminal hacking simulation game in Unity",
     sourceCode: "https://github.com/dan10ish/Unity-Terminal_Hacker",
     location: "Personal Project",
     year: 2022,
@@ -109,7 +109,7 @@ export const projects = [
   },
   {
     name: "Office",
-    description: "Modern office management system with employee tracking and analytics",
+    description: "Office management system with employee tracking",
     sourceCode: "https://github.com/dan10ish/Office",
     liveDemo: "https://dan10ish.github.io/Office/",
     location: "Personal Project",
@@ -119,7 +119,7 @@ export const projects = [
   },
   {
     name: "Cube Runner",
-    description: "Endless runner game built in Unity with procedural level generation",
+    description: "Endless runner game with procedural generation",
     sourceCode: "https://github.com/dan10ish/Unity-ProjectRun",
     location: "Personal Project",
     year: 2021,
@@ -128,7 +128,7 @@ export const projects = [
   },
   {
     name: "Galaxy",
-    description: "N-body physics simulation of celestial bodies with gravitational forces",
+    description: "N-body physics simulation with gravitational forces",
     sourceCode: "https://github.com/dan10ish/Galaxy",
     liveDemo: "https://dan10ish.github.io/Galaxy/",
     location: "Personal Project",
@@ -138,7 +138,7 @@ export const projects = [
   },
   {
     name: "Personal Website",
-    description: "Modern portfolio website built with Next.js and optimized performance",
+    description: "Portfolio website built with Next.js",
     sourceCode: "https://github.com/dan10ish/dan10ish.github.io",
     liveDemo: "https://dan10ish.github.io",
     location: "Personal Project",
