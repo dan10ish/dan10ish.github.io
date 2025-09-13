@@ -68,15 +68,15 @@ export default function Home() {
               href="/projects"
               className="!px-3 !py-1 !text-primary !font-medium hover:!scale-105 bg-[var(--code-bg)] !rounded-full group !flex !items-center !gap-2"
             >
-              <Folders size={14} className="opacity-70 group-hover:opacity-100" />
-              <span className="opacity-70 group-hover:opacity-100 group-hover:font-bold">Projects</span>
+              <Folders size={14} className="opacity-100 group-hover:opacity-100" />
+              <span className="opacity-100 group-hover:opacity-80 group-hover:font-bold">Projects</span>
             </Link>
             <Link 
               href="/captures"
               className="!px-3 !py-1 !text-primary !font-medium hover:!scale-105 bg-[var(--code-bg)] !rounded-full group !flex !items-center !gap-2"
             >
-              <Images size={14} className="opacity-70 group-hover:opacity-100" />
-              <span className="opacity-70 group-hover:opacity-100 group-hover:font-bold">Captures</span>
+              <Images size={14} className="opacity-100 group-hover:opacity-100" />
+              <span className="opacity-100 group-hover:opacity-80 group-hover:font-bold">Captures</span>
             </Link>
           </div>
         </section>
