@@ -24,7 +24,7 @@ export const projects = [
     sourceCode: "https://github.com/dan10ish/cogni-cart",
     year: 2024,
     tags: ["AI", "ML"],
-    video: "cognicart.mp4"
+    video: null
   },
   {
     name: "Code Editor",
@@ -32,14 +32,14 @@ export const projects = [
     liveDemo: "http://dan10ish.github.io/code",
     year: 2023,
     tags: ["Web", "React"],
-    video: "codeeditor.mp4"
+    video: "code.mp4"
   },
   {
     name: "3DOF Robotic Arm",
     sourceCode: "https://github.com/dan10ish/3DOF-RoboticArm-C",
     year: 2023,
     tags: ["Robotics", "C"],
-    video: "roboticarm.mp4"
+    video: "3dof.mp4"
   },
   {
     name: "Pathfinder",
@@ -47,7 +47,7 @@ export const projects = [
     liveDemo: "https://dan10ish.github.io/pathfinding-visualizer/",
     year: 2023,
     tags: ["Algorithm", "Web"],
-    video: "pathfinder.mp4"
+    video: "path.mp4"
   },
   {
     name: "Arm Visualizer",
@@ -55,7 +55,7 @@ export const projects = [
     liveDemo: "https://dan10ish.github.io/RoboticArm/",
     year: 2023,
     tags: ["Robotics", "3D"],
-    video: "armvisualizer.mp4"
+    video: "rob-visual.mp4"
   },
   {
     name: "College Notes",
@@ -63,7 +63,7 @@ export const projects = [
     liveDemo: "https://dan10ish.github.io/college/",
     year: 2022,
     tags: ["Education", "Web"],
-    video: "collegenotes.mp4"
+    video: "notes.mp4"
   },
   {
     name: "macOS Portfolio",
@@ -71,21 +71,21 @@ export const projects = [
     liveDemo: "https://os-danishs-projects-31d8c677.vercel.app/",
     year: 2024,
     tags: ["Web", "Design"],
-    video: "macos.mp4"
+    video: "mac.mp4"
   },
   {
     name: "Comment Toxicity",
     sourceCode: "https://github.com/dan10ish/CommentToxicity",
     year: 2024,
     tags: ["ML", "NLP"],
-    video: "toxicity.mp4"
+    video: null
   },
   {
     name: "Terminal Hacker",
     sourceCode: "https://github.com/dan10ish/Unity-Terminal_Hacker",
     year: 2022,
     tags: ["Game", "Unity"],
-    video: "terminalhacker.mp4"
+    video: "terminal.mp4"
   },
   {
     name: "Office",
@@ -100,7 +100,7 @@ export const projects = [
     sourceCode: "https://github.com/dan10ish/Unity-ProjectRun",
     year: 2021,
     tags: ["Game", "Unity"],
-    video: "cuberunner.mp4"
+    video: "cube.mp4"
   },
   {
     name: "Galaxy",
@@ -116,6 +116,6 @@ export const projects = [
     liveDemo: "https://dan10ish.github.io",
     year: 2025,
     tags: ["Web", "Next.js"],
-    video: "portfolio.mp4"
+    video: "web.mp4"
   }
 ];

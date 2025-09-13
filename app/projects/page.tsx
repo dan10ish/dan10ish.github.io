@@ -82,11 +82,13 @@ export default function ProjectsPage() {
         </section>
 
         <section>
-          <div className="!space-y-3">
-            {filteredProjects.map((project) => (
+          <div className="!space-y-0">
+            {filteredProjects.map((project, index) => (
               <div
                 key={project.name}
-                className="!rounded-md !p-3 !flex !items-center !gap-4"
+                className={`!p-0 !flex !items-center !gap-4 !py-3 ${
+                  index !== filteredProjects.length - 1 ? '!border-b !border-[var(--border)]' : ''
+                }`}
               >
                 <div className="!w-24 !h-24 !bg-black !rounded !overflow-hidden !flex-shrink-0 !flex !items-center !justify-center">
                   <VideoPlayer 
