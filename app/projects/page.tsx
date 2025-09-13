@@ -164,7 +164,7 @@ export default function ProjectsPage() {
                     {project.tags.map(tag => (
                       <span
                         key={tag}
-                        className="!text-[0.75rem] !bg-[var(--background)] !text-[var(--foreground)] !px-2 !py-0.5 !rounded-full !opacity-70"
+                        className="!bg-[var(--background)] !text-[var(--foreground)] !text-[0.88em] !px-1.5 !py-0.5 !rounded-md !whitespace-nowrap"
                       >
                         {tag}
                       </span>
