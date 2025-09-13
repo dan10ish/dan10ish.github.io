@@ -1,54 +1,40 @@
 'use client';
 
-import { useState, useEffect } from "react";
-import ProjectLink from "../components/ProjectLink";
-import FloatingButtons from "../components/FloatingButtons";
-import { projects } from "../data";
-
-interface Project {
-  name: string;
-  tag: string;
-  sourceCode?: string;
-  liveDemo?: string;
-}
+import { useMemo, useState } from 'react';
+import { projects } from '../data';
+import VideoPlayer from '../components/VideoPlayer';
+import FloatingButtons from '../components/FloatingButtons';
+import { Github, Globe } from 'lucide-react';
+import Link from 'next/link';
 
 export default function ProjectsPage() {
-  const [activeTag, setActiveTag] = useState<string | null>(null);
-  const [projectsToDisplay, setProjectsToDisplay] = useState<Project[]>(projects);
+  const [activeFilter, setActiveFilter] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (activeTag) {
-      const taggedProjects = projects.filter(project => project.tag === activeTag);
-      const otherProjects = projects.filter(project => project.tag !== activeTag);
-      setProjectsToDisplay([...taggedProjects, ...otherProjects]);
-    } else {
-      setProjectsToDisplay(projects);
-    }
-  }, [activeTag]);
+  const allFilters = useMemo(() => {
+    const locations = projects.map(p => p.location);
+    const years = projects.map(p => String(p.year));
+    const tags = projects.flatMap(p => p.tags);
+    return [...new Set([...locations, ...years, ...tags])].sort();
+  }, []);
 
-  const handleTagClick = (tag: string) => {
-    if (activeTag === tag) {
-      setActiveTag(null);
-    } else {
-      setActiveTag(tag);
-    }
-  };
-
-  const handleClearFilter = () => {
-    setActiveTag(null);
-  };
-
-  const uniqueTags = [...new Set(projects.map(project => project.tag))];
+  const filteredProjects = useMemo(() => {
+    if (!activeFilter) return projects;
+    return projects.filter(project => 
+      project.location === activeFilter ||
+      String(project.year) === activeFilter ||
+      project.tags.includes(activeFilter)
+    );
+  }, [activeFilter]);
 
   return (
     <div className="!h-fit !max-w-2xl !mx-auto">
       <main className="!space-y-6">
         <section className="!space-y-4">
-          <div className="flex items-center !justify-between">
-            <h1 className="text-base opacity-70">Projects</h1>
-            {activeTag && (
+          <div className="!flex !items-center !justify-between">
+            <h1 className="!text-base !opacity-70">Projects</h1>
+            {activeFilter && (
               <button
-                onClick={handleClearFilter}
+                onClick={() => setActiveFilter(null)}
                 className="!text-[0.88em] !px-1.5 !py-0.5 !rounded-md !bg-[var(--clear-filter-bg)] !text-[var(--clear-filter-text)] hover:!scale-105 !transition-transform"
               >
                 Clear
@@ -57,45 +43,101 @@ export default function ProjectsPage() {
           </div>
           
           <div className="!flex !flex-wrap !gap-2">
-            {uniqueTags.map((tag) => (
+            {allFilters.map(filter => (
               <button
-                key={tag}
-                onClick={() => handleTagClick(tag)}
-                className={`!text-[0.88em] !bg-[var(--code-bg)] !text-[var(--primary)] !px-1.5 !py-0.5 !rounded-md !whitespace-nowrap cursor-pointer transform transition-transform duration-0 hover:scale-105 ${
-                  activeTag === tag
+                key={filter}
+                onClick={() => setActiveFilter(activeFilter === filter ? null : filter)}
+                className={`!text-[0.88em] !bg-[var(--code-bg)] !text-[var(--primary)] !px-1.5 !py-0.5 !rounded-md !whitespace-nowrap !cursor-pointer !transform !transition-transform !duration-0 hover:!scale-105 ${
+                  activeFilter === filter
                     ? '!bg-[var(--link-blue)] !text-white'
                     : '!bg-[var(--code-bg)] !text-[var(--foreground)] hover:!bg-[var(--link-blue)] hover:!text-white'
                 }`}
               >
-                {tag}
+                {filter}
               </button>
             ))}
           </div>
         </section>
 
         <section>
-          <div className="!space-y-1">
-            {projectsToDisplay.map((project, index) => {
-              const isDimmed = activeTag !== null && project.tag !== activeTag;
-              return (
-                <div
-                  key={index}
-                  style={isDimmed ? { opacity: 0.4, pointerEvents: 'none' } : {}}
-                  className="!transition-opacity !duration-200"
-                >
-                  <ProjectLink
-                    name={project.name}
-                    tag={project.tag}
-                    sourceCode={project.sourceCode}
-                    liveDemo={project.liveDemo}
-                    onTagClick={handleTagClick}
-                    isActiveTag={activeTag === project.tag}
+          <div className="!space-y-4">
+            {filteredProjects.map((project) => (
+              <div
+                key={project.name}
+                className="!flex !items-start !gap-4 !py-3"
+              >
+                <div className="!w-20 !h-20 !bg-black !rounded !overflow-hidden !flex-shrink-0">
+                  <VideoPlayer 
+                    src={project.video} 
+                    className="!w-full !h-full !object-cover"
                   />
                 </div>
-              );
-            })}
+                
+                <div className="!flex-1 !min-w-0">
+                  <div className="!flex !items-baseline !justify-between !gap-4 !mb-2">
+                    <h3 className="!text-[0.85rem] !font-medium !text-[var(--foreground)]">
+                      {project.name}
+                    </h3>
+                    <div className="!flex !items-center !gap-3 !flex-shrink-0">
+                      <div className="!hidden md:!block !text-[0.82rem] !text-[var(--secondary)]">
+                        {project.location} • {project.year}
+                      </div>
+                      <div className="md:!hidden !text-[0.75rem] !text-[var(--secondary)]">
+                        {project.year}
+                      </div>
+                      
+                      <div className="!flex !items-center !gap-3">
+                        {project.sourceCode && (
+                          <Link 
+                            href={project.sourceCode} 
+                            target="_blank"
+                            className="!opacity-60 hover:!opacity-100 !transition-opacity"
+                            aria-label={`View ${project.name} source code`}
+                          >
+                            <Github size={19} />
+                          </Link>
+                        )}
+                        {project.liveDemo ? (
+                          <Link 
+                            href={project.liveDemo} 
+                            target="_blank"
+                            className="!opacity-60 hover:!opacity-100 !transition-opacity"
+                            aria-label={`View ${project.name} live demo`}
+                          >
+                            <Globe size={19} />
+                          </Link>
+                        ) : (
+                          <Globe size={19} className="!opacity-20" />
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <p className="!text-[0.82rem] !text-[var(--secondary)] !leading-relaxed !mb-3">
+                    {project.description}
+                  </p>
+                  
+                  <div className="!flex !flex-wrap !gap-1.5">
+                    {project.tags.map(tag => (
+                      <span
+                        key={tag}
+                        className="!text-[0.75rem] !bg-[var(--code-bg)] !text-[var(--foreground)] !px-2 !py-0.5 !rounded-full !opacity-70"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
+
+        {filteredProjects.length === 0 && (
+          <div className="!text-center !py-8 !text-[var(--secondary)]">
+            No projects found.
+          </div>
+        )}
       </main>
       <FloatingButtons />
     </div>

@@ -14,80 +14,136 @@ export const personalInfo = {
 export const projects = [
   {
     name: "AlgoSim",
+    description: "Interactive algorithm visualization platform for learning data structures and algorithms",
     sourceCode: "https://github.com/dan10ish/AlgoSim",
-    tag: "algorithm"
+    location: "Personal Project",
+    year: 2024,
+    tags: ["Algorithm", "Education"],
+    video: "algosim.mp4"
   },
   {
     name: "CogniCart",
+    description: "AI-powered shopping cart that recognizes products using computer vision",
     sourceCode: "https://github.com/dan10ish/cogni-cart",
-    tag: "ml"
+    location: "MIT Class",
+    year: 2024,
+    tags: ["AI", "ML"],
+    video: "cognicart.mp4"
   },
   {
     name: "Code Editor",
+    description: "Feature-rich web-based code editor with syntax highlighting and themes",
     sourceCode: "https://github.com/dan10ish/code",
     liveDemo: "http://dan10ish.github.io/code",
-    tag: "web"
+    location: "Personal Project",
+    year: 2023,
+    tags: ["Web", "React"],
+    video: "codeeditor.mp4"
   },
   {
     name: "3DOF Robotic Arm",
+    description: "Three degree of freedom robotic arm controlled with C programming",
     sourceCode: "https://github.com/dan10ish/3DOF-RoboticArm-C",
-    tag: "robotics"
+    location: "College",
+    year: 2023,
+    tags: ["Robotics", "C"],
+    video: "roboticarm.mp4"
   },
   {
     name: "Pathfinder",
+    description: "Visualizer for pathfinding algorithms including A*, Dijkstra, and BFS",
     sourceCode: "https://github.com/dan10ish/pathfinding-visualizer",
     liveDemo: "https://dan10ish.github.io/pathfinding-visualizer/",
-    tag: "algorithm"
+    location: "Personal Project",
+    year: 2023,
+    tags: ["Algorithm", "Web"],
+    video: "pathfinder.mp4"
   },
   {
     name: "Arm Visualizer",
+    description: "3D robotic arm kinematics visualizer with forward and inverse kinematics",
     sourceCode: "https://github.com/dan10ish/RoboticArm",
     liveDemo: "https://dan10ish.github.io/RoboticArm/",
-    tag: "robotics"
+    location: "College",
+    year: 2023,
+    tags: ["Robotics", "3D"],
+    video: "armvisualizer.mp4"
   },
   {
     name: "College Notes",
+    description: "Comprehensive digital notes platform for engineering subjects",
     sourceCode: "https://github.com/dan10ish/college",
     liveDemo: "https://dan10ish.github.io/college/",
-    tag: "education"
+    location: "College",
+    year: 2022,
+    tags: ["Education", "Web"],
+    video: "collegenotes.mp4"
   },
   {
     name: "macOS Portfolio",
+    description: "Pixel-perfect macOS interface recreation showcasing web development skills",
     sourceCode: "https://github.com/dan10ish/os",
     liveDemo: "https://os-danishs-projects-31d8c677.vercel.app/",
-    tag: "web"
+    location: "Personal Project",
+    year: 2024,
+    tags: ["Web", "Design"],
+    video: "macos.mp4"
   },
   {
     name: "Comment Toxicity",
+    description: "ML model to detect and classify toxic comments in social media",
     sourceCode: "https://github.com/dan10ish/CommentToxicity",
-    tag: "ml"
+    location: "MIT Class",
+    year: 2024,
+    tags: ["ML", "NLP"],
+    video: "toxicity.mp4"
   },
   {
     name: "Terminal Hacker",
+    description: "Unity-based terminal hacking simulation game with realistic commands",
     sourceCode: "https://github.com/dan10ish/Unity-Terminal_Hacker",
-    tag: "game"
+    location: "Personal Project",
+    year: 2022,
+    tags: ["Game", "Unity"],
+    video: "terminalhacker.mp4"
   },
   {
     name: "Office",
+    description: "Modern office management system with employee tracking and analytics",
     sourceCode: "https://github.com/dan10ish/Office",
     liveDemo: "https://dan10ish.github.io/Office/",
-    tag: "web"
+    location: "Personal Project",
+    year: 2022,
+    tags: ["Web", "Fullstack"],
+    video: "office.mp4"
   },
   {
     name: "Cube Runner",
+    description: "Endless runner game built in Unity with procedural level generation",
     sourceCode: "https://github.com/dan10ish/Unity-ProjectRun",
-    tag: "game"
+    location: "Personal Project",
+    year: 2021,
+    tags: ["Game", "Unity"],
+    video: "cuberunner.mp4"
   },
   {
     name: "Galaxy",
+    description: "N-body physics simulation of celestial bodies with gravitational forces",
     sourceCode: "https://github.com/dan10ish/Galaxy",
     liveDemo: "https://dan10ish.github.io/Galaxy/",
-    tag: "algorithm"
+    location: "Personal Project",
+    year: 2022,
+    tags: ["Algorithm", "Physics"],
+    video: "galaxy.mp4"
   },
   {
     name: "Personal Website",
+    description: "Modern portfolio website built with Next.js and optimized performance",
     sourceCode: "https://github.com/dan10ish/dan10ish.github.io",
     liveDemo: "https://dan10ish.github.io",
-    tag: "web"
+    location: "Personal Project",
+    year: 2025,
+    tags: ["Web", "Next.js"],
+    video: "portfolio.mp4"
   }
 ];
