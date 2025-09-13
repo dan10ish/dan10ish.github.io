@@ -29,26 +29,26 @@ export default function ProjectsPage() {
       <main className="!space-y-6">
         <section className="!space-y-4">
           <div className="!flex !items-center !justify-between">
-            <h1 className="!text-base !opacity-70">Projects</h1>
+            <h1 className="text-base !opacity-70">Projects</h1>
             {activeFilter && (
               <button
                 onClick={() => setActiveFilter(null)}
-                className="!text-[0.88em] !px-1.5 !py-0.5 !rounded-md !bg-[var(--clear-filter-bg)] !text-[var(--clear-filter-text)] hover:!scale-105 !transition-transform"
+                className="!px-1.5 !py-0.5 !rounded-md !bg-[var(--clear-filter-bg)] !text-[var(--clear-filter-text)] hover:!scale-105 !transition-transform flex items-center justify-center"
               >
-                Clear
+                <span className="!text-[0.74rem]">Clear</span>
               </button>
             )}
           </div>
           
           <div className="!space-y-3">
-            <div className="!flex !items-center !gap-2">
+            <div className="!flex !gap-2">
               <span className="!text-[0.82rem] !opacity-60 !min-w-[70px]">Years:</span>
               <div className="!flex !flex-wrap !gap-2">
                 {filterSections.years.map(filter => (
                   <button
                     key={filter}
                     onClick={() => setActiveFilter(activeFilter === filter ? null : filter)}
-                    className={`!text-[0.88em] !px-1.5 !py-0.5 !rounded-md !whitespace-nowrap !cursor-pointer !transform !transition-transform !duration-0 hover:!scale-105 ${
+                    className={`!text-[0.74rem] !px-1.5 !py-0.5 !rounded-md !whitespace-nowrap !cursor-pointer !transform !transition-transform !duration-0 hover:!scale-105 ${
                       activeFilter === filter
                         ? '!bg-[var(--link-blue)] !text-white'
                         : '!bg-[var(--code-bg)] !text-[var(--foreground)] hover:!bg-[var(--link-blue)] hover:!text-white'
@@ -67,7 +67,7 @@ export default function ProjectsPage() {
                   <button
                     key={filter}
                     onClick={() => setActiveFilter(activeFilter === filter ? null : filter)}
-                    className={`!text-[0.88em] !px-1.5 !py-0.5 !rounded-md !whitespace-nowrap !cursor-pointer !transform !transition-transform !duration-0 hover:!scale-105 ${
+                    className={`!text-[0.74rem] !px-1.5 !py-0.5 !rounded-md !whitespace-nowrap !cursor-pointer !transform !transition-transform !duration-0 hover:!scale-105 ${
                       activeFilter === filter
                         ? '!bg-[var(--link-blue)] !text-white'
                         : '!bg-[var(--code-bg)] !text-[var(--foreground)] hover:!bg-[var(--link-blue)] hover:!text-white'
@@ -102,7 +102,7 @@ export default function ProjectsPage() {
                 </div>
                 
                 <div className="!flex-1 !min-w-0">
-                  <h3 className="!text-[0.85rem] !font-medium !text-[var(--foreground)] !mb-2">
+                  <h3 className="text-base !font-medium !text-[var(--foreground)] !mb-2">
                     {project.name}
                   </h3>
                   
@@ -110,7 +110,7 @@ export default function ProjectsPage() {
                     {project.tags.map(tag => (
                       <span
                         key={tag}
-                        className="!bg-[var(--code-bg)] !text-[var(--foreground)] !text-[0.88em] !px-1.5 !py-0.5 !rounded-md !whitespace-nowrap"
+                        className="!bg-[var(--code-bg)] !text-[var(--foreground)] !text-[0.74rem] !px-1.5 !py-0.5 !rounded-md !whitespace-nowrap"
                       >
                         {tag}
                       </span>
