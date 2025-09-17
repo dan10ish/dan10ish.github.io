@@ -37,6 +37,22 @@ const About = () => {
         </div>
 
         <div className="social-item">
+          <span className="social-label">linkedin</span>
+          <a href="https://linkedin.com/in/dan10ish" target="_blank" rel="noopener noreferrer" className="social-link">
+            dan10ish
+            <ArrowUpRight className="social-icon" size={12} />
+          </a>
+        </div>
+
+        <div className="social-item">
+          <span className="social-label">snapchat</span>
+          <a href="https://snapchat.com/add/dan10ish" target="_blank" rel="noopener noreferrer" className="social-link">
+            dan10ish
+            <ArrowUpRight className="social-icon" size={12} />
+          </a>
+        </div>
+
+        <div className="social-item">
           <span className="social-label">email</span>
           <a href="mailto:aansaridan@gmail.com" className="social-link">
             aansaridan@gmail.com

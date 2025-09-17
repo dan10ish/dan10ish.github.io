@@ -17,7 +17,7 @@ const Terminal = () => {
       type: "directory",
       contents: {
         "about.txt": { type: "file", content: `${data.name}\n${data.title}\n\nInterests: ${data.interests}\nCurrent: ${data.current}\nEducation: ${data.education}` },
-        "contact.txt": { type: "file", content: `Email: ${data.contact.email}\nGitHub: github.com/${data.contact.github}\nX: x.com/${data.contact.x}\nInstagram: instagram.com/${data.contact.instagram}\nLinkedIn: linkedin.com/in/${data.contact.linkedin}` },
+        "contact.txt": { type: "file", content: `Email: ${data.contact.email}\nGitHub: github.com/${data.contact.github}\nX: x.com/${data.contact.x}\nInstagram: instagram.com/${data.contact.instagram}\nLinkedIn: linkedin.com/in/${data.contact.linkedin}\nSnapchat: snapchat.com/add/${data.contact.snapchat}` },
         "resume.txt": { type: "file", content: `${data.name} - Resume\n\nEducation: ${data.education}\nCurrent: ${data.current}\nPrevious Experience:\n• ${data.past}\n\nSkills: React, JavaScript, Python, Machine Learning, Robotics` },
         "projects": {
           type: "directory",
