@@ -1,26 +1,22 @@
 # robots.txt for https://dan10ish.github.io
-# Generated automatically - optimized for SEO
+# Generated automatically - Single Page Application (SPA)
 
 User-agent: *
 Allow: /
-Allow: /projects
-Allow: /captures
-Allow: /writings/
 Allow: /assets/
 Allow: /fonts/
+Allow: /icon.png
+Allow: /manifest.json
 
 # Block unnecessary crawling
 Disallow: /node_modules/
 Disallow: /.git/
 Disallow: /src/
-Disallow: /_next/static/
+Disallow: /_next/
 
-# Enhanced crawling directives
+# Crawling directives
 Crawl-delay: 1
 
 # Sitemap location
 Sitemap: https://dan10ish.github.io/sitemap.xml
-
-# Additional sitemaps for different content types
 Sitemap: https://dan10ish.github.io/sitemap-images.xml
-Sitemap: https://dan10ish.github.io/sitemap-videos.xml

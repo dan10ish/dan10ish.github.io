@@ -1,18 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-  <url>
-    <loc>https://dan10ish.github.io/projects</loc>
-    <video:video>
-      <video:thumbnail_loc>https://dan10ish.github.io/assets/projects/algosim.mp4</video:thumbnail_loc>
-      <video:title>AlgoSim - Algorithm Visualization Tool</video:title>
-      <video:description>Interactive algorithm visualization and simulation tool for learning data structures and algorithms</video:description>
-      <video:content_loc>https://dan10ish.github.io/assets/projects/algosim.mp4</video:content_loc>
-    </video:video>
-    <video:video>
-      <video:thumbnail_loc>https://dan10ish.github.io/assets/projects/path.mp4</video:thumbnail_loc>
-      <video:title>Pathfinder Visualization</video:title>
-      <video:description>Interactive pathfinding algorithm visualizer with multiple algorithms</video:description>
-      <video:content_loc>https://dan10ish.github.io/assets/projects/path.mp4</video:content_loc>
-    </video:video>
-  </url>
 </urlset>
