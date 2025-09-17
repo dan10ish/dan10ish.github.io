@@ -111,36 +111,48 @@ const StartupScreen = ({ onPowerOn }) => {
 
           <div className="startup-label">socials</div>
           <div className="startup-value">
-            <div className="!flex !items-center !gap-4 !-mt-1">
+            <div className="startup-socials !flex !flex-row !items-center !gap-4 !-mt-1">
               {data.contact.github && (
-                <a href={getContactLink('github', data.contact.github)} target="_blank" rel="noopener noreferrer" className="!flex !items-center !justify-center !text-[var(--startup-label)] !no-underline hover:!scale-110" style={{color: 'var(--startup-label)'}} aria-label={`GitHub profile of ${data.contact.github}`}>
-                  <Github size={20} />
-                </a>
+                <div>
+                  <a href={getContactLink('github', data.contact.github)} target="_blank" rel="noopener noreferrer" className="startup-social-link !flex !items-center !justify-center !no-underline" aria-label={`GitHub profile of ${data.contact.github}`}>
+                    <Github size={20} />
+                  </a>
+                </div>
               )}
               {data.contact.email && (
-                <a href={getContactLink('email', data.contact.email)} className="!flex !items-center !justify-center !text-[var(--startup-label)] !no-underline hover:!scale-110" style={{color: 'var(--startup-label)'}} aria-label={`Send email to ${data.contact.email}`}>
-                  <Mail size={20} />
-                </a>
+                <div>
+                  <a href={getContactLink('email', data.contact.email)} className="startup-social-link !flex !items-center !justify-center !no-underline" aria-label={`Send email to ${data.contact.email}`}>
+                    <Mail size={20} />
+                  </a>
+                </div>
               )}
               {data.contact.linkedin && (
-                <a href={getContactLink('linkedin', data.contact.linkedin)} target="_blank" rel="noopener noreferrer" className="!flex !items-center !justify-center !text-[var(--startup-label)] !no-underline hover:!scale-110" style={{color: 'var(--startup-label)'}} aria-label={`LinkedIn profile of ${data.contact.linkedin}`}>
-                  <LinkedInIcon />
-                </a>
+                <div>
+                  <a href={getContactLink('linkedin', data.contact.linkedin)} target="_blank" rel="noopener noreferrer" className="startup-social-link !flex !items-center !justify-center !no-underline" aria-label={`LinkedIn profile of ${data.contact.linkedin}`}>
+                    <LinkedInIcon />
+                  </a>
+                </div>
               )}
               {data.contact.x && (
-                <a href={getContactLink('x', data.contact.x)} target="_blank" rel="noopener noreferrer" className="!flex !items-center !justify-center !text-[var(--startup-label)] !no-underline hover:!scale-110" style={{color: 'var(--startup-label)'}} aria-label={`X (Twitter) profile of ${data.contact.x}`}>
-                  <XIcon />
-                </a>
+                <div>
+                  <a href={getContactLink('x', data.contact.x)} target="_blank" rel="noopener noreferrer" className="startup-social-link !flex !items-center !justify-center !no-underline" aria-label={`X (Twitter) profile of ${data.contact.x}`}>
+                    <XIcon />
+                  </a>
+                </div>
               )}
               {data.contact.instagram && (
-                <a href={getContactLink('instagram', data.contact.instagram)} target="_blank" rel="noopener noreferrer" className="!flex !items-center !justify-center !text-[var(--startup-label)] !no-underline hover:!scale-110" style={{color: 'var(--startup-label)'}} aria-label={`Instagram profile of ${data.contact.instagram}`}>
-                  <Instagram size={20} />
-                </a>
+                <div>
+                  <a href={getContactLink('instagram', data.contact.instagram)} target="_blank" rel="noopener noreferrer" className="startup-social-link !flex !items-center !justify-center !no-underline" aria-label={`Instagram profile of ${data.contact.instagram}`}>
+                    <Instagram size={20} />
+                  </a>
+                </div>
               )}
               {data.contact.snapchat && (
-                <a href={getContactLink('snapchat', data.contact.snapchat)} target="_blank" rel="noopener noreferrer" className="!flex !items-center !justify-center !text-[var(--startup-label)] !no-underline hover:!scale-110" style={{color: 'var(--startup-label)'}} aria-label={`Snapchat profile of ${data.contact.snapchat}`}>
-                  <SnapchatIcon />
-                </a>
+                <div>
+                  <a href={getContactLink('snapchat', data.contact.snapchat)} target="_blank" rel="noopener noreferrer" className="startup-social-link !flex !items-center !justify-center !no-underline" aria-label={`Snapchat profile of ${data.contact.snapchat}`}>
+                    <SnapchatIcon />
+                  </a>
+                </div>
               )}
             </div>
           </div>

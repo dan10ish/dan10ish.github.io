@@ -70,6 +70,21 @@
   opacity: 1;
 }
 
+.startup-socials {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.startup-social-link {
+  color: var(--startup-label);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .power-button-container {
   position: absolute;
   bottom: 20px;
@@ -217,5 +232,10 @@
   .power-button:hover .power-icon {
     filter: var(--apple-logo-filter);
     opacity: 0.9;
+  }
+
+  .startup-social-link:hover {
+    color: var(--startup-value);
+    transform: scale(1.1);
   }
 }
