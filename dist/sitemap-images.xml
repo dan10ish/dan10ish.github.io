@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://dan10ish.github.io/</loc>
+    <image:image>
+      <image:loc>https://i.ibb.co/vmBrhSd/OG.png</image:loc>
+      <image:caption>Danish Ansari Portfolio Preview</image:caption>
+      <image:title>Portfolio Homepage</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://dan10ish.github.io/assets/wallpaper.png</image:loc>
+      <image:caption>Desktop Wallpaper</image:caption>
+      <image:title>Portfolio Desktop Background</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://dan10ish.github.io/captures</loc>
+    <image:image>
+      <image:loc>https://dan10ish.github.io/captures/Image1.jpeg</image:loc>
+      <image:caption>Portfolio Screenshot 1</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://dan10ish.github.io/captures/Image2.jpeg</image:loc>
+      <image:caption>Portfolio Screenshot 2</image:caption>
+    </image:image>
+  </url>
+</urlset>

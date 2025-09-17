@@ -1,0 +1,38 @@
+{
+  "name": "Danish Ansari - Mechatronics Engineer & Developer",
+  "short_name": "Danish Ansari",
+  "description": "Personal portfolio website of Danish Ansari, featuring projects in machine learning, robotics, and web development.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["education", "productivity", "technology"],
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "https://i.ibb.co/vmBrhSd/OG.png",
+      "sizes": "1200x675",
+      "type": "image/png",
+      "label": "Danish Ansari Portfolio Homepage"
+    }
+  ],
+  "prefer_related_applications": false,
+  "edge_side_includes": true
+}
