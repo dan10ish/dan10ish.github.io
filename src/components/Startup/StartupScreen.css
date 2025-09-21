@@ -51,30 +51,13 @@
   font-weight: 400;
 }
 
-.contact-item {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  margin-bottom: 4px;
-}
-
-.contact-link {
-  color: var(--startup-link);
-  text-decoration: none;
-  font-weight: 400;
-  letter-spacing: 1px;
-}
-
-.contact-icon {
-  color: var(--startup-link);
-  opacity: 1;
-}
 
 .startup-socials {
   display: flex !important;
   flex-direction: row !important;
   align-items: center !important;
   gap: 8px !important;
+  margin-top: 1px !important;
 }
 
 .startup-social-link {
@@ -92,6 +75,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .startup-theme-toggle {
@@ -204,20 +188,6 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .contact-icon {
-    opacity: 0;
-  }
-
-  .contact-link:hover {
-    color: var(--startup-link-hover);
-    text-decoration: underline;
-  }
-
-  .contact-link:hover+.contact-icon {
-    color: var(--startup-link-hover);
-    opacity: 1;
-  }
-
   .startup-theme-toggle:hover {
     opacity: 1;
     transform: scale(1.1);
