@@ -15,6 +15,7 @@
 body {
   background-color: var(--bg);
   color: var(--text);
+  font-family: var(--font-sf-mono), ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
   font-size: 16px;
   line-height: 1.5;
   transition: background-color 0.2s ease, color 0.2s ease;

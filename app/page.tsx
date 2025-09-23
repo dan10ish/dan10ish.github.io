@@ -21,7 +21,7 @@ export default function Home() {
           {data.experience.map((exp, index) => (
             <div key={index} className="!mb-1 !flex !items-center">
               <span 
-                className="!text-base !font-mono"
+                className="!text-base"
                 style={{ width: `${maxCompanyLength}ch` }}
               >
                 {exp.company}
