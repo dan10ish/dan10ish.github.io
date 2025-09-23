@@ -10,7 +10,7 @@ export default function Home() {
   const maxCompanyLength = Math.max(...data.experience.map(exp => exp.company.length))
 
   return (
-    <div className="!h-dvh !p-8 !flex !flex-col !justify-between !overflow-hidden">
+    <div className="!h-dvh md:!p-10 !p-8 !flex !flex-col !justify-between !overflow-hidden">
       <div className="!flex-1 !overflow-auto">
         <div className="!mb-8">
           <h2 className="!text-base !mb-1">{data.personal.name}</h2>
@@ -26,7 +26,7 @@ export default function Home() {
               >
                 {exp.company}
               </span>
-              <span className="!text-base !ml-4">
+              <span className="!text-base !ml-5">
                 {exp.startYear} → {exp.endYear}
               </span>
             </div>
@@ -56,7 +56,7 @@ export default function Home() {
       <div className="!flex !justify-start !mt-4">
         <button
           onClick={nextTheme}
-          className="!text-base hover:!opacity-70 !transition-opacity !bg-transparent !border-none !p-0 !cursor-pointer"
+          className="social-link !text-base hover:!opacity-70 !transition-opacity !bg-transparent !border-none !p-0 !cursor-pointer !inline-flex !items-center"
           style={{ color: 'var(--text)' }}
         >
           THEME
