@@ -1,33 +1,24 @@
 {
   "personal": {
-    "name": "DAN DANISH",
-    "title": "DEVELOPER"
+    "name": "DANISH ANSARI",
+    "title": "SWE"
   },
   "experience": [
     {
-      "company": "FREELANCE",
+      "company": "INNOVATIO LABS",
       "startYear": "2024",
       "endYear": "...."
     },
     {
-      "company": "PROJECTS", 
+      "company": "CRIDAA", 
+      "startYear": "2024",
+      "endYear": "2025"
+    },
+    {
+      "company": "ACCELUS ROBOTICS",
       "startYear": "2023",
       "endYear": "2024"
-    },
-    {
-      "company": "LEARNING",
-      "startYear": "2020",
-      "endYear": "2023"
-    },
-    {
-      "company": "MISC",
-      "startYear": "2018",
-      "endYear": "2020"
     }
-  ],
-  "sections": [
-    "PORTFOLIO",
-    "EMAIL"
   ],
   "social": [
     {

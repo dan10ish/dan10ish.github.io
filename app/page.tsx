@@ -9,9 +9,6 @@ export default function Home() {
   return (
     <div className="!min-h-screen !p-8 !flex !flex-col !justify-between">
       <div>
-        <div className="!mb-8">
-          <h1 className="!text-base !mb-4">P.CV</h1>
-        </div>
 
         <div className="!mb-8">
           <h2 className="!text-base !mb-1">{data.personal.name}</h2>
@@ -24,14 +21,6 @@ export default function Home() {
               <span className="!text-base">
                 {exp.company.padEnd(8)} {exp.startYear} → {exp.endYear}
               </span>
-            </div>
-          ))}
-        </div>
-
-        <div className="!mb-8">
-          {data.sections.map((section, index) => (
-            <div key={index} className="!mb-1">
-              <span className="!text-base">{section}</span>
             </div>
           ))}
         </div>
