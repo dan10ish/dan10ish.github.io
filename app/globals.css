@@ -1,7 +1,21 @@
 @import "tailwindcss";
 
+:root {
+  --bg: #2a2e3a;
+  --text: #e5e7eb;
+  --accent: #6b7280;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.5;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }

@@ -1,0 +1,64 @@
+{
+  "personal": {
+    "name": "DAN DANISH",
+    "title": "DEVELOPER"
+  },
+  "experience": [
+    {
+      "company": "FREELANCE",
+      "startYear": "2024",
+      "endYear": "...."
+    },
+    {
+      "company": "PROJECTS", 
+      "startYear": "2023",
+      "endYear": "2024"
+    },
+    {
+      "company": "LEARNING",
+      "startYear": "2020",
+      "endYear": "2023"
+    },
+    {
+      "company": "MISC",
+      "startYear": "2018",
+      "endYear": "2020"
+    }
+  ],
+  "sections": [
+    "PORTFOLIO",
+    "EMAIL"
+  ],
+  "social": [
+    {
+      "name": "GITHUB",
+      "username": "dan10ish",
+      "url": "https://github.com/dan10ish"
+    },
+    {
+      "name": "INSTAGRAM", 
+      "username": "dan10ish",
+      "url": "https://instagram.com/dan10ish"
+    },
+    {
+      "name": "LINKEDIN",
+      "username": "dan10ish", 
+      "url": "https://linkedin.com/in/dan10ish"
+    },
+    {
+      "name": "TWITTER",
+      "username": "dan10ish",
+      "url": "https://twitter.com/dan10ish"
+    },
+    {
+      "name": "EMAIL",
+      "username": "dan10ish",
+      "url": "mailto:dan10ish@gmail.com"
+    },
+    {
+      "name": "SNAPCHAT",
+      "username": "dan10ish",
+      "url": "https://snapchat.com/add/dan10ish"
+    }
+  ]
+}

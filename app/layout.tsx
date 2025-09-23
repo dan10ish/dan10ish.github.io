@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist_Mono } from "next/font/google";
+import { ThemeProvider } from "./context/ThemeContext";
 import "./globals.css";
 
 const geistMono = Geist_Mono({
@@ -7,8 +8,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Next.js App",
-  description: "Clean Next.js application",
+  title: "DAN DANISH",
+  description: "Developer Portfolio",
 };
 
 export default function RootLayout({
@@ -18,10 +19,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistMono.className} !antialiased`}
-      >
-        {children}
+      <body className={`${geistMono.className} !antialiased`}>
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
