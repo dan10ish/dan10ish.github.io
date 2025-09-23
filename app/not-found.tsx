@@ -1,7 +1,6 @@
 'use client'
 
 import { useTheme } from './context/ThemeContext'
-import { ArrowUpRight } from 'lucide-react'
 import Link from 'next/link'
 
 export default function NotFound() {
@@ -18,13 +17,9 @@ export default function NotFound() {
         <div className="!mb-8">
           <Link
             href="/"
-            className="social-link !text-base hover:!opacity-70 !transition-opacity !inline-flex !items-center"
+            className="social-link !text-base hover:!opacity-70 !transition-opacity !inline-flex !items-center !underline"
           >
             HOME
-            <ArrowUpRight 
-              size={16} 
-              className="social-link-icon"
-            />
           </Link>
         </div>
       </div>
