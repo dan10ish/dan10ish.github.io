@@ -11,6 +11,7 @@ type Theme = {
 
 const themes: Theme[] = [
   { name: 'dark', bg: '#2a2e3a', text: '#e5e7eb', accent: '#6b7280' },
+  { name: 'light', bg: '#f8f9fa', text: '#1f2937', accent: '#6b7280' },
   { name: 'green', bg: '#0f1419', text: '#00ff00', accent: '#008000' },
   { name: 'blue', bg: '#0c1222', text: '#64b5f6', accent: '#1976d2' },
   { name: 'amber', bg: '#1a0f0a', text: '#fbbf24', accent: '#d97706' },
