@@ -19,3 +19,20 @@ body {
   line-height: 1.5;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
+
+.social-link-icon {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  margin-left: 4px;
+  display: inline-block;
+}
+
+.social-link:hover .social-link-icon {
+  opacity: 1;
+}
+
+@media (hover: none) {
+  .social-link-icon {
+    opacity: 1;
+  }
+}
