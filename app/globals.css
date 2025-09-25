@@ -37,3 +37,19 @@ body {
     opacity: 1;
   }
 }
+
+.title-with-dots {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.title-item.has-dot::after {
+  content: "•";
+  margin-left: 0.5rem;
+  color: var(--text);
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1;
+  margin-top: 0.1rem;
+}

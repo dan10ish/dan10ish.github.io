@@ -14,7 +14,13 @@ export default function Home() {
       <div className="!flex-1 !overflow-auto">
         <div className="!mb-8">
           <h2 className="!text-base !mb-1">{data.personal.name}</h2>
-          <p className="!text-base">{data.personal.title}</p>
+          <p className="title-with-dots !text-base">
+            {data.personal.title.map((item, index) => (
+              <span key={index} className={`title-item ${index < data.personal.title.length - 1 ? 'has-dot' : ''}`}>
+                {item}
+              </span>
+            ))}
+          </p>
         </div>
 
         <div className="!mb-8">
@@ -56,7 +62,7 @@ export default function Home() {
       <div className="!flex !justify-start !mt-4">
         <button
           onClick={nextTheme}
-          className="social-link !text-base hover:!opacity-70 !transition-opacity !bg-transparent !border-none !p-0 !cursor-pointer !inline-flex !items-center"
+          className="social-link !text-base hover:!opacity-70 !transition-opacity !border-none !p-2 !-m-2 !rounded-lg !cursor-pointer !inline-flex !items-center !bg-transparent"
           style={{ color: 'var(--text)' }}
         >
           THEME

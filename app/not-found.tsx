@@ -17,7 +17,7 @@ export default function NotFound() {
         <div className="!mb-8">
           <Link
             href="/"
-            className="social-link !text-base hover:!opacity-70 !transition-opacity !inline-flex !items-center !underline"
+            className="social-link !text-base hover:!opacity-70 !transition-opacity !inline-flex !items-center !bg-[#00000020] ring-1 ring-[#ffffff20] !rounded-lg !px-2 !py-1 !ml-1"
           >
             HOME
           </Link>
@@ -27,7 +27,7 @@ export default function NotFound() {
       <div className="!flex !justify-start !mt-4">
         <button
           onClick={nextTheme}
-          className="social-link !text-base hover:!opacity-70 !transition-opacity !bg-transparent !border-none !p-0 !cursor-pointer !inline-flex !items-center"
+          className="social-link !text-base hover:!opacity-70 !transition-opacity !border-none !p-2 !-m-2 !rounded-lg !cursor-pointer !inline-flex !items-center !bg-transparent"
           style={{ color: 'var(--text)' }}
         >
           THEME
