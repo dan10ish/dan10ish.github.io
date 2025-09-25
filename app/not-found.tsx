@@ -17,7 +17,7 @@ export default function NotFound() {
         <div className="!mb-8">
           <Link
             href="/"
-            className="social-link !text-base hover:!opacity-70 !transition-opacity !inline-flex !items-center !bg-[#00000020] ring-1 ring-[#ffffff20] !rounded-lg !px-2 !py-1 !ml-1"
+            className="social-link !text-base hover:!opacity-70 !transition-opacity !inline-flex !items-center !bg-[#00000025] ring-1 ring-[#ffffff20] !rounded-lg !px-2 !py-1 !ml-0.5"
           >
             HOME
           </Link>
