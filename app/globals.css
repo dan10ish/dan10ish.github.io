@@ -53,3 +53,25 @@ body {
   line-height: 1;
   margin-top: 0.1rem;
 }
+
+.dot-loader {
+  width: 40px;
+  height: 8px;
+  display: inline-block;
+  vertical-align: middle;
+  --_g: no-repeat radial-gradient(circle closest-side, var(--text) 90%, transparent);
+  background: 
+    var(--_g) 0% 50%,
+    var(--_g) 33.33% 50%,
+    var(--_g) 66.66% 50%,
+    var(--_g) 100% 50%;
+  background-size: calc(100%/4) 50%;
+  animation: dot-pulse 1.45s infinite linear;
+}
+
+@keyframes dot-pulse {
+  20% { background-position: 0% 0%, 33.33% 50%, 66.66% 50%, 100% 50%; }
+  40% { background-position: 0% 100%, 33.33% 0%, 66.66% 50%, 100% 50%; }
+  60% { background-position: 0% 50%, 33.33% 100%, 66.66% 0%, 100% 50%; }
+  80% { background-position: 0% 50%, 33.33% 50%, 66.66% 100%, 100% 0%; }
+}

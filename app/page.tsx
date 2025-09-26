@@ -32,8 +32,8 @@ export default function Home() {
               >
                 {exp.company}
               </span>
-              <span className="!text-base !ml-5">
-                {exp.startYear} → {exp.endYear}
+              <span className="!text-base !ml-5 !flex !items-center">
+                {exp.startYear} → {exp.endYear === "...." ? <span className="dot-loader !ml-2"></span> : exp.endYear}
               </span>
             </div>
           ))}
