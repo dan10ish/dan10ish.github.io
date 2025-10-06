@@ -67,6 +67,7 @@ body {
   box-sizing: border-box;
   overflow-x: hidden;
   letter-spacing: 0.02em;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 a {
@@ -475,4 +476,39 @@ code,
 
 .dark {
   --border: #333;
+}
+
+.animated-dots {
+  display: inline-flex;
+  align-items: center;
+}
+
+.animated-dots span {
+  animation: dot-fade 1.8s ease-in-out infinite;
+  opacity: 0.3;
+}
+
+.animated-dots span:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.animated-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.animated-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.animated-dots span:nth-child(4) {
+  animation-delay: 0.6s;
+}
+
+@keyframes dot-fade {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
 }

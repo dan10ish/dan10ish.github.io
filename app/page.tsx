@@ -1,6 +1,6 @@
 import Link from "next/link";
 import SocialLinks from "./components/SocialLinks";
-import { personalInfo } from "./data";
+import { personalInfo, experience } from "./data";
 import { getSortedWritingsData } from "../lib/writings";
 import { formatDate } from "../lib/utils";
 import { ThemeToggle } from "./components/ThemeToggle";
@@ -23,6 +23,25 @@ export default function Home() {
         <section>
           <h1 className="text-base opacity-70">About</h1>
           <p className="text-base">{personalInfo.about}</p>
+        </section>
+
+        <section>
+          <h1 className="text-base opacity-70">Experience</h1>
+          <div className="mt-1">
+            {experience.map((exp, index) => (
+              <div key={index} className="flex gap-2 w-full items-baseline justify-between">
+                <span className="text-base">{exp.company}</span>
+                <span className="text-secondary !text-[0.82rem] flex-shrink-0">
+                  {exp.startYear} → {exp.endYear || <span className="animated-dots">
+                    <span>.</span>
+                    <span>.</span>
+                    <span>.</span>
+                    <span>.</span>
+                  </span>}
+                </span>
+              </div>
+            ))}
+          </div>
         </section>
 
         <section>
