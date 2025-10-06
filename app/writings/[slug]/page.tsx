@@ -42,14 +42,14 @@ export async function generateMetadata({ params }: WritingPageProps): Promise<Me
 
     const pageTitle = `${writing.title} | Danish`;
     const pageDescription = writing.summary;
-    const writingUrl = `https://danish.bio/writings/${slug}`;
+    const writingUrl = `https://dan10ish.github.io/writings/${slug}`;
     
     let ogImageUrl: string;
     const defaultOgImage = "https://i.ibb.co/vmBrhSd/OG.png";
 
     if (writing.ogImage) {
       if (writing.ogImage.startsWith('/')) {
-        ogImageUrl = `https://danish.bio${writing.ogImage}`;
+        ogImageUrl = `https://dan10ish.github.io${writing.ogImage}`;
       } else {
         ogImageUrl = writing.ogImage;
       }
@@ -61,7 +61,7 @@ export async function generateMetadata({ params }: WritingPageProps): Promise<Me
       title: pageTitle,
       description: pageDescription,
       keywords: writing.tags || [],
-      authors: [{ name: 'Danish', url: 'https://danish.bio' }],
+      authors: [{ name: 'Danish', url: 'https://dan10ish.github.io' }],
       alternates: {
         canonical: writingUrl,
       },
@@ -110,7 +110,7 @@ export async function generateMetadata({ params }: WritingPageProps): Promise<Me
       title: "Error | Danish",
       description: "Could not load writing metadata.",
       alternates: {
-        canonical: slug ? `https://danish.bio/writings/${slug}` : undefined,
+        canonical: slug ? `https://dan10ish.github.io/writings/${slug}` : undefined,
       },
     }
   }

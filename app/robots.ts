@@ -8,7 +8,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://danish.bio/sitemap.xml',
-    host: 'https://danish.bio',
+    sitemap: 'https://dan10ish.github.io/sitemap.xml',
+    host: 'https://dan10ish.github.io',
   }
 } 
