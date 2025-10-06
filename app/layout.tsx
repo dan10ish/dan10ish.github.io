@@ -34,7 +34,7 @@ const sfMono = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://danish.cv"),
+  metadataBase: new URL("https://dan10ish.github.io"),
   title: "Danish",
   description:
     "Danish is a mechatronics engineer exploring machine learning, robotics and finance. This is his personal website.",
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  alternates: { canonical: "https://danish.cv" },
+  alternates: { canonical: "https://dan10ish.github.io" },
   twitter: {
     card: "summary_large_image",
     site: "@dan10ish",
@@ -82,7 +82,7 @@ export const metadata: Metadata = {
     title: "Danish",
     description:
       "Danish's personal website featuring his projects, technical writings, and insights in robotics and machine learning.",
-    url: "https://danish.cv",
+    url: "https://dan10ish.github.io",
     images: [
       {
         url: "https://i.ibb.co/vmBrhSd/OG.png",

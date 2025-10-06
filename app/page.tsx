@@ -4,7 +4,6 @@ import { personalInfo } from "./data";
 import { getSortedWritingsData } from "../lib/writings";
 import { formatDate } from "../lib/utils";
 import { ThemeToggle } from "./components/ThemeToggle";
-import { Folders, Images } from "lucide-react";
 
 export default function Home() {
   const writings = getSortedWritingsData();
@@ -60,26 +59,6 @@ export default function Home() {
             </div>
           </section>
         )}
-
-        <section>
-          <h1 className="text-base opacity-70">More</h1>
-          <div className="!flex !gap-3 !mt-2">
-            <Link 
-              href="/projects"
-              className="!px-3 !py-1 !text-primary !font-medium hover:!scale-105 bg-[var(--code-bg)] !rounded-full group !flex !items-center !gap-2"
-            >
-              <Folders size={14} className="opacity-100 group-hover:opacity-100" />
-              <span className="opacity-100 group-hover:opacity-80 group-hover:font-bold">Projects</span>
-            </Link>
-            <Link 
-              href="/captures"
-              className="!px-3 !py-1 !text-primary !font-medium hover:!scale-105 bg-[var(--code-bg)] !rounded-full group !flex !items-center !gap-2"
-            >
-              <Images size={14} className="opacity-100 group-hover:opacity-100" />
-              <span className="opacity-100 group-hover:opacity-80 group-hover:font-bold">Captures</span>
-            </Link>
-          </div>
-        </section>
       </main>
     </div>
   );
