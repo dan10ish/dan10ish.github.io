@@ -512,30 +512,3 @@ code,
     opacity: 1;
   }
 }
-
-.video-container {
-  position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
-  overflow: hidden;
-  border-radius: 0.5rem;
-}
-
-.video-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
-@media (prefers-color-scheme: dark) {
-  .video-container {
-    background-color: #000;
-  }
-}
-
-.dark .video-container {
-  background-color: #000;
-}

@@ -111,9 +111,9 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="dns-prefetch" href="https://platform.twitter.com" />
-        <link rel="dns-prefetch" href="https://www.youtube-nocookie.com" />
-        <link rel="preconnect" href="https://platform.twitter.com" />
-        <link rel="preconnect" href="https://www.youtube-nocookie.com" />
+        <link rel="dns-prefetch" href="https://www.youtube.com" />
+        <link rel="preconnect" href="https://platform.twitter.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.youtube.com" crossOrigin="anonymous" />
       </head>
       <body className={`${sfMono.variable}`}>
         <ThemeProvider

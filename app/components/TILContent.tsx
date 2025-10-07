@@ -1,72 +1,43 @@
 'use client'
 
 import { TILEntry } from '../../lib/til'
-import { useState, useEffect } from 'react'
+import { Suspense } from 'react'
+import { Tweet } from 'react-tweet'
+import YouTube from 'react-youtube'
+import './tweet.css'
 
 interface TILContentProps {
   entry: TILEntry
 }
 
 function TwitterEmbed({ tweetId }: { tweetId: string }) {
-  const [theme, setTheme] = useState('light')
-
-  useEffect(() => {
-    const updateTheme = () => {
-      const isDark = document.documentElement.classList.contains('dark')
-      setTheme(isDark ? 'dark' : 'light')
-    }
-
-    updateTheme()
-
-    const observer = new MutationObserver(updateTheme)
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['class']
-    })
-
-    const loadTwitterScript = () => {
-      if ((window as any).twttr?.widgets) {
-        (window as any).twttr.widgets.load()
-        return
-      }
-
-      if (!document.querySelector('link[rel="preload"][href*="twitter"]')) {
-        const preload = document.createElement('link')
-        preload.rel = 'preload'
-        preload.href = 'https://platform.twitter.com/widgets.js'
-        preload.as = 'script'
-        document.head.appendChild(preload)
-      }
-
-      const script = document.createElement('script')
-      script.src = 'https://platform.twitter.com/widgets.js'
-      script.async = true
-      script.charset = 'utf-8'
-      document.head.appendChild(script)
-    }
-
-    loadTwitterScript()
-
-    return () => {
-      observer.disconnect()
-    }
-  }, [])
-
-  useEffect(() => {
-    if ((window as any).twttr?.widgets) {
-      (window as any).twttr.widgets.load()
-    }
-  }, [theme])
-
   return (
-    <div className="!w-full !max-w-[550px] !mx-auto">
-      <blockquote 
-        className="twitter-tweet" 
-        data-theme={theme}
-        data-dnt="true"
-      >
-        <a href={`https://twitter.com/x/status/${tweetId}`}></a>
-      </blockquote>
+    <div className="tweet !w-full !max-w-[550px] !mx-auto">
+      <div className="!flex !justify-center">
+        <Suspense fallback={<div className="!h-[200px] !flex !items-center !justify-center !text-secondary">Loading tweet...</div>}>
+          <Tweet id={tweetId} />
+        </Suspense>
+      </div>
+    </div>
+  )
+}
+
+function YouTubeEmbed({ videoId }: { videoId: string }) {
+  return (
+    <div className="!w-full !max-w-[550px] !mx-auto !my-5">
+      <YouTube 
+        videoId={videoId}
+        opts={{
+          width: '100%',
+          height: '315',
+          playerVars: {
+            modestbranding: 1,
+            rel: 0,
+            color: 'white'
+          }
+        }}
+        className="!w-full !rounded-lg !overflow-hidden"
+      />
     </div>
   )
 }
@@ -149,18 +120,7 @@ export default function TILContent({ entry }: TILContentProps) {
     case 'youtube':
       const videoId = content.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/)?.[1]
       return videoId ? (
-        <div className="!w-full !max-w-[550px] !mx-auto">
-          <div className="video-container !w-full !relative !overflow-hidden !rounded-lg" style={{ paddingBottom: '56.25%', height: 0 }}>
-            <iframe
-              src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&color=white&autoplay=0`}
-              className="!absolute !top-0 !left-0 !w-full !h-full !border-0"
-              allowFullScreen
-              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              title="YouTube video player"
-            />
-          </div>
-        </div>
+        <YouTubeEmbed videoId={videoId} />
       ) : (
         <p className="!text-sm">Invalid YouTube URL</p>
       )
@@ -189,4 +149,3 @@ export default function TILContent({ entry }: TILContentProps) {
       )
   }
 }
-

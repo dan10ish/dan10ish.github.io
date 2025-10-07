@@ -1,0 +1,46 @@
+.tweet .react-tweet-theme {
+  --tweet-container-margin: 0;
+  --tweet-font-family: var(--font-sf-mono);
+  --tweet-font-color: var(--foreground);
+  
+  --tweet-bg-color-hover: var(--background);
+  --tweet-color-blue-secondary: var(--secondary);
+  --tweet-color-blue-secondary-hover: var(--code-bg);
+  --tweet-font-color-secondary: var(--secondary);
+  
+  --tweet-bg-color: var(--background);
+  --tweet-quoted-bg-color-hover: var(--code-bg);
+  --tweet-border: 1px solid var(--border);
+  --tweet-skeleton-gradient: linear-gradient(
+    270deg,
+    var(--code-bg),
+    var(--background),
+    var(--background),
+    var(--code-bg)
+  );
+  --tweet-color-red-primary: rgb(249, 24, 128);
+  --tweet-color-red-primary-hover: rgba(249, 24, 128, 0.1);
+  --tweet-color-green-primary: rgb(0, 186, 124);
+  --tweet-color-green-primary-hover: rgba(0, 186, 124, 0.1);
+  --tweet-twitter-icon-color: var(--foreground);
+  --tweet-verified-old-color: var(--secondary);
+  --tweet-verified-blue-color: var(--link-blue);
+}
+
+.tweet .react-tweet-theme p {
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.tweet .react-tweet-theme p a {
+  color: var(--link-blue);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.tweet .react-tweet-theme p a:hover {
+  border-bottom-color: var(--link-blue);
+  text-decoration: none;
+}
+

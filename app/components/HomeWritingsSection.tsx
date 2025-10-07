@@ -49,10 +49,10 @@ export default function HomeWritingsSection({ writings }: HomeWritingsSectionPro
 
   return (
     <section>
-      <div className="!flex !gap-6 !mb-3 !border-b !border-[var(--border)] !relative">
+      <div className="!flex !gap-6 !mb-3 !relative">
         <h1
           onClick={() => setActiveTab('writings')}
-          className={`!relative !pb-2 !text-base !cursor-pointer !transition-opacity !text-[0.9rem] ${
+          className={`!relative !text-base !cursor-pointer !transition-opacity !text-[0.9rem] ${
             activeTab === 'writings' ? '!opacity-70' : '!opacity-70'
           }`}
           style={{ opacity: activeTab === 'writings' ? 1 : 0.7 }}
@@ -61,7 +61,7 @@ export default function HomeWritingsSection({ writings }: HomeWritingsSectionPro
           {activeTab === 'writings' && (
             <motion.div
               layoutId="homeActiveTab"
-              className="!absolute !bottom-0 !left-0 !right-0 !h-[2px] !bg-[var(--link-blue)]"
+              className="!absolute !-bottom-0.5  !left-0 !right-0 !h-[2px] !bg-[var(--link-blue)]"
               transition={{
                 type: 'spring',
                 stiffness: 500,
@@ -72,7 +72,7 @@ export default function HomeWritingsSection({ writings }: HomeWritingsSectionPro
         </h1>
         <h1
           onClick={() => setActiveTab('til')}
-          className={`!relative !pb-2 !text-base !cursor-pointer !transition-opacity !text-[0.9rem] ${
+          className={`!relative !text-base !cursor-pointer !transition-opacity !text-[0.9rem] ${
             activeTab === 'til' ? '!opacity-70' : '!opacity-70'
           }`}
           style={{ opacity: activeTab === 'til' ? 1 : 0.7 }}
@@ -81,7 +81,7 @@ export default function HomeWritingsSection({ writings }: HomeWritingsSectionPro
           {activeTab === 'til' && (
             <motion.div
               layoutId="homeActiveTab"
-              className="!absolute !bottom-0 !left-0 !right-0 !h-[2px] !bg-[var(--link-blue)]"
+              className="!absolute !-bottom-0.5 !left-0 !right-0 !h-[2px] !bg-[var(--link-blue)]"
               transition={{
                 type: 'spring',
                 stiffness: 500,
