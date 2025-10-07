@@ -1,6 +1,5 @@
 'use client'
 
-import ReactPlayer from 'react-player'
 import { TILEntry } from '../../lib/til'
 import { useState, useEffect } from 'react'
 
@@ -9,41 +8,50 @@ interface TILContentProps {
 }
 
 function TwitterEmbed({ tweetId }: { tweetId: string }) {
-  const [loaded, setLoaded] = useState(false)
   const [theme, setTheme] = useState('light')
 
   useEffect(() => {
-    const isDark = document.documentElement.classList.contains('dark')
-    setTheme(isDark ? 'dark' : 'light')
-
-    const observer = new MutationObserver(() => {
+    const updateTheme = () => {
       const isDark = document.documentElement.classList.contains('dark')
       setTheme(isDark ? 'dark' : 'light')
-    })
+    }
 
+    updateTheme()
+
+    const observer = new MutationObserver(updateTheme)
     observer.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ['class']
     })
 
-    const script = document.createElement('script')
-    script.src = 'https://platform.twitter.com/widgets.js'
-    script.async = true
-    script.onload = () => setLoaded(true)
-    document.body.appendChild(script)
+    if (!(window as any).twttr) {
+      const script = document.createElement('script')
+      script.src = 'https://platform.twitter.com/widgets.js'
+      script.async = true
+      script.charset = 'utf-8'
+      document.body.appendChild(script)
+    } else {
+      (window as any).twttr.widgets.load()
+    }
 
     return () => {
       observer.disconnect()
-      const existingScript = document.querySelector('script[src="https://platform.twitter.com/widgets.js"]')
-      if (existingScript) {
-        document.body.removeChild(existingScript)
-      }
     }
   }, [])
 
+  useEffect(() => {
+    if ((window as any).twttr?.widgets) {
+      (window as any).twttr.widgets.load()
+    }
+  }, [theme])
+
   return (
-    <div className="!w-full !max-w-full">
-      <blockquote className="twitter-tweet" data-theme={theme}>
+    <div className="!w-full !max-w-full !flex !justify-center">
+      <blockquote 
+        className="twitter-tweet" 
+        data-theme={theme}
+        data-dnt="true"
+      >
         <a href={`https://twitter.com/x/status/${tweetId}`}></a>
       </blockquote>
     </div>
@@ -126,15 +134,19 @@ export default function TILContent({ entry }: TILContentProps) {
       )
 
     case 'youtube':
-      return (
-        <div className="!w-full !aspect-video !rounded-lg !overflow-hidden">
-          <ReactPlayer
-            url={content}
-            width="100%"
-            height="100%"
-            controls
+      const videoId = content.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/)?.[1]
+      return videoId ? (
+        <div className="!w-full !relative !overflow-hidden !rounded-lg" style={{ paddingBottom: '56.25%' }}>
+          <iframe
+            src={`https://www.youtube.com/embed/${videoId}?rel=0`}
+            className="!absolute !top-0 !left-0 !w-full !h-full !border-0"
+            allowFullScreen
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
           />
         </div>
+      ) : (
+        <p className="!text-sm">Invalid YouTube URL</p>
       )
 
     case 'link':

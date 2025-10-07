@@ -195,13 +195,13 @@ Learned about Supabase RLS today
 ```
 https://twitter.com/dan10ish/status/123456
 ```
-→ Auto-saved as "tweet"
+→ Auto-saved as "tweet" (with dark mode support!)
 
 **YouTube:**
 ```
 https://youtube.com/watch?v=abc123
 ```
-→ Auto-saved as "youtube"
+→ Auto-saved as "youtube" (responsive iframe embed)
 
 **Article:**
 ```
