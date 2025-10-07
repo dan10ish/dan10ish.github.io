@@ -11,7 +11,6 @@ const tabs = [
 
 export default function WritingsNav() {
   const pathname = usePathname()
-  
   const activeTab = tabs.find(tab => {
     if (tab.href === '/writings') {
       return pathname === '/writings' || pathname?.startsWith('/writings/')
@@ -23,26 +22,19 @@ export default function WritingsNav() {
     <nav className="!flex !gap-6 !mb-6 !border-b !border-[var(--border)] !relative">
       {tabs.map((tab) => {
         const isActive = activeTab?.href === tab.href
-        
         return (
           <Link
             key={tab.href}
             href={tab.href}
             className="!relative !pb-3 !text-base !transition-colors"
-            style={{
-              color: isActive ? 'var(--foreground)' : 'var(--secondary)'
-            }}
+            style={{ color: isActive ? 'var(--foreground)' : 'var(--secondary)' }}
           >
             {tab.name}
             {isActive && (
               <motion.div
                 layoutId="activeTab"
                 className="!absolute !bottom-0 !left-0 !right-0 !h-[2px] !bg-[var(--link-blue)]"
-                transition={{
-                  type: 'spring',
-                  stiffness: 500,
-                  damping: 30
-                }}
+                transition={{ type: 'spring', stiffness: 500, damping: 30 }}
               />
             )}
           </Link>

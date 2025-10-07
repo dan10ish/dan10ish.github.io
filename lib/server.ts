@@ -14,7 +14,7 @@ export interface WritingData {
   tags?: string[]
 }
 
-const defaultOgImage = "https://i.ibb.co/vmBrhSd/OG.png";
+const defaultOgImage = "https://i.ibb.co/vmBrhSd/OG.png"
 
 export function getSortedWritingsData(): Omit<WritingData, 'content'>[] {
   const fileNames = fs.readdirSync(writingsDirectory)
@@ -25,9 +25,7 @@ export function getSortedWritingsData(): Omit<WritingData, 'content'>[] {
       const fullPath = path.join(writingsDirectory, fileName)
       const fileContents = fs.readFileSync(fullPath, 'utf8')
       const matterResult = matter(fileContents)
-
-      const tags = (matterResult.data.tags as string[] | undefined) || [];
-
+      const tags = (matterResult.data.tags as string[] | undefined) || []
       return {
         slug,
         title: matterResult.data.title as string,
@@ -37,11 +35,10 @@ export function getSortedWritingsData(): Omit<WritingData, 'content'>[] {
         tags: tags,
       }
     })
-
   return allWritingsData.sort((a, b) => {
-    const dateA = new Date(a.date).getTime();
-    const dateB = new Date(b.date).getTime();
-    return dateB - dateA;
+    const dateA = new Date(a.date).getTime()
+    const dateB = new Date(b.date).getTime()
+    return dateB - dateA
   })
 }
 
@@ -50,9 +47,7 @@ export async function getWritingData(slug: string): Promise<WritingData> {
     const fullPath = path.join(writingsDirectory, `${slug}.mdx`)
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     const matterResult = matter(fileContents)
-
-    const tags = (matterResult.data.tags as string[] | undefined) || [];
-
+    const tags = (matterResult.data.tags as string[] | undefined) || []
     resolve({
       slug,
       title: matterResult.data.title as string,
@@ -63,4 +58,5 @@ export async function getWritingData(slug: string): Promise<WritingData> {
       tags: tags,
     })
   })
-} 
+}
+

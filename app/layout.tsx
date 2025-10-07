@@ -1,31 +1,14 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { ThemeColorUpdater } from "./components/ThemeColorUpdater";
-import { ThemeProvider } from "./components/ThemeProvider";
+import { ThemeColorUpdater, ThemeProvider } from "./components/Theme";
 
 const sfMono = localFont({
   src: [
-    {
-      path: '../public/fonts/SFMono-Regular.woff2',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../public/fonts/SFMono-Medium.woff2',
-      weight: '500',
-      style: 'normal',
-    },
-    {
-      path: '../public/fonts/SFMono-Semibold.woff2',
-      weight: '600',
-      style: 'normal',
-    },
-    {
-      path: '../public/fonts/SFMono-Bold.woff2',
-      weight: '700',
-      style: 'normal',
-    },
+    { path: '../public/fonts/SFMono-Regular.woff2', weight: '400', style: 'normal' },
+    { path: '../public/fonts/SFMono-Medium.woff2', weight: '500', style: 'normal' },
+    { path: '../public/fonts/SFMono-Semibold.woff2', weight: '600', style: 'normal' },
+    { path: '../public/fonts/SFMono-Bold.woff2', weight: '700', style: 'normal' },
   ],
   variable: '--font-sf-mono',
   display: 'swap',
@@ -35,11 +18,8 @@ const sfMono = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL("https://dan10ish.github.io"),
   title: "Danish",
-  description:
-    "Danish is a mechatronics engineer exploring machine learning, robotics and finance. This is his personal website.",
-  icons: {
-    icon: "/icon.png",
-  },
+  description: "Danish is a mechatronics engineer exploring machine learning, robotics and finance. This is his personal website.",
+  icons: { icon: "/icon.png" },
   keywords: [
     "Danish",
     "ai",
@@ -71,26 +51,22 @@ export const metadata: Metadata = {
     site: "@dan10ish",
     creator: "@dan10ish",
     title: "Danish",
-    description:
-      "Danish's personal website featuring his projects, technical writings, and insights in robotics and machine learning.",
+    description: "Danish's personal website featuring his projects, technical writings, and insights in robotics and machine learning.",
     images: ["https://i.ibb.co/vmBrhSd/OG.png"],
   },
   openGraph: {
     type: "website",
     siteName: "Danish",
     title: "Danish",
-    description:
-      "Danish's personal website featuring his projects, technical writings, and insights in robotics and machine learning.",
+    description: "Danish's personal website featuring his projects, technical writings, and insights in robotics and machine learning.",
     url: "https://dan10ish.github.io",
-    images: [
-      {
-        url: "https://i.ibb.co/vmBrhSd/OG.png",
-        width: 1200,
-        height: 675,
-        type: "image/png",
-        alt: "Danish's Portfolio Preview",
-      },
-    ],
+    images: [{
+      url: "https://i.ibb.co/vmBrhSd/OG.png",
+      width: 1200,
+      height: 675,
+      type: "image/png",
+      alt: "Danish's Portfolio Preview",
+    }],
   },
   other: {
     "profile:username": "dan10ish",
@@ -98,8 +74,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const viewport: Viewport = {
-};
+export const viewport: Viewport = {};
 
 export default function RootLayout({
   children,

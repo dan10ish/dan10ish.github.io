@@ -49,7 +49,6 @@ function YouTubeEmbed({ videoId }: { videoId: string }) {
   }
 
   const onReady = (event: any) => {
-    // Player is ready
     event.target.pauseVideo()
   }
 

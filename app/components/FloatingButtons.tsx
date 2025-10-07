@@ -1,34 +1,34 @@
-'use client';
+'use client'
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { Home, ChevronUp } from 'lucide-react';
-import { ThemeToggle } from './ThemeToggle';
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
+import { Home, ChevronUp } from 'lucide-react'
+import { ThemeToggle } from './Theme'
 
 export default function FloatingButtons() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false)
 
   const toggleVisibility = () => {
     if (window.scrollY > 300) {
-      setIsVisible(true);
+      setIsVisible(true)
     } else {
-      setIsVisible(false);
+      setIsVisible(false)
     }
-  };
+  }
 
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
-    });
-  };
+    })
+  }
 
   useEffect(() => {
-    window.addEventListener('scroll', toggleVisibility);
+    window.addEventListener('scroll', toggleVisibility)
     return () => {
-      window.removeEventListener('scroll', toggleVisibility);
-    };
-  }, []);
+      window.removeEventListener('scroll', toggleVisibility)
+    }
+  }, [])
 
   return (
     <div className="fixed bottom-7 right-5 flex flex-col items-center space-y-4 z-50">
@@ -59,5 +59,5 @@ export default function FloatingButtons() {
         }
       `}</style>
     </div>
-  );
-} 
+  )
+}

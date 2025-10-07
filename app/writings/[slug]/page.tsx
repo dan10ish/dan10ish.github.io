@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import { MDXRemote } from 'next-mdx-remote/rsc'
-import { getSortedWritingsData, getWritingData, WritingData } from '../../../lib/writings'
+import { getSortedWritingsData, getWritingData, WritingData } from '../../../lib/server'
+import { formatDate } from '../../../lib/client'
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
@@ -8,7 +9,6 @@ import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import Link from 'next/link'
 import { MdxTableWrapper } from '../../components/MdxTableWrapper'
-import { formatDate } from '../../../lib/utils'
 import { notFound } from 'next/navigation'
 import FloatingButtons from '../../components/FloatingButtons'
 import { highlight } from 'sugar-high'
@@ -191,14 +191,7 @@ export default async function WritingPage({ params }: WritingPageProps) {
       rehypePlugins: [
         rehypeSlug,
         rehypeKatex,
-        [
-          rehypeAutolinkHeadings,
-          {
-            properties: {
-              className: ['anchor'],
-            },
-          },
-        ],
+        [rehypeAutolinkHeadings, { properties: { className: ['anchor'] } }] as any,
       ],
     },
   }
@@ -215,7 +208,6 @@ export default async function WritingPage({ params }: WritingPageProps) {
       <p className="text-sm text-secondary mt-2 mb-8">
         {formatDate(date)}
       </p>
-      {/* @ts-expect-error Async Server Component */}
       <MDXRemote source={content} options={options} components={components} />
       <FloatingButtons />
     </article>
