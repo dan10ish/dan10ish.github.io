@@ -23,11 +23,7 @@ export default function Home() {
         <section>
           <h1 className="text-base opacity-70">About</h1>
           <p className="text-base">{personalInfo.about}</p>
-        </section>
-
-        <section>
-          <h1 className="text-base opacity-70">Experience</h1>
-          <div className="mt-1">
+          <div className="!mt-4">
             {experience.map((exp, index) => (
               <div key={index} className="flex gap-2 w-full items-baseline justify-between">
                 <span className="text-base">{exp.company}</span>
