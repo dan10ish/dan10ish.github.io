@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeColorUpdater } from "./components/ThemeColorUpdater";
-import { PageWrapper } from "./components/PageWrapper";
 import { ThemeProvider } from "./components/ThemeProvider";
 
 const sfMono = localFont({
@@ -123,7 +122,7 @@ export default function RootLayout({
           disableTransitionOnChange={false}
         >
           <ThemeColorUpdater />
-          <PageWrapper>{children}</PageWrapper>
+          {children}
         </ThemeProvider>
       </body>
     </html>

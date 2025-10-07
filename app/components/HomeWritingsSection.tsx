@@ -49,19 +49,16 @@ export default function HomeWritingsSection({ writings }: HomeWritingsSectionPro
 
   return (
     <section>
-      <div className="!flex !gap-6 !mb-3 !relative">
+      <div className="!flex !gap-4 !-ml-2 !mb-3 !relative">
         <h1
           onClick={() => setActiveTab('writings')}
-          className={`!relative !text-base !cursor-pointer !transition-opacity !text-[0.9rem] ${
-            activeTab === 'writings' ? '!opacity-70' : '!opacity-70'
-          }`}
+          className="!relative !text-base !cursor-pointer !transition-opacity !text-[0.9rem] !px-2 !py-1 !rounded-md !z-10"
           style={{ opacity: activeTab === 'writings' ? 1 : 0.7 }}
         >
-          Writings
           {activeTab === 'writings' && (
             <motion.div
               layoutId="homeActiveTab"
-              className="!absolute !-bottom-0.5  !left-0 !right-0 !h-[2px] !bg-[var(--link-blue)]"
+              className="!absolute !inset-0 !bg-[var(--code-bg)] !rounded-md !-z-10"
               transition={{
                 type: 'spring',
                 stiffness: 500,
@@ -69,19 +66,17 @@ export default function HomeWritingsSection({ writings }: HomeWritingsSectionPro
               }}
             />
           )}
+          Writings
         </h1>
         <h1
           onClick={() => setActiveTab('til')}
-          className={`!relative !text-base !cursor-pointer !transition-opacity !text-[0.9rem] ${
-            activeTab === 'til' ? '!opacity-70' : '!opacity-70'
-          }`}
+          className="!relative !text-base !cursor-pointer !transition-opacity !text-[0.9rem] !px-2 !py-1 !rounded-md !z-10"
           style={{ opacity: activeTab === 'til' ? 1 : 0.7 }}
         >
-          TIL
           {activeTab === 'til' && (
             <motion.div
               layoutId="homeActiveTab"
-              className="!absolute !-bottom-0.5 !left-0 !right-0 !h-[2px] !bg-[var(--link-blue)]"
+              className="!absolute !inset-0 !bg-[var(--code-bg)] !rounded-md !-z-10"
               transition={{
                 type: 'spring',
                 stiffness: 500,
@@ -89,6 +84,7 @@ export default function HomeWritingsSection({ writings }: HomeWritingsSectionPro
               }}
             />
           )}
+          TIL
         </h1>
       </div>
 
