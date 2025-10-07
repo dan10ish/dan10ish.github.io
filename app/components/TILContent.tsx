@@ -1,9 +1,22 @@
 'use client'
 
-import { TILEntry } from '../../lib/til'
 import { Tweet } from 'react-tweet'
 import YT from 'react-youtube'
 import './tweet.css'
+
+interface TILEntry {
+  id: string
+  date: string
+  content_type: 'tweet' | 'text' | 'link' | 'youtube' | 'book' | 'image'
+  content: string
+  metadata?: {
+    title?: string
+    author?: string
+    description?: string
+    image?: string
+  }
+  created_at: string
+}
 
 interface TILContentProps {
   entry: TILEntry
