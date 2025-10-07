@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { Loader2 } from 'lucide-react'
 import { formatDate } from '../../lib/utils'
 import TILContent from './TILContent'
 import { getTILEntries } from '../../lib/supabase'
@@ -51,7 +52,7 @@ export default function HomeWritingsSection({ writings }: HomeWritingsSectionPro
       <div className="!flex !gap-6 !mb-3 !border-b !border-[var(--border)] !relative">
         <h1
           onClick={() => setActiveTab('writings')}
-          className={`!relative !pb-2 !text-base !cursor-pointer !transition-opacity ${
+          className={`!relative !pb-2 !text-base !cursor-pointer !transition-opacity !text-[0.9rem] ${
             activeTab === 'writings' ? '!opacity-70' : '!opacity-70'
           }`}
           style={{ opacity: activeTab === 'writings' ? 1 : 0.7 }}
@@ -71,12 +72,12 @@ export default function HomeWritingsSection({ writings }: HomeWritingsSectionPro
         </h1>
         <h1
           onClick={() => setActiveTab('til')}
-          className={`!relative !pb-2 !text-base !cursor-pointer !transition-opacity ${
+          className={`!relative !pb-2 !text-base !cursor-pointer !transition-opacity !text-[0.9rem] ${
             activeTab === 'til' ? '!opacity-70' : '!opacity-70'
           }`}
           style={{ opacity: activeTab === 'til' ? 1 : 0.7 }}
         >
-          Today I Learned
+          TIL
           {activeTab === 'til' && (
             <motion.div
               layoutId="homeActiveTab"
@@ -129,7 +130,9 @@ export default function HomeWritingsSection({ writings }: HomeWritingsSectionPro
           className="!space-y-6"
         >
           {loading ? (
-            <p className="!text-base !text-secondary">Loading...</p>
+            <div className="!flex !justify-center !py-8">
+              <Loader2 className="!w-6 !h-6 !animate-spin !text-secondary" />
+            </div>
           ) : tilEntries.length > 0 ? (
             tilEntries.map((entry) => (
               <article

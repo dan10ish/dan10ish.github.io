@@ -9,8 +9,6 @@ interface TILContentProps {
 
 function TwitterEmbed({ tweetId }: { tweetId: string }) {
   const [theme, setTheme] = useState('light')
-  const [isLoaded, setIsLoaded] = useState(false)
-  const embedRef = useState<HTMLDivElement | null>(null)
 
   useEffect(() => {
     const updateTheme = () => {
@@ -27,35 +25,41 @@ function TwitterEmbed({ tweetId }: { tweetId: string }) {
     })
 
     const loadTwitterScript = () => {
-      if ((window as any).twttr) {
-        setIsLoaded(true)
+      if ((window as any).twttr?.widgets) {
+        (window as any).twttr.widgets.load()
         return
+      }
+
+      if (!document.querySelector('link[rel="preload"][href*="twitter"]')) {
+        const preload = document.createElement('link')
+        preload.rel = 'preload'
+        preload.href = 'https://platform.twitter.com/widgets.js'
+        preload.as = 'script'
+        document.head.appendChild(preload)
       }
 
       const script = document.createElement('script')
       script.src = 'https://platform.twitter.com/widgets.js'
       script.async = true
       script.charset = 'utf-8'
-      script.onload = () => setIsLoaded(true)
       document.head.appendChild(script)
     }
 
-    const timeoutId = setTimeout(loadTwitterScript, 100)
+    loadTwitterScript()
 
     return () => {
-      clearTimeout(timeoutId)
       observer.disconnect()
     }
   }, [])
 
   useEffect(() => {
-    if (isLoaded && (window as any).twttr?.widgets) {
+    if ((window as any).twttr?.widgets) {
       (window as any).twttr.widgets.load()
     }
-  }, [theme, isLoaded])
+  }, [theme])
 
   return (
-    <div className="!w-full !max-w-full !flex !justify-center">
+    <div className="!w-full !max-w-[550px] !mx-auto">
       <blockquote 
         className="twitter-tweet" 
         data-theme={theme}
@@ -145,15 +149,17 @@ export default function TILContent({ entry }: TILContentProps) {
     case 'youtube':
       const videoId = content.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/)?.[1]
       return videoId ? (
-        <div className="!w-full !relative !overflow-hidden !rounded-lg" style={{ paddingBottom: '56.25%' }}>
-          <iframe
-            src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1`}
-            className="!absolute !top-0 !left-0 !w-full !h-full !border-0"
-            loading="lazy"
-            allowFullScreen
-            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-          />
+        <div className="!w-full !max-w-[550px] !mx-auto">
+          <div className="video-container !w-full !relative !overflow-hidden !rounded-lg" style={{ paddingBottom: '56.25%', height: 0 }}>
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&color=white&autoplay=0`}
+              className="!absolute !top-0 !left-0 !w-full !h-full !border-0"
+              allowFullScreen
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              title="YouTube video player"
+            />
+          </div>
         </div>
       ) : (
         <p className="!text-sm">Invalid YouTube URL</p>

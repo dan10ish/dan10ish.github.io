@@ -136,7 +136,7 @@ Tap "Add new item" three times to create:
 **6. Get Contents of URL**
 
 **How to build the URL:**
-1. Take your Project URL: `https://okbjguqdekoohibfpdwn.supabase.co`
+1. Take your Project URL: `https://xxxxx.supabase.co`
 2. Add this to the end: `/rest/v1/til_entries`
 3. Final URL: `https://okbjguqdekoohibfpdwn.supabase.co/rest/v1/til_entries`
 
@@ -195,13 +195,13 @@ Learned about Supabase RLS today
 ```
 https://twitter.com/dan10ish/status/123456
 ```
-→ Auto-saved as "tweet" (with dark mode support!)
+→ Auto-saved as "tweet" (instant load with preloading, dark mode support!)
 
 **YouTube:**
 ```
 https://youtube.com/watch?v=abc123
 ```
-→ Auto-saved as "youtube" (responsive iframe embed)
+→ Auto-saved as "youtube" (instant load with DNS prefetch, privacy-enhanced)
 
 **Article:**
 ```
