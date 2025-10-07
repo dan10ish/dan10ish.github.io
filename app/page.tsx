@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { personalInfo } from './data'
 import { getSortedWritingsData } from '../lib/server'
 import { ThemeToggle } from './components/Theme'
@@ -14,7 +15,9 @@ export default function Home() {
           <ThemeToggle />
         </div>
       </section>
-      <HomeContent writings={writings} />
+      <Suspense fallback={<div className="!h-20" />}>
+        <HomeContent writings={writings} />
+      </Suspense>
     </div>
   )
 }

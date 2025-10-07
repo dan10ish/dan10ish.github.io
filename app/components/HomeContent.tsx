@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { Loader2, Github, Mail, Instagram } from 'lucide-react'
 import { personalInfo, experience } from '../data'
@@ -47,9 +48,30 @@ interface Writing {
 }
 
 export default function HomeContent({ writings }: { writings: Writing[] }) {
-  const [activeTab, setActiveTab] = useState<'about' | 'writings' | 'til'>('about')
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const tabFromUrl = searchParams.get('tab') as 'about' | 'writings' | 'til' | null
+  const [activeTab, setActiveTab] = useState<'about' | 'writings' | 'til'>(tabFromUrl || 'about')
   const [tilEntries, setTilEntries] = useState<TILEntry[]>([])
   const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    if (tabFromUrl && ['about', 'writings', 'til'].includes(tabFromUrl)) {
+      setActiveTab(tabFromUrl)
+    }
+  }, [tabFromUrl])
+
+  const handleTabChange = (tab: 'about' | 'writings' | 'til') => {
+    setActiveTab(tab)
+    const params = new URLSearchParams(searchParams.toString())
+    if (tab === 'about') {
+      params.delete('tab')
+    } else {
+      params.set('tab', tab)
+    }
+    const newUrl = params.toString() ? `/?${params.toString()}` : '/'
+    router.push(newUrl, { scroll: false })
+  }
 
   useEffect(() => {
     if (activeTab === 'til' && tilEntries.length === 0) {
@@ -65,7 +87,7 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
     <section>
       <div className="!flex !gap-2 md:!gap-4 !-ml-2 !mb-3 !relative">
         <h1
-          onClick={() => setActiveTab('about')}
+          onClick={() => handleTabChange('about')}
           className="!relative !text-base !cursor-pointer !transition-opacity !text-[0.9rem] !px-2 !py-1 !rounded-md !z-10"
           style={{ opacity: activeTab === 'about' ? 1 : 0.7 }}
         >
@@ -79,7 +101,7 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
           About
         </h1>
         <h1
-          onClick={() => setActiveTab('writings')}
+          onClick={() => handleTabChange('writings')}
           className="!relative !text-base !cursor-pointer !transition-opacity !text-[0.9rem] !px-2 !py-1 !rounded-md !z-10"
           style={{ opacity: activeTab === 'writings' ? 1 : 0.7 }}
         >
@@ -93,7 +115,7 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
           Writings
         </h1>
         <h1
-          onClick={() => setActiveTab('til')}
+          onClick={() => handleTabChange('til')}
           className="!relative !text-base !cursor-pointer !transition-opacity !text-[0.9rem] !px-2 !py-1 !rounded-md !z-10"
           style={{ opacity: activeTab === 'til' ? 1 : 0.7 }}
         >
