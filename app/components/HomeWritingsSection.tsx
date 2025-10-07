@@ -49,11 +49,12 @@ export default function HomeWritingsSection({ writings }: HomeWritingsSectionPro
   return (
     <section>
       <div className="!flex !gap-6 !mb-3 !border-b !border-[var(--border)] !relative">
-        <button
+        <h1
           onClick={() => setActiveTab('writings')}
-          className={`!relative !pb-2 !text-base !transition-all !bg-transparent !border-0 !cursor-pointer ${
-            activeTab === 'writings' ? '!opacity-100' : '!opacity-70'
+          className={`!relative !pb-2 !text-base !cursor-pointer !transition-opacity ${
+            activeTab === 'writings' ? '!opacity-70' : '!opacity-70'
           }`}
+          style={{ opacity: activeTab === 'writings' ? 1 : 0.7 }}
         >
           Writings
           {activeTab === 'writings' && (
@@ -67,12 +68,13 @@ export default function HomeWritingsSection({ writings }: HomeWritingsSectionPro
               }}
             />
           )}
-        </button>
-        <button
+        </h1>
+        <h1
           onClick={() => setActiveTab('til')}
-          className={`!relative !pb-2 !text-base !transition-all !bg-transparent !border-0 !cursor-pointer ${
-            activeTab === 'til' ? '!opacity-100' : '!opacity-70'
+          className={`!relative !pb-2 !text-base !cursor-pointer !transition-opacity ${
+            activeTab === 'til' ? '!opacity-70' : '!opacity-70'
           }`}
+          style={{ opacity: activeTab === 'til' ? 1 : 0.7 }}
         >
           Today I Learned
           {activeTab === 'til' && (
@@ -86,7 +88,7 @@ export default function HomeWritingsSection({ writings }: HomeWritingsSectionPro
               }}
             />
           )}
-        </button>
+        </h1>
       </div>
 
       {activeTab === 'writings' && (

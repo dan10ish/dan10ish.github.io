@@ -9,6 +9,8 @@ interface TILContentProps {
 
 function TwitterEmbed({ tweetId }: { tweetId: string }) {
   const [theme, setTheme] = useState('light')
+  const [isLoaded, setIsLoaded] = useState(false)
+  const embedRef = useState<HTMLDivElement | null>(null)
 
   useEffect(() => {
     const updateTheme = () => {
@@ -24,26 +26,33 @@ function TwitterEmbed({ tweetId }: { tweetId: string }) {
       attributeFilter: ['class']
     })
 
-    if (!(window as any).twttr) {
+    const loadTwitterScript = () => {
+      if ((window as any).twttr) {
+        setIsLoaded(true)
+        return
+      }
+
       const script = document.createElement('script')
       script.src = 'https://platform.twitter.com/widgets.js'
       script.async = true
       script.charset = 'utf-8'
-      document.body.appendChild(script)
-    } else {
-      (window as any).twttr.widgets.load()
+      script.onload = () => setIsLoaded(true)
+      document.head.appendChild(script)
     }
 
+    const timeoutId = setTimeout(loadTwitterScript, 100)
+
     return () => {
+      clearTimeout(timeoutId)
       observer.disconnect()
     }
   }, [])
 
   useEffect(() => {
-    if ((window as any).twttr?.widgets) {
+    if (isLoaded && (window as any).twttr?.widgets) {
       (window as any).twttr.widgets.load()
     }
-  }, [theme])
+  }, [theme, isLoaded])
 
   return (
     <div className="!w-full !max-w-full !flex !justify-center">
@@ -138,8 +147,9 @@ export default function TILContent({ entry }: TILContentProps) {
       return videoId ? (
         <div className="!w-full !relative !overflow-hidden !rounded-lg" style={{ paddingBottom: '56.25%' }}>
           <iframe
-            src={`https://www.youtube.com/embed/${videoId}?rel=0`}
+            src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1`}
             className="!absolute !top-0 !left-0 !w-full !h-full !border-0"
+            loading="lazy"
             allowFullScreen
             allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
