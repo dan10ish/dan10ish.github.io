@@ -9,7 +9,7 @@ export default function Home() {
 
   return (
     <div className="h-fit max-w-2xl mx-auto">
-      <main className="space-y-6">
+      <main className="!space-y-10">
         <section className="space-y-0">
           <div className="flex items-center justify-between">
             <h1 className="text-base font-bold header-text">

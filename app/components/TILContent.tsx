@@ -1,9 +1,8 @@
 'use client'
 
 import { TILEntry } from '../../lib/til'
-import { Suspense } from 'react'
 import { Tweet } from 'react-tweet'
-import YouTube from 'react-youtube'
+import YT from 'react-youtube'
 import './tweet.css'
 
 interface TILContentProps {
@@ -14,30 +13,43 @@ function TwitterEmbed({ tweetId }: { tweetId: string }) {
   return (
     <div className="tweet !w-full !max-w-[550px] !mx-auto">
       <div className="!flex !justify-center">
-        <Suspense fallback={<div className="!h-[200px] !flex !items-center !justify-center !text-secondary">Loading tweet...</div>}>
-          <Tweet id={tweetId} />
-        </Suspense>
+        <Tweet id={tweetId} />
       </div>
     </div>
   )
 }
 
 function YouTubeEmbed({ videoId }: { videoId: string }) {
+  const opts = {
+    width: '100%',
+    height: '100%',
+    playerVars: {
+      autoplay: 0,
+      controls: 1,
+      modestbranding: 1,
+      rel: 0,
+      showinfo: 0,
+      fs: 1,
+      playsinline: 1,
+      origin: typeof window !== 'undefined' ? window.location.origin : '',
+    },
+  }
+
+  const onReady = (event: any) => {
+    // Player is ready
+    event.target.pauseVideo()
+  }
+
   return (
     <div className="!w-full !max-w-[550px] !mx-auto !my-5">
-      <YouTube 
-        videoId={videoId}
-        opts={{
-          width: '100%',
-          height: '315',
-          playerVars: {
-            modestbranding: 1,
-            rel: 0,
-            color: 'white'
-          }
-        }}
-        className="!w-full !rounded-lg !overflow-hidden"
-      />
+      <div className="yt-video-container">
+        <YT 
+          videoId={videoId} 
+          opts={opts}
+          onReady={onReady}
+          className="yt-video-iframe"
+        />
+      </div>
     </div>
   )
 }
