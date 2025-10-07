@@ -23,7 +23,7 @@ export async function getTILEntries(): Promise<TILEntry[]> {
   const { data, error } = await supabase
     .from('til_entries')
     .select('*')
-    .order('date', { ascending: false })
+    .order('created_at', { ascending: false })
   
   if (error) {
     console.error('Error fetching TIL entries:', error)

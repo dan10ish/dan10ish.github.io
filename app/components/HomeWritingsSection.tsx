@@ -51,11 +51,9 @@ export default function HomeWritingsSection({ writings }: HomeWritingsSectionPro
       <div className="!flex !gap-6 !mb-3 !border-b !border-[var(--border)] !relative">
         <button
           onClick={() => setActiveTab('writings')}
-          className="!relative !pb-2 !text-base !transition-colors !bg-transparent !border-0 !cursor-pointer"
-          style={{
-            color: activeTab === 'writings' ? 'var(--foreground)' : 'var(--secondary)',
-            opacity: activeTab === 'writings' ? 1 : 0.7
-          }}
+          className={`!relative !pb-2 !text-base !transition-all !bg-transparent !border-0 !cursor-pointer ${
+            activeTab === 'writings' ? '!opacity-100' : '!opacity-70'
+          }`}
         >
           Writings
           {activeTab === 'writings' && (
@@ -72,11 +70,9 @@ export default function HomeWritingsSection({ writings }: HomeWritingsSectionPro
         </button>
         <button
           onClick={() => setActiveTab('til')}
-          className="!relative !pb-2 !text-base !transition-colors !bg-transparent !border-0 !cursor-pointer"
-          style={{
-            color: activeTab === 'til' ? 'var(--foreground)' : 'var(--secondary)',
-            opacity: activeTab === 'til' ? 1 : 0.7
-          }}
+          className={`!relative !pb-2 !text-base !transition-all !bg-transparent !border-0 !cursor-pointer ${
+            activeTab === 'til' ? '!opacity-100' : '!opacity-70'
+          }`}
         >
           Today I Learned
           {activeTab === 'til' && (
