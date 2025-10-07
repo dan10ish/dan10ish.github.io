@@ -1,9 +1,8 @@
-import Link from "next/link";
 import SocialLinks from "./components/SocialLinks";
 import { personalInfo, experience } from "./data";
 import { getSortedWritingsData } from "../lib/writings";
-import { formatDate } from "../lib/utils";
 import { ThemeToggle } from "./components/ThemeToggle";
+import HomeWritingsSection from "./components/HomeWritingsSection";
 
 export default function Home() {
   const writings = getSortedWritingsData();
@@ -51,29 +50,7 @@ export default function Home() {
           />
         </section>
 
-        {writings.length > 0 && (
-          <section>
-            <h1 className="text-base opacity-70">Writings</h1>
-            <div className="mt-1">
-              {writings.map(({ slug, title, date }) => (
-                <Link
-                  href={`/writings/${slug}`}
-                  key={slug}
-                  className="block group writing-link !mb-1"
-                >
-                  <div className="flex gap-2 w-full items-baseline justify-between">
-                    <span className="text-primary font-medium touch-underline group-hover:text-[var(--link-blue)] truncate">
-                      {title}
-                    </span>
-                    <span className="text-secondary !text-[0.82rem] flex-shrink-0">
-                      {formatDate(date)}
-                    </span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </section>
-        )}
+        <HomeWritingsSection writings={writings} />
       </main>
     </div>
   );
