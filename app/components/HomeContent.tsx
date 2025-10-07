@@ -50,18 +50,18 @@ interface Writing {
 export default function HomeContent({ writings }: { writings: Writing[] }) {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const tabFromUrl = searchParams.get('tab') as 'about' | 'writings' | 'til' | null
-  const [activeTab, setActiveTab] = useState<'about' | 'writings' | 'til'>(tabFromUrl || 'about')
+  const tabFromUrl = searchParams.get('tab') as 'about' | 'writings' | 'finds' | null
+  const [activeTab, setActiveTab] = useState<'about' | 'writings' | 'finds'>(tabFromUrl || 'about')
   const [tilEntries, setTilEntries] = useState<TILEntry[]>([])
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    if (tabFromUrl && ['about', 'writings', 'til'].includes(tabFromUrl)) {
+    if (tabFromUrl && ['about', 'writings', 'finds'].includes(tabFromUrl)) {
       setActiveTab(tabFromUrl)
     }
   }, [tabFromUrl])
 
-  const handleTabChange = (tab: 'about' | 'writings' | 'til') => {
+  const handleTabChange = (tab: 'about' | 'writings' | 'finds') => {
     setActiveTab(tab)
     const params = new URLSearchParams(searchParams.toString())
     if (tab === 'about') {
@@ -74,7 +74,7 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
   }
 
   useEffect(() => {
-    if (activeTab === 'til' && tilEntries.length === 0) {
+    if (activeTab === 'finds' && tilEntries.length === 0) {
       setLoading(true)
       getTILEntries().then((entries) => {
         setTilEntries(entries)
@@ -115,18 +115,18 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
           Writings
         </h1>
         <h1
-          onClick={() => handleTabChange('til')}
+          onClick={() => handleTabChange('finds')}
           className="!relative !text-base !cursor-pointer !transition-opacity !text-[0.9rem] !px-2 !py-1 !rounded-md !z-10"
-          style={{ opacity: activeTab === 'til' ? 1 : 0.7 }}
+          style={{ opacity: activeTab === 'finds' ? 1 : 0.7 }}
         >
-          {activeTab === 'til' && (
+          {activeTab === 'finds' && (
             <motion.div
               layoutId="homeActiveTab"
               className="!absolute !inset-0 !bg-[var(--code-bg)] !rounded-md !-z-10"
               transition={{ type: 'spring', stiffness: 500, damping: 30 }}
             />
           )}
-          TIL
+          Finds
         </h1>
       </div>
 
@@ -205,7 +205,7 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
         </motion.div>
       )}
 
-      {activeTab === 'til' && (
+      {activeTab === 'finds' && (
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}

@@ -1,13 +1,13 @@
-# Today I Learned (TIL) Section Setup Guide
+# Finds Section Setup Guide
 
-This guide will walk you through setting up the complete TIL feature on your website. The TIL section appears on your homepage as a tabbed interface alongside your Writings, with a smooth animated underline using Framer Motion.
+This guide will walk you through setting up the complete Finds feature on your website. The Finds section appears on your homepage as a tabbed interface alongside your Writings, where you can share awesome stuff you discover across the internet.
 
 ## Quick Start (4 minutes)
 
 1. **Create Supabase database** (1 min) - Run SQL from Step 1
 2. **Configure credentials** (1 min) - Add to .env.local and copy for shortcut
 3. **Create Apple Shortcut** (2 min) - Follow Step 3 below
-4. **Done!** Start adding TIL entries from anywhere
+4. **Done!** Start adding Finds entries from anywhere
 
 The shortcut posts directly to Supabase's REST API - simpler and faster!
 
@@ -78,7 +78,7 @@ NEXT_PUBLIC_SUPABASE_URL=https://xxxxx.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGc...your-key-here
 ```
 
-This lets your website fetch TIL entries from Supabase.
+This lets your website fetch Finds entries from Supabase.
 
 ### 2.3 Keep These Handy for the Shortcut
 
@@ -93,7 +93,7 @@ Open Shortcuts app and add these 6 actions:
 ---
 
 **1. Ask for Input**
-- Prompt: `Add to TIL`
+- Prompt: `Add to Finds`
 
 ---
 
@@ -159,11 +159,11 @@ Tap "Add new item" three times to create:
 ---
 
 **7. Show Notification**
-- `✅ Added to TIL!`
+- `✅ Added to Finds!`
 
 ---
 
-**Done!** Name it "TIL"
+**Done!** Name it "Finds"
 
 ## Visual Guide
 
@@ -212,20 +212,20 @@ https://example.com/cool-article
 ## Quick Tips
 
 **Use with Siri:**
-"Hey Siri, TIL" → Dictate or paste
+"Hey Siri, Finds" → Dictate or paste
 
 **Use from Share Sheet:**
-Safari → Share → TIL (auto-grabs URL)
+Safari → Share → Finds (auto-grabs URL)
 
 **Add to Home Screen:**
-Widget → Shortcuts → Select TIL
+Widget → Shortcuts → Select Finds
 
 ## Step 4: Test the Shortcut
 
 ### 4.1 Test Adding an Entry
-1. Run your "TIL" shortcut
-2. Enter: `Testing my TIL setup!`
-3. You should see "✅ Added to TIL!" notification
+1. Run your "Finds" shortcut
+2. Enter: `Testing my Finds setup!`
+3. You should see "✅ Added to Finds!" notification
 
 ### 4.2 Verify in Supabase
 1. Go to Supabase Dashboard → **Table Editor** → **til_entries**
@@ -234,7 +234,7 @@ Widget → Shortcuts → Select TIL
 ### 4.3 Check Your Website
 1. Make sure your site is deployed: `npm run build && npm run deploy`
 2. Visit your homepage
-3. Click the "Today I Learned" tab
+3. Click the "Finds" tab
 4. Your entry should appear!
 
 **Note:** The website fetches from Supabase client-side, so just refresh the page to see new entries.
@@ -242,10 +242,10 @@ Widget → Shortcuts → Select TIL
 ## Step 5: Usage
 
 ### Adding Content via Shortcuts
-- Run "Add TIL" shortcut from anywhere
+- Run "Add Finds" shortcut from anywhere
 - Choose content type
 - Enter the required information
-- Entry appears on your homepage under the "Today I Learned" tab immediately
+- Entry appears on your homepage under the "Finds" tab immediately
 
 ### What Content Types Are Supported?
 
@@ -272,7 +272,7 @@ The shortcuts above handle the most common cases (text and links). For books/ima
 
 **Issue: Shortcut runs but nothing appears on site**
 - Check Supabase Dashboard → Table Editor → til_entries to see if data was saved
-- If data is there, refresh your website (TIL data loads client-side on page load)
+- If data is there, refresh your website (Finds data loads client-side on page load)
 - Check browser console for errors
 - Make sure you've deployed your site with the latest code
 
@@ -308,27 +308,27 @@ The shortcuts above handle the most common cases (text and links). For books/ima
 ## Advanced Tips
 
 ### Siri Voice Control
-1. Name your shortcut something simple like "TIL"
-2. Say "Hey Siri, TIL" to activate it
+1. Name your shortcut something simple like "Finds"
+2. Say "Hey Siri, Finds" to activate it
 3. Siri will prompt you for input
 
 ### Home Screen Widget
 1. Long press on home screen
 2. Tap "+" → Search "Shortcuts"
-3. Add widget and select your TIL shortcut
+3. Add widget and select your Finds shortcut
 4. One-tap access!
 
 ### Share Sheet Integration
 1. In Safari/Twitter/YouTube, find something interesting
 2. Tap Share button
-3. Scroll and select "Shortcuts" → Your TIL shortcut
+3. Scroll and select "Shortcuts" → Your Finds shortcut
 4. It will automatically grab the URL
 
 ### Automations (Optional)
 Create time-based reminders:
 - **Personal > Automation > Time of Day**
 - Set for 9 PM daily
-- Action: "Ask for Input" with your TIL shortcut
+- Action: "Ask for Input" with your Finds shortcut
 - Great for daily reflection habit!
 
 ## Security Notes
@@ -348,5 +348,5 @@ If you encounter issues:
 
 ---
 
-That's it! Your TIL section is now fully functional and can be updated from anywhere using Apple Shortcuts.
+That's it! Your Finds section is now fully functional and can be updated from anywhere using Apple Shortcuts.
 
