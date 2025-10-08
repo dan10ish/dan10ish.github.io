@@ -86,9 +86,9 @@ You'll use the same URL and key in Step 3 for the Apple Shortcut!
 
 ## Step 3: Apple Shortcuts Setup
 
-### The Shortcut (6 Simple Actions)
+### The Shortcut (Enhanced Version with Link Titles)
 
-Open Shortcuts app and add these 6 actions:
+Open Shortcuts app and add these actions:
 
 ---
 
@@ -113,27 +113,46 @@ Open Shortcuts app and add these 6 actions:
 
 ---
 
-**3. Current Date**
+**3. If** (check if it's a link)
+- If `Text` (from step 2) is `link`
+  - **Ask for Input**: Prompt `Add a title? (optional)`
+  - Store the result
+
+(End If)
+
+---
+
+**4. Current Date**
 (Just add the action, no config)
 
 ---
 
-**4. Format Date**
+**5. Format Date**
 - Date: `Current Date`
 - Format: Custom
 - Format String: `dd-MM-yyyy`
 
 ---
 
-**5. Dictionary**
-Tap "Add new item" three times to create:
-- `date` = `Formatted Date` (from step 4)
-- `content_type` = `Text` (from step 2)
-- `content` = `Provided Input` (from step 1)
+**6. If** (build dictionary based on whether we have a title)
+- If `Text` (from step 2) is `link` AND `Provided Input` (from step 3) is not empty
+  - **Dictionary** with 4 items:
+    - `date` = `Formatted Date`
+    - `content_type` = `link`
+    - `content` = `Provided Input` (from step 1 - the URL)
+    - `metadata` = **Dictionary** with:
+      - `title` = `Provided Input` (from step 3 - the title)
+- Otherwise
+  - **Dictionary** with 3 items:
+    - `date` = `Formatted Date`
+    - `content_type` = `Text` (from step 2)
+    - `content` = `Provided Input` (from step 1)
+
+(End If)
 
 ---
 
-**6. Get Contents of URL**
+**7. Get Contents of URL**
 
 **How to build the URL:**
 1. Take your Project URL: `https://xxxxx.supabase.co`
@@ -146,7 +165,7 @@ Tap "Add new item" three times to create:
 - URL: `https://okbjguqdekoohibfpdwn.supabase.co/rest/v1/til_entries`
 - Method: `POST`
 - Request Body: `JSON`
-- JSON: `Dictionary` (from step 5)
+- JSON: `Dictionary` (from step 6)
 
 **Headers (tap "Show More" and add all 4):**
 - `apikey` = `YOUR_SUPABASE_ANON_KEY`
@@ -158,7 +177,7 @@ Tap "Add new item" three times to create:
 
 ---
 
-**7. Show Notification**
+**8. Show Notification**
 - `✅ Added to Finds!`
 
 ---
@@ -168,13 +187,15 @@ Tap "Add new item" three times to create:
 ## Visual Guide
 
 ```
-Ask for Input
+Ask for Input (URL or text)
   ↓
 Detect type (youtube/twitter/link/text)
   ↓
+If link → Ask for title (optional)
+  ↓
 Get & format date
   ↓
-Build dictionary {date, content_type, content}
+Build dictionary with metadata if title provided
   ↓
 POST to API
   ↓
@@ -254,11 +275,11 @@ The system automatically handles:
 - **Text**: Plain text notes and thoughts
 - **Tweets**: `https://twitter.com/user/status/123` or `https://x.com/user/status/123`
 - **YouTube**: `https://youtube.com/watch?v=ID` or `https://youtu.be/ID`
-- **Links**: Any URL (fetches preview automatically)
+- **Links**: Any URL - you can manually add a title when saving
 - **Books**: Manually add via API with title/author metadata
 - **Images**: Direct image URLs
 
-The shortcuts above handle the most common cases (text and links). For books/images, you can extend the shortcuts or use a tool like Postman to POST directly to your API.
+**For better link previews**: When adding a link, paste the website's title in the prompt. The shortcut will store it and display it beautifully on your site.
 
 ## Troubleshooting
 

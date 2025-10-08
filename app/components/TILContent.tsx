@@ -1,6 +1,5 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import { Tweet } from 'react-tweet'
 import YT from 'react-youtube'
 import './tweet.css'
@@ -68,29 +67,19 @@ function YouTubeEmbed({ videoId }: { videoId: string }) {
 }
 
 function LinkPreview({ url, metadata }: { url: string; metadata?: TILEntry['metadata'] }) {
-  const [fetchedMetadata, setFetchedMetadata] = useState<TILEntry['metadata'] | null>(null)
-  const [loading, setLoading] = useState(false)
-
-  useEffect(() => {
-    if (!metadata?.title && !fetchedMetadata && !loading) {
-      setLoading(true)
-      fetch(`https://api.ogfetch.com/preview?url=${encodeURIComponent(url)}`)
-        .then(res => res.json())
-        .then(data => {
-          if (data && (data.title || data.description)) {
-            setFetchedMetadata({
-              title: data.title || null,
-              description: data.description || null,
-              image: data.image || null,
-            })
-          }
-        })
-        .catch(() => {})
-        .finally(() => setLoading(false))
+  const getFallbackTitle = () => {
+    try {
+      return new URL(url).hostname.replace('www.', '')
+    } catch {
+      return url
     }
-  }, [url, metadata, fetchedMetadata, loading])
+  }
 
-  const displayMetadata = metadata || fetchedMetadata
+  const displayMetadata = metadata || {
+    title: getFallbackTitle(),
+    description: null,
+    image: null,
+  }
 
   return (
     <div className="!w-full !max-w-[550px] !mx-auto">
@@ -98,34 +87,17 @@ function LinkPreview({ url, metadata }: { url: string; metadata?: TILEntry['meta
         href={url}
         target="_blank"
         rel="noopener noreferrer"
-        className="!block !w-full !border !border-[var(--border)] !rounded-lg !overflow-hidden hover:!opacity-80 !transition-opacity"
+        className="!block !w-full !border !border-[var(--border)] !rounded-lg hover:!opacity-80 !transition-opacity !p-4"
       >
-        {displayMetadata?.image && (
-          <img
-            src={displayMetadata.image}
-            alt={displayMetadata.title || 'Link preview'}
-            className="!w-full !h-48 !object-cover"
-          />
+        <h3 className="!text-base !font-semibold !mb-2">
+          {displayMetadata.title}
+        </h3>
+        {displayMetadata.description && (
+          <p className="!text-sm !text-secondary !mb-2 !line-clamp-2">
+            {displayMetadata.description}
+          </p>
         )}
-        <div className="!p-4">
-          {loading && !displayMetadata?.title && (
-            <div className="!h-4 !w-3/4 !bg-[var(--code-bg)] !rounded !animate-pulse !mb-2" />
-          )}
-          {displayMetadata?.title && (
-            <h3 className="!text-base !font-semibold !mb-2 !line-clamp-2">
-              {displayMetadata.title}
-            </h3>
-          )}
-          {loading && !displayMetadata?.description && (
-            <div className="!h-3 !w-full !bg-[var(--code-bg)] !rounded !animate-pulse !mb-2" />
-          )}
-          {displayMetadata?.description && (
-            <p className="!text-sm !text-secondary !line-clamp-2">
-              {displayMetadata.description}
-            </p>
-          )}
-          <p className="!text-xs !text-secondary !mt-2 !truncate">{url}</p>
-        </div>
+        <p className="!text-xs !text-secondary !truncate">{url}</p>
       </a>
     </div>
   )
