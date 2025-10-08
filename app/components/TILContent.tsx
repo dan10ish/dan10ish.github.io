@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { Tweet } from 'react-tweet'
 import YT from 'react-youtube'
 import './tweet.css'
@@ -67,34 +68,66 @@ function YouTubeEmbed({ videoId }: { videoId: string }) {
 }
 
 function LinkPreview({ url, metadata }: { url: string; metadata?: TILEntry['metadata'] }) {
+  const [fetchedMetadata, setFetchedMetadata] = useState<TILEntry['metadata'] | null>(null)
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    if (!metadata?.title && !fetchedMetadata && !loading) {
+      setLoading(true)
+      fetch(`https://api.microlink.io?url=${encodeURIComponent(url)}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.status === 'success' && data.data) {
+            setFetchedMetadata({
+              title: data.data.title || null,
+              description: data.data.description || null,
+              image: data.data.image?.url || data.data.logo?.url || null,
+            })
+          }
+        })
+        .catch(() => {})
+        .finally(() => setLoading(false))
+    }
+  }, [url, metadata, fetchedMetadata, loading])
+
+  const displayMetadata = metadata || fetchedMetadata
+
   return (
-    <a
-      href={url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="!block !w-full !border !border-[var(--border)] !rounded-lg !overflow-hidden hover:!opacity-80 !transition-opacity"
-    >
-      {metadata?.image && (
-        <img
-          src={metadata.image}
-          alt={metadata.title || 'Link preview'}
-          className="!w-full !h-48 !object-cover"
-        />
-      )}
-      <div className="!p-4">
-        {metadata?.title && (
-          <h3 className="!text-base !font-semibold !mb-2 !line-clamp-2">
-            {metadata.title}
-          </h3>
+    <div className="!w-full !max-w-[550px] !mx-auto">
+      <a
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="!block !w-full !border !border-[var(--border)] !rounded-lg !overflow-hidden hover:!opacity-80 !transition-opacity"
+      >
+        {displayMetadata?.image && (
+          <img
+            src={displayMetadata.image}
+            alt={displayMetadata.title || 'Link preview'}
+            className="!w-full !h-48 !object-cover"
+          />
         )}
-        {metadata?.description && (
-          <p className="!text-sm !text-secondary !line-clamp-2">
-            {metadata.description}
-          </p>
-        )}
-        <p className="!text-xs !text-secondary !mt-2 !truncate">{url}</p>
-      </div>
-    </a>
+        <div className="!p-4">
+          {loading && !displayMetadata?.title && (
+            <div className="!h-4 !w-3/4 !bg-[var(--code-bg)] !rounded !animate-pulse !mb-2" />
+          )}
+          {displayMetadata?.title && (
+            <h3 className="!text-base !font-semibold !mb-2 !line-clamp-2">
+              {displayMetadata.title}
+            </h3>
+          )}
+          {loading && !displayMetadata?.description && (
+            <div className="!h-3 !w-full !bg-[var(--code-bg)] !rounded !animate-pulse !mb-2" />
+          )}
+          {displayMetadata?.description && (
+            <p className="!text-sm !text-secondary !line-clamp-2">
+              {displayMetadata.description}
+            </p>
+          )}
+          <p className="!text-xs !text-secondary !mt-2 !truncate">{url}</p>
+        </div>
+      </a>
+    </div>
   )
 }
 
