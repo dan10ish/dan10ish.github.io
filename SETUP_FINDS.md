@@ -134,16 +134,18 @@ Open Shortcuts app and add these actions:
 
 ---
 
-**6. If** (build dictionary based on whether we have a title)
+**6. If** (check if link and has title)
 - If `Text` (from step 2) is `link` AND `Provided Input` (from step 3) is not empty
-  - **Dictionary** with 4 items:
+  - **Set Variable**: Name it `LinkTitle`, Value = `Provided Input` (from step 3)
+  - **Dictionary** (call it `MetadataDict`):
+    - `title` = `LinkTitle` variable
+  - **Dictionary** (main dictionary):
     - `date` = `Formatted Date`
     - `content_type` = `link`
     - `content` = `Provided Input` (from step 1 - the URL)
-    - `metadata` = **Dictionary** with:
-      - `title` = `Provided Input` (from step 3 - the title)
+    - `metadata` = `MetadataDict` variable
 - Otherwise
-  - **Dictionary** with 3 items:
+  - **Dictionary**:
     - `date` = `Formatted Date`
     - `content_type` = `Text` (from step 2)
     - `content` = `Provided Input` (from step 1)
@@ -165,7 +167,7 @@ Open Shortcuts app and add these actions:
 - URL: `https://okbjguqdekoohibfpdwn.supabase.co/rest/v1/til_entries`
 - Method: `POST`
 - Request Body: `JSON`
-- JSON: `Dictionary` (from step 6)
+- JSON: Select the **final Dictionary** variable (from step 6)
 
 **Headers (tap "Show More" and add all 4):**
 - `apikey` = `YOUR_SUPABASE_ANON_KEY`
@@ -195,12 +197,35 @@ If link → Ask for title (optional)
   ↓
 Get & format date
   ↓
-Build dictionary with metadata if title provided
+Store title in variable (important!)
+  ↓
+Build metadata dictionary
+  ↓
+Build main dictionary
   ↓
 POST to API
   ↓
 Show confirmation
 ```
+
+## Important: Fixing "Only First Word" Issue
+
+If only the first word of your title is being saved:
+
+**The Problem:** Apple Shortcuts treats nested dictionary inputs as lists by default, splitting on spaces.
+
+**The Fix:** Use variables to store text BEFORE putting it in dictionaries:
+
+1. After asking for title, add **"Set Variable"** action
+2. Name it `TitleText` 
+3. Value = `Provided Input` (the title you just entered)
+4. In the metadata dictionary, use the `TitleText` **variable**, not `Provided Input`
+
+**Alternative Fix:** Use **"Text"** action:
+1. Add a **"Text"** action after asking for title
+2. Set its content to `Provided Input`
+3. This creates a proper text variable
+4. Use this Text in your dictionary
 
 ## Usage Examples
 

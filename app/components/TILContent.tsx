@@ -2,6 +2,7 @@
 
 import { Tweet } from 'react-tweet'
 import YT from 'react-youtube'
+import { Globe } from 'lucide-react'
 import './tweet.css'
 
 interface TILEntry {
@@ -78,6 +79,7 @@ function LinkPreview({ url, metadata }: { url: string; metadata?: TILEntry['meta
   const displayMetadata = metadata || {
     title: getFallbackTitle(),
     description: null,
+    author: null,
     image: null,
   }
 
@@ -87,17 +89,24 @@ function LinkPreview({ url, metadata }: { url: string; metadata?: TILEntry['meta
         href={url}
         target="_blank"
         rel="noopener noreferrer"
-        className="!block !w-full !border !border-[var(--border)] !rounded-lg hover:!opacity-80 !transition-opacity !p-4"
+        className="!block !w-full !border !border-[var(--border)] !rounded-lg hover:!opacity-80 !transition-opacity !p-4 !relative"
       >
-        <h3 className="!text-base !font-semibold !mb-2">
+        <div className="!absolute !top-4 !right-4">
+          <Globe size={16} className="!text-secondary" />
+        </div>
+        <h3 className="!text-base !font-semibold !mb-2 !pr-6">
           {displayMetadata.title}
         </h3>
+        {displayMetadata.author && (
+          <p className="!text-xs !text-secondary !mb-2">
+            by {displayMetadata.author}
+          </p>
+        )}
         {displayMetadata.description && (
-          <p className="!text-sm !text-secondary !mb-2 !line-clamp-2">
+          <p className="!text-sm !text-secondary !line-clamp-2">
             {displayMetadata.description}
           </p>
         )}
-        <p className="!text-xs !text-secondary !truncate">{url}</p>
       </a>
     </div>
   )
