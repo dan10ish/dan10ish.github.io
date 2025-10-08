@@ -89,21 +89,21 @@ function LinkPreview({ url, metadata }: { url: string; metadata?: TILEntry['meta
         href={url}
         target="_blank"
         rel="noopener noreferrer"
-        className="!block !w-full !border !border-[var(--border)] !rounded-lg hover:!opacity-80 !transition-opacity !p-4 !relative"
+        className="!block !w-full !border !border-[var(--border)] !rounded-lg hover:!opacity-80 !transition-opacity !p-4"
       >
-        <div className="!absolute !top-4 !right-4">
-          <Globe size={16} className="!text-secondary" />
+        <div className="!flex !items-center !justify-between !gap-3 !mb-4">
+          <h3 className="!text-base !font-semibold !flex-1">
+            {displayMetadata.title}
+          </h3>
+          <Globe size={16} className="!text-secondary !flex-shrink-0" />
         </div>
-        <h3 className="!text-base !font-semibold !mb-2 !pr-6">
-          {displayMetadata.title}
-        </h3>
         {displayMetadata.author && (
-          <p className="!text-xs !text-secondary !mb-2">
+          <p className="!text-xs !text-secondary !mb-4">
             by {displayMetadata.author}
           </p>
         )}
         {displayMetadata.description && (
-          <p className="!text-sm !text-secondary !line-clamp-2">
+          <p className="!text-sm !text-secondary !opacity-70">
             {displayMetadata.description}
           </p>
         )}
