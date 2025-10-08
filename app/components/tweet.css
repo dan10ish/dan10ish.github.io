@@ -44,6 +44,23 @@
   text-decoration: none;
 }
 
+.tweet .react-tweet-theme a[href*="intent/follow"] {
+  display: none !important;
+}
+
+.tweet .tweet-header_separator__d4pqe {
+  display: none !important;
+}
+
+.tweet time {
+  font-size: 0.8rem !important;
+}
+
+.tweet .tweet-actions_actions__UDw7H {
+  font-size: 0.7rem !important;
+  display: none !important;
+}
+
 .yt-video-container {
   position: relative;
   padding-bottom: 56.25%;
