@@ -74,14 +74,14 @@ function LinkPreview({ url, metadata }: { url: string; metadata?: TILEntry['meta
   useEffect(() => {
     if (!metadata?.title && !fetchedMetadata && !loading) {
       setLoading(true)
-      fetch(`https://api.microlink.io?url=${encodeURIComponent(url)}`)
+      fetch(`https://api.ogfetch.com/preview?url=${encodeURIComponent(url)}`)
         .then(res => res.json())
         .then(data => {
-          if (data.status === 'success' && data.data) {
+          if (data && (data.title || data.description)) {
             setFetchedMetadata({
-              title: data.data.title || null,
-              description: data.data.description || null,
-              image: data.data.image?.url || data.data.logo?.url || null,
+              title: data.title || null,
+              description: data.description || null,
+              image: data.image || null,
             })
           }
         })
