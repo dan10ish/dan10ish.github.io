@@ -7,7 +7,8 @@ export const personalInfo = {
     instagram: "dan10ish",
     email: "aansaridan@gmail.com",
     linkedin: "dan10ish",
-    snapchat: "dan10ish"
+    snapchat: "dan10ish",
+    pinterest: "dan10ish"
   }
 }
 

@@ -43,7 +43,7 @@ export default function FloatingButtons() {
       )}
       <ThemeToggle />
       <Link 
-        href="/"
+        href="/?tab=writings"
         className="flex items-center justify-center p-2 rounded-full bg-background duration-200"
         aria-label="Go to homepage"
       >

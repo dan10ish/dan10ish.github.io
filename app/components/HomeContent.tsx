@@ -27,6 +27,12 @@ const SnapchatIcon = (props: any) => (
   </svg>
 )
 
+const PinterestIcon = (props: any) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" fill="currentColor" stroke="currentColor" strokeWidth="0" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M16,1C7.7,1,1,7.7,1,16c0,5.9,3.5,11.1,8.5,13.5c0-1.3,0.1-2.4,0.3-3.3l1.9-8c-0.1-0.4-0.5-1.2-0.5-2.4c0-2.5,1.5-4.4,3.4-4.4c1.5,0,2.5,1.1,2.5,2.8c0,1-0.4,2.1-0.8,3.4c-0.2,0.7-0.4,1.4-0.6,2.1c-0.1,0.6,0,1.1,0.3,1.6c0.4,0.5,0.9,0.7,1.6,0.7c2.4,0,4.3-3.2,4.3-7.5c0-3.2-2.2-5.2-5.7-5.2c-4.5,0-6.9,3.4-6.9,6.7c0,1.1,0.3,1.9,0.9,2.6c0.3,0.4,0.5,0.7,0.3,1.3l-0.3,1.2c-0.1,0.3-0.3,0.6-0.5,0.7c-0.3,0.1-0.6,0.1-0.9,0c-2.1-0.9-3.4-3.2-3.4-6.2c0-4.9,4.2-9.9,11.2-9.9c6.3,0,10,4.6,10,9.1c0,6.2-3.6,10.8-8.6,10.8c-1.3,0-2.6-0.5-3.4-1.3c-0.3,1.1-0.7,2.7-0.8,3.2c-0.3,1.2-1,2.4-1.5,3.2c1.2,0.3,2.4,0.5,3.7,0.5c8.3,0,15-6.7,15-15S24.3,1,16,1z" />
+  </svg>
+)
+
 interface TILEntry {
   id: string
   date: string
@@ -170,6 +176,9 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
             </Link>
             <Link href={`https://www.snapchat.com/add/${personalInfo.socials.snapchat}`} target="_blank" className="flex items-center justify-center" aria-label="Snapchat">
               <SnapchatIcon />
+            </Link>
+            <Link href={`https://www.pinterest.com/${personalInfo.socials.pinterest}`} target="_blank" className="flex items-center justify-center" aria-label="Pinterest">
+              <PinterestIcon />
             </Link>
           </div>
         </motion.div>
