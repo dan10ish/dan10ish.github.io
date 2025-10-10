@@ -5,16 +5,27 @@ import Link from 'next/link'
 import { Home, ChevronUp } from 'lucide-react'
 import { ThemeToggle } from './Theme'
 
-export default function FloatingButtons() {
-  const [isVisible, setIsVisible] = useState(false)
+interface MenuProps {
+  page?: 'home' | 'writing' | 'error'
+  activeTab?: 'about' | 'writings' | 'finds'
+}
 
-  const toggleVisibility = () => {
-    if (window.scrollY > 300) {
-      setIsVisible(true)
-    } else {
-      setIsVisible(false)
+export default function Menu({ page = 'home', activeTab }: MenuProps) {
+  const [showScroll, setShowScroll] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScroll(window.scrollY > 300)
     }
-  }
+
+    window.addEventListener('scroll', handleScroll)
+    handleScroll()
+    
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const showScrollButton = page !== 'error' && showScroll
+  const showHomeButton = page === 'writing'
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -23,16 +34,9 @@ export default function FloatingButtons() {
     })
   }
 
-  useEffect(() => {
-    window.addEventListener('scroll', toggleVisibility)
-    return () => {
-      window.removeEventListener('scroll', toggleVisibility)
-    }
-  }, [])
-
   return (
     <div className="fixed bottom-7 right-5 flex flex-col items-center space-y-4 z-50">
-      {isVisible && (
+      {showScrollButton && (
         <button
           onClick={scrollToTop}
           className="flex items-center justify-center p-2 rounded-full bg-background duration-200 animate-fade-in"
@@ -42,13 +46,15 @@ export default function FloatingButtons() {
         </button>
       )}
       <ThemeToggle />
-      <Link 
-        href="/?tab=writings"
-        className="flex items-center justify-center p-2 rounded-full bg-background duration-200"
-        aria-label="Go to homepage"
-      >
-        <Home size={20} />
-      </Link>
+      {showHomeButton && (
+        <Link 
+          href="/?tab=writings"
+          className="flex items-center justify-center p-2 rounded-full bg-background duration-200"
+          aria-label="Go to homepage"
+        >
+          <Home size={20} />
+        </Link>
+      )}
       <style jsx>{`
         @keyframes fade-in {
           from { opacity: 0; transform: translateY(10px); }
@@ -61,3 +67,4 @@ export default function FloatingButtons() {
     </div>
   )
 }
+

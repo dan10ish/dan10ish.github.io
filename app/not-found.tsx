@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { ArrowLeft, Github, Mail, Instagram } from 'lucide-react'
 import { personalInfo } from './data'
+import Menu from './components/Menu'
 
 const XIcon = (props: any) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -28,8 +29,10 @@ const PinterestIcon = (props: any) => (
 
 export default function NotFound() {
   return (
-    <div className="fixed inset-0 flex items-center justify-center">
-      <div className="text-center space-y-4">
+    <>
+      <Menu page="error" />
+      <div className="fixed inset-0 flex items-center justify-center">
+        <div className="text-center space-y-4">
         <h1 className="text-base font-bold">404</h1>
         <p className="text-base opacity-70">Page not found</p>
         <Link href="/" className="inline-flex items-center gap-2 mt-6 bg-[var(--code-bg)] !px-2 !py-1 rounded-md !mb-6" aria-label="Go back to home page">
@@ -59,7 +62,8 @@ export default function NotFound() {
             <PinterestIcon />
           </Link>
         </div>
+        </div>
       </div>
-    </div>
+    </>
   )
 }

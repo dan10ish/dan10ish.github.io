@@ -10,7 +10,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import Link from 'next/link'
 import { MdxTableWrapper } from '../../components/MdxTableWrapper'
 import { notFound } from 'next/navigation'
-import FloatingButtons from '../../components/FloatingButtons'
+import Menu from '../../components/Menu'
 import { highlight } from 'sugar-high'
 import React from 'react'
 
@@ -209,7 +209,7 @@ export default async function WritingPage({ params }: WritingPageProps) {
         {formatDate(date)}
       </p>
       <MDXRemote source={content} options={options} components={components} />
-      <FloatingButtons />
+      <Menu page="writing" />
     </article>
   )
 }

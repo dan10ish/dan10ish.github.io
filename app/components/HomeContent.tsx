@@ -8,6 +8,7 @@ import { Loader2, Github, Mail, Instagram } from 'lucide-react'
 import { personalInfo, experience } from '../data'
 import { formatDate, getTILEntries } from '../../lib/client'
 import TILContent from './TILContent'
+import Menu from './Menu'
 
 const XIcon = (props: any) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -64,6 +65,8 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
   useEffect(() => {
     if (tabFromUrl && ['about', 'writings', 'finds'].includes(tabFromUrl)) {
       setActiveTab(tabFromUrl)
+    } else if (!tabFromUrl) {
+      setActiveTab('about')
     }
   }, [tabFromUrl])
 
@@ -90,7 +93,11 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
   }, [activeTab, tilEntries.length])
 
   return (
-    <section>
+    <div className="h-fit max-w-2xl mx-auto">
+      <section className="!mb-4">
+        <h1 className="!text-base !font-bold !header-text">{personalInfo.name}</h1>
+      </section>
+      <section>
       <div className="!flex !gap-2 md:!gap-4 !-ml-2 !mb-3 !relative">
         <h1
           onClick={() => handleTabChange('about')}
@@ -242,7 +249,9 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
           )}
         </motion.div>
       )}
-    </section>
+      </section>
+      <Menu page="home" activeTab={activeTab} />
+    </div>
   )
 }
 

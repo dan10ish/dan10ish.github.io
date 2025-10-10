@@ -13,8 +13,8 @@
     "export": "next build"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.74.0",
-    "framer-motion": "^12.23.22",
+    "@supabase/supabase-js": "^2.75.0",
+    "framer-motion": "^12.23.24",
     "gray-matter": "^4.0.3",
     "katex": "^0.16.23",
     "lucide-react": "^0.545.0",
