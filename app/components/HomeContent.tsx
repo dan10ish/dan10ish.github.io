@@ -94,11 +94,11 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
 
   return (
     <div className="h-fit max-w-2xl mx-auto">
-      <section className="!mb-4">
+      <section className="!mb-6">
         <h1 className="!text-base !font-bold !header-text">{personalInfo.name}</h1>
       </section>
       <section>
-      <div className="!flex !gap-2 md:!gap-4 !-ml-2 !mb-3 !relative">
+      <div className="!flex !gap-2 md:!gap-4 !-ml-2 !mb-4 !relative">
         <h1
           onClick={() => handleTabChange('about')}
           className="!relative !text-base !cursor-pointer !transition-opacity !text-[0.9rem] !px-2 !py-1 !rounded-md !z-10"
