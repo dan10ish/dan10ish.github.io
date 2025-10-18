@@ -55,6 +55,11 @@ interface Writing {
   date: string
 }
 
+interface GitHubData {
+  contributions: any[]
+  totalContributions: number
+}
+
 export default function HomeContent({ writings }: { writings: Writing[] }) {
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -62,6 +67,7 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
   const [activeTab, setActiveTab] = useState<'about' | 'writings' | 'finds'>(tabFromUrl || 'about')
   const [tilEntries, setTilEntries] = useState<TILEntry[]>([])
   const [loading, setLoading] = useState(false)
+  const [githubData, setGithubData] = useState<GitHubData | null>(null)
 
   useEffect(() => {
     if (tabFromUrl && ['about', 'writings', 'finds'].includes(tabFromUrl)) {
@@ -92,6 +98,26 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
       })
     }
   }, [activeTab, tilEntries.length])
+
+  useEffect(() => {
+    const fetchGitHubData = async () => {
+      try {
+        const response = await fetch('https://github-contributions-api.jogruber.de/v4/dan10ish?y=last')
+        const data = await response.json()
+        
+        if (data?.contributions) {
+          setGithubData({
+            contributions: data.contributions,
+            totalContributions: data.contributions.reduce((sum: number, c: any) => sum + c.count, 0)
+          })
+        }
+      } catch (error) {
+        console.error('Error fetching GitHub contributions:', error)
+      }
+    }
+    
+    fetchGitHubData()
+  }, [])
 
   return (
     <div className="h-fit max-w-2xl mx-auto">
@@ -189,7 +215,7 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
               <PinterestIcon />
             </Link>
           </div>
-          <GitHubContributions />
+          <GitHubContributions githubData={githubData} />
         </motion.div>
       )}
 

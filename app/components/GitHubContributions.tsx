@@ -12,16 +12,25 @@ interface ContributionWeek {
   days: ContributionDay[]
 }
 
-export default function GitHubContributions() {
+interface GitHubData {
+  contributions: any[]
+  totalContributions: number
+}
+
+interface Props {
+  githubData: GitHubData | null
+}
+
+export default function GitHubContributions({ githubData }: Props) {
   const [contributions, setContributions] = useState<ContributionWeek[]>([])
   const [visibleWeeks, setVisibleWeeks] = useState<ContributionWeek[]>([])
-  const [loading, setLoading] = useState(true)
-  const [totalContributions, setTotalContributions] = useState(0)
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    fetchContributions()
-  }, [])
+    if (githubData?.contributions) {
+      processContributions(githubData.contributions)
+    }
+  }, [githubData])
 
   useEffect(() => {
     const updateVisibleWeeks = () => {
@@ -42,64 +51,47 @@ export default function GitHubContributions() {
     return () => window.removeEventListener('resize', updateVisibleWeeks)
   }, [contributions])
 
-  const fetchContributions = async () => {
-    try {
-      const response = await fetch('https://github-contributions-api.jogruber.de/v4/dan10ish?y=last')
-      const data = await response.json()
-      
-      if (data?.contributions) {
-        const allContribs = data.contributions
-        let total = 0
-        
-        const firstDate = new Date(allContribs[0].date)
-        const startDay = firstDate.getDay()
-        
-        const weeks: ContributionWeek[] = []
-        let currentWeek: ContributionDay[] = []
-        
-        for (let i = 0; i < startDay; i++) {
-          currentWeek.push({
-            date: '',
-            count: 0,
-            level: 0
-          })
-        }
-        
-        allContribs.forEach((contrib: any) => {
-          const level = getLevelFromCount(contrib.count)
-          currentWeek.push({
-            date: contrib.date,
-            count: contrib.count,
-            level
-          })
-          
-          total += contrib.count
-          
-          if (currentWeek.length === 7) {
-            weeks.push({ days: [...currentWeek] })
-            currentWeek = []
-          }
-        })
-        
-        if (currentWeek.length > 0) {
-          while (currentWeek.length < 7) {
-            currentWeek.push({
-              date: '',
-              count: 0,
-              level: 0
-            })
-          }
-          weeks.push({ days: currentWeek })
-        }
-        
-        setContributions(weeks)
-        setTotalContributions(total)
-      }
-    } catch (error) {
-      console.error('Error fetching contributions:', error)
-    } finally {
-      setLoading(false)
+  const processContributions = (allContribs: any[]) => {
+    const firstDate = new Date(allContribs[0].date)
+    const startDay = firstDate.getDay()
+    
+    const weeks: ContributionWeek[] = []
+    let currentWeek: ContributionDay[] = []
+    
+    for (let i = 0; i < startDay; i++) {
+      currentWeek.push({
+        date: '',
+        count: 0,
+        level: 0
+      })
     }
+    
+    allContribs.forEach((contrib: any) => {
+      const level = getLevelFromCount(contrib.count)
+      currentWeek.push({
+        date: contrib.date,
+        count: contrib.count,
+        level
+      })
+      
+      if (currentWeek.length === 7) {
+        weeks.push({ days: [...currentWeek] })
+        currentWeek = []
+      }
+    })
+    
+    if (currentWeek.length > 0) {
+      while (currentWeek.length < 7) {
+        currentWeek.push({
+          date: '',
+          count: 0,
+          level: 0
+        })
+      }
+      weeks.push({ days: currentWeek })
+    }
+    
+    setContributions(weeks)
   }
 
   const getLevelFromCount = (count: number): number => {
@@ -121,7 +113,7 @@ export default function GitHubContributions() {
     return colors[level as keyof typeof colors] || colors[0]
   }
 
-  if (loading) {
+  if (!githubData) {
     return (
       <div className="!w-full !h-32 !flex !items-center !justify-center">
         <div className="!w-4 !h-4 !border-2 !border-[var(--secondary)] !border-t-transparent !rounded-full !animate-spin" />
@@ -134,7 +126,7 @@ export default function GitHubContributions() {
       <div className="!flex !items-baseline !justify-between !mb-3">
         <span className="text-base">GitHub Activity</span>
         <span className="!text-secondary !text-[0.82rem]">
-          {totalContributions} contributions
+          {githubData.totalContributions} contributions
         </span>
       </div>
       <div ref={containerRef} className="!w-full !overflow-hidden">
