@@ -204,8 +204,8 @@ export default function GitHubContributions({ githubData }: Props) {
   return (
     <div className="!w-full !mt-8">
       <div className="!flex !items-baseline !justify-between !mb-3">
-        <span className="text-base">GitHub Activity</span>
-        <span className="!text-secondary !text-[0.82rem]">
+        <span className="!text-[0.82rem]">GitHub Activity</span>
+        <span className="!text-secondary !text-[0.75rem]">
           {githubData.totalContributions} contributions
         </span>
       </div>
@@ -248,7 +248,7 @@ export default function GitHubContributions({ githubData }: Props) {
       </div>
       <div className="!flex !items-center !justify-between !mt-3 !text-[0.75rem] !text-secondary">
         <div className="!flex !items-center !gap-2">
-          <span>Less</span>
+          <span className="!text-[0.75rem]">Less</span>
           <div className="!flex !gap-[2px]">
             {[0, 1, 2, 3, 4].map((level) => (
               <div
@@ -258,7 +258,7 @@ export default function GitHubContributions({ githubData }: Props) {
               />
             ))}
           </div>
-          <span>More</span>
+          <span className="!text-[0.75rem]">More</span>
         </div>
         <a
           href="https://github.com/dan10ish"
