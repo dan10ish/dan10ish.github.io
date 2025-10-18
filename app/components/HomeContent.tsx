@@ -9,6 +9,7 @@ import { personalInfo, experience } from '../data'
 import { formatDate, getTILEntries } from '../../lib/client'
 import TILContent from './TILContent'
 import Menu from './Menu'
+import GitHubContributions from './GitHubContributions'
 
 const XIcon = (props: any) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -188,6 +189,7 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
               <PinterestIcon />
             </Link>
           </div>
+          <GitHubContributions />
         </motion.div>
       )}
 

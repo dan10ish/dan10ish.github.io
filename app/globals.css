@@ -472,10 +472,20 @@ code,
 
 :root {
   --border: #e0e0e0;
+  --github-level-0: #e5e5e5;
+  --github-level-1: #9be9a8;
+  --github-level-2: #40c463;
+  --github-level-3: #30a14e;
+  --github-level-4: #216e39;
 }
 
 .dark {
   --border: #333;
+  --github-level-0: #1e1e1e;
+  --github-level-1: #0e4429;
+  --github-level-2: #006d32;
+  --github-level-3: #26a641;
+  --github-level-4: #39d353;
 }
 
 .animated-dots {
