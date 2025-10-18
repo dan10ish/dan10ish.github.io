@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 interface ContributionDay {
   date: string
@@ -14,12 +14,32 @@ interface ContributionWeek {
 
 export default function GitHubContributions() {
   const [contributions, setContributions] = useState<ContributionWeek[]>([])
+  const [visibleWeeks, setVisibleWeeks] = useState<ContributionWeek[]>([])
   const [loading, setLoading] = useState(true)
   const [totalContributions, setTotalContributions] = useState(0)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     fetchContributions()
   }, [])
+
+  useEffect(() => {
+    const updateVisibleWeeks = () => {
+      if (!containerRef.current || contributions.length === 0) return
+      
+      const containerWidth = containerRef.current.offsetWidth
+      const weekWidth = 12
+      const maxWeeks = Math.floor(containerWidth / weekWidth)
+      
+      const weeksToShow = contributions.slice(-maxWeeks)
+      setVisibleWeeks(weeksToShow)
+    }
+
+    updateVisibleWeeks()
+    window.addEventListener('resize', updateVisibleWeeks)
+    
+    return () => window.removeEventListener('resize', updateVisibleWeeks)
+  }, [contributions])
 
   const fetchContributions = async () => {
     try {
@@ -116,14 +136,9 @@ export default function GitHubContributions() {
           {totalContributions} contributions
         </span>
       </div>
-      <div className="!overflow-x-auto !-mx-2 !px-2" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-        <style jsx>{`
-          div::-webkit-scrollbar {
-            display: none;
-          }
-        `}</style>
-        <div className="!inline-flex !gap-[2px] !min-w-full">
-          {contributions.map((week, weekIndex) => (
+      <div ref={containerRef} className="!w-full !overflow-hidden">
+        <div className="!flex !gap-[2px] !justify-start">
+          {visibleWeeks.map((week, weekIndex) => (
             <div key={weekIndex} className="!flex !flex-col !gap-[2px]">
               {week.days.map((day, dayIndex) => (
                 day.date ? (
@@ -144,18 +159,28 @@ export default function GitHubContributions() {
           ))}
         </div>
       </div>
-      <div className="!flex !items-center !gap-2 !mt-3 !text-[0.75rem] !text-secondary">
-        <span>Less</span>
-        <div className="!flex !gap-[2px]">
-          {[0, 1, 2, 3, 4].map((level) => (
-            <div
-              key={level}
-              className="!w-[10px] !h-[10px] !rounded-[2px]"
-              style={{ backgroundColor: getColorForLevel(level) }}
-            />
-          ))}
+      <div className="!flex !items-center !justify-between !mt-3 !text-[0.75rem] !text-secondary">
+        <div className="!flex !items-center !gap-2">
+          <span>Less</span>
+          <div className="!flex !gap-[2px]">
+            {[0, 1, 2, 3, 4].map((level) => (
+              <div
+                key={level}
+                className="!w-[10px] !h-[10px] !rounded-[2px]"
+                style={{ backgroundColor: getColorForLevel(level) }}
+              />
+            ))}
+          </div>
+          <span>More</span>
         </div>
-        <span>More</span>
+        <a
+          href="https://github.com/dan10ish"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:!text-[var(--link-blue)]"
+        >
+          @dan10ish
+        </a>
       </div>
     </div>
   )
