@@ -24,7 +24,10 @@ interface Props {
 export default function GitHubContributions({ githubData }: Props) {
   const [contributions, setContributions] = useState<ContributionWeek[]>([])
   const [visibleWeeks, setVisibleWeeks] = useState<ContributionWeek[]>([])
+  const [tooltip, setTooltip] = useState<{ date: string; x: number; y: number; showBelow: boolean } | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
+  const tooltipTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const isTouchActiveRef = useRef(false)
 
   useEffect(() => {
     if (githubData?.contributions) {
@@ -113,6 +116,83 @@ export default function GitHubContributions({ githubData }: Props) {
     return colors[level as keyof typeof colors] || colors[0]
   }
 
+  const formatDateCustom = (dateString: string): string => {
+    const date = new Date(dateString)
+    const day = date.getDate()
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    const month = months[date.getMonth()]
+    const year = date.getFullYear()
+    return `${day} ${month}, ${year}`
+  }
+
+  const calculateTooltipPosition = (date: string, rect: DOMRect) => {
+    const containerRect = containerRef.current?.getBoundingClientRect()
+    if (!containerRect) return null
+
+    const tooltipWidth = 100
+    const tooltipHeight = 28
+    let x = rect.left - containerRect.left + rect.width / 2
+    const y = rect.top - containerRect.top
+    
+    if (x - tooltipWidth / 2 < 0) {
+      x = tooltipWidth / 2
+    } else if (x + tooltipWidth / 2 > containerRect.width) {
+      x = containerRect.width - tooltipWidth / 2
+    }
+
+    const showBelow = y < tooltipHeight + 5
+
+    return {
+      date,
+      x,
+      y,
+      showBelow
+    }
+  }
+
+  const handleMouseEnter = (date: string, event: React.MouseEvent<HTMLDivElement>) => {
+    if (isTouchActiveRef.current) return
+    
+    if (tooltipTimeoutRef.current) {
+      clearTimeout(tooltipTimeoutRef.current)
+    }
+    const rect = event.currentTarget.getBoundingClientRect()
+    const position = calculateTooltipPosition(date, rect)
+    if (position) setTooltip(position)
+  }
+
+  const handleMouseLeave = () => {
+    if (isTouchActiveRef.current) return
+    setTooltip(null)
+  }
+
+  const handleTouch = (date: string, event: React.TouchEvent<HTMLDivElement>) => {
+    event.preventDefault()
+    isTouchActiveRef.current = true
+    
+    if (tooltipTimeoutRef.current) {
+      clearTimeout(tooltipTimeoutRef.current)
+    }
+    
+    const rect = event.currentTarget.getBoundingClientRect()
+    const position = calculateTooltipPosition(date, rect)
+    if (position) {
+      setTooltip(position)
+      tooltipTimeoutRef.current = setTimeout(() => {
+        setTooltip(null)
+        isTouchActiveRef.current = false
+      }, 2000)
+    }
+  }
+
+  useEffect(() => {
+    return () => {
+      if (tooltipTimeoutRef.current) {
+        clearTimeout(tooltipTimeoutRef.current)
+      }
+    }
+  }, [])
+
   if (!githubData) {
     return (
       <div className="!w-full !h-32 !flex !items-center !justify-center">
@@ -129,7 +209,7 @@ export default function GitHubContributions({ githubData }: Props) {
           {githubData.totalContributions} contributions
         </span>
       </div>
-      <div ref={containerRef} className="!w-full !overflow-hidden">
+      <div ref={containerRef} className="!w-full !overflow-hidden !relative">
         <div className="!flex !gap-[2px] !justify-start">
           {visibleWeeks.map((week, weekIndex) => (
             <div key={weekIndex} className="!flex !flex-col !gap-[2px]">
@@ -139,7 +219,9 @@ export default function GitHubContributions({ githubData }: Props) {
                     key={`${weekIndex}-${dayIndex}`}
                     className="!w-[10px] !h-[10px] !rounded-[2px] !transition-all !duration-200 hover:!ring-1 hover:!ring-[var(--github-level-4)] hover:!scale-110 !cursor-pointer"
                     style={{ backgroundColor: getColorForLevel(day.level) }}
-                    title={`${day.date}: ${day.count} contributions`}
+                    onMouseEnter={(e) => handleMouseEnter(day.date, e)}
+                    onMouseLeave={handleMouseLeave}
+                    onTouchStart={(e) => handleTouch(day.date, e)}
                   />
                 ) : (
                   <div
@@ -151,6 +233,18 @@ export default function GitHubContributions({ githubData }: Props) {
             </div>
           ))}
         </div>
+        {tooltip && (
+          <div
+            className="!absolute !bg-[var(--code-bg)] !text-[var(--foreground)] !text-[0.75rem] !px-2 !py-1 !rounded !pointer-events-none !whitespace-nowrap !z-10 !shadow-sm"
+            style={{
+              left: `${tooltip.x}px`,
+              top: tooltip.showBelow ? `${tooltip.y + 18}px` : `${tooltip.y - 28}px`,
+              transform: 'translateX(-50%)'
+            }}
+          >
+            {formatDateCustom(tooltip.date)}
+          </div>
+        )}
       </div>
       <div className="!flex !items-center !justify-between !mt-3 !text-[0.75rem] !text-secondary">
         <div className="!flex !items-center !gap-2">
