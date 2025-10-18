@@ -28,8 +28,9 @@ export default function GitHubContributions() {
       if (!containerRef.current || contributions.length === 0) return
       
       const containerWidth = containerRef.current.offsetWidth
-      const weekWidth = 12
-      const maxWeeks = Math.floor(containerWidth / weekWidth)
+      const squareSize = 10
+      const gap = 2
+      const maxWeeks = Math.floor((containerWidth + gap) / (squareSize + gap))
       
       const weeksToShow = contributions.slice(-maxWeeks)
       setVisibleWeeks(weeksToShow)
