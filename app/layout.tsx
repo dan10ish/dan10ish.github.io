@@ -33,6 +33,9 @@ export const metadata: Metadata = {
     "engineer",
     "portfolio",
   ],
+  verification: {
+    google: "JME6grNcHeCDSIFKx-P8g_5VsqLSzAJuJcMJ4AYciwU",
+  },
   robots: {
     index: true,
     follow: true,
