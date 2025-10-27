@@ -181,7 +181,7 @@ export default function GitHubContributions({ githubData }: Props) {
       tooltipTimeoutRef.current = setTimeout(() => {
         setTooltip(null)
         isTouchActiveRef.current = false
-      }, 2000)
+      }, 700)
     }
   }
 
