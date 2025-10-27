@@ -13,12 +13,12 @@
     "export": "next build"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.75.1",
+    "@supabase/supabase-js": "^2.76.1",
     "framer-motion": "^12.23.24",
     "gray-matter": "^4.0.3",
     "katex": "^0.16.25",
-    "lucide-react": "^0.546.0",
-    "next": "^15.5.6",
+    "lucide-react": "^0.548.0",
+    "next": "^16.0.0",
     "next-mdx-remote": "^5.0.0",
     "next-themes": "^0.4.6",
     "react": "^19.2.0",
@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@tailwindcss/postcss": "^4.1.14",
+    "@tailwindcss/postcss": "^4.1.16",
     "@tailwindcss/typography": "^0.5.19",
     "@types/node": "^24",
     "@types/react": "^19.2.2",
