@@ -13,12 +13,12 @@
     "export": "next build"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.76.1",
+    "@supabase/supabase-js": "^2.79.0",
     "framer-motion": "^12.23.24",
     "gray-matter": "^4.0.3",
     "katex": "^0.16.25",
-    "lucide-react": "^0.548.0",
-    "next": "^16.0.0",
+    "lucide-react": "^0.552.0",
+    "next": "^16.0.1",
     "next-mdx-remote": "^5.0.0",
     "next-themes": "^0.4.6",
     "react": "^19.2.0",

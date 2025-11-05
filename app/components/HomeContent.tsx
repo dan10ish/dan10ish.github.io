@@ -115,20 +115,20 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
 
   return (
     <div className="h-fit max-w-2xl mx-auto">
-      <section className="!mb-6">
-        <h1 className="!text-base !font-bold !header-text">{personalInfo.name}</h1>
+      <section className="mb-6!">
+        <h1 className="text-base! font-bold! header-text!">{personalInfo.name}</h1>
       </section>
       <section>
-      <div className="!flex !gap-2 md:!gap-4 !-ml-2 !mb-4 !relative">
+      <div className="flex! gap-2! md:gap-4! -ml-2! mb-4! relative!">
         <h1
           onClick={() => handleTabChange('about')}
-          className="!relative !text-base !cursor-pointer !transition-opacity !text-[0.9rem] !px-2 !py-1 !rounded-md !z-10"
+          className="relative! text-base! cursor-pointer! transition-opacity! text-[0.9rem]! px-2! py-1! rounded-md! z-10!"
           style={{ opacity: activeTab === 'about' ? 1 : 0.7 }}
         >
           {activeTab === 'about' && (
             <motion.div
               layoutId="homeActiveTab"
-              className="!absolute !inset-0 !bg-[var(--code-bg)] !rounded-md !-z-10"
+              className="absolute! inset-0! bg-(--code-bg)! rounded-md! -z-10!"
               transition={{ type: 'spring', stiffness: 500, damping: 30 }}
             />
           )}
@@ -136,13 +136,13 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
         </h1>
         <h1
           onClick={() => handleTabChange('writings')}
-          className="!relative !text-base !cursor-pointer !transition-opacity !text-[0.9rem] !px-2 !py-1 !rounded-md !z-10"
+          className="relative! text-base! cursor-pointer! transition-opacity! text-[0.9rem]! px-2! py-1! rounded-md! z-10!"
           style={{ opacity: activeTab === 'writings' ? 1 : 0.7 }}
         >
           {activeTab === 'writings' && (
             <motion.div
               layoutId="homeActiveTab"
-              className="!absolute !inset-0 !bg-[var(--code-bg)] !rounded-md !-z-10"
+              className="absolute! inset-0! bg-(--code-bg)! rounded-md! -z-10!"
               transition={{ type: 'spring', stiffness: 500, damping: 30 }}
             />
           )}
@@ -150,13 +150,13 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
         </h1>
         <h1
           onClick={() => handleTabChange('finds')}
-          className="!relative !text-base !cursor-pointer !transition-opacity !text-[0.9rem] !px-2 !py-1 !rounded-md !z-10"
+          className="relative! text-base! cursor-pointer! transition-opacity! text-[0.9rem]! px-2! py-1! rounded-md! z-10!"
           style={{ opacity: activeTab === 'finds' ? 1 : 0.7 }}
         >
           {activeTab === 'finds' && (
             <motion.div
               layoutId="homeActiveTab"
-              className="!absolute !inset-0 !bg-[var(--code-bg)] !rounded-md !-z-10"
+              className="absolute! inset-0! bg-(--code-bg)! rounded-md! -z-10!"
               transition={{ type: 'spring', stiffness: 500, damping: 30 }}
             />
           )}
@@ -170,23 +170,22 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.2 }}
         >
-          <p className="text-base">{personalInfo.about}</p>
-          <div className="!mt-8">
-            {experience.map((exp, index) => (
-              <div key={index} className="flex gap-2 w-full items-baseline justify-between">
-                <span className="text-base">{exp.company}</span>
-                <span className="text-secondary !text-[0.82rem] flex-shrink-0">
-                  {exp.startYear} → {exp.endYear || <span className="animated-dots">
-                    <span>.</span>
-                    <span>.</span>
-                    <span>.</span>
-                    <span>.</span>
-                  </span>}
-                </span>
-              </div>
-            ))}
-          </div>
-          <div className="flex items-center gap-2 !mt-8">
+          <p className="text-base">{personalInfo.about}
+          {/* <div className="!mt-8"> */}
+            {(() => {
+              const current = experience.find((e: any) => e.current)
+              const previous = experience.filter((e: any) => !e.current)
+              const parts: string[] = []
+              if (current) parts.push(`Currently, ${current.title} @ ${current.company}`)
+              if (previous.length > 0) {
+                const prevText = previous.map((e: any) => `${e.title} @ ${e.company}`).join('; ')
+                parts.push(`previously, ${prevText}`)
+              }
+              const sentence = parts.join('; ') + (parts.length ? '.' : '')
+              return <> {sentence}</>
+            })()}</p>
+          {/* </div> */}
+          <div className="flex items-center gap-2 mt-8!">
             <Link href={`https://github.com/${personalInfo.socials.github}`} target="_blank" className="flex items-center justify-center" aria-label="GitHub">
               <Github size={20} />
             </Link>
@@ -215,27 +214,27 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.2 }}
-          className="!mt-1"
+          className="mt-1!"
         >
           {writings.length > 0 ? (
             writings.map(({ slug, title, date }) => (
               <Link
                 href={`/writings/${slug}`}
                 key={slug}
-                className="!block group writing-link !mb-1"
+                className="block! group writing-link mb-1!"
               >
-                <div className="!flex !gap-2 !w-full !items-baseline !justify-between">
-                  <span className="!text-primary !font-medium touch-underline group-hover:!text-[var(--link-blue)] !truncate">
+                <div className="flex! gap-2! w-full! items-baseline! justify-between!">
+                  <span className="text-primary! font-medium! touch-underline group-hover:text-(--link-blue)! truncate!">
                     {title}
                   </span>
-                  <span className="!text-secondary !text-[0.82rem] !flex-shrink-0">
+                  <span className="text-secondary! text-[0.82rem]! shrink-0!">
                     {formatDate(date)}
                   </span>
                 </div>
               </Link>
             ))
           ) : (
-            <p className="!text-base !text-secondary">No writings yet.</p>
+            <p className="text-base! text-secondary!">No writings yet.</p>
           )}
         </motion.div>
       )}
@@ -245,26 +244,26 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.2 }}
-          className="!space-y-6"
+          className="space-y-6! md:space-y-0! md:columns-2! md:gap-x-6!"
         >
           {loading ? (
-            <div className="!flex !justify-center !py-8">
-              <Loader2 className="!w-6 !h-6 !animate-spin !text-secondary" />
+            <div className="flex! justify-center! py-8!">
+              <Loader2 className="w-6! h-6! animate-spin! text-secondary!" />
             </div>
           ) : tilEntries.length > 0 ? (
             tilEntries.map((entry) => (
               <article
                 key={entry.id}
-                className="!border-b !border-[var(--border)] !pb-6 last:!border-b-0"
+                className="border-b! border-(--border)! pb-6! last:border-b-0! break-inside-avoid! md:mb-6!"
               >
-                <p className="!text-secondary !text-[0.82rem] !mb-3">
+                <p className="text-secondary! text-[0.82rem]! mb-3!">
                   {formatDate(entry.date)}
                 </p>
                 <TILContent entry={entry} />
               </article>
             ))
           ) : (
-            <p className="!text-base !text-secondary">No entries yet.</p>
+            <p className="text-base! text-secondary!">No entries yet.</p>
           )}
         </motion.div>
       )}

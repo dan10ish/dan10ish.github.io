@@ -12,7 +12,6 @@ export const personalInfo = {
 }
 
 export const experience = [
-  { company: "Innovatio Labs", startYear: 2024, endYear: null },
-  { company: "Cridaa", startYear: 2024, endYear: 2025 },
-  { company: "Accelus Robotics", startYear: 2023, endYear: 2024 }
+  { company: "Innovatio Labs", title: "Project Manager", current: true },
+  { company: "Accelus Robotics", title: "Robotics Engineer Intern", current: false }
 ]

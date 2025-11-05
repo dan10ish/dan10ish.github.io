@@ -80,3 +80,10 @@
   border-radius: 0.5rem;
 }
 
+.tweet-replies-module__ktL-Xa__replies, .tweet-info-module___F14PW__infoLink, .tweet-actions-module__TCXXfW__copy{
+  display: none !important;
+}
+
+.tweet-info-module___F14PW__info{
+  margin-top: 12px !important;
+}

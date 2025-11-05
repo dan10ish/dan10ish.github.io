@@ -195,29 +195,29 @@ export default function GitHubContributions({ githubData }: Props) {
 
   if (!githubData) {
     return (
-      <div className="!w-full !h-32 !flex !items-center !justify-center">
-        <div className="!w-4 !h-4 !border-2 !border-[var(--secondary)] !border-t-transparent !rounded-full !animate-spin" />
+      <div className="w-full! h-32! flex! items-center! justify-center!">
+        <div className="w-4! h-4! border-2! border-(--secondary)! border-t-transparent! rounded-full! animate-spin!" />
       </div>
     )
   }
 
   return (
-    <div className="!w-full !mt-8">
-      <div className="!flex !items-baseline !justify-between !mb-3">
-        <span className="!text-[0.82rem]">GitHub Activity</span>
-        <span className="!text-secondary !text-[0.75rem]">
+    <div className="w-full! mt-8!">
+      <div className="flex! items-baseline! justify-between! mb-3!">
+        <span className="text-[0.82rem]!">GitHub Activity</span>
+        <span className="text-secondary! text-[0.75rem]!">
           {githubData.totalContributions} contributions
         </span>
       </div>
-      <div ref={containerRef} className="!w-full !overflow-hidden !relative">
-        <div className="!flex !gap-[2px] !justify-start">
+      <div ref={containerRef} className="w-full! overflow-hidden! relative!">
+        <div className="flex! gap-[2px]! justify-start!">
           {visibleWeeks.map((week, weekIndex) => (
-            <div key={weekIndex} className="!flex !flex-col !gap-[2px]">
+            <div key={weekIndex} className="flex! flex-col! gap-[2px]!">
               {week.days.map((day, dayIndex) => (
                 day.date ? (
                   <div
                     key={`${weekIndex}-${dayIndex}`}
-                    className="!w-[10px] !h-[10px] !rounded-[2px] !transition-all !duration-200 hover:!ring-1 hover:!ring-[var(--github-level-4)] hover:!scale-110 !cursor-pointer"
+                    className="w-[10px]! h-[10px]! rounded-[2px]! transition-all! duration-200! hover:ring-1! hover:ring-(--github-level-4)! hover:scale-110! cursor-pointer!"
                     style={{ backgroundColor: getColorForLevel(day.level) }}
                     onMouseEnter={(e) => handleMouseEnter(day.date, e)}
                     onMouseLeave={handleMouseLeave}
@@ -226,7 +226,7 @@ export default function GitHubContributions({ githubData }: Props) {
                 ) : (
                   <div
                     key={`${weekIndex}-${dayIndex}`}
-                    className="!w-[10px] !h-[10px]"
+                    className="w-[10px]! h-[10px]!"
                   />
                 )
               ))}
@@ -235,7 +235,7 @@ export default function GitHubContributions({ githubData }: Props) {
         </div>
         {tooltip && (
           <div
-            className="!absolute !bg-[var(--code-bg)] !text-[var(--foreground)] !text-[0.75rem] !px-2 !py-1 !rounded !pointer-events-none !whitespace-nowrap !z-10 !shadow-sm"
+            className="absolute! bg-(--code-bg)! text-(--foreground)! text-[0.75rem]! px-2! py-1! rounded! pointer-events-none! whitespace-nowrap! z-10! shadow-sm!"
             style={{
               left: `${tooltip.x}px`,
               top: tooltip.showBelow ? `${tooltip.y + 18}px` : `${tooltip.y - 28}px`,
@@ -246,25 +246,25 @@ export default function GitHubContributions({ githubData }: Props) {
           </div>
         )}
       </div>
-      <div className="!flex !items-center !justify-between !mt-3 !text-[0.75rem] !text-secondary">
-        <div className="!flex !items-center !gap-2">
-          <span className="!text-[0.75rem]">Less</span>
-          <div className="!flex !gap-[2px]">
+      <div className="flex! items-center! justify-between! mt-3! text-[0.75rem]! text-secondary!">
+        <div className="flex! items-center! gap-2!">
+          <span className="text-[0.75rem]!">Less</span>
+          <div className="flex! gap-[2px]!">
             {[0, 1, 2, 3, 4].map((level) => (
               <div
                 key={level}
-                className="!w-[10px] !h-[10px] !rounded-[2px]"
+                className="w-[10px]! h-[10px]! rounded-[2px]!"
                 style={{ backgroundColor: getColorForLevel(level) }}
               />
             ))}
           </div>
-          <span className="!text-[0.75rem]">More</span>
+          <span className="text-[0.75rem]!">More</span>
         </div>
         <a
           href="https://github.com/dan10ish"
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:!text-[var(--link-blue)]"
+          className="hover:text-(--link-blue)!"
         >
           @dan10ish
         </a>
