@@ -170,21 +170,18 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.2 }}
         >
-          <p className="text-base">{personalInfo.about}
-          {/* <div className="!mt-8"> */}
+          <p className="text-base">{personalInfo.about}</p>
             {(() => {
               const current = experience.find((e: any) => e.current)
               const previous = experience.filter((e: any) => !e.current)
-              const parts: string[] = []
-              if (current) parts.push(`Currently, ${current.title} @ ${current.company}`)
+              const sentences: string[] = []
+              if (current) sentences.push(`Currently, ${current.title} @ ${current.company}.`)
               if (previous.length > 0) {
                 const prevText = previous.map((e: any) => `${e.title} @ ${e.company}`).join('; ')
-                parts.push(`previously, ${prevText}`)
+                sentences.push(`Previously, ${prevText}.`)
               }
-              const sentence = parts.join('; ') + (parts.length ? '.' : '')
-              return <> {sentence}</>
-            })()}</p>
-          {/* </div> */}
+              return <p className="text-base mt-6!"> {sentences.join(' ')}</p>
+            })()}
           <div className="flex items-center gap-2 mt-8!">
             <Link href={`https://github.com/${personalInfo.socials.github}`} target="_blank" className="flex items-center justify-center" aria-label="GitHub">
               <Github size={20} />

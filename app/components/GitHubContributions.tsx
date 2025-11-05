@@ -195,14 +195,14 @@ export default function GitHubContributions({ githubData }: Props) {
 
   if (!githubData) {
     return (
-      <div className="w-full! h-32! flex! items-center! justify-center!">
+      <div className="w-full! h-32! flex! items-center! justify-center! select-none!">
         <div className="w-4! h-4! border-2! border-(--secondary)! border-t-transparent! rounded-full! animate-spin!" />
       </div>
     )
   }
 
   return (
-    <div className="w-full! mt-8!">
+    <div className="w-full! mt-8! select-none!">
       <div className="flex! items-baseline! justify-between! mb-3!">
         <span className="text-[0.82rem]!">GitHub Activity</span>
         <span className="text-secondary! text-[0.75rem]!">
