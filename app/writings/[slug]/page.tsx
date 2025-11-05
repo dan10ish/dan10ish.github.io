@@ -204,7 +204,7 @@ export default async function WritingPage({ params }: WritingPageProps) {
 
   return (
     <article className="prose prose-quoteless prose-neutral dark:prose-invert max-w-none">
-      <h1 className="!mt-0 !mb-0 !pt-0 !pb-0 text-2xl font-bold">{title}</h1>
+      <h1 className="mt-0! mb-0! pt-0! pb-0! text-2xl font-bold">{title}</h1>
       <p className="text-sm text-secondary mt-2 mb-8">
         {formatDate(date)}
       </p>

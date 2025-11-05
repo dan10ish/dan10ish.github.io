@@ -29,7 +29,7 @@ export default function NotFound() {
         <div className="text-center space-y-4">
         <h1 className="text-base font-bold">404</h1>
         <p className="text-base opacity-70">Page not found</p>
-        <Link href="/" className="inline-flex items-center gap-2 mt-6 bg-[var(--code-bg)] !px-2 !py-1 rounded-md !mb-6" aria-label="Go back to home page">
+        <Link href="/" className="inline-flex items-center gap-2 mt-6 bg-(--code-bg) px-2! py-1! rounded-md mb-6!" aria-label="Go back to home page">
           <ArrowLeft size={16} />
           <span>Back to Home</span>
         </Link>

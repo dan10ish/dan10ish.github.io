@@ -6,7 +6,7 @@ export default function Home() {
   const writings = getSortedWritingsData()
 
   return (
-    <Suspense fallback={<div className="!h-20" />}>
+    <Suspense fallback={<div className="h-20!" />}>
       <HomeContent writings={writings} />
     </Suspense>
   )

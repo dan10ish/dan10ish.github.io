@@ -244,24 +244,63 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.2 }}
-          className="space-y-6! md:space-y-0! md:columns-2! md:gap-x-6!"
         >
           {loading ? (
-            <div className="flex! justify-center! py-8!">
+            <div className="w-full! flex! justify-center! py-8!">
               <Loader2 className="w-6! h-6! animate-spin! text-secondary!" />
             </div>
           ) : tilEntries.length > 0 ? (
-            tilEntries.map((entry) => (
-              <article
-                key={entry.id}
-                className="border-b! border-(--border)! pb-6! last:border-b-0! break-inside-avoid! md:mb-6!"
-              >
-                <p className="text-secondary! text-[0.82rem]! mb-3!">
-                  {formatDate(entry.date)}
-                </p>
-                <TILContent entry={entry} />
-              </article>
-            ))
+            <>
+              <div className="space-y-6! md:hidden">
+                {[...tilEntries]
+                  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+                  .map((entry) => (
+                  <article
+                    key={entry.id}
+                    className="border-b! border-(--border)! pb-6! last:border-b-0!"
+                  >
+                    <p className="text-secondary! text-[0.82rem]! mb-3!">
+                      {formatDate(entry.date)}
+                    </p>
+                    <TILContent entry={entry} />
+                  </article>
+                ))}
+              </div>
+              <div className="hidden md:grid! md:grid-cols-2! md:gap-6!">
+                <div className="space-y-6!">
+                  {[...tilEntries]
+                    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+                    .filter((_, idx) => idx % 2 === 0)
+                    .map((entry) => (
+                    <article
+                      key={entry.id}
+                      className="border-b! border-(--border)! pb-6! last:border-b-0!"
+                    >
+                      <p className="text-secondary! text-[0.82rem]! mb-3!">
+                        {formatDate(entry.date)}
+                      </p>
+                      <TILContent entry={entry} />
+                    </article>
+                  ))}
+                </div>
+                <div className="space-y-6!">
+                  {[...tilEntries]
+                    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+                    .filter((_, idx) => idx % 2 === 1)
+                    .map((entry) => (
+                    <article
+                      key={entry.id}
+                      className="border-b! border-(--border)! pb-6! last:border-b-0!"
+                    >
+                      <p className="text-secondary! text-[0.82rem]! mb-3!">
+                        {formatDate(entry.date)}
+                      </p>
+                      <TILContent entry={entry} />
+                    </article>
+                  ))}
+                </div>
+              </div>
+            </>
           ) : (
             <p className="text-base! text-secondary!">No entries yet.</p>
           )}
