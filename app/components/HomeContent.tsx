@@ -228,59 +228,63 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
         >
           {projects.length > 0 ? (
             <div className="overflow-x-auto!">
-              <table className="w-full! text-left! border-collapse! border! border-(--border)!">
-                <thead>
-                  <tr className="bg-(--code-bg)! border-b! border-(--border)!">
-                    <th className="px-2! md:px-4! py-1! md:py-1.5! text-base font-bold! border-(--border)!">Project</th>
-                    <th className="px-2! md:px-4! py-1! md:py-1.5! text-base font-bold! text-center! border-(--border)!">Links</th>
-                    <th className="px-3! md:px-5! py-1! md:py-1.5! text-base font-bold! text-right!">Tag</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {projects.map((project, index) => (
-                    <tr key={index} className="border! border-(--border)!">
-                      <td className="px-2! md:px-4! py-1.5! md:py-1.5! text-base border-(--border)!">{project.title}</td>
-                      <td className="px-2! md:px-4! py-1.5! md:py-1.5! text-center! border-(--border)!">
-                        <div className="flex! items-center! justify-center! gap-3!" style={{ willChange: 'transform' }}>
-                          {project.github ? (
-                            <Link 
-                              href={project.github} 
-                              target="_blank" 
-                              className="text-secondary! hover:text-(--link-blue)! transition-colors!"
-                              aria-label="GitHub"
-                            >
-                              <Github size={18} />
-                            </Link>
-                          ) : (
-                            <span className="text-secondary! opacity-30! cursor-default!" aria-label="GitHub (unavailable)">
-                              <Github size={18} />
+              <div className="border! border-(--border)! rounded-lg! overflow-hidden!">
+                <div className="max-h-[calc(11*3.5rem)]! overflow-y-auto!">
+                  <table className="w-full! text-left! border-collapse!">
+                    <thead className="sticky! top-0! z-10! bg-(--code-bg)!">
+                      <tr className="border-b! border-(--border)!">
+                        <th className="px-2! md:px-4! py-1! md:py-1.5! text-base font-bold! border-(--border)!">Project</th>
+                        <th className="px-2! md:px-4! py-1! md:py-1.5! text-base font-bold! text-center! border-(--border)!">Links</th>
+                        <th className="px-3! md:px-5! py-1! md:py-1.5! text-base font-bold! text-right!">Tag</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {projects.map((project, index) => (
+                        <tr key={index} className="border! border-(--border)!">
+                          <td className="px-2! md:px-4! py-1.5! md:py-1.5! text-base border-(--border)!">{project.title}</td>
+                          <td className="px-2! md:px-4! py-1.5! md:py-1.5! text-center! border-(--border)!">
+                            <div className="flex! items-center! justify-center! gap-3!" style={{ willChange: 'transform' }}>
+                              {project.github ? (
+                                <Link 
+                                  href={project.github} 
+                                  target="_blank" 
+                                  className="text-secondary! hover:text-(--link-blue)! transition-colors!"
+                                  aria-label="GitHub"
+                                >
+                                  <Github size={18} />
+                                </Link>
+                              ) : (
+                                <span className="text-secondary! opacity-30! cursor-default!" aria-label="GitHub (unavailable)">
+                                  <Github size={18} />
+                                </span>
+                              )}
+                              {project.live ? (
+                                <Link 
+                                  href={project.live} 
+                                  target="_blank" 
+                                  className="text-secondary! hover:text-(--link-blue)! transition-colors!"
+                                  aria-label="Live Demo"
+                                >
+                                  <Globe size={18} />
+                                </Link>
+                              ) : (
+                                <span className="text-secondary! opacity-30! cursor-default!" aria-label="Live Demo (unavailable)">
+                                  <Globe size={18} />
+                                </span>
+                              )}
+                            </div>
+                          </td>
+                          <td className="px-2! md:px-4! py-1.5! md:py-1.5! text-right!">
+                            <span className="text-secondary! text-[0.75rem]! bg-(--code-bg)! px-2! py-0.5! rounded-md!">
+                              {project.tag}
                             </span>
-                          )}
-                          {project.live ? (
-                            <Link 
-                              href={project.live} 
-                              target="_blank" 
-                              className="text-secondary! hover:text-(--link-blue)! transition-colors!"
-                              aria-label="Live Demo"
-                            >
-                              <Globe size={18} />
-                            </Link>
-                          ) : (
-                            <span className="text-secondary! opacity-30! cursor-default!" aria-label="Live Demo (unavailable)">
-                              <Globe size={18} />
-                            </span>
-                          )}
-                        </div>
-                      </td>
-                      <td className="px-2! md:px-4! py-1.5! md:py-1.5! text-right!">
-                        <span className="text-secondary! text-[0.75rem]! bg-(--code-bg)! px-2! py-0.5! rounded-md!">
-                          {project.tag}
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           ) : (
             <p className="text-base text-secondary!">No projects yet.</p>
