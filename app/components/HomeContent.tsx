@@ -57,24 +57,24 @@ interface GitHubData {
 export default function HomeContent({ writings }: { writings: Writing[] }) {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const tabFromUrl = searchParams.get('tab') as 'about' | 'writings' | 'finds' | null
-  const [activeTab, setActiveTab] = useState<'about' | 'writings' | 'finds'>(tabFromUrl || 'about')
+  const tabFromUrl = searchParams.get('tab') as 'home' | 'writings' | 'finds' | null
+  const [activeTab, setActiveTab] = useState<'home' | 'writings' | 'finds'>(tabFromUrl || 'home')
   const [tilEntries, setTilEntries] = useState<TILEntry[]>([])
   const [loading, setLoading] = useState(false)
   const [githubData, setGithubData] = useState<GitHubData | null>(null)
 
   useEffect(() => {
-    if (tabFromUrl && ['about', 'writings', 'finds'].includes(tabFromUrl)) {
+    if (tabFromUrl && ['home', 'writings', 'finds'].includes(tabFromUrl)) {
       setActiveTab(tabFromUrl)
     } else if (!tabFromUrl) {
-      setActiveTab('about')
+      setActiveTab('home')
     }
   }, [tabFromUrl])
 
-  const handleTabChange = (tab: 'about' | 'writings' | 'finds') => {
+  const handleTabChange = (tab: 'home' | 'writings' | 'finds') => {
     setActiveTab(tab)
     const params = new URLSearchParams(searchParams.toString())
-    if (tab === 'about') {
+    if (tab === 'home') {
       params.delete('tab')
     } else {
       params.set('tab', tab)
@@ -115,24 +115,44 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
 
   return (
     <div className="h-fit max-w-2xl mx-auto">
-      <section className="mb-6!">
+      <section className="mb-6! flex! items-start! justify-between!">
         <h1 className="text-base! font-bold! header-text!">{personalInfo.name}</h1>
+        <div className="flex items-center gap-2">
+          <Link href={`https://github.com/${personalInfo.socials.github}`} target="_blank" className="flex items-center justify-center" aria-label="GitHub">
+            <Github size={20} />
+          </Link>
+          <Link href={`mailto:${personalInfo.socials.email}`} className="flex items-center justify-center" aria-label="Email">
+            <Mail size={20} />
+          </Link>
+          <Link href={`https://www.linkedin.com/in/${personalInfo.socials.linkedin}`} target="_blank" className="flex items-center justify-center" aria-label="LinkedIn">
+            <LinkedInIcon />
+          </Link>
+          <Link href={`https://x.com/${personalInfo.socials.x}`} target="_blank" className="flex items-center justify-center" aria-label="X">
+            <XIcon />
+          </Link>
+          <Link href={`https://instagram.com/${personalInfo.socials.instagram}`} target="_blank" className="flex items-center justify-center" aria-label="Instagram">
+            <Instagram size={20} />
+          </Link>
+          <Link href={`https://www.snapchat.com/add/${personalInfo.socials.snapchat}`} target="_blank" className="flex items-center justify-center" aria-label="Snapchat">
+            <SnapchatIcon />
+          </Link>
+        </div>
       </section>
       <section>
       <div className="flex! gap-2! md:gap-4! -ml-2! mb-4! relative!">
         <h1
-          onClick={() => handleTabChange('about')}
+          onClick={() => handleTabChange('home')}
           className="relative! text-base! cursor-pointer! transition-opacity! text-[0.9rem]! px-2! py-1! rounded-md! z-10!"
-          style={{ opacity: activeTab === 'about' ? 1 : 0.7 }}
+          style={{ opacity: activeTab === 'home' ? 1 : 0.7 }}
         >
-          {activeTab === 'about' && (
+          {activeTab === 'home' && (
             <motion.div
               layoutId="homeActiveTab"
               className="absolute! inset-0! bg-(--code-bg)! rounded-md! -z-10!"
               transition={{ type: 'spring', stiffness: 500, damping: 30 }}
             />
           )}
-          About
+          Home
         </h1>
         <h1
           onClick={() => handleTabChange('writings')}
@@ -164,9 +184,9 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
         </h1>
       </div>
 
-      {activeTab === 'about' && (
+      {activeTab === 'home' && (
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 1, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.2 }}
         >
@@ -182,33 +202,13 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
               }
               return <p className="text-base mt-6!"> {sentences.join(' ')}</p>
             })()}
-          <div className="flex items-center gap-2 mt-8!">
-            <Link href={`https://github.com/${personalInfo.socials.github}`} target="_blank" className="flex items-center justify-center" aria-label="GitHub">
-              <Github size={20} />
-            </Link>
-            <Link href={`mailto:${personalInfo.socials.email}`} className="flex items-center justify-center" aria-label="Email">
-              <Mail size={20} />
-            </Link>
-            <Link href={`https://www.linkedin.com/in/${personalInfo.socials.linkedin}`} target="_blank" className="flex items-center justify-center" aria-label="LinkedIn">
-              <LinkedInIcon />
-            </Link>
-            <Link href={`https://x.com/${personalInfo.socials.x}`} target="_blank" className="flex items-center justify-center" aria-label="X">
-              <XIcon />
-            </Link>
-            <Link href={`https://instagram.com/${personalInfo.socials.instagram}`} target="_blank" className="flex items-center justify-center" aria-label="Instagram">
-              <Instagram size={20} />
-            </Link>
-            <Link href={`https://www.snapchat.com/add/${personalInfo.socials.snapchat}`} target="_blank" className="flex items-center justify-center" aria-label="Snapchat">
-              <SnapchatIcon />
-            </Link>
-          </div>
           <GitHubContributions githubData={githubData} />
         </motion.div>
       )}
 
       {activeTab === 'writings' && (
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 1, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.2 }}
           className="mt-1!"
