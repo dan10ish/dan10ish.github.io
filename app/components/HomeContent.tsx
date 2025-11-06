@@ -228,20 +228,20 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
         >
           {projects.length > 0 ? (
             <div className="overflow-x-auto!">
-              <table className="w-full! text-left! border-collapse!">
+              <table className="w-full! text-left! border-collapse! border! border-(--border)!">
                 <thead>
-                  <tr className="border-b! border-(--border)!">
-                    <th className="pb-3! text-base font-medium!">Project</th>
-                    <th className="pb-3! text-base font-medium! text-center!">Links</th>
-                    <th className="pb-3! text-base font-medium! text-right!">Tag</th>
+                  <tr className="bg-(--code-bg)! border-b! border-(--border)!">
+                    <th className="px-2! md:px-4! py-1! md:py-1.5! text-base font-bold! border-(--border)!">Project</th>
+                    <th className="px-2! md:px-4! py-1! md:py-1.5! text-base font-bold! text-center! border-(--border)!">Links</th>
+                    <th className="px-3! md:px-5! py-1! md:py-1.5! text-base font-bold! text-right!">Tag</th>
                   </tr>
                 </thead>
                 <tbody>
                   {projects.map((project, index) => (
-                    <tr key={index} className="">
-                      <td className="py-1! text-base">{project.title}</td>
-                      <td className="py-1! text-center!">
-                        <div className="flex! items-center! justify-center! gap-3!">
+                    <tr key={index} className="border! border-(--border)!">
+                      <td className="px-2! md:px-4! py-1.5! md:py-1.5! text-base border-(--border)!">{project.title}</td>
+                      <td className="px-2! md:px-4! py-1.5! md:py-1.5! text-center! border-(--border)!">
+                        <div className="flex! items-center! justify-center! gap-3!" style={{ willChange: 'transform' }}>
                           {project.github ? (
                             <Link 
                               href={project.github} 
@@ -272,8 +272,8 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
                           )}
                         </div>
                       </td>
-                      <td className="py-1! text-right!">
-                        <span className="text-secondary! text-[0.75rem]! bg-(--code-bg)! px-2! py-1! rounded-lg!">
+                      <td className="px-2! md:px-4! py-1.5! md:py-1.5! text-right!">
+                        <span className="text-secondary! text-[0.75rem]! bg-(--code-bg)! px-2! py-0.5! rounded-md!">
                           {project.tag}
                         </span>
                       </td>
