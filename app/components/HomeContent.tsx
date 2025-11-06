@@ -139,7 +139,7 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
         </div>
       </section>
       <section>
-      <div className="flex! gap-2! md:gap-4! -ml-2! mb-4! relative!">
+      <div className="flex! gap-1! md:gap-4! -ml-2! mb-4! relative!">
         <h1
           onClick={() => handleTabChange('home')}
           className="relative! text-base! cursor-pointer! transition-opacity! text-[0.9rem]! px-2! py-1! rounded-md! z-10!"
@@ -229,61 +229,59 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
           {projects.length > 0 ? (
             <div className="overflow-x-auto!">
               <div className="border! border-(--border)! rounded-lg! overflow-hidden!">
-                <div className="max-h-[calc(11*3.5rem)]! overflow-y-auto!">
-                  <table className="w-full! text-left! border-collapse!">
-                    <thead className="sticky! top-0! z-10! bg-(--code-bg)!">
-                      <tr className="border-b! border-(--border)!">
-                        <th className="px-2! md:px-4! py-1! md:py-1.5! text-base font-bold! border-(--border)!">Project</th>
-                        <th className="px-2! md:px-4! py-1! md:py-1.5! text-base font-bold! text-center! border-(--border)!">Links</th>
-                        <th className="px-3! md:px-5! py-1! md:py-1.5! text-base font-bold! text-right!">Tag</th>
+                <table className="w-full! text-left! border-collapse!">
+                  <thead className="block! bg-(--code-bg)!">
+                    <tr className="flex! border-b! border-(--border)!">
+                      <th className="w-[47%]! min-w-0! px-2! md:px-4! py-1! md:py-1.5! text-base font-bold! border-r! border-(--border)!">Project</th>
+                      <th className="w-[20%]! min-w-0! px-2! md:px-4! py-1! md:py-1.5! text-base font-bold! text-center! border-r! border-(--border)!">Links</th>
+                      <th className="w-[33%]! min-w-0! px-2! md:px-4! py-1! md:py-1.5! text-base font-bold! text-right!">Tag</th>
+                    </tr>
+                  </thead>
+                  <tbody className="block! max-h-[calc(11*2.5rem)]! overflow-y-auto! [&::-webkit-scrollbar]:hidden! [scrollbar-width:none]!" style={{ msOverflowStyle: 'none' }}>
+                    {projects.map((project, index) => (
+                      <tr key={index} className="flex! border-b! border-(--border)! last:border-b-0!">
+                        <td className="w-[47%]! min-w-0! px-2! md:px-4! py-1.5! md:py-1.5! text-base border-r! border-(--border)!">{project.title}</td>
+                        <td className="w-[20%]! min-w-0! px-2! md:px-4! py-1.5! md:py-1.5! text-center! border-r! border-(--border)!">
+                          <div className="flex! items-center! justify-center! gap-3!" style={{ willChange: 'transform' }}>
+                            {project.github ? (
+                              <Link 
+                                href={project.github} 
+                                target="_blank" 
+                                className="text-secondary! hover:text-(--link-blue)! transition-colors!"
+                                aria-label="GitHub"
+                              >
+                                <Github size={18} />
+                              </Link>
+                            ) : (
+                              <span className="text-secondary! opacity-30! cursor-default!" aria-label="GitHub (unavailable)">
+                                <Github size={18} />
+                              </span>
+                            )}
+                            {project.live ? (
+                              <Link 
+                                href={project.live} 
+                                target="_blank" 
+                                className="text-secondary! hover:text-(--link-blue)! transition-colors!"
+                                aria-label="Live Demo"
+                              >
+                                <Globe size={18} />
+                              </Link>
+                            ) : (
+                              <span className="text-secondary! opacity-30! cursor-default!" aria-label="Live Demo (unavailable)">
+                                <Globe size={18} />
+                              </span>
+                            )}
+                          </div>
+                        </td>
+                        <td className="w-[33%]! min-w-0! px-2! md:px-4! py-1.5! md:py-1.5! text-right!">
+                          <span className="text-secondary! text-[0.75rem]! bg-(--code-bg)! px-2! py-0.5! rounded-md!">
+                            {project.tag}
+                          </span>
+                        </td>
                       </tr>
-                    </thead>
-                    <tbody>
-                      {projects.map((project, index) => (
-                        <tr key={index} className="border! border-(--border)!">
-                          <td className="px-2! md:px-4! py-1.5! md:py-1.5! text-base border-(--border)!">{project.title}</td>
-                          <td className="px-2! md:px-4! py-1.5! md:py-1.5! text-center! border-(--border)!">
-                            <div className="flex! items-center! justify-center! gap-3!" style={{ willChange: 'transform' }}>
-                              {project.github ? (
-                                <Link 
-                                  href={project.github} 
-                                  target="_blank" 
-                                  className="text-secondary! hover:text-(--link-blue)! transition-colors!"
-                                  aria-label="GitHub"
-                                >
-                                  <Github size={18} />
-                                </Link>
-                              ) : (
-                                <span className="text-secondary! opacity-30! cursor-default!" aria-label="GitHub (unavailable)">
-                                  <Github size={18} />
-                                </span>
-                              )}
-                              {project.live ? (
-                                <Link 
-                                  href={project.live} 
-                                  target="_blank" 
-                                  className="text-secondary! hover:text-(--link-blue)! transition-colors!"
-                                  aria-label="Live Demo"
-                                >
-                                  <Globe size={18} />
-                                </Link>
-                              ) : (
-                                <span className="text-secondary! opacity-30! cursor-default!" aria-label="Live Demo (unavailable)">
-                                  <Globe size={18} />
-                                </span>
-                              )}
-                            </div>
-                          </td>
-                          <td className="px-2! md:px-4! py-1.5! md:py-1.5! text-right!">
-                            <span className="text-secondary! text-[0.75rem]! bg-(--code-bg)! px-2! py-0.5! rounded-md!">
-                              {project.tag}
-                            </span>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </div>
           ) : (
