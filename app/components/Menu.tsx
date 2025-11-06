@@ -7,7 +7,7 @@ import { ThemeToggle } from './Theme'
 
 interface MenuProps {
   page?: 'home' | 'writing' | 'error'
-  activeTab?: 'home' | 'writings' | 'finds'
+  activeTab?: 'home' | 'projects' | 'writings' | 'finds'
 }
 
 export default function Menu({ page = 'home', activeTab }: MenuProps) {

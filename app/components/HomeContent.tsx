@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { Loader2, Github, Mail, Instagram } from 'lucide-react'
-import { personalInfo, experience } from '../data'
+import { Loader2, Github, Mail, Instagram, Globe } from 'lucide-react'
+import { personalInfo, experience, projects } from '../data'
 import { formatDate, getTILEntries } from '../../lib/client'
 import TILContent from './TILContent'
 import Menu from './Menu'
@@ -57,21 +57,21 @@ interface GitHubData {
 export default function HomeContent({ writings }: { writings: Writing[] }) {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const tabFromUrl = searchParams.get('tab') as 'home' | 'writings' | 'finds' | null
-  const [activeTab, setActiveTab] = useState<'home' | 'writings' | 'finds'>(tabFromUrl || 'home')
+  const tabFromUrl = searchParams.get('tab') as 'home' | 'projects' | 'writings' | 'finds' | null
+  const [activeTab, setActiveTab] = useState<'home' | 'projects' | 'writings' | 'finds'>(tabFromUrl || 'home')
   const [tilEntries, setTilEntries] = useState<TILEntry[]>([])
   const [loading, setLoading] = useState(false)
   const [githubData, setGithubData] = useState<GitHubData | null>(null)
 
   useEffect(() => {
-    if (tabFromUrl && ['home', 'writings', 'finds'].includes(tabFromUrl)) {
+    if (tabFromUrl && ['home', 'projects', 'writings', 'finds'].includes(tabFromUrl)) {
       setActiveTab(tabFromUrl)
     } else if (!tabFromUrl) {
       setActiveTab('home')
     }
   }, [tabFromUrl])
 
-  const handleTabChange = (tab: 'home' | 'writings' | 'finds') => {
+  const handleTabChange = (tab: 'home' | 'projects' | 'writings' | 'finds') => {
     setActiveTab(tab)
     const params = new URLSearchParams(searchParams.toString())
     if (tab === 'home') {
@@ -155,6 +155,20 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
           Home
         </h1>
         <h1
+          onClick={() => handleTabChange('projects')}
+          className="relative! text-base! cursor-pointer! transition-opacity! text-[0.9rem]! px-2! py-1! rounded-md! z-10!"
+          style={{ opacity: activeTab === 'projects' ? 1 : 0.7 }}
+        >
+          {activeTab === 'projects' && (
+            <motion.div
+              layoutId="homeActiveTab"
+              className="absolute! inset-0! bg-(--code-bg)! rounded-md! -z-10!"
+              transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+            />
+          )}
+          Projects
+        </h1>
+        <h1
           onClick={() => handleTabChange('writings')}
           className="relative! text-base! cursor-pointer! transition-opacity! text-[0.9rem]! px-2! py-1! rounded-md! z-10!"
           style={{ opacity: activeTab === 'writings' ? 1 : 0.7 }}
@@ -206,6 +220,74 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
         </motion.div>
       )}
 
+      {activeTab === 'projects' && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          {projects.length > 0 ? (
+            <div className="overflow-x-auto!">
+              <table className="w-full! text-left! border-collapse!">
+                <thead>
+                  <tr className="border-b! border-(--border)!">
+                    <th className="pb-3! text-base font-medium!">Project</th>
+                    <th className="pb-3! text-base font-medium! text-center!">Links</th>
+                    <th className="pb-3! text-base font-medium! text-right!">Tag</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {projects.map((project, index) => (
+                    <tr key={index} className="">
+                      <td className="py-1! text-base">{project.title}</td>
+                      <td className="py-1! text-center!">
+                        <div className="flex! items-center! justify-center! gap-3!">
+                          {project.github ? (
+                            <Link 
+                              href={project.github} 
+                              target="_blank" 
+                              className="text-secondary! hover:text-(--link-blue)! transition-colors!"
+                              aria-label="GitHub"
+                            >
+                              <Github size={18} />
+                            </Link>
+                          ) : (
+                            <span className="text-secondary! opacity-30! cursor-default!" aria-label="GitHub (unavailable)">
+                              <Github size={18} />
+                            </span>
+                          )}
+                          {project.live ? (
+                            <Link 
+                              href={project.live} 
+                              target="_blank" 
+                              className="text-secondary! hover:text-(--link-blue)! transition-colors!"
+                              aria-label="Live Demo"
+                            >
+                              <Globe size={18} />
+                            </Link>
+                          ) : (
+                            <span className="text-secondary! opacity-30! cursor-default!" aria-label="Live Demo (unavailable)">
+                              <Globe size={18} />
+                            </span>
+                          )}
+                        </div>
+                      </td>
+                      <td className="py-1! text-right!">
+                        <span className="text-secondary! text-[0.75rem]! bg-(--code-bg)! px-2! py-1! rounded-lg!">
+                          {project.tag}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <p className="text-base text-secondary!">No projects yet.</p>
+          )}
+        </motion.div>
+      )}
+
       {activeTab === 'writings' && (
         <motion.div
           initial={{ opacity: 1, y: 10 }}
@@ -231,7 +313,7 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
               </Link>
             ))
           ) : (
-            <p className="text-base! text-secondary!">No writings yet.</p>
+            <p className="text-base text-secondary!">No writings yet.</p>
           )}
         </motion.div>
       )}
@@ -299,7 +381,7 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
               </div>
             </>
           ) : (
-            <p className="text-base! text-secondary!">No entries yet.</p>
+            <p className="text-base text-secondary!">No entries yet.</p>
           )}
         </motion.div>
       )}

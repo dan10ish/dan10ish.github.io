@@ -15,3 +15,24 @@ export const experience = [
   { company: "Innovatio Labs", title: "Project Manager", current: true },
   { company: "Accelus Robotics", title: "Robotics Engineer Intern", current: false }
 ]
+
+export const projects = [
+  {
+    title: "Project Alpha",
+    github: "https://github.com/dan10ish/project-alpha",
+    live: "https://project-alpha.vercel.app",
+    tag: "Web App"
+  },
+  {
+    title: "ML Pipeline",
+    github: "https://github.com/dan10ish/ml-pipeline",
+    live: "https://ml-pipeline.demo.com",
+    tag: "Machine Learning"
+  },
+  {
+    title: "Robot Controller",
+    github: "https://github.com/dan10ish/robot-controller",
+    live: null,
+    tag: "Robotics"
+  }
+]
