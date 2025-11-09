@@ -1,10 +1,10 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { Loader2, Github, Mail, Instagram, Globe } from 'lucide-react'
+import { Loader2, Github, Mail, Instagram, Globe, ChevronLeft, ChevronRight } from 'lucide-react'
 import { personalInfo, experience, projects } from '../data'
 import { formatDate, getTILEntries } from '../../lib/client'
 import TILContent from './TILContent'
@@ -62,10 +62,17 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
   const [tilEntries, setTilEntries] = useState<TILEntry[]>([])
   const [loading, setLoading] = useState(false)
   const [githubData, setGithubData] = useState<GitHubData | null>(null)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [itemsPerPage, setItemsPerPage] = useState(7)
+  const tableRowRef = useRef<HTMLTableRowElement>(null)
+  const resizeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
     if (tabFromUrl && ['home', 'projects', 'writings', 'finds'].includes(tabFromUrl)) {
       setActiveTab(tabFromUrl)
+      if (tabFromUrl === 'projects') {
+        setCurrentPage(1)
+      }
     } else if (!tabFromUrl) {
       setActiveTab('home')
     }
@@ -73,6 +80,9 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
 
   const handleTabChange = (tab: 'home' | 'projects' | 'writings' | 'finds') => {
     setActiveTab(tab)
+    if (tab === 'projects') {
+      setCurrentPage(1)
+    }
     const params = new URLSearchParams(searchParams.toString())
     if (tab === 'home') {
       params.delete('tab')
@@ -92,6 +102,51 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
       })
     }
   }, [activeTab, tilEntries.length])
+
+  useEffect(() => {
+    const calculateItemsPerPage = () => {
+      if (activeTab !== 'projects') return
+      
+      const dvh = window.innerHeight
+      const measuredRowHeight = tableRowRef.current?.offsetHeight
+      const rowHeight = measuredRowHeight && measuredRowHeight > 0 ? measuredRowHeight : (window.innerWidth < 768 ? 42 : 44)
+      const headerHeight = 50
+      const paginationHeight = 70
+      const topSectionHeight = window.innerWidth < 768 ? 180 : 200
+      const bottomMargin = 80
+      const availableHeight = dvh - headerHeight - paginationHeight - topSectionHeight - bottomMargin
+      const calculatedItems = Math.max(3, Math.floor(availableHeight / rowHeight))
+      setItemsPerPage(calculatedItems)
+    }
+
+    if (activeTab === 'projects') {
+      const timeoutId = setTimeout(() => {
+        calculateItemsPerPage()
+      }, 150)
+      
+      const handleResize = () => {
+        if (resizeTimeoutRef.current) {
+          clearTimeout(resizeTimeoutRef.current)
+        }
+        resizeTimeoutRef.current = setTimeout(() => {
+          calculateItemsPerPage()
+        }, 100)
+      }
+
+      window.addEventListener('resize', handleResize)
+      return () => {
+        clearTimeout(timeoutId)
+        if (resizeTimeoutRef.current) {
+          clearTimeout(resizeTimeoutRef.current)
+        }
+        window.removeEventListener('resize', handleResize)
+      }
+    }
+  }, [activeTab])
+
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [itemsPerPage])
 
   useEffect(() => {
     const fetchGitHubData = async () => {
@@ -227,63 +282,107 @@ export default function HomeContent({ writings }: { writings: Writing[] }) {
           transition={{ duration: 0.2 }}
         >
           {projects.length > 0 ? (
-            <div className="overflow-x-auto!">
-              <div className="border! border-(--border)! rounded-lg! overflow-hidden!">
-                <table className="w-full! text-left! border-collapse!">
-                  <thead className="block! bg-(--code-bg)!">
-                    <tr className="flex! border-b! border-(--border)!">
-                      <th className="w-[47%]! min-w-0! px-2! md:px-4! py-1! md:py-1.5! text-base font-bold! border-r! border-(--border)!">Project</th>
-                      <th className="w-[20%]! min-w-0! px-2! md:px-4! py-1! md:py-1.5! text-base font-bold! text-center! border-r! border-(--border)!">Links</th>
-                      <th className="w-[33%]! min-w-0! px-2! md:px-4! py-1! md:py-1.5! text-base font-bold! text-right!">Tag</th>
-                    </tr>
-                  </thead>
-                  <tbody className="block! max-h-[calc(11*2.5rem)]! overflow-y-auto! [&::-webkit-scrollbar]:hidden! [scrollbar-width:none]!" style={{ msOverflowStyle: 'none' }}>
-                    {projects.map((project, index) => (
-                      <tr key={index} className="flex! border-b! border-(--border)! last:border-b-0!">
-                        <td className="w-[47%]! min-w-0! px-2! md:px-4! py-1.5! md:py-1.5! text-base border-r! border-(--border)!">{project.title}</td>
-                        <td className="w-[20%]! min-w-0! px-2! md:px-4! py-1.5! md:py-1.5! text-center! border-r! border-(--border)!">
-                          <div className="flex! items-center! justify-center! gap-3!" style={{ willChange: 'transform' }}>
-                            {project.github ? (
-                              <Link 
-                                href={project.github} 
-                                target="_blank" 
-                                className="text-secondary! hover:text-(--link-blue)! transition-colors!"
-                                aria-label="GitHub"
-                              >
-                                <Github size={18} />
-                              </Link>
-                            ) : (
-                              <span className="text-secondary! opacity-30! cursor-default!" aria-label="GitHub (unavailable)">
-                                <Github size={18} />
-                              </span>
-                            )}
-                            {project.live ? (
-                              <Link 
-                                href={project.live} 
-                                target="_blank" 
-                                className="text-secondary! hover:text-(--link-blue)! transition-colors!"
-                                aria-label="Live Demo"
-                              >
-                                <Globe size={18} />
-                              </Link>
-                            ) : (
-                              <span className="text-secondary! opacity-30! cursor-default!" aria-label="Live Demo (unavailable)">
-                                <Globe size={18} />
-                              </span>
-                            )}
-                          </div>
-                        </td>
-                        <td className="w-[33%]! min-w-0! px-2! md:px-4! py-1.5! md:py-1.5! text-right!">
-                          <span className="text-secondary! text-[0.75rem]! bg-(--code-bg)! px-2! py-0.5! rounded-md!">
-                            {project.tag}
-                          </span>
-                        </td>
+            <>
+              <div className="overflow-x-auto!">
+                <div className="border! border-(--border)! rounded-lg! overflow-hidden!">
+                  <table className="w-full! text-left! border-collapse!">
+                    <thead className="block! bg-(--code-bg)!">
+                      <tr className="flex! border-b! border-(--border)!">
+                        <th className="w-[47%]! min-w-0! px-2! md:px-4! py-1! md:py-1.5! text-base font-bold! border-r! border-(--border)!">Project</th>
+                        <th className="w-[20%]! min-w-0! px-2! md:px-4! py-1! md:py-1.5! text-base font-bold! text-center! border-r! border-(--border)!">Links</th>
+                        <th className="w-[33%]! min-w-0! px-2! md:px-4! py-1! md:py-1.5! text-base font-bold! text-right!">Tag</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody className="block!">
+                      {projects
+                        .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+                        .map((project, index) => (
+                          <tr 
+                            key={(currentPage - 1) * itemsPerPage + index} 
+                            ref={index === 0 ? tableRowRef : null}
+                            className="flex! border-b! border-(--border)! last:border-b-0!"
+                          >
+                            <td className="w-[47%]! min-w-0! px-2! md:px-4! py-1.5! md:py-1.5! text-base border-r! border-(--border)!">{project.title}</td>
+                            <td className="w-[20%]! min-w-0! px-2! md:px-4! py-1.5! md:py-1.5! text-center! border-r! border-(--border)!">
+                              <div className="flex! items-center! justify-center! gap-3!" style={{ willChange: 'transform' }}>
+                                {project.github ? (
+                                  <Link 
+                                    href={project.github} 
+                                    target="_blank" 
+                                    className="text-secondary! hover:text-(--link-blue)! transition-colors!"
+                                    aria-label="GitHub"
+                                  >
+                                    <Github size={18} />
+                                  </Link>
+                                ) : (
+                                  <span className="text-secondary! opacity-30! cursor-default!" aria-label="GitHub (unavailable)">
+                                    <Github size={18} />
+                                  </span>
+                                )}
+                                {project.live ? (
+                                  <Link 
+                                    href={project.live} 
+                                    target="_blank" 
+                                    className="text-secondary! hover:text-(--link-blue)! transition-colors!"
+                                    aria-label="Live Demo"
+                                  >
+                                    <Globe size={18} />
+                                  </Link>
+                                ) : (
+                                  <span className="text-secondary! opacity-30! cursor-default!" aria-label="Live Demo (unavailable)">
+                                    <Globe size={18} />
+                                  </span>
+                                )}
+                              </div>
+                            </td>
+                            <td className="w-[33%]! min-w-0! px-2! md:px-4! py-1.5! md:py-1.5! text-right!">
+                              <span className="text-secondary! text-[0.75rem]! bg-(--code-bg)! px-2! py-0.5! rounded-md!">
+                                {project.tag}
+                              </span>
+                            </td>
+                          </tr>
+                        ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
-            </div>
+              {Math.ceil(projects.length / itemsPerPage) > 1 && (
+                <div className="flex! items-center! justify-center! gap-4! mt-4!">
+                  <button
+                    onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                    disabled={currentPage === 1}
+                    className="flex! items-center! justify-center! p-2! rounded-md! border! border-(--border)! bg-(--code-bg)! disabled:opacity-30! disabled:cursor-not-allowed! hover:bg-(--border)! transition-colors!"
+                    aria-label="Previous page"
+                  >
+                    <ChevronLeft size={18} />
+                  </button>
+                  <div className="flex! items-center! gap-2!">
+                    {Array.from({ length: Math.ceil(projects.length / itemsPerPage) }, (_, i) => i + 1).map((page) => (
+                      <button
+                        key={page}
+                        onClick={() => setCurrentPage(page)}
+                        className={`px-3! py-1! rounded-md! text-sm! transition-colors! ${
+                          currentPage === page
+                            ? 'bg-(--code-bg)! border! border-(--border)! text-primary!'
+                            : 'text-secondary! hover:text-primary!'
+                        }`}
+                        aria-label={`Page ${page}`}
+                      >
+                        {page}
+                      </button>
+                    ))}
+                  </div>
+                  <button
+                    onClick={() => setCurrentPage(prev => Math.min(Math.ceil(projects.length / itemsPerPage), prev + 1))}
+                    disabled={currentPage === Math.ceil(projects.length / itemsPerPage)}
+                    className="flex! items-center! justify-center! p-2! rounded-md! border! border-(--border)! bg-(--code-bg)! disabled:opacity-30! disabled:cursor-not-allowed! hover:bg-(--border)! transition-colors!"
+                    aria-label="Next page"
+                  >
+                    <ChevronRight size={18} />
+                  </button>
+                </div>
+              )}
+            </>
           ) : (
             <p className="text-base text-secondary!">No projects yet.</p>
           )}
