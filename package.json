@@ -12,6 +12,7 @@
     "deploy": "gh-pages -d out"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.80.0",
     "framer-motion": "^12.23.24",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.552.0",
@@ -20,6 +21,8 @@
     "next-themes": "^1.0.0-beta.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "react-tweet": "^3.2.2",
+    "react-youtube": "^10.1.0",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-slug": "^6.0.0",
     "remark-gfm": "^4.0.1",

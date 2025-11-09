@@ -25,6 +25,7 @@
   --clear-filter-bg: #FFDCD9; 
   --clear-filter-text: #D32F2F;
   --glass-border: rgba(0, 0, 0, 0.08);
+  --border: rgba(0, 0, 0, 0.1);
 }
 
 .dark {
@@ -45,6 +46,7 @@
   --clear-filter-bg: #522A2A; 
   --clear-filter-text: #FFB5B5;
   --glass-border: rgba(255, 255, 255, 0.1);
+  --border: rgba(255, 255, 255, 0.15);
 }
 
 .solarized {
@@ -65,6 +67,7 @@
   --clear-filter-bg: #dc322f; 
   --clear-filter-text: #fdf6e3;
   --glass-border: rgba(147, 161, 161, 0.2);
+  --border: rgba(147, 161, 161, 0.3);
 }
 
 html {
