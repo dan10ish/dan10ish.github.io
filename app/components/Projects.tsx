@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Video, Github, Globe } from 'lucide-react';
+import { Video, Github, Globe, X } from 'lucide-react';
 import { AnimatePresence } from 'framer-motion';
 import VideoShowcase from './VideoShowcase';
 
@@ -32,7 +32,11 @@ export default function Projects({ projects }: ProjectsProps) {
   const allTags = Array.from(new Set(projects.map(project => project.tag)));
 
   const handleTagClick = (tag: string) => {
-    setActiveTag(activeTag === tag ? null : tag);
+    if (activeTag === tag) {
+      setActiveTag(null);
+    } else {
+      setActiveTag(tag);
+    }
   };
 
   const handleVideoClick = (project: Project) => {
@@ -50,59 +54,44 @@ export default function Projects({ projects }: ProjectsProps) {
   return (
     <>
       <section>
-        <div className="!flex !items-center !justify-between !mb-4">
-          {activeTag && (
-            <button
-              onClick={() => setActiveTag(null)}
-              className="!text-[0.88em] !px-2 !py-1 !rounded-md"
-              style={{
-                backgroundColor: 'var(--clear-filter-bg)',
-                color: 'var(--clear-filter-text)',
-              }}
-              onMouseEnter={(e) => {
-                if (window.matchMedia('(hover: hover)').matches) {
-                  e.currentTarget.style.transform = 'scale(1.05)';
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (window.matchMedia('(hover: hover)').matches) {
-                  e.currentTarget.style.transform = 'scale(1)';
-                }
-              }}
-            >
-              Clear
-            </button>
-          )}
-        </div>
-
         {/* Tag Filter */}
         <div className="!flex !flex-wrap !gap-2 !mb-5">
-          {allTags.map((tag) => (
-            <button
-              key={tag}
-              onClick={() => handleTagClick(tag)}
-              className="!text-[0.88em] !px-2 !py-0.75 !rounded-md"
-              style={{
-                backgroundColor: activeTag === tag ? 'var(--code-bg)' : 'var(--background)',
-                borderWidth: '1.5px',
-                borderColor: 'var(--glass-border)',
-                color: 'var(--foreground)',
-                boxShadow: activeTag === tag ? '0 2px 8px rgba(0,0,0,0.1)' : '0 1px 3px rgba(0,0,0,0.05)'
-              }}
-              onMouseEnter={(e) => {
-                if (window.matchMedia('(hover: hover)').matches) {
-                  e.currentTarget.style.transform = 'scale(1.05)';
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (window.matchMedia('(hover: hover)').matches) {
-                  e.currentTarget.style.transform = 'scale(1)';
-                }
-              }}
-            >
-              {tag}
-            </button>
-          ))}
+          {allTags.map((tag) => {
+            const isActive = activeTag === tag;
+            return (
+              <button
+                key={tag}
+                onClick={() => handleTagClick(tag)}
+                className="text-xs! px-2! py-0.5! rounded-md! flex! items-center! gap-1.5!"
+                style={{
+                  backgroundColor: isActive ? 'var(--code-bg)' : 'var(--background)',
+                  borderWidth: '1.5px',
+                  borderColor: 'var(--glass-border)',
+                  color: 'var(--foreground)',
+                  boxShadow: isActive ? '0 2px 8px rgba(0,0,0,0.1)' : '0 1px 3px rgba(0,0,0,0.05)'
+                }}
+                onMouseEnter={(e) => {
+                  if (window.matchMedia('(hover: hover)').matches) {
+                    e.currentTarget.style.transform = 'scale(1.05)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (window.matchMedia('(hover: hover)').matches) {
+                    e.currentTarget.style.transform = 'scale(1)';
+                  }
+                }}
+              >
+                <span>{tag}</span>
+                {isActive && (
+                  <X 
+                    size={16} 
+                    style={{ color: 'var(--clear-filter-text)' }}
+                    className="shrink-0!"
+                  />
+                )}
+              </button>
+            );
+          })}
         </div>
 
         {/* Projects List */}
