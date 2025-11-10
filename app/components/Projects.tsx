@@ -62,7 +62,7 @@ export default function Projects({ projects }: ProjectsProps) {
               <button
                 key={tag}
                 onClick={() => handleTagClick(tag)}
-                className="text-xs! px-2! py-0.5! rounded-md! flex! items-center! gap-1.5!"
+                className="project-tag px-2! py-0.5! rounded-md! flex! items-center! gap-1.5!"
                 style={{
                   backgroundColor: isActive ? 'var(--code-bg)' : 'var(--background)',
                   borderWidth: '1.5px',
@@ -81,7 +81,7 @@ export default function Projects({ projects }: ProjectsProps) {
                   }
                 }}
               >
-                <span>{tag}</span>
+                {tag}
                 {isActive && (
                   <X 
                     size={16} 

@@ -435,3 +435,11 @@ section {
 .prose code, .prose pre, pre, code, .prose figure[data-rehype-pretty-code-figure] > pre code span {
   font-size: 0.8rem !important;
 }
+
+.project-tag {
+  font-size: 0.75rem !important;
+}
+
+.project-tag span {
+  font-size: 0.75rem !important;
+}
