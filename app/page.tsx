@@ -62,15 +62,15 @@ const socialLinks = [
 ] as const
 
 const iconButtonClass =
-  'flex! h-11! w-11! items-center! justify-center! rounded-full! border! border-(--border)! transition-transform! duration-200! text-secondary! hover:scale-110! hover:border-(--foreground)! hover:text-(--foreground)!'
+  'flex! h-8! w-8! items-center! justify-center! text-secondary! hover:scale-110! hover:border-(--foreground)! hover:text-(--foreground)!'
 
 export default function Home() {
   return (
-    <div className="relative! flex! min-h-[100dvh]! w-full! items-center! justify-center! px-4!">
+    <>
       <Menu page="home" />
-      <div className="flex! w-full! max-w-4xl! flex-col! items-center! justify-center! gap-12!">
+      <div className="flex! w-full! max-w-4xl! flex-col! items-center! justify-center! max-h-[90dvh]!">
         <Card />
-        <div className="flex! flex-wrap! items-center! justify-center! gap-5!">
+        <div className="flex! flex-wrap! items-center! justify-center! gap-2!">
           {socialLinks.map(({ id, href, icon, label }) => (
             <Link
               key={id}
@@ -85,6 +85,6 @@ export default function Home() {
           ))}
         </div>
       </div>
-    </div>
+    </>
   )
 }

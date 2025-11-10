@@ -1,6 +1,6 @@
 @import "tailwindcss/preflight";
 @import "tailwindcss";
-@import "katex/dist/katex.min.css";
+/* removed unused katex import */
 
 :root {
   --background: #f8f8f8;
@@ -129,14 +129,9 @@ h1 {
 
 p,
 span,
-.prose,
 .project-list>*,
 .text-secondary,
 .text-link-blue,
-code,
-pre,
-.prose code,
-.prose pre,
 td,
 th,
 li,
@@ -173,238 +168,7 @@ section {
   }
 }
 
-.prose {
-  font-size: 0.85rem;
-  line-height: 1.7;
-}
-
-.prose figure[data-rehype-pretty-code-figure] {
-  margin-top: 1.2em;
-  margin-bottom: 1.2em;
-  border-radius: 0.375rem;
-  overflow-x: auto;
-  background-color: var(--code-bg);
-}
-
-.prose figure[data-rehype-pretty-code-figure]>pre {
-  margin: 0;
-  border-radius: 0;
-  padding: 0.7rem 0.9rem;
-  line-height: 1.6;
-  font-family: inherit;
-  background-color: var(--code-bg);
-  overflow-x: auto;
-}
-
-.prose figure[data-rehype-pretty-code-figure]>pre code {
-  display: grid;
-  background-color: var(--code-bg);
-}
-
-.prose figure[data-rehype-pretty-code-figure]>pre code span {
-  line-height: 1.5 !important;
-  background-color: var(--code-bg) !important;
-}
-
-.prose :where(code):not(:where(pre code)) {
-  padding: 0.025rem 0.3rem;
-  margin: 0 0.1em;
-  border-radius: 0.375rem;
-  background-color: var(--code-bg);
-  color: var(--primary);
-  white-space: nowrap;
-  font-family: inherit;
-}
-
-.prose .table-wrapper {
-  overflow-x: auto;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.prose table {
-  width: 100%;
-  table-layout: auto;
-  text-align: left;
-  margin-top: 1.2em;
-  margin-bottom: 1.2em;
-  border-collapse: collapse;
-  font-size: inherit;
-  line-height: 1.5;
-}
-
-.prose thead {
-  border-bottom: 1px solid var(--secondary);
-}
-
-.prose th {
-  padding: 0.5em 0.7em;
-  font-weight: 600;
-  vertical-align: bottom;
-  color: var(--foreground);
-}
-
-.prose td {
-  padding: 0.5em 0.7em;
-  vertical-align: top;
-  border-bottom: 1px solid rgba(110, 118, 129, 0.15);
-}
-
-.prose tbody tr:last-child td {
-  border-bottom: none;
-}
-
-.prose blockquote {
-  margin-top: 1.2em;
-  margin-bottom: 1.2em;
-  padding-left: 1.2em;
-  border-left: 3px solid var(--secondary);
-  color: var(--secondary);
-  /* font-style: italic; */
-}
-
-.prose blockquote p:first-of-type::before {
-  content: none;
-}
-
-.prose blockquote p:last-of-type::after {
-  content: none;
-}
-
-.prose ul,
-.prose ol {
-  margin-top: 0.75em;
-  margin-bottom: 0.75em;
-  padding-left: 1.5em;
-}
-
-.prose li {
-  margin-top: 0.25em;
-  margin-bottom: 0.25em;
-  padding-left: 0.25em;
-}
-
-.prose ul li {
-  list-style-type: disc;
-}
-
-.prose ul li::before {
-  content: "";
-}
-
-.prose ol li {
-  list-style-type: decimal;
-}
-
-.prose ol li::before {
-  content: "";
-}
-
-.prose ul ul,
-.prose ul ol,
-.prose ol ul,
-.prose ol ol {
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-  margin-left: 1.5em;
-}
-
-.prose ul ul li {
-  list-style-type: circle;
-}
-
-.prose ol ol li {
-  list-style-type: lower-alpha;
-}
-
-.prose ol ul li {
-  list-style-type: square;
-}
-
-.prose img {
-  display: block;
-  margin-top: 1em;
-  margin-bottom: 1em;
-  max-width: 100%;
-  border-radius: 0.375rem;
-}
-
-.prose :where(.katex) {
-  font-size: 1em;
-  color: inherit;
-}
-
-.prose :where(.katex-display) {
-  overflow-x: auto;
-}
-
-.prose a {
-  color: var(--link-blue);
-  text-decoration: none;
-  font-weight: 400;
-}
-
-.prose a:hover {
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
-.prose h1,
-.prose h2,
-.prose h3,
-.prose h4,
-.prose h5,
-.prose h6 {
-  margin-top: 1.5em;
-  margin-bottom: 0.5em;
-  padding-top: 0.5em;
-  padding-bottom: 0.25em;
-  line-height: 1.4;
-  color: var(--secondary);
-}
-
-.prose h1 {
-  font-weight: 900;
-  color: var(--foreground);
-}
-
-.prose h2 {
-  font-weight: 900;
-}
-
-.prose h3 {
-  font-weight: 800;
-}
-
-.prose h4 {
-  font-weight: 700;
-}
-
-.prose h5 {
-  font-weight: 500;
-}
-
-.prose h6 {
-  font-weight: 400;
-  color: var(--secondary);
-}
-
-.prose p {
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-}
-
-.prose hr {
-  border: none;
-  border-top: 1px solid var(--secondary);
-  margin-top: 2em;
-  margin-bottom: 2em;
-}
+/* removed unused prose/MDX styles */
 
 .text-link-blue {
   color: var(--link-blue);
@@ -418,55 +182,15 @@ section {
   display: block;
 }
 
-.sh__token--keyword {
-  color: var(--sh-keyword);
-}
+/* removed unused code highlight token styles */
 
-.sh__token--string {
-  color: var(--sh-string);
-}
-
-.sh__token--class {
-  color: var(--sh-class);
-}
-
-.sh__token--property {
-  color: var(--sh-property);
-}
-
-.sh__token--entity {
-  color: var(--sh-entity);
-}
-
-.sh__token--identifier {
-  color: var(--sh-identifier);
-}
-
-.sh__token--comment {
-  color: var(--sh-comment);
-  font-style: italic;
-}
-
-.sh__token--sign {
-  color: var(--sh-sign);
-}
-
-.sh__token--jsxliterals {
-  color: var(--sh-jsxliterals);
-}
-
-.prose code,
-.prose pre,
-pre,
-code,
-.prose figure[data-rehype-pretty-code-figure]>pre code span {
-  font-size: 0.8rem !important;
-}
+/* removed unused prose/code size overrides */
 
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+  line-clamp: 2;
   overflow: hidden;
 }
 

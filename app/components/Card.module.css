@@ -153,10 +153,6 @@
 .card__person-first {
     font-size: calc(34px * var(--card-scale));
     font-variant: small-caps;
-    letter-spacing: -0.015em;
-}
-
-.card__person-first {
     letter-spacing: -0.02em;
     margin-left: calc(-2px * var(--card-scale));
 }
@@ -196,30 +192,6 @@
     word-spacing: -0.05em;
 }
 
-.card__bottom-contact {
-    display: inline-flex;
-    align-items: baseline;
-    gap: calc(6px * var(--card-scale));
-}
-
-.card__bottom-label {
-    font-size: calc(28px * var(--card-scale));
-    letter-spacing: -0.07em;
-}
-
-.card__bottom-label--telex {
-    letter-spacing: -0.06em;
-}
-
-.card__bottom-value {
-    font-size: calc(28px * var(--card-scale));
-    letter-spacing: -0.07em;
-}
-
-.card__bottom-value--telex {
-    letter-spacing: -0.06em;
-}
-
 .card::before {
     content: "";
     position: absolute;
@@ -250,12 +222,6 @@
 
 .card:hover {
     box-shadow: 0 28px 70px rgba(47, 43, 37, 0.22);
-}
-
-.card__inline-telex {
-    font-size: 13px;
-    letter-spacing: 0.03em;
-    font-variant: small-caps;
 }
 
 @media (max-width: 640px) {
