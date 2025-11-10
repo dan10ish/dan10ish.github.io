@@ -7,42 +7,10 @@
 }
 
 :global(:root) {
-    color-scheme: only light;
     font-family: "Garamond Classico SC", "EB Garamond", "Garamond",
         "Apple Garamond", Baskerville, "Times New Roman", serif;
     --card-scale: 0.6;
     --card-layout-scale: 1;
-}
-
-:global(*) {
-    box-sizing: border-box;
-}
-
-:global(body) {
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: #ffffff;
-    color: #2f2b25;
-    overflow-x: hidden;
-}
-
-.promo-banner {
-    margin-top: 24px;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Courier New",
-        monospace;
-    font-size: 12px;
-    color: #a1a6aa;
-    text-decoration: underline;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    text-align: center;
-}
-
-.promo-banner:hover {
-    color: #898e93;
 }
 
 .card-shell {

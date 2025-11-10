@@ -66,7 +66,7 @@ const iconButtonClass =
 
 export default function Home() {
   return (
-    <div className="relative! flex! min-h-[calc(100dvh-3rem)]! w-full! items-center! justify-center! px-4!">
+    <div className="relative! flex! min-h-[100dvh]! w-full! items-center! justify-center! px-4!">
       <Menu page="home" />
       <div className="flex! w-full! max-w-4xl! flex-col! items-center! justify-center! gap-12!">
         <Card />
