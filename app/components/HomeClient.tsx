@@ -93,6 +93,7 @@ export default function HomeClient({ writings }: HomeClientProps) {
               x={personalInfo.socials.x}
               instagram={personalInfo.socials.instagram}
               linkedin={personalInfo.socials.linkedin}
+              snapchat={personalInfo.socials.snapchat}
             />
           </div>
         </section>
