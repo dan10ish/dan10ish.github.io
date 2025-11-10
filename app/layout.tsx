@@ -91,7 +91,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://www.youtube.com" />
         <link rel="preconnect" href="https://platform.twitter.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://www.youtube.com" crossOrigin="anonymous" />
-        <link rel="preload" href="https://card.jgoon.com/Garamond%20Classico%20SC.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/Garamond.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
       </head>
       <body className={`${sfMono.variable}`}>
         <ThemeProvider
