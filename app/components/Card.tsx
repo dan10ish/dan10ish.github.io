@@ -143,15 +143,7 @@ export default function Card() {
             <div className={cx('card__bottom')}>
               <span className={cx('card__inline', 'engraved-text', 'card__bottom-line')}>
                 <span className={cx('card__bottom-address', 'engraved-text')}>
-                  ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎303 Holland House, Samora Avenue, Dar es Salaam, 11102, Tanzania
-                </span>
-                <span className={cx('card__bottom-contact', 'card__bottom-contact--fax')}>
-                  <span className={cx('card__bottom-label', 'engraved-text')}></span>
-                  <span className={cx('card__bottom-value', 'engraved-text')}></span>
-                </span>
-                <span className={cx('card__bottom-contact', 'card__bottom-contact--telex')}>
-                  <span className={cx('card__bottom-label', 'card__bottom-label--telex', 'engraved-text')}></span>
-                  <span className={cx('card__bottom-value', 'card__bottom-value--telex', 'engraved-text')}></span>
+                  303 Holland House, Samora Avenue, Dar es Salaam, 11102, Tanzania
                 </span>
               </span>
             </div>
