@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useRouter, usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import SocialLinks from "./SocialLinks";
 import { personalInfo, projects } from "../data";
@@ -31,8 +32,52 @@ interface HomeClientProps {
   writings: Writing[];
 }
 
+const validTabs: Array<'about' | 'writings' | 'projects' | 'finds'> = ['about', 'writings', 'projects', 'finds']
+
+function getTabFromUrl(): 'about' | 'writings' | 'projects' | 'finds' {
+  if (typeof window === 'undefined') return 'about'
+  const params = new URLSearchParams(window.location.search)
+  const tab = params.get('tab')
+  if (tab && validTabs.includes(tab as any)) {
+    return tab as 'about' | 'writings' | 'projects' | 'finds'
+  }
+  return 'about'
+}
+
 export default function HomeClient({ writings }: HomeClientProps) {
-  const [activeTab, setActiveTab] = useState<'about' | 'writings' | 'projects' | 'finds'>('about');
+  const router = useRouter()
+  const pathname = usePathname()
+  const [activeTab, setActiveTab] = useState<'about' | 'writings' | 'projects' | 'finds'>('about')
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+    const tab = getTabFromUrl()
+    setActiveTab(tab)
+  }, [])
+
+  useEffect(() => {
+    if (!isMounted) return
+    const handlePopState = () => {
+      const tab = getTabFromUrl()
+      setActiveTab(tab)
+    }
+    window.addEventListener('popstate', handlePopState)
+    return () => window.removeEventListener('popstate', handlePopState)
+  }, [isMounted])
+
+  const handleTabChange = (tab: 'about' | 'writings' | 'projects' | 'finds') => {
+    setActiveTab(tab)
+    const params = new URLSearchParams(window.location.search)
+    if (tab === 'about') {
+      params.delete('tab')
+    } else {
+      params.set('tab', tab)
+    }
+    const queryString = params.toString()
+    const newUrl = queryString ? `${pathname}?${queryString}` : pathname
+    router.push(newUrl, { scroll: false })
+  }
 
   return (
     <div className="h-fit max-w-2xl mx-auto">
@@ -53,7 +98,7 @@ export default function HomeClient({ writings }: HomeClientProps) {
         </section>
 
         <section>
-          <ContentMenu activeTab={activeTab} onTabChange={setActiveTab} />
+          <ContentMenu activeTab={activeTab} onTabChange={handleTabChange} />
           
           <AnimatePresence mode="wait">
             <motion.div
