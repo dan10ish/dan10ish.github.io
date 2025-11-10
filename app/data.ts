@@ -11,6 +11,11 @@ export const personalInfo = {
   }
 };
 
+export const experience = [
+  { company: "Innovatio Labs", title: "Project Manager", current: true },
+  { company: "Accelus Robotics", title: "Robotics Engineer Intern", current: false }
+];
+
 export const projects = [
   {
     name: "AlgoSim",

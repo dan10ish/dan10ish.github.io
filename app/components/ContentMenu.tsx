@@ -3,13 +3,27 @@
 import { motion } from 'framer-motion'
 
 interface ContentMenuProps {
-  activeTab: 'writings' | 'projects' | 'finds'
-  onTabChange: (tab: 'writings' | 'projects' | 'finds') => void
+  activeTab: 'about' | 'writings' | 'projects' | 'finds'
+  onTabChange: (tab: 'about' | 'writings' | 'projects' | 'finds') => void
 }
 
 export default function ContentMenu({ activeTab, onTabChange }: ContentMenuProps) {
   return (
     <div className="!flex !gap-1 !md:gap-4 !-ml-2 !mb-4 !relative">
+      <h1
+        onClick={() => onTabChange('about')}
+        className="relative !text-base !cursor-pointer !transition-opacity !text-[0.9rem] !px-2 !py-1 !rounded-md !z-10"
+        style={{ opacity: activeTab === 'about' ? 1 : 0.7 }}
+      >
+        {activeTab === 'about' && (
+          <motion.div
+            layoutId="activeTab"
+            className="absolute !inset-0 !bg-[var(--code-bg)] !rounded-md !-z-10"
+            transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+          />
+        )}
+        About
+      </h1>
       <h1
         onClick={() => onTabChange('writings')}
         className="relative !text-base !cursor-pointer !transition-opacity !text-[0.9rem] !px-2 !py-1 !rounded-md !z-10"

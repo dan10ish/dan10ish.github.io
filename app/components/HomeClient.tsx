@@ -8,6 +8,7 @@ import Projects from "./Projects";
 import WritingsCarousel from "./WritingsCarousel";
 import ContentMenu from "./ContentMenu";
 import Finds from "./Finds";
+import About from "./About";
 
 interface Writing {
   slug: string;
@@ -31,29 +32,7 @@ interface HomeClientProps {
 }
 
 export default function HomeClient({ writings }: HomeClientProps) {
-  const [activeTab, setActiveTab] = useState<'writings' | 'projects' | 'finds'>('writings');
-
-  const formatSkillsList = (skills: string[]) => {
-    if (skills.length === 0) return null;
-    if (skills.length === 1) return <strong>{skills[0].toLowerCase()}</strong>;
-    if (skills.length === 2) return (
-      <>
-        <strong>{skills[0].toLowerCase()}</strong> and <strong>{skills[1].toLowerCase()}</strong>
-      </>
-    );
-    
-    return (
-      <>
-        {skills.slice(0, -1).map((skill, index) => (
-          <span key={index}>
-            <strong>{skill.toLowerCase()}</strong>
-            {index < skills.length - 2 ? ', ' : ' and '}
-          </span>
-        ))}
-        <strong>{skills[skills.length - 1].toLowerCase()}</strong>
-      </>
-    );
-  };
+  const [activeTab, setActiveTab] = useState<'about' | 'writings' | 'projects' | 'finds'>('about');
 
   return (
     <div className="h-fit max-w-2xl mx-auto">
@@ -74,10 +53,6 @@ export default function HomeClient({ writings }: HomeClientProps) {
         </section>
 
         <section>
-          <p className="text-base">{personalInfo.about}, interested in {formatSkillsList(personalInfo.skills)}.</p>
-        </section>
-
-        <section>
           <ContentMenu activeTab={activeTab} onTabChange={setActiveTab} />
           
           <AnimatePresence mode="wait">
@@ -88,6 +63,7 @@ export default function HomeClient({ writings }: HomeClientProps) {
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.2 }}
             >
+              {activeTab === 'about' && <About />}
               {activeTab === 'writings' && <WritingsCarousel writings={writings} />}
               {activeTab === 'projects' && <Projects projects={projects} />}
               {activeTab === 'finds' && <Finds />}
