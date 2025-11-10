@@ -61,16 +61,12 @@ const socialLinks = [
   },
 ] as const
 
-const iconButtonClass =
-  'flex! items-center! justify-center! text-secondary! m-0! p-0!'
-
 export default function Home() {
   return (
-    <>
+    <div className='max-w-4xl!'>
       <Menu page="home" />
-      <div className="flex! w-full! max-w-4xl! flex-col! items-center! justify-center! max-h-[90dvh]!">
-        <Card />
-        <div className="flex! flex-wrap! items-center! justify-center! gap-3! mt-0!">
+      <div className="relative! top-2! flex! items-center! justify-between! z-40!">
+        <div className="flex! items-center! gap-2!">
           {socialLinks.map(({ id, href, icon, label }) => (
             <Link
               key={id}
@@ -78,7 +74,7 @@ export default function Home() {
               aria-label={label}
               target={href.startsWith('http') ? '_blank' : undefined}
               rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className={iconButtonClass}
+              className="flex! items-center! justify-center! text-secondary! hover:text-(--link-blue)! transition-colors!"
             >
               {icon}
             </Link>
@@ -86,11 +82,14 @@ export default function Home() {
         </div>
         <Link 
           href="/finds"
-          className="mt-6! mb-8! px-4! py-2! text-sm! text-secondary! hover:text-(--link-blue)! transition-colors! border! border-(--border)! rounded-lg! hover:border-(--link-blue)!"
+          className="px-3! py-1.5! text-xs! text-secondary! hover:text-(--link-blue)! transition-colors! rounded! hover:opacity-80! bg-(--border)!"
         >
           Finds
         </Link>
       </div>
-    </>
+      <div className="flex! w-full! max-w-4xl! flex-col! items-center! justify-center! max-h-[90dvh]!">
+        <Card />
+      </div>
+    </div>
   )
 }
