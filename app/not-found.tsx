@@ -1,7 +1,8 @@
 import Link from 'next/link'
-import { ArrowLeft, Github, Mail, Instagram } from 'lucide-react'
+import { Github, Mail, Instagram } from 'lucide-react'
 import { personalInfo } from './data'
 import Menu from './components/Menu'
+import AnimatedButton from './components/AnimatedButton'
 
 const XIcon = (props: any) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -26,14 +27,13 @@ export default function NotFound() {
     <>
       <Menu page="error" />
       <div className="fixed inset-0 flex items-center justify-center">
-        <div className="text-center space-y-4">
+        <div className="text-center space-y-6">
         <h1 className="text-base font-bold">404</h1>
         <p className="text-base opacity-70">Page not found</p>
-        <Link href="/" className="inline-flex items-center gap-2 mt-6 bg-(--code-bg) px-2! py-1! rounded-md mb-6!" aria-label="Go back to home page">
-          <ArrowLeft size={16} />
-          <span>Back to Home</span>
-        </Link>
-        <div className="flex items-center gap-2 justify-center">
+        <div className="flex justify-center pt-8! pb-8!">
+          <AnimatedButton href="/">Home</AnimatedButton>
+        </div>
+        <div className="flex items-center gap-2 justify-center pt-4">
           <Link href={`https://github.com/${personalInfo.socials.github}`} target="_blank" className="flex items-center justify-center" aria-label="GitHub">
             <Github size={20} />
           </Link>
