@@ -11,6 +11,7 @@
     font-family: "Garamond Classico SC", "EB Garamond", "Garamond",
         "Apple Garamond", Baskerville, "Times New Roman", serif;
     --card-scale: 0.6;
+    --card-layout-scale: 1;
 }
 
 :global(*) {
@@ -63,15 +64,15 @@
 }
 
 .card {
-    width: 480px;
-    height: calc(480px * 452 / 800);
-    padding: 24px 28px;
+    width: calc(480px * var(--card-layout-scale));
+    height: calc((480px * var(--card-layout-scale)) * 452 / 800);
+    padding: calc(24px * var(--card-layout-scale)) calc(28px * var(--card-layout-scale));
     position: relative;
     background: radial-gradient(circle at 20% 15%,
             rgba(255, 255, 255, 0.76),
             rgba(249, 247, 236, 0.79) 42%,
             #f7f6ed);
-    border: 1.5px solid rgba(84, 78, 68, 0.2);
+    border: calc(1.5px * var(--card-layout-scale)) solid rgba(84, 78, 68, 0.2);
     box-shadow: 0 16px 42px rgba(47, 43, 37, 0.16),
         0 8px 18px rgba(47, 43, 37, 0.14);
     transform-style: preserve-3d;
@@ -287,4 +288,25 @@
     font-size: 13px;
     letter-spacing: 0.03em;
     font-variant: small-caps;
+}
+
+@media (max-width: 640px) {
+    :global(:root) {
+        --card-scale: 0.5;
+        --card-layout-scale: 0.833333;
+    }
+}
+
+@media (max-width: 480px) {
+    :global(:root) {
+        --card-scale: 0.44;
+        --card-layout-scale: 0.733333;
+    }
+}
+
+@media (max-width: 380px) {
+    :global(:root) {
+        --card-scale: 0.38;
+        --card-layout-scale: 0.633333;
+    }
 }
