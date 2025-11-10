@@ -163,7 +163,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: calc(10px * var(--card-scale));
+    gap: calc(0px * var(--card-scale));
     letter-spacing: 0;
     color: rgba(32, 29, 25, 0.85);
     position: absolute;
@@ -222,6 +222,7 @@
 }
 
 .card__bottom-address {
+    font-size: calc(26px * var(--card-scale));
     letter-spacing: -0.04em;
     word-spacing: -0.05em;
 }

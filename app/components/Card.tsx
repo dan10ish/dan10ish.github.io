@@ -90,7 +90,6 @@ export default function Card() {
           return loaded
         })
       } catch {
-        /* FontFace may not be supported */
       }
     }
   }, [])
