@@ -63,7 +63,7 @@ const socialLinks = [
 
 export default function Home() {
   return (
-    <div className='max-w-4xl!'>
+    <>
       <Menu page="home" />
       <div className="relative! top-2! flex! items-center! justify-between! z-40!">
         <div className="flex! items-center! gap-2!">
@@ -90,6 +90,6 @@ export default function Home() {
       <div className="flex! w-full! max-w-4xl! flex-col! items-center! justify-center! max-h-[90dvh]!">
         <Card />
       </div>
-    </div>
+    </>
   )
 }

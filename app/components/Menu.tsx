@@ -35,7 +35,7 @@ export default function Menu({ page = 'home', activeTab }: MenuProps) {
   }
 
   return (
-    <div className="fixed bottom-7 right-5 flex flex-col items-center space-y-4 z-50">
+    <div className="fixed bottom-7 right-5 flex flex-col items-center space-y-4! z-50">
       {showScrollButton && (
         <button
           onClick={scrollToTop}
