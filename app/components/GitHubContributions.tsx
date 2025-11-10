@@ -1,248 +1,273 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { useTheme } from 'next-themes'
+
+interface ContributionDay {
+  date: string
+  count: number
+  level: number
+}
+
+interface ContributionWeek {
+  days: ContributionDay[]
+}
 
 interface GitHubData {
   contributions: any[]
   totalContributions: number
 }
 
-interface GitHubContributionsProps {
+interface Props {
   githubData: GitHubData | null
 }
 
-const getContribColor = (count: number, maxCount: number, isDark: boolean): string => {
-  if (count === 0) return isDark ? '#161b22' : '#ebedf0'
-  
-  const intensity = count / maxCount
-  if (isDark) {
-    if (intensity <= 0.25) return '#0e4429'
-    if (intensity <= 0.5) return '#006d32'
-    if (intensity <= 0.75) return '#26a641'
-    return '#39d353'
-  } else {
-    if (intensity <= 0.25) return '#9be9a8'
-    if (intensity <= 0.5) return '#40c463'
-    if (intensity <= 0.75) return '#30a14e'
-    return '#216e39'
-  }
-}
-
-const formatDate = (dateStr: string): string => {
-  if (!dateStr) return ''
-  const date = new Date(dateStr)
-  const options: Intl.DateTimeFormatOptions = { month: 'short', day: 'numeric', year: 'numeric' }
-  return date.toLocaleDateString('en-US', options)
-}
-
-export default function GitHubContributions({ githubData }: GitHubContributionsProps) {
-  const [hoveredDay, setHoveredDay] = useState<{ date: string; count: number; x: number; y: number } | null>(null)
-  const [visibleWeeks, setVisibleWeeks] = useState(52)
+export default function GitHubContributions({ githubData }: Props) {
+  const [contributions, setContributions] = useState<ContributionWeek[]>([])
+  const [visibleWeeks, setVisibleWeeks] = useState<ContributionWeek[]>([])
+  const [tooltip, setTooltip] = useState<{ date: string; x: number; y: number; showBelow: boolean } | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
-  const { resolvedTheme } = useTheme()
-  const isDark = resolvedTheme === 'dark' || resolvedTheme === 'solarized'
-
-  if (!githubData || !githubData.contributions || githubData.contributions.length === 0) {
-    return null
-  }
-
-  const contributions = githubData.contributions
-  
-  let weeks: any[] = []
-  let allDays: any[] = []
-
-  if (contributions.length > 0 && contributions[0].days) {
-    weeks = contributions.slice(-52)
-    allDays = contributions.flatMap((week: any) => week.days || [])
-  } else if (contributions.length > 0 && contributions[0].count !== undefined) {
-    const sortedContributions = [...contributions].sort((a: any, b: any) => {
-      const dateA = new Date(a.date || a.day || 0).getTime()
-      const dateB = new Date(b.date || b.day || 0).getTime()
-      return dateA - dateB
-    })
-    
-    const lastYearContributions = sortedContributions.slice(-365)
-    allDays = lastYearContributions
-    
-    for (let i = 0; i < lastYearContributions.length; i += 7) {
-      weeks.push({
-        days: lastYearContributions.slice(i, i + 7)
-      })
-    }
-  }
-
-  if (allDays.length === 0) {
-    return null
-  }
-
-  const maxContributions = Math.max(...allDays.map((day: any) => day.count || day.contributionCount || 0), 1)
+  const tooltipTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const isTouchActiveRef = useRef(false)
 
   useEffect(() => {
-    const calculateVisibleWeeks = () => {
-      if (!containerRef.current || typeof window === 'undefined') return
-      
-      const containerWidth = containerRef.current.offsetWidth
-      const squareSize = 11
-      const gap = 3
-      const weekWidth = squareSize + gap
-      const maxWeeks = Math.floor((containerWidth + gap) / weekWidth)
-      
-      setVisibleWeeks(Math.min(Math.max(maxWeeks, 1), 52))
-    }
-
-    const timeoutId = setTimeout(() => {
-      calculateVisibleWeeks()
-    }, 100)
-
-    window.addEventListener('resize', calculateVisibleWeeks)
-    return () => {
-      clearTimeout(timeoutId)
-      window.removeEventListener('resize', calculateVisibleWeeks)
+    if (githubData?.contributions) {
+      processContributions(githubData.contributions)
     }
   }, [githubData])
 
-  const handleMouseEnter = (day: any, event: React.MouseEvent<HTMLDivElement> | React.FocusEvent<HTMLDivElement>) => {
-    if (!containerRef.current) return
+  useEffect(() => {
+    const updateVisibleWeeks = () => {
+      if (!containerRef.current || contributions.length === 0) return
+      
+      const containerWidth = containerRef.current.offsetWidth
+      const squareSize = 10
+      const gap = 2
+      const maxWeeks = Math.floor((containerWidth + gap) / (squareSize + gap))
+      
+      const weeksToShow = contributions.slice(-maxWeeks)
+      setVisibleWeeks(weeksToShow)
+    }
+
+    updateVisibleWeeks()
+    window.addEventListener('resize', updateVisibleWeeks)
     
-    const rect = event.currentTarget.getBoundingClientRect()
-    const containerRect = containerRef.current.getBoundingClientRect()
-    const count = day.count || day.contributionCount || 0
-    const date = day.date || day.day || ''
+    return () => window.removeEventListener('resize', updateVisibleWeeks)
+  }, [contributions])
+
+  const processContributions = (allContribs: any[]) => {
+    const firstDate = new Date(allContribs[0].date)
+    const startDay = firstDate.getDay()
     
-    const tooltipWidth = 150
-    const tooltipHeight = 60
-    let tooltipX = rect.left + rect.width / 2
-    let tooltipY = rect.top
+    const weeks: ContributionWeek[] = []
+    let currentWeek: ContributionDay[] = []
     
-    const relativeX = tooltipX - containerRect.left
-    const relativeY = tooltipY - containerRect.top
-    
-    let finalX = relativeX
-    let finalY = relativeY
-    
-    if (relativeX - tooltipWidth / 2 < 0) {
-      finalX = tooltipWidth / 2
-    } else if (relativeX + tooltipWidth / 2 > containerRect.width) {
-      finalX = containerRect.width - tooltipWidth / 2
+    for (let i = 0; i < startDay; i++) {
+      currentWeek.push({
+        date: '',
+        count: 0,
+        level: 0
+      })
     }
     
-    if (relativeY - tooltipHeight < 0) {
-      finalY = relativeY + rect.height + 10
-    } else {
-      finalY = relativeY - tooltipHeight - 5
-    }
-    
-    setHoveredDay({
-      date,
-      count,
-      x: finalX,
-      y: finalY
+    allContribs.forEach((contrib: any) => {
+      const level = getLevelFromCount(contrib.count)
+      currentWeek.push({
+        date: contrib.date,
+        count: contrib.count,
+        level
+      })
+      
+      if (currentWeek.length === 7) {
+        weeks.push({ days: [...currentWeek] })
+        currentWeek = []
+      }
     })
+    
+    if (currentWeek.length > 0) {
+      while (currentWeek.length < 7) {
+        currentWeek.push({
+          date: '',
+          count: 0,
+          level: 0
+        })
+      }
+      weeks.push({ days: currentWeek })
+    }
+    
+    setContributions(weeks)
+  }
+
+  const getLevelFromCount = (count: number): number => {
+    if (count === 0) return 0
+    if (count <= 3) return 1
+    if (count <= 6) return 2
+    if (count <= 9) return 3
+    return 4
+  }
+
+  const getColorForLevel = (level: number): string => {
+    const colors = {
+      0: 'var(--github-level-0)',
+      1: 'var(--github-level-1)',
+      2: 'var(--github-level-2)',
+      3: 'var(--github-level-3)',
+      4: 'var(--github-level-4)',
+    }
+    return colors[level as keyof typeof colors] || colors[0]
+  }
+
+  const formatDateCustom = (dateString: string): string => {
+    const date = new Date(dateString)
+    const day = date.getDate()
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    const month = months[date.getMonth()]
+    const year = date.getFullYear()
+    return `${day} ${month}, ${year}`
+  }
+
+  const calculateTooltipPosition = (date: string, rect: DOMRect) => {
+    const containerRect = containerRef.current?.getBoundingClientRect()
+    if (!containerRect) return null
+
+    const tooltipWidth = 100
+    const tooltipHeight = 28
+    let x = rect.left - containerRect.left + rect.width / 2
+    const y = rect.top - containerRect.top
+    
+    if (x - tooltipWidth / 2 < 0) {
+      x = tooltipWidth / 2
+    } else if (x + tooltipWidth / 2 > containerRect.width) {
+      x = containerRect.width - tooltipWidth / 2
+    }
+
+    const showBelow = y < tooltipHeight + 5
+
+    return {
+      date,
+      x,
+      y,
+      showBelow
+    }
+  }
+
+  const handleMouseEnter = (date: string, event: React.MouseEvent<HTMLDivElement>) => {
+    if (isTouchActiveRef.current) return
+    
+    if (tooltipTimeoutRef.current) {
+      clearTimeout(tooltipTimeoutRef.current)
+    }
+    const rect = event.currentTarget.getBoundingClientRect()
+    const position = calculateTooltipPosition(date, rect)
+    if (position) setTooltip(position)
   }
 
   const handleMouseLeave = () => {
-    setHoveredDay(null)
+    if (isTouchActiveRef.current) return
+    setTooltip(null)
+  }
+
+  const handleTouch = (date: string, event: React.TouchEvent<HTMLDivElement>) => {
+    event.preventDefault()
+    isTouchActiveRef.current = true
+    
+    if (tooltipTimeoutRef.current) {
+      clearTimeout(tooltipTimeoutRef.current)
+    }
+    
+    const rect = event.currentTarget.getBoundingClientRect()
+    const position = calculateTooltipPosition(date, rect)
+    if (position) {
+      setTooltip(position)
+      tooltipTimeoutRef.current = setTimeout(() => {
+        setTooltip(null)
+        isTouchActiveRef.current = false
+      }, 700)
+    }
+  }
+
+  useEffect(() => {
+    return () => {
+      if (tooltipTimeoutRef.current) {
+        clearTimeout(tooltipTimeoutRef.current)
+      }
+    }
+  }, [])
+
+  if (!githubData) {
+    return (
+      <div className="w-full! h-32! flex! items-center! justify-center! select-none!">
+        <div className="w-4! h-4! border-2! border-(--secondary)! border-t-transparent! rounded-full! animate-spin!" />
+      </div>
+    )
   }
 
   return (
-    <div className="mt-6! relative!">
-      <p className="text-base mb-4!">
-        <strong>{githubData.totalContributions.toLocaleString()}</strong> contributions in the last year
-      </p>
-      <div ref={containerRef} className="flex! gap-[3px]! pb-2!">
-        {weeks.slice(-visibleWeeks).map((week: any, weekIndex: number) => (
-          <div key={weekIndex} className="flex! flex-col! gap-[3px]! shrink-0!">
-            {(week.days || []).map((day: any, dayIndex: number) => {
-              const count = day.count || day.contributionCount || 0
-              const date = day.date || day.day || ''
-              const color = getContribColor(count, maxContributions, isDark)
-              
-              return (
-                <div
-                  key={dayIndex}
-                  className="w-[11px]! h-[11px]! rounded-xs! cursor-pointer! transition-all! duration-150! ease-out! hover:scale-125! hover:z-10! relative!"
-                  style={{
-                    backgroundColor: color,
-                    border: count > 0 ? (isDark ? `1px solid rgba(255, 255, 255, 0.1)` : `1px solid rgba(0, 0, 0, 0.1)`) : `1px solid ${color}`
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.border = 'none'
-                    handleMouseEnter(day, e)
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.border = count > 0 ? (isDark ? `1px solid rgba(255, 255, 255, 0.1)` : `1px solid rgba(0, 0, 0, 0.1)`) : `1px solid ${color}`
-                    handleMouseLeave()
-                  }}
-                  onFocus={(e) => handleMouseEnter(day, e)}
-                  onBlur={handleMouseLeave}
-                />
-              )
-            })}
-          </div>
-        ))}
+    <div className="w-full! mt-8! select-none!">
+      <div className="flex! items-baseline! justify-between! mb-3!">
+        <span className="text-[0.82rem]!">GitHub Activity</span>
+        <span className="text-secondary! text-[0.75rem]!">
+          {githubData.totalContributions} contributions
+        </span>
       </div>
-      
-      {hoveredDay && typeof window !== 'undefined' && containerRef.current && (
-        <div
-          className="absolute! z-50! rounded-md! px-3! py-2! shadow-lg! pointer-events-none!"
-          style={{
-            left: `${hoveredDay.x}px`,
-            top: `${hoveredDay.y}px`,
-            transform: 'translate(-50%, 0)',
-            backgroundColor: 'var(--code-bg)',
-            border: '1px solid var(--border)'
-          }}
+      <div ref={containerRef} className="w-full! overflow-hidden! relative!">
+        <div className="flex! gap-[2px]! justify-start!">
+          {visibleWeeks.map((week, weekIndex) => (
+            <div key={weekIndex} className="flex! flex-col! gap-[2px]!">
+              {week.days.map((day, dayIndex) => (
+                day.date ? (
+                  <div
+                    key={`${weekIndex}-${dayIndex}`}
+                    className="w-[10px]! h-[10px]! rounded-[2px]! transition-all! duration-200! hover:ring-1! hover:ring-(--github-level-4)! hover:scale-110! cursor-pointer!"
+                    style={{ backgroundColor: getColorForLevel(day.level) }}
+                    onMouseEnter={(e) => handleMouseEnter(day.date, e)}
+                    onMouseLeave={handleMouseLeave}
+                    onTouchStart={(e) => handleTouch(day.date, e)}
+                  />
+                ) : (
+                  <div
+                    key={`${weekIndex}-${dayIndex}`}
+                    className="w-[10px]! h-[10px]!"
+                  />
+                )
+              ))}
+            </div>
+          ))}
+        </div>
+        {tooltip && (
+          <div
+            className="absolute! bg-(--code-bg)! text-(--foreground)! text-[0.75rem]! px-2! py-1! rounded! pointer-events-none! whitespace-nowrap! z-10! shadow-sm!"
+            style={{
+              left: `${tooltip.x}px`,
+              top: tooltip.showBelow ? `${tooltip.y + 18}px` : `${tooltip.y - 28}px`,
+              transform: 'translateX(-50%)'
+            }}
+          >
+            {formatDateCustom(tooltip.date)}
+          </div>
+        )}
+      </div>
+      <div className="flex! items-center! justify-between! mt-3! text-[0.75rem]! text-secondary!">
+        <div className="flex! items-center! gap-2!">
+          <span className="text-[0.75rem]!">Less</span>
+          <div className="flex! gap-[2px]!">
+            {[0, 1, 2, 3, 4].map((level) => (
+              <div
+                key={level}
+                className="w-[10px]! h-[10px]! rounded-[2px]!"
+                style={{ backgroundColor: getColorForLevel(level) }}
+              />
+            ))}
+          </div>
+          <span className="text-[0.75rem]!">More</span>
+        </div>
+        <a
+          href="https://github.com/dan10ish"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-(--link-blue)!"
         >
-          <div className="text-xs! whitespace-nowrap! font-medium!" style={{ color: 'var(--foreground)' }}>
-            <strong>{hoveredDay.count}</strong> {hoveredDay.count === 1 ? 'contribution' : 'contributions'}
-          </div>
-          <div className="text-xs! mt-1!" style={{ color: 'var(--secondary)' }}>
-            {formatDate(hoveredDay.date) || 'No date'}
-          </div>
-        </div>
-      )}
-      
-      <div className="flex! items-center! gap-2! mt-4! text-xs!" style={{ color: 'var(--secondary)' }}>
-        <span>Less</span>
-        <div className="flex! gap-[3px]!">
-          <div 
-            className="w-[11px]! h-[11px]! rounded-sm!" 
-            style={{ 
-              backgroundColor: isDark ? '#161b22' : '#ebedf0', 
-              border: `1px solid ${isDark ? '#161b22' : '#ebedf0'}` 
-            }} 
-          />
-          <div 
-            className="w-[11px]! h-[11px]! rounded-sm!" 
-            style={{ 
-              backgroundColor: isDark ? '#0e4429' : '#9be9a8', 
-              border: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.1)' 
-            }} 
-          />
-          <div 
-            className="w-[11px]! h-[11px]! rounded-sm!" 
-            style={{ 
-              backgroundColor: isDark ? '#006d32' : '#40c463', 
-              border: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.1)' 
-            }} 
-          />
-          <div 
-            className="w-[11px]! h-[11px]! rounded-sm!" 
-            style={{ 
-              backgroundColor: isDark ? '#26a641' : '#30a14e', 
-              border: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.1)' 
-            }} 
-          />
-          <div 
-            className="w-[11px]! h-[11px]! rounded-sm!" 
-            style={{ 
-              backgroundColor: isDark ? '#39d353' : '#216e39', 
-              border: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.1)' 
-            }} 
-          />
-        </div>
-        <span>More</span>
+          @dan10ish
+        </a>
       </div>
     </div>
   )
