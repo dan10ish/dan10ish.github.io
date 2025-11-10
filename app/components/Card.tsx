@@ -15,7 +15,7 @@ const config = {
 
 const FONT_FAMILY =
   '"Garamond Classico SC", "EB Garamond", "Garamond", "Apple Garamond", Baskerville, "Times New Roman", serif'
-const FONT_URL = '/fonts/Garamond%20Classico%20SC.woff'
+const FONT_URL = 'https://card.jgoon.com/Garamond%20Classico%20SC.ttf'
 
 export default function Card() {
   const sceneRef = useRef<HTMLDivElement>(null)
@@ -59,40 +59,7 @@ export default function Card() {
     applyTransform(rect.left + rect.width / 2, rect.top + rect.height / 2)
   }, [applyTransform])
 
-  useEffect(() => {
-    if (typeof window === 'undefined') return
-
-    const preloadId = 'card-garamond-preload'
-
-    if (!document.getElementById(preloadId)) {
-      const preload = document.createElement('link')
-      preload.id = preloadId
-      preload.rel = 'preload'
-      preload.href = FONT_URL
-      preload.as = 'font'
-      preload.type = 'font/woff'
-      preload.crossOrigin = 'anonymous'
-      document.head.appendChild(preload)
-    }
-
-    if ('fonts' in document) {
-      try {
-        const fontFace = new FontFace('Garamond Classico SC', `url("${FONT_URL}")`, {
-          style: 'normal',
-          weight: '400',
-          display: 'swap',
-        })
-        fontFace.load().then((loaded) => {
-          const fontSet = (document as any).fonts
-          if (fontSet && typeof fontSet.add === 'function') {
-            fontSet.add(loaded)
-          }
-          return loaded
-        })
-      } catch {
-      }
-    }
-  }, [])
+  // rely on static @font-face and head preload
 
   useEffect(() => {
     const scene = sceneRef.current

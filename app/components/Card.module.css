@@ -1,6 +1,6 @@
 @font-face {
     font-family: "Garamond Classico SC";
-    src: url("/fonts/Garamond%20Classico%20SC.woff") format("woff");
+    src: url("https://card.jgoon.com/Garamond%20Classico%20SC.ttf") format("truetype");
     font-weight: 400;
     font-style: normal;
     font-display: swap;
