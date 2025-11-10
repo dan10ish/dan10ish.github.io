@@ -85,7 +85,6 @@ export default function WritingsCarousel({ writings }: WritingsCarouselProps) {
 
   return (
     <section className="relative !mb-6">
-      <h1 className="text-base opacity-70 !mb-4">Writings</h1>
 
       <div
         className="relative overflow-hidden carousel-responsive"

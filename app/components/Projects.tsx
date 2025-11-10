@@ -51,7 +51,6 @@ export default function Projects({ projects }: ProjectsProps) {
     <>
       <section>
         <div className="!flex !items-center !justify-between !mb-4">
-          <h1 className="!text-base !opacity-70">Projects</h1>
           {activeTag && (
             <button
               onClick={() => setActiveTag(null)}
