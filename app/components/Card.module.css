@@ -302,11 +302,17 @@
         --card-scale: 0.44;
         --card-layout-scale: 0.733333;
     }
+    .card__bottom-address {
+        font-size: calc(24px * var(--card-scale));
+    }
 }
 
 @media (max-width: 380px) {
     :global(:root) {
         --card-scale: 0.38;
         --card-layout-scale: 0.633333;
+    }
+    .card__bottom-address {
+        font-size: calc(24px * var(--card-scale));
     }
 }
