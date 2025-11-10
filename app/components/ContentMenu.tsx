@@ -9,63 +9,24 @@ interface ContentMenuProps {
 
 export default function ContentMenu({ activeTab, onTabChange }: ContentMenuProps) {
   return (
-    <div className="!flex !gap-1 !md:gap-4 !-ml-2 !mb-4 !relative">
-      <h1
-        onClick={() => onTabChange('about')}
-        className="relative !text-base !cursor-pointer !transition-opacity !text-[0.9rem] !px-2 !py-1 !rounded-md !z-10"
-        style={{ opacity: activeTab === 'about' ? 1 : 0.7 }}
-      >
-        {activeTab === 'about' && (
-          <motion.div
-            layoutId="activeTab"
-            className="absolute !inset-0 !bg-[var(--code-bg)] !rounded-md !-z-10"
-            transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-          />
-        )}
-        About
-      </h1>
-      <h1
-        onClick={() => onTabChange('writings')}
-        className="relative !text-base !cursor-pointer !transition-opacity !text-[0.9rem] !px-2 !py-1 !rounded-md !z-10"
-        style={{ opacity: activeTab === 'writings' ? 1 : 0.7 }}
-      >
-        {activeTab === 'writings' && (
-          <motion.div
-            layoutId="activeTab"
-            className="absolute !inset-0 !bg-[var(--code-bg)] !rounded-md !-z-10"
-            transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-          />
-        )}
-        Writings
-      </h1>
-      <h1
-        onClick={() => onTabChange('projects')}
-        className="relative !text-base !cursor-pointer !transition-opacity !text-[0.9rem] !px-2 !py-1 !rounded-md !z-10"
-        style={{ opacity: activeTab === 'projects' ? 1 : 0.7 }}
-      >
-        {activeTab === 'projects' && (
-          <motion.div
-            layoutId="activeTab"
-            className="absolute !inset-0 !bg-[var(--code-bg)] !rounded-md !-z-10"
-            transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-          />
-        )}
-        Projects
-      </h1>
-      <h1
-        onClick={() => onTabChange('finds')}
-        className="relative !text-base !cursor-pointer !transition-opacity !text-[0.9rem] !px-2 !py-1 !rounded-md !z-10"
-        style={{ opacity: activeTab === 'finds' ? 1 : 0.7 }}
-      >
-        {activeTab === 'finds' && (
-          <motion.div
-            layoutId="activeTab"
-            className="absolute !inset-0 !bg-[var(--code-bg)] !rounded-md !-z-10"
-            transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-          />
-        )}
-        Finds
-      </h1>
+    <div className="flex! gap-1! md:gap-4! -ml-2! mb-4! relative!">
+      {(['about', 'writings', 'projects', 'finds'] as const).map((tab) => (
+        <h1
+          key={tab}
+          onClick={() => onTabChange(tab)}
+          className="relative! text-base! cursor-pointer! transition-opacity! text-[0.9rem]! px-2! py-1! rounded-md! z-10!"
+          style={{ opacity: activeTab === tab ? 1 : 0.7 }}
+        >
+          {activeTab === tab && (
+            <motion.div
+              layoutId="activeTab"
+              className="absolute! inset-0! bg-[var(--code-bg)]! rounded-md! -z-10!"
+              transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+            />
+          )}
+          {tab.charAt(0).toUpperCase() + tab.slice(1)}
+        </h1>
+      ))}
     </div>
   )
 }

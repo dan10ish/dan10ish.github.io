@@ -35,7 +35,7 @@ export default function Finds() {
     return (
       <section>
         <div className="w-full! flex! justify-center! py-8!">
-          <Loader2 className="w-6! h-6! animate-spin! text-secondary!" />
+          <Loader2 className="w-6! h-6! animate-spin!" style={{ color: 'var(--secondary)' }} />
         </div>
       </section>
     )
@@ -44,25 +44,25 @@ export default function Finds() {
   if (entries.length === 0) {
     return (
       <section>
-        <p className="text-base text-secondary">
+        <p className="text-base" style={{ color: 'var(--secondary)' }}>
           No entries yet. Start adding your finds!
         </p>
       </section>
     )
   }
 
+  const sortedEntries = [...entries].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+
   return (
     <>
       <div className="md:hidden!">
-        {[...entries]
-          .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-          .map((entry) => (
+        {sortedEntries.map((entry) => (
           <article
             key={entry.id}
             className="border-b! pb-6! mb-6! last:border-b-0! last:mb-0!"
             style={{ borderColor: 'var(--border)' }}
           >
-            <p className="text-secondary! !text-[0.82rem]! mb-3!">
+            <p className="text-[0.82rem]! mb-3!" style={{ color: 'var(--secondary)' }}>
               {formatDate(entry.date)}
             </p>
             <TILContent entry={entry} />
@@ -71,16 +71,13 @@ export default function Finds() {
       </div>
       <div className="hidden! md:grid! md:grid-cols-2! md:gap-6!">
         <div>
-          {[...entries]
-            .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-            .filter((_, idx) => idx % 2 === 0)
-            .map((entry) => (
+          {sortedEntries.filter((_, idx) => idx % 2 === 0).map((entry) => (
             <article
               key={entry.id}
               className="border-b! pb-6! mb-6! last:border-b-0! last:mb-0!"
               style={{ borderColor: 'var(--border)' }}
             >
-              <p className="text-secondary! !text-[0.82rem]! mb-3!">
+              <p className="text-[0.82rem]! mb-3!" style={{ color: 'var(--secondary)' }}>
                 {formatDate(entry.date)}
               </p>
               <TILContent entry={entry} />
@@ -88,16 +85,13 @@ export default function Finds() {
           ))}
         </div>
         <div>
-          {[...entries]
-            .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-            .filter((_, idx) => idx % 2 === 1)
-            .map((entry) => (
+          {sortedEntries.filter((_, idx) => idx % 2 === 1).map((entry) => (
             <article
               key={entry.id}
               className="border-b! pb-6! mb-6! last:border-b-0! last:mb-0!"
               style={{ borderColor: 'var(--border)' }}
             >
-              <p className="text-secondary! !text-[0.82rem]! mb-3!">
+              <p className="text-[0.82rem]! mb-3!" style={{ color: 'var(--secondary)' }}>
                 {formatDate(entry.date)}
               </p>
               <TILContent entry={entry} />

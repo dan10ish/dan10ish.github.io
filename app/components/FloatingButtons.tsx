@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useLayoutEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Home, ChevronUp, Sun, Moon, Palette } from 'lucide-react';
@@ -60,10 +60,11 @@ export default function FloatingButtons() {
     }
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const checkIfNotFound = () => {
-      const isNotFound = document.querySelector('main')?.classList.contains('fixed') && 
-                        document.querySelector('h1')?.textContent === '404';
+      const isNotFound = pathname === '/404' || 
+                        (document.querySelector('main')?.classList.contains('fixed') && 
+                         document.querySelector('h1')?.textContent === '404');
       setIsNotFoundPage(isNotFound || false);
     };
 
@@ -81,7 +82,7 @@ export default function FloatingButtons() {
   const isHomepage = pathname === '/';
 
   return (
-    <div className="fixed bottom-4 right-5 flex flex-col items-center !space-y-3 z-50">
+    <div className="fixed bottom-6 right-6 flex flex-col items-center !space-y-3 z-50">
         {isVisible && !isNotFoundPage && (
           <button
             onClick={scrollToTop}
@@ -116,15 +117,6 @@ export default function FloatingButtons() {
           <div className="w-5 h-5" />
         )}
       </button>
-        <style jsx>{`
-          @keyframes fade-in {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-          }
-          .animate-fade-in {
-            animation: fade-in 0.3s ease-out;
-          }
-        `}</style>
-      </div>
+    </div>
   );
 } 

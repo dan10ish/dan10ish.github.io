@@ -3,7 +3,6 @@
 import { Tweet } from 'react-tweet'
 import YT from 'react-youtube'
 import { Globe } from 'lucide-react'
-import './tweet.css'
 
 interface TILEntry {
   id: string
@@ -25,8 +24,8 @@ interface TILContentProps {
 
 function TwitterEmbed({ tweetId }: { tweetId: string }) {
   return (
-    <div className="tweet !w-full !max-w-[550px] !mx-auto">
-      <div className="!flex !justify-center">
+    <div className="tweet w-full! max-w-[550px]! mx-auto!">
+      <div className="flex! justify-center!">
         <Tweet id={tweetId} />
       </div>
     </div>
@@ -54,7 +53,7 @@ function YouTubeEmbed({ videoId }: { videoId: string }) {
   }
 
   return (
-    <div className="!w-full !max-w-[550px] !mx-auto !my-5">
+    <div className="w-full! max-w-[550px]! mx-auto! my-5!">
       <div className="yt-video-container">
         <YT 
           videoId={videoId} 
@@ -84,27 +83,27 @@ function LinkPreview({ url, metadata }: { url: string; metadata?: TILEntry['meta
   }
 
   return (
-    <div className="!w-full !max-w-[550px] !mx-auto">
+    <div className="w-full! max-w-[550px]! mx-auto!">
       <a
         href={url}
         target="_blank"
         rel="noopener noreferrer"
-        className="!block !w-full !border !rounded-lg hover:!opacity-80 !transition-opacity !p-4"
+        className="block! w-full! border! rounded-lg! hover:opacity-80! transition-opacity! p-4!"
         style={{ borderColor: 'var(--border)' }}
       >
-        <div className="!flex !items-center !justify-between !gap-3 !mb-3">
-          <h3 className="!text-base !font-semibold !flex-1">
+        <div className="flex! items-center! justify-between! gap-3! mb-3!">
+          <h3 className="text-base! font-semibold! flex-1!">
             {displayMetadata.title}
           </h3>
-          <Globe size={16} className="!text-secondary !flex-shrink-0" />
+          <Globe size={16} className="shrink-0!" style={{ color: 'var(--secondary)' }} />
         </div>
         {displayMetadata.author && (
-          <p className="!text-xs !text-secondary !mb-3">
+          <p className="text-xs! mb-3!" style={{ color: 'var(--secondary)' }}>
             by {displayMetadata.author}
           </p>
         )}
         {displayMetadata.description && (
-          <p className="!text-sm !text-secondary !opacity-70">
+          <p className="text-sm! opacity-70!" style={{ color: 'var(--secondary)' }}>
             {displayMetadata.description}
           </p>
         )}
@@ -115,27 +114,27 @@ function LinkPreview({ url, metadata }: { url: string; metadata?: TILEntry['meta
 
 function BookCard({ metadata }: { metadata?: TILEntry['metadata'] }) {
   return (
-    <div className="!w-full !border !rounded-lg !p-4 !flex !gap-4" style={{ borderColor: 'var(--border)' }}>
+    <div className="w-full! border! rounded-lg! p-4! flex! gap-4!" style={{ borderColor: 'var(--border)' }}>
       {metadata?.image && (
         <img
           src={metadata.image}
           alt={metadata.title || 'Book cover'}
-          className="!w-24 !h-32 !object-cover !rounded"
+          className="w-24! h-32! object-cover! rounded!"
         />
       )}
-      <div className="!flex-1">
+      <div className="flex-1!">
         {metadata?.title && (
-          <h3 className="!text-base !font-semibold !mb-1">
+          <h3 className="text-base! font-semibold! mb-1!">
             {metadata.title}
           </h3>
         )}
         {metadata?.author && (
-          <p className="!text-sm !text-secondary !mb-2">
+          <p className="text-sm! mb-2!" style={{ color: 'var(--secondary)' }}>
             by {metadata.author}
           </p>
         )}
         {metadata?.description && (
-          <p className="!text-sm !line-clamp-3">
+          <p className="text-sm! line-clamp-3!">
             {metadata.description}
           </p>
         )}
@@ -153,7 +152,7 @@ export default function TILContent({ entry }: TILContentProps) {
       return tweetId ? (
         <TwitterEmbed tweetId={tweetId} />
       ) : (
-        <p className="!text-sm">Invalid tweet URL</p>
+        <p className="text-sm!">Invalid tweet URL</p>
       )
 
     case 'youtube':
@@ -161,7 +160,7 @@ export default function TILContent({ entry }: TILContentProps) {
       return videoId ? (
         <YouTubeEmbed videoId={videoId} />
       ) : (
-        <p className="!text-sm">Invalid YouTube URL</p>
+        <p className="text-sm!">Invalid YouTube URL</p>
       )
 
     case 'link':
@@ -175,14 +174,14 @@ export default function TILContent({ entry }: TILContentProps) {
         <img
           src={content}
           alt="TIL image"
-          className="!w-full !rounded-lg"
+          className="w-full! rounded-lg!"
         />
       )
 
     case 'text':
     default:
       return (
-        <p className="!text-base !whitespace-pre-wrap">
+        <p className="text-base! whitespace-pre-wrap!">
           {content}
         </p>
       )

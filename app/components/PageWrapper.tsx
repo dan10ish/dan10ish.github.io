@@ -1,13 +1,19 @@
 "use client";
 
+import { motion } from "framer-motion";
+
 export const PageWrapper = ({
   children,
 }: Readonly<{ children: React.ReactNode }>) => {
   return (
-    <div className="flex flex-col">
-      <div className="flex-1">
-        {children}
-      </div>
-    </div>
+    <motion.div
+      className="flex flex-col flex-1"
+      initial={{ opacity: 0, scale: 0.99 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.99 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
+    >
+      {children}
+    </motion.div>
   );
 };

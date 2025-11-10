@@ -75,7 +75,7 @@ export default function VideoShowcase({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.15 }}
-      className="!fixed !z-[70] !flex !flex-col !items-center !justify-center !p-4"
+      className="fixed! z-[70]! flex! flex-col! items-center! justify-center! p-4!"
       style={{ 
         backgroundColor: 'var(--background)', 
         backdropFilter: 'blur(1px)',
@@ -90,26 +90,16 @@ export default function VideoShowcase({
       }}
       onClick={handleBackdropClick}
     >
-      <div className="!relative">
+      <div className="relative!">
         <motion.button
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.15 }}
           onClick={handleClose}
-          className="!absolute !right-0 !z-10 !text-[0.88em] !px-2 !py-0.5 !rounded-md !transition-transform !duration-0 !-top-12 sm:!-top-14"
+          className="absolute! right-0! z-10! text-[0.88em]! px-2! py-0.5! rounded-md! transition-transform! duration-0! -top-12! sm:-top-14! hover:scale-105!"
           style={{ 
             backgroundColor: 'var(--clear-filter-bg)', 
             color: 'var(--clear-filter-text)'
-          }}
-          onMouseEnter={(e) => {
-            if (window.matchMedia('(hover: hover)').matches) {
-              e.currentTarget.style.transform = 'scale(1.05)';
-            }
-          }}
-          onMouseLeave={(e) => {
-            if (window.matchMedia('(hover: hover)').matches) {
-              e.currentTarget.style.transform = 'scale(1)';
-            }
           }}
         >
           Close
@@ -120,7 +110,7 @@ export default function VideoShowcase({
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.96 }}
           transition={{ duration: 0.15 }}
-          className="!relative !aspect-square !rounded-lg !overflow-hidden !shadow-lg !w-[min(85vw,85vh,24rem)] md:!w-[min(75vw,75vh,28rem)] lg:!w-[min(70vw,70vh,32rem)]"
+          className="relative! aspect-square! rounded-lg! overflow-hidden! shadow-lg! w-[min(85vw,85vh,24rem)]! md:w-[min(75vw,75vh,28rem)]! lg:w-[min(70vw,70vh,32rem)]!"
           style={{
             backgroundColor: 'var(--code-bg)',
             borderColor: 'var(--glass-border)',
@@ -128,12 +118,12 @@ export default function VideoShowcase({
           }}
         >
           {isLoading && videoSrc && (
-            <div className="!absolute !inset-0 !flex !items-center !justify-center">
+            <div className="absolute! inset-0! flex! items-center! justify-center!">
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 1.2, repeat: Infinity, ease: "linear" }}
               >
-                <Loader2 size={28} className="!opacity-65" />
+                <Loader2 size={28} className="opacity-65!" />
               </motion.div>
             </div>
           )}
@@ -142,7 +132,7 @@ export default function VideoShowcase({
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="!absolute !inset-0 !flex !items-center !justify-center !text-xs !opacity-75"
+              className="absolute! inset-0! flex! items-center! justify-center! text-xs! opacity-75!"
             >
               No video available
             </motion.div>
@@ -150,7 +140,7 @@ export default function VideoShowcase({
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="!absolute !inset-0 !flex !items-center !justify-center !text-sm !opacity-65"
+              className="absolute! inset-0! flex! items-center! justify-center! text-sm! opacity-65!"
             >
               Video failed to load
             </motion.div>
@@ -158,7 +148,7 @@ export default function VideoShowcase({
             <video
               key={videoSrc}
               src={videoSrc}
-              className="!w-full !h-full !object-cover"
+              className="w-full! h-full! object-cover!"
               autoPlay
               loop
               muted
@@ -175,85 +165,37 @@ export default function VideoShowcase({
           )}
         </motion.div>
 
-        <div className="!flex !items-center !justify-between !px-0 !mt-8">
-          <div className="!text-xs !pointer-events-none" style={{ color: 'var(--secondary)' }}>
+        <div className="flex! items-center! justify-between! px-0! mt-8!">
+          <div className="text-xs! pointer-events-none!" style={{ color: 'var(--secondary)' }}>
             {projectName.toLowerCase()}
           </div>
-          <div className="!flex !items-center !gap-2">
+          <div className="flex! items-center! gap-2!">
             <button
-              className="action-button !flex !items-center !gap-1 !text-xs !px-3 !py-1.5 !rounded-md !bg-background/80 !backdrop-blur-md !border !shadow-lg !transition-all !duration-200"
+              className="flex! items-center! gap-1! text-xs! px-3! py-1.5! rounded-md! bg-background/80! backdrop-blur-md! border! shadow-lg! transition-all! duration-200! hover:scale-105! disabled:opacity-30! disabled:cursor-not-allowed! hover:bg-[var(--link-blue)]!"
               style={{
                 borderColor: 'var(--glass-border)',
                 color: 'var(--foreground)',
-                opacity: sourceCode ? '1' : '0.3',
-                cursor: sourceCode ? 'pointer' : 'not-allowed',
+                opacity: sourceCode ? 1 : 0.3,
                 pointerEvents: sourceCode ? 'auto' : 'none'
-              }}
-              onMouseEnter={(e) => {
-                if (sourceCode && window.matchMedia('(hover: hover)').matches) {
-                  e.currentTarget.style.backgroundColor = 'var(--link-blue)';
-                  e.currentTarget.style.transform = 'scale(1.05)';
-                  // Check if light mode
-                  const computedStyle = getComputedStyle(document.documentElement);
-                  const bgColor = computedStyle.getPropertyValue('--background').trim();
-                  if (bgColor === '#F7F7F7') {
-                    e.currentTarget.style.color = 'white';
-                    const svg = e.currentTarget.querySelector('svg');
-                    if (svg) svg.style.color = 'white';
-                  }
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (sourceCode && window.matchMedia('(hover: hover)').matches) {
-                  e.currentTarget.style.backgroundColor = '';
-                  e.currentTarget.style.transform = 'scale(1)';
-                  e.currentTarget.style.color = 'var(--foreground)';
-                  const svg = e.currentTarget.querySelector('svg');
-                  if (svg) svg.style.color = 'var(--foreground)';
-                }
               }}
               onClick={() => sourceCode && window.open(sourceCode, '_blank')}
               disabled={!sourceCode}
             >
-              <Github size={14} style={{ color: 'var(--foreground)' }} />
+              <Github size={14} />
               Source
             </button>
             <button
-              className="action-button !flex !items-center !gap-1 !text-xs !px-3 !py-1.5 !rounded-md !bg-background/80 !backdrop-blur-md !border !shadow-lg !transition-all !duration-200"
+              className="flex! items-center! gap-1! text-xs! px-3! py-1.5! rounded-md! bg-background/80! backdrop-blur-md! border! shadow-lg! transition-all! duration-200! hover:scale-105! disabled:opacity-30! disabled:cursor-not-allowed! hover:bg-[var(--link-blue)]!"
               style={{
                 borderColor: 'var(--glass-border)',
                 color: 'var(--foreground)',
-                opacity: liveDemo ? '1' : '0.3',
-                cursor: liveDemo ? 'pointer' : 'not-allowed',
+                opacity: liveDemo ? 1 : 0.3,
                 pointerEvents: liveDemo ? 'auto' : 'none'
-              }}
-              onMouseEnter={(e) => {
-                if (liveDemo && window.matchMedia('(hover: hover)').matches) {
-                  e.currentTarget.style.backgroundColor = 'var(--link-blue)';
-                  e.currentTarget.style.transform = 'scale(1.05)';
-                  // Check if light mode
-                  const computedStyle = getComputedStyle(document.documentElement);
-                  const bgColor = computedStyle.getPropertyValue('--background').trim();
-                  if (bgColor === '#F7F7F7') {
-                    e.currentTarget.style.color = 'white';
-                    const svg = e.currentTarget.querySelector('svg');
-                    if (svg) svg.style.color = 'white';
-                  }
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (liveDemo && window.matchMedia('(hover: hover)').matches) {
-                  e.currentTarget.style.backgroundColor = '';
-                  e.currentTarget.style.transform = 'scale(1)';
-                  e.currentTarget.style.color = 'var(--foreground)';
-                  const svg = e.currentTarget.querySelector('svg');
-                  if (svg) svg.style.color = 'var(--foreground)';
-                }
               }}
               onClick={() => liveDemo && window.open(liveDemo, '_blank')}
               disabled={!liveDemo}
             >
-              <Globe size={14} style={{ color: 'var(--foreground)' }} />
+              <Globe size={14} />
               Live
             </button>
           </div>

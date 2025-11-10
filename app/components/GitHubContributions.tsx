@@ -196,7 +196,10 @@ export default function GitHubContributions({ githubData }: Props) {
   if (!githubData) {
     return (
       <div className="w-full! h-32! flex! items-center! justify-center! select-none!">
-        <div className="w-4! h-4! border-2! border-(--secondary)! border-t-transparent! rounded-full! animate-spin!" />
+        <div 
+          className="w-4! h-4! border-2! border-t-transparent! rounded-full! animate-spin!" 
+          style={{ borderColor: 'var(--secondary)' }}
+        />
       </div>
     )
   }
@@ -205,7 +208,7 @@ export default function GitHubContributions({ githubData }: Props) {
     <div className="w-full! mt-8! select-none!">
       <div className="flex! items-baseline! justify-between! mb-3!">
         <span className="text-[0.82rem]!">GitHub Activity</span>
-        <span className="text-secondary! text-[0.75rem]!">
+        <span className="text-[0.75rem]!" style={{ color: 'var(--secondary)' }}>
           {githubData.totalContributions} contributions
         </span>
       </div>
@@ -217,8 +220,11 @@ export default function GitHubContributions({ githubData }: Props) {
                 day.date ? (
                   <div
                     key={`${weekIndex}-${dayIndex}`}
-                    className="w-[10px]! h-[10px]! rounded-[2px]! transition-all! duration-200! hover:ring-1! hover:ring-(--github-level-4)! hover:scale-110! cursor-pointer!"
-                    style={{ backgroundColor: getColorForLevel(day.level) }}
+                    className="w-[10px]! h-[10px]! rounded-[2px]! transition-all! duration-200! hover:scale-110! cursor-pointer!"
+                    style={{ 
+                      backgroundColor: getColorForLevel(day.level),
+                      border: 'none'
+                    }}
                     onMouseEnter={(e) => handleMouseEnter(day.date, e)}
                     onMouseLeave={handleMouseLeave}
                     onTouchStart={(e) => handleTouch(day.date, e)}
@@ -235,18 +241,20 @@ export default function GitHubContributions({ githubData }: Props) {
         </div>
         {tooltip && (
           <div
-            className="absolute! bg-(--code-bg)! text-(--foreground)! text-[0.75rem]! px-2! py-1! rounded! pointer-events-none! whitespace-nowrap! z-10! shadow-sm!"
+            className="absolute! text-[0.75rem]! px-2! py-1! rounded! pointer-events-none! whitespace-nowrap! z-10! shadow-sm!"
             style={{
               left: `${tooltip.x}px`,
               top: tooltip.showBelow ? `${tooltip.y + 18}px` : `${tooltip.y - 28}px`,
-              transform: 'translateX(-50%)'
+              transform: 'translateX(-50%)',
+              backgroundColor: 'var(--code-bg)',
+              color: 'var(--foreground)'
             }}
           >
             {formatDateCustom(tooltip.date)}
           </div>
         )}
       </div>
-      <div className="flex! items-center! justify-between! mt-3! text-[0.75rem]! text-secondary!">
+      <div className="flex! items-center! justify-between! mt-3! text-[0.75rem]!" style={{ color: 'var(--secondary)' }}>
         <div className="flex! items-center! gap-2!">
           <span className="text-[0.75rem]!">Less</span>
           <div className="flex! gap-[2px]!">
@@ -264,7 +272,7 @@ export default function GitHubContributions({ githubData }: Props) {
           href="https://github.com/dan10ish"
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-(--link-blue)!"
+          className="hover:text-(--link-blue)! transition-opacity!"
         >
           @dan10ish
         </a>

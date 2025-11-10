@@ -64,7 +64,7 @@ export default function About() {
       )}
       {loading ? (
         <div className="mt-6! w-full! flex! justify-center! py-8!">
-          <Loader2 className="w-6! h-6! animate-spin! text-(--secondary)!" />
+          <Loader2 className="w-6! h-6! animate-spin!" style={{ color: 'var(--secondary)' }} />
         </div>
       ) : (
         <GitHubContributions githubData={githubData} />

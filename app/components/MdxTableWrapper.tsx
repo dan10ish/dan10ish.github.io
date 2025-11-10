@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const MdxTableWrapper = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="table-wrapper">

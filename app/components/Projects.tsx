@@ -55,7 +55,7 @@ export default function Projects({ projects }: ProjectsProps) {
     <>
       <section>
         {/* Tag Filter */}
-        <div className="!flex !flex-wrap !gap-2 !mb-5">
+        <div className="flex! flex-wrap! gap-2! mb-5!">
           {allTags.map((tag) => {
             const isActive = activeTag === tag;
             return (
@@ -95,7 +95,7 @@ export default function Projects({ projects }: ProjectsProps) {
         </div>
 
         {/* Projects List */}
-        <div className="!space-y-1">
+        <div className="space-y-1!">
           {sortedProjects.map((project, index) => {
             const isFiltered = activeTag !== null && project.tag !== activeTag;
             const isLastProject = index === sortedProjects.length - 1;
@@ -103,26 +103,26 @@ export default function Projects({ projects }: ProjectsProps) {
             return (
               <div key={project.name} className="!group">
                 <div 
-                  className="!flex !items-center !justify-between !py-1 !px-2 !rounded-md"
+                  className="flex! items-center! justify-between! py-1! px-2! rounded-md!"
                   style={{ 
                     opacity: isFiltered ? 0.4 : 1,
                     pointerEvents: isFiltered ? 'none' : 'auto'
                   }}
                 >
                   {/* Project Name */}
-                  <div className="!flex-1 !min-w-0">
-                    <span className="!text-[0.85rem] !truncate !block">
+                  <div className="flex-1! min-w-0!">
+                    <span className="text-[0.85rem]! truncate! block!">
                       {project.name.toLowerCase()}
                     </span>
                   </div>
 
                   {/* Action Icons */}
-                  <div className="!flex !items-center !gap-3 !flex-shrink-0">
+                  <div className="flex! items-center! gap-3! shrink-0!">
                     {/* Video Play Button */}
                     <button
                       onClick={() => handleVideoClick(project)}
                       disabled={!project.video || isFiltered}
-                      className="!flex !items-center !justify-center !w-[18px] !h-[18px] !transition-all !duration-200"
+                      className="flex! items-center! justify-center! w-[18px]! h-[18px]! transition-all! duration-200!"
                       style={{
                         opacity: project.video && !isFiltered ? 1 : 0.3,
                         cursor: project.video && !isFiltered ? 'pointer' : 'not-allowed'
@@ -156,7 +156,7 @@ export default function Projects({ projects }: ProjectsProps) {
                     <button
                       onClick={() => handleLinkClick(project.sourceCode, project)}
                       disabled={!project.sourceCode || isFiltered}
-                      className="!flex !items-center !justify-center !w-[18px] !h-[18px] !transition-all !duration-200"
+                      className="flex! items-center! justify-center! w-[18px]! h-[18px]! transition-all! duration-200!"
                       style={{
                         opacity: project.sourceCode && !isFiltered ? 1 : 0.3,
                         cursor: project.sourceCode && !isFiltered ? 'pointer' : 'not-allowed'
@@ -190,7 +190,7 @@ export default function Projects({ projects }: ProjectsProps) {
                     <button
                       onClick={() => handleLinkClick(project.liveDemo, project)}
                       disabled={!project.liveDemo || isFiltered}
-                      className="!flex !items-center !justify-center !w-[18px] !h-[18px] !transition-all !duration-200"
+                      className="flex! items-center! justify-center! w-[18px]! h-[18px]! transition-all! duration-200!"
                       style={{
                         opacity: project.liveDemo && !isFiltered ? 1 : 0.3,
                         cursor: project.liveDemo && !isFiltered ? 'pointer' : 'not-allowed'
@@ -225,7 +225,7 @@ export default function Projects({ projects }: ProjectsProps) {
                 {/* Divider (except for last item) */}
                 {!isLastProject && (
                   <div 
-                    className="!h-px !mx-2 !my-1"
+                    className="h-px! mx-2! my-1!"
                     style={{ 
                       backgroundColor: 'var(--glass-border)',
                       opacity: 0.4
