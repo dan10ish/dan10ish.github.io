@@ -13,6 +13,7 @@ const sfMono = localFont({
   variable: '--font-sf-mono',
   display: 'swap',
   fallback: ['monospace'],
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -87,10 +88,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="dns-prefetch" href="https://platform.twitter.com" />
-        <link rel="dns-prefetch" href="https://www.youtube.com" />
-        <link rel="preconnect" href="https://platform.twitter.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://www.youtube.com" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/Garamond.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
       </head>
       <body className={`${sfMono.variable}`}>

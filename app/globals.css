@@ -13,6 +13,7 @@
   --spacing-xl: 3.6rem;
   --max-width: 700px;
   --code-bg: #e5e5e5;
+  --border: #d0d0d0;
 }
 
 .dark {
@@ -21,6 +22,7 @@
   --secondary: #a0a0a0;
   --link-blue: #4da6ff;
   --code-bg: #1e1e1e;
+  --border: #2a2a2a;
 }
 
 html {
@@ -31,7 +33,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sf-mono);
-  text-rendering: optimizeLegibility;
+  text-rendering: optimizeSpeed;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 0.85rem;
@@ -44,9 +46,10 @@ body {
   box-sizing: border-box;
   overflow-x: hidden;
   letter-spacing: 0.02em;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: background-color 0.15s ease, color 0.15s ease;
   -webkit-user-select: none;
   user-select: none;
+  will-change: background-color, color;
 }
 
 a {
@@ -78,6 +81,7 @@ svg {
     color: var(--link-blue);
     opacity: 1;
     transform: scale(1.1);
+    will-change: transform;
   }
 
   a:hover,

@@ -21,7 +21,7 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
 }
 
 export function ThemeColorUpdater() {
-  const { theme, resolvedTheme } = useTheme()
+  const { theme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -45,22 +45,17 @@ export function ThemeColorUpdater() {
       metaThemeColor.setAttribute('content', themeColor)
     }
 
-    const timeoutId = setTimeout(updateThemeColor, 100)
+    updateThemeColor()
 
-    const observer = new MutationObserver(() => {
-      updateThemeColor()
-    })
+    const observer = new MutationObserver(updateThemeColor)
 
     observer.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ['class']
     })
 
-    return () => {
-      clearTimeout(timeoutId)
-      observer.disconnect()
-    }
-  }, [theme, resolvedTheme, mounted])
+    return () => observer.disconnect()
+  }, [theme, mounted])
 
   return null
 }

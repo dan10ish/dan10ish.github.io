@@ -18,7 +18,7 @@ export default function Menu({ page = 'home', activeTab }: MenuProps) {
       setShowScroll(window.scrollY > 300)
     }
 
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     handleScroll()
     
     return () => window.removeEventListener('scroll', handleScroll)

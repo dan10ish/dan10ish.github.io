@@ -35,14 +35,12 @@ export default function Card() {
     const rotateX = clamp(-relativeY * 2 * config.maxRotateX, -config.maxRotateX, config.maxRotateX)
     const rotateZ = clamp(relativeX * 2 * config.maxRotateZ, -config.maxRotateZ, config.maxRotateZ)
 
-    card.style.transform = `rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(
-      2
-    )}deg) rotateZ(${rotateZ.toFixed(2)}deg)`
+    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`
 
     const shadowX = (rotateY / config.maxRotateY) * 18
     const shadowY = (rotateX / config.maxRotateX) * 18
 
-    card.style.boxShadow = `${(-shadowX).toFixed(1)}px ${shadowY.toFixed(1)}px 45px rgba(47, 43, 37, 0.18)`
+    card.style.boxShadow = `${-shadowX}px ${shadowY}px 45px rgba(47, 43, 37, 0.18)`
   }, [])
 
   const handlePointerMove = useCallback(

@@ -19,7 +19,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 24px 0 48px;
+    padding: 24px 0 12px;
 }
 
 .card-scene {
@@ -44,10 +44,11 @@
     box-shadow: 0 16px 42px rgba(47, 43, 37, 0.16),
         0 8px 18px rgba(47, 43, 37, 0.14);
     transform-style: preserve-3d;
-    transition: transform 160ms ease-out, box-shadow 160ms ease-out;
+    transition: transform 120ms ease-out, box-shadow 120ms ease-out;
     will-change: transform, box-shadow;
     isolation: isolate;
     overflow: hidden;
+    contain: layout style paint;
 }
 
 .card__inner {

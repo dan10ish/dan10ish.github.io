@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, memo } from 'react'
 import Link from 'next/link'
 import { Loader2, ArrowLeft } from 'lucide-react'
 import { getTILEntries, formatDate, TILEntry } from '../../lib/client'
@@ -12,10 +12,14 @@ export default function FindsPage() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    let mounted = true
     getTILEntries().then((data) => {
-      setEntries(data)
-      setLoading(false)
+      if (mounted) {
+        setEntries(data)
+        setLoading(false)
+      }
     })
+    return () => { mounted = false }
   }, [])
 
   const sortedEntries = [...entries].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())

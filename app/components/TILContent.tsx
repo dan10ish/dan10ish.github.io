@@ -1,5 +1,6 @@
 'use client'
 
+import { memo } from 'react'
 import { Tweet } from 'react-tweet'
 import YT from 'react-youtube'
 import { Globe } from 'lucide-react'
@@ -23,7 +24,7 @@ interface TILContentProps {
   entry: TILEntry
 }
 
-function TwitterEmbed({ tweetId }: { tweetId: string }) {
+const TwitterEmbed = memo(function TwitterEmbed({ tweetId }: { tweetId: string }) {
   return (
     <div className="tweet w-full! max-w-[550px]! mx-auto!">
       <div className="flex! justify-center!">
@@ -31,9 +32,9 @@ function TwitterEmbed({ tweetId }: { tweetId: string }) {
       </div>
     </div>
   )
-}
+})
 
-function YouTubeEmbed({ videoId }: { videoId: string }) {
+const YouTubeEmbed = memo(function YouTubeEmbed({ videoId }: { videoId: string }) {
   const opts = {
     width: '100%',
     height: '100%',
@@ -65,9 +66,9 @@ function YouTubeEmbed({ videoId }: { videoId: string }) {
       </div>
     </div>
   )
-}
+})
 
-function LinkPreview({ url, metadata }: { url: string; metadata?: TILEntry['metadata'] }) {
+const LinkPreview = memo(function LinkPreview({ url, metadata }: { url: string; metadata?: TILEntry['metadata'] }) {
   const getFallbackTitle = () => {
     try {
       return new URL(url).hostname.replace('www.', '')
@@ -110,9 +111,9 @@ function LinkPreview({ url, metadata }: { url: string; metadata?: TILEntry['meta
       </a>
     </div>
   )
-}
+})
 
-function BookCard({ metadata }: { metadata?: TILEntry['metadata'] }) {
+const BookCard = memo(function BookCard({ metadata }: { metadata?: TILEntry['metadata'] }) {
   return (
     <div className="w-full! border! border-(--border)! rounded-lg! p-4! flex! gap-4!">
       {metadata?.image && (
@@ -120,6 +121,7 @@ function BookCard({ metadata }: { metadata?: TILEntry['metadata'] }) {
           src={metadata.image}
           alt={metadata.title || 'Book cover'}
           className="w-24! h-32! object-cover! rounded!"
+          loading="lazy"
         />
       )}
       <div className="flex-1!">
@@ -141,9 +143,9 @@ function BookCard({ metadata }: { metadata?: TILEntry['metadata'] }) {
       </div>
     </div>
   )
-}
+})
 
-export default function TILContent({ entry }: TILContentProps) {
+const TILContent = memo(function TILContent({ entry }: TILContentProps) {
   const { content_type, content, metadata } = entry
 
   switch (content_type) {
@@ -175,6 +177,7 @@ export default function TILContent({ entry }: TILContentProps) {
           src={content}
           alt="TIL image"
           className="w-full! rounded-lg!"
+          loading="lazy"
         />
       )
 
@@ -186,4 +189,6 @@ export default function TILContent({ entry }: TILContentProps) {
         </p>
       )
   }
-}
+})
+
+export default TILContent

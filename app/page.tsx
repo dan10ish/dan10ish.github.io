@@ -70,7 +70,7 @@ export default function Home() {
       <Menu page="home" />
       <div className="flex! w-full! max-w-4xl! flex-col! items-center! justify-center! max-h-[90dvh]!">
         <Card />
-        <div className="flex! flex-wrap! items-center! justify-center! gap-3!">
+        <div className="flex! flex-wrap! items-center! justify-center! gap-3! mt-0!">
           {socialLinks.map(({ id, href, icon, label }) => (
             <Link
               key={id}
@@ -84,6 +84,12 @@ export default function Home() {
             </Link>
           ))}
         </div>
+        <Link 
+          href="/finds"
+          className="mt-6! mb-8! px-4! py-2! text-sm! text-secondary! hover:text-(--link-blue)! transition-colors! border! border-(--border)! rounded-lg! hover:border-(--link-blue)!"
+        >
+          Finds
+        </Link>
       </div>
     </>
   )
