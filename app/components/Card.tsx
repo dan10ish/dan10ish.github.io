@@ -1,84 +1,146 @@
 'use client'
 
-import { useCallback, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import styles from './Card.module.css'
 
 const classes = styles as Record<string, string>
-
 const cx = (...classNames: string[]) => classNames.map((name) => classes[name] ?? name).join(' ')
 
 const config = {
   maxRotateX: 18,
   maxRotateY: 14,
   maxRotateZ: 4,
+  elasticity: 0.15,
+  returnSpeed: 0.12,
 }
 
 const FONT_FAMILY =
   '"Garamond Classico SC", "EB Garamond", "Garamond", "Apple Garamond", Baskerville, "Times New Roman", serif'
-const FONT_URL = 'https://card.jgoon.com/Garamond%20Classico%20SC.ttf'
 
 export default function Card() {
   const sceneRef = useRef<HTMLDivElement>(null)
   const cardRef = useRef<HTMLElement>(null)
-
-  const applyTransform = useCallback((clientX: number, clientY: number) => {
-    const scene = sceneRef.current
-    const card = cardRef.current
-
-    if (!scene || !card) return
-
-    const rect = scene.getBoundingClientRect()
-    const relativeX = (clientX - rect.left) / rect.width - 0.5
-    const relativeY = (clientY - rect.top) / rect.height - 0.5
-
-    const rotateY = clamp(relativeX * 2 * config.maxRotateY, -config.maxRotateY, config.maxRotateY)
-    const rotateX = clamp(-relativeY * 2 * config.maxRotateX, -config.maxRotateX, config.maxRotateX)
-    const rotateZ = clamp(relativeX * 2 * config.maxRotateZ, -config.maxRotateZ, config.maxRotateZ)
-
-    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`
-
-    const shadowX = (rotateY / config.maxRotateY) * 18
-    const shadowY = (rotateX / config.maxRotateX) * 18
-
-    card.style.boxShadow = `${-shadowX}px ${shadowY}px 45px rgba(47, 43, 37, 0.18)`
-  }, [])
-
-  const handlePointerMove = useCallback(
-    (event: PointerEvent | Touch) => {
-      applyTransform(event.clientX, event.clientY)
-    },
-    [applyTransform]
-  )
-
-  const handlePointerLeave = useCallback(() => {
-    const scene = sceneRef.current
-    if (!scene) return
-    const rect = scene.getBoundingClientRect()
-    applyTransform(rect.left + rect.width / 2, rect.top + rect.height / 2)
-  }, [applyTransform])
-
-  // rely on static @font-face and head preload
+  const animationRef = useRef<number | undefined>(undefined)
+  const targetRef = useRef({ rotateX: 0, rotateY: 0, rotateZ: 0, shadowX: 0, shadowY: 0 })
+  const currentRef = useRef({ rotateX: 0, rotateY: 0, rotateZ: 0, shadowX: 0, shadowY: 0 })
+  const isInteractingRef = useRef(false)
 
   useEffect(() => {
     const scene = sceneRef.current
-    if (!scene) return
+    const card = cardRef.current
+    if (!scene || !card) return
 
-    const pointerMove = (event: PointerEvent) => handlePointerMove(event)
-    const pointerDown = (event: PointerEvent) => handlePointerMove(event)
-    const pointerLeave = () => handlePointerLeave()
+    const clamp = (value: number, min: number, max: number) => 
+      Math.min(Math.max(value, min), max)
 
-    scene.addEventListener('pointerdown', pointerDown)
-    scene.addEventListener('pointermove', pointerMove)
-    scene.addEventListener('pointerleave', pointerLeave)
+    const updateTransform = (clientX: number, clientY: number) => {
+      const rect = scene.getBoundingClientRect()
+      const relativeX = (clientX - rect.left) / rect.width - 0.5
+      const relativeY = (clientY - rect.top) / rect.height - 0.5
 
-    handlePointerLeave()
+      targetRef.current.rotateY = clamp(
+        relativeX * 2 * config.maxRotateY,
+        -config.maxRotateY,
+        config.maxRotateY
+      )
+      targetRef.current.rotateX = clamp(
+        -relativeY * 2 * config.maxRotateX,
+        -config.maxRotateX,
+        config.maxRotateX
+      )
+      targetRef.current.rotateZ = clamp(
+        relativeX * 2 * config.maxRotateZ,
+        -config.maxRotateZ,
+        config.maxRotateZ
+      )
+
+      targetRef.current.shadowX = (targetRef.current.rotateY / config.maxRotateY) * 18
+      targetRef.current.shadowY = (targetRef.current.rotateX / config.maxRotateX) * 18
+    }
+
+    const resetTransform = () => {
+      targetRef.current = { rotateX: 0, rotateY: 0, rotateZ: 0, shadowX: 0, shadowY: 0 }
+    }
+
+    const lerp = (start: number, end: number, factor: number) => 
+      start + (end - start) * factor
+
+    const animate = () => {
+      const speed = isInteractingRef.current ? config.elasticity : config.returnSpeed
+      
+      currentRef.current.rotateX = lerp(currentRef.current.rotateX, targetRef.current.rotateX, speed)
+      currentRef.current.rotateY = lerp(currentRef.current.rotateY, targetRef.current.rotateY, speed)
+      currentRef.current.rotateZ = lerp(currentRef.current.rotateZ, targetRef.current.rotateZ, speed)
+      currentRef.current.shadowX = lerp(currentRef.current.shadowX, targetRef.current.shadowX, speed)
+      currentRef.current.shadowY = lerp(currentRef.current.shadowY, targetRef.current.shadowY, speed)
+
+      const { rotateX, rotateY, rotateZ, shadowX, shadowY } = currentRef.current
+
+      card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`
+      card.style.boxShadow = `${-shadowX}px ${shadowY}px 45px rgba(47, 43, 37, 0.18)`
+
+      animationRef.current = requestAnimationFrame(animate)
+    }
+
+    // Mouse events
+    const handleMouseMove = (e: MouseEvent) => {
+      isInteractingRef.current = true
+      updateTransform(e.clientX, e.clientY)
+    }
+
+    const handleMouseLeave = () => {
+      isInteractingRef.current = false
+      resetTransform()
+    }
+
+    // Touch events
+    const handleTouchStart = (e: TouchEvent) => {
+      if (e.touches.length === 1) {
+        isInteractingRef.current = true
+        const touch = e.touches[0]
+        updateTransform(touch.clientX, touch.clientY)
+      }
+    }
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length === 1) {
+        e.preventDefault()
+        const touch = e.touches[0]
+        updateTransform(touch.clientX, touch.clientY)
+      }
+    }
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      isInteractingRef.current = false
+      resetTransform()
+    }
+
+    // Add event listeners
+    scene.addEventListener('mousemove', handleMouseMove, { passive: true })
+    scene.addEventListener('mouseleave', handleMouseLeave, { passive: true })
+    scene.addEventListener('touchstart', handleTouchStart, { passive: true })
+    scene.addEventListener('touchmove', handleTouchMove, { passive: false })
+    
+    // Listen to touchend on document to catch when finger leaves anywhere
+    document.addEventListener('touchend', handleTouchEnd, { passive: true })
+    document.addEventListener('touchcancel', handleTouchEnd, { passive: true })
+
+    // Start animation loop
+    animationRef.current = requestAnimationFrame(animate)
 
     return () => {
-      scene.removeEventListener('pointerdown', pointerDown)
-      scene.removeEventListener('pointermove', pointerMove)
-      scene.removeEventListener('pointerleave', pointerLeave)
+      scene.removeEventListener('mousemove', handleMouseMove)
+      scene.removeEventListener('mouseleave', handleMouseLeave)
+      scene.removeEventListener('touchstart', handleTouchStart)
+      scene.removeEventListener('touchmove', handleTouchMove)
+      document.removeEventListener('touchend', handleTouchEnd)
+      document.removeEventListener('touchcancel', handleTouchEnd)
+      
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current)
+      }
     }
-  }, [handlePointerMove, handlePointerLeave])
+  }, [])
 
   return (
     <div className={cx('card-shell')} style={{ fontFamily: FONT_FAMILY }}>
@@ -121,9 +183,5 @@ export default function Card() {
       </div>
     </div>
   )
-}
-
-function clamp(value: number, min: number, max: number) {
-  return Math.min(Math.max(value, min), max)
 }
 
