@@ -68,6 +68,8 @@ body {
   overflow-x: hidden;
   letter-spacing: 0.02em;
   transition: background-color 0.2s ease, color 0.2s ease;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 a {

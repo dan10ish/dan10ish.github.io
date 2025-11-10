@@ -122,15 +122,15 @@ export default function Card() {
           <div className={cx('card__overlay')} aria-hidden="true"></div>
           <div className={cx('card__inner')}>
             <div className={cx('card__top')}>
-              <span className={cx('card__phone', 'card__inline', 'engraved-tight')}>+255786654790</span>
-              <div className={cx('card__company')}>
+              <a href="tel:+255786654790" className={cx('card__phone', 'card__inline', 'engraved-tight', 'link-reset')}>+255786654790</a>
+              <a href="https://innovatiolabs.com" target="_blank" rel="noopener noreferrer" className={cx('card__company', 'link-reset')}>
                 <div className={cx('card__company-line')}>
                   <span className={cx('card__company-word', 'engraved-text')}>Innovatio</span>
                   <span className={cx('card__company-ampersand', 'engraved-text')}></span>
                   <span className={cx('card__company-word', 'engraved-text')}>Labs</span>
                 </div>
                 <span className={cx('card__company-tagline', 'engraved-text')}></span>
-              </div>
+              </a>
             </div>
             <div className={cx('card__center')}>
               <div className={cx('card__person')}>
@@ -141,9 +141,14 @@ export default function Card() {
             </div>
             <div className={cx('card__bottom')}>
               <span className={cx('card__inline', 'engraved-text', 'card__bottom-line')}>
-                <span className={cx('card__bottom-address', 'engraved-text')}>
+                <a
+                  href="https://maps.app.goo.gl/3Wt2qNQBghkxgn4h8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={cx('card__bottom-address', 'engraved-text', 'link-reset')}
+                >
                   303 Holland House, Samora Avenue, Dar es Salaam, 11102, Tanzania
-                </span>
+                </a>
               </span>
             </div>
           </div>
