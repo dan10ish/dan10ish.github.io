@@ -47,28 +47,6 @@ export default function About() {
     fetchGitHubData()
   }, [])
 
-  const formatSkillsList = (skills: string[]) => {
-    if (skills.length === 0) return null
-    if (skills.length === 1) return <strong>{skills[0].toLowerCase()}</strong>
-    if (skills.length === 2) return (
-      <>
-        <strong>{skills[0].toLowerCase()}</strong> and <strong>{skills[1].toLowerCase()}</strong>
-      </>
-    )
-    
-    return (
-      <>
-        {skills.slice(0, -1).map((skill, index) => (
-          <span key={index}>
-            <strong>{skill.toLowerCase()}</strong>
-            {index < skills.length - 2 ? ', ' : ' and '}
-          </span>
-        ))}
-        <strong>{skills[skills.length - 1].toLowerCase()}</strong>
-      </>
-    )
-  }
-
   const current = experience.find((e: any) => e.current)
   const previous = experience.filter((e: any) => !e.current)
   const sentences: string[] = []
@@ -80,7 +58,7 @@ export default function About() {
 
   return (
     <div>
-      <p className="text-base">{personalInfo.about}, interested in {formatSkillsList(personalInfo.skills)}.</p>
+      <p className="text-base">{personalInfo.about}.</p>
       {sentences.length > 0 && (
         <p className="text-base mt-6!">{sentences.join(' ')}</p>
       )}
