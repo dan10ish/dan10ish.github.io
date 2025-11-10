@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { Github, Instagram, Mail } from 'lucide-react'
 import Menu from './components/Menu'
 import Card from './components/Card'
+import AnimatedButton from './components/AnimatedButton'
 import { personalInfo } from './data'
 
 const XIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -80,12 +81,9 @@ export default function Home() {
             </Link>
           ))}
         </div>
-        <Link 
-          href="/finds"
-          className="px-3! py-1.5! text-xs! text-secondary! hover:text-(--link-blue)! transition-colors! rounded! hover:opacity-80! bg-(--border)!"
-        >
+        <AnimatedButton href="/finds">
           Finds
-        </Link>
+        </AnimatedButton>
       </div>
       <div className="flex! w-full! max-w-4xl! flex-col! items-center! justify-center! max-h-[90dvh]!">
         <Card />

@@ -6,6 +6,7 @@ import { Loader2, Github, Instagram, Mail } from 'lucide-react'
 import { getTILEntries, formatDate, TILEntry } from '../../lib/client'
 import TILContent from '../components/TILContent'
 import Menu from '../components/Menu'
+import AnimatedButton from '../components/AnimatedButton'
 import { personalInfo } from '../data'
 
 const XIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -102,12 +103,9 @@ export default function FindsPage() {
             </Link>
           ))}
         </div>
-        <Link 
-          href="/"
-          className="px-3! py-1.5! text-xs! text-secondary! hover:text-(--link-blue)! transition-colors! rounded! hover:opacity-80! bg-(--border)!"
-        >
+        <AnimatedButton href="/">
           Home
-        </Link>
+        </AnimatedButton>
       </div>
       <div className="mt-16!"></div>
       {loading ? (
