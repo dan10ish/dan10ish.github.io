@@ -76,7 +76,7 @@ export function ThemeToggle() {
       className="flex items-center justify-center p-2 rounded-full bg-background duration-200"
       aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
     >
-      {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+      {theme === 'dark' ? <Sun size={22} /> : <Moon size={22} />}
     </button>
   )
 }

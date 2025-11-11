@@ -67,8 +67,10 @@
   z-index: 1;
 }
 
-.animated-button:hover {
-  --duration: 1400ms;
+@media (hover: hover) {
+  .animated-button:hover {
+    --duration: 1400ms;
+  }
 }
 
 .animated-button .wrapper .circle {

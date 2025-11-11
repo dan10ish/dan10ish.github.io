@@ -42,7 +42,7 @@ export default function Menu({ page = 'home', activeTab }: MenuProps) {
           className="flex items-center justify-center p-2 rounded-full bg-background duration-200 animate-fade-in"
           aria-label="Scroll to top"
         >
-          <ChevronUp size={20} />
+          <ChevronUp size={22} />
         </button>
       )}
       <ThemeToggle />
@@ -52,7 +52,7 @@ export default function Menu({ page = 'home', activeTab }: MenuProps) {
           className="flex items-center justify-center p-2 rounded-full bg-background duration-200"
           aria-label="Go to homepage"
         >
-          <Home size={20} />
+          <Home size={22} />
         </Link>
       )}
       <style jsx>{`
