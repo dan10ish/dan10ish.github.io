@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Loader2, Github, Instagram, Mail } from 'lucide-react'
+import { Github, Instagram, Mail } from 'lucide-react'
 import { getTILEntries, formatDate, TILEntry } from '../../lib/client'
 import TILContent from '../components/TILContent'
 import Menu from '../components/Menu'
@@ -110,7 +110,7 @@ export default function FindsPage() {
       <div className="mt-16!"></div>
       {loading ? (
         <div className="w-full! flex! justify-center! py-12!">
-          <Loader2 className="w-6! h-6! animate-spin! text-secondary!" />
+          <span className="finds-loader" aria-hidden />
         </div>
       ) : entries.length === 0 ? (
         <p className="text-base! text-secondary!">No entries yet.</p>
