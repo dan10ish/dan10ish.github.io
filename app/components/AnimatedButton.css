@@ -52,7 +52,7 @@
   -webkit-mask-image: -webkit-radial-gradient(white, black);
   overflow: hidden;
   border-radius: 8px;
-  width: 60px;
+  width: 72px;
   padding: 6px 12px;
   display: flex;
   align-items: center;
@@ -61,8 +61,8 @@
 
 @media (min-width: 768px) {
   .animated-button .wrapper {
-    width: 100px;
-    padding: 10px 20px;
+    width: 85px;
+    padding: 8px 20px;
   }
   
   .animated-button {
@@ -72,8 +72,8 @@
 
 @media (min-width: 1024px) {
   .animated-button .wrapper {
-    width: 120px;
-    padding: 10px 28px;
+    width: 85px;
+    padding: 8px 28px;
   }
   
   .animated-button {

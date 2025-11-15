@@ -16,7 +16,7 @@ export default function About() {
     <>
       <Menu page="writing" />
       <Nav currentPage="about" />
-      <div className="max-w-3xl! mx-auto! py-6! mt-8!">
+      <div className="max-w-3xl! mx-auto! py-6! mt-8! pb-12!">
         <div className="flex! flex-col! gap-5!">
           <section>
             <div className="flex! items-center! gap-3! mb-4!">
