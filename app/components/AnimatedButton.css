@@ -52,8 +52,8 @@
   -webkit-mask-image: -webkit-radial-gradient(white, black);
   overflow: hidden;
   border-radius: 8px;
-  width: 80px;
-  padding: 8px 16px;
+  width: 60px;
+  padding: 6px 12px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -292,4 +292,16 @@
   66% {
     transform: translate(60px, -32px) translateZ(0);
   }
+}
+
+.animated-button-gold {
+  --c-color-1: rgba(255, 163, 26, 0.7);
+  --c-color-2: #1a23ff;
+  --c-color-3: #e21bda;
+  --c-color-4: rgba(255, 232, 26, 0.7);
+  --c-shadow: rgba(255, 223, 87, 0.5);
+  --c-shadow-inset-top: rgba(255, 223, 52, 0.9);
+  --c-shadow-inset-bottom: rgba(255, 250, 215, 0.8);
+  --c-radial-inner: #ffd215;
+  --c-radial-outer: #fff172;
 }

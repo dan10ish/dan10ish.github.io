@@ -1,8 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import { Home, ChevronUp } from 'lucide-react'
+import { ChevronUp } from 'lucide-react'
 import { ThemeToggle } from './Theme'
 
 interface MenuProps {
@@ -10,7 +9,7 @@ interface MenuProps {
   activeTab?: 'home' | 'projects' | 'writings' | 'finds'
 }
 
-export default function Menu({ page = 'home', activeTab }: MenuProps) {
+export default function Menu({ page = 'home' }: MenuProps) {
   const [showScroll, setShowScroll] = useState(false)
 
   useEffect(() => {
@@ -25,7 +24,6 @@ export default function Menu({ page = 'home', activeTab }: MenuProps) {
   }, [])
 
   const showScrollButton = page !== 'error' && showScroll
-  const showHomeButton = page === 'writing'
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -46,15 +44,6 @@ export default function Menu({ page = 'home', activeTab }: MenuProps) {
         </button>
       )}
       <ThemeToggle />
-      {showHomeButton && (
-        <Link 
-          href="/?tab=writings"
-          className="flex items-center justify-center p-2 rounded-full bg-background duration-200"
-          aria-label="Go to homepage"
-        >
-          <Home size={22} />
-        </Link>
-      )}
       <style jsx>{`
         @keyframes fade-in {
           from { opacity: 0; transform: translateY(10px); }

@@ -1,13 +1,10 @@
-'use client'
-
-import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { Github, Instagram, Mail } from 'lucide-react'
-import { getTILEntries, formatDate, TILEntry } from '../../lib/client'
-import TILContent from '../components/TILContent'
 import Menu from '../components/Menu'
+import GitHubContributions from '../components/GitHubContributions'
 import AnimatedButton from '../components/AnimatedButton'
 import { personalInfo } from '../data'
+import Image from 'next/image'
 
 const XIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 256 256" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -66,28 +63,17 @@ const socialLinks = [
   },
 ] as const
 
-export default function FindsPage() {
-  const [entries, setEntries] = useState<TILEntry[]>([])
-  const [loading, setLoading] = useState(true)
+const experience = [
+  { year: '2025', company: 'Mumbai University' },
+  { year: '2024', company: 'Projects & Research' },
+  { year: '2023', company: 'University Labs' },
+  { year: '2022', company: 'Mumbai University' }
+]
 
-  useEffect(() => {
-    let mounted = true
-    getTILEntries().then((data) => {
-      if (mounted) {
-        setEntries(data)
-        setLoading(false)
-      }
-    })
-    return () => { mounted = false }
-  }, [])
-
-  const sortedEntries = [...entries].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-
-  const leftColumn = sortedEntries.filter((_, idx) => idx % 2 === 0)
-  const rightColumn = sortedEntries.filter((_, idx) => idx % 2 === 1)
-
+export default function About() {
   return (
-    <div className="max-w-2xl! mx-auto! pb-24!">
+    <>
+      <Menu page="writing" />
       <div className="relative! top-2! flex! items-center! justify-between! z-40!">
         <div className="flex! items-center! gap-2!">
           {socialLinks.map(({ id, href, icon, label }) => (
@@ -104,53 +90,56 @@ export default function FindsPage() {
           ))}
         </div>
         <div className="flex! items-center! gap-2!">
-          <AnimatedButton href="/about" variant="gold">
-            About
-          </AnimatedButton>
-          <AnimatedButton href="/" variant="blue">
+          <AnimatedButton href="/" variant="gold">
             Home
+          </AnimatedButton>
+          <AnimatedButton href="/finds" variant="blue">
+            Finds
           </AnimatedButton>
         </div>
       </div>
-      <div className="mt-16!"></div>
-      {loading ? (
-        <div className="w-full! flex! justify-center! py-12!">
-          <span className="finds-loader" aria-hidden />
-        </div>
-      ) : entries.length === 0 ? (
-        <p className="text-base! text-secondary!">No entries yet.</p>
-      ) : (
-        <div className="space-y-10!">
-          <div className="space-y-6! md:hidden">
-            {sortedEntries.map((entry) => (
-              <article key={entry.id} className="border-b! border-(--border)! pb-6! last:border-b-0!">
-                <p className="text-secondary! text-[0.82rem]! mb-3!">{formatDate(entry.date)}</p>
-                <TILContent entry={entry} />
-              </article>
-            ))}
-          </div>
-          <div className="hidden md:grid! md:grid-cols-2! md:gap-6!">
-            <div className="space-y-6!">
-              {leftColumn.map((entry) => (
-                <article key={entry.id} className="border-b! border-(--border)! pb-6! last:border-b-0!">
-                  <p className="text-secondary! text-[0.82rem]! mb-3!">{formatDate(entry.date)}</p>
-                  <TILContent entry={entry} />
-                </article>
+      <div className="max-w-3xl! mx-auto! py-8! mt-12!">
+        <div className="flex! flex-col! gap-8!">
+          <section>
+            <div className="flex! items-center! gap-4! mb-6!">
+              <div className="w-20! h-20! rounded-full! bg-secondary/20! shrink-0! overflow-hidden!">
+                <Image
+                  src={`https://github.com/${personalInfo.socials.github}.png`}
+                  alt={personalInfo.name}
+                  width={80}
+                  height={80}
+                  className="w-full! h-full! object-cover!"
+                  unoptimized
+                />
+              </div>
+              <div>
+                <h1 className="font-bold! mb-0.5!">{personalInfo.name}</h1>
+                <p className="text-secondary! text-sm!">Mechatronics Engineer</p>
+              </div>
+            </div>
+            <p className="text-secondary! leading-relaxed! text-sm!">{personalInfo.about}</p>
+          </section>
+
+          <section>
+            <h2 className="font-semibold! mb-4!">Experience</h2>
+            <div className="space-y-4!">
+              {experience.map((item, index) => (
+                <div key={index} className="relative! pl-6! pb-4! border-l-2! border-border! last:border-0! last:pb-0!">
+                  <div className="absolute! -left-[5px]! top-1.5! w-2! h-2! rounded-full! bg-link-blue!" />
+                  <div className="text-xs! text-secondary! mb-1!">{item.year}</div>
+                  <div className="text-sm!">{item.company}</div>
+                </div>
               ))}
             </div>
-            <div className="space-y-6!">
-              {rightColumn.map((entry) => (
-                <article key={entry.id} className="border-b! border-(--border)! pb-6! last:border-b-0!">
-                  <p className="text-secondary! text-[0.82rem]! mb-3!">{formatDate(entry.date)}</p>
-                  <TILContent entry={entry} />
-                </article>
-              ))}
-            </div>
-          </div>
+          </section>
+
+          <section>
+            <h2 className="font-semibold! mb-4!">GitHub Activity</h2>
+            <GitHubContributions username={personalInfo.socials.github} />
+          </section>
         </div>
-      )}
-      <Menu page="home" />
-    </div>
+      </div>
+    </>
   )
 }
 

@@ -4,11 +4,12 @@ import './AnimatedButton.css'
 interface AnimatedButtonProps {
   href: string
   children: React.ReactNode
+  variant?: 'blue' | 'gold'
 }
 
-export default function AnimatedButton({ href, children }: AnimatedButtonProps) {
+export default function AnimatedButton({ href, children, variant = 'blue' }: AnimatedButtonProps) {
   return (
-    <Link href={href} className="animated-button">
+    <Link href={href} className={`animated-button animated-button-${variant}`}>
       <div className="wrapper">
         <span>{children}</span>
         <div className="circle circle-12"></div>

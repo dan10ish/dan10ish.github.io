@@ -81,9 +81,14 @@ export default function Home() {
             </Link>
           ))}
         </div>
-        <AnimatedButton href="/finds">
-          Finds
-        </AnimatedButton>
+        <div className="flex! items-center! gap-2!">
+          <AnimatedButton href="/about" variant="gold">
+            About
+          </AnimatedButton>
+          <AnimatedButton href="/finds" variant="blue">
+            Finds
+          </AnimatedButton>
+        </div>
       </div>
       <div className="flex! w-full! max-w-4xl! flex-col! items-center! justify-center! max-h-[90dvh]!">
         <Card />
