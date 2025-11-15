@@ -28,6 +28,7 @@ export default function About() {
                   height={64}
                   className="w-full! h-full! object-cover!"
                   unoptimized
+                  priority
                 />
               </div>
               <div>
