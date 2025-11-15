@@ -1,4 +1,4 @@
-import { GraduationCap, Cpu, Bot, Rocket } from 'lucide-react'
+import { ChartSpline, CodeXml, Cpu } from 'lucide-react'
 import Menu from '../components/Menu'
 import GitHubContributions from '../components/GitHubContributions'
 import Nav from '../components/Nav'
@@ -6,10 +6,9 @@ import { personalInfo } from '../data'
 import Image from 'next/image'
 
 const experience = [
-  { year: '2025', company: 'Mumbai University', icon: 'graduation-cap', position: 'top' },
-  { year: '2024', company: 'Projects & Research', icon: 'cpu', position: 'bottom' },
-  { year: '2023', company: 'University Labs', icon: 'bot', position: 'top' },
-  { year: '2022', company: 'Mumbai University', icon: 'rocket', position: 'bottom' }
+  { year: '2025', company: 'Innovatio Labs', icon: 'chart-spline' },
+  { year: '2024', company: 'Cridaa', icon: 'code-xml' },
+  { year: '2023', company: 'Accelus Robotics', icon: 'cpu' }
 ]
 
 export default function About() {
@@ -43,9 +42,8 @@ export default function About() {
             <h2 className="font-semibold! mb-8!">Experience</h2>
             <div>
               {experience.map((item, index) => {
-                const Icon = item.icon === 'graduation-cap' ? GraduationCap : 
-                            item.icon === 'cpu' ? Cpu : 
-                            item.icon === 'bot' ? Bot : Rocket
+                const Icon = item.icon === 'chart-spline' ? ChartSpline : 
+                            item.icon === 'code-xml' ? CodeXml : Cpu
                 const isLast = index === experience.length - 1
                 
                 return (
