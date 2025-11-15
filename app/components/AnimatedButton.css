@@ -59,6 +59,28 @@
   justify-content: center;
 }
 
+@media (min-width: 768px) {
+  .animated-button .wrapper {
+    width: 100px;
+    padding: 10px 20px;
+  }
+  
+  .animated-button {
+    font-size: 0.875rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .animated-button .wrapper {
+    width: 120px;
+    padding: 10px 28px;
+  }
+  
+  .animated-button {
+    font-size: 0.9375rem;
+  }
+}
+
 .animated-button .wrapper span {
   display: flex;
   align-items: center;
