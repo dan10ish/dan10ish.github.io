@@ -41,46 +41,33 @@ export default function About() {
 
           <section>
             <h2 className="font-semibold! mb-8!">Experience</h2>
-            <div className="relative! flex! items-center! justify-between! gap-6! overflow-x-auto! pb-8!">
-              <div
-                className="absolute! top-1/2! left-0! right-0! h-px! -translate-y-1/2! pointer-events-none!"
-                style={{ backgroundColor: 'rgba(107, 107, 107, 0.25)' }}
-              />
+            <div>
               {experience.map((item, index) => {
                 const Icon = item.icon === 'graduation-cap' ? GraduationCap : 
                             item.icon === 'cpu' ? Cpu : 
                             item.icon === 'bot' ? Bot : Rocket
+                const isLast = index === experience.length - 1
+                
                 return (
-                  <div key={index} className="relative! flex! flex-col! items-center! min-w-[140px]! z-10! text-center! py-2!">
-                    {item.position === 'bottom' && (
-                      <div className="mb-6! flex! flex-col! gap-1!">
-                        <div className="text-xs! font-semibold!">{item.company}</div>
-                        <div className="text-xs! text-secondary!">{item.year}</div>
+                  <div key={index} className="flex! mb-8! last:mb-0! relative!">
+                    <div className="relative! z-10!">
+                      <div 
+                        className="w-10! h-10! rounded-full! flex! items-center! justify-center! mr-4! border-2!"
+                        style={{ borderColor: 'var(--border)' }}
+                      >
+                        <Icon size={16} />
                       </div>
-                    )}
-                    <div className="flex! flex-col! items-center! gap-3!">
-                      {item.position === 'bottom' && (
-                        <div
-                          className="w-px! h-16!"
-                          style={{ backgroundColor: 'rgba(107, 107, 107, 0.25)' }}
-                        />
-                      )}
-                      <div className="relative! w-12! h-12! rounded-full! border! border-secondary/30! bg-background! flex! items-center! justify-center!">
-                        <Icon size={18} className="text-foreground!" />
-                      </div>
-                      {item.position === 'top' && (
-                        <div
-                          className="w-px! h-16!"
-                          style={{ backgroundColor: 'rgba(107, 107, 107, 0.25)' }}
+                      {!isLast && (
+                        <div 
+                          className="absolute! left-[19px]! top-10! bottom-[-32px]! w-[2px]! z-1!"
+                          style={{ backgroundColor: 'var(--border)' }}
                         />
                       )}
                     </div>
-                    {item.position === 'top' && (
-                      <div className="mt-6! flex! flex-col! gap-1!">
-                        <div className="text-xs! font-semibold!">{item.company}</div>
-                        <div className="text-xs! text-secondary!">{item.year}</div>
-                      </div>
-                    )}
+                    <div className="flex-1! pt-1!">
+                      <div className="font-semibold! mb-1! text-foreground!">{item.company}</div>
+                      <div className="text-xs! text-secondary! mt-1!">{item.year}</div>
+                    </div>
                   </div>
                 )
               })}
