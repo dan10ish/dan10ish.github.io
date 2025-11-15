@@ -214,21 +214,21 @@ export default function GitHubContributions({ username }: { username: string }) 
   }, [])
 
   return (
-    <div className="w-full mt-8 select-none">
-      <div className="flex items-baseline justify-between mb-3">
-        <span className="text-xs text-secondary">
+    <div className="w-full! mt-8! select-none!">
+      <div className="flex! items-baseline! justify-between! mb-3!">
+        <span className="text-xs! text-secondary!">
           {totalContributions} contributions
         </span>
       </div>
-      <div ref={containerRef} className="w-full overflow-hidden relative">
-        <div className="flex gap-[2px] justify-start">
+      <div ref={containerRef} className="w-full! overflow-hidden! relative!">
+        <div className="flex! gap-[2px]! justify-start!">
           {visibleWeeks.map((week, weekIndex) => (
-            <div key={weekIndex} className="flex flex-col gap-[2px]">
+            <div key={weekIndex} className="flex! flex-col! gap-[2px]!">
               {week.days.map((day, dayIndex) => (
                 day.date ? (
                   <div
                     key={`${weekIndex}-${dayIndex}`}
-                    className="w-[10px] h-[10px] rounded-[2px] transition-all duration-200 hover:scale-110 cursor-pointer"
+                    className="w-[10px]! h-[10px]! rounded-[2px]! transition-all! duration-200! hover:scale-110! cursor-pointer!"
                     style={{ 
                       backgroundColor: getColorForLevel(day.level),
                       border: 'none'
@@ -240,7 +240,7 @@ export default function GitHubContributions({ username }: { username: string }) 
                 ) : (
                   <div
                     key={`${weekIndex}-${dayIndex}`}
-                    className="w-[10px] h-[10px]"
+                    className="w-[10px]! h-[10px]!"
                   />
                 )
               ))}
@@ -249,7 +249,7 @@ export default function GitHubContributions({ username }: { username: string }) 
         </div>
         {tooltip && (
           <div
-            className="absolute text-xs px-2 py-1 rounded pointer-events-none whitespace-nowrap z-10 shadow-sm"
+            className="absolute! text-xs! px-2! py-1! rounded! pointer-events-none! whitespace-nowrap! z-10! shadow-sm!"
             style={{
               left: `${tooltip.x}px`,
               top: tooltip.showBelow ? `${tooltip.y + 18}px` : `${tooltip.y - 28}px`,
@@ -262,25 +262,25 @@ export default function GitHubContributions({ username }: { username: string }) 
           </div>
         )}
       </div>
-      <div className="flex items-center justify-between mt-3 text-xs text-secondary">
-        <div className="flex items-center gap-2">
-          <span className="text-xs">Less</span>
-          <div className="flex gap-[2px]">
+      <div className="flex! items-center! justify-between! mt-3! text-xs! text-secondary!">
+        <div className="flex! items-center! gap-2!">
+          <span className="text-xs!">Less</span>
+          <div className="flex! gap-[2px]!">
             {[0, 1, 2, 3, 4].map((level) => (
               <div
                 key={level}
-                className="w-[10px] h-[10px] rounded-[2px]"
+                className="w-[10px]! h-[10px]! rounded-[2px]!"
                 style={{ backgroundColor: getColorForLevel(level) }}
               />
             ))}
           </div>
-          <span className="text-xs">More</span>
+          <span className="text-xs!">More</span>
         </div>
         <a
           href={`https://github.com/${username}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-link-blue transition-opacity"
+          className="hover:text-link-blue! transition-opacity!"
         >
           @{username}
         </a>

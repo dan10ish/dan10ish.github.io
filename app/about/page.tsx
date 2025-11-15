@@ -122,31 +122,37 @@ export default function About() {
 
           <section>
             <h2 className="font-semibold! mb-8!">Experience</h2>
-            <div className="relative! flex! items-center! justify-between! overflow-x-auto! pb-4!">
-              <div className="absolute! top-1/2! left-0! right-0! h-px! bg-foreground! -translate-y-1/2! pointer-events-none!" />
+            <div className="relative! flex! items-center! justify-between! gap-6! overflow-x-auto! pb-8!">
+              <div className="absolute! top-1/2! left-0! right-0! h-px! bg-secondary/40! -translate-y-1/2! pointer-events-none!" />
               {experience.map((item, index) => {
                 const Icon = item.icon === 'graduation-cap' ? GraduationCap : 
                             item.icon === 'cpu' ? Cpu : 
                             item.icon === 'bot' ? Bot : Rocket
                 return (
-                  <div key={index} className="relative! flex! flex-col! items-center! min-w-[120px]! z-10!">
-                    {item.position === 'top' && (
-                      <>
-                        <div className="text-xs! font-semibold! mb-1! text-center!">{item.year}</div>
-                        <div className="text-xs! text-secondary! mb-3! text-center! whitespace-nowrap!">{item.company}</div>
-                        <div className="absolute! w-px! bg-foreground! left-1/2! -translate-x-1/2!" style={{ top: 'calc(100% - 44px)', height: '24px' }} />
-                      </>
-                    )}
-                    <div className="w-10! h-10! rounded-full! border! border-secondary/20! bg-background! flex! items-center! justify-center! relative!">
-                      <Icon size={16} className="text-link-blue!" />
-                      <div className="absolute! top-1/2! left-1/2! -translate-x-1/2! -translate-y-1/2! w-2! h-2! rounded-full! bg-foreground! -z-10!" />
-                    </div>
+                  <div key={index} className="relative! flex! flex-col! items-center! min-w-[140px]! z-10! text-center! py-2!">
+                    <div className="absolute! top-1/2! left-1/2! -translate-x-1/2! -translate-y-1/2! w-3! h-3! rounded-full! bg-foreground!" />
                     {item.position === 'bottom' && (
-                      <>
-                        <div className="absolute! w-px! bg-foreground! left-1/2! -translate-x-1/2!" style={{ top: '20px', height: '24px' }} />
-                        <div className="text-xs! text-secondary! mt-3! text-center! whitespace-nowrap!">{item.company}</div>
-                        <div className="text-xs! font-semibold! mt-1! text-center!">{item.year}</div>
-                      </>
+                      <div className="mb-6! flex! flex-col! gap-1!">
+                        <div className="text-xs! font-semibold!">{item.company}</div>
+                        <div className="text-xs! text-secondary!">{item.year}</div>
+                      </div>
+                    )}
+                    <div className="flex! flex-col! items-center! gap-3!">
+                      {item.position === 'bottom' && (
+                        <div className="w-px! h-16! bg-secondary/40!" />
+                      )}
+                      <div className="relative! w-12! h-12! rounded-full! border! border-secondary/30! bg-background! flex! items-center! justify-center!">
+                        <Icon size={18} className="text-foreground!" />
+                      </div>
+                      {item.position === 'top' && (
+                        <div className="w-px! h-16! bg-secondary/40!" />
+                      )}
+                    </div>
+                    {item.position === 'top' && (
+                      <div className="mt-6! flex! flex-col! gap-1!">
+                        <div className="text-xs! font-semibold!">{item.company}</div>
+                        <div className="text-xs! text-secondary!">{item.year}</div>
+                      </div>
                     )}
                   </div>
                 )
