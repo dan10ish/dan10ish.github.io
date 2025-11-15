@@ -105,7 +105,7 @@ export function VisitorCounter() {
 
   return (
     <div
-      className="fixed! bottom-7! left-5! flex! items-center! justify-center! gap-2! p-2! rounded-full! bg-background! duration-200! z-50!"
+      className="fixed! bottom-7! left-5! flex! items-center! justify-center! gap-2! rounded-full! bg-background! duration-200! z-50!"
       aria-label={`Unique visitors: ${count}`}
     >
       <Eye size={22} />
