@@ -28,19 +28,19 @@ export default function GitHubContributions({ username }: { username: string }) 
   useEffect(() => {
     const updateVisibleWeeks = () => {
       if (!containerRef.current || contributions.length === 0) return
-      
+
       const containerWidth = containerRef.current.offsetWidth
       const squareSize = 10
       const gap = 2
       const maxWeeks = Math.floor((containerWidth + gap) / (squareSize + gap))
-      
+
       const weeksToShow = contributions.slice(-maxWeeks)
       setVisibleWeeks(weeksToShow)
     }
 
     updateVisibleWeeks()
     window.addEventListener('resize', updateVisibleWeeks)
-    
+
     return () => window.removeEventListener('resize', updateVisibleWeeks)
   }, [contributions])
 
@@ -48,14 +48,14 @@ export default function GitHubContributions({ username }: { username: string }) 
     const today = new Date()
     const oneYearAgo = new Date(today)
     oneYearAgo.setFullYear(today.getFullYear() - 1)
-    
+
     const allContribs: ContributionDay[] = []
     let total = 0
-    
+
     for (let d = new Date(oneYearAgo); d <= today; d.setDate(d.getDate() + 1)) {
       const dayOfWeek = d.getDay()
       const isWeekend = dayOfWeek === 0 || dayOfWeek === 6
-      
+
       let count = 0
       if (Math.random() > 0.3) {
         if (isWeekend) {
@@ -64,17 +64,17 @@ export default function GitHubContributions({ username }: { username: string }) 
           count = Math.floor(Math.random() * 15) + 1
         }
       }
-      
+
       total += count
       const level = getLevelFromCount(count)
-      
+
       allContribs.push({
         date: new Date(d).toISOString().split('T')[0],
         count,
         level
       })
     }
-    
+
     setTotalContributions(total)
     processContributions(allContribs)
   }
@@ -82,10 +82,10 @@ export default function GitHubContributions({ username }: { username: string }) 
   const processContributions = (allContribs: ContributionDay[]) => {
     const firstDate = new Date(allContribs[0].date)
     const startDay = firstDate.getDay()
-    
+
     const weeks: ContributionWeek[] = []
     let currentWeek: ContributionDay[] = []
-    
+
     for (let i = 0; i < startDay; i++) {
       currentWeek.push({
         date: '',
@@ -93,16 +93,16 @@ export default function GitHubContributions({ username }: { username: string }) 
         level: 0
       })
     }
-    
+
     allContribs.forEach((contrib: ContributionDay) => {
       currentWeek.push(contrib)
-      
+
       if (currentWeek.length === 7) {
         weeks.push({ days: [...currentWeek] })
         currentWeek = []
       }
     })
-    
+
     if (currentWeek.length > 0) {
       while (currentWeek.length < 7) {
         currentWeek.push({
@@ -113,7 +113,7 @@ export default function GitHubContributions({ username }: { username: string }) 
       }
       weeks.push({ days: currentWeek })
     }
-    
+
     setContributions(weeks)
   }
 
@@ -153,7 +153,7 @@ export default function GitHubContributions({ username }: { username: string }) 
     const tooltipHeight = 28
     let x = rect.left - containerRect.left + rect.width / 2
     const y = rect.top - containerRect.top
-    
+
     if (x - tooltipWidth / 2 < 0) {
       x = tooltipWidth / 2
     } else if (x + tooltipWidth / 2 > containerRect.width) {
@@ -172,7 +172,7 @@ export default function GitHubContributions({ username }: { username: string }) 
 
   const handleMouseEnter = (date: string, event: React.MouseEvent<HTMLDivElement>) => {
     if (isTouchActiveRef.current) return
-    
+
     if (tooltipTimeoutRef.current) {
       clearTimeout(tooltipTimeoutRef.current)
     }
@@ -189,11 +189,11 @@ export default function GitHubContributions({ username }: { username: string }) 
   const handleTouch = (date: string, event: React.TouchEvent<HTMLDivElement>) => {
     event.preventDefault()
     isTouchActiveRef.current = true
-    
+
     if (tooltipTimeoutRef.current) {
       clearTimeout(tooltipTimeoutRef.current)
     }
-    
+
     const rect = event.currentTarget.getBoundingClientRect()
     const position = calculateTooltipPosition(date, rect)
     if (position) {
@@ -214,8 +214,9 @@ export default function GitHubContributions({ username }: { username: string }) 
   }, [])
 
   return (
-    <div className="w-full! mt-8! select-none!">
+    <div className="w-full! mt-4! select-none!">
       <div className="flex! items-baseline! justify-between! mb-3!">
+        <h2 className="font-semibold!">GitHub Activity</h2>
         <span className="text-xs! text-secondary!">
           {totalContributions} contributions
         </span>
@@ -229,7 +230,7 @@ export default function GitHubContributions({ username }: { username: string }) 
                   <div
                     key={`${weekIndex}-${dayIndex}`}
                     className="w-[10px]! h-[10px]! rounded-[2px]! transition-all! duration-200! hover:scale-110! cursor-pointer!"
-                    style={{ 
+                    style={{
                       backgroundColor: getColorForLevel(day.level),
                       border: 'none'
                     }}
@@ -280,7 +281,7 @@ export default function GitHubContributions({ username }: { username: string }) 
           href={`https://github.com/${username}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-link-blue! transition-opacity!"
+          className="hover:text-(--link-blue)! transition-opacity!"
         >
           @{username}
         </a>

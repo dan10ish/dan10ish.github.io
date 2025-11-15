@@ -16,10 +16,10 @@ export default function About() {
     <>
       <Menu page="writing" />
       <Nav currentPage="about" />
-      <div className="max-w-3xl! mx-auto! py-6! mt-8! pb-12!">
+      <div className="max-w-3xl! mx-auto! py-4! mt-8! pb-20! md:pb-10!">
         <div className="flex! flex-col! gap-5!">
           <section>
-            <div className="flex! items-center! gap-3! mb-4!">
+            <div className="flex! items-center! gap-3! mb-8!">
               <div className="w-16! h-16! rounded-full! bg-secondary/20! shrink-0! overflow-hidden!">
                 <Image
                   src={`https://github.com/${personalInfo.socials.github}.png`}
@@ -51,10 +51,10 @@ export default function About() {
                   <div key={index} className="flex! mb-5! last:mb-0! relative!">
                     <div className="relative! z-10!">
                       <div 
-                        className="w-9! h-9! rounded-full! flex! items-center! justify-center! mr-3! border-2!"
+                        className="w-9! h-9! rounded-full! flex! items-center! justify-center! mr-3!"
                         style={{ borderColor: 'var(--border)' }}
                       >
-                        <Icon size={14} />
+                        <Icon size={18} />
                       </div>
                       {!isLast && (
                         <div 
@@ -74,7 +74,6 @@ export default function About() {
           </section>
 
           <section>
-            <h2 className="font-semibold! mb-3!">GitHub Activity</h2>
             <GitHubContributions username={personalInfo.socials.github} />
           </section>
         </div>
