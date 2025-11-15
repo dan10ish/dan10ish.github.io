@@ -20,14 +20,13 @@ export default function About() {
         <div className="flex! flex-col! gap-5!">
           <section>
             <div className="flex! items-center! gap-3! mb-8!">
-              <div className="w-16! h-16! rounded-full! bg-secondary/20! shrink-0! overflow-hidden!">
+              <div className="w-20! h-20! shrink-0!">
                 <Image
-                  src={`https://github.com/${personalInfo.socials.github}.png`}
+                  src="/Danish.png"
                   alt={personalInfo.name}
-                  width={64}
-                  height={64}
-                  className="w-full! h-full! object-cover!"
-                  unoptimized
+                  width={80}
+                  height={80}
+                  className="w-full! h-full! object-contain!"
                   priority
                 />
               </div>
