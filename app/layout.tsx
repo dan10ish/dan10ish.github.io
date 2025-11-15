@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeColorUpdater, ThemeProvider } from "./components/Theme";
+import { VisitorCounter } from "./components/VisitorCounter";
 
 const sfMono = localFont({
   src: [
@@ -98,6 +99,7 @@ export default function RootLayout({
           disableTransitionOnChange={false}
         >
           <ThemeColorUpdater />
+          <VisitorCounter />
           {children}
         </ThemeProvider>
       </body>
