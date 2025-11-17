@@ -1,16 +1,13 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 import { ChevronUp } from 'lucide-react'
 import { ThemeToggle } from './Theme'
 
-interface MenuProps {
-  page?: 'home' | 'writing' | 'error'
-  activeTab?: 'home' | 'projects' | 'writings' | 'finds'
-}
-
-export default function Menu({ page = 'home' }: MenuProps) {
+export default function Menu() {
   const [showScroll, setShowScroll] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,7 +20,8 @@ export default function Menu({ page = 'home' }: MenuProps) {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const showScrollButton = page !== 'error' && showScroll
+  const isErrorPage = pathname && !['/', '/about', '/finds'].some(path => pathname.startsWith(path))
+  const showScrollButton = !isErrorPage && showScroll
 
   const scrollToTop = () => {
     window.scrollTo({

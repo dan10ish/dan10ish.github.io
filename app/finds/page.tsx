@@ -66,7 +66,7 @@ export default function FindsPage() {
           </div>
         </div>
       )}
-      <Menu page="home" />
+      <Menu />
     </div>
   )
 }

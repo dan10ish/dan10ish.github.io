@@ -25,7 +25,7 @@ const SnapchatIcon = (props: any) => (
 export default function NotFound() {
   return (
     <>
-      <Menu page="error" />
+      <Menu />
       <div className="fixed inset-0 flex items-center justify-center">
         <div className="text-center space-y-6">
         <h1 className="text-base font-bold">404</h1>

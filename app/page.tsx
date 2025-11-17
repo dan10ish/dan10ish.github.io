@@ -5,7 +5,7 @@ import Nav from './components/Nav'
 export default function Home() {
   return (
     <>
-      <Menu page="home" />
+      <Menu />
       <Nav currentPage="home" />
       <div className="flex! w-full! max-w-4xl! flex-col! items-center! justify-center! max-h-[90dvh]!">
         <Card />

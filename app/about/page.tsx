@@ -14,9 +14,9 @@ const experience = [
 export default function About() {
   return (
     <>
-      <Menu page="writing" />
+      <Menu />
       <Nav currentPage="about" />
-      <div className="max-w-3xl! mx-auto! py-4! mt-8! pb-20! md:pb-10! pl-4! pr-4!">
+      <div className="max-w-3xl! mx-auto! py-4! mt-8! pb-20! md:pb-10!">
         <div className="flex! flex-col! gap-5!">
           <section>
             <div className="flex! items-center! gap-3! mb-8!">

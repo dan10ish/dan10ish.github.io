@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Eye } from 'lucide-react'
+import { Eye, Infinity } from 'lucide-react'
 import { supabase } from '@/lib/client'
 
 function formatVisitorCount(count: number): string {
@@ -56,7 +56,7 @@ function generateVisitorId(): string {
 }
 
 export function VisitorCounter() {
-  const [count, setCount] = useState<string>('∞')
+  const [count, setCount] = useState<string | null>(null)
 
   useEffect(() => {
     const trackVisitor = async () => {
@@ -106,10 +106,14 @@ export function VisitorCounter() {
   return (
     <div
       className="fixed! bottom-7! left-5! flex! items-center! justify-center! gap-2! rounded-full! bg-background! duration-200! z-50!"
-      aria-label={`Unique visitors: ${count}`}
+      aria-label={`Unique visitors: ${count || 'loading'}`}
     >
-      <Eye size={22} />
-      <span className="text-sm! font-medium! text-secondary!">{count}</span>
+      <Eye size={20} />
+      {count ? (
+        <span className="text-sm! font-medium! text-(--secondary)!">{count}</span>
+      ) : (
+        <Infinity size={16} className="text-(--secondary)!" />
+      )}
     </div>
   )
 }
