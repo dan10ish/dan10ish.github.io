@@ -16,23 +16,23 @@ export default function About() {
     <>
       <Menu page="writing" />
       <Nav currentPage="about" />
-      <div className="max-w-3xl! mx-auto! py-4! mt-8! pb-20! md:pb-10!">
+      <div className="max-w-3xl! mx-auto! py-4! mt-8! pb-20! md:pb-10! pl-4! pr-4!">
         <div className="flex! flex-col! gap-5!">
           <section>
             <div className="flex! items-center! gap-3! mb-8!">
               <div className="w-20! h-20! shrink-0!">
                 <Image
-                  src="/Danish.png"
+                  src="/Danish.jpg"
                   alt={personalInfo.name}
                   width={80}
                   height={80}
-                  className="w-full! h-full! object-contain!"
+                  className="w-full! h-full! object-cover! rounded-full! shadow-md! border!"
                   priority
                 />
               </div>
               <div>
                 <h1 className="font-bold! mb-0.5!">{personalInfo.name}</h1>
-                <p className="text-secondary! text-sm!">Mechatronics Engineer</p>
+                <p className="text-secondary! text-sm! text-(--secondary)!">Creative Enthusiast</p>
               </div>
             </div>
             <p className="text-secondary! leading-relaxed! text-sm!">{personalInfo.about}</p>
