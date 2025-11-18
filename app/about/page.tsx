@@ -24,7 +24,7 @@ export default function About() {
       <div className="max-w-3xl! mx-auto! py-4! mt-8! pb-20! md:pb-10!">
         <div className="flex! flex-col! gap-5!">
           <section>
-            <div className="flex! items-center! gap-3! mb-8!">
+            <div className="flex! items-center! gap-5! mb-8!">
               <div className="w-20! h-20! shrink-0! relative!">
                 {!imageLoaded && (
                   <div className="absolute! inset-0! rounded-full! skeleton-shimmer! shadow-md! border! border-(--border)!" />
@@ -40,8 +40,8 @@ export default function About() {
                 />
               </div>
               <div>
-                <h1 className="font-bold! mb-0.5!">{personalInfo.name}</h1>
-                <p className="text-secondary! text-sm! text-(--secondary)!">Creative Enthusiast</p>
+                <h2 className="font-bold! mb-0.5!">{personalInfo.name}</h2>
+                <p className="text-secondary! text-xs! text-(--secondary)!">Creative Enthusiast</p>
               </div>
             </div>
             <p className="text-secondary! leading-relaxed! text-sm!">{personalInfo.about}</p>
