@@ -19,6 +19,9 @@
   --github-level-2: #40c463;
   --github-level-3: #30a14e;
   --github-level-4: #216e39;
+  --skeleton-from: #e0e0e0;
+  --skeleton-via: #f5f5f5;
+  --skeleton-to: #e0e0e0;
 }
 
 .dark {
@@ -33,6 +36,9 @@
   --github-level-2: #006d32;
   --github-level-3: #26a641;
   --github-level-4: #39d353;
+  --skeleton-from: #1a1a1a;
+  --skeleton-via: #333333;
+  --skeleton-to: #1a1a1a;
 }
 
 html {
@@ -173,6 +179,28 @@ section {
   to {
     transform: rotate(360deg);
   }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    90deg,
+    var(--skeleton-from) 0%,
+    var(--skeleton-via) 50%,
+    var(--skeleton-from) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.8s linear infinite;
 }
 
 .scrollbar-hide {

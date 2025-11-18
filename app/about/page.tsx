@@ -1,3 +1,6 @@
+'use client'
+
+import { useState } from 'react'
 import { ChartSpline, CodeXml, Cpu } from 'lucide-react'
 import Menu from '../components/Menu'
 import GitHubContributions from '../components/GitHubContributions'
@@ -12,6 +15,8 @@ const experience = [
 ]
 
 export default function About() {
+  const [imageLoaded, setImageLoaded] = useState(false)
+
   return (
     <>
       <Menu />
@@ -20,14 +25,18 @@ export default function About() {
         <div className="flex! flex-col! gap-5!">
           <section>
             <div className="flex! items-center! gap-3! mb-8!">
-              <div className="w-20! h-20! shrink-0!">
+              <div className="w-20! h-20! shrink-0! relative!">
+                {!imageLoaded && (
+                  <div className="absolute! inset-0! rounded-full! skeleton-shimmer! shadow-md! border! border-(--border)!" />
+                )}
                 <Image
                   src="/Danish.jpg"
                   alt={personalInfo.name}
                   width={80}
                   height={80}
-                  className="w-full! h-full! object-cover! rounded-full! shadow-md! border!"
+                  className={`w-full! h-full! object-cover! rounded-full! shadow-md! transition-opacity! duration-300! ${!imageLoaded ? 'opacity-0!' : 'opacity-100!'}`}
                   priority
+                  onLoad={() => setImageLoaded(true)}
                 />
               </div>
               <div>
