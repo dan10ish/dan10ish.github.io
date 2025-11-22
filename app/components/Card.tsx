@@ -150,7 +150,6 @@ export default function Card() {
           <div className={cx('card__inner')}>
             <div className={cx('card__top')}>
               <div className={cx('card__contact')}>
-                <a href="mailto:danish@innovatiolabs.com" className={cx('card__email', 'card__inline', 'engraved-tight', 'link-reset')}>danish@innovatiolabs.com</a>
                 <a href="tel:+255786654790" className={cx('card__phone', 'card__inline', 'engraved-tight', 'link-reset')}>+255786654790</a>
               </div>
               <a href="https://innovatiolabs.com" target="_blank" rel="noopener noreferrer" className={cx('card__company', 'link-reset')}>

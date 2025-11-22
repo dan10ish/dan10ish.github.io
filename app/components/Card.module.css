@@ -168,6 +168,8 @@
     font-variant: small-caps;
     font-size: calc(34px * var(--card-scale));
     letter-spacing: -0.01em;
+    margin-top: -5px;
+
 }
 
 .card__bottom {
