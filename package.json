@@ -12,11 +12,11 @@
     "deploy": "gh-pages -d out"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.80.0",
+    "@supabase/supabase-js": "^2.84.0",
     "framer-motion": "^12.23.24",
     "gray-matter": "^4.0.3",
-    "lucide-react": "^0.553.0",
-    "next": "^16.0.1",
+    "lucide-react": "^0.554.0",
+    "next": "^16.0.3",
     "next-mdx-remote": "^5.0.0",
     "next-themes": "^1.0.0-beta.0",
     "react": "^19.2.0",
@@ -33,7 +33,7 @@
     "@tailwindcss/postcss": "^4.1.17",
     "@tailwindcss/typography": "^0.5.19",
     "@types/node": "^24",
-    "@types/react": "^19.2.2",
+    "@types/react": "^19.2.7",
     "gh-pages": "^6.3.0",
     "tailwindcss": "^4",
     "typescript": "5.9.3"
