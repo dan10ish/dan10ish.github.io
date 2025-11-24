@@ -77,28 +77,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  var theme = localStorage.getItem('theme');
-                  var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                  var isDark = theme === 'dark' || (!theme && systemDark);
-                  
-                  if (isDark) {
-                    document.documentElement.classList.add('dark');
-                  }
-                  
-                  var meta = document.createElement('meta');
-                  meta.name = 'theme-color';
-                  meta.content = isDark ? '#111111' : '#f8f8f8';
-                  document.head.appendChild(meta);
-                } catch (e) {}
-              })();
-            `,
-          }}
-        />
+        
       </head>
       <body
         className="antialiased bg-[rgb(var(--background))] text-[rgb(var(--foreground))] font-sans"
