@@ -26,12 +26,17 @@
   --tweet-verified-old-color: var(--secondary);
   --tweet-verified-blue-color: var(--link-blue);
   letter-spacing: 0.07em;
+  font-size: 0.85rem !important;
 }
 
 .tweet .react-tweet-theme p {
-  font-size: 0.87rem !important;
+  font-size: 0.85rem !important;
   line-height: 1.4;
   letter-spacing: 0.07em;
+}
+
+.tweet-header-module__A9EVQG__author{
+  font-size: 0.8rem !important;
 }
 
 .tweet .react-tweet-theme p a {
@@ -44,6 +49,10 @@
 .tweet .react-tweet-theme p a:hover {
   border-bottom-color: var(--link-blue);
   text-decoration: none;
+}
+
+.tweet-actions-module__TCXXfW__replyText, .tweet-actions-module__TCXXfW__likeCount{
+  font-size: 0.8rem !important;
 }
 
 .tweet .react-tweet-theme a[href*="intent/follow"] {
@@ -62,6 +71,7 @@
   font-size: 0.7rem !important;
   display: none !important;
 }
+
 
 .yt-video-container {
   position: relative;

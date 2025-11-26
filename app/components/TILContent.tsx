@@ -94,18 +94,18 @@ const LinkPreview = memo(function LinkPreview({ url, metadata }: { url: string; 
         style={{ borderColor: 'rgba(148, 163, 184, 0.35)' }}
       >
         <div className="flex! items-center! justify-between! gap-3! mb-3!">
-          <h3 className="text-base! font-semibold! flex-1!">
+          <h3 className="font-semibold! flex-1!">
             {displayMetadata.title}
           </h3>
           <Globe size={16} className="text-secondary! shrink-0!" />
         </div>
         {displayMetadata.author && (
-          <p className="text-xs! text-secondary! mb-3!">
+          <p className="text-secondary! mb-3!">
             by {displayMetadata.author}
           </p>
         )}
         {displayMetadata.description && (
-          <p className="text-sm! text-secondary! opacity-70!">
+          <p className="text-secondary! opacity-70!">
             {displayMetadata.description}
           </p>
         )}
@@ -127,17 +127,17 @@ const BookCard = memo(function BookCard({ metadata }: { metadata?: TILEntry['met
       )}
       <div className="flex-1!">
         {metadata?.title && (
-          <h3 className="text-base! font-semibold! mb-1!">
+          <h3 className="font-semibold! mb-1!">
             {metadata.title}
           </h3>
         )}
         {metadata?.author && (
-          <p className="text-sm! text-secondary! mb-2!">
+          <p className="text-secondary! mb-2!">
             by {metadata.author}
           </p>
         )}
         {metadata?.description && (
-          <p className="text-sm! line-clamp-3!">
+          <p className="line-clamp-3!">
             {metadata.description}
           </p>
         )}
@@ -155,7 +155,7 @@ const TILContent = memo(function TILContent({ entry }: TILContentProps) {
       return tweetId ? (
         <TwitterEmbed tweetId={tweetId} />
       ) : (
-        <p className="text-sm!">Invalid tweet URL</p>
+        <p>Invalid tweet URL</p>
       )
 
     case 'youtube':
@@ -163,7 +163,7 @@ const TILContent = memo(function TILContent({ entry }: TILContentProps) {
       return videoId ? (
         <YouTubeEmbed videoId={videoId} />
       ) : (
-        <p className="text-sm!">Invalid YouTube URL</p>
+        <p>Invalid YouTube URL</p>
       )
 
     case 'link':
@@ -185,7 +185,7 @@ const TILContent = memo(function TILContent({ entry }: TILContentProps) {
     case 'text':
     default:
       return (
-        <p className="text-base! whitespace-pre-wrap!">
+        <p className="whitespace-pre-wrap!">
           {content}
         </p>
       )
