@@ -13,7 +13,7 @@ export default function Navigation() {
 
   if (isHomePage) {
     return (
-      <div className="!fixed !bottom-5 md:!bottom-8 !right-4 md:!right-5 !flex !flex-col !items-center !gap-2 !z-50">
+      <div className="!fixed !bottom-5 md:!bottom-8 !right-2.5 md:!right-4 !flex !flex-col !items-center !gap-2 !z-50">
         <button
           onClick={nextTheme}
           className="!opacity-60 hover:!opacity-100 !transition-opacity !cursor-pointer !p-2"
@@ -27,7 +27,7 @@ export default function Navigation() {
   }
 
   return (
-    <div className="!fixed !bottom-5 md:!bottom-8 !right-4 md:!right-5 !flex !flex-col !items-center !gap-1 !z-50">
+    <div className="!fixed !bottom-5 md:!bottom-8 !right-2.5 md:!right-4 !flex !flex-col !items-center !gap-1 !z-50">
       <Link
         href="/"
         className="!opacity-60 hover:!opacity-100 !transition-opacity !cursor-pointer !p-2"
