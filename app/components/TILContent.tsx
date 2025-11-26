@@ -90,7 +90,8 @@ const LinkPreview = memo(function LinkPreview({ url, metadata }: { url: string; 
         href={url}
         target="_blank"
         rel="noopener noreferrer"
-        className="block! w-full! border! border-(--border)! rounded-lg! hover:opacity-80! transition-opacity! p-4!"
+        className="block! w-full! border! rounded-lg! hover:opacity-80! transition-opacity! p-4!"
+        style={{ borderColor: 'rgba(148, 163, 184, 0.35)' }}
       >
         <div className="flex! items-center! justify-between! gap-3! mb-3!">
           <h3 className="text-base! font-semibold! flex-1!">
@@ -115,7 +116,7 @@ const LinkPreview = memo(function LinkPreview({ url, metadata }: { url: string; 
 
 const BookCard = memo(function BookCard({ metadata }: { metadata?: TILEntry['metadata'] }) {
   return (
-    <div className="w-full! border! border-(--border)! rounded-lg! p-4! flex! gap-4!">
+    <div className="w-full! border! rounded-lg! p-4! flex! gap-4!" style={{ borderColor: 'rgba(148, 163, 184, 0.35)' }}>
       {metadata?.image && (
         <img
           src={metadata.image}

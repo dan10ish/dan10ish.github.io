@@ -37,7 +37,7 @@ function ExperienceTimeline() {
                     {exp.startYear}
                   </span>
                   <h3 
-                    className="experience-company !text-sm"
+                    className="experience-company !text-base"
                     style={{ color: 'var(--text)' }}
                   >
                     {exp.company}

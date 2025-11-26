@@ -28,7 +28,11 @@ body {
 }
 
 .text-secondary {
-  color: var(--secondary);
+  color: var(--secondary) !important;
+}
+
+.border-color-border {
+  border-color: var(--border) !important;
 }
 
 .social-link-icon {
@@ -82,27 +86,6 @@ body {
   }
 }
 
-.skeleton-shimmer {
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(
-    90deg,
-    #1f2937,
-    #4b5563,
-    #1f2937
-  );
-  background-size: 200% 100%;
-  animation: shimmer 1.8s linear infinite;
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
-}
 
 .timeline-line {
   background-color: var(--text);
