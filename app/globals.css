@@ -4,6 +4,12 @@
   --bg: #2a2e3a;
   --text: #e5e7eb;
   --accent: #6b7280;
+  --background: var(--bg);
+  --foreground: var(--text);
+  --secondary: var(--accent);
+  --link-blue: #4da6ff;
+  --code-bg: #1e1e1e;
+  --border: #374151;
 }
 
 * {
@@ -18,6 +24,10 @@ body {
   font-family: var(--font-sf-pro), -apple-system, BlinkMacSystemFont, system-ui, -system-ui, sans-serif;
   font-size: 16px;
   line-height: 1.5;
+}
+
+.text-secondary {
+  color: var(--secondary);
 }
 
 .social-link-icon {
@@ -53,24 +63,60 @@ body {
   margin-top: 0.1rem;
 }
 
-.dot-loader {
-  width: 40px;
-  height: 8px;
+.finds-loader {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 9999px;
+  border: 2px solid var(--border);
+  border-top-color: var(--link-blue);
+  border-left-color: var(--link-blue);
   display: inline-block;
-  vertical-align: middle;
-  --_g: no-repeat radial-gradient(circle closest-side, var(--text) 90%, transparent);
-  background: 
-    var(--_g) 0% 50%,
-    var(--_g) 33.33% 50%,
-    var(--_g) 66.66% 50%,
-    var(--_g) 100% 50%;
-  background-size: calc(100%/4) 50%;
-  animation: dot-pulse 1.45s infinite linear;
+  animation: finds-spin 0.65s linear infinite;
+  transform-origin: center;
 }
 
-@keyframes dot-pulse {
-  20% { background-position: 0% 0%, 33.33% 50%, 66.66% 50%, 100% 50%; }
-  40% { background-position: 0% 100%, 33.33% 0%, 66.66% 50%, 100% 50%; }
-  60% { background-position: 0% 50%, 33.33% 100%, 66.66% 0%, 100% 50%; }
-  80% { background-position: 0% 50%, 33.33% 50%, 66.66% 100%, 100% 0%; }
+@keyframes finds-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.skeleton-shimmer {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    90deg,
+    #1f2937,
+    #4b5563,
+    #1f2937
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.8s linear infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.timeline-line {
+  background-color: rgba(148, 163, 184, 0.3);
+}
+
+.experience-dot {
+  background-color: rgba(148, 163, 184, 0.5);
+  box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.5);
+}
+
+.experience-year {
+  color: var(--text);
+  opacity: 0.6;
+}
+
+.experience-company {
+  color: var(--text);
 }
