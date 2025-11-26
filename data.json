@@ -1,53 +1,50 @@
 {
   "personal": {
-    "name": "DANISH ANSARI",
+    "name": "Danish Ansari",
     "title": ["ML", "ROBOTICS", "FINANCE"]
   },
   "experience": [
     {
-      "company": "INNOVATIO LABS",
-      "startYear": "2024",
-      "endYear": "...."
+      "company": "Innovatio Labs",
+      "year": "2025"
     },
     {
-      "company": "CRIDAA", 
-      "startYear": "2024",
-      "endYear": "2025"
+      "company": "Cridaa", 
+      "year": "2024"
     },
     {
-      "company": "ACCELUS ROBOTICS",
-      "startYear": "2023",
-      "endYear": "2024"
+      "company": "Accelus Robotics",
+      "year": "2023"
     }
   ],
   "social": [
     {
-      "name": "GITHUB",
+      "name": "GitHub",
       "username": "dan10ish",
       "url": "https://github.com/dan10ish"
     },
     {
-      "name": "INSTAGRAM", 
+      "name": "Instagram", 
       "username": "dan10ish",
       "url": "https://instagram.com/dan10ish"
     },
     {
-      "name": "LINKEDIN",
+      "name": "LinkedIn",
       "username": "dan10ish", 
       "url": "https://linkedin.com/in/dan10ish"
     },
     {
-      "name": "TWITTER",
+      "name": "Twitter",
       "username": "dan10ish",
       "url": "https://twitter.com/dan10ish"
     },
     {
-      "name": "EMAIL",
+      "name": "Email",
       "username": "dan10ish",
       "url": "mailto:aansaridan@gmail.com"
     },
     {
-      "name": "SNAPCHAT",
+      "name": "Snapchat",
       "username": "dan10ish",
       "url": "https://snapchat.com/add/dan10ish"
     }

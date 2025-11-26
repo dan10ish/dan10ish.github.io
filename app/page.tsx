@@ -5,62 +5,15 @@ import { useTheme } from './context/ThemeContext'
 import { ArrowUpRight } from 'lucide-react'
 import data from '../data.json'
 
-function ExperienceTimeline() {
-  return (
-    <div className="!mb-8">
-      <div className="!flex !flex-col">
-        {data.experience.map((exp, index) => {
-          const isLast = index === data.experience.length - 1
-          
-          return (
-            <div key={index} className="!flex !gap-x-3 !relative">
-              <div className="!relative">
-                {!isLast ? (
-                  <div 
-                    className="!absolute !top-[10px] !left-[8px] !w-[2px] !-translate-x-1/2 timeline-line"
-                    style={{ height: 'calc(100% - 10px + 10px)' }}
-                  />
-                ) : null}
-                <div className="!relative !z-10 !w-4 !h-4 !flex !justify-center !items-center !mt-1">
-                  <div 
-                    className="experience-dot !w-3 !h-3 !rounded-full !border-2"
-                    style={{
-                      borderColor: 'var(--bg)'
-                    }}
-                  />
-                </div>
-              </div>
-              
-              <div className={isLast ? "!pb-0" : "!pb-3"}>
-                <div className="!flex !items-center !gap-x-2">
-                  <span className="experience-year !text-sm !w-10 !opacity-70">
-                    {exp.startYear}
-                  </span>
-                  <h3 
-                    className="experience-company !text-base"
-                    style={{ color: 'var(--text)' }}
-                  >
-                    {exp.company}
-                  </h3>
-                </div>
-              </div>
-            </div>
-          )
-        })}
-      </div>
-    </div>
-  )
-}
-
 export default function Home() {
   const { nextTheme } = useTheme()
 
   return (
-    <div className="!h-dvh md:!p-10 !p-8 !flex !flex-col !justify-between !overflow-hidden">
-      <div className="!flex-1 !overflow-auto">
+    <div className="!h-dvh p-12! !flex !flex-col !justify-between !overflow-hidden">
+      <div className="!flex-1 !overflow-auto font-semibold!">
         <div className="!mb-8">
-          <h2 className="!text-base !mb-1">{data.personal.name}</h2>
-          <p className="title-with-dots !text-base">
+          <h2 className="!mb-1">{data.personal.name}</h2>
+          <p className="!text-xl ">
             {data.personal.title.map((item, index) => (
               <span key={index} className={`title-item ${index < data.personal.title.length - 1 ? 'has-dot' : ''}`}>
                 {item}
@@ -69,8 +22,6 @@ export default function Home() {
           </p>
         </div>
 
-        <ExperienceTimeline />
-
         <div className="!mb-8">
           {data.social.map((social, index) => (
             <div key={index} className="!mb-1">
@@ -78,7 +29,7 @@ export default function Home() {
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="social-link !text-base hover:!opacity-70 !transition-opacity !inline-flex !items-center"
+                className="social-link !text-xl  hover:!opacity-70 !transition-opacity !inline-flex !items-center"
               >
                 {social.name}
                 <ArrowUpRight 
@@ -93,7 +44,7 @@ export default function Home() {
         <div className="!mb-8">
           <Link
             href="/finds"
-            className="social-link !text-base hover:!opacity-70 !transition-opacity !inline-flex !items-center !bg-[#00000025] ring-1 ring-[#ffffff20] !rounded-lg !px-2 !py-1 !ml-0.5"
+            className="social-link !text-xl  hover:!opacity-70 !transition-opacity !inline-flex !items-center !bg-[#00000025] ring-1 ring-[#ffffff20] !rounded-lg !px-2 !py-1 !ml-0.5"
           >
             FINDS
           </Link>
@@ -103,7 +54,7 @@ export default function Home() {
       <div className="!flex !justify-start !mt-4">
         <button
           onClick={nextTheme}
-          className="social-link !text-base hover:!opacity-70 !transition-opacity !border-none !p-2 !-m-2 !rounded-lg !cursor-pointer !inline-flex !items-center !bg-transparent"
+          className="social-link !text-xl  hover:!opacity-70 !transition-opacity !border-none !p-2 !-m-2 !rounded-lg !cursor-pointer !inline-flex !items-center !bg-transparent"
           style={{ color: 'var(--text)' }}
         >
           THEME
