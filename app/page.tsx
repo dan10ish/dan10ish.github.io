@@ -1,12 +1,10 @@
 'use client'
 
 import Link from 'next/link'
-import { useTheme } from './context/ThemeContext'
 import { ArrowUpRight } from 'lucide-react'
 import data from '../data.json'
 
 export default function Home() {
-  const { nextTheme } = useTheme()
 
   return (
     <div className="!flex !flex-col !justify-between !overflow-hidden">
@@ -53,5 +51,3 @@ export default function Home() {
     </div>
   );
 }
-
-// onClick={nextTheme}

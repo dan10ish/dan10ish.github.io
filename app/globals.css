@@ -30,8 +30,8 @@ body {
   height: 1.5rem;
   border-radius: 9999px;
   border: 2px solid var(--border);
-  border-top-color: var(--link-blue);
-  border-left-color: var(--link-blue);
+  border-top-color: var(--text);
+  border-left-color: var(--text);
   display: inline-block;
   animation: finds-spin 0.65s linear infinite;
   will-change: transform;
