@@ -66,7 +66,7 @@ export default function FindsPage() {
         </div>
       </div>
 
-      <Navigation scrollContainerRef={scrollContainerRef} />
+      <Navigation />
     </div>
   )
 }
