@@ -25,11 +25,13 @@
   --tweet-twitter-icon-color: var(--foreground);
   --tweet-verified-old-color: var(--secondary);
   --tweet-verified-blue-color: var(--link-blue);
+  letter-spacing: 0.07em;
 }
 
 .tweet .react-tweet-theme p {
-  font-size: 0.85rem;
-  line-height: 1.6;
+  font-size: 0.87rem !important;
+  line-height: 1.4;
+  letter-spacing: 0.07em;
 }
 
 .tweet .react-tweet-theme p a {

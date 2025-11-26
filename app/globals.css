@@ -61,11 +61,12 @@ body {
 .title-item.has-dot::after {
   content: "•";
   margin-left: 0.5rem;
+  position: relative;
+  top: -0.15rem;
   color: var(--text);
   display: inline-block;
   vertical-align: middle;
   line-height: 1;
-  margin-top: 0.1rem;
 }
 
 .finds-loader {

@@ -32,8 +32,8 @@ function ExperienceTimeline() {
               </div>
               
               <div className={isLast ? "!pb-0" : "!pb-3"}>
-                <div className="!flex !items-baseline !gap-x-2">
-                  <span className="experience-year !text-xs !w-10">
+                <div className="!flex !items-center !gap-x-2">
+                  <span className="experience-year !text-sm !w-10 !opacity-70">
                     {exp.startYear}
                   </span>
                   <h3 
