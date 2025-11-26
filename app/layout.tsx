@@ -3,32 +3,27 @@ import localFont from "next/font/local";
 import { ThemeProvider } from "./context/ThemeContext";
 import "./globals.css";
 
-const sfMono = localFont({
+const sfProDisplay = localFont({
   src: [
     {
-      path: '../public/fonts/SFMono-Regular.woff2',
-      weight: '400',
-      style: 'normal',
+      path: "../public/fonts/SFPRODISPLAYREGULAR.woff2",
+      weight: "400",
+      style: "normal",
     },
     {
-      path: '../public/fonts/SFMono-Medium.woff2',
-      weight: '500',
-      style: 'normal',
+      path: "../public/fonts/SFPRODISPLAYMEDIUM.woff2",
+      weight: "500",
+      style: "normal",
     },
     {
-      path: '../public/fonts/SFMono-Semibold.woff2',
-      weight: '600',
-      style: 'normal',
-    },
-    {
-      path: '../public/fonts/SFMono-Bold.woff2',
-      weight: '700',
-      style: 'normal',
+      path: "../public/fonts/SFPRODISPLAYBOLD.woff2",
+      weight: "700",
+      style: "normal",
     },
   ],
-  variable: '--font-sf-mono',
-  display: 'swap',
-  fallback: ['monospace'],
+  variable: "--font-sf-pro",
+  display: "swap",
+  fallback: ["system-ui", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
 });
 
 export const metadata: Metadata = {
@@ -103,8 +98,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${sfMono.variable} !antialiased`}>
+    <html lang="en" className={`${sfProDisplay.variable} !antialiased`}>
+      <body>
         <ThemeProvider>
           {children}
         </ThemeProvider>
