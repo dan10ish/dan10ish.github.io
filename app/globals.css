@@ -24,6 +24,7 @@ body {
   font-family: var(--font-sf-pro), -apple-system, BlinkMacSystemFont, system-ui, -system-ui, sans-serif;
   font-size: 16px;
   line-height: 1.5;
+  letter-spacing: 0.05em;
 }
 
 .text-secondary {
@@ -104,17 +105,17 @@ body {
 }
 
 .timeline-line {
-  background-color: rgba(148, 163, 184, 0.3);
+  background-color: var(--text);
+  opacity: 1;
 }
 
 .experience-dot {
-  background-color: rgba(148, 163, 184, 0.5);
-  box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.5);
+  background-color: var(--text);
+  opacity: 1 !important;
 }
 
 .experience-year {
   color: var(--text);
-  opacity: 0.6;
 }
 
 .experience-company {

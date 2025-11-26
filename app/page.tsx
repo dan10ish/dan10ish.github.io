@@ -17,13 +17,13 @@ function ExperienceTimeline() {
               <div className="!relative">
                 {!isLast ? (
                   <div 
-                    className="!absolute !top-2 !left-[5px] !w-[2px] !-translate-x-1/2 timeline-line"
-                    style={{ height: 'calc(100% - 0.5rem)' }}
+                    className="!absolute !top-[10px] !left-[8px] !w-[2px] !-translate-x-1/2 timeline-line"
+                    style={{ height: 'calc(100% - 10px + 10px)' }}
                   />
                 ) : null}
-                <div className="!relative !z-10 !w-3 !h-3 !flex !justify-center !items-center !mt-1">
+                <div className="!relative !z-10 !w-4 !h-4 !flex !justify-center !items-center !mt-1">
                   <div 
-                    className="experience-dot !w-2.5 !h-2.5 !rounded-full !border-2"
+                    className="experience-dot !w-3 !h-3 !rounded-full !border-2"
                     style={{
                       borderColor: 'var(--bg)'
                     }}
@@ -31,13 +31,13 @@ function ExperienceTimeline() {
                 </div>
               </div>
               
-              <div className={isLast ? "!pb-0" : "!pb-5"}>
-                <div className="!flex !items-baseline !gap-x-3">
-                  <span className="experience-year !text-sm !font-bold !w-10">
+              <div className={isLast ? "!pb-0" : "!pb-3"}>
+                <div className="!flex !items-baseline !gap-x-2">
+                  <span className="experience-year !text-xs !w-10">
                     {exp.startYear}
                   </span>
                   <h3 
-                    className="experience-company !text-sm !font-medium !opacity-70"
+                    className="experience-company !text-sm"
                     style={{ color: 'var(--text)' }}
                   >
                     {exp.company}
