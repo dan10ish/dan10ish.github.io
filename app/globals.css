@@ -23,5 +23,4 @@ body {
   color: var(--text);
   font-family: var(--font-sf-pro), -apple-system, BlinkMacSystemFont, system-ui, -system-ui, sans-serif;
   line-height: 1.5;
-  letter-spacing: 0.1em !important;
 }

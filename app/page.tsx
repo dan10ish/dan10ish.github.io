@@ -9,14 +9,14 @@ export default function Home() {
   const { nextTheme } = useTheme()
 
   return (
-    <div className="!h-dvh p-12! !flex !flex-col !justify-between !overflow-hidden">
-      <div className="!flex-1 !overflow-auto font-semibold!">
+    <div className="!flex !flex-col !justify-between !overflow-hidden">
+      <div className="!flex-1 !overflow-auto">
         <div className="!mb-8">
-          <h2 className="!mb-1">{data.personal.name}</h2>
-          <p className="!text-xl ">
+          <p className="!mb-1">{data.personal.name}</p>
+          <p>
             {data.personal.title.map((item, index) => (
-              <span key={index} className={`title-item ${index < data.personal.title.length - 1 ? 'has-dot' : ''}`}>
-                {item}
+              <span key={index}>
+                {item} {index < data.personal.title.length - 1 ? '• ' : ''}
               </span>
             ))}
           </p>
@@ -29,7 +29,7 @@ export default function Home() {
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="social-link !text-xl  hover:!opacity-70 !transition-opacity !inline-flex !items-center"
+                className="hover:!opacity-70 !transition-opacity !inline-flex !items-center"
               >
                 {social.name}
                 <ArrowUpRight 
@@ -44,22 +44,14 @@ export default function Home() {
         <div className="!mb-8">
           <Link
             href="/finds"
-            className="social-link !text-xl  hover:!opacity-70 !transition-opacity !inline-flex !items-center !bg-[#00000025] ring-1 ring-[#ffffff20] !rounded-lg !px-2 !py-1 !ml-0.5"
+            className="!text-md hover:!opacity-70 !transition-opacity !inline-flex !items-center !bg-[#00000025] ring-1 ring-[#ffffff20] !rounded-lg !px-2 !py-1 !ml-0.5"
           >
             FINDS
           </Link>
         </div>
       </div>
-
-      <div className="!flex !justify-start !mt-4">
-        <button
-          onClick={nextTheme}
-          className="social-link !text-xl  hover:!opacity-70 !transition-opacity !border-none !p-2 !-m-2 !rounded-lg !cursor-pointer !inline-flex !items-center !bg-transparent"
-          style={{ color: 'var(--text)' }}
-        >
-          THEME
-        </button>
-      </div>
     </div>
   );
 }
+
+// onClick={nextTheme}

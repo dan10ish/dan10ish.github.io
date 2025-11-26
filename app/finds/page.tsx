@@ -1,9 +1,8 @@
 'use client'
 
 import { useEffect, useState, useRef } from 'react'
-import { getTILEntries, formatDate, TILEntry } from '../../lib/client'
+import { getTILEntries, TILEntry } from '../../lib/client'
 import TILContent from '../components/TILContent'
-import Navigation from '../components/Navigation'
 
 export default function FindsPage() {
   const [entries, setEntries] = useState<TILEntry[]>([])
@@ -27,7 +26,7 @@ export default function FindsPage() {
   const rightColumn = sortedEntries.filter((_, idx) => idx % 2 === 1)
 
   return (
-    <div className="md:!p-10 !p-8 !flex !flex-col !justify-between !overflow-hidden">
+    <div className="!flex !flex-col !justify-between !overflow-hidden">
       <div ref={scrollContainerRef} className="!flex-1 !overflow-auto">
         <div className="max-w-2xl! mx-auto! pb-24!">
           {loading ? (
@@ -65,8 +64,6 @@ export default function FindsPage() {
           )}
         </div>
       </div>
-
-      <Navigation />
     </div>
   )
 }

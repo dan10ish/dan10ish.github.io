@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { ThemeProvider } from "./context/ThemeContext";
 import "./globals.css";
+import Navigation from "./components/Navigation";
 
 const sfProDisplay = localFont({
   src: [
@@ -118,10 +119,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${sfProDisplay.variable} !antialiased`}>
+    <html lang="en" className={`${sfProDisplay.variable} !h-dvh !antialiased p-8! tracking-widest font-medium text-lg`}>
       <body>
         <ThemeProvider>
           {children}
+        <Navigation />
         </ThemeProvider>
       </body>
     </html>
