@@ -41,7 +41,6 @@ export default function FindsPage() {
               <div className="space-y-6! md:hidden">
                 {sortedEntries.map((entry) => (
                   <article key={entry.id} className="border-b! pb-6! last:border-b-0!" style={{ borderColor: 'rgba(148, 163, 184, 0.35)' }}>
-                    <p className="text-secondary! text-[0.82rem]! mb-3!">{formatDate(entry.date)}</p>
                     <TILContent entry={entry} />
                   </article>
                 ))}
@@ -50,7 +49,6 @@ export default function FindsPage() {
                 <div className="space-y-6!">
                   {leftColumn.map((entry) => (
                     <article key={entry.id} className="border-b! pb-6! last:border-b-0!" style={{ borderColor: 'rgba(148, 163, 184, 0.35)' }}>
-                      <p className="text-secondary! text-[0.82rem]! mb-3!">{formatDate(entry.date)}</p>
                       <TILContent entry={entry} />
                     </article>
                   ))}
@@ -58,7 +56,6 @@ export default function FindsPage() {
                 <div className="space-y-6!">
                   {rightColumn.map((entry) => (
                     <article key={entry.id} className="border-b! pb-6! last:border-b-0!" style={{ borderColor: 'rgba(148, 163, 184, 0.35)' }}>
-                      <p className="text-secondary! text-[0.82rem]! mb-3!">{formatDate(entry.date)}</p>
                       <TILContent entry={entry} />
                     </article>
                   ))}

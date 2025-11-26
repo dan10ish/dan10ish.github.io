@@ -15,7 +15,19 @@ export default function Navigation({ scrollContainerRef }: NavigationProps) {
 
   useEffect(() => {
     const scrollContainer = scrollContainerRef.current
-    if (!scrollContainer) return
+    if (!scrollContainer) {
+      const timeout = setTimeout(() => {
+        const container = scrollContainerRef.current
+        if (container) {
+          const handleScroll = () => {
+            setShowScrollTop(container.scrollTop > 300)
+          }
+          container.addEventListener('scroll', handleScroll, { passive: true })
+          handleScroll()
+        }
+      }, 200)
+      return () => clearTimeout(timeout)
+    }
 
     const handleScroll = () => {
       setShowScrollTop(scrollContainer.scrollTop > 300)
@@ -27,10 +39,13 @@ export default function Navigation({ scrollContainerRef }: NavigationProps) {
     return () => {
       scrollContainer.removeEventListener('scroll', handleScroll)
     }
-  }, [scrollContainerRef])
+  }, [])
 
   const scrollToTop = () => {
-    scrollContainerRef.current?.scrollTo({ top: 0, behavior: 'smooth' })
+    const scrollContainer = scrollContainerRef.current
+    if (scrollContainer) {
+      scrollContainer.scrollTo({ top: 0, behavior: 'smooth' })
+    }
   }
 
   return (
