@@ -24,3 +24,22 @@ body {
   font-family: var(--font-sf-pro), -apple-system, BlinkMacSystemFont, system-ui, -system-ui, sans-serif;
   line-height: 1.5;
 }
+
+.finds-loader {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 9999px;
+  border: 2px solid var(--border);
+  border-top-color: var(--link-blue);
+  border-left-color: var(--link-blue);
+  display: inline-block;
+  animation: finds-spin 0.65s linear infinite;
+  will-change: transform;
+  transform-origin: center;
+}
+
+@keyframes finds-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
