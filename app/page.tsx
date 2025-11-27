@@ -1,51 +1,50 @@
-'use client'
-
-import Link from 'next/link'
-import { ArrowUpRight } from 'lucide-react'
-import data from '../data.json'
+import { data } from "./data";
 
 export default function Home() {
-
   return (
-    <div className="!flex !flex-col !justify-between !overflow-hidden">
-      <div className="!flex-1 !overflow-auto">
-        <div className="!mb-8">
-          <p className="!mb-1">{data.personal.name}</p>
-          <p>
-            {data.personal.title.map((item, index) => (
-              <span key={index}>
-                {item} {index < data.personal.title.length - 1 ? '• ' : ''}
-              </span>
-            ))}
-          </p>
+    <div className="px-6 pt-6 pb-12">
+      <div className="space-y-8">
+        <div className="block w-full text-left text-[22px] md:text-[28px] leading-[1.1] font-semibold tracking-tight">
+          {data.personal.name}
         </div>
 
-        <div className="!mb-8">
-          {data.social.map((social, index) => (
-            <div key={index} className="!mb-1">
+        <div className="block w-full text-left text-[22px] md:text-[28px] leading-[1.1] font-semibold tracking-tight">
+          {data.personal.title.join(" | ")}
+        </div>
+
+        <div className="space-y-2">
+          <div className="text-[16px] md:text-[20px] leading-[1.1] font-medium text-secondary tracking-tight">Experience</div>
+          <div className="space-y-2">
+            {data.experience.map((item, index) => (
+              <div
+                key={index}
+                className="block w-full text-left text-[22px] md:text-[28px] leading-[1.1] font-semibold tracking-tight"
+              >
+                {item.company} ({item.year})
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="space-y-2">
+        <div className="text-[16px] md:text-[20px] leading-[1.1] font-medium text-secondary tracking-tight">Socials</div>
+        <div className="space-y-2">
+          {data.social.map((item, index) => (
+            <div
+              key={index}
+              className="block w-full text-left text-[22px] md:text-[28px] leading-[1.1] font-semibold tracking-tight"
+            >
               <a
-                href={social.url}
+                href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:!opacity-70 !transition-opacity !inline-flex !items-center"
+                className="hover:opacity-50 transition-opacity"
               >
-                {social.name}
-                <ArrowUpRight 
-                  size={16} 
-                  className="social-link-icon"
-                />
+                {item.name}
               </a>
             </div>
           ))}
-        </div>
-
-        <div className="!mb-8">
-          <Link
-            href="/finds"
-            className="text-sm! hover:!opacity-70 !transition-opacity !inline-flex !items-center !bg-[#00000025] ring-1 ring-[#ffffff20] !rounded-lg !px-2 !py-1 !ml-0.5"
-          >
-            FINDS
-          </Link>
+          </div>
         </div>
       </div>
     </div>

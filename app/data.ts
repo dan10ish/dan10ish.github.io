@@ -1,4 +1,26 @@
-{
+export interface Personal {
+  name: string;
+  title: string[];
+}
+
+export interface Experience {
+  company: string;
+  year: string;
+}
+
+export interface Social {
+  name: string;
+  username: string;
+  url: string;
+}
+
+export interface Data {
+  personal: Personal;
+  experience: Experience[];
+  social: Social[];
+}
+
+export const data: Data = {
   "personal": {
     "name": "Danish Ansari",
     "title": ["ML", "Robotics", "Finance"]
@@ -34,9 +56,9 @@
       "url": "https://linkedin.com/in/dan10ish"
     },
     {
-      "name": "Twitter",
+      "name": "X (Twitter)",
       "username": "dan10ish",
-      "url": "https://twitter.com/dan10ish"
+      "url": "https://x.com/dan10ish"
     },
     {
       "name": "Email",
@@ -49,4 +71,5 @@
       "url": "https://snapchat.com/add/dan10ish"
     }
   ]
-}
+};
+  

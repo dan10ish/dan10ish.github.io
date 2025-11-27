@@ -1,45 +1,28 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #2a2e3a;
-  --text: #e5e7eb;
-  --accent: #6b7280;
-  --background: var(--bg);
-  --foreground: var(--text);
-  --secondary: var(--accent);
-  --link-blue: #4da6ff;
-  --code-bg: #1e1e1e;
-  --border: #374151;
+  --background: #ffffff;
+  --foreground: #111111;
+  --secondary: #666666;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-secondary: var(--secondary);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #161617;
+    --foreground: #e8e8ed;
+    --secondary: #888888;
+  }
 }
 
 body {
-  background-color: var(--bg);
-  color: var(--text);
-  font-family: var(--font-sf-pro), -apple-system, BlinkMacSystemFont, system-ui, -system-ui, sans-serif;
-  line-height: 1.5;
-}
-
-.finds-loader {
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 9999px;
-  border: 2px solid var(--border);
-  border-top-color: var(--text);
-  border-left-color: var(--text);
-  display: inline-block;
-  animation: finds-spin 0.65s linear infinite;
-  will-change: transform;
-  transform-origin: center;
-}
-
-@keyframes finds-spin {
-  to {
-    transform: rotate(360deg);
-  }
+  background: var(--background);
+  color: var(--foreground);
 }
