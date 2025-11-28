@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="px-6 pt-6 pb-12">
+    <div className="px-6 pt-6 pb-12 md:px-8 md:pt-8 md:pb-12">
       <Menu />
       <div className="space-y-8">
         <div className="block w-full text-left text-[22px] md:text-[24px] leading-[1.1] font-semibold tracking-tight">
@@ -51,8 +51,8 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="text-[18px] md:text-[22px] leading-[1.1] font-semibold tracking-tight text-background pt-4">
-          <Link href="/finds" className="hover:opacity-50 transition-opacity bg-secondary px-3 py-1.5 rounded-lg">
+        <div className="text-[18px] md:text-[22px] leading-[1.1] font-semibold tracking-tight text-primary pt-4">
+          <Link href="/finds" className="hover:opacity-80 transition-opacity bg-[var(--border)] px-3.5 py-2 rounded-lg">
             Finds
           </Link>
         </div>
