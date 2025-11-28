@@ -1,5 +1,5 @@
 "use client";
-import Menu from "./components/menu";
+
 import { data } from "./data";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
@@ -7,7 +7,7 @@ import { ArrowUpRight } from "lucide-react";
 export default function Home() {
   return (
     <div className="px-8 pt-8 pb-12 md:px-10 md:pt-10 md:pb-12">
-      <Menu />
+
       <div className="space-y-8">
         <div className="block w-full text-left text-[22px] md:text-[24px] leading-[1.1] font-semibold tracking-tight">
           {data.personal.name}

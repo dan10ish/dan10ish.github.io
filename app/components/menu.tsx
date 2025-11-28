@@ -51,7 +51,7 @@ export default function Menu() {
         </button>
       )}
 
-      {pathname !== "/" && (
+      {pathname.startsWith("/finds") && (
         <button
           onClick={() => router.push("/")}
           className="p-2 text-secondary hover:text-foreground transition-colors"
