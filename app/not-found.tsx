@@ -11,7 +11,7 @@ export default function NotFound() {
                     </div>
                 </div>
 
-                <div className="text-[18px] md:text-[22px] leading-[1.1] font-semibold tracking-tight text-primary pt-4 gap-2 flex">
+                <div className="text-[22px] md:text-[24px] leading-[1.1] font-semibold tracking-tight text-primary pt-4 flex gap-3">
                     <Link href="/" className="hover:opacity-80 transition-opacity bg-[var(--border)] px-3.5 py-2 rounded-lg">
                         Home
                     </Link>

@@ -51,7 +51,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="text-[18px] md:text-[22px] leading-[1.1] font-semibold tracking-tight text-primary pt-4">
+        <div className="text-[22px] md:text-[24px] leading-[1.1] font-semibold tracking-tight text-primary pt-4">
           <Link href="/finds" className="hover:opacity-80 transition-opacity bg-[var(--border)] px-3.5 py-2 rounded-lg">
             Finds
           </Link>
