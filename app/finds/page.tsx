@@ -1,9 +1,9 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { getTILEntries, formatDate, TILEntry } from '../../lib/client'
+import { getTILEntries, TILEntry } from '../../lib/client'
 import TILContent from '../components/TILContent'
-import Menu from '../components/menu'
+import Menu from '../components/Menu'
 import '../components/tweet.css'
 
 export default function FindsPage() {
@@ -27,7 +27,7 @@ export default function FindsPage() {
     const rightColumn = sortedEntries.filter((_, idx) => idx % 2 === 1)
 
     return (
-        <div className="p-8 max-w-2xl! mx-auto! pb-24! font-mono">
+        <div className="p-8 md:pt-12 max-w-2xl! mx-auto! pb-24! font-mono">
             {loading ? (
                 <div className="w-full! flex! justify-center! py-12!">
                     <span className="finds-loader" aria-hidden />
@@ -39,7 +39,6 @@ export default function FindsPage() {
                     <div className="space-y-6! md:hidden">
                         {sortedEntries.map((entry) => (
                             <article key={entry.id} className="border-b! border-(--border)! pb-6! last:border-b-0!">
-                                <p className="text-secondary! text-[0.82rem]! mb-3!">{formatDate(entry.date)}</p>
                                 <TILContent entry={entry} />
                             </article>
                         ))}
@@ -48,7 +47,6 @@ export default function FindsPage() {
                         <div className="space-y-6!">
                             {leftColumn.map((entry) => (
                                 <article key={entry.id} className="border-b! border-(--border)! pb-6! last:border-b-0!">
-                                    <p className="text-secondary! text-[0.82rem]! mb-3!">{formatDate(entry.date)}</p>
                                     <TILContent entry={entry} />
                                 </article>
                             ))}
@@ -56,7 +54,6 @@ export default function FindsPage() {
                         <div className="space-y-6!">
                             {rightColumn.map((entry) => (
                                 <article key={entry.id} className="border-b! border-(--border)! pb-6! last:border-b-0!">
-                                    <p className="text-secondary! text-[0.82rem]! mb-3!">{formatDate(entry.date)}</p>
                                     <TILContent entry={entry} />
                                 </article>
                             ))}

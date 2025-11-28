@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ArrowUp, Home, Moon, Sun } from "lucide-react";
+import { ChevronUp, Home, Moon, Sun } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 
 export default function Menu() {
@@ -45,14 +45,14 @@ export default function Menu() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 flex flex-col gap-4 z-50">
+    <div className="fixed bottom-4 right-3 md:right-5 md:bottom-6 flex flex-col gap-2 z-50">
       {showScrollTop && (
         <button
           onClick={scrollToTop}
           className="p-2 text-secondary hover:text-foreground transition-colors"
           aria-label="Scroll to top"
         >
-          <ArrowUp size={24} />
+          <ChevronUp size={24} />
         </button>
       )}
 
