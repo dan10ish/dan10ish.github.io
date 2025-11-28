@@ -27,7 +27,7 @@ export default function FindsPage() {
     const rightColumn = sortedEntries.filter((_, idx) => idx % 2 === 1)
 
     return (
-        <div className="p-8 md:pt-12 max-w-2xl! mx-auto! pb-24! font-mono">
+        <div className="p-6 md:p-0 md:pt-12 max-w-2xl! mx-auto! pb-24! font-mono">
             {loading ? (
                 <div className="w-full! flex! justify-center! py-12!">
                     <span className="finds-loader" aria-hidden />

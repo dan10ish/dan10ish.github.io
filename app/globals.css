@@ -17,16 +17,7 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #161617;
-    --foreground: #e8e8ed;
-    --secondary: #888888;
-    --link-blue: #4da6ff;
-    --border: #2a2a2a;
-    --code-bg: #1e1e1e;
-  }
-}
+
 
 .dark {
   --background: #161617;
