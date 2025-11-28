@@ -73,6 +73,8 @@ export const metadata: Metadata = {
   },
 };
 
+import Menu from "./components/menu";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -84,6 +86,7 @@ export default function RootLayout({
         className={`${geistSans.variable} antialiased`}
       >
         {children}
+        <Menu />
       </body>
     </html>
   );
