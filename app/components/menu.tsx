@@ -44,7 +44,7 @@ export default function Menu() {
       {showScrollTop && (
         <button
           onClick={scrollToTop}
-          className="p-2 text-secondary hover:text-foreground transition-colors"
+          className="p-2 text-secondary hover:text-foreground transition-colors cursor-pointer"
           aria-label="Scroll to top"
         >
           <ChevronUp size={24} />
@@ -54,7 +54,7 @@ export default function Menu() {
       {pathname.startsWith("/finds") && (
         <button
           onClick={() => router.push("/")}
-          className="p-2 text-secondary hover:text-foreground transition-colors"
+          className="p-2 text-secondary hover:text-foreground transition-colors cursor-pointer"
           aria-label="Go home"
         >
           <Home size={24} />
@@ -63,7 +63,7 @@ export default function Menu() {
 
       <button
         onClick={toggleTheme}
-        className="p-2 text-secondary hover:text-foreground transition-colors"
+        className="p-2 text-secondary hover:text-foreground transition-colors cursor-pointer"
         aria-label="Toggle theme"
       >
         {resolvedTheme === "light" ? <Moon size={24} /> : <Sun size={24} />}
