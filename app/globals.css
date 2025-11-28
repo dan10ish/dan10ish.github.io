@@ -47,8 +47,8 @@ body {
   height: 1.5rem;
   border-radius: 9999px;
   border: 2px solid var(--border);
-  border-top-color: var(--link-blue);
-  border-left-color: var(--link-blue);
+  border-top-color: var(--secondary);
+  border-left-color: var(--secondary);
   display: inline-block;
   animation: finds-spin 0.65s linear infinite;
   will-change: transform;

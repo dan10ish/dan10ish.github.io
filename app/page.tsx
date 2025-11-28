@@ -8,11 +8,11 @@ export default function Home() {
     <div className="px-6 pt-6 pb-12">
       <Menu />
       <div className="space-y-8">
-        <div className="block w-full text-left text-[22px] md:text-[28px] leading-[1.1] font-semibold tracking-tight">
+        <div className="block w-full text-left text-[22px] md:text-[24px] leading-[1.1] font-semibold tracking-tight">
           {data.personal.name}
         </div>
 
-        <div className="block w-full text-left text-[22px] md:text-[28px] leading-[1.1] font-semibold tracking-tight">
+        <div className="block w-full text-left text-[22px] md:text-[24px] leading-[1.1] font-semibold tracking-tight">
           {data.personal.title.join(" | ")}
         </div>
 
@@ -22,7 +22,7 @@ export default function Home() {
             {data.experience.map((item, index) => (
               <div
                 key={index}
-                className="block w-full text-left text-[22px] md:text-[28px] leading-[1.1] font-semibold tracking-tight"
+                className="block w-full text-left text-[22px] md:text-[24px] leading-[1.1] font-semibold tracking-tight"
               >
                 {item.company} ({item.year})
               </div>
@@ -36,7 +36,7 @@ export default function Home() {
             {data.social.map((item, index) => (
               <div
                 key={index}
-                className="block w-full text-left text-[22px] md:text-[28px] leading-[1.1] font-semibold tracking-tight"
+                className="block w-full text-left text-[22px] md:text-[24px] leading-[1.1] font-semibold tracking-tight"
               >
                 <a
                   href={item.url}

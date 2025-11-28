@@ -3,19 +3,17 @@
 import { useState, useEffect } from "react";
 import { ChevronUp, Home, Moon, Sun } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
+import { useTheme } from "next-themes";
 
 export default function Menu() {
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme, resolvedTheme } = useTheme();
   const pathname = usePathname();
   const router = useRouter();
 
   useEffect(() => {
-    // Check system preference initially
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setTheme("dark");
-    }
-
+    setMounted(true);
     const handleScroll = () => {
       if (window.scrollY > 100) {
         setShowScrollTop(true);
@@ -28,21 +26,18 @@ export default function Menu() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [theme]);
-
   const toggleTheme = () => {
-    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+    setTheme(resolvedTheme === "light" ? "dark" : "light");
   };
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  // Prevent hydration mismatch
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <div className="fixed bottom-4 right-3 md:right-5 md:bottom-6 flex flex-col gap-2 z-50">
@@ -71,7 +66,7 @@ export default function Menu() {
         className="p-2 text-secondary hover:text-foreground transition-colors"
         aria-label="Toggle theme"
       >
-        {theme === "light" ? <Moon size={24} /> : <Sun size={24} />}
+        {resolvedTheme === "light" ? <Moon size={24} /> : <Sun size={24} />}
       </button>
     </div>
   );
