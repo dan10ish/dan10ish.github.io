@@ -11,8 +11,9 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.86.0",
+    "framer-motion": "^12.23.25",
     "lucide-react": "^0.555.0",
-    "next": "16.0.5",
+    "next": "16.0.6",
     "next-themes": "^0.4.6",
     "react": "19.2.0",
     "react-dom": "19.2.0",
@@ -27,7 +28,7 @@
     "@types/react-dom": "^19",
     "baseline-browser-mapping": "^2.8.32",
     "eslint": "^9",
-    "eslint-config-next": "16.0.5",
+    "eslint-config-next": "16.0.6",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
