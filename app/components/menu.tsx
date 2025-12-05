@@ -14,6 +14,8 @@ export default function Menu() {
 
   useEffect(() => {
     setMounted(true);
+    router.prefetch("/");
+    router.prefetch("/finds");
     const handleScroll = () => {
       if (window.scrollY > 100) {
         setShowScrollTop(true);
@@ -34,7 +36,6 @@ export default function Menu() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // Prevent hydration mismatch
   if (!mounted) {
     return null;
   }

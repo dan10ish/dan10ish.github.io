@@ -1,3 +1,5 @@
+import 'server-only'
+import { unstable_cache, revalidateTag } from 'next/cache'
 import { createClient } from '@supabase/supabase-js'
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
@@ -19,28 +21,22 @@ export interface TILEntry {
     created_at: string
 }
 
-let cachedEntries: TILEntry[] | null = null
-let cacheTime = 0
-const CACHE_DURATION = 60000 // 1 minute
-
-export async function getTILEntries(): Promise<TILEntry[]> {
-    const now = Date.now()
-    if (cachedEntries && (now - cacheTime) < CACHE_DURATION) {
-        return cachedEntries
-    }
-
+const fetchTILEntries = async (): Promise<TILEntry[]> => {
     const { data, error } = await supabase
         .from('til_entries')
         .select('*')
         .order('created_at', { ascending: false })
     if (error) {
         console.error('Error fetching TIL entries:', error)
-        return cachedEntries || []
+        return []
     }
-    cachedEntries = data || []
-    cacheTime = now
-    return cachedEntries
+    return data || []
 }
+
+export const getTILEntries = unstable_cache(fetchTILEntries, ['til-entries'], {
+    revalidate: 300,
+    tags: ['til-entries'],
+})
 
 export async function addTILEntry(entry: Omit<TILEntry, 'id' | 'created_at'>): Promise<TILEntry | null> {
     const { data, error } = await supabase
@@ -52,5 +48,6 @@ export async function addTILEntry(entry: Omit<TILEntry, 'id' | 'created_at'>): P
         console.error('Error adding TIL entry:', error)
         return null
     }
+    revalidateTag('til-entries')
     return data
 }
