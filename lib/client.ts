@@ -48,6 +48,6 @@ export async function addTILEntry(entry: Omit<TILEntry, 'id' | 'created_at'>): P
         console.error('Error adding TIL entry:', error)
         return null
     }
-    revalidateTag('til-entries')
+    revalidateTag('til-entries', 'max')
     return data
 }
