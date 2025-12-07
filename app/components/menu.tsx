@@ -2,20 +2,18 @@
 
 import { useState, useEffect } from "react";
 import { ChevronUp, Home, Moon, Sun } from "lucide-react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
+import Link from "next/link";
 
 export default function Menu() {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme, resolvedTheme } = useTheme();
   const pathname = usePathname();
-  const router = useRouter();
 
   useEffect(() => {
     setMounted(true);
-    router.prefetch("/");
-    router.prefetch("/finds");
     const handleScroll = () => {
       if (window.scrollY > 100) {
         setShowScrollTop(true);
@@ -53,13 +51,14 @@ export default function Menu() {
       )}
 
       {pathname.startsWith("/finds") && (
-        <button
-          onClick={() => router.push("/")}
+        <Link
+          href="/"
+          prefetch
           className="p-2 text-secondary hover:text-foreground transition-colors cursor-pointer"
           aria-label="Go home"
         >
           <Home size={24} />
-        </button>
+        </Link>
       )}
 
       <button
