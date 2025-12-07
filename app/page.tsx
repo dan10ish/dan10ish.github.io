@@ -39,7 +39,7 @@ export default function Home() {
         variants={container}
         initial="hidden"
         animate="show"
-        className="min-h-dvh flex items-center -mt-6! justify-center px-8 py-12 md:px-10"
+        className="min-h-dvh flex justify-center px-8 py-8 md:py-12 md:px-10"
       >
         <div className="w-full max-w-md">
           <div className="space-y-8">
@@ -102,7 +102,7 @@ export default function Home() {
       <motion.button
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.5, duration: 0.3 }}
+        transition={{ duration: 0.3 }}
         onClick={() => setIsCardOpen(true)}
         className="fixed bottom-4 left-3 md:left-5 md:bottom-6 z-50 p-2 text-secondary hover:text-foreground transition-colors cursor-pointer"
         aria-label="Open card"
@@ -118,12 +118,7 @@ export default function Home() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-50 flex items-center justify-center"
-            style={{
-              backgroundColor: 'rgba(0, 0, 0, 0.5)',
-              backdropFilter: 'blur(8px)',
-              WebkitBackdropFilter: 'blur(8px)',
-            }}
+            className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-xl"
             onClick={(e) => {
               if (e.target === e.currentTarget) {
                 setIsCardOpen(false);

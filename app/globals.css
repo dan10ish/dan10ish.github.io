@@ -3,6 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #111111;
+  --foreground-rgb: 17, 17, 17;
   --secondary: #666666;
   --link-blue: #0059ff;
   --border: #d0d0d0;
@@ -22,6 +23,7 @@
 .dark {
   --background: #161617;
   --foreground: #e8e8ed;
+  --foreground-rgb: 232, 232, 237;
   --secondary: #888888;
   --link-blue: #4da6ff;
   --border: #2a2a2a;

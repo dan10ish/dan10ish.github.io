@@ -5,11 +5,12 @@ import { ChevronUp, Home, Moon, Sun } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Menu() {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme, resolvedTheme } = useTheme();
+  const { setTheme, resolvedTheme } = useTheme();
   const pathname = usePathname();
 
   useEffect(() => {
@@ -39,16 +40,27 @@ export default function Menu() {
   }
 
   return (
-    <div className="fixed bottom-4 right-3 md:right-5 md:bottom-6 flex flex-col gap-2 z-50">
-      {showScrollTop && (
-        <button
-          onClick={scrollToTop}
-          className="p-2 text-secondary hover:text-foreground transition-colors cursor-pointer"
-          aria-label="Scroll to top"
-        >
-          <ChevronUp size={24} />
-        </button>
-      )}
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.3 }}
+      className="fixed bottom-4 right-3 md:right-5 md:bottom-6 flex flex-col gap-2 z-50"
+    >
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.2 }}
+            onClick={scrollToTop}
+            className="p-2 text-secondary hover:text-foreground transition-colors cursor-pointer"
+            aria-label="Scroll to top"
+          >
+            <ChevronUp size={24} />
+          </motion.button>
+        )}
+      </AnimatePresence>
 
       {pathname.startsWith("/finds") && (
         <Link
@@ -68,6 +80,6 @@ export default function Menu() {
       >
         {resolvedTheme === "light" ? <Moon size={24} /> : <Sun size={24} />}
       </button>
-    </div>
+    </motion.div>
   );
 }

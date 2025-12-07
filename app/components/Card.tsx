@@ -153,11 +153,11 @@ export default function Card({ onClose }: CardProps) {
                 onClick={onClose}
                 className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
                 style={{
-                    backgroundColor: 'rgba(255, 150, 150, 0.9)',
+                    backgroundColor: '#ef4444',
                     color: '#fff',
                     border: 'none',
                     cursor: 'pointer',
-                    boxShadow: '0 2px 10px rgba(0,0,0,0.15)'
+                    boxShadow: '0 2px 12px rgba(239, 68, 68, 0.4)'
                 }}
                 aria-label="Close card"
             >
