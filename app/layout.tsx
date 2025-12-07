@@ -98,7 +98,7 @@ export default function RootLayout({
         >
           <ThemeColorUpdater />
           <Menu />
-          {children}
+          <main>{children}</main>
         </ThemeProvider>
       </body>
     </html>
