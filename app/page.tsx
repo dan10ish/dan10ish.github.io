@@ -43,21 +43,23 @@ export default function Home() {
       >
         <div className="w-full max-w-md">
           <div className="space-y-10">
-            <motion.div variants={item} className="space-y-0">
-              <div className="flex items-center justify-between w-full">
+            <motion.div variants={item} className="flex justify-between w-full">
+              <motion.div variants={item} className="space-y-2">
                 <div className="text-[22px] md:text-[24px] leading-[1.1] font-semibold tracking-tight">
                   {data.personal.name}
                 </div>
+                <div className="text-[16px] md:text-[20px] leading-[1.1] font-medium text-secondary tracking-tight">
+                  {data.personal.title.join(" | ")}
+                </div>
+              </motion.div>
+              <div>
                 <button
                   onClick={() => setIsCardOpen(true)}
-                  className="p-2 text-secondary hover:text-foreground transition-colors cursor-pointer"
+                  className="p-2 -m-2 text-secondary hover:text-foreground transition-colors cursor-pointer"
                   aria-label="Open card"
                 >
                   <CreditCard size={24} />
                 </button>
-              </div>
-              <div className="text-[16px] md:text-[20px] leading-[1.1] font-medium text-secondary tracking-tight">
-                {data.personal.title.join(" | ")}
               </div>
             </motion.div>
 
