@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeColorUpdater, ThemeProvider } from "./components/Theme";
-import Menu from "./components/menu";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -97,10 +96,10 @@ export default function RootLayout({
           disableTransitionOnChange={false}
         >
           <ThemeColorUpdater />
-          <Menu />
           <main>{children}</main>
         </ThemeProvider>
       </body>
     </html>
   );
 }
+
