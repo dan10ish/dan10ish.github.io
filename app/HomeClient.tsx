@@ -57,16 +57,22 @@ function ThemeDot() {
 export default function HomeClient({ entries }: { entries: TILEntry[] }) {
     const [activeSection, setActiveSection] = useState<Section>(null);
     const [iconsAtTop, setIconsAtTop] = useState(false);
-
+    const [showContent, setShowContent] = useState(false);
 
     const handleIconClick = (section: Section) => {
-
         if (activeSection === section) {
+            // Closing
+            setShowContent(false);
             setIconsAtTop(false);
             setTimeout(() => setActiveSection(null), 200);
+        } else if (activeSection) {
+            // Switching between sections - instant, no delay
+            setActiveSection(section);
         } else {
+            // First open - wait for icons to move up
             setIconsAtTop(true);
             setActiveSection(section);
+            setTimeout(() => setShowContent(true), 250);
         }
     };
 
@@ -124,15 +130,15 @@ export default function HomeClient({ entries }: { entries: TILEntry[] }) {
 
             {/* Content Area - Only show when icons are at top */}
             <AnimatePresence mode="wait" initial={false}>
-                {activeSection && iconsAtTop && (
+                {activeSection && showContent && (
                     <motion.div
                         key={activeSection}
                         initial={{ opacity: 0, scale: 0.98 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.98 }}
                         transition={{ duration: 0.15, ease: "easeOut" }}
-                        className={`flex-1 w-full max-w-3xl mx-auto px-8 ${activeSection === "card" ? "" : "overflow-hidden"
-                            }`}
+                        className={`flex-1 w-full mx-auto px-8 ${activeSection === "about" || activeSection === "socials" ? "max-w-md" : "max-w-3xl"
+                            } ${activeSection === "card" ? "" : "overflow-hidden"}`}
                     >
                         <div className={`pb-16 ${activeSection === "card" ? "flex items-center justify-center" : "h-full overflow-y-auto scrollbar-hide"
                             }`}>
