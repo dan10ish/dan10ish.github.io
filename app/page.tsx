@@ -42,8 +42,8 @@ export default function Home() {
         className="min-h-dvh flex justify-center px-8 py-8 md:py-12 md:px-10"
       >
         <div className="w-full max-w-md">
-          <div className="space-y-8">
-            <motion.div variants={item} className="space-y-2">
+          <div className="space-y-10">
+            <motion.div variants={item} className="space-y-0">
               <div className="flex items-center justify-between w-full">
                 <div className="text-[22px] md:text-[24px] leading-[1.1] font-semibold tracking-tight">
                   {data.personal.name}

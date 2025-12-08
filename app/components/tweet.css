@@ -25,11 +25,39 @@
     --tweet-verified-blue-color: var(--link-blue);
 }
 
-.tweet .react-tweet-theme p {
-    font-size: 0.85rem;
-    line-height: 1.6;
+.tweet-container-module__CmFQMq__article,
+.tweet-container-module__CmFQMq__article span,
+.tweet-container-module__CmFQMq__article a {
+    font-size: 0.8rem !important;
+    line-height: 1.2 !important;
 }
 
+.tweet-header-module__A9EVQG__author,
+.tweet-header-module__A9EVQG__author span,
+.tweet-header-module__A9EVQG__author div {
+    font-size: 0.8rem !important;
+    line-height: 1.2 !important;
+}
+
+.tweet-container-module__CmFQMq__article p,
+.tweet-container-module__CmFQMq__article div,
+.tweet-container-module__CmFQMq__article span {
+    font-size: 0.8rem !important;
+    line-height: 1.6 !important;
+}
+
+.tweet-info-module___F14PW__info {
+    padding-top: 0.8rem !important;
+}
+
+/* Time/Date */
+.tweet time,
+.tweet a[href*="/status/"] time {
+    color: var(--secondary) !important;
+}
+
+/* Links inside tweet */
+.tweet [data-testid="tweetText"] a,
 .tweet .react-tweet-theme p a {
     color: var(--link-blue);
     text-decoration: none;
@@ -37,25 +65,12 @@
     transition: border-color 0.2s ease;
 }
 
+.tweet [data-testid="tweetText"] a:hover,
 .tweet .react-tweet-theme p a:hover {
     border-bottom-color: var(--link-blue);
-    text-decoration: none;
-}
-
-.tweet .react-tweet-theme a[href*="intent/follow"] {
-    display: none !important;
-}
-
-.tweet .tweet-header_separator__d4pqe {
-    display: none !important;
-}
-
-.tweet time {
-    font-size: 0.8rem !important;
 }
 
 .tweet .tweet-actions_actions__UDw7H {
-    font-size: 0.7rem !important;
     display: none !important;
 }
 
