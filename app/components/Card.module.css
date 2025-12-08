@@ -12,9 +12,9 @@
     flex: 1;
     width: 100%;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    padding: 24px 0 12px;
+    padding: 48px 0 12px;
 }
 
 .card-scene {
@@ -22,7 +22,7 @@
     width: min(100%, 960px);
     height: max(420px, calc(100vh - 180px));
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
 }
 

@@ -101,32 +101,38 @@ export default function HomeClient({ entries }: { entries: TILEntry[] }) {
             {/* Icon Row */}
             <motion.div
                 className="flex items-center justify-center gap-10 md:gap-14 pt-8 pb-10"
-                initial={{ opacity: 0 }}
+                initial={false}
                 animate={{
-                    opacity: 1,
-                    y: iconsAtTop ? 0 : "calc(50vh - 80px)"
+                    y: iconsAtTop ? 0 : "40vh"
                 }}
-                transition={{ type: "spring", stiffness: 400, damping: 35 }}
-                style={{ willChange: "transform" }}
+                transition={{
+                    type: "tween",
+                    duration: 0.35,
+                    ease: [0.25, 0.1, 0.25, 1]
+                }}
+                style={{
+                    willChange: "transform",
+                    transform: "translateZ(0)"
+                }}
             >
-                {icons.map(({ id, Icon }, index) => (
+                {icons.map(({ id, Icon }) => (
                     <motion.button
                         key={id}
                         onClick={() => handleIconClick(id)}
                         className="cursor-pointer"
-                        initial={{ opacity: 0, scale: 0.8 }}
                         animate={{
-                            opacity: activeSection && activeSection !== id ? 0.2 : 1,
-                            scale: 1
+                            opacity: activeSection && activeSection !== id ? 0.2 : 1
                         }}
                         transition={{
-                            duration: 0.3,
-                            delay: index * 0.05,
+                            duration: 0.2,
                             ease: "easeOut"
                         }}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        style={{ willChange: "transform, opacity" }}
+                        style={{
+                            willChange: "transform, opacity",
+                            transform: "translateZ(0)"
+                        }}
                     >
                         <Icon
                             size={28}
@@ -149,7 +155,7 @@ export default function HomeClient({ entries }: { entries: TILEntry[] }) {
                         className={`flex-1 w-full mx-auto px-8 ${activeSection === "about" || activeSection === "socials" ? "max-w-md" : "max-w-3xl"
                             } ${activeSection === "card" ? "" : "overflow-hidden"}`}
                     >
-                        <div className={`pb-16 ${activeSection === "card" ? "flex items-center justify-center" : "h-full overflow-y-auto scrollbar-hide"
+                        <div className={`pb-16 ${activeSection === "card" ? "flex items-start justify-center pt-12" : "h-full overflow-y-auto scrollbar-hide"
                             }`}>
                             {activeSection === "about" && <AboutSection />}
                             {activeSection === "socials" && <SocialsSection />}
