@@ -47,10 +47,14 @@ function ThemeDot() {
     return (
         <button
             onClick={() => setTheme(resolvedTheme === "light" ? "dark" : "light")}
-            className="w-3.5 h-3.5 rounded-full cursor-pointer transition-transform duration-150 hover:scale-125"
-            style={{ backgroundColor: resolvedTheme === "light" ? "#000" : "#fff" }}
+            className="p-3 -m-3 cursor-pointer group"
             aria-label="Toggle theme"
-        />
+        >
+            <span
+                className="block w-3.5 h-3.5 rounded-full transition-transform duration-150 group-hover:scale-125"
+                style={{ backgroundColor: resolvedTheme === "light" ? "#000" : "#fff" }}
+            />
+        </button>
     );
 }
 
@@ -99,49 +103,32 @@ export default function HomeClient({ entries }: { entries: TILEntry[] }) {
             </div>
 
             {/* Icon Row */}
-            <motion.div
-                className="flex items-center justify-center gap-10 md:gap-14 pt-8 pb-10"
-                initial={false}
-                animate={{
-                    y: iconsAtTop ? 0 : "40vh"
-                }}
-                transition={{
-                    type: "tween",
-                    duration: 0.35,
-                    ease: [0.25, 0.1, 0.25, 1]
-                }}
+            <div
+                className="flex items-center justify-center gap-6 md:gap-10 pt-8 pb-10 transition-transform duration-300 ease-out"
                 style={{
-                    willChange: "transform",
-                    transform: "translateZ(0)"
+                    transform: iconsAtTop ? "translateY(0)" : "translateY(40vh)",
+                    background: "linear-gradient(to bottom, var(--background) 0%, var(--background) 60%, transparent 100%)",
+                    position: "relative",
+                    zIndex: 10
                 }}
             >
                 {icons.map(({ id, Icon }) => (
-                    <motion.button
+                    <button
                         key={id}
                         onClick={() => handleIconClick(id)}
-                        className="cursor-pointer"
-                        animate={{
-                            opacity: activeSection && activeSection !== id ? 0.2 : 1
-                        }}
-                        transition={{
-                            duration: 0.2,
-                            ease: "easeOut"
-                        }}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
+                        className="cursor-pointer p-3 -m-3 transition-opacity duration-200"
                         style={{
-                            willChange: "transform, opacity",
-                            transform: "translateZ(0)"
+                            opacity: activeSection && activeSection !== id ? 0.2 : 1
                         }}
                     >
                         <Icon
                             size={28}
                             strokeWidth={1.5}
-                            className={activeSection === id ? "text-foreground" : "text-secondary hover:text-foreground transition-colors"}
+                            className={`transition-colors duration-150 ${activeSection === id ? "text-foreground" : "text-secondary hover:text-foreground"}`}
                         />
-                    </motion.button>
+                    </button>
                 ))}
-            </motion.div>
+            </div>
 
             {/* Content Area - Only show when icons are at top */}
             <AnimatePresence mode="wait" initial={false}>
