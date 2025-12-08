@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
-import { data } from "./data";
+import { data, personalInfo } from "./data";
 import { User, Share2, Bookmark, CreditCard, ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Card from "./components/Card";
@@ -165,6 +165,10 @@ function AboutSection() {
 
             <div className="text-[22px] md:text-[24px] leading-[1.1] font-semibold tracking-tight">
                 {data.personal.title.join(" | ")}
+            </div>
+
+            <div className="text-[16px] md:text-[20px] leading-[1.3] font-medium text-secondary tracking-tight">
+                {personalInfo.about}
             </div>
 
             <div className="space-y-2">
