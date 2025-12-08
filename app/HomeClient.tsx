@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { data } from "./data";
 import { User, Share2, Bookmark, CreditCard, ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -24,6 +24,8 @@ interface TILEntry {
     };
     created_at: string;
 }
+
+const sectionOrder = ["about", "socials", "finds", "card"] as const;
 
 const icons = [
     { id: "about" as const, Icon: User },
@@ -54,9 +56,26 @@ function ThemeDot() {
 
 export default function HomeClient({ entries }: { entries: TILEntry[] }) {
     const [activeSection, setActiveSection] = useState<Section>(null);
+    const [iconsAtTop, setIconsAtTop] = useState(false);
+    const prevSectionRef = useRef<Section>(null);
 
     const handleIconClick = (section: Section) => {
-        setActiveSection((prev) => (prev === section ? null : section));
+        prevSectionRef.current = activeSection;
+        if (activeSection === section) {
+            setIconsAtTop(false);
+            setTimeout(() => setActiveSection(null), 200);
+        } else {
+            setIconsAtTop(true);
+            setActiveSection(section);
+        }
+    };
+
+    // Determine slide direction based on icon order
+    const getSlideDirection = () => {
+        if (!activeSection || !prevSectionRef.current) return 0;
+        const currentIdx = sectionOrder.indexOf(activeSection);
+        const prevIdx = sectionOrder.indexOf(prevSectionRef.current);
+        return currentIdx > prevIdx ? 1 : -1; // 1 = slide from right, -1 = slide from left
     };
 
     const sortedEntries = useMemo(
@@ -73,18 +92,20 @@ export default function HomeClient({ entries }: { entries: TILEntry[] }) {
         [sortedEntries]
     );
 
+    const direction = getSlideDirection();
+
     return (
-        <div className="h-dvh flex flex-col">
-            {/* Theme Dot - Fixed Bottom Right */}
+        <div className="h-dvh flex flex-col overflow-hidden">
+            {/* Theme Dot */}
             <div className="fixed bottom-4 right-4 z-50">
                 <ThemeDot />
             </div>
 
             {/* Icon Row */}
             <motion.div
-                className="flex items-center justify-center gap-10 md:gap-14 pt-8"
-                animate={{ y: activeSection ? 0 : "calc(50vh - 60px)" }}
-                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                className="flex items-center justify-center gap-10 md:gap-14 pt-8 pb-6"
+                animate={{ y: iconsAtTop ? 0 : "calc(50vh - 80px)" }}
+                transition={{ type: "spring", stiffness: 400, damping: 35 }}
                 style={{ willChange: "transform" }}
             >
                 {icons.map(({ id, Icon }) => (
@@ -107,18 +128,18 @@ export default function HomeClient({ entries }: { entries: TILEntry[] }) {
                 ))}
             </motion.div>
 
-            {/* Content Area */}
-            <AnimatePresence mode="wait">
-                {activeSection && (
+            {/* Content Area - Only show when icons are at top */}
+            <AnimatePresence mode="wait" initial={false}>
+                {activeSection && iconsAtTop && (
                     <motion.div
                         key={activeSection}
-                        className="flex-1 w-full max-w-md mx-auto px-8 overflow-hidden"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.15 }}
+                        initial={{ opacity: 0, x: direction * 60 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: direction * -30 }}
+                        transition={{ duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+                        className="flex-1 w-full max-w-3xl mx-auto px-8 overflow-hidden"
                     >
-                        <div className="h-full overflow-y-auto pt-10 pb-16">
+                        <div className="h-full overflow-y-auto pb-16">
                             {activeSection === "about" && <AboutSection />}
                             {activeSection === "socials" && <SocialsSection />}
                             {activeSection === "finds" && (
@@ -133,7 +154,6 @@ export default function HomeClient({ entries }: { entries: TILEntry[] }) {
     );
 }
 
-// Match main branch styling exactly
 function AboutSection() {
     return (
         <div className="space-y-8">
@@ -210,7 +230,7 @@ function FindsContent({
                 ))}
             </div>
             {/* Desktop: two columns */}
-            <div className="hidden md:grid md:grid-cols-2 md:gap-6">
+            <div className="hidden md:grid md:grid-cols-2 md:gap-8">
                 <div className="space-y-6">
                     {leftColumn.map((entry) => (
                         <article key={entry.id} className="border-b border-[var(--border)] pb-6 last:border-b-0">
