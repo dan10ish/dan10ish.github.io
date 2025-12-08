@@ -45,10 +45,10 @@ export default function Home() {
           <div className="space-y-10">
             <motion.div variants={item} className="flex justify-between w-full">
               <motion.div variants={item} className="space-y-2">
-                <div className="text-[22px] md:text-[24px] leading-[1.1] font-semibold tracking-tight">
+                <div className="text-[22px] md:text-[24px] leading-[1.1] font-semibold tracking-normal">
                   {data.personal.name}
                 </div>
-                <div className="text-[16px] md:text-[20px] leading-[1.1] font-medium text-secondary tracking-tight">
+                <div className="text-[16px] md:text-[20px] leading-[1.1] font-medium text-secondary tracking-normal">
                   {data.personal.title.join(" | ")}
                 </div>
               </motion.div>
@@ -64,13 +64,13 @@ export default function Home() {
             </motion.div>
 
             <motion.div variants={item} className="space-y-2">
-              <div className="text-[16px] md:text-[20px] leading-[1.1] font-medium text-secondary tracking-tight">Experience</div>
+              <div className="text-[16px] md:text-[20px] leading-[1.1] font-medium text-secondary tracking-normal">Experience</div>
               <div className="space-y-2">
                 {data.experience.map((exp, index) => (
                   <motion.div
                     key={index}
                     variants={item}
-                    className="block w-full text-left text-[22px] md:text-[24px] leading-[1.1] font-semibold tracking-tight"
+                    className="block w-full text-left text-[22px] md:text-[24px] leading-[1.1] font-semibold tracking-normal"
                   >
                     {exp.company} ({exp.year})
                   </motion.div>
@@ -79,13 +79,13 @@ export default function Home() {
             </motion.div>
 
             <motion.div variants={item} className="space-y-2">
-              <div className="text-[16px] md:text-[20px] leading-[1.1] font-medium text-secondary tracking-tight">Socials</div>
+              <div className="text-[16px] md:text-[20px] leading-[1.1] font-medium text-secondary tracking-normal">Socials</div>
               <div className="space-y-2">
                 {data.social.map((social, index) => (
                   <motion.div
                     key={index}
                     variants={item}
-                    className="block w-full text-left text-[22px] md:text-[24px] leading-[1.1] font-semibold tracking-tight"
+                    className="block w-full text-left text-[22px] md:text-[24px] leading-[1.1] font-semibold tracking-normal"
                   >
                     <a
                       href={social.url}
@@ -101,7 +101,7 @@ export default function Home() {
               </div>
             </motion.div>
 
-            <motion.div variants={item} className="text-[20px] md:text-[22px] leading-[1.1] font-semibold tracking-tight text-primary pt-4">
+            <motion.div variants={item} className="text-[20px] md:text-[22px] leading-[1.1] font-semibold tracking-normal text-primary pt-4">
               <Link prefetch={true} href="/finds" className="bg-[var(--border)] hover:ring-[var(--link-blue)] hover:ring-1 hover:text-[var(--link-blue)] transition-opacity px-3.5 py-2 rounded-xl transition-all duration-200">
                 Finds
               </Link>
