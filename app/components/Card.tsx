@@ -148,37 +148,6 @@ export default function Card({ onClose }: CardProps) {
 
     return (
         <div className={cx('card-shell')} style={{ fontFamily: FONT_FAMILY }}>
-            {/* Close Button - only show when onClose is provided */}
-            {onClose && (
-                <button
-                    onClick={onClose}
-                    className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
-                    style={{
-                        backgroundColor: '#ef4444',
-                        color: '#fff',
-                        border: 'none',
-                        cursor: 'pointer',
-                        boxShadow: '0 2px 12px rgba(239, 68, 68, 0.4)'
-                    }}
-                    aria-label="Close card"
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                    >
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                </button>
-            )}
-
             <div className={cx('card-scene')} ref={sceneRef}>
                 <article className={cx('card')} data-card="" ref={cardRef}>
                     <div className={cx('card__overlay')} aria-hidden="true"></div>

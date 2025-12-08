@@ -158,7 +158,7 @@ export default function HomeClient({ entries }: { entries: TILEntry[] }) {
 
 function AboutSection() {
     return (
-        <div className="space-y-8">
+        <div className="space-y-8 mt-4">
             <div className="text-[22px] md:text-[24px] leading-[1.1] font-semibold tracking-tight">
                 {data.personal.name}
             </div>
@@ -189,11 +189,8 @@ function AboutSection() {
 
 function SocialsSection() {
     return (
-        <div className="space-y-2">
-            <div className="text-[16px] md:text-[20px] leading-[1.1] font-medium text-secondary tracking-tight">
-                Socials
-            </div>
-            <div className="space-y-2">
+        <div className="mt-4 text-center">
+            <div className="space-y-4">
                 {data.social.map((social, idx) => (
                     <div key={idx} className="text-[22px] md:text-[24px] leading-[1.1] font-semibold tracking-tight">
                         <a
@@ -258,7 +255,7 @@ function FindsContent({
 
 function CardSection() {
     return (
-        <div className="flex justify-center">
+        <div className="flex">
             <Card />
         </div>
     );
