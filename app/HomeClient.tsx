@@ -76,8 +76,6 @@ export default function HomeClient({ entries }: { entries: TILEntry[] }) {
         }
     };
 
-
-
     const sortedEntries = useMemo(
         () => [...entries].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()),
         [entries]
@@ -87,17 +85,16 @@ export default function HomeClient({ entries }: { entries: TILEntry[] }) {
         () => sortedEntries.filter((_: TILEntry, idx: number) => idx % 2 === 0),
         [sortedEntries]
     );
+
     const rightColumn = useMemo(
         () => sortedEntries.filter((_: TILEntry, idx: number) => idx % 2 === 1),
         [sortedEntries]
     );
 
-
-
     return (
         <div className="h-dvh flex flex-col overflow-hidden">
             {/* Theme Dot */}
-            <div className="fixed bottom-4 right-4 z-50">
+            <div className="fixed bottom-6 right-6 md:right-7 z-50">
                 <ThemeDot />
             </div>
 
