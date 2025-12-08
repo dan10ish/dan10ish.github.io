@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect, useRef } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { data } from "./data";
 import { User, Share2, Bookmark, CreditCard, ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -25,7 +25,7 @@ interface TILEntry {
     created_at: string;
 }
 
-const sectionOrder = ["about", "socials", "finds", "card"] as const;
+
 
 const icons = [
     { id: "about" as const, Icon: User },
@@ -57,10 +57,10 @@ function ThemeDot() {
 export default function HomeClient({ entries }: { entries: TILEntry[] }) {
     const [activeSection, setActiveSection] = useState<Section>(null);
     const [iconsAtTop, setIconsAtTop] = useState(false);
-    const prevSectionRef = useRef<Section>(null);
+
 
     const handleIconClick = (section: Section) => {
-        prevSectionRef.current = activeSection;
+
         if (activeSection === section) {
             setIconsAtTop(false);
             setTimeout(() => setActiveSection(null), 200);
@@ -70,13 +70,7 @@ export default function HomeClient({ entries }: { entries: TILEntry[] }) {
         }
     };
 
-    // Determine slide direction based on icon order
-    const getSlideDirection = () => {
-        if (!activeSection || !prevSectionRef.current) return 0;
-        const currentIdx = sectionOrder.indexOf(activeSection);
-        const prevIdx = sectionOrder.indexOf(prevSectionRef.current);
-        return currentIdx > prevIdx ? 1 : -1; // 1 = slide from right, -1 = slide from left
-    };
+
 
     const sortedEntries = useMemo(
         () => [...entries].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()),
@@ -92,7 +86,7 @@ export default function HomeClient({ entries }: { entries: TILEntry[] }) {
         [sortedEntries]
     );
 
-    const direction = getSlideDirection();
+
 
     return (
         <div className="h-dvh flex flex-col overflow-hidden">
@@ -133,13 +127,15 @@ export default function HomeClient({ entries }: { entries: TILEntry[] }) {
                 {activeSection && iconsAtTop && (
                     <motion.div
                         key={activeSection}
-                        initial={{ opacity: 0, x: direction * 60 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: direction * -30 }}
-                        transition={{ duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
-                        className="flex-1 w-full max-w-3xl mx-auto px-8 overflow-hidden"
+                        initial={{ opacity: 0, scale: 0.98 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.98 }}
+                        transition={{ duration: 0.15, ease: "easeOut" }}
+                        className={`flex-1 w-full max-w-3xl mx-auto px-8 ${activeSection === "card" ? "" : "overflow-hidden"
+                            }`}
                     >
-                        <div className="h-full overflow-y-auto pb-16">
+                        <div className={`pb-16 ${activeSection === "card" ? "flex items-center justify-center" : "h-full overflow-y-auto"
+                            }`}>
                             {activeSection === "about" && <AboutSection />}
                             {activeSection === "socials" && <SocialsSection />}
                             {activeSection === "finds" && (
