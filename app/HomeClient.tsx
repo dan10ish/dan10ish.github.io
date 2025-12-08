@@ -47,7 +47,7 @@ function ThemeDot() {
     return (
         <button
             onClick={() => setTheme(resolvedTheme === "light" ? "dark" : "light")}
-            className="w-2.5 h-2.5 rounded-full cursor-pointer"
+            className="w-3.5 h-3.5 rounded-full cursor-pointer transition-transform duration-150 hover:scale-125"
             style={{ backgroundColor: resolvedTheme === "light" ? "#000" : "#fff" }}
             aria-label="Toggle theme"
         />
@@ -97,7 +97,7 @@ export default function HomeClient({ entries }: { entries: TILEntry[] }) {
 
             {/* Icon Row */}
             <motion.div
-                className="flex items-center justify-center gap-10 md:gap-14 pt-8 pb-6"
+                className="flex items-center justify-center gap-10 md:gap-14 pt-8 pb-10"
                 animate={{ y: iconsAtTop ? 0 : "calc(50vh - 80px)" }}
                 transition={{ type: "spring", stiffness: 400, damping: 35 }}
                 style={{ willChange: "transform" }}
@@ -134,7 +134,7 @@ export default function HomeClient({ entries }: { entries: TILEntry[] }) {
                         className={`flex-1 w-full max-w-3xl mx-auto px-8 ${activeSection === "card" ? "" : "overflow-hidden"
                             }`}
                     >
-                        <div className={`pb-16 ${activeSection === "card" ? "flex items-center justify-center" : "h-full overflow-y-auto"
+                        <div className={`pb-16 ${activeSection === "card" ? "flex items-center justify-center" : "h-full overflow-y-auto scrollbar-hide"
                             }`}>
                             {activeSection === "about" && <AboutSection />}
                             {activeSection === "socials" && <SocialsSection />}
