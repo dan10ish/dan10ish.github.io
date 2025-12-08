@@ -104,19 +104,31 @@ export default function HomeClient({ entries }: { entries: TILEntry[] }) {
             {/* Icon Row */}
             <motion.div
                 className="flex items-center justify-center gap-10 md:gap-14 pt-8 pb-10"
-                animate={{ y: iconsAtTop ? 0 : "calc(50vh - 80px)" }}
+                initial={{ opacity: 0 }}
+                animate={{
+                    opacity: 1,
+                    y: iconsAtTop ? 0 : "calc(50vh - 80px)"
+                }}
                 transition={{ type: "spring", stiffness: 400, damping: 35 }}
                 style={{ willChange: "transform" }}
             >
-                {icons.map(({ id, Icon }) => (
+                {icons.map(({ id, Icon }, index) => (
                     <motion.button
                         key={id}
                         onClick={() => handleIconClick(id)}
                         className="cursor-pointer"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{
+                            opacity: activeSection && activeSection !== id ? 0.2 : 1,
+                            scale: 1
+                        }}
+                        transition={{
+                            duration: 0.3,
+                            delay: index * 0.05,
+                            ease: "easeOut"
+                        }}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        animate={{ opacity: activeSection && activeSection !== id ? 0.2 : 1 }}
-                        transition={{ duration: 0.1 }}
                         style={{ willChange: "transform, opacity" }}
                     >
                         <Icon
