@@ -65,7 +65,7 @@ export default function Menu() {
       {pathname.startsWith("/finds") && (
         <Link
           href="/"
-          prefetch
+          prefetch={true}
           className="p-2 text-secondary hover:text-foreground transition-colors cursor-pointer"
           aria-label="Go home"
         >

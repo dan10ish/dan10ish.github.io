@@ -43,12 +43,22 @@ export default function Home() {
       >
         <div className="w-full max-w-md">
           <div className="space-y-8">
-            <motion.div variants={item} className="block w-full text-left text-[22px] md:text-[24px] leading-[1.1] font-semibold tracking-tight">
-              {data.personal.name}
-            </motion.div>
-
-            <motion.div variants={item} className="block w-full text-left text-[22px] md:text-[24px] leading-[1.1] font-semibold tracking-tight">
-              {data.personal.title.join(" | ")}
+            <motion.div variants={item} className="space-y-2">
+              <div className="flex items-center justify-between w-full">
+                <div className="text-[22px] md:text-[24px] leading-[1.1] font-semibold tracking-tight">
+                  {data.personal.name}
+                </div>
+                <button
+                  onClick={() => setIsCardOpen(true)}
+                  className="p-2 text-secondary hover:text-foreground transition-colors cursor-pointer"
+                  aria-label="Open card"
+                >
+                  <CreditCard size={24} />
+                </button>
+              </div>
+              <div className="text-[16px] md:text-[20px] leading-[1.1] font-medium text-secondary tracking-tight">
+                {data.personal.title.join(" | ")}
+              </div>
             </motion.div>
 
             <motion.div variants={item} className="space-y-2">
@@ -90,25 +100,13 @@ export default function Home() {
             </motion.div>
 
             <motion.div variants={item} className="text-[20px] md:text-[22px] leading-[1.1] font-semibold tracking-tight text-primary pt-4">
-              <Link prefetch href="/finds" className="bg-[var(--border)] hover:ring-[var(--link-blue)] hover:ring-1 hover:text-[var(--link-blue)] transition-opacity px-3.5 py-2 rounded-xl transition-all duration-200">
+              <Link prefetch={true} href="/finds" className="bg-[var(--border)] hover:ring-[var(--link-blue)] hover:ring-1 hover:text-[var(--link-blue)] transition-opacity px-3.5 py-2 rounded-xl transition-all duration-200">
                 Finds
               </Link>
             </motion.div>
           </div>
         </div>
       </motion.div>
-
-      {/* Card Button - Bottom Left */}
-      <motion.button
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.3 }}
-        onClick={() => setIsCardOpen(true)}
-        className="fixed bottom-4 left-3 md:left-5 md:bottom-6 z-50 p-2 text-secondary hover:text-foreground transition-colors cursor-pointer"
-        aria-label="Open card"
-      >
-        <CreditCard size={24} />
-      </motion.button>
 
       {/* Card Overlay */}
       <AnimatePresence>
