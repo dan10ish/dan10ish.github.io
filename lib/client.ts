@@ -34,7 +34,7 @@ const fetchTILEntries = async (): Promise<TILEntry[]> => {
 }
 
 export const getTILEntries = unstable_cache(fetchTILEntries, ['til-entries'], {
-    revalidate: 300,
+    revalidate: 60,
     tags: ['til-entries'],
 })
 
