@@ -42,15 +42,10 @@ export default function Home() {
         className="min-h-dvh flex justify-center px-8 py-8 md:py-12 md:px-10"
       >
         <div className="w-full max-w-md">
-          <div className="space-y-10">
+          <div className="space-y-8 md:space-y-10">
             <motion.div variants={item} className="flex justify-between w-full">
-              <motion.div variants={item} className="space-y-2">
-                <div className="text-[22px] md:text-[24px] leading-[1.1] font-semibold tracking-normal">
-                  {data.personal.name}
-                </div>
-                <div className="text-[16px] md:text-[20px] leading-[1.1] font-medium text-secondary tracking-normal">
-                  {data.personal.title.join(" | ")}
-                </div>
+              <motion.div variants={item} className="text-[22px] md:text-[24px] leading-[1.1] font-semibold tracking-normal">
+                {data.personal.name}
               </motion.div>
               <div>
                 <button
@@ -61,6 +56,10 @@ export default function Home() {
                   <CreditCard size={24} />
                 </button>
               </div>
+            </motion.div>
+
+            <motion.div variants={item} className="text-[22px] md:text-[24px] leading-[1.1] font-semibold tracking-normal">
+              {data.personal.title.join(" | ")}
             </motion.div>
 
             <motion.div variants={item} className="space-y-2">
@@ -101,9 +100,21 @@ export default function Home() {
               </div>
             </motion.div>
 
-            <motion.div variants={item} className="text-[20px] md:text-[22px] leading-[1.1] font-semibold tracking-normal text-primary pt-4">
-              <Link prefetch={true} href="/finds" className="bg-[var(--border)] hover:ring-[var(--link-blue)] hover:ring-1 hover:text-[var(--link-blue)] transition-opacity px-3.5 py-2 rounded-xl transition-all duration-200">
-                Finds
+            <motion.div variants={item} className="pt-4">
+              <Link
+                prefetch={true}
+                href="/finds"
+                className="inline-flex items-center gap-2 px-5 py-2.5 text-[15px] font-medium rounded-full bg-[#0066CC] dark:bg-[#2997FF] text-white hover:bg-[#0055AA] dark:hover:bg-[#1C7FE0] transition-all duration-200 group shadow-sm"
+              >
+                <span>Finds</span>
+                <svg
+                  className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
               </Link>
             </motion.div>
           </div>

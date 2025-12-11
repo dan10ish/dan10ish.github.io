@@ -12,12 +12,36 @@ export default function NotFound() {
                         </div>
                     </div>
 
-                    <div className="text-[20px] md:text-[22px] leading-[1.1] font-semibold tracking-tight text-primary pt-2 flex gap-3">
-                        <Link prefetch href="/" className="bg-[var(--border)] hover:ring-[var(--link-blue)] hover:ring-1 hover:text-[var(--link-blue)] transition-opacity px-3.5 py-2 rounded-xl transition-all duration-200">
-                            Home
+                    <div className="pt-2 flex gap-3">
+                        <Link
+                            prefetch
+                            href="/"
+                            className="inline-flex items-center gap-2 px-5 py-2.5 text-[15px] font-medium rounded-full bg-[#0066CC] dark:bg-[#2997FF] text-white hover:bg-[#0055AA] dark:hover:bg-[#1C7FE0] transition-all duration-200 group shadow-sm"
+                        >
+                            <span>Home</span>
+                            <svg
+                                className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
                         </Link>
-                        <Link prefetch href="/finds" className="bg-[var(--border)] hover:ring-[var(--link-blue)] hover:ring-1 hover:text-[var(--link-blue)] transition-opacity px-3.5 py-2 rounded-xl transition-all duration-200">
-                            Finds
+                        <Link
+                            prefetch
+                            href="/finds"
+                            className="inline-flex items-center gap-2 px-5 py-2.5 text-[15px] font-medium rounded-full bg-[#0066CC] dark:bg-[#2997FF] text-white hover:bg-[#0055AA] dark:hover:bg-[#1C7FE0] transition-all duration-200 group shadow-sm"
+                        >
+                            <span>Finds</span>
+                            <svg
+                                className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
                         </Link>
                     </div>
                 </div>
