@@ -44,7 +44,7 @@ export default function Home() {
         <div className="w-full max-w-md">
           <div className="space-y-8 md:space-y-10">
             <motion.div variants={item} className="flex justify-between w-full">
-              <motion.div variants={item} className="text-[22px] md:text-[24px] leading-[1.1] font-semibold tracking-normal">
+              <motion.div variants={item} className="text-[20px] md:text-[22px] leading-[1.1] font-semibold tracking-normal">
                 {data.personal.name}
               </motion.div>
               <div>
@@ -58,7 +58,7 @@ export default function Home() {
               </div>
             </motion.div>
 
-            <motion.div variants={item} className="text-[22px] md:text-[24px] leading-[1.1] font-semibold tracking-normal">
+            <motion.div variants={item} className="text-[20px] md:text-[22px] leading-[1.1] font-semibold tracking-normal">
               {data.personal.title.join(" | ")}
             </motion.div>
 
@@ -69,7 +69,7 @@ export default function Home() {
                   <motion.div
                     key={index}
                     variants={item}
-                    className="block w-full text-left text-[22px] md:text-[24px] leading-[1.1] font-semibold tracking-normal"
+                    className="block w-full text-left text-[20px] md:text-[22px] leading-[1.1] font-semibold tracking-normal"
                   >
                     {exp.company} ({exp.year})
                   </motion.div>
@@ -84,7 +84,7 @@ export default function Home() {
                   <motion.div
                     key={index}
                     variants={item}
-                    className="block w-full text-left text-[22px] md:text-[24px] leading-[1.1] font-semibold tracking-normal"
+                    className="block w-full text-left text-[20px] md:text-[22px] leading-[1.1] font-semibold tracking-normal"
                   >
                     <a
                       href={social.url}
