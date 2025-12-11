@@ -16,7 +16,7 @@ export default function NotFound() {
                         <Link
                             prefetch
                             href="/"
-                            className="inline-flex items-center gap-2 px-5 py-2.5 text-[15px] font-medium rounded-full bg-[#0066CC] dark:bg-[#2997FF] text-white hover:bg-[#0055AA] dark:hover:bg-[#1C7FE0] transition-all duration-200 group shadow-sm"
+                            className="inline-flex items-center gap-2 px-5 py-2.5 text-[15px] font-medium rounded-full bg-[var(--button-bg)] text-[var(--foreground)] hover:bg-[var(--button-bg-hover)] transition-all duration-200 group"
                         >
                             <span>Home</span>
                             <svg
@@ -31,7 +31,7 @@ export default function NotFound() {
                         <Link
                             prefetch
                             href="/finds"
-                            className="inline-flex items-center gap-2 px-5 py-2.5 text-[15px] font-medium rounded-full bg-[#0066CC] dark:bg-[#2997FF] text-white hover:bg-[#0055AA] dark:hover:bg-[#1C7FE0] transition-all duration-200 group shadow-sm"
+                            className="inline-flex items-center gap-2 px-5 py-2.5 text-[15px] font-medium rounded-full bg-[var(--button-bg)] text-[var(--foreground)] hover:bg-[var(--button-bg-hover)] transition-all duration-200 group"
                         >
                             <span>Finds</span>
                             <svg

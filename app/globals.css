@@ -8,6 +8,8 @@
   --link-blue: #0059ff;
   --border: #d0d0d0;
   --code-bg: #e5e5e5;
+  --button-bg: #f5f5f5;
+  --button-bg-hover: #e5e5e5;
 }
 
 @theme inline {
@@ -28,6 +30,8 @@
   --link-blue: #4da6ff;
   --border: #2a2a2a;
   --code-bg: #1e1e1e;
+  --button-bg: #2a2a2a;
+  --button-bg-hover: #3a3a3a;
 }
 
 body {
