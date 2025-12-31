@@ -151,9 +151,6 @@
   transition: background-color 0.3s ease;
 }
 
-[data-theme="light"] .project-video {
-  background: rgba(0, 0, 0, 0.05);
-}
 
 .project-video-player {
   width: 100%;
@@ -165,32 +162,5 @@
 @media (hover: hover) and (pointer: fine) {
   .project-item:hover {
     background-color: rgba(255, 255, 255, 0.05);
-  }
-
-  [data-theme="light"] .project-item:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-  }
-
-  .project-item:hover .project-name {
-    color: var(--app-link-hover);
-  }
-
-  .project-link:hover {
-    color: var(--app-link-hover);
-    opacity: 1;
-  }
-
-  .project-detail-icon {
-    opacity: 0;
-    transition: opacity 0.2s ease;
-  }
-
-  .project-detail-link:hover {
-    color: var(--app-link-hover);
-  }
-
-  .project-detail-link:hover .project-detail-icon {
-    color: var(--app-link-hover);
-    opacity: 1;
   }
 }

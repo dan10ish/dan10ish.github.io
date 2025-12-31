@@ -75,7 +75,8 @@
   padding-top: 20px;
 }
 
-.education-section h2, .experience-section h2{
+.education-section h2,
+.experience-section h2 {
   font-size: 16px;
   margin-left: 5px;
   padding-bottom: 6px;
@@ -143,14 +144,6 @@
   .education-item:hover {
     background-color: rgba(255, 255, 255, 0.05);
   }
-
-  [data-theme="light"] .education-item:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-  }
-
-  .education-item:hover .education-field {
-    color: var(--app-link-hover);
-  }
 }
 
 .experience-detail,
@@ -213,10 +206,6 @@
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-[data-theme="light"] .technology-item {
-  background: rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-}
 
 .technology-icon {
   flex-shrink: 0;
@@ -238,10 +227,6 @@
   transition: background-color 0.3s ease;
 }
 
-[data-theme="light"] .experience-image-container,
-[data-theme="light"] .education-image-container {
-  background: rgba(0, 0, 0, 0.05);
-}
 
 .experience-image,
 .education-image {

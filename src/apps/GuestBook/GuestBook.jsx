@@ -8,25 +8,39 @@ const GuestBook = ({ onOpenWindow }) => {
   useEffect(() => {
     // Check if script already exists
     const existingScript = document.querySelector('script[src="https://guestbooks.meadow.cafe/resources/js/embed_script/805/script.js"]');
+    let script = null;
 
     if (!existingScript) {
-      const script = document.createElement('script');
+      script = document.createElement('script');
       script.src = 'https://guestbooks.meadow.cafe/resources/js/embed_script/805/script.js';
       script.async = true;
       document.head.appendChild(script);
     }
 
-    const checkMessagesLoaded = () => {
-      const messagesContainer = document.getElementById('guestbooks___guestbook-messages-container');
-      if (messagesContainer && messagesContainer.innerHTML.trim()) {
+    // Use MutationObserver instead of polling
+    const messagesContainer = document.getElementById('guestbooks___guestbook-messages-container');
+    let observer = null;
+
+    if (messagesContainer) {
+      // Check if already loaded
+      if (messagesContainer.innerHTML.trim()) {
         messagesContainer.classList.add('loaded');
         setIsLoading(false);
       } else {
-        setTimeout(checkMessagesLoaded, 100);
+        observer = new MutationObserver((mutations, obs) => {
+          if (messagesContainer.innerHTML.trim()) {
+            messagesContainer.classList.add('loaded');
+            setIsLoading(false);
+            obs.disconnect();
+          }
+        });
+        observer.observe(messagesContainer, { childList: true, subtree: true });
       }
-    };
+    }
 
-    setTimeout(checkMessagesLoaded, 500);
+    return () => {
+      if (observer) observer.disconnect();
+    };
   }, []);
 
   const handleLeaveMessage = () => {

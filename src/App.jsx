@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo, useEffect } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import { Loader2 } from "lucide-react";
 import MenuBar from "./components/MenuBar/MenuBar";
 import Desktop from "./components/Desktop/Desktop";
@@ -6,8 +6,6 @@ import Window from "./components/Window/Window";
 import { StartupScreen, LoadingScreen } from "./components/Startup";
 import { getApps } from "./apps/apps.jsx";
 import wallpaper from "./assets/wallpaper.png";
-import { ThemeProvider } from "./contexts/ThemeContext";
-import "./index.css";
 
 const App = () => {
   const [startupPhase, setStartupPhase] = useState("startup");
@@ -29,7 +27,7 @@ const App = () => {
     }
 
     setLoadingApps(prev => ({ ...prev, [appId]: true }));
-    
+
     setTimeout(() => {
       setOpenApps((prev) => ({
         ...prev,
@@ -55,7 +53,7 @@ const App = () => {
     }
 
     setLoadingApps(prev => ({ ...prev, [appId]: true }));
-    
+
     const appConfig = apps.find((app) => app.id === appId);
     if (appConfig) {
       setTimeout(() => {
@@ -94,9 +92,9 @@ const App = () => {
   const handleMaximizeApp = useCallback((appId) => {
     setOpenApps((prev) => ({
       ...prev,
-      [appId]: { 
-        ...prev[appId], 
-        state: prev[appId].state === "maximized" ? "open" : "maximized" 
+      [appId]: {
+        ...prev[appId],
+        state: prev[appId].state === "maximized" ? "open" : "maximized"
       },
     }));
   }, []);
@@ -125,23 +123,15 @@ const App = () => {
   };
 
   if (startupPhase === "startup") {
-    return (
-      <ThemeProvider>
-        <StartupScreen onPowerOn={handlePowerOn} />
-      </ThemeProvider>
-    );
+    return <StartupScreen onPowerOn={handlePowerOn} />;
   }
 
   if (startupPhase === "loading") {
-    return (
-      <ThemeProvider>
-        <LoadingScreen onLoadComplete={handleLoadComplete} />
-      </ThemeProvider>
-    );
+    return <LoadingScreen onLoadComplete={handleLoadComplete} />;
   }
 
   return (
-    <ThemeProvider>
+    <>
       <div className="desktop" style={{ backgroundImage: `url(${wallpaper})` }}>
         <MenuBar onShutdown={handleShutdown} />
         <Desktop onOpenApp={handleOpenApp} apps={apps} />
@@ -174,7 +164,7 @@ const App = () => {
           </Window>
         );
       })}
-    </ThemeProvider>
+    </>
   );
 };
 

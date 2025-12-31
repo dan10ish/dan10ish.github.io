@@ -63,10 +63,6 @@
   .desktop-icon:hover {
     background-color: rgba(255, 255, 255, 0.1);
   }
-
-  [data-theme="light"] .desktop-icon:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-  }
 }
 
 @media (max-width: 768px) {
@@ -86,19 +82,19 @@
     bottom: 100px;
     row-gap: 8px;
   }
-  
+
   .desktop-icon {
     width: 80px;
     height: 80px;
     gap: 3px;
     padding: 4px;
   }
-  
+
   .desktop-icon img {
     width: 48px;
     height: 48px;
   }
-  
+
   .desktop-icon span {
     font-size: 12px;
     width: 80px;
@@ -113,19 +109,19 @@
     bottom: 90px;
     row-gap: 6px;
   }
-  
+
   .desktop-icon {
     width: 70px;
     height: 70px;
     gap: 2px;
     padding: 3px;
   }
-  
+
   .desktop-icon img {
     width: 42px;
     height: 42px;
   }
-  
+
   .desktop-icon span {
     font-size: 11px;
     width: 70px;
@@ -140,19 +136,19 @@
     bottom: 80px;
     row-gap: 5px;
   }
-  
+
   .desktop-icon {
     width: 60px;
     height: 60px;
     gap: 2px;
     padding: 2px;
   }
-  
+
   .desktop-icon img {
     width: 36px;
     height: 36px;
   }
-  
+
   .desktop-icon span {
     font-size: 10px;
     width: 60px;

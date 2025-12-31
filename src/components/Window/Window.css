@@ -13,6 +13,7 @@
   backdrop-filter: blur(15px) saturate(180%);
   -webkit-backdrop-filter: blur(15px) saturate(180%);
   will-change: transform;
+  contain: layout style;
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;

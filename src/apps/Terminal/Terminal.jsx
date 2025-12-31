@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useId } from "react";
 import "./Terminal.css";
 import data from "../../data.json";
 
@@ -8,7 +8,7 @@ const Terminal = () => {
   const [currentDirectory, setCurrentDirectory] = useState("~");
   const [commandHistory, setCommandHistory] = useState([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
-  const [inputKey, setInputKey] = useState(Math.random());
+  const inputId = useId();
   const terminalRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -531,13 +531,6 @@ Navigation:
     }
   }, []);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setInputKey(Math.random());
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
   const handleTerminalClick = () => {
     if (inputRef.current) {
       inputRef.current.focus();
@@ -604,8 +597,8 @@ Navigation:
                 data-1p-ignore="true"
                 data-bwignore="true"
                 data-dashlane-ignore="true"
-                name={`terminal-input-${inputKey}`}
-                id={`terminal-input-${inputKey}`}
+                name={`terminal-input-${inputId}`}
+                id={`terminal-input-${inputId}`}
                 role="textbox"
                 aria-label="Terminal command input"
                 inputMode="text"

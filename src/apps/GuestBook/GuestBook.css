@@ -30,10 +30,6 @@
   transition: all 0.3s ease;
 }
 
-[data-theme="light"] .leave-message-button {
-  background: rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(0, 0, 0, 0.2);
-}
 
 .guestbook-messages-section {
   margin-top: 0;
@@ -61,10 +57,6 @@
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-[data-theme="light"] #guestbooks___guestbook-messages-container>div {
-  background: rgba(0, 0, 0, 0.03);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-}
 
 #guestbooks___guestbook-messages-container strong {
   color: var(--app-link-hover);
@@ -94,9 +86,6 @@
   transition: background-color 0.3s ease;
 }
 
-[data-theme="light"] #guestbooks___guestbook-messages-container small::after {
-  background: rgba(0, 0, 0, 0.08);
-}
 
 #guestbooks___guestbook-messages-container div,
 #guestbooks___guestbook-messages-container p {
@@ -109,10 +98,6 @@
   transition: color 0.3s ease;
 }
 
-[data-theme="light"] #guestbooks___guestbook-messages-container div,
-[data-theme="light"] #guestbooks___guestbook-messages-container p {
-  color: rgba(0, 0, 0, 0.9);
-}
 
 #guestbooks___guestbook-messages-container a {
   color: var(--app-link-hover);
@@ -130,9 +115,6 @@
   transition: border-color 0.3s ease;
 }
 
-[data-theme="light"] #guestbooks___guestbook-made-with {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
 
 #guestbooks___guestbook-made-with small {
   color: #666;
@@ -178,11 +160,6 @@
   transition: all 0.3s ease;
 }
 
-[data-theme="light"] .form-field input,
-[data-theme="light"] .form-field textarea {
-  background: rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(0, 0, 0, 0.15);
-}
 
 .form-field input::placeholder,
 .form-field textarea::placeholder {
@@ -197,10 +174,6 @@
   box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.1);
 }
 
-[data-theme="light"] .form-field input:focus,
-[data-theme="light"] .form-field textarea:focus {
-  background: rgba(0, 0, 0, 0.12);
-}
 
 .form-field textarea {
   resize: vertical;
@@ -225,10 +198,6 @@
   box-sizing: border-box;
 }
 
-[data-theme="light"] .instagram-input-container {
-  background: rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(0, 0, 0, 0.15);
-}
 
 .instagram-input-container:focus-within {
   border-color: var(--app-link-hover);
@@ -236,9 +205,6 @@
   box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.1);
 }
 
-[data-theme="light"] .instagram-input-container:focus-within {
-  background: rgba(0, 0, 0, 0.12);
-}
 
 .instagram-icon {
   color: #E4405F;
@@ -284,10 +250,6 @@
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-[data-theme="light"] .challenge-field {
-  background: rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-}
 
 .challenge-label {
   color: var(--app-label);
@@ -333,10 +295,6 @@
   border-color: rgba(255, 255, 255, 0.2);
 }
 
-[data-theme="light"] .submit-button:disabled {
-  background: rgba(0, 0, 0, 0.1);
-  border-color: rgba(0, 0, 0, 0.2);
-}
 
 .error-message {
   color: #ff6b6b;
@@ -435,34 +393,5 @@
     background: rgba(255, 255, 255, 0.15);
     border-color: var(--app-link-hover);
     color: var(--app-link-hover);
-  }
-
-  [data-theme="light"] .leave-message-button:hover {
-    background: rgba(0, 0, 0, 0.15);
-  }
-
-  #guestbooks___guestbook-messages-container>div:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.12);
-  }
-
-  [data-theme="light"] #guestbooks___guestbook-messages-container>div:hover {
-    background: rgba(0, 0, 0, 0.05);
-    border-color: rgba(0, 0, 0, 0.12);
-  }
-
-  #guestbooks___guestbook-messages-container a:hover {
-    color: var(--app-link-hover);
-    text-decoration: underline;
-  }
-
-  #guestbooks___guestbook-made-with a:hover {
-    color: #888;
-  }
-
-  .submit-button:hover:not(:disabled) {
-    background: linear-gradient(135deg, rgba(74, 158, 255, 0.9) 0%, rgba(74, 158, 255, 0.7) 100%);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 15px rgba(74, 158, 255, 0.3);
   }
 }
