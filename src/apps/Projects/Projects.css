@@ -26,7 +26,7 @@
 }
 
 .project-name {
-  color: var(--app-text);
+  color: #fff;
   font-size: 14px;
   font-weight: 400;
   display: flex;

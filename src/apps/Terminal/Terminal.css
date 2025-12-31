@@ -132,7 +132,7 @@
     }
 
     .terminal-input {
-        font-size: 14px;
+        font-size: 16px;
     }
 }
 
@@ -146,6 +146,7 @@
     }
 
     .terminal-input {
-        font-size: 13px;
+        font-size: 16px;
+        /* Prevents zoom on iOS */
     }
 }
