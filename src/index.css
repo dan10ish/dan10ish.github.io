@@ -9,20 +9,25 @@
 }
 
 :root {
-  /* Main UI - Ash background with black text */
+  /* Common */
+  --loading-progress: linear-gradient(90deg, #007AFF, #00C7FF);
+
+  /* Light Theme (Ash) Defaults */
   --background: #e8e8e8;
   --text-color: #1a1a1a;
   --menu-bar-bg: #e8e8e8;
   --menu-bar-text: #1a1a1a;
+
   --startup-bg: #e8e8e8;
   --startup-label: #666666;
   --startup-value: #1a1a1a;
   --startup-link: #1a1a1a;
   --startup-link-hover: #007AFF;
+
   --loading-bg: #e8e8e8;
   --loading-bar-bg: rgba(0, 0, 0, 0.15);
-  --loading-progress: linear-gradient(90deg, #007AFF, #00C7FF);
   --apple-logo-filter: invert(0);
+
   --power-button-bg: #d8d8d8;
   --power-button-shadow: rgba(0, 0, 0, 0.2);
   --power-button-inner-shadow: rgba(0, 0, 0, 0.15);
@@ -31,16 +36,55 @@
   --power-button-inner-glow: rgba(255, 255, 255, 0.4);
   --power-button-inner-radial: rgba(255, 255, 255, 0.3);
 
-  /* App windows - Dark theme */
-  --window-bg: rgba(28, 28, 30, 0.98);
-  --window-header-bg: rgba(44, 44, 46, 0.98);
-  --border-color: rgba(255, 255, 255, 0.1);
-  --shadow-color: rgba(0, 0, 0, 0.4);
-  --app-text: #fff;
-  --app-label: #888;
-  --app-link: #fff;
-  --app-link-hover: #4A9EFF;
-  --app-border: rgba(255, 255, 255, 0.08);
+  /* App Windows - Light Theme */
+  --window-bg: rgba(255, 255, 255, 0.85);
+  --window-header-bg: rgba(240, 240, 240, 0.95);
+  --border-color: rgba(0, 0, 0, 0.1);
+  --shadow-color: rgba(0, 0, 0, 0.15);
+  --app-text: #1a1a1a;
+  --app-label: #666;
+  --app-link: #007AFF;
+  --app-link-hover: #0056b3;
+  --app-border: rgba(0, 0, 0, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark Theme */
+    --background: #1a1a1a;
+    --text-color: #f5f5f7;
+    --menu-bar-bg: #1a1a1a;
+    --menu-bar-text: #f5f5f7;
+
+    --startup-bg: #1a1a1a;
+    --startup-label: #999;
+    --startup-value: #f5f5f7;
+    --startup-link: #f5f5f7;
+    --startup-link-hover: #4A9EFF;
+
+    --loading-bg: #1a1a1a;
+    --loading-bar-bg: rgba(255, 255, 255, 0.2);
+    --apple-logo-filter: invert(1);
+
+    --power-button-bg: #333333;
+    --power-button-shadow: rgba(0, 0, 0, 0.4);
+    --power-button-inner-shadow: rgba(0, 0, 0, 0.3);
+    --power-button-highlight: rgba(255, 255, 255, 0.1);
+    --power-button-inner-highlight: rgba(255, 255, 255, 0.15);
+    --power-button-inner-glow: rgba(255, 255, 255, 0.1);
+    --power-button-inner-radial: rgba(255, 255, 255, 0.1);
+
+    /* App Windows - Dark Theme */
+    --window-bg: rgba(28, 28, 30, 0.98);
+    --window-header-bg: rgba(44, 44, 46, 0.98);
+    --border-color: rgba(255, 255, 255, 0.1);
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --app-text: #fff;
+    --app-label: #888;
+    --app-link: #fff;
+    --app-link-hover: #4A9EFF;
+    --app-border: rgba(255, 255, 255, 0.08);
+  }
 }
 
 body {
@@ -55,6 +99,7 @@ body {
   padding: 0;
   background-color: var(--background);
   color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .loading-container {

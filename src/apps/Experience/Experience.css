@@ -27,7 +27,7 @@
 }
 
 .experience-role {
-  color: #fff;
+  color: var(--app-text);
   font-size: 14px;
   font-weight: 400;
   display: flex;
@@ -103,7 +103,7 @@
 }
 
 .education-field {
-  color: #fff;
+  color: var(--app-text);
   font-size: 14px;
   font-weight: 400;
   display: flex;

@@ -74,7 +74,7 @@
   transform: translateX(-50%);
   font-size: 14px;
   font-weight: 400;
-  color: #fff;
+  color: var(--text-color);
   pointer-events: none;
   white-space: nowrap;
   overflow: hidden;
