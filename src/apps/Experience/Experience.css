@@ -237,9 +237,9 @@
   display: block;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .folder-icon {
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
   }
 }

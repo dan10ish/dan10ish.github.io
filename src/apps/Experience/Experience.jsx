@@ -30,10 +30,10 @@ const Experience = ({ onOpenWindow }) => {
   return (
     <div className="experience-app">
       <div className="experience-section">
-      <h2>Experience</h2>
+        <h2>Experience</h2>
         {experienceData.experience.map((experience, index) => (
-          <div 
-            key={index} 
+          <div
+            key={index}
             className="experience-item"
             onClick={() => handleExperienceClick(experience)}
           >
@@ -50,10 +50,10 @@ const Experience = ({ onOpenWindow }) => {
       </div>
 
       <div className="education-section">
-      <h2>Education</h2>
+        <h2>Education</h2>
         {experienceData.education.map((education, index) => (
-          <div 
-            key={index} 
+          <div
+            key={index}
             className="education-item"
             onClick={() => handleEducationClick(education)}
           >
@@ -75,11 +75,11 @@ const Experience = ({ onOpenWindow }) => {
 const TechnologyIcon = ({ technology }) => {
   return (
     <div className="technology-item">
-      <img 
+      <img
         src={`/assets/experience/${technology.icon}`}
         alt={technology.name}
         className="technology-icon"
-        width="16" 
+        width="16"
         height="16"
       />
       <span className="technology-name">{technology.name}</span>
@@ -126,8 +126,8 @@ const ExperienceDetail = ({ experience }) => {
           <div className="experience-detail-item">
             <span className="experience-detail-label">image</span>
             <div className="experience-image-container">
-              <img 
-                src={experience.image} 
+              <img
+                src={experience.image}
                 alt={`${experience.company} experience`}
                 className="experience-image"
               />
@@ -171,16 +171,16 @@ const EducationDetail = ({ education }) => {
         )}
 
         <div className="education-detail-item">
-          <span className="education-detail-label">description</span>
-          <span className="education-detail-text">{education.description}</span>
+          <span className="education-detail-label">courses</span>
+          <span className="education-detail-text">{education.courses}</span>
         </div>
 
         {education.image && (
           <div className="education-detail-item">
             <span className="education-detail-label">image</span>
             <div className="education-image-container">
-              <img 
-                src={education.image} 
+              <img
+                src={education.image}
                 alt={`${education.institution} education`}
                 className="education-image"
               />
