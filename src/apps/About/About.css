@@ -45,7 +45,7 @@
 }
 
 .social-link {
-  color: var(--app-link);
+  color: var(--app-label);
   text-decoration: none;
   font-size: 14px;
   font-weight: 400;
@@ -57,7 +57,7 @@
 }
 
 .social-icon {
-  color: var(--app-link);
+  color: var(--app-label);
   opacity: 1;
   transition: color 0.3s ease;
 }
@@ -110,4 +110,3 @@
   max-width: 350px;
   transition: color 0.3s ease;
 }
-

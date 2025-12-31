@@ -144,7 +144,7 @@
 
   .education-item:hover,
   .experience-item:hover {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: var(--item-hover-bg);
   }
 }
 

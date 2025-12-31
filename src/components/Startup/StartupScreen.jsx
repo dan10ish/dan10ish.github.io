@@ -84,81 +84,83 @@ const StartupScreen = ({ onPowerOn }) => {
   };
 
   return (
-    <div className="startup-screen">
-      <div className="startup-content">
-        <div className="startup-info">
-          <div className="startup-label">{data.name}</div>
-          <div className="startup-value">{data.title}</div>
+    <>
+      <div className="startup-screen">
+        <div className="startup-content">
+          <div className="startup-info">
+            <div className="startup-label">{data.name}</div>
+            <div className="startup-value">{data.title}</div>
 
-          <div className="startup-label">interests</div>
-          <div className="startup-value">{data.interests}</div>
+            <div className="startup-label">interests</div>
+            <div className="startup-value">{data.interests}</div>
 
-          <div className="startup-label">current</div>
-          <div className="startup-value">
-            {data.current}
-          </div>
+            <div className="startup-label">current</div>
+            <div className="startup-value">
+              {data.current}
+            </div>
 
-          <div className="startup-label">past</div>
-          <div className="startup-value">{data.past.map((item, index) => (
-            <div key={index}>{item}</div>
-          ))}</div>
+            <div className="startup-label">past</div>
+            <div className="startup-value">{data.past.map((item, index) => (
+              <div key={index}>{item}</div>
+            ))}</div>
 
-          <div className="startup-label">education</div>
-          <div className="startup-value">{data.education}</div>
+            <div className="startup-label">education</div>
+            <div className="startup-value">{data.education}</div>
 
-          <div className="startup-label">socials</div>
-          <div className="startup-value">
-            <div className="startup-socials !flex !flex-row !items-center !gap-4 !-mt-1">
-              {data.contact.github && (
-                <div>
-                  <a href={getContactLink('github', data.contact.github)} target="_blank" rel="noopener noreferrer" className="startup-social-link !flex !items-center !justify-center !no-underline" aria-label={`GitHub profile of ${data.contact.github}`}>
-                    <Github size={20} />
-                  </a>
-                </div>
-              )}
-              {data.contact.email && (
-                <div>
-                  <a href={getContactLink('email', data.contact.email)} className="startup-social-link !flex !items-center !justify-center !no-underline" aria-label={`Send email to ${data.contact.email}`}>
-                    <Mail size={20} />
-                  </a>
-                </div>
-              )}
-              {data.contact.linkedin && (
-                <div>
-                  <a href={getContactLink('linkedin', data.contact.linkedin)} target="_blank" rel="noopener noreferrer" className="startup-social-link !flex !items-center !justify-center !no-underline" aria-label={`LinkedIn profile of ${data.contact.linkedin}`}>
-                    <LinkedInIcon />
-                  </a>
-                </div>
-              )}
-              {data.contact.x && (
-                <div>
-                  <a href={getContactLink('x', data.contact.x)} target="_blank" rel="noopener noreferrer" className="startup-social-link !flex !items-center !justify-center !no-underline" aria-label={`X (Twitter) profile of ${data.contact.x}`}>
-                    <XIcon />
-                  </a>
-                </div>
-              )}
-              {data.contact.instagram && (
-                <div>
-                  <a href={getContactLink('instagram', data.contact.instagram)} target="_blank" rel="noopener noreferrer" className="startup-social-link !flex !items-center !justify-center !no-underline" aria-label={`Instagram profile of ${data.contact.instagram}`}>
-                    <Instagram size={20} />
-                  </a>
-                </div>
-              )}
-              {data.contact.snapchat && (
-                <div>
-                  <a href={getContactLink('snapchat', data.contact.snapchat)} target="_blank" rel="noopener noreferrer" className="startup-social-link !flex !items-center !justify-center !no-underline" aria-label={`Snapchat profile of ${data.contact.snapchat}`}>
-                    <SnapchatIcon />
-                  </a>
-                </div>
-              )}
+            <div className="startup-label">socials</div>
+            <div className="startup-value">
+              <div className="startup-socials !flex !flex-row !items-center !gap-4 !-mt-1">
+                {data.contact.github && (
+                  <div>
+                    <a href={getContactLink('github', data.contact.github)} target="_blank" rel="noopener noreferrer" className="startup-social-link !flex !items-center !justify-center !no-underline" aria-label={`GitHub profile of ${data.contact.github}`}>
+                      <Github size={20} />
+                    </a>
+                  </div>
+                )}
+                {data.contact.email && (
+                  <div>
+                    <a href={getContactLink('email', data.contact.email)} className="startup-social-link !flex !items-center !justify-center !no-underline" aria-label={`Send email to ${data.contact.email}`}>
+                      <Mail size={20} />
+                    </a>
+                  </div>
+                )}
+                {data.contact.linkedin && (
+                  <div>
+                    <a href={getContactLink('linkedin', data.contact.linkedin)} target="_blank" rel="noopener noreferrer" className="startup-social-link !flex !items-center !justify-center !no-underline" aria-label={`LinkedIn profile of ${data.contact.linkedin}`}>
+                      <LinkedInIcon />
+                    </a>
+                  </div>
+                )}
+                {data.contact.x && (
+                  <div>
+                    <a href={getContactLink('x', data.contact.x)} target="_blank" rel="noopener noreferrer" className="startup-social-link !flex !items-center !justify-center !no-underline" aria-label={`X (Twitter) profile of ${data.contact.x}`}>
+                      <XIcon />
+                    </a>
+                  </div>
+                )}
+                {data.contact.instagram && (
+                  <div>
+                    <a href={getContactLink('instagram', data.contact.instagram)} target="_blank" rel="noopener noreferrer" className="startup-social-link !flex !items-center !justify-center !no-underline" aria-label={`Instagram profile of ${data.contact.instagram}`}>
+                      <Instagram size={20} />
+                    </a>
+                  </div>
+                )}
+                {data.contact.snapchat && (
+                  <div>
+                    <a href={getContactLink('snapchat', data.contact.snapchat)} target="_blank" rel="noopener noreferrer" className="startup-social-link !flex !items-center !justify-center !no-underline" aria-label={`Snapchat profile of ${data.contact.snapchat}`}>
+                      <SnapchatIcon />
+                    </a>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
-        <div className="power-button-container">
-          <PowerButton onClick={onPowerOn} />
-        </div>
       </div>
-    </div>
+      <div className="power-button-container">
+        <PowerButton onClick={onPowerOn} />
+      </div>
+    </>
   );
 };
 

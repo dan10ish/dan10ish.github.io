@@ -161,7 +161,19 @@
 
 @media (hover: hover) and (pointer: fine) {
   .project-item:hover {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: var(--item-hover-bg);
+  }
+
+  .project-link:hover {
+    color: var(--app-link-hover);
+  }
+
+  .project-detail-link:hover {
+    color: var(--app-link-hover);
+  }
+
+  .project-detail-link:hover .project-detail-icon {
+    color: var(--app-link-hover);
   }
 }
 

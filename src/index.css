@@ -44,8 +44,9 @@
   --app-text: #1a1a1a;
   --app-label: #666;
   --app-link: #007AFF;
-  --app-link-hover: #0056b3;
+  --app-link-hover: #007AFF;
   --app-border: rgba(0, 0, 0, 0.1);
+  --item-hover-bg: rgba(0, 0, 0, 0.05);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -84,6 +85,7 @@
     --app-link: #fff;
     --app-link-hover: #4A9EFF;
     --app-border: rgba(255, 255, 255, 0.08);
+    --item-hover-bg: rgba(255, 255, 255, 0.1);
   }
 }
 
