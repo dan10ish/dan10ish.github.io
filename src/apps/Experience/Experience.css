@@ -236,3 +236,10 @@
   height: auto;
   display: block;
 }
+
+@media (max-width: 480px) {
+  .folder-icon {
+    width: 22px;
+    height: 22px;
+  }
+}

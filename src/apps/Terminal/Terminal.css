@@ -133,6 +133,10 @@
 
     .terminal-input {
         font-size: 16px;
+        transform: scale(0.875);
+        transform-origin: left center;
+        width: 114%;
+        margin-left: -1px;
     }
 }
 
@@ -147,6 +151,9 @@
 
     .terminal-input {
         font-size: 16px;
-        /* Prevents zoom on iOS */
+        transform: scale(0.8125);
+        transform-origin: left center;
+        width: 123%;
+        margin-left: -2px;
     }
 }
