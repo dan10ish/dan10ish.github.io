@@ -1,5 +1,5 @@
-import React from "react";
-import { Github, Mail, Instagram } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { Github, Mail, Instagram, Sun, Moon } from "lucide-react";
 import data from "../../data.json";
 import powerIcon from "../../assets/icons/power.svg";
 import "./StartupScreen.css";
@@ -71,6 +71,36 @@ const SnapchatIcon = (props) => (
 );
 
 const StartupScreen = ({ onPowerOn }) => {
+  const [theme, setTheme] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('theme') || 'system';
+    }
+    return 'system';
+  });
+
+  const isDark = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === 'system') {
+      root.removeAttribute('data-theme');
+      localStorage.removeItem('theme');
+    } else {
+      root.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+    }
+  }, [theme]);
+
+  const toggleTheme = () => {
+    if (theme === 'system') {
+      setTheme(isDark ? 'light' : 'dark');
+    } else if (theme === 'dark') {
+      setTheme('light');
+    } else {
+      setTheme('dark');
+    }
+  };
+
   const getContactLink = (platform, username) => {
     const links = {
       email: `mailto:${username}`,
@@ -157,6 +187,9 @@ const StartupScreen = ({ onPowerOn }) => {
           </div>
         </div>
       </div>
+      <button className="startup-theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
+        {isDark ? <Sun size={20} /> : <Moon size={20} />}
+      </button>
       <div className="power-button-container">
         <PowerButton onClick={onPowerOn} />
       </div>

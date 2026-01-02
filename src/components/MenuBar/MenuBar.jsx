@@ -1,11 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Loader2 } from "lucide-react";
+import { Loader2, Sun, Moon } from "lucide-react";
 import powerIcon from "../../assets/icons/power.svg";
 import "./MenuBar.css";
 
 const MenuBar = ({ onShutdown }) => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [isShuttingDown, setIsShuttingDown] = useState(false);
+  const [theme, setTheme] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('theme') || 'system';
+    }
+    return 'system';
+  });
+
+  const isDark = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -13,6 +21,27 @@ const MenuBar = ({ onShutdown }) => {
     }, 1000);
     return () => clearInterval(timer);
   }, []);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === 'system') {
+      root.removeAttribute('data-theme');
+      localStorage.removeItem('theme');
+    } else {
+      root.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+    }
+  }, [theme]);
+
+  const toggleTheme = () => {
+    if (theme === 'system') {
+      setTheme(isDark ? 'light' : 'dark');
+    } else if (theme === 'dark') {
+      setTheme('light');
+    } else {
+      setTheme('dark');
+    }
+  };
 
   const formatTime = (date) => {
     return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
@@ -56,6 +85,9 @@ const MenuBar = ({ onShutdown }) => {
           </div>
         </div>
         <div className="menu-bar-right">
+          <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
+            {isDark ? <Sun size={16} /> : <Moon size={16} />}
+          </button>
           <span>{formatDate(currentTime)}</span>
           <span>{formatTime(currentTime)}</span>
         </div>
