@@ -45,7 +45,7 @@
 }
 
 .social-link {
-  color: var(--app-label);
+  color: var(--app-link-hover);
   text-decoration: none;
   font-size: 14px;
   font-weight: 400;
@@ -58,16 +58,10 @@
 
 .social-icon {
   color: var(--app-label);
-  opacity: 1;
-  transition: color 0.3s ease;
+  opacity: 0;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .social-icon {
-    opacity: 0;
-    transition: opacity 0.2s ease;
-  }
-
   .social-link:hover {
     color: var(--app-link-hover);
   }
