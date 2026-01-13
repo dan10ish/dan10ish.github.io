@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './Card.css';
 
 const config = {
@@ -12,13 +12,44 @@ const config = {
 const FONT_FAMILY =
   '"Garamond Classico SC", "EB Garamond", "Garamond", "Apple Garamond", Baskerville, "Times New Roman", serif';
 
+// Base card dimensions
+const BASE_CARD_WIDTH = 480;
+const BASE_CARD_HEIGHT = 480 * (452 / 800); // ~271px
+
 const Card = () => {
+  const shellRef = useRef(null);
   const sceneRef = useRef(null);
   const cardRef = useRef(null);
   const animationRef = useRef(undefined);
   const targetRef = useRef({ rotateX: 0, rotateY: 0, rotateZ: 0, shadowX: 0, shadowY: 0 });
   const currentRef = useRef({ rotateX: 0, rotateY: 0, rotateZ: 0, shadowX: 0, shadowY: 0 });
   const isInteractingRef = useRef(false);
+  const [scale, setScale] = useState(1);
+
+  // Handle responsive scaling based on container size
+  useEffect(() => {
+    const shell = shellRef.current;
+    if (!shell) return;
+
+    const calculateScale = () => {
+      const rect = shell.getBoundingClientRect();
+      const availableWidth = rect.width - 48; // padding
+      const availableHeight = rect.height - 48;
+      
+      const scaleX = availableWidth / BASE_CARD_WIDTH;
+      const scaleY = availableHeight / BASE_CARD_HEIGHT;
+      
+      // Use the smaller scale to ensure card fits
+      const newScale = Math.min(scaleX, scaleY, 1.2); // Cap at 1.2x
+      setScale(Math.max(0.4, newScale)); // Min scale 0.4
+    };
+
+    const resizeObserver = new ResizeObserver(calculateScale);
+    resizeObserver.observe(shell);
+    calculateScale();
+
+    return () => resizeObserver.disconnect();
+  }, []);
 
   useEffect(() => {
     const scene = sceneRef.current;
@@ -138,7 +169,15 @@ const Card = () => {
   }, []);
 
   return (
-    <div className="card-shell" style={{ fontFamily: FONT_FAMILY }}>
+    <div 
+      className="card-shell" 
+      ref={shellRef}
+      style={{ 
+        fontFamily: FONT_FAMILY,
+        '--card-layout-scale': scale,
+        '--card-scale': scale * 0.6
+      }}
+    >
       <div className="card-scene" ref={sceneRef}>
         <article className="card" data-card="" ref={cardRef}>
           <div className="card__overlay" aria-hidden="true"></div>

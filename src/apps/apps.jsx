@@ -86,7 +86,7 @@ export const getApps = (onOpenWindow) => [
     name: "Card",
     icon: cardIcon,
     component: <Card />,
-    defaultSize: [700, 500],
+    defaultSize: getResponsiveSize(700, 500),
   },
 ];
 

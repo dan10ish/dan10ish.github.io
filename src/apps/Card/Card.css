@@ -241,32 +241,7 @@
     text-decoration: none;
 }
 
-@media (max-width: 640px) {
-    :root {
-        --card-scale: 0.5;
-        --card-layout-scale: 0.833333;
-    }
-}
-
-@media (max-width: 480px) {
-    :root {
-        --card-scale: 0.44;
-        --card-layout-scale: 0.733333;
-    }
-    .card__bottom-address {
-        font-size: calc(24px * var(--card-scale));
-    }
-}
-
-@media (max-width: 380px) {
-    :root {
-        --card-scale: 0.38;
-        --card-layout-scale: 0.633333;
-    }
-    .card__bottom-address {
-        font-size: calc(24px * var(--card-scale));
-    }
-}
+/* Responsiveness is handled via JavaScript ResizeObserver */
 
 .card__overlay {
     position: absolute;
