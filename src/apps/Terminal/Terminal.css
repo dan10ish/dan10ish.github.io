@@ -8,6 +8,7 @@
     overflow: hidden;
     cursor: text;
     transition: color 0.3s ease;
+    overscroll-behavior: contain;
 }
 
 .terminal-content {
@@ -20,6 +21,8 @@
     overflow-x: hidden;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
 }
 
 .terminal-content::-webkit-scrollbar {

@@ -45,7 +45,7 @@ const getResponsiveSize = (baseWidth, baseHeight) => {
   ];
 };
 
-// Special responsive sizing for Card - almost full width on smaller devices
+// Special responsive sizing for Card - almost full width on smaller devices, bigger on larger
 const getCardResponsiveSize = () => {
   const screenWidth = window.innerWidth;
   const screenHeight = window.innerHeight;
@@ -62,9 +62,24 @@ const getCardResponsiveSize = () => {
       screenWidth * 0.85,
       Math.min(screenHeight * 0.55, 450)
     ];
+  } else if (screenWidth < 1440) {
+    // Desktop: medium-large
+    return [
+      Math.min(800, screenWidth * 0.55),
+      Math.min(550, screenHeight * 0.6)
+    ];
+  } else if (screenWidth < 1920) {
+    // Large desktop
+    return [
+      Math.min(900, screenWidth * 0.5),
+      Math.min(600, screenHeight * 0.6)
+    ];
   } else {
-    // Desktop: standard responsive sizing
-    return getResponsiveSize(700, 500);
+    // Extra large screens
+    return [
+      Math.min(1000, screenWidth * 0.45),
+      Math.min(650, screenHeight * 0.55)
+    ];
   }
 };
 

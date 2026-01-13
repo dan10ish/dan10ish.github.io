@@ -59,7 +59,7 @@ const MenuBar = () => {
       <div className="menu-bar-left">
         <span className="menu-bar-name">Danish Ansari</span>
         <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
-          {isDark ? <Sun size={14} /> : <Moon size={14} />}
+          {isDark ? <Sun size={16} strokeWidth={2.5} /> : <Moon size={16} strokeWidth={2.5} />}
         </button>
       </div>
       <div className="menu-bar-right">

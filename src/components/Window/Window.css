@@ -133,6 +133,8 @@
   -ms-user-select: none;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 .window-body::-webkit-scrollbar {

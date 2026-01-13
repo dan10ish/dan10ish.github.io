@@ -135,10 +135,13 @@ body {
   position: fixed;
   width: 100%;
   height: 100%;
+  height: 100dvh;
   margin: 0;
   padding: 0;
   background-color: var(--background);
   color: var(--text-color);
+  overscroll-behavior: none;
+  touch-action: pan-x pan-y;
 }
 
 .loading-container {
@@ -170,13 +173,19 @@ body {
 #root {
   width: 100%;
   height: 100%;
+  height: 100dvh;
   position: fixed;
   top: 0;
   left: 0;
+  overflow: hidden;
+  overscroll-behavior: none;
 }
 
 html {
   width: 100%;
   height: 100%;
+  height: 100dvh;
   overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: none;
 }

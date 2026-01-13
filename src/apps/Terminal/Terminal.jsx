@@ -527,13 +527,15 @@ Navigation:
 
   useEffect(() => {
     if (inputRef.current) {
-      inputRef.current.focus();
+      inputRef.current.focus({ preventScroll: true });
     }
   }, []);
 
-  const handleTerminalClick = () => {
+  const handleTerminalClick = (e) => {
     if (inputRef.current) {
-      inputRef.current.focus();
+      // Prevent scroll when focusing input on mobile
+      e.preventDefault();
+      inputRef.current.focus({ preventScroll: true });
     }
   };
 
