@@ -55,20 +55,18 @@ const MenuBar = () => {
   };
 
   return (
-    <>
-      <div className="menu-bar">
-        <div className="menu-bar-left">
-          <span>Danish Ansari</span>
-        </div>
-        <div className="menu-bar-right">
-          <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
-            {isDark ? <Sun size={16} /> : <Moon size={16} />}
-          </button>
-          <span>{formatDate(currentTime)}</span>
-          <span>{formatTime(currentTime)}</span>
-        </div>
+    <div className="menu-bar">
+      <div className="menu-bar-left">
+        <span className="menu-bar-name">Danish Ansari</span>
+        <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
+          {isDark ? <Sun size={14} /> : <Moon size={14} />}
+        </button>
       </div>
-    </>
+      <div className="menu-bar-right">
+        <span>{formatDate(currentTime)}</span>
+        <span>{formatTime(currentTime)}</span>
+      </div>
+    </div>
   );
 };
 

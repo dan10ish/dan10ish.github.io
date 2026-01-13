@@ -13,13 +13,17 @@
   z-index: 1000;
   color: var(--menu-bar-text);
   font-size: 14px;
+  line-height: 1;
 }
 
 .menu-bar-left {
-  font-weight: 500;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+}
+
+.menu-bar-name {
+  font-weight: 600;
 }
 
 .theme-toggle {
@@ -32,8 +36,7 @@
   align-items: center;
   padding: 4px;
   border-radius: 4px;
-  position: relative;
-  top: 2px;
+  opacity: 0.85;
 }
 
 .power-button-container-menu {
@@ -95,8 +98,9 @@
 
 .menu-bar-right {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 15px;
+  font-weight: 400;
 }
 
 @media (max-width: 768px) {
