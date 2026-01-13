@@ -27,7 +27,7 @@ const LoadingScreen = ({ onLoadComplete }) => {
   const completedRef = useRef(false);
 
   useEffect(() => {
-    const loadDuration = 2000;
+    const loadDuration = 800;
     const startTime = performance.now();
     let assetsReady = false;
 

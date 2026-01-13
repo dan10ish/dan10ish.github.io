@@ -3,12 +3,12 @@ import { Loader2 } from "lucide-react";
 import MenuBar from "./components/MenuBar/MenuBar";
 import Desktop from "./components/Desktop/Desktop";
 import Window from "./components/Window/Window";
-import { StartupScreen, LoadingScreen } from "./components/Startup";
+import LoadingScreen from "./components/Startup/LoadingScreen";
 import { getApps } from "./apps/apps.jsx";
 import wallpaper from "./assets/wallpaper.png";
 
 const App = () => {
-  const [startupPhase, setStartupPhase] = useState("startup");
+  const [startupPhase, setStartupPhase] = useState("loading");
   const [openApps, setOpenApps] = useState({});
   const [focusOrder, setFocusOrder] = useState([]);
   const [loadingApps, setLoadingApps] = useState({});
@@ -107,10 +107,6 @@ const App = () => {
 
   const openAppEntries = useMemo(() => Object.entries(openApps), [openApps]);
 
-  const handlePowerOn = () => {
-    setStartupPhase("loading");
-  };
-
   const handleLoadComplete = () => {
     setStartupPhase("desktop");
   };
@@ -119,12 +115,8 @@ const App = () => {
     setOpenApps({});
     setFocusOrder([]);
     setLoadingApps({});
-    setStartupPhase("startup");
+    setStartupPhase("loading");
   };
-
-  if (startupPhase === "startup") {
-    return <StartupScreen onPowerOn={handlePowerOn} />;
-  }
 
   if (startupPhase === "loading") {
     return <LoadingScreen onLoadComplete={handleLoadComplete} />;
