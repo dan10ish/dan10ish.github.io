@@ -45,6 +45,29 @@ const getResponsiveSize = (baseWidth, baseHeight) => {
   ];
 };
 
+// Special responsive sizing for Card - almost full width on smaller devices
+const getCardResponsiveSize = () => {
+  const screenWidth = window.innerWidth;
+  const screenHeight = window.innerHeight;
+
+  if (screenWidth < 768) {
+    // Mobile: almost full width
+    return [
+      screenWidth * 0.92,
+      Math.min(screenHeight * 0.6, 400)
+    ];
+  } else if (screenWidth < 1024) {
+    // Tablet: large but not full
+    return [
+      screenWidth * 0.85,
+      Math.min(screenHeight * 0.55, 450)
+    ];
+  } else {
+    // Desktop: standard responsive sizing
+    return getResponsiveSize(700, 500);
+  }
+};
+
 export const getApps = (onOpenWindow) => [
   {
     id: "about",
@@ -86,7 +109,7 @@ export const getApps = (onOpenWindow) => [
     name: "Card",
     icon: cardIcon,
     component: <Card />,
-    defaultSize: getResponsiveSize(700, 500),
+    defaultSize: getCardResponsiveSize(),
   },
 ];
 
