@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Loader2, Sun, Moon } from "lucide-react";
-import powerIcon from "../../assets/icons/power.svg";
+import { Sun, Moon } from "lucide-react";
 import "./MenuBar.css";
 
-const MenuBar = ({ onShutdown }) => {
+const MenuBar = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
-  const [isShuttingDown, setIsShuttingDown] = useState(false);
   const [theme, setTheme] = useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('theme') || 'system';
@@ -56,33 +54,11 @@ const MenuBar = ({ onShutdown }) => {
     return date.toLocaleDateString([], options).replace(',', '');
   };
 
-  const handleShutdown = () => {
-    setIsShuttingDown(true);
-    setTimeout(() => {
-      window.location.reload();
-    }, 1000);
-  };
-
   return (
     <>
       <div className="menu-bar">
         <div className="menu-bar-left">
           <span>Danish Ansari</span>
-          <div className="power-button-container-menu">
-            <button
-              className="power-button-menu"
-              onClick={handleShutdown}
-              disabled={isShuttingDown}
-            >
-              <img src={powerIcon} alt="Power" width="18" height="18" />
-            </button>
-            {isShuttingDown && (
-              <div className="shutdown-dropdown">
-                <Loader2 className="shutdown-spinner" size={12} />
-                <span>Shutting down</span>
-              </div>
-            )}
-          </div>
         </div>
         <div className="menu-bar-right">
           <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">

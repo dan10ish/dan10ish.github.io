@@ -111,13 +111,6 @@ const App = () => {
     setStartupPhase("desktop");
   };
 
-  const handleShutdown = () => {
-    setOpenApps({});
-    setFocusOrder([]);
-    setLoadingApps({});
-    setStartupPhase("loading");
-  };
-
   if (startupPhase === "loading") {
     return <LoadingScreen onLoadComplete={handleLoadComplete} />;
   }
@@ -125,7 +118,7 @@ const App = () => {
   return (
     <>
       <div className="desktop" style={{ backgroundImage: `url(${wallpaper})` }}>
-        <MenuBar onShutdown={handleShutdown} />
+        <MenuBar />
         <Desktop onOpenApp={handleOpenApp} apps={apps} />
       </div>
 
