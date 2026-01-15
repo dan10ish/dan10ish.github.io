@@ -1,0 +1,54 @@
+{
+    "~": {
+        "type": "directory",
+        "contents": {
+            "about.txt": {
+                "type": "file",
+                "content": "Danish Ansari\nBuilding solutions at the intersection of hardware and software\n\nInterests: ML | Robotics | Finance\nCurrent: PM, Innovatio Labs\nEducation: Mechatronics, NMIMS"
+            },
+            "contact.txt": {
+                "type": "file",
+                "content": "Email: aansaridan@gmail.com\nGitHub: github.com/dan10ish\nX: x.com/dan10ish\nInstagram: instagram.com/dan10ish\nLinkedIn: linkedin.com/in/dan10ish\nSnapchat: snapchat.com/add/dan10ish"
+            },
+            "resume.txt": {
+                "type": "file",
+                "content": "Danish Ansari - Resume\n\nEducation: Mechatronics, NMIMS (2020-2024)\nCurrent: PM, Innovatio Labs\n\nExperience:\n• Project Manager, Innovatio Labs (2024 - Now)\n• SWE, Cridaa (2024 - 2025)\n• SWE, Accelus Robotics (2023 - 2024)\n\nSkills: React, JavaScript, Python, Machine Learning, Robotics"
+            },
+            "projects": {
+                "type": "directory",
+                "contents": {
+                    "website.txt": {
+                        "type": "file",
+                        "content": "Personal Portfolio Website\nBuilt with React + Vite\nFeatures: Desktop-like interface, Terminal app, Music player"
+                    },
+                    "terminal.txt": {
+                        "type": "file",
+                        "content": "macOS Terminal Clone\nBuilt with React\nFeatures: Command execution, File system simulation, Command history"
+                    }
+                }
+            },
+            "experience": {
+                "type": "directory",
+                "contents": {
+                    "current.txt": {
+                        "type": "file",
+                        "content": "Project Manager, Innovatio Labs\n2024 - Present\n\nBuilt a full-stack logistics MVP featuring real-time vehicle tracking."
+                    },
+                    "past.txt": {
+                        "type": "file",
+                        "content": "SWE, Cridaa (2024 - 2025)\nSWE, Accelus Robotics (2023 - 2024)"
+                    }
+                }
+            },
+            "notes": {
+                "type": "directory",
+                "contents": {
+                    "ideas.txt": {
+                        "type": "file",
+                        "content": "Project Ideas:\n• AI-powered code assistant\n• Robotics simulation platform\n• Financial analysis tool"
+                    }
+                }
+            }
+        }
+    }
+}

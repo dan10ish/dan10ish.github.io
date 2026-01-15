@@ -1,0 +1,116 @@
+{
+    "apps": [
+        {
+            "id": "about",
+            "name": "About",
+            "icon": "about.png",
+            "category": "system",
+            "defaultSize": {
+                "width": 800,
+                "height": 600
+            },
+            "touchOptimized": true,
+            "description": "View profile and social links"
+        },
+        {
+            "id": "experience",
+            "name": "Experience",
+            "icon": "experience.png",
+            "category": "system",
+            "defaultSize": {
+                "width": 900,
+                "height": 600
+            },
+            "touchOptimized": true,
+            "description": "Work experience and education"
+        },
+        {
+            "id": "projects",
+            "name": "Projects",
+            "icon": "developer.png",
+            "category": "system",
+            "defaultSize": {
+                "width": 1000,
+                "height": 700
+            },
+            "touchOptimized": true,
+            "description": "Portfolio of projects"
+        },
+        {
+            "id": "music-player",
+            "name": "Listen",
+            "icon": "listen.png",
+            "category": "media",
+            "defaultSize": {
+                "width": 250,
+                "height": 280
+            },
+            "touchOptimized": true,
+            "description": "Music player"
+        },
+        {
+            "id": "terminal",
+            "name": "Terminal",
+            "icon": "terminal.png",
+            "category": "utilities",
+            "defaultSize": {
+                "width": 1000,
+                "height": 700
+            },
+            "touchOptimized": false,
+            "description": "Command line interface"
+        },
+        {
+            "id": "card",
+            "name": "Card",
+            "icon": "contacts.png",
+            "category": "system",
+            "defaultSize": {
+                "width": 480,
+                "height": 300
+            },
+            "touchOptimized": true,
+            "description": "Business card"
+        }
+    ],
+    "categories": {
+        "system": {
+            "name": "System",
+            "order": 1
+        },
+        "media": {
+            "name": "Media",
+            "order": 2
+        },
+        "utilities": {
+            "name": "Utilities",
+            "order": 3
+        },
+        "games": {
+            "name": "Games",
+            "order": 4
+        }
+    },
+    "responsiveScales": {
+        "largeScreens": {
+            "minWidth": 1920,
+            "scale": 0.5
+        },
+        "desktopScreens": {
+            "minWidth": 1440,
+            "scale": 0.55
+        },
+        "mediumScreens": {
+            "minWidth": 1024,
+            "scale": 0.65
+        },
+        "tabletScreens": {
+            "minWidth": 768,
+            "scale": 0.75
+        },
+        "mobileScreens": {
+            "minWidth": 0,
+            "scale": 0.9
+        }
+    }
+}

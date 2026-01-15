@@ -1,0 +1,14 @@
+{
+    "id": "template-app",
+    "name": "Template App",
+    "version": "1.0.0",
+    "description": "Template for creating new apps",
+    "icon": "folder.png",
+    "category": "utilities",
+    "defaultSize": {
+        "width": 600,
+        "height": 400
+    },
+    "touchOptimized": true,
+    "author": "Danish Ansari"
+}

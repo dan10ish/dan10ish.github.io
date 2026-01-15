@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useRef, useId } from "react";
+import { useFileSystem, useUserData } from "../../context/DataContext";
 import "./Terminal.css";
-import data from "../../data.json";
 
 const Terminal = () => {
+  const fileSystem = useFileSystem();
+  const { profile, contact, terminal } = useUserData();
+
   const [history, setHistory] = useState([]);
   const [currentInput, setCurrentInput] = useState("");
   const [currentDirectory, setCurrentDirectory] = useState("~");
@@ -12,35 +15,42 @@ const Terminal = () => {
   const terminalRef = useRef(null);
   const inputRef = useRef(null);
 
-  const fileSystem = {
-    "~": {
-      type: "directory",
-      contents: {
-        "about.txt": { type: "file", content: `${data.name}\n${data.title}\n\nInterests: ${data.interests}\nCurrent: ${data.current}\nEducation: ${data.education}` },
-        "contact.txt": { type: "file", content: `Email: ${data.contact.email}\nGitHub: github.com/${data.contact.github}\nX: x.com/${data.contact.x}\nInstagram: instagram.com/${data.contact.instagram}\nLinkedIn: linkedin.com/in/${data.contact.linkedin}\nSnapchat: snapchat.com/add/${data.contact.snapchat}` },
-        "resume.txt": { type: "file", content: `${data.name} - Resume\n\nEducation: ${data.education}\nCurrent: ${data.current}\nPrevious Experience:\n• ${data.past}\n\nSkills: React, JavaScript, Python, Machine Learning, Robotics` },
-        "projects": {
-          type: "directory",
-          contents: {
-            "website.txt": { type: "file", content: "Personal Portfolio Website\nBuilt with React + Vite\nFeatures: Desktop-like interface, Terminal app, Music player" },
-            "terminal.txt": { type: "file", content: "macOS Terminal Clone\nBuilt with React\nFeatures: Command execution, File system simulation, Command history" }
-          }
-        },
-        "experience": {
-          type: "directory",
-          contents: {
-            "current.txt": { type: "file", content: data.current },
-            "past.txt": { type: "file", content: data.past }
-          }
-        },
-        "notes": {
-          type: "directory",
-          contents: {
-            "ideas.txt": { type: "file", content: "Project Ideas:\n• AI-powered code assistant\n• Robotics simulation platform\n• Financial analysis tool" }
-          }
+  const getDirectoryContents = (path) => {
+    if (path === "~" || path === "/") return fileSystem["~"];
+    if (path.startsWith("~/")) {
+      const subPath = path.slice(2);
+      const parts = subPath.split("/");
+      let current = fileSystem["~"];
+      for (const part of parts) {
+        if (current?.contents?.[part]?.type === "directory") {
+          current = current.contents[part];
+        } else {
+          return null;
         }
       }
+      return current;
     }
+    const currentDir = getDirectoryContents(currentDirectory);
+    return currentDir?.contents?.[path];
+  };
+
+  const getFileContents = (filename) => {
+    if (filename.includes("/")) {
+      const parts = filename.split("/");
+      const fileName = parts.pop();
+      const dirPath = parts.join("/");
+      const dir = getDirectoryContents(dirPath);
+      return dir?.contents?.[fileName];
+    }
+    const dir = getDirectoryContents(currentDirectory);
+    return dir?.contents?.[filename];
+  };
+
+  const getParentDirectory = (path) => {
+    if (path === "~") return "~";
+    const parts = path.split("/").filter(p => p);
+    if (parts.length <= 1) return "~";
+    return parts.slice(0, -1).join("/") || "~";
   };
 
   const commands = {
@@ -61,26 +71,12 @@ const Terminal = () => {
   history       Show command history
   about         Show about information
   contact       Show contact information
-  projects      List projects
-  experience    Show experience
   tree          Display directory tree
   find <term>   Search for files/directories
   grep <pattern> <file>  Search within files
   wc <file>     Count lines, words, characters
   head <file>   Show first 10 lines
   tail <file>   Show last 10 lines
-  which <cmd>   Locate command
-  man <cmd>     Show manual page
-  open <file>   Open file/directory
-  curl <url>    Transfer data from server
-  ping <host>   Send ICMP packets
-  ssh <host>    Secure shell connection
-  git <cmd>     Git version control
-  npm <cmd>     Node package manager
-  uname         System information
-  uptime        Show system uptime
-  ps            Show running processes
-  top           Display system processes
   exit          Close terminal
 
 Navigation:
@@ -152,7 +148,7 @@ Navigation:
       return null;
     },
 
-    whoami: () => ({ output: "danish" }),
+    whoami: () => ({ output: terminal.username }),
 
     date: () => ({ output: new Date().toString() }),
 
@@ -177,36 +173,15 @@ Navigation:
       output: commandHistory.map((cmd, index) => `${index + 1}  ${cmd}`).join("\n")
     }),
 
-    about: () => ({ output: commands.cat(["about.txt"]).output }),
-
-    contact: () => ({ output: commands.cat(["contact.txt"]).output }),
-
-    projects: () => ({
-      output: "Available projects:\n• Personal Website (React + Vite)\n• Terminal App\n• Music Player\n• Guest Book"
+    about: () => ({
+      output: `${profile.name}\n${profile.title}\n\nInterests: ${profile.interests}`
     }),
 
-    experience: () => ({
-      output: `Current:\n${data.current.map(exp => `• ${exp}`).join("\n")}\nPast:\n• ${data.past}\n`
+    contact: () => ({
+      output: `Email: ${contact.email}\nPhone: ${contact.phone}`
     }),
 
-    uname: () => ({ output: "Darwin danish-macbook 23.1.0 Darwin Kernel Version 23.1.0" }),
-
-    uptime: () => {
-      const uptime = Math.floor(Math.random() * 100000);
-      return { output: `up ${Math.floor(uptime / 3600)}:${Math.floor((uptime % 3600) / 60)}` };
-    },
-
-    ps: () => ({
-      output: "  PID TTY           TIME CMD\n 1234 ttys000    0:00.01 -zsh\n 5678 ttys000    0:00.02 terminal"
-    }),
-
-    top: () => ({
-      output: "Processes: 342 total, 2 running, 340 sleeping\nLoad Avg: 1.23, 1.45, 1.67\nCPU usage: 12.3% user, 4.5% sys, 83.2% idle"
-    }),
-
-    exit: () => ({ output: "logout", exit: true }),
-
-    tree: (args) => {
+    tree: () => {
       const buildTree = (dir, prefix = "", isLast = true) => {
         if (!dir || !dir.contents) return "";
         const entries = Object.entries(dir.contents);
@@ -308,133 +283,22 @@ Navigation:
       return { output: fileLines.slice(-lines).join("\n") };
     },
 
-    which: (args) => {
-      if (!args[0]) return { output: "which: missing argument", error: true };
-      const command = args[0];
-      return commands[command] ? { output: `/usr/bin/${command}` } : { output: `which: ${command}: not found`, error: true };
+    exit: () => ({ output: "logout", exit: true }),
+
+    uname: () => ({ output: `Darwin ${terminal.hostname} 23.1.0 Darwin Kernel Version 23.1.0` }),
+
+    uptime: () => {
+      const uptime = Math.floor(Math.random() * 100000);
+      return { output: `up ${Math.floor(uptime / 3600)}:${Math.floor((uptime % 3600) / 60)}` };
     },
 
-    man: (args) => {
-      if (!args[0]) return { output: "man: missing argument", error: true };
-      const command = args[0];
-      const manPages = {
-        ls: "ls - list directory contents\nUsage: ls [directory]",
-        cd: "cd - change directory\nUsage: cd [directory]",
-        pwd: "pwd - print working directory\nUsage: pwd",
-        cat: "cat - display file contents\nUsage: cat <file>",
-        help: "help - show available commands\nUsage: help",
-        clear: "clear - clear terminal screen\nUsage: clear",
-        tree: "tree - display directory tree\nUsage: tree",
-        find: "find - search for files\nUsage: find <search_term>",
-        grep: "grep - search within files\nUsage: grep <pattern> <file>",
-        wc: "wc - word, line, character count\nUsage: wc <file>"
-      };
-      return { output: manPages[command] || `man: no manual entry for ${command}` };
-    },
+    ps: () => ({
+      output: "  PID TTY           TIME CMD\n 1234 ttys000    0:00.01 -zsh\n 5678 ttys000    0:00.02 terminal"
+    }),
 
-    open: (args) => {
-      if (!args[0]) return { output: "open: missing file operand", error: true };
-      const file = getFileContents(args[0]);
-
-      if (!file) return { output: `open: ${args[0]}: No such file or directory`, error: true };
-
-      if (file.type === "file") {
-        return { output: `Opening ${args[0]}...\n${file.content}` };
-      } else {
-        return { output: `Opening directory ${args[0]}...` };
-      }
-    },
-
-    curl: (args) => {
-      if (!args[0]) return { output: "curl: missing URL", error: true };
-      const url = args[0];
-
-      if (url.includes("github.com")) {
-        return { output: `Fetching ${url}...\nConnected to GitHub successfully!` };
-      } else if (url.includes("linkedin.com")) {
-        return { output: `Fetching ${url}...\nConnected to LinkedIn successfully!` };
-      } else {
-        return { output: `curl: (6) Could not resolve host: ${url}`, error: true };
-      }
-    },
-
-    ping: (args) => {
-      if (!args[0]) return { output: "ping: missing host", error: true };
-      const host = args[0];
-      return { output: `PING ${host}: 56 data bytes\n64 bytes from ${host}: icmp_seq=0 ttl=64 time=12.345 ms\n64 bytes from ${host}: icmp_seq=1 ttl=64 time=11.234 ms\n--- ${host} ping statistics ---\n2 packets transmitted, 2 received, 0% packet loss` };
-    },
-
-    ssh: (args) => {
-      if (!args[0]) return { output: "ssh: missing hostname", error: true };
-      return { output: `ssh: connect to host ${args[0]} port 22: Connection refused`, error: true };
-    },
-
-    git: (args) => {
-      if (!args[0]) return { output: "git: missing command", error: true };
-      const subcommand = args[0];
-
-      const gitCommands = {
-        status: "On branch main\nYour branch is up to date with 'origin/main'.\n\nnothing to commit, working tree clean",
-        log: "commit abc123 (HEAD -> main, origin/main)\nAuthor: Danish <aansaridan@gmail.com>\nDate: " + new Date().toDateString() + "\n\n    Add terminal app",
-        branch: "* main\n  develop",
-        remote: "origin\thttps://github.com/dan10ish/portfolio.git (fetch)\norigin\thttps://github.com/dan10ish/portfolio.git (push)"
-      };
-
-      return { output: gitCommands[subcommand] || `git: '${subcommand}' is not a git command` };
-    },
-
-    npm: (args) => {
-      if (!args[0]) return { output: "npm: missing command", error: true };
-      const subcommand = args[0];
-
-      if (subcommand === "start" || subcommand === "run") {
-        return { output: "Starting development server...\nServer running on http://localhost:5173" };
-      } else if (subcommand === "install") {
-        return { output: "Installing dependencies...\nDependencies installed successfully!" };
-      } else if (subcommand === "version") {
-        return { output: "npm: 10.2.4\nnode: v20.11.0" };
-      }
-
-      return { output: `npm: unknown command '${subcommand}'`, error: true };
-    }
-  };
-
-  const getDirectoryContents = (path) => {
-    if (path === "~" || path === "/") return fileSystem["~"];
-    if (path.startsWith("~/")) {
-      const subPath = path.slice(2);
-      const parts = subPath.split("/");
-      let current = fileSystem["~"];
-      for (const part of parts) {
-        if (current?.contents?.[part]?.type === "directory") {
-          current = current.contents[part];
-        } else {
-          return null;
-        }
-      }
-      return current;
-    }
-    const currentDir = getDirectoryContents(currentDirectory);
-    return currentDir?.contents?.[path];
-  };
-
-  const getFileContents = (filename) => {
-    if (filename.includes("/")) {
-      const parts = filename.split("/");
-      const fileName = parts.pop();
-      const dirPath = parts.join("/");
-      const dir = getDirectoryContents(dirPath);
-      return dir?.contents?.[fileName];
-    }
-    const dir = getDirectoryContents(currentDirectory);
-    return dir?.contents?.[filename];
-  };
-
-  const getParentDirectory = (path) => {
-    if (path === "~") return "~";
-    const parts = path.split("/").filter(p => p);
-    if (parts.length <= 1) return "~";
-    return parts.slice(0, -1).join("/") || "~";
+    top: () => ({
+      output: "Processes: 342 total, 2 running, 340 sleeping\nLoad Avg: 1.23, 1.45, 1.67\nCPU usage: 12.3% user, 4.5% sys, 83.2% idle"
+    })
   };
 
   const executeCommand = (input) => {
@@ -533,7 +397,6 @@ Navigation:
 
   const handleTerminalClick = (e) => {
     if (inputRef.current) {
-      // Prevent scroll when focusing input on mobile
       e.preventDefault();
       inputRef.current.focus({ preventScroll: true });
     }
@@ -551,7 +414,7 @@ Navigation:
         {history.map((entry, index) => (
           <div key={index} className="terminal-entry">
             <div className="terminal-prompt">
-              <span className="terminal-user">danish@macbook</span>
+              <span className="terminal-user">{terminal.username}@{terminal.hostname.split('-')[0]}</span>
               <span className="terminal-separator">:</span>
               <span className="terminal-path">{entry.directory}</span>
               <span className="terminal-dollar">$</span>
@@ -575,7 +438,7 @@ Navigation:
 
         <div className="terminal-input-line">
           <span className="terminal-prompt">
-            <span className="terminal-user">danish@macbook</span>
+            <span className="terminal-user">{terminal.username}@{terminal.hostname.split('-')[0]}</span>
             <span className="terminal-separator">:</span>
             <span className="terminal-path">{currentDirectory}</span>
             <span className="terminal-dollar">%</span>

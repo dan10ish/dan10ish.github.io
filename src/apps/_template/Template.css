@@ -1,0 +1,43 @@
+.template-app {
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    background: var(--window-bg);
+    color: var(--app-text);
+}
+
+.template-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.template-content h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.template-content p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--app-label);
+    margin: 0;
+}
+
+/* Touch-friendly styles */
+@media (pointer: coarse) {
+    .template-app {
+        padding: 16px;
+    }
+
+    .template-content h2 {
+        font-size: 20px;
+    }
+
+    .template-content p {
+        font-size: 16px;
+    }
+}

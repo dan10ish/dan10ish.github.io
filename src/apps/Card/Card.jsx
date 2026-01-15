@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useUserData } from '../../context/DataContext';
 import './Card.css';
 
 const config = {
@@ -17,6 +18,8 @@ const BASE_CARD_WIDTH = 480;
 const BASE_CARD_HEIGHT = 480 * (452 / 800); // ~271px
 
 const Card = () => {
+  const { profile, contact, card } = useUserData();
+
   const shellRef = useRef(null);
   const sceneRef = useRef(null);
   const cardRef = useRef(null);
@@ -35,10 +38,10 @@ const Card = () => {
       const rect = shell.getBoundingClientRect();
       const availableWidth = rect.width - 48; // padding
       const availableHeight = rect.height - 48;
-      
+
       const scaleX = availableWidth / BASE_CARD_WIDTH;
       const scaleY = availableHeight / BASE_CARD_HEIGHT;
-      
+
       // Use the smaller scale to ensure card fits
       const newScale = Math.min(scaleX, scaleY, 1.2); // Cap at 1.2x
       setScale(Math.max(0.4, newScale)); // Min scale 0.4
@@ -53,10 +56,10 @@ const Card = () => {
 
   useEffect(() => {
     const scene = sceneRef.current;
-    const card = cardRef.current;
-    if (!scene || !card) return;
+    const cardEl = cardRef.current;
+    if (!scene || !cardEl) return;
 
-    const clamp = (value, min, max) => 
+    const clamp = (value, min, max) =>
       Math.min(Math.max(value, min), max);
 
     const updateTransform = (clientX, clientY) => {
@@ -88,12 +91,12 @@ const Card = () => {
       targetRef.current = { rotateX: 0, rotateY: 0, rotateZ: 0, shadowX: 0, shadowY: 0 };
     };
 
-    const lerp = (start, end, factor) => 
+    const lerp = (start, end, factor) =>
       start + (end - start) * factor;
 
     const animate = () => {
       const speed = isInteractingRef.current ? config.elasticity : config.returnSpeed;
-      
+
       currentRef.current.rotateX = lerp(currentRef.current.rotateX, targetRef.current.rotateX, speed);
       currentRef.current.rotateY = lerp(currentRef.current.rotateY, targetRef.current.rotateY, speed);
       currentRef.current.rotateZ = lerp(currentRef.current.rotateZ, targetRef.current.rotateZ, speed);
@@ -102,8 +105,8 @@ const Card = () => {
 
       const { rotateX, rotateY, rotateZ, shadowX, shadowY } = currentRef.current;
 
-      card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`;
-      card.style.boxShadow = `${-shadowX}px ${shadowY}px 45px rgba(47, 43, 37, 0.18)`;
+      cardEl.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`;
+      cardEl.style.boxShadow = `${-shadowX}px ${shadowY}px 45px rgba(47, 43, 37, 0.18)`;
 
       animationRef.current = requestAnimationFrame(animate);
     };
@@ -146,7 +149,7 @@ const Card = () => {
     scene.addEventListener('mouseleave', handleMouseLeave, { passive: true });
     scene.addEventListener('touchstart', handleTouchStart, { passive: true });
     scene.addEventListener('touchmove', handleTouchMove, { passive: false });
-    
+
     // Listen to touchend on document to catch when finger leaves anywhere
     document.addEventListener('touchend', handleTouchEnd, { passive: true });
     document.addEventListener('touchcancel', handleTouchEnd, { passive: true });
@@ -161,18 +164,21 @@ const Card = () => {
       scene.removeEventListener('touchmove', handleTouchMove);
       document.removeEventListener('touchend', handleTouchEnd);
       document.removeEventListener('touchcancel', handleTouchEnd);
-      
+
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
     };
   }, []);
 
+  // Parse company name for display
+  const companyWords = card.company.name.split(' ');
+
   return (
-    <div 
-      className="card-shell" 
+    <div
+      className="card-shell"
       ref={shellRef}
-      style={{ 
+      style={{
         fontFamily: FONT_FAMILY,
         '--card-layout-scale': scale,
         '--card-scale': scale * 0.6
@@ -184,33 +190,35 @@ const Card = () => {
           <div className="card__inner">
             <div className="card__top">
               <div className="card__contact">
-                <a href="tel:+255786654790" className="card__phone card__inline engraved-tight link-reset">+255786654790</a>
+                <a href={`tel:${contact.phone}`} className="card__phone card__inline engraved-tight link-reset">
+                  {contact.phone}
+                </a>
               </div>
-              <a href="https://innovatiolabs.com" target="_blank" rel="noopener noreferrer" className="card__company link-reset">
+              <a href={card.company.url} target="_blank" rel="noopener noreferrer" className="card__company link-reset">
                 <div className="card__company-line">
-                  <span className="card__company-word engraved-text">Innovatio</span>
-                  <span className="card__company-ampersand engraved-text"></span>
-                  <span className="card__company-word engraved-text">Labs</span>
+                  {companyWords.map((word, index) => (
+                    <span key={index} className="card__company-word engraved-text">{word}</span>
+                  ))}
                 </div>
-                <span className="card__company-tagline engraved-text"></span>
+                <span className="card__company-tagline engraved-text">{card.company.tagline}</span>
               </a>
             </div>
             <div className="card__center">
               <div className="card__person">
-                <span className="card__person-first engraved-text">Danish</span>
-                <span className="card__person-last engraved-text">ansari</span>
+                <span className="card__person-first engraved-text">{profile.firstName}</span>
+                <span className="card__person-last engraved-text">{profile.lastName.toLowerCase()}</span>
               </div>
-              <span className="card__title engraved-text">Project Manager</span>
+              <span className="card__title engraved-text">{card.role}</span>
             </div>
             <div className="card__bottom">
               <span className="card__inline engraved-text card__bottom-line">
                 <a
-                  href="https://maps.app.goo.gl/3Wt2qNQBghkxgn4h8"
+                  href={card.address.mapUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="card__bottom-address engraved-text link-reset"
                 >
-                  303 Holland House, Samora Avenue, Dar es Salaam, 11102, Tanzania
+                  {card.address.full}
                 </a>
               </span>
             </div>

@@ -1,10 +1,12 @@
 import React from "react";
 import { Github, Globe, ArrowUpRight } from "lucide-react";
-import projectsData from "./projectsData.json";
+import { useProjects } from "../../context/DataContext";
 import folderIcon from "../../assets/folder.png";
 import "./Projects.css";
 
 const Projects = ({ onOpenWindow }) => {
+  const projects = useProjects();
+
   const handleProjectClick = (project) => {
     if (onOpenWindow) {
       onOpenWindow({
@@ -27,9 +29,9 @@ const Projects = ({ onOpenWindow }) => {
   return (
     <div className="projects-app">
       <div className="projects-section">
-        {projectsData.projects.map((project, index) => (
-          <div 
-            key={index} 
+        {projects.map((project, index) => (
+          <div
+            key={index}
             className="project-item"
             onClick={(e) => handleRowClick(project, e)}
           >
@@ -117,7 +119,7 @@ const ProjectDetail = ({ project }) => {
                   rel="noopener noreferrer"
                   className="project-detail-link"
                 >
-                  source code 
+                  source code
                   <Github size={16} />
                   <ArrowUpRight className="project-detail-icon" size={14} />
                 </a>

@@ -1,0 +1,52 @@
+{
+    "profile": {
+        "name": "Danish Ansari",
+        "firstName": "Danish",
+        "lastName": "Ansari",
+        "title": "Building solutions at the intersection of hardware and software",
+        "interests": "ML | Robotics | Finance",
+        "bio": "Project Manager and Software Engineer with experience in full-stack development, robotics, and machine learning."
+    },
+    "contact": {
+        "email": "aansaridan@gmail.com",
+        "phone": "+255786654790"
+    },
+    "socials": {
+        "x": {
+            "handle": "dan10ish",
+            "url": "https://x.com/dan10ish"
+        },
+        "github": {
+            "handle": "dan10ish",
+            "url": "https://github.com/dan10ish"
+        },
+        "instagram": {
+            "handle": "dan10ish",
+            "url": "https://instagram.com/dan10ish"
+        },
+        "linkedin": {
+            "handle": "dan10ish",
+            "url": "https://linkedin.com/in/dan10ish"
+        },
+        "snapchat": {
+            "handle": "dan10ish",
+            "url": "https://snapchat.com/add/dan10ish"
+        }
+    },
+    "card": {
+        "company": {
+            "name": "Innovatio Labs",
+            "tagline": "",
+            "url": "https://innovatiolabs.com"
+        },
+        "role": "Project Manager",
+        "address": {
+            "full": "303 Holland House, Samora Avenue, Dar es Salaam, 11102, Tanzania",
+            "mapUrl": "https://maps.app.goo.gl/3Wt2qNQBghkxgn4h8"
+        }
+    },
+    "terminal": {
+        "hostname": "danish-macbook",
+        "username": "danish"
+    }
+}

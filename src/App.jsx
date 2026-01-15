@@ -1,13 +1,14 @@
 import React, { useState, useCallback, useMemo } from "react";
 import { Loader2 } from "lucide-react";
+import { DataProvider } from "./context/DataContext";
 import MenuBar from "./components/MenuBar/MenuBar";
 import Desktop from "./components/Desktop/Desktop";
 import Window from "./components/Window/Window";
 import LoadingScreen from "./components/Startup/LoadingScreen";
-import { getApps } from "./apps/apps.jsx";
+import { getApps } from "./core/appRegistry.jsx";
 import wallpaper from "./assets/wallpaper.png";
 
-const App = () => {
+const AppContent = () => {
   const [startupPhase, setStartupPhase] = useState("loading");
   const [openApps, setOpenApps] = useState({});
   const [focusOrder, setFocusOrder] = useState([]);
@@ -152,5 +153,12 @@ const App = () => {
     </>
   );
 };
+
+// Wrap with DataProvider for context
+const App = () => (
+  <DataProvider>
+    <AppContent />
+  </DataProvider>
+);
 
 export default App;
