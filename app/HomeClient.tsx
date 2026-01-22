@@ -1,36 +1,17 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { data, personalInfo } from "./data";
-import { User, Share2, Bookmark, CreditCard, ArrowUpRight } from "lucide-react";
+import { User, Share2, CreditCard, ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Card from "./components/Card";
-import TILContent from "./components/TILContent";
 import { useTheme } from "next-themes";
-import "./components/tweet.css";
 
-type Section = "about" | "socials" | "finds" | "card" | null;
-
-interface TILEntry {
-    id: string;
-    date: string;
-    content_type: "tweet" | "text" | "link" | "youtube" | "book" | "image";
-    content: string;
-    metadata?: {
-        title?: string;
-        author?: string;
-        description?: string;
-        image?: string;
-    };
-    created_at: string;
-}
-
-
+type Section = "about" | "socials" | "card" | null;
 
 const icons = [
     { id: "about" as const, Icon: User },
     { id: "socials" as const, Icon: Share2 },
-    { id: "finds" as const, Icon: Bookmark },
     { id: "card" as const, Icon: CreditCard },
 ];
 
@@ -58,7 +39,7 @@ function ThemeDot() {
     );
 }
 
-export default function HomeClient({ entries }: { entries: TILEntry[] }) {
+export default function HomeClient() {
     const [activeSection, setActiveSection] = useState<Section>(null);
     const [iconsAtTop, setIconsAtTop] = useState(false);
     const [showContent, setShowContent] = useState(false);
@@ -79,21 +60,6 @@ export default function HomeClient({ entries }: { entries: TILEntry[] }) {
             setTimeout(() => setShowContent(true), 250);
         }
     };
-
-    const sortedEntries = useMemo(
-        () => [...entries].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()),
-        [entries]
-    );
-
-    const leftColumn = useMemo(
-        () => sortedEntries.filter((_: TILEntry, idx: number) => idx % 2 === 0),
-        [sortedEntries]
-    );
-
-    const rightColumn = useMemo(
-        () => sortedEntries.filter((_: TILEntry, idx: number) => idx % 2 === 1),
-        [sortedEntries]
-    );
 
     return (
         <div className="h-dvh flex flex-col overflow-hidden">
@@ -139,16 +105,12 @@ export default function HomeClient({ entries }: { entries: TILEntry[] }) {
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.98 }}
                         transition={{ duration: 0.15, ease: "easeOut" }}
-                        className={`flex-1 w-full mx-auto px-8 ${activeSection === "about" || activeSection === "socials" ? "max-w-md" : "max-w-3xl"
-                            } ${activeSection === "card" ? "" : "overflow-hidden"}`}
+                        className={`flex-1 w-full mx-auto px-8 max-w-md ${activeSection === "card" ? "" : "overflow-hidden"}`}
                     >
                         <div className={`pb-16 ${activeSection === "card" ? "flex items-start justify-center pt-12" : "h-full overflow-y-auto scrollbar-hide"
                             }`}>
                             {activeSection === "about" && <AboutSection />}
                             {activeSection === "socials" && <SocialsSection />}
-                            {activeSection === "finds" && (
-                                <FindsContent entries={sortedEntries} leftColumn={leftColumn} rightColumn={rightColumn} />
-                            )}
                             {activeSection === "card" && <CardSection />}
                         </div>
                     </motion.div>
@@ -206,50 +168,6 @@ function SocialsSection() {
                         </a>
                     </div>
                 ))}
-            </div>
-        </div>
-    );
-}
-
-function FindsContent({
-    entries,
-    leftColumn,
-    rightColumn,
-}: {
-    entries: TILEntry[];
-    leftColumn: TILEntry[];
-    rightColumn: TILEntry[];
-}) {
-    if (!entries.length) {
-        return <p className="text-secondary text-center py-8 font-mono">No finds yet.</p>;
-    }
-
-    return (
-        <div className="pb-8 font-mono" style={{ fontFamily: "var(--font-geist-mono)" }}>
-            {/* Mobile: single column */}
-            <div className="space-y-6 md:hidden">
-                {entries.map((entry) => (
-                    <article key={entry.id} className="border-b border-[var(--border)] pb-6 last:border-b-0">
-                        <TILContent entry={entry} />
-                    </article>
-                ))}
-            </div>
-            {/* Desktop: two columns */}
-            <div className="hidden md:grid md:grid-cols-2 md:gap-8">
-                <div className="space-y-6">
-                    {leftColumn.map((entry) => (
-                        <article key={entry.id} className="border-b border-[var(--border)] pb-6 last:border-b-0">
-                            <TILContent entry={entry} />
-                        </article>
-                    ))}
-                </div>
-                <div className="space-y-6">
-                    {rightColumn.map((entry) => (
-                        <article key={entry.id} className="border-b border-[var(--border)] pb-6 last:border-b-0">
-                            <TILContent entry={entry} />
-                        </article>
-                    ))}
-                </div>
             </div>
         </div>
     );

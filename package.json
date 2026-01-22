@@ -16,9 +16,7 @@
     "next": "16.0.7",
     "next-themes": "^0.4.6",
     "react": "19.2.1",
-    "react-dom": "19.2.1",
-    "react-tweet": "^3.2.2",
-    "react-youtube": "^10.1.0"
+    "react-dom": "19.2.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
