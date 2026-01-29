@@ -84,12 +84,12 @@ export default function HomeClient() {
                         onClick={() => handleIconClick(id)}
                         className="cursor-pointer p-3 -m-3 transition-opacity duration-200"
                         style={{
-                            opacity: activeSection && activeSection !== id ? 0.2 : 1
+                            opacity: activeSection && activeSection !== id ? 0.4 : 1
                         }}
                     >
                         <Icon
                             size={28}
-                            strokeWidth={1.5}
+                            strokeWidth={2}
                             className={`transition-colors duration-150 ${activeSection === id ? "text-foreground" : "text-secondary hover:text-foreground"}`}
                         />
                     </button>
