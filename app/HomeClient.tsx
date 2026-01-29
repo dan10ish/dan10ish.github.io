@@ -46,10 +46,12 @@ export default function HomeClient() {
 
     const handleIconClick = (section: Section) => {
         if (activeSection === section) {
-            // Closing
+            // Closing - first fade content, then move icons down
             setShowContent(false);
-            setIconsAtTop(false);
-            setTimeout(() => setActiveSection(null), 200);
+            setTimeout(() => {
+                setIconsAtTop(false);
+                setActiveSection(null);
+            }, 120);
         } else if (activeSection) {
             // Switching between sections - instant, no delay
             setActiveSection(section);
@@ -101,13 +103,13 @@ export default function HomeClient() {
                 {activeSection && showContent && (
                     <motion.div
                         key={activeSection}
-                        initial={{ opacity: 0, scale: 0.98 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.98 }}
-                        transition={{ duration: 0.15, ease: "easeOut" }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.12, ease: "easeOut" }}
                         className={`flex-1 w-full mx-auto px-8 max-w-md ${activeSection === "card" ? "" : "overflow-hidden"}`}
                     >
-                        <div className={`pb-16 ${activeSection === "card" ? "flex items-start justify-center pt-12" : "h-full flex items-center justify-center overflow-y-auto scrollbar-hide"
+                        <div className={`pb-16 ${activeSection === "card" ? "flex items-start justify-center pt-12" : "h-full flex items-start justify-center pt-8 overflow-y-auto scrollbar-hide"
                             }`}>
                             {activeSection === "about" && <AboutSection />}
                             {activeSection === "socials" && <SocialsSection />}
