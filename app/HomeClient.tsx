@@ -107,7 +107,7 @@ export default function HomeClient() {
                         transition={{ duration: 0.15, ease: "easeOut" }}
                         className={`flex-1 w-full mx-auto px-8 max-w-md ${activeSection === "card" ? "" : "overflow-hidden"}`}
                     >
-                        <div className={`pb-16 ${activeSection === "card" ? "flex items-start justify-center pt-12" : "h-full overflow-y-auto scrollbar-hide"
+                        <div className={`pb-16 ${activeSection === "card" ? "flex items-start justify-center pt-12" : "h-full flex items-center justify-center overflow-y-auto scrollbar-hide"
                             }`}>
                             {activeSection === "about" && <AboutSection />}
                             {activeSection === "socials" && <SocialsSection />}
@@ -122,26 +122,26 @@ export default function HomeClient() {
 
 function AboutSection() {
     return (
-        <div className="space-y-8 mt-4">
-            <div className="text-[22px] md:text-[24px] leading-[1.1] font-semibold tracking-tight">
+        <div className="space-y-6">
+            <div className="text-[18px] md:text-[20px] leading-[1.4] font-medium tracking-tight">
                 {data.personal.name}
             </div>
 
-            <div className="text-[22px] md:text-[24px] leading-[1.1] font-semibold tracking-tight">
+            <div className="text-[18px] md:text-[20px] leading-[1.4] font-medium tracking-tight">
                 {data.personal.title.join(" | ")}
             </div>
 
-            <div className="text-[16px] md:text-[20px] leading-[1.3] font-medium text-secondary tracking-tight">
+            <div className="text-[18px] md:text-[20px] leading-[1.4] font-medium tracking-tight text-secondary">
                 {personalInfo.about}
             </div>
 
-            <div className="space-y-2">
-                <div className="text-[16px] md:text-[20px] leading-[1.1] font-medium text-secondary tracking-tight">
+            <div className="space-y-4">
+                <div className="text-[18px] md:text-[20px] leading-[1.4] font-medium tracking-tight text-secondary">
                     Experience
                 </div>
                 <div className="space-y-2">
                     {data.experience.map((exp, idx) => (
-                        <div key={idx} className="text-[22px] md:text-[24px] leading-[1.1] font-semibold tracking-tight">
+                        <div key={idx} className="text-[18px] md:text-[20px] leading-[1.4] font-medium tracking-tight">
                             {exp.company} ({exp.year})
                         </div>
                     ))}
@@ -153,10 +153,10 @@ function AboutSection() {
 
 function SocialsSection() {
     return (
-        <div className="mt-4 text-center">
+        <div className="text-center">
             <div className="space-y-4">
                 {data.social.map((social, idx) => (
-                    <div key={idx} className="text-[22px] md:text-[24px] leading-[1.1] font-semibold tracking-tight">
+                    <div key={idx} className="text-[18px] md:text-[20px] leading-[1.4] font-medium tracking-tight">
                         <a
                             href={social.url}
                             target="_blank"
