@@ -16,9 +16,6 @@ export default function NotFound() {
                         <Link prefetch href="/" className="bg-[var(--border)] hover:ring-[var(--link-blue)] hover:ring-1 hover:text-[var(--link-blue)] transition-opacity px-3.5 py-2 rounded-xl transition-all duration-200">
                             Home
                         </Link>
-                        <Link prefetch href="/finds" className="bg-[var(--border)] hover:ring-[var(--link-blue)] hover:ring-1 hover:text-[var(--link-blue)] transition-opacity px-3.5 py-2 rounded-xl transition-all duration-200">
-                            Finds
-                        </Link>
                     </div>
                 </div>
             </div>
