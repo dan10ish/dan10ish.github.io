@@ -122,26 +122,27 @@ export default function HomeClient() {
 
 function AboutSection() {
     return (
-        <div className="space-y-6">
-            <div className="text-[18px] md:text-[20px] leading-[1.4] font-medium tracking-tight">
-                {data.personal.name}
-            </div>
-
-            <div className="text-[18px] md:text-[20px] leading-[1.4] font-medium tracking-tight">
-                {data.personal.title.join(" | ")}
+        <div className="space-y-8 md:space-y-10">
+            <div className="space-y-1">
+                <div className="text-[18px] md:text-[20px] leading-[1.4] font-medium tracking-tight">
+                    {data.personal.name}
+                </div>
+                <div className="text-[18px] md:text-[20px] leading-[1.4] font-medium tracking-tight text-secondary">
+                    {data.personal.title.join(" | ")}
+                </div>
             </div>
 
             <div className="text-[18px] md:text-[20px] leading-[1.4] font-medium tracking-tight text-secondary">
                 {personalInfo.about}
             </div>
 
-            <div className="space-y-4">
-                <div className="text-[18px] md:text-[20px] leading-[1.4] font-medium tracking-tight text-secondary">
+            <div className="space-y-1">
+                <div className="text-[18px] md:text-[20px] leading-[1.4] font-medium tracking-tight">
                     Experience
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-1">
                     {data.experience.map((exp, idx) => (
-                        <div key={idx} className="text-[18px] md:text-[20px] leading-[1.4] font-medium tracking-tight">
+                        <div key={idx} className="text-[18px] md:text-[20px] leading-[1.4] font-medium tracking-tight text-secondary">
                             {exp.company} ({exp.year})
                         </div>
                     ))}

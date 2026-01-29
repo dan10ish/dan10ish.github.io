@@ -12,9 +12,10 @@
     flex: 1;
     width: 100%;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
-    padding: 48px 0 12px;
+    transform: translateY(20%);
+    /* padding: 48px 0 12px; */
 }
 
 .card-scene {
