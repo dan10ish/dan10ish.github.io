@@ -157,7 +157,7 @@ function SocialsSection() {
         <div className="text-center">
             <div className="space-y-4">
                 {data.social.map((social, idx) => (
-                    <div key={idx} className="text-[18px] md:text-[20px] leading-[1.4] font-medium tracking-tight">
+                    <div key={idx} className="text-[18px] md:text-[20px] leading-[1.4] font-medium tracking-normal">
                         <a
                             href={social.url}
                             target="_blank"
