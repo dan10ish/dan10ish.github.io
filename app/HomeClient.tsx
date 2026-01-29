@@ -70,7 +70,7 @@ export default function HomeClient() {
 
             {/* Icon Row */}
             <div
-                className="flex items-center justify-center gap-6 md:gap-10 pt-8 pb-10 transition-transform duration-300 ease-out"
+                className="flex items-center justify-center gap-8 md:gap-10 pt-8 pb-10 transition-transform duration-300 ease-out"
                 style={{
                     transform: iconsAtTop ? "translateY(0)" : "translateY(40vh)",
                     background: "linear-gradient(to bottom, var(--background) 0%, var(--background) 60%, transparent 100%)",
