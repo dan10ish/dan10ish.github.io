@@ -51,8 +51,9 @@ const getSocialIcon = (icon: SocialIcon, size: number) => {
   }
 };
 
-const bouncy = { type: "spring" as const, stiffness: 200, damping: 15 };
-const contentBounce = { type: "spring" as const, stiffness: 180, damping: 14 };
+const bouncy = { type: "spring" as const, stiffness: 500, damping: 25 };
+const layoutBounce = { type: "spring" as const, stiffness: 400, damping: 28 };
+const aboutTransition = { type: "spring" as const, stiffness: 600, damping: 35 };
 
 export default function HomeClient() {
   const [section, setSection] = useState<Section>("home");
@@ -84,12 +85,12 @@ export default function HomeClient() {
         className="island"
         layout
         style={{ borderRadius: section === "about" ? 24 : 100 }}
-        transition={contentBounce}
+        transition={section === "about" ? aboutTransition : layoutBounce}
       >
         {section === "home" && (
           <div className="island-content island-home">
             <div className="island-photo">
-              <Image src="/icon.png" alt="Profile" width={48} height={48} priority />
+              <Image src="/icon.svg" alt="Profile" width={48} height={48} priority />
             </div>
             <motion.button
               onClick={() => setSection("expanded")}
@@ -113,7 +114,7 @@ export default function HomeClient() {
                 whileTap={{ scale: 0.9 }}
                 transition={bouncy}
               >
-                <Image src="/icon.png" alt="Profile" width={48} height={48} priority />
+                <Image src="/icon.svg" alt="Profile" width={48} height={48} priority />
               </motion.button>
               <div className="island-intro">
                 <span className="island-hello">Hello, I&apos;m</span>
