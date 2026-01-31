@@ -81,7 +81,7 @@ body {
 }
 
 .island-about {
-  padding: 20px 24px;
+  padding: 15px 20px;
   max-width: min(88vw, 500px);
   will-change: transform;
   backface-visibility: hidden;
