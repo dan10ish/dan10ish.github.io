@@ -1,24 +1,35 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { Home } from "lucide-react";
+
+const bouncy = { type: "spring" as const, stiffness: 500, damping: 25 };
 
 export default function NotFound() {
-    return (
-        <div className="min-h-dvh flex items-center justify-center px-8 py-12 md:px-10">
-            <div className="w-full max-w-md">
-                <div className="space-y-8">
-                    <div className="block w-full text-left text-[22px] md:text-[28px] leading-[1.1] font-semibold tracking-tight space-y-2">
-                        <div>404</div>
-                        <div className="text-[16px] md:text-[20px] leading-[1.1] font-medium text-secondary tracking-tight">
-                            Page Not Found
-                        </div>
-                    </div>
-
-                    <div className="text-[20px] md:text-[22px] leading-[1.1] font-semibold tracking-tight text-primary pt-2 flex gap-3">
-                        <Link prefetch href="/" className="bg-[var(--border)] hover:ring-[var(--link-blue)] hover:ring-1 hover:text-[var(--link-blue)] transition-opacity px-3.5 py-2 rounded-xl transition-all duration-200">
-                            Home
-                        </Link>
-                    </div>
-                </div>
-            </div>
+  return (
+    <div className="home-container">
+      <div className="island" style={{ borderRadius: 100, minWidth: 320 }}>
+        <div className="island-content island-expanded">
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <span style={{ fontSize: 32, fontWeight: 700, color: "#fff" }}>404</span>
+            <span style={{ fontSize: 18, color: "rgba(255,255,255,0.5)" }}>Page Not Found</span>
+          </div>
+          <motion.div
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            transition={bouncy}
+          >
+            <Link
+              href="/"
+              className="icon-btn icon-btn-green"
+              style={{ textDecoration: "none" }}
+            >
+              <Home size={20} strokeWidth={2} />
+            </Link>
+          </motion.div>
         </div>
-    );
+      </div>
+    </div>
+  );
 }
