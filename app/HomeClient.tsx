@@ -51,18 +51,16 @@ const getSocialIcon = (icon: SocialIcon, size: number) => {
   }
 };
 
-const bouncy = { type: "spring" as const, stiffness: 300, damping: 20 };
-const contentBounce = { type: "spring" as const, stiffness: 350, damping: 25 };
+const bouncy = { type: "spring" as const, stiffness: 200, damping: 15 };
+const contentBounce = { type: "spring" as const, stiffness: 180, damping: 14 };
 
 export default function HomeClient() {
   const [section, setSection] = useState<Section>("home");
   const [isTouchDevice, setIsTouchDevice] = useState(false);
-  const [hasAnimated, setHasAnimated] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setIsTouchDevice(window.matchMedia("(hover: none) and (pointer: coarse)").matches);
-    setHasAnimated(true);
   }, []);
 
   const handleOutsideClick = useCallback((e: React.MouseEvent) => {
@@ -84,16 +82,12 @@ export default function HomeClient() {
       <motion.div
         ref={containerRef}
         className="island"
+        layout
         style={{ borderRadius: section === "about" ? 24 : 100 }}
+        transition={contentBounce}
       >
         {section === "home" && (
-          <motion.div
-            key="home"
-            className="island-content island-home"
-            initial={hasAnimated ? { scale: 0.95 } : false}
-            animate={{ scale: 1 }}
-            transition={contentBounce}
-          >
+          <div className="island-content island-home">
             <div className="island-photo">
               <Image src="/icon.png" alt="Profile" width={48} height={48} priority />
             </div>
@@ -106,17 +100,11 @@ export default function HomeClient() {
             >
               <Plus size={22} strokeWidth={2.5} />
             </motion.button>
-          </motion.div>
+          </div>
         )}
 
         {section === "expanded" && (
-          <motion.div
-            key="expanded"
-            className="island-content island-expanded"
-            initial={{ scale: 0.95 }}
-            animate={{ scale: 1 }}
-            transition={contentBounce}
-          >
+          <div className="island-content island-expanded">
             <div className="island-left">
               <motion.button
                 onClick={goBack}
@@ -152,29 +140,17 @@ export default function HomeClient() {
                 <Share2 size={20} strokeWidth={2} />
               </motion.button>
             </div>
-          </motion.div>
+          </div>
         )}
 
         {section === "about" && (
-          <motion.div
-            key="about"
-            className="island-about"
-            initial={{ scale: 0.95 }}
-            animate={{ scale: 1 }}
-            transition={contentBounce}
-          >
+          <div className="island-about">
             <p className="about-text">{aboutText}</p>
-          </motion.div>
+          </div>
         )}
 
         {section === "links" && (
-          <motion.div
-            key="links"
-            className="island-content island-links"
-            initial={{ scale: 0.95 }}
-            animate={{ scale: 1 }}
-            transition={contentBounce}
-          >
+          <div className="island-content island-links">
             <motion.button
               onClick={goBack}
               className="icon-btn icon-btn-back"
@@ -199,7 +175,7 @@ export default function HomeClient() {
                 {getSocialIcon(social.icon, 24)}
               </motion.a>
             ))}
-          </motion.div>
+          </div>
         )}
       </motion.div>
     </div>
