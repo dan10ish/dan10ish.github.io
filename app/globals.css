@@ -129,6 +129,10 @@ body {
   flex-direction: column;
 }
 
+.island-not-found {
+  padding-left: 10px !important;
+}
+
 .island-hello {
   font-size: 14px;
   color: rgba(255, 255, 255, 0.5);

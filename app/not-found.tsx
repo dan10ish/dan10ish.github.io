@@ -5,15 +5,22 @@ import { motion } from "framer-motion";
 import { Home } from "lucide-react";
 
 const bouncy = { type: "spring" as const, stiffness: 500, damping: 25 };
+const contentBounce = { type: "spring" as const, stiffness: 400, damping: 28 };
 
 export default function NotFound() {
   return (
     <div className="home-container">
-      <div className="island" style={{ borderRadius: 100, minWidth: 320 }}>
+      <motion.div
+        className="island"
+        style={{ borderRadius: 100, minWidth: 320 }}
+        initial={{ scale: 0.95 }}
+        animate={{ scale: 1 }}
+        transition={contentBounce}
+      >
         <div className="island-content island-expanded">
-          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-            <span style={{ fontSize: 32, fontWeight: 700, color: "#fff" }}>404</span>
-            <span style={{ fontSize: 18, color: "rgba(255,255,255,0.5)" }}>Page Not Found</span>
+          <div className="island-intro island-not-found">
+            <span className="island-hello">404</span>
+            <span className="island-name">Page Not Found</span>
           </div>
           <motion.div
             whileHover={{ scale: 1.1 }}
@@ -29,7 +36,7 @@ export default function NotFound() {
             </Link>
           </motion.div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
