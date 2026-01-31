@@ -8,6 +8,8 @@
   --link-blue: #0059ff;
   --border: #d0d0d0;
   --code-bg: #e5e5e5;
+  --blob-bg: rgba(245, 245, 245, 0.98);
+  --blob-border: rgba(0, 0, 0, 0.08);
 }
 
 @theme inline {
@@ -18,8 +20,6 @@
   --font-mono: var(--font-geist-mono);
 }
 
-
-
 .dark {
   --background: #161617;
   --foreground: #e8e8ed;
@@ -28,6 +28,14 @@
   --link-blue: #4da6ff;
   --border: #2a2a2a;
   --code-bg: #1e1e1e;
+  --blob-bg: rgba(30, 30, 32, 0.98);
+  --blob-border: rgba(255, 255, 255, 0.08);
+}
+
+html,
+body {
+  overflow: hidden;
+  height: 100dvh;
 }
 
 body {
@@ -35,54 +43,75 @@ body {
   color: var(--foreground);
 }
 
-.finds-loader {
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 9999px;
-  border: 2px solid var(--border);
-  border-top-color: var(--secondary);
-  border-left-color: var(--secondary);
-  display: inline-block;
-  animation: finds-spin 0.65s linear infinite;
-  will-change: transform;
-  transform-origin: center;
+/* Blob container for about/socials */
+.blob {
+  position: absolute;
+  z-index: 20;
+  background: var(--blob-bg);
+  border: 1px solid var(--blob-border);
+  border-radius: 20px;
+  padding: 1.25rem;
+  padding-top: 2.5rem;
+  width: min(85vw, 340px);
+  max-height: min(70dvh, 400px);
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.06),
+    0 1px 2px rgba(0, 0, 0, 0.03);
 }
 
-@keyframes finds-spin {
-  to {
-    transform: rotate(360deg);
+.blob::-webkit-scrollbar {
+  display: none;
+}
+
+.dark .blob {
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.25),
+    0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+/* Wider blob for About section */
+.blob-wide {
+  width: min(92vw, 440px);
+}
+
+/* Card overlay - with background to hide icons behind */
+.card-overlay {
+  position: absolute;
+  z-index: 20;
+  background: var(--background);
+  padding: 3rem 1rem 1rem 1rem;
+  border-radius: 4px;
+}
+
+/* iPad/touch device hover support */
+@media (hover: hover) and (pointer: fine) {
+  .hover-hover\:hover\:text-foreground:hover {
+    color: var(--foreground);
   }
 }
 
-/* Scrollbar styling */
-.scrollbar-thin {
-  scrollbar-width: thin;
-  scrollbar-color: var(--border) transparent;
+/* For touch devices, show active state instead */
+@media (hover: none) {
+  .hover-hover\:hover\:text-foreground:active {
+    color: var(--foreground);
+  }
 }
 
-.scrollbar-thin::-webkit-scrollbar {
-  width: 6px;
-}
-
-.scrollbar-thin::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.scrollbar-thin::-webkit-scrollbar-thumb {
-  background-color: var(--border);
-  border-radius: 3px;
-}
-
-.scrollbar-thin::-webkit-scrollbar-thumb:hover {
-  background-color: var(--secondary);
-}
-
-/* Hide scrollbar but allow scroll */
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
+/* Small screen adjustments */
+@media (max-width: 400px) {
+  .blob {
+    width: 92vw;
+    padding: 1rem;
+    padding-top: 2.25rem;
+    border-radius: 16px;
+  }
+  
+  .blob-wide {
+    width: 94vw;
+  }
 }

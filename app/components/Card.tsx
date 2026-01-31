@@ -17,11 +17,7 @@ const config = {
 const FONT_FAMILY =
     '"Garamond Classico SC", "EB Garamond", "Garamond", "Apple Garamond", Baskerville, "Times New Roman", serif'
 
-interface CardProps {
-    onClose?: () => void
-}
-
-export default function Card({ onClose }: CardProps) {
+export default function Card() {
     const sceneRef = useRef<HTMLDivElement>(null)
     const cardRef = useRef<HTMLElement>(null)
     const animationRef = useRef<number | undefined>(undefined)
