@@ -1,35 +1,24 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #f5f5f7;
   --foreground: #111111;
-  --foreground-rgb: 17, 17, 17;
-  --secondary: #777777;
-  --link-blue: #0059ff;
-  --border: #d0d0d0;
-  --code-bg: #e5e5e5;
-  --blob-bg: #f5f5f5;
-  --blob-border: rgba(0, 0, 0, 0.08);
+  --island-bg: #000000;
+  --island-text: #ffffff;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-secondary: var(--secondary);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 .dark {
-  --background: #161617;
-  --foreground: #e8e8ed;
-  --foreground-rgb: 232, 232, 237;
-  --secondary: #888888;
-  --link-blue: #4da6ff;
-  --border: #2a2a2a;
-  --code-bg: #1e1e1e;
-  --blob-bg: #1e1e20;
-  --blob-border: rgba(255, 255, 255, 0.08);
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  --island-bg: #1a1a1c;
+  --island-text: #ffffff;
 }
 
 html,
@@ -43,109 +32,170 @@ body {
   color: var(--foreground);
 }
 
-/* Blob container for about/socials */
-.blob {
-  position: absolute;
-  z-index: 20;
-  background: var(--blob-bg);
-  border: 1px solid var(--blob-border);
-  border-radius: 20px;
-  padding: 1.25rem;
-  padding-top: 2.75rem;
-  width: min(88vw, 380px);
-  max-height: min(70dvh, 420px);
-  overflow-y: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  box-shadow: 
-    0 4px 20px rgba(0, 0, 0, 0.06),
-    0 1px 2px rgba(0, 0, 0, 0.03);
-}
-
-.blob::-webkit-scrollbar {
-  display: none;
-}
-
-.dark .blob {
-  box-shadow: 
-    0 4px 20px rgba(0, 0, 0, 0.25),
-    0 1px 2px rgba(0, 0, 0, 0.15);
-}
-
-/* Wider blob for About section - but not too wide on small screens */
-.blob-wide {
-  width: min(90vw, 440px);
-}
-
-/* Card overlay - centered with slight offset down */
-.card-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 20;
+.home-container {
+  height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 2rem;
-  background: var(--background);
+  overflow: hidden;
 }
 
-/* Social icons grid - 2 rows, 4 columns, compact */
-.social-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0.5rem;
-  justify-items: center;
+.island {
+  background: var(--island-bg);
+  padding: 6px;
+  display: flex;
   align-items: center;
-  padding: 0.75rem;
+  justify-content: center;
+  box-shadow: 
+    0 10px 40px rgba(0, 0, 0, 0.15),
+    0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Backdrop for closing on outside click */
-.blob-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 15;
+.island-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.island-photo {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(0, 0, 0, 0.8);
+}
+
+.island-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.island-intro {
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px;
+  gap: 0;
+}
+
+.island-hello {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.2;
+  font-weight: 400;
+}
+
+.island-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--island-text);
+  line-height: 1.2;
+}
+
+.island-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  border: none;
+  outline: none;
+  text-decoration: none;
+}
+
+.icon-btn-green {
+  background: #34C759;
+  color: white;
+}
+
+.icon-btn-orange {
+  background: #FF9500;
+  color: white;
+}
+
+.icon-btn-blue {
+  background: #007AFF;
+  color: white;
+}
+
+.icon-btn-default {
   background: transparent;
+  color: var(--island-text);
 }
 
-/* Fixed close button for scrollable blobs */
-.blob-close-fixed {
-  position: sticky;
-  top: -0.5rem;
-  float: right;
-  margin-top: -2rem;
-  margin-right: -0.5rem;
-  margin-bottom: 0.5rem;
-  z-index: 25;
+.island-about {
+  padding: 24px 28px;
+  max-width: min(88vw, 520px);
 }
 
-/* Hover only for devices with fine pointer (mouse/trackpad) - excludes phones but includes iPads with keyboard/trackpad */
+.about-text {
+  font-size: 18px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
 @media (hover: hover) and (pointer: fine) {
-  .hover-hover\:hover\:text-foreground:hover {
-    color: var(--foreground);
-  }
-  
-  .can-hover:hover {
-    transform: scale(1.15);
+  .icon-btn:not(.touch) {
+    transition: background-color 0.15s ease;
   }
 }
 
-/* Touch devices - no hover effects, only active/tap states */
-@media (hover: none), (pointer: coarse) {
-  .no-touch-hover {
-    transform: none !important;
+@media (hover: none) and (pointer: coarse) {
+  .icon-btn.touch:active {
+    opacity: 0.7;
+    transform: scale(0.95);
   }
 }
 
-/* Small screen adjustments */
-@media (max-width: 400px) {
-  .blob {
-    width: 90vw;
-    padding: 1rem;
-    padding-top: 2.5rem;
-    border-radius: 16px;
+@media (max-width: 480px) {
+  .island {
+    padding: 5px;
   }
   
-  .blob-wide {
-    width: 92vw;
+  .island-content {
+    gap: 8px;
+  }
+  
+  .island-photo {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .icon-btn {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .island-name {
+    font-size: 18px;
+  }
+  
+  .island-hello {
+    font-size: 13px;
+  }
+  
+  .island-intro {
+    padding: 0 6px;
+  }
+  
+  .island-about {
+    padding: 20px 22px;
+    max-width: 92vw;
+  }
+  
+  .about-text {
+    font-size: 16px;
   }
 }
