@@ -58,12 +58,12 @@ body {
 }
 
 .island-home {
-  gap: 16px;
+  gap: 14px;
 }
 
 .island-expanded {
-  gap: 24px;
-  min-width: 340px;
+  gap: 28px;
+  min-width: 320px;
   justify-content: space-between;
   padding: 0 4px;
 }
@@ -77,14 +77,17 @@ body {
 .island-right {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .island-links {
-  gap: 4px;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 2px;
+  gap: 2px;
+  padding: 4px 6px;
+}
+
+.island-about {
+  padding: 20px 24px;
+  max-width: min(88vw, 500px);
 }
 
 .island-photo {
@@ -97,6 +100,24 @@ body {
 }
 
 .island-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.island-photo-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.island-photo-btn img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -121,8 +142,8 @@ body {
 }
 
 .icon-btn {
-  width: 48px;
-  height: 48px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -148,42 +169,39 @@ body {
   color: white;
 }
 
-.link-btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
+.icon-btn-back {
+  width: 42px;
+  height: 42px;
+  background: #48484A;
+  color: white;
+}
+
+.social-icon {
+  width: 42px;
+  height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  flex-shrink: 0;
-  border: none;
-  outline: none;
+  color: #ffffff;
   text-decoration: none;
-  color: var(--island-text);
-  background: transparent;
-}
-
-.island-about {
-  padding: 22px 26px;
-  max-width: min(88vw, 500px);
 }
 
 .about-text {
   font-size: 17px;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.75);
   margin: 0;
 }
 
 @media (max-width: 480px) {
   .island-expanded {
     min-width: auto;
-    gap: 16px;
+    gap: 20px;
   }
   
   .island-home {
-    gap: 12px;
+    gap: 10px;
   }
   
   .island-left {
@@ -194,19 +212,30 @@ body {
     gap: 6px;
   }
   
-  .island-photo {
+  .island-photo,
+  .island-photo-btn {
     width: 44px;
     height: 44px;
   }
   
   .icon-btn {
-    width: 44px;
-    height: 44px;
+    width: 42px;
+    height: 42px;
   }
   
-  .link-btn {
-    width: 40px;
-    height: 40px;
+  .icon-btn-back {
+    width: 38px;
+    height: 38px;
+  }
+  
+  .social-icon {
+    width: 38px;
+    height: 38px;
+  }
+  
+  .island-links {
+    gap: 0;
+    padding: 2px 4px;
   }
   
   .island-name {
@@ -218,7 +247,7 @@ body {
   }
   
   .island-about {
-    padding: 18px 20px;
+    padding: 16px 18px;
     max-width: 94vw;
   }
   
@@ -229,21 +258,27 @@ body {
 
 @media (max-width: 380px) {
   .island-expanded {
-    gap: 10px;
+    gap: 12px;
   }
   
   .icon-btn {
+    width: 38px;
+    height: 38px;
+  }
+  
+  .island-photo,
+  .island-photo-btn {
     width: 40px;
     height: 40px;
   }
   
-  .island-photo {
-    width: 40px;
-    height: 40px;
+  .icon-btn-back {
+    width: 34px;
+    height: 34px;
   }
   
-  .link-btn {
-    width: 36px;
-    height: 36px;
+  .social-icon {
+    width: 34px;
+    height: 34px;
   }
 }

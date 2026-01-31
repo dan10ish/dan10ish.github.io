@@ -3,7 +3,7 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { data, SocialIcon } from "./data";
 import { Plus, User, Share2, ArrowLeft, Github, Mail } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 
 type Section = "home" | "expanded" | "about" | "links";
@@ -40,18 +40,18 @@ const SnapchatIcon = ({ size = 20 }: { size?: number }) => (
 
 const getSocialIcon = (icon: SocialIcon, size: number) => {
   switch (icon) {
-    case "github": return <Github size={size} strokeWidth={2} />;
+    case "github": return <Github size={size} strokeWidth={1.5} />;
     case "twitter": return <XIcon size={size} />;
     case "instagram": return <InstagramIcon size={size} />;
     case "linkedin": return <LinkedInIcon size={size} />;
     case "threads": return <ThreadsIcon size={size} />;
     case "snapchat": return <SnapchatIcon size={size} />;
-    case "mail": return <Mail size={size} strokeWidth={2} />;
+    case "mail": return <Mail size={size} strokeWidth={1.5} />;
     default: return null;
   }
 };
 
-const spring = { type: "spring" as const, stiffness: 500, damping: 30 };
+const bouncy = { type: "spring" as const, stiffness: 400, damping: 25 };
 
 export default function HomeClient() {
   const [section, setSection] = useState<Section>("home");
@@ -69,132 +69,138 @@ export default function HomeClient() {
     }
   }, [section]);
 
+  const goBack = useCallback(() => {
+    if (section === "expanded") setSection("home");
+    else if (section === "about" || section === "links") setSection("expanded");
+  }, [section]);
+
   const aboutText = `${data.personal.about} Previously worked at ${data.experience.map(e => e.company).join(", ")}.`;
+
+  const getBorderRadius = () => section === "about" ? 24 : 100;
 
   return (
     <div className="home-container" onClick={handleOutsideClick}>
       <motion.div
         ref={containerRef}
         className="island"
-        layout
-        transition={spring}
-        style={{ borderRadius: section === "about" ? 24 : 100 }}
+        animate={{ borderRadius: getBorderRadius() }}
+        transition={bouncy}
       >
-        <AnimatePresence mode="wait" initial={false}>
-          {section === "home" && (
-            <motion.div
-              key="home"
-              className="island-content island-home"
-              initial={{ opacity: 0, filter: "blur(4px)" }}
-              animate={{ opacity: 1, filter: "blur(0px)" }}
-              exit={{ opacity: 0, filter: "blur(4px)" }}
-              transition={{ duration: 0.2 }}
+        {section === "home" && (
+          <motion.div
+            key="home"
+            className="island-content island-home"
+            initial={false}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.1 }}
+          >
+            <div className="island-photo">
+              <Image src="/icon.png" alt="Profile" width={48} height={48} priority />
+            </div>
+            <motion.button
+              onClick={() => setSection("expanded")}
+              className="icon-btn icon-btn-green"
+              whileHover={isTouchDevice ? {} : { scale: 1.15, rotate: 90 }}
+              whileTap={{ scale: 0.85 }}
+              transition={bouncy}
             >
-              <div className="island-photo">
+              <Plus size={22} strokeWidth={2.5} />
+            </motion.button>
+          </motion.div>
+        )}
+
+        {section === "expanded" && (
+          <motion.div
+            key="expanded"
+            className="island-content island-expanded"
+            initial={false}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.1 }}
+          >
+            <div className="island-left">
+              <motion.button
+                onClick={goBack}
+                className="island-photo-btn"
+                whileHover={isTouchDevice ? {} : { scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                transition={bouncy}
+              >
                 <Image src="/icon.png" alt="Profile" width={48} height={48} priority />
-              </div>
-              <motion.button
-                onClick={() => setSection("expanded")}
-                className="icon-btn icon-btn-green"
-                whileHover={isTouchDevice ? {} : { rotate: 180, scale: 1.05 }}
-                whileTap={{ rotate: 90, scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 400, damping: 15 }}
-              >
-                <Plus size={22} strokeWidth={2.5} />
               </motion.button>
-            </motion.div>
-          )}
-
-          {section === "expanded" && (
-            <motion.div
-              key="expanded"
-              className="island-content island-expanded"
-              initial={{ opacity: 0, filter: "blur(4px)" }}
-              animate={{ opacity: 1, filter: "blur(0px)" }}
-              exit={{ opacity: 0, filter: "blur(4px)" }}
-              transition={{ duration: 0.2 }}
-            >
-              <div className="island-left">
-                <div className="island-photo">
-                  <Image src="/icon.png" alt="Profile" width={48} height={48} priority />
-                </div>
-                <div className="island-intro">
-                  <span className="island-hello">Hello, I&apos;m</span>
-                  <span className="island-name">{data.personal.name.split(" ")[0]}</span>
-                </div>
+              <div className="island-intro">
+                <span className="island-hello">Hello, I&apos;m</span>
+                <span className="island-name">{data.personal.name.split(" ")[0]}</span>
               </div>
-              <div className="island-right">
-                <motion.button
-                  onClick={() => setSection("about")}
-                  className="icon-btn icon-btn-orange"
-                  whileHover={isTouchDevice ? {} : { scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  transition={spring}
-                >
-                  <User size={20} strokeWidth={2} />
-                </motion.button>
-                <motion.button
-                  onClick={() => setSection("links")}
-                  className="icon-btn icon-btn-blue"
-                  whileHover={isTouchDevice ? {} : { scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  transition={spring}
-                >
-                  <Share2 size={20} strokeWidth={2} />
-                </motion.button>
-              </div>
-            </motion.div>
-          )}
-
-          {section === "about" && (
-            <motion.div
-              key="about"
-              className="island-about"
-              initial={{ opacity: 0, filter: "blur(4px)" }}
-              animate={{ opacity: 1, filter: "blur(0px)" }}
-              exit={{ opacity: 0, filter: "blur(4px)" }}
-              transition={{ duration: 0.2 }}
-            >
-              <p className="about-text">{aboutText}</p>
-            </motion.div>
-          )}
-
-          {section === "links" && (
-            <motion.div
-              key="links"
-              className="island-content island-links"
-              initial={{ opacity: 0, filter: "blur(4px)" }}
-              animate={{ opacity: 1, filter: "blur(0px)" }}
-              exit={{ opacity: 0, filter: "blur(4px)" }}
-              transition={{ duration: 0.2 }}
-            >
+            </div>
+            <div className="island-right">
               <motion.button
-                onClick={() => setSection("expanded")}
-                className="link-btn"
-                whileHover={isTouchDevice ? {} : { backgroundColor: "rgba(255,255,255,0.12)" }}
-                whileTap={{ scale: 0.92 }}
-                transition={spring}
+                onClick={() => setSection("about")}
+                className="icon-btn icon-btn-orange"
+                whileHover={isTouchDevice ? {} : { scale: 1.15 }}
+                whileTap={{ scale: 0.85 }}
+                transition={bouncy}
               >
-                <ArrowLeft size={20} strokeWidth={2} />
+                <User size={20} strokeWidth={2} />
               </motion.button>
-              {data.social.map((social) => (
-                <motion.a
-                  key={social.icon}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="link-btn"
-                  whileHover={isTouchDevice ? {} : { backgroundColor: "rgba(255,255,255,0.12)" }}
-                  whileTap={{ scale: 0.92 }}
-                  transition={spring}
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  {getSocialIcon(social.icon, 20)}
-                </motion.a>
-              ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
+              <motion.button
+                onClick={() => setSection("links")}
+                className="icon-btn icon-btn-blue"
+                whileHover={isTouchDevice ? {} : { scale: 1.15 }}
+                whileTap={{ scale: 0.85 }}
+                transition={bouncy}
+              >
+                <Share2 size={20} strokeWidth={2} />
+              </motion.button>
+            </div>
+          </motion.div>
+        )}
+
+        {section === "about" && (
+          <motion.div
+            key="about"
+            className="island-about"
+            initial={false}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.1 }}
+          >
+            <p className="about-text">{aboutText}</p>
+          </motion.div>
+        )}
+
+        {section === "links" && (
+          <motion.div
+            key="links"
+            className="island-content island-links"
+            initial={false}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.1 }}
+          >
+            <motion.button
+              onClick={goBack}
+              className="icon-btn icon-btn-back"
+              whileHover={isTouchDevice ? {} : { scale: 1.15 }}
+              whileTap={{ scale: 0.85 }}
+              transition={bouncy}
+            >
+              <ArrowLeft size={20} strokeWidth={2} />
+            </motion.button>
+            {data.social.map((social) => (
+              <motion.a
+                key={social.icon}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-icon"
+                whileHover={isTouchDevice ? {} : { scale: 1.2 }}
+                whileTap={{ scale: 0.85 }}
+                transition={bouncy}
+                onClick={(e) => e.stopPropagation()}
+              >
+                {getSocialIcon(social.icon, 24)}
+              </motion.a>
+            ))}
+          </motion.div>
+        )}
       </motion.div>
     </div>
   );
