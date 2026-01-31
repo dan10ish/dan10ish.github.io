@@ -145,7 +145,7 @@ export default function HomeClient() {
         )}
 
         {section === "about" && (
-          <div className="island-about">
+          <div className="island-about" onClick={goBack} role="button" tabIndex={0} onKeyDown={(e) => e.key === "Enter" && goBack()}>
             <p className="about-text">{aboutText}</p>
           </div>
         )}
