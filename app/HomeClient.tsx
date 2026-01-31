@@ -95,6 +95,7 @@ export default function HomeClient() {
             <motion.button
               onClick={() => setSection("expanded")}
               className="icon-btn icon-btn-green"
+              aria-label="Expand menu"
               whileHover={isTouchDevice ? {} : { scale: 1.15, rotate: 90 }}
               whileTap={{ scale: 0.85 }}
               transition={bouncy}
@@ -110,11 +111,12 @@ export default function HomeClient() {
               <motion.button
                 onClick={goBack}
                 className="island-photo-btn"
+                aria-label="Go back"
                 whileHover={isTouchDevice ? {} : { scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 transition={bouncy}
               >
-                <Image src="/icon.svg" alt="Profile" width={48} height={48} priority />
+                <Image src="/icon.svg" alt="" width={48} height={48} priority aria-hidden />
               </motion.button>
               <div className="island-intro">
                 <span className="island-hello">Hello, I&apos;m</span>
@@ -125,6 +127,7 @@ export default function HomeClient() {
               <motion.button
                 onClick={() => setSection("about")}
                 className="icon-btn icon-btn-orange"
+                aria-label="About"
                 whileHover={isTouchDevice ? {} : { scale: 1.15 }}
                 whileTap={{ scale: 0.85 }}
                 transition={bouncy}
@@ -134,6 +137,7 @@ export default function HomeClient() {
               <motion.button
                 onClick={() => setSection("links")}
                 className="icon-btn icon-btn-blue"
+                aria-label="Links"
                 whileHover={isTouchDevice ? {} : { scale: 1.15 }}
                 whileTap={{ scale: 0.85 }}
                 transition={bouncy}
@@ -145,7 +149,7 @@ export default function HomeClient() {
         )}
 
         {section === "about" && (
-          <div className="island-about" onClick={goBack} role="button" tabIndex={0} onKeyDown={(e) => e.key === "Enter" && goBack()}>
+          <div className="island-about" onClick={goBack} role="button" tabIndex={0} aria-label="Go back" onKeyDown={(e) => e.key === "Enter" && goBack()}>
             <p className="about-text">{aboutText}</p>
           </div>
         )}
@@ -155,6 +159,7 @@ export default function HomeClient() {
             <motion.button
               onClick={goBack}
               className="icon-btn icon-btn-back"
+              aria-label="Go back"
               whileHover={isTouchDevice ? {} : { scale: 1.15 }}
               whileTap={{ scale: 0.85 }}
               transition={bouncy}
@@ -168,6 +173,7 @@ export default function HomeClient() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-icon"
+                aria-label={social.name}
                 whileHover={isTouchDevice ? {} : { scale: 1.2 }}
                 whileTap={{ scale: 0.85 }}
                 transition={bouncy}

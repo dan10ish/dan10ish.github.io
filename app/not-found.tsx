@@ -31,8 +31,9 @@ export default function NotFound() {
               href="/"
               className="icon-btn icon-btn-green"
               style={{ textDecoration: "none" }}
+              aria-label="Go to home page"
             >
-              <Home size={20} strokeWidth={2} />
+              <Home size={20} strokeWidth={2} aria-hidden />
             </Link>
           </motion.div>
         </div>
