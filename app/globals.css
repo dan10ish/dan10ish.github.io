@@ -8,7 +8,7 @@
   --link-blue: #0059ff;
   --border: #d0d0d0;
   --code-bg: #e5e5e5;
-  --blob-bg: rgba(245, 245, 245, 0.98);
+  --blob-bg: #f5f5f5;
   --blob-border: rgba(0, 0, 0, 0.08);
 }
 
@@ -28,7 +28,7 @@
   --link-blue: #4da6ff;
   --border: #2a2a2a;
   --code-bg: #1e1e1e;
-  --blob-bg: rgba(30, 30, 32, 0.98);
+  --blob-bg: #1e1e20;
   --blob-border: rgba(255, 255, 255, 0.08);
 }
 
@@ -51,14 +51,12 @@ body {
   border: 1px solid var(--blob-border);
   border-radius: 20px;
   padding: 1.25rem;
-  padding-top: 2.5rem;
-  width: min(85vw, 340px);
-  max-height: min(70dvh, 400px);
+  padding-top: 2.75rem;
+  width: min(88vw, 380px);
+  max-height: min(70dvh, 420px);
   overflow-y: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
   box-shadow: 
     0 4px 20px rgba(0, 0, 0, 0.06),
     0 1px 2px rgba(0, 0, 0, 0.03);
@@ -74,44 +72,80 @@ body {
     0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
-/* Wider blob for About section */
+/* Wider blob for About section - but not too wide on small screens */
 .blob-wide {
-  width: min(92vw, 440px);
+  width: min(90vw, 440px);
 }
 
-/* Card overlay - with background to hide icons behind */
+/* Card overlay - centered with slight offset down */
 .card-overlay {
-  position: absolute;
+  position: fixed;
+  inset: 0;
   z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2rem;
   background: var(--background);
-  padding: 3rem 1rem 1rem 1rem;
-  border-radius: 4px;
 }
 
-/* iPad/touch device hover support */
+/* Social icons grid - 2 rows, 4 columns, compact */
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  justify-items: center;
+  align-items: center;
+  padding: 0.75rem;
+}
+
+/* Backdrop for closing on outside click */
+.blob-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 15;
+  background: transparent;
+}
+
+/* Fixed close button for scrollable blobs */
+.blob-close-fixed {
+  position: sticky;
+  top: -0.5rem;
+  float: right;
+  margin-top: -2rem;
+  margin-right: -0.5rem;
+  margin-bottom: 0.5rem;
+  z-index: 25;
+}
+
+/* Hover only for devices with fine pointer (mouse/trackpad) - excludes phones but includes iPads with keyboard/trackpad */
 @media (hover: hover) and (pointer: fine) {
   .hover-hover\:hover\:text-foreground:hover {
     color: var(--foreground);
   }
+  
+  .can-hover:hover {
+    transform: scale(1.15);
+  }
 }
 
-/* For touch devices, show active state instead */
-@media (hover: none) {
-  .hover-hover\:hover\:text-foreground:active {
-    color: var(--foreground);
+/* Touch devices - no hover effects, only active/tap states */
+@media (hover: none), (pointer: coarse) {
+  .no-touch-hover {
+    transform: none !important;
   }
 }
 
 /* Small screen adjustments */
 @media (max-width: 400px) {
   .blob {
-    width: 92vw;
+    width: 90vw;
     padding: 1rem;
-    padding-top: 2.25rem;
+    padding-top: 2.5rem;
     border-radius: 16px;
   }
   
   .blob-wide {
-    width: 94vw;
+    width: 92vw;
   }
 }
