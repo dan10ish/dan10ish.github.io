@@ -55,12 +55,29 @@ body {
 .island-content {
   display: flex;
   align-items: center;
-  gap: 6px;
+}
+
+.island-home {
+  gap: 16px;
 }
 
 .island-expanded {
-  gap: 16px;
-  padding: 0 6px;
+  gap: 24px;
+  min-width: 340px;
+  justify-content: space-between;
+  padding: 0 4px;
+}
+
+.island-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.island-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .island-links {
@@ -88,7 +105,6 @@ body {
 .island-intro {
   display: flex;
   flex-direction: column;
-  padding: 0 8px;
 }
 
 .island-hello {
@@ -102,12 +118,6 @@ body {
   font-weight: 600;
   color: var(--island-text);
   line-height: 1.2;
-}
-
-.island-actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
 }
 
 .icon-btn {
@@ -139,32 +149,19 @@ body {
 }
 
 .link-btn {
+  width: 44px;
   height: 44px;
-  border-radius: 22px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  flex-shrink: 0;
   border: none;
   outline: none;
   text-decoration: none;
   color: var(--island-text);
-  padding: 0 12px;
-  overflow: hidden;
-}
-
-.link-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.link-label {
-  font-size: 14px;
-  font-weight: 500;
-  white-space: nowrap;
-  overflow: hidden;
+  background: transparent;
 }
 
 .island-about {
@@ -179,14 +176,22 @@ body {
   margin: 0;
 }
 
-@media (max-width: 600px) {
-  .island-links {
-    gap: 2px;
+@media (max-width: 480px) {
+  .island-expanded {
+    min-width: auto;
+    gap: 16px;
   }
   
-  .link-btn {
-    height: 40px;
-    padding: 0 10px;
+  .island-home {
+    gap: 12px;
+  }
+  
+  .island-left {
+    gap: 8px;
+  }
+  
+  .island-right {
+    gap: 6px;
   }
   
   .island-photo {
@@ -199,8 +204,13 @@ body {
     height: 44px;
   }
   
+  .link-btn {
+    width: 40px;
+    height: 40px;
+  }
+  
   .island-name {
-    font-size: 17px;
+    font-size: 16px;
   }
   
   .island-hello {
@@ -215,20 +225,11 @@ body {
   .about-text {
     font-size: 15px;
   }
-  
-  .island-expanded {
-    gap: 12px;
-    padding: 0 4px;
-  }
 }
 
-@media (max-width: 400px) {
-  .island-intro {
-    padding: 0 4px;
-  }
-  
-  .island-actions {
-    gap: 6px;
+@media (max-width: 380px) {
+  .island-expanded {
+    gap: 10px;
   }
   
   .icon-btn {
@@ -239,5 +240,10 @@ body {
   .island-photo {
     width: 40px;
     height: 40px;
+  }
+  
+  .link-btn {
+    width: 36px;
+    height: 36px;
   }
 }

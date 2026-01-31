@@ -2,39 +2,39 @@
 
 import { useState, useCallback, useEffect, useRef } from "react";
 import { data, SocialIcon } from "./data";
-import { Plus, User, Share2, ArrowLeft, FileText, Github, Mail } from "lucide-react";
+import { Plus, User, Share2, ArrowLeft, Github, Mail } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
 type Section = "home" | "expanded" | "about" | "links";
 
 const XIcon = ({ size = 20 }: { size?: number }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+  <svg width={size} height={size} viewBox="0 0 22 25" fill="currentColor">
+    <path d="M21.8518 22.4638L14.0268 10.1663L21.7481 1.6725C21.9227 1.47566 22.0127 1.21791 21.9986 0.955153C21.9844 0.692393 21.8673 0.445794 21.6725 0.26882C21.4778 0.0918457 21.2212 -0.0012398 20.9583 0.00974476C20.6953 0.0207293 20.4474 0.134898 20.2681 0.3275L12.9131 8.4175L7.85181 0.46375C7.76156 0.321693 7.63692 0.204713 7.48942 0.123647C7.34193 0.0425814 7.17637 5.21628e-05 7.00806 1.18294e-07H1.00806C0.828765 -8.70794e-05 0.652741 0.0480342 0.498423 0.139325C0.344105 0.230615 0.217171 0.361717 0.13091 0.518902C0.0446503 0.676088 0.00223821 0.853574 0.00811486 1.03278C0.0139915 1.21198 0.0679408 1.3863 0.164314 1.5375L7.98931 13.8337L0.268064 22.3337C0.177897 22.4306 0.107851 22.5444 0.061986 22.6685C0.0161206 22.7927 -0.00465234 22.9247 0.000871701 23.0569C0.00639575 23.1891 0.038107 23.3189 0.0941668 23.4388C0.150227 23.5586 0.22952 23.6662 0.327452 23.7552C0.425384 23.8442 0.540006 23.9129 0.664675 23.9572C0.789344 24.0016 0.921581 24.0208 1.05372 24.0137C1.18586 24.0066 1.31528 23.9733 1.43446 23.9158C1.55365 23.8583 1.66025 23.7777 1.74806 23.6787L9.10306 15.5888L14.1643 23.5425C14.2553 23.6834 14.3803 23.7991 14.5277 23.8791C14.6752 23.959 14.8403 24.0006 15.0081 24H21.0081C21.1872 23.9999 21.363 23.9518 21.5171 23.8606C21.6712 23.7693 21.798 23.6384 21.8843 23.4814C21.9705 23.3244 22.013 23.1472 22.0072 22.9681C22.0015 22.7891 21.9479 22.6149 21.8518 22.4638ZM15.5568 22L2.82931 2H6.45431L19.1868 22H15.5568Z"/>
   </svg>
 );
 
 const InstagramIcon = ({ size = 20 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+    <path d="M12 2.163C15.204 2.163 15.584 2.175 16.85 2.233C20.102 2.381 21.621 3.924 21.769 7.152C21.827 8.417 21.838 8.797 21.838 12.001C21.838 15.206 21.826 15.585 21.769 16.85C21.62 20.075 20.105 21.621 16.85 21.769C15.584 21.827 15.206 21.839 12 21.839C8.796 21.839 8.416 21.827 7.151 21.769C3.891 21.62 2.38 20.07 2.232 16.849C2.174 15.584 2.162 15.205 2.162 12C2.162 8.796 2.175 8.417 2.232 7.151C2.381 3.924 3.896 2.38 7.151 2.232C8.417 2.175 8.796 2.163 12 2.163ZM12 0C8.741 0 8.333 0.014 7.053 0.072C2.695 0.272 0.273 2.69 0.073 7.052C0.014 8.333 0 8.741 0 12C0 15.259 0.014 15.668 0.072 16.948C0.272 21.306 2.69 23.728 7.052 23.928C8.333 23.986 8.741 24 12 24C15.259 24 15.668 23.986 16.948 23.928C21.302 23.728 23.73 21.31 23.927 16.948C23.986 15.668 24 15.259 24 12C24 8.741 23.986 8.333 23.928 7.053C23.732 2.699 21.311 0.273 16.949 0.073C15.668 0.014 15.259 0 12 0ZM12 5.838C8.597 5.838 5.838 8.597 5.838 12C5.838 15.403 8.597 18.163 12 18.163C15.403 18.163 18.162 15.404 18.162 12C18.162 8.597 15.403 5.838 12 5.838ZM12 16C9.791 16 8 14.21 8 12C8 9.791 9.791 8 12 8C14.209 8 16 9.791 16 12C16 14.21 14.209 16 12 16ZM18.406 4.155C17.61 4.155 16.965 4.8 16.965 5.595C16.965 6.39 17.61 7.035 18.406 7.035C19.201 7.035 19.845 6.39 19.845 5.595C19.845 4.8 19.201 4.155 18.406 4.155Z"/>
   </svg>
 );
 
 const LinkedInIcon = ({ size = 20 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+    <path d="M19 0H5C2.239 0 0 2.239 0 5V19C0 21.761 2.239 24 5 24H19C21.762 24 24 21.761 24 19V5C24 2.239 21.762 0 19 0ZM8 19H5V8H8V19ZM6.5 6.732C5.534 6.732 4.75 5.942 4.75 4.968C4.75 3.994 5.534 3.204 6.5 3.204C7.466 3.204 8.25 3.994 8.25 4.968C8.25 5.942 7.467 6.732 6.5 6.732ZM20 19H17V13.396C17 10.028 13 10.283 13 13.396V19H10V8H13V9.765C14.396 7.179 20 6.988 20 12.241V19Z"/>
   </svg>
 );
 
 const ThreadsIcon = ({ size = 20 }: { size?: number }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-    <path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.5 12.068V12c.015-3.58 1.205-6.333 3.509-8.183C6.658 2.171 9.513 1.32 12.068 1.5h.064c2.616.017 4.884.625 6.747 1.807 1.884 1.193 3.264 2.932 4.103 5.168l.044.117-2.502.857-.047-.125c-1.263-3.37-3.85-5.081-7.692-5.087h-.058c-2.94.006-5.263 1.016-6.907 3.003-1.5 1.81-2.267 4.326-2.28 7.477v.073c.02 3.236.82 5.772 2.38 7.542 1.616 1.832 3.944 2.756 6.921 2.749h.036c2.508-.006 4.502-.616 5.926-1.813 1.327-1.115 2.001-2.6 2.004-4.418v-.036c-.002-.785-.183-1.445-.54-1.962-.342-.497-.84-.875-1.484-1.127-.348 1.206-.91 2.253-1.678 3.12-1.142 1.29-2.7 2.105-4.633 2.427l-.088.014-.088-.004c-1.533-.07-2.83-.563-3.859-1.466-.997-.875-1.5-1.962-1.5-3.233 0-1.195.457-2.238 1.36-3.102.94-.9 2.263-1.438 3.934-1.6.873-.085 1.81-.079 2.781.019a8.328 8.328 0 0 0-.19-1.264c-.25-.946-.724-1.7-1.411-2.243-.716-.566-1.67-.855-2.838-.859h-.033c-1.143.004-2.105.31-2.86.912-.728.58-1.24 1.396-1.52 2.426l-.027.098-2.477-.673.031-.114c.41-1.51 1.19-2.77 2.32-3.742 1.176-1.012 2.67-1.532 4.44-1.546h.069c1.665.012 3.088.418 4.232 1.207 1.172.81 2.047 1.96 2.6 3.42.268.707.442 1.47.52 2.268.558.162 1.07.38 1.532.653 1.048.62 1.86 1.492 2.413 2.593.547 1.089.824 2.32.824 3.662v.056c-.006 2.447-.908 4.483-2.683 6.053-1.862 1.647-4.476 2.485-7.77 2.492h-.032zm-.09-9.873c-1.265.102-2.21.444-2.81.975-.52.462-.773.994-.773 1.628 0 .58.221 1.1.678 1.59.494.531 1.267.866 2.3.997 1.414-.24 2.502-.79 3.235-1.636.615-.709 1.002-1.576 1.154-2.584-.612-.107-1.218-.172-1.813-.19-.654-.018-1.31.005-1.97.07v.15z"/>
+  <svg width={size} height={size} viewBox="0 0 21 26" fill="currentColor">
+    <path d="M18.3025 12.4563C17.8686 12.1296 17.4024 11.8482 16.9112 11.6163C16.4112 7.88 13.9113 6.7025 12.7738 6.3575C10.3013 5.6075 7.46 6.50625 6.1675 8.445C6.09462 8.55433 6.04398 8.67694 6.01848 8.80583C5.99298 8.93473 5.99312 9.06738 6.01889 9.19622C6.07093 9.45643 6.22421 9.68531 6.445 9.8325C6.66579 9.9797 6.93602 10.0332 7.19622 9.98111C7.32506 9.95534 7.44757 9.90445 7.55674 9.83134C7.66591 9.75822 7.75962 9.66433 7.8325 9.555C8.62875 8.36 10.5825 7.785 12.1938 8.27125C13.4375 8.64625 14.2962 9.55875 14.7125 10.8962C14.0825 10.7763 13.4426 10.7165 12.8013 10.7175C11.0613 10.7175 9.4325 11.1662 8.2175 11.98C6.7875 12.9462 6 14.375 6 16C6 18.5725 7.9825 20.44 10.7137 20.44C11.5169 20.4345 12.3108 20.2679 13.0484 19.9499C13.7859 19.6319 14.4521 19.169 15.0075 18.5888C15.8125 17.7513 16.7575 16.2938 16.9587 13.9513C17.0062 13.9838 17.0513 14.0175 17.0963 14.0513C18.36 15.0063 19 16.335 19 18C19 20.42 16.4575 24 11 24C7.65875 24 5.315 22.9187 3.8325 20.695C2.61625 18.875 2 16.2825 2 13C2 9.7175 2.61625 7.125 3.8325 5.305C5.315 3.08125 7.65875 2 11 2C15.1163 2 17.75 3.65625 19.0662 7.065C19.1124 7.18896 19.1827 7.30254 19.273 7.39915C19.3634 7.49577 19.472 7.5735 19.5926 7.62785C19.7131 7.68219 19.8433 7.71208 19.9755 7.71577C20.1078 7.71946 20.2394 7.69688 20.3628 7.64934C20.4863 7.6018 20.599 7.53025 20.6946 7.43882C20.7902 7.3474 20.8667 7.23792 20.9197 7.11672C20.9727 6.99552 21.0011 6.86502 21.0033 6.73277C21.0055 6.60051 20.9814 6.46914 20.9325 6.34625C19.335 2.195 15.9 0 11 0C7 0 4.02375 1.41125 2.1675 4.195C0.72875 6.35375 0 9.315 0 13C0 16.685 0.72875 19.6463 2.1675 21.805C4.02375 24.5888 7 26 11 26C14.7587 26 17.1125 24.565 18.425 23.3625C20.0375 21.885 21 19.875 21 18C21 15.7075 20.0675 13.79 18.3025 12.4563ZM13.5662 17.2062C13.1977 17.5928 12.7554 17.9015 12.2654 18.1141C11.7755 18.3267 11.2478 18.4388 10.7137 18.4438C9.3625 18.4438 8 17.6937 8 16.0037C8 14.425 9.5 12.7275 12.8013 12.7275C13.5447 12.7255 14.2847 12.8273 15 13.03C15 14.79 14.5 16.2325 13.5662 17.2025V17.2062Z"/>
   </svg>
 );
 
 const SnapchatIcon = ({ size = 20 }: { size?: number }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-    <path d="M12.206.793c.99 0 4.347.276 5.93 3.821.529 1.193.403 3.219.299 4.847l-.003.06c-.012.18-.022.345-.03.51.075.045.203.09.401.09.3-.016.659-.12 1.033-.301.165-.088.344-.104.464-.104.182 0 .359.029.509.09.45.149.734.479.734.838.015.449-.39.839-1.213 1.168-.089.029-.209.075-.344.119-.45.135-1.139.36-1.333.81-.09.224-.061.524.12.868l.015.015c.06.136 1.526 3.475 4.791 4.014.255.044.435.27.42.509 0 .075-.015.149-.045.225-.24.569-1.273.988-3.146 1.271-.059.091-.12.375-.164.57-.029.179-.074.36-.134.553-.076.271-.27.405-.555.405h-.03c-.135 0-.313-.031-.538-.074-.36-.075-.765-.135-1.273-.135-.3 0-.599.015-.913.074-.6.104-1.123.464-1.723.884-.853.599-1.826 1.288-3.294 1.288-.06 0-.119-.015-.18-.015h-.149c-1.468 0-2.427-.675-3.279-1.288-.599-.42-1.107-.779-1.707-.884-.314-.045-.629-.074-.928-.074-.509 0-.964.06-1.289.135-.209.029-.389.074-.523.074-.3 0-.494-.149-.569-.42-.061-.194-.09-.36-.135-.553-.045-.195-.105-.494-.166-.57-1.857-.284-2.906-.702-3.146-1.271-.029-.075-.044-.149-.044-.225-.015-.239.165-.464.42-.509 3.264-.54 4.73-3.879 4.791-4.02l.016-.029c.18-.345.224-.645.119-.869-.195-.434-.884-.658-1.332-.809-.121-.029-.24-.074-.346-.119-.809-.329-1.213-.72-1.213-1.17 0-.254.165-.508.451-.689.135-.09.3-.138.478-.149h.061c.179 0 .359.045.509.135.39.18.732.285 1.018.285.196 0 .329-.045.406-.09-.008-.165-.018-.33-.03-.51l-.003-.06c-.105-1.628-.232-3.654.297-4.847C7.86 1.069 11.216.793 12.206.793z"/>
+  <svg width={size} height={size} viewBox="0 0 24 23" fill="currentColor">
+    <path d="M5.82877 3.833C5.22877 5.177 5.46577 7.585 5.56177 9.269C4.91377 9.628 4.08177 8.998 3.61077 8.998C3.12077 8.998 2.53577 9.32 2.44377 9.8C2.37777 10.146 2.53277 10.65 3.64477 11.089C4.07477 11.259 5.09777 11.459 5.33477 12.017C5.66777 12.801 3.62477 16.42 0.416768 16.948C0.165768 16.989 -0.0132325 17.213 0.000767532 17.467C0.0567675 18.442 2.24277 18.824 3.21177 18.974C3.31077 19.108 3.39077 19.674 3.51777 20.105C3.57477 20.298 3.72177 20.529 4.09977 20.529C4.59277 20.529 5.41177 20.149 6.83777 20.385C8.23577 20.618 9.54977 22.6 12.0728 22.6C14.4178 22.6 15.8168 20.609 17.1628 20.385C17.9418 20.256 18.6108 20.297 19.3588 20.443C19.8738 20.544 20.3358 20.6 20.4828 20.094C20.6118 19.657 20.6908 19.102 20.7878 18.971C21.7478 18.822 23.9438 18.441 23.9988 17.466C24.0128 17.212 23.8338 16.989 23.5828 16.947C20.4288 16.427 18.3238 12.819 18.6648 12.016C18.9008 11.459 19.9168 11.261 20.3548 11.088C21.1688 10.767 21.5768 10.372 21.5678 9.915C21.5568 9.33 20.8528 8.981 20.3348 8.981C19.8078 8.981 19.0508 9.605 18.4378 9.267C18.5338 7.569 18.7698 5.172 18.1708 3.829C17.0358 1.286 14.5108 0 11.9868 0C9.47877 0 6.97277 1.268 5.82877 3.833Z"/>
   </svg>
 );
 
@@ -51,80 +51,15 @@ const getSocialIcon = (icon: SocialIcon, size: number) => {
   }
 };
 
-const spring = { type: "spring" as const, stiffness: 700, damping: 35 };
-
-function LinkButton({ 
-  icon, 
-  label, 
-  href, 
-  onClick, 
-  isExternal,
-  isTouchDevice,
-  hoveredId,
-  setHoveredId,
-  id
-}: { 
-  icon: React.ReactNode; 
-  label: string; 
-  href?: string; 
-  onClick?: () => void;
-  isExternal?: boolean;
-  isTouchDevice: boolean;
-  hoveredId: string | null;
-  setHoveredId: (id: string | null) => void;
-  id: string;
-}) {
-  const isHovered = hoveredId === id && !isTouchDevice;
-  const Component = href ? motion.a : motion.button;
-  
-  return (
-    <Component
-      href={href}
-      onClick={onClick}
-      target={isExternal ? "_blank" : undefined}
-      rel={isExternal ? "noopener noreferrer" : undefined}
-      className="link-btn"
-      onMouseEnter={() => !isTouchDevice && setHoveredId(id)}
-      onMouseLeave={() => !isTouchDevice && setHoveredId(null)}
-      whileTap={{ scale: 0.92 }}
-      animate={{ 
-        backgroundColor: isHovered ? "rgba(255,255,255,0.12)" : "rgba(255,255,255,0)",
-        paddingLeft: isHovered ? 14 : 12,
-        paddingRight: isHovered ? 14 : 12,
-      }}
-      transition={{ type: "spring", stiffness: 800, damping: 40 }}
-    >
-      <span className="link-icon">{icon}</span>
-      <AnimatePresence>
-        {isHovered && (
-          <motion.span
-            className="link-label"
-            initial={{ width: 0, opacity: 0, marginLeft: 0 }}
-            animate={{ width: "auto", opacity: 1, marginLeft: 8 }}
-            exit={{ width: 0, opacity: 0, marginLeft: 0 }}
-            transition={{ type: "spring", stiffness: 800, damping: 40 }}
-          >
-            {label}
-          </motion.span>
-        )}
-      </AnimatePresence>
-    </Component>
-  );
-}
+const spring = { type: "spring" as const, stiffness: 500, damping: 30 };
 
 export default function HomeClient() {
   const [section, setSection] = useState<Section>("home");
   const [isTouchDevice, setIsTouchDevice] = useState(false);
-  const [hoveredId, setHoveredId] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const checkTouch = () => {
-      setIsTouchDevice(window.matchMedia("(hover: none) and (pointer: coarse)").matches);
-    };
-    checkTouch();
-    window.addEventListener("resize", checkTouch);
-    return () => window.removeEventListener("resize", checkTouch);
+    setIsTouchDevice(window.matchMedia("(hover: none) and (pointer: coarse)").matches);
   }, []);
 
   const handleOutsideClick = useCallback((e: React.MouseEvent) => {
@@ -145,15 +80,15 @@ export default function HomeClient() {
         transition={spring}
         style={{ borderRadius: section === "about" ? 24 : 100 }}
       >
-        <AnimatePresence mode="popLayout">
+        <AnimatePresence mode="wait" initial={false}>
           {section === "home" && (
             <motion.div
               key="home"
-              className="island-content"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.15 }}
+              className="island-content island-home"
+              initial={{ opacity: 0, filter: "blur(4px)" }}
+              animate={{ opacity: 1, filter: "blur(0px)" }}
+              exit={{ opacity: 0, filter: "blur(4px)" }}
+              transition={{ duration: 0.2 }}
             >
               <div className="island-photo">
                 <Image src="/icon.png" alt="Profile" width={48} height={48} priority />
@@ -161,9 +96,9 @@ export default function HomeClient() {
               <motion.button
                 onClick={() => setSection("expanded")}
                 className="icon-btn icon-btn-green"
-                whileHover={isTouchDevice ? {} : { scale: 1.08 }}
-                whileTap={{ scale: 0.92 }}
-                transition={spring}
+                whileHover={isTouchDevice ? {} : { rotate: 180, scale: 1.05 }}
+                whileTap={{ rotate: 90, scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 15 }}
               >
                 <Plus size={22} strokeWidth={2.5} />
               </motion.button>
@@ -174,24 +109,26 @@ export default function HomeClient() {
             <motion.div
               key="expanded"
               className="island-content island-expanded"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.15 }}
+              initial={{ opacity: 0, filter: "blur(4px)" }}
+              animate={{ opacity: 1, filter: "blur(0px)" }}
+              exit={{ opacity: 0, filter: "blur(4px)" }}
+              transition={{ duration: 0.2 }}
             >
-              <div className="island-photo">
-                <Image src="/icon.png" alt="Profile" width={48} height={48} priority />
+              <div className="island-left">
+                <div className="island-photo">
+                  <Image src="/icon.png" alt="Profile" width={48} height={48} priority />
+                </div>
+                <div className="island-intro">
+                  <span className="island-hello">Hello, I&apos;m</span>
+                  <span className="island-name">{data.personal.name.split(" ")[0]}</span>
+                </div>
               </div>
-              <div className="island-intro">
-                <span className="island-hello">Hello, I&apos;m</span>
-                <span className="island-name">{data.personal.name.split(" ")[0]}</span>
-              </div>
-              <div className="island-actions">
+              <div className="island-right">
                 <motion.button
                   onClick={() => setSection("about")}
                   className="icon-btn icon-btn-orange"
-                  whileHover={isTouchDevice ? {} : { scale: 1.08 }}
-                  whileTap={{ scale: 0.92 }}
+                  whileHover={isTouchDevice ? {} : { scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
                   transition={spring}
                 >
                   <User size={20} strokeWidth={2} />
@@ -199,8 +136,8 @@ export default function HomeClient() {
                 <motion.button
                   onClick={() => setSection("links")}
                   className="icon-btn icon-btn-blue"
-                  whileHover={isTouchDevice ? {} : { scale: 1.08 }}
-                  whileTap={{ scale: 0.92 }}
+                  whileHover={isTouchDevice ? {} : { scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
                   transition={spring}
                 >
                   <Share2 size={20} strokeWidth={2} />
@@ -213,10 +150,10 @@ export default function HomeClient() {
             <motion.div
               key="about"
               className="island-about"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.15 }}
+              initial={{ opacity: 0, filter: "blur(4px)" }}
+              animate={{ opacity: 1, filter: "blur(0px)" }}
+              exit={{ opacity: 0, filter: "blur(4px)" }}
+              transition={{ duration: 0.2 }}
             >
               <p className="about-text">{aboutText}</p>
             </motion.div>
@@ -226,41 +163,34 @@ export default function HomeClient() {
             <motion.div
               key="links"
               className="island-content island-links"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.15 }}
+              initial={{ opacity: 0, filter: "blur(4px)" }}
+              animate={{ opacity: 1, filter: "blur(0px)" }}
+              exit={{ opacity: 0, filter: "blur(4px)" }}
+              transition={{ duration: 0.2 }}
             >
-              <LinkButton
-                id="back"
-                icon={<ArrowLeft size={20} strokeWidth={2} />}
-                label="Back"
+              <motion.button
                 onClick={() => setSection("expanded")}
-                isTouchDevice={isTouchDevice}
-                hoveredId={hoveredId}
-                setHoveredId={setHoveredId}
-              />
-              <LinkButton
-                id="notes"
-                icon={<FileText size={20} strokeWidth={2} />}
-                label="Notes"
-                href="/notes"
-                isTouchDevice={isTouchDevice}
-                hoveredId={hoveredId}
-                setHoveredId={setHoveredId}
-              />
+                className="link-btn"
+                whileHover={isTouchDevice ? {} : { backgroundColor: "rgba(255,255,255,0.12)" }}
+                whileTap={{ scale: 0.92 }}
+                transition={spring}
+              >
+                <ArrowLeft size={20} strokeWidth={2} />
+              </motion.button>
               {data.social.map((social) => (
-                <LinkButton
+                <motion.a
                   key={social.icon}
-                  id={social.icon}
-                  icon={getSocialIcon(social.icon, 20)}
-                  label={social.name}
                   href={social.url}
-                  isExternal
-                  isTouchDevice={isTouchDevice}
-                  hoveredId={hoveredId}
-                  setHoveredId={setHoveredId}
-                />
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link-btn"
+                  whileHover={isTouchDevice ? {} : { backgroundColor: "rgba(255,255,255,0.12)" }}
+                  whileTap={{ scale: 0.92 }}
+                  transition={spring}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {getSocialIcon(social.icon, 20)}
+                </motion.a>
               ))}
             </motion.div>
           )}
