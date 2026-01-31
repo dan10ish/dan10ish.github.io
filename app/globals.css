@@ -14,13 +14,6 @@
   --font-mono: var(--font-geist-mono);
 }
 
-.dark {
-  --background: #0a0a0a;
-  --foreground: #ffffff;
-  --island-bg: #1a1a1c;
-  --island-text: #ffffff;
-}
-
 html,
 body {
   overflow: hidden;
@@ -55,6 +48,8 @@ body {
 .island-content {
   display: flex;
   align-items: center;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .island-home {
@@ -88,6 +83,8 @@ body {
 .island-about {
   padding: 20px 24px;
   max-width: min(88vw, 500px);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .island-photo {
@@ -115,6 +112,9 @@ body {
   border: none;
   padding: 0;
   cursor: pointer;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .island-photo-btn img {
@@ -152,6 +152,9 @@ body {
   flex-shrink: 0;
   border: none;
   outline: none;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .icon-btn-green {
@@ -185,6 +188,9 @@ body {
   cursor: pointer;
   color: #ffffff;
   text-decoration: none;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .about-text {

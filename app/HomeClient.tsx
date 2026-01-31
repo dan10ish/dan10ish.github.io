@@ -51,8 +51,8 @@ const getSocialIcon = (icon: SocialIcon, size: number) => {
   }
 };
 
-const bouncy = { type: "spring" as const, stiffness: 400, damping: 25 };
-const contentBounce = { type: "spring" as const, stiffness: 600, damping: 35 };
+const bouncy = { type: "spring" as const, stiffness: 300, damping: 20 };
+const contentBounce = { type: "spring" as const, stiffness: 350, damping: 25 };
 
 export default function HomeClient() {
   const [section, setSection] = useState<Section>("home");
@@ -77,7 +77,7 @@ export default function HomeClient() {
     else if (section === "about" || section === "links") setSection("expanded");
   }, [section]);
 
-  const aboutText = `${data.personal.about} Previously worked at ${data.experience.map(e => e.company).join(", ")}.`;
+  const aboutText = `${data.personal.about} Currently working at ${data.experience[0].company}. Previously worked at ${data.experience.slice(1).map(e => e.company).join(" and ")}.`;
 
   return (
     <div className="home-container" onClick={handleOutsideClick}>
