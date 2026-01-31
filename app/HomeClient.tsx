@@ -52,14 +52,17 @@ const getSocialIcon = (icon: SocialIcon, size: number) => {
 };
 
 const bouncy = { type: "spring" as const, stiffness: 400, damping: 25 };
+const contentBounce = { type: "spring" as const, stiffness: 600, damping: 35 };
 
 export default function HomeClient() {
   const [section, setSection] = useState<Section>("home");
   const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setIsTouchDevice(window.matchMedia("(hover: none) and (pointer: coarse)").matches);
+    setHasAnimated(true);
   }, []);
 
   const handleOutsideClick = useCallback((e: React.MouseEvent) => {
@@ -76,23 +79,20 @@ export default function HomeClient() {
 
   const aboutText = `${data.personal.about} Previously worked at ${data.experience.map(e => e.company).join(", ")}.`;
 
-  const getBorderRadius = () => section === "about" ? 24 : 100;
-
   return (
     <div className="home-container" onClick={handleOutsideClick}>
       <motion.div
         ref={containerRef}
         className="island"
-        animate={{ borderRadius: getBorderRadius() }}
-        transition={bouncy}
+        style={{ borderRadius: section === "about" ? 24 : 100 }}
       >
         {section === "home" && (
           <motion.div
             key="home"
             className="island-content island-home"
-            initial={false}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.1 }}
+            initial={hasAnimated ? { scale: 0.95 } : false}
+            animate={{ scale: 1 }}
+            transition={contentBounce}
           >
             <div className="island-photo">
               <Image src="/icon.png" alt="Profile" width={48} height={48} priority />
@@ -113,9 +113,9 @@ export default function HomeClient() {
           <motion.div
             key="expanded"
             className="island-content island-expanded"
-            initial={false}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.1 }}
+            initial={{ scale: 0.95 }}
+            animate={{ scale: 1 }}
+            transition={contentBounce}
           >
             <div className="island-left">
               <motion.button
@@ -159,9 +159,9 @@ export default function HomeClient() {
           <motion.div
             key="about"
             className="island-about"
-            initial={false}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.1 }}
+            initial={{ scale: 0.95 }}
+            animate={{ scale: 1 }}
+            transition={contentBounce}
           >
             <p className="about-text">{aboutText}</p>
           </motion.div>
@@ -171,9 +171,9 @@ export default function HomeClient() {
           <motion.div
             key="links"
             className="island-content island-links"
-            initial={false}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.1 }}
+            initial={{ scale: 0.95 }}
+            animate={{ scale: 1 }}
+            transition={contentBounce}
           >
             <motion.button
               onClick={goBack}
