@@ -7,6 +7,12 @@
   --island-text: #ffffff;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #222222;
+  }
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

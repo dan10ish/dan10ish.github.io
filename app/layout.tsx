@@ -86,6 +86,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#222222" media="(prefers-color-scheme: dark)" />
         <link
           rel="preload"
           href="/fonts/Garamond.woff2"

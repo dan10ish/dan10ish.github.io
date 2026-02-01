@@ -61,7 +61,11 @@ export default function HomeClient() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setIsTouchDevice(window.matchMedia("(hover: none) and (pointer: coarse)").matches);
+    const mq = window.matchMedia("(any-hover: hover)");
+    setIsTouchDevice(!mq.matches);
+    const handler = () => setIsTouchDevice(!window.matchMedia("(any-hover: hover)").matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
   }, []);
 
   const handleOutsideClick = useCallback((e: React.MouseEvent) => {
