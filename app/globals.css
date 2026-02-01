@@ -213,7 +213,7 @@ body {
 
 @media (max-width: 480px) {
   .island-expanded {
-    min-width: auto;
+    min-width: min(68vw, 290px);
     gap: 20px;
   }
   
@@ -275,6 +275,7 @@ body {
 
 @media (max-width: 380px) {
   .island-expanded {
+    min-width: min(70vw, 260px);
     gap: 12px;
   }
   
