@@ -12,7 +12,6 @@
     "deploy": "gh-pages -d out"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.84.0",
     "framer-motion": "^12.23.24",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.554.0",
