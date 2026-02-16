@@ -46,50 +46,7 @@ const HomeLink = memo(() => (
 
 HomeLink.displayName = "HomeLink";
 
-const TOC = memo(({ headings }) => {
-    const [activeId, setActiveId] = useState("");
 
-    useEffect(() => {
-        if (!headings.length) return;
-
-        const observer = new IntersectionObserver(
-            (entries) => {
-                for (const entry of entries) {
-                    if (entry.isIntersecting) {
-                        setActiveId(entry.target.id);
-                    }
-                }
-            },
-            { rootMargin: "-80px 0px -80% 0px", threshold: 0 },
-        );
-
-        headings.forEach((h) => {
-            const el = document.getElementById(h.id);
-            if (el) observer.observe(el);
-        });
-
-        return () => observer.disconnect();
-    }, [headings]);
-
-    if (!headings.length) return null;
-
-    return (
-        <nav className="blog-toc" aria-label="Table of contents">
-            <ul>
-                {headings.map((h) => (
-                    <li
-                        key={h.id}
-                        className={`toc-item toc-h${h.level} ${activeId === h.id ? "active" : ""}`}
-                    >
-                        <a href={`#${h.id}`}>{h.text}</a>
-                    </li>
-                ))}
-            </ul>
-        </nav>
-    );
-});
-
-TOC.displayName = "TOC";
 
 function CopyButton({ code }) {
     const [copied, setCopied] = useState(false);
@@ -110,7 +67,6 @@ function CopyButton({ code }) {
 
 export default function BlogPostClient({ frontmatter, compiledSource }) {
     const contentRef = useRef(null);
-    const [headings, setHeadings] = useState([]);
     const [Content, setContent] = useState(null);
 
     useEffect(() => {
@@ -134,21 +90,7 @@ export default function BlogPostClient({ frontmatter, compiledSource }) {
         loadContent();
     }, [compiledSource]);
 
-    useEffect(() => {
-        if (!contentRef.current) return;
 
-        const timer = setTimeout(() => {
-            const els = contentRef.current.querySelectorAll("h2, h3");
-            const extracted = Array.from(els).map((el) => ({
-                id: el.id,
-                text: el.textContent,
-                level: parseInt(el.tagName[1]),
-            }));
-            setHeadings(extracted);
-        }, 100);
-
-        return () => clearTimeout(timer);
-    }, [Content]);
 
     useEffect(() => {
         if (!contentRef.current) return;
@@ -203,7 +145,6 @@ export default function BlogPostClient({ frontmatter, compiledSource }) {
             </header>
 
             <div className="blog-post-body">
-                {headings.length > 3 && <TOC headings={headings} />}
                 <article className="blog-content" ref={contentRef}>
                     {Content ? <Content /> : <div className="blog-loading">Loading…</div>}
                 </article>
