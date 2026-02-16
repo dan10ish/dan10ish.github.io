@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { getTILEntries, TILEntry } from '../../lib/client'
 import TILContent from '../components/TILContent'
-import Menu from '../components/Menu'
+import Menu from '../components/menu'
 import '../components/tweet.css'
 
 export default function FindsPage() {

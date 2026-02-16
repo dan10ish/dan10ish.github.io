@@ -1,5 +1,5 @@
 "use client";
-import Menu from "./components/Menu";
+import Menu from "./components/menu";
 import { data } from "./data";
 import Link from "next/link";
 
