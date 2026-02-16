@@ -5,7 +5,6 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypePrettyCode from "rehype-pretty-code";
 import Link from "next/link";
 import { Home } from "lucide-react";
 import BlogInteractive from "../../../components/BlogInteractive";
@@ -58,7 +57,6 @@ const mdxOptions = {
         rehypeKatex,
         rehypeSlug,
         [rehypeAutolinkHeadings, { behavior: "wrap" }],
-        [rehypePrettyCode, { theme: "github-dark-default", keepBackground: true }],
     ],
 };
 

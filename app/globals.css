@@ -518,16 +518,22 @@ img {
   position: absolute;
   top: 0.4rem;
   right: 0.4rem;
-  background: rgba(var(--color-text-rgb), 0.04);
-  border: 1px solid rgba(var(--color-text-rgb), 0.08);
+  background: rgba(var(--color-text-rgb), 0.06);
+  border: 1px solid rgba(var(--color-text-rgb), 0.1);
   color: rgba(var(--color-text-rgb), 0.4);
-  font-family: var(--font-normal);
-  font-size: calc(var(--font-size-mobile) * 0.7);
-  padding: 1px 6px;
-  border-radius: 3px;
+  padding: 4px;
+  border-radius: 4px;
   cursor: pointer;
   opacity: 0;
-  transition: opacity 0.15s ease, color 0.15s ease;
+  transition: opacity 0.15s ease, color 0.15s ease, background 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}
+
+.blog-copy-btn.touch {
+  opacity: 1;
 }
 
 .blog-content pre:hover .blog-copy-btn {
@@ -536,7 +542,12 @@ img {
 
 .blog-copy-btn:hover {
   color: var(--color-text);
-  background: rgba(var(--color-text-rgb), 0.08);
+  background: rgba(var(--color-text-rgb), 0.12);
+}
+
+.blog-copy-btn.copied {
+  color: #22c55e;
+  border-color: rgba(34, 197, 94, 0.3);
 }
 
 /* KaTeX / Math — hide semantic MathML annotations */
