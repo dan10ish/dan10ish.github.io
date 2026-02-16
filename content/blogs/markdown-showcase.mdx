@@ -1,0 +1,154 @@
+---
+title: "Markdown Showcase"
+date: "2026-02-15"
+description: "A comprehensive showcase of all available markdown and MDX features."
+tags: ["reference"]
+---
+
+Showcasing everything available in MDX — text formatting, math, code, tables, and more.
+
+## Text Formatting
+
+Regular text, **bold text**, *italic text*, ***bold italic***, and ~~strikethrough~~. You can also use `inline code` within paragraphs.
+
+## Links
+
+[External link](https://example.com) and autolinked URLs work seamlessly.
+
+## Lists
+
+Unordered list:
+
+- First item
+- Second item with **bold**
+- Third item
+  - Nested item
+  - Another nested item
+
+Ordered list:
+
+1. Step one
+2. Step two
+3. Step three
+   1. Sub-step
+   2. Another sub-step
+
+## Blockquotes
+
+> The purpose of computing is insight, not numbers.
+> — Richard Hamming
+
+> Nested blockquotes also work:
+> > This is a nested blockquote.
+
+## Code Blocks
+
+Inline: use `const x = 42;` anywhere.
+
+```python
+# Python example
+def matrix_multiply(A, B):
+    n = len(A)
+    C = [[0] * n for _ in range(n)]
+    for i in range(n):
+        for j in range(n):
+            for k in range(n):
+                C[i][j] += A[i][k] * B[k][j]
+    return C
+```
+
+```javascript
+// JavaScript example
+const compose = (...fns) =>
+  fns.reduce(
+    (f, g) =>
+      (...args) =>
+        f(g(...args))
+  );
+
+const double = (x) => x * 2;
+const inc = (x) => x + 1;
+const transform = compose(double, inc);
+console.log(transform(5)); // 12
+```
+
+```c
+// C example
+#include <stdio.h>
+
+typedef struct {
+    float x, y, z;
+} Vec3;
+
+Vec3 cross(Vec3 a, Vec3 b) {
+    return (Vec3){
+        a.y * b.z - a.z * b.y,
+        a.z * b.x - a.x * b.z,
+        a.x * b.y - a.y * b.x
+    };
+}
+```
+
+```bash
+# Shell commands
+find . -name "*.mdx" -exec wc -l {} +
+```
+
+## Mathematics
+
+Inline math: the Euler identity $e^{i\pi} + 1 = 0$ is profound.
+
+Display math — the quadratic formula:
+
+$$
+x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+$$
+
+A matrix equation:
+
+$$
+\begin{bmatrix} x' \\ y' \end{bmatrix} = \begin{bmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix}
+$$
+
+Summation and integrals:
+
+$$
+\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
+$$
+
+$$
+\sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}
+$$
+
+## Tables
+
+| Language | Paradigm | Year |
+|----------|----------|------|
+| C | Procedural | 1972 |
+| Haskell | Functional | 1990 |
+| Rust | Systems | 2010 |
+| Python | Multi | 1991 |
+
+## Horizontal Rules
+
+Content above.
+
+---
+
+Content below.
+
+## Task Lists
+
+- [x] Implement MDX support
+- [x] Add LaTeX rendering
+- [x] Code syntax highlighting
+- [ ] RSS feed
+- [ ] Search
+
+## Nested Content
+
+A paragraph with **bold**, *italic*, `code`, and a [link](https://example.com) — all inline.
+
+> A blockquote containing `code` and **emphasis** with math $a^2 + b^2 = c^2$.
+
+That covers the full feature set.

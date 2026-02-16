@@ -222,7 +222,7 @@ const BlogListItem = memo(({ blog, isSelected }) => (
         : ""}
     </span>
     <span className="tags">
-      {blog.tags.map((tag) => (
+      {blog.tags.slice(0, 1).map((tag) => (
         <span key={tag} className="tag">
           {tag}
         </span>
@@ -573,20 +573,34 @@ ProjectList.displayName = "ProjectList";
 
 /* ─────────────── Tabs ─────────────── */
 
+const TABS = [
+  { id: "microblogs", label: "Microblogs" },
+  { id: "projects", label: "Projects" },
+];
+
 const TabBar = memo(({ activeTab, onTabChange }) => (
   <div className="tab-bar">
-    <button
-      className={`tab-item ${activeTab === "microblogs" ? "active" : ""}`}
-      onClick={() => onTabChange("microblogs")}
-    >
-      Microblogs
-    </button>
-    <button
-      className={`tab-item ${activeTab === "projects" ? "active" : ""}`}
-      onClick={() => onTabChange("projects")}
-    >
-      Projects
-    </button>
+    {TABS.map((tab) => (
+      <button
+        key={tab.id}
+        className={`tab-item ${activeTab === tab.id ? "active" : ""}`}
+        onClick={() => onTabChange(tab.id)}
+      >
+        {activeTab === tab.id && (
+          <motion.div
+            className="tab-indicator"
+            layoutId="tab-indicator"
+            transition={{ type: "spring", stiffness: 500, damping: 35 }}
+            style={{
+              position: "absolute",
+              inset: 0,
+              borderRadius: 6,
+            }}
+          />
+        )}
+        <span style={{ position: "relative", zIndex: 1 }}>{tab.label}</span>
+      </button>
+    ))}
   </div>
 ));
 
@@ -595,7 +609,13 @@ TabBar.displayName = "TabBar";
 /* ─────────────── Main Content ─────────────── */
 
 const Content = memo(({ projects, blogs }) => {
-  const [activeTab, setActiveTab] = useState("microblogs");
+  const [activeTab, setActiveTab] = useState(() => {
+    if (typeof window !== "undefined") {
+      const hash = window.location.hash.replace("#", "");
+      if (hash === "projects") return "projects";
+    }
+    return "microblogs";
+  });
   const [sortConfig, setSortConfig] = useState({ key: null, direction: null });
   const [selectedTag, setSelectedTag] = useState(null);
 
@@ -603,6 +623,18 @@ const Content = memo(({ projects, blogs }) => {
     setActiveTab(tab);
     setSortConfig({ key: null, direction: null });
     setSelectedTag(null);
+    window.history.replaceState(null, "", `#${tab}`);
+  }, []);
+
+  useEffect(() => {
+    const onHashChange = () => {
+      const hash = window.location.hash.replace("#", "");
+      if (hash === "projects" || hash === "microblogs") {
+        setActiveTab(hash);
+      }
+    };
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
   }, []);
 
   const handleSort = useCallback((key) => {
@@ -717,3 +749,4 @@ export default function ContentWrapper({ projects, blogs }) {
     </Suspense>
   );
 }
+
