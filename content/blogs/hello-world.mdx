@@ -1,0 +1,51 @@
+---
+title: "Hello World"
+date: "2026-02-16"
+description: "A first microblog post testing MDX, LaTeX, and code blocks."
+tags: ["intro", "meta"]
+---
+
+This is my first microblog. A space for quick thoughts, notes, and ideas.
+
+## Math with LaTeX
+
+The quadratic formula is given by:
+
+$$
+x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+$$
+
+Euler's identity $e^{i\pi} + 1 = 0$ connects five fundamental constants.
+
+## Code
+
+Here's a simple Python snippet:
+
+```python
+def fibonacci(n):
+    a, b = 0, 1
+    for _ in range(n):
+        a, b = b, a + b
+    return a
+
+print(fibonacci(10))
+```
+
+And some JavaScript:
+
+```javascript
+const debounce = (fn, ms) => {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn(...args), ms);
+  };
+};
+```
+
+## Blockquotes
+
+> The best way to predict the future is to invent it.
+> — Alan Kay
+
+That's it for now. More to come.

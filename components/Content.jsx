@@ -19,6 +19,7 @@ import {
   Mail,
   Instagram,
 } from "lucide-react";
+import Link from "next/link";
 import ScrollIndicator from "./ScrollIndicator";
 import ProjectModal from "./ProjectModal";
 import KeyboardIcon from "./KeyboardIcon";
@@ -201,6 +202,121 @@ const SortIcon = memo(({ columnKey, sortConfig }) => (
 
 SortIcon.displayName = "SortIcon";
 
+/* ─────────────── Blog List ─────────────── */
+
+const BlogListItem = memo(({ blog, isSelected }) => (
+  <Link
+    href={`/blog/${blog.slug}`}
+    className={`list-row blog-row ${isSelected ? "selected" : ""}`}
+    prefetch={true}
+  >
+    <span className="title">
+      <div>{blog.title}</div>
+    </span>
+    <span className="blog-date">
+      {blog.date
+        ? new Date(blog.date + "T00:00:00").toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric",
+        })
+        : ""}
+    </span>
+    <span className="tags">
+      {blog.tags.map((tag) => (
+        <span key={tag} className="tag">
+          {tag}
+        </span>
+      ))}
+    </span>
+  </Link>
+));
+
+BlogListItem.displayName = "BlogListItem";
+
+const BlogList = memo(({ blogs, handleSort, sortConfig }) => {
+  const tableRef = useRef(null);
+  const [selectedRowIndex, setSelectedRowIndex] = useState(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (blogs.length === 0) return;
+
+      switch (e.key) {
+        case "ArrowDown":
+          e.preventDefault();
+          setSelectedRowIndex((prev) =>
+            prev === null ? 0 : Math.min(prev + 1, blogs.length - 1),
+          );
+          break;
+        case "ArrowUp":
+          e.preventDefault();
+          setSelectedRowIndex((prev) =>
+            prev === null ? blogs.length - 1 : Math.max(prev - 1, 0),
+          );
+          break;
+        case "Enter":
+          if (selectedRowIndex !== null) {
+            window.location.href = `/blog/${blogs[selectedRowIndex].slug}`;
+          }
+          break;
+        case "Escape":
+          setSelectedRowIndex(null);
+          break;
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    const handleMouseMove = () =>
+      selectedRowIndex !== null && setSelectedRowIndex(null);
+    document.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, [selectedRowIndex, blogs]);
+
+  return (
+    <div className="mono-list blog-list">
+      <div className="list-header blog-list-header">
+        <span
+          onClick={() => handleSort("title")}
+          style={{ cursor: "pointer" }}
+        >
+          title <SortIcon columnKey="title" sortConfig={sortConfig} />
+        </span>
+        <span
+          onClick={() => handleSort("date")}
+          style={{ cursor: "pointer" }}
+        >
+          date <SortIcon columnKey="date" sortConfig={sortConfig} />
+        </span>
+        <span
+          className="tags"
+          onClick={() => handleSort("tags")}
+          style={{ cursor: "pointer" }}
+        >
+          tags <SortIcon columnKey="tags" sortConfig={sortConfig} />
+        </span>
+      </div>
+      <div className="table-max" ref={tableRef}>
+        {blogs.map((blog, index) => (
+          <BlogListItem
+            key={blog.slug}
+            blog={blog}
+            isSelected={index === selectedRowIndex}
+          />
+        ))}
+      </div>
+      <ScrollIndicator containerRef={tableRef} />
+    </div>
+  );
+});
+
+BlogList.displayName = "BlogList";
+
+/* ─────────────── Project List ─────────────── */
+
 const ProjectListItem = memo(
   ({
     project,
@@ -228,9 +344,8 @@ const ProjectListItem = memo(
           href={project.sourceLink || "#"}
           target="_blank"
           rel="noopener noreferrer"
-          className={`action-link github ${
-            !project.sourceLink ? "disabled" : ""
-          }`}
+          className={`action-link github ${!project.sourceLink ? "disabled" : ""
+            }`}
           onClick={(e) => {
             e.stopPropagation();
             if (!project.sourceLink) e.preventDefault();
@@ -244,9 +359,8 @@ const ProjectListItem = memo(
           href={project.projectLink || "#"}
           target="_blank"
           rel="noopener noreferrer"
-          className={`action-link globe ${
-            !project.projectLink ? "disabled" : ""
-          }`}
+          className={`action-link globe ${!project.projectLink ? "disabled" : ""
+            }`}
           onClick={(e) => {
             e.stopPropagation();
             if (!project.projectLink) e.preventDefault();
@@ -377,11 +491,11 @@ const ProjectList = memo(
         const targetPosition =
           rect.top < containerRect.top + margin
             ? tableRef.current.scrollTop +
-              (rect.top - containerRect.top) -
-              margin
+            (rect.top - containerRect.top) -
+            margin
             : tableRef.current.scrollTop +
-              (rect.bottom - containerRect.bottom) +
-              margin;
+            (rect.bottom - containerRect.bottom) +
+            margin;
 
         tableRef.current.scrollTo({
           top: targetPosition,
@@ -457,9 +571,39 @@ const ProjectList = memo(
 
 ProjectList.displayName = "ProjectList";
 
-const Content = memo(({ projects }) => {
+/* ─────────────── Tabs ─────────────── */
+
+const TabBar = memo(({ activeTab, onTabChange }) => (
+  <div className="tab-bar">
+    <button
+      className={`tab-item ${activeTab === "microblogs" ? "active" : ""}`}
+      onClick={() => onTabChange("microblogs")}
+    >
+      Microblogs
+    </button>
+    <button
+      className={`tab-item ${activeTab === "projects" ? "active" : ""}`}
+      onClick={() => onTabChange("projects")}
+    >
+      Projects
+    </button>
+  </div>
+));
+
+TabBar.displayName = "TabBar";
+
+/* ─────────────── Main Content ─────────────── */
+
+const Content = memo(({ projects, blogs }) => {
+  const [activeTab, setActiveTab] = useState("microblogs");
   const [sortConfig, setSortConfig] = useState({ key: null, direction: null });
   const [selectedTag, setSelectedTag] = useState(null);
+
+  const handleTabChange = useCallback((tab) => {
+    setActiveTab(tab);
+    setSortConfig({ key: null, direction: null });
+    setSelectedTag(null);
+  }, []);
 
   const handleSort = useCallback((key) => {
     setSortConfig((current) => ({
@@ -513,17 +657,51 @@ const Content = memo(({ projects }) => {
     });
   }, [projects, selectedTag, sortConfig]);
 
+  const sortedBlogs = useMemo(() => {
+    if (!sortConfig?.key) return blogs;
+
+    return [...blogs].sort((a, b) => {
+      if (sortConfig.key === "title") {
+        return sortConfig.direction === "asc"
+          ? a.title.localeCompare(b.title)
+          : b.title.localeCompare(a.title);
+      }
+      if (sortConfig.key === "date") {
+        return sortConfig.direction === "asc"
+          ? a.date.localeCompare(b.date)
+          : b.date.localeCompare(a.date);
+      }
+      if (sortConfig.key === "tags") {
+        const tagsA = a.tags.join(",");
+        const tagsB = b.tags.join(",");
+        return sortConfig.direction === "asc"
+          ? tagsA.localeCompare(tagsB)
+          : tagsB.localeCompare(tagsA);
+      }
+      return 0;
+    });
+  }, [blogs, sortConfig]);
+
   return (
     <div className="content-wrapper">
       <div className="content-area">
         <AboutContent />
-        <ProjectList
-          projects={filteredProjects}
-          selectedTag={selectedTag}
-          handleTagClick={handleTagClick}
-          sortConfig={sortConfig}
-          handleSort={handleSort}
-        />
+        <TabBar activeTab={activeTab} onTabChange={handleTabChange} />
+        {activeTab === "microblogs" ? (
+          <BlogList
+            blogs={sortedBlogs}
+            handleSort={handleSort}
+            sortConfig={sortConfig}
+          />
+        ) : (
+          <ProjectList
+            projects={filteredProjects}
+            selectedTag={selectedTag}
+            handleTagClick={handleTagClick}
+            sortConfig={sortConfig}
+            handleSort={handleSort}
+          />
+        )}
       </div>
       <KeyboardIcon />
     </div>
@@ -532,10 +710,10 @@ const Content = memo(({ projects }) => {
 
 Content.displayName = "Content";
 
-export default function ContentWrapper({ projects }) {
+export default function ContentWrapper({ projects, blogs }) {
   return (
     <Suspense fallback={null}>
-      <Content projects={projects} />
+      <Content projects={projects} blogs={blogs} />
     </Suspense>
   );
 }

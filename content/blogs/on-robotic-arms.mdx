@@ -1,0 +1,52 @@
+---
+title: "On Robotic Arms"
+date: "2026-02-10"
+description: "Notes on forward kinematics and the Denavit-Hartenberg convention for robotic manipulators."
+tags: ["robotics", "math"]
+---
+
+When modeling robotic arms, the **Denavit-Hartenberg (DH) convention** provides a systematic way to describe the geometry of each link.
+
+## Forward Kinematics
+
+For a revolute joint, the transformation matrix is:
+
+$$
+T_i = \begin{bmatrix}
+\cos\theta_i & -\sin\theta_i \cos\alpha_i & \sin\theta_i \sin\alpha_i & a_i \cos\theta_i \\
+\sin\theta_i & \cos\theta_i \cos\alpha_i & -\cos\theta_i \sin\alpha_i & a_i \sin\theta_i \\
+0 & \sin\alpha_i & \cos\alpha_i & d_i \\
+0 & 0 & 0 & 1
+\end{bmatrix}
+$$
+
+Where:
+- $\theta_i$ — joint angle
+- $d_i$ — link offset
+- $a_i$ — link length
+- $\alpha_i$ — link twist
+
+## Implementation in C
+
+```c
+typedef struct {
+    double theta, d, a, alpha;
+} DHParams;
+
+void forward_kinematics(DHParams *params, int n, double result[4][4]) {
+    // Initialize as identity
+    for (int i = 0; i < 4; i++)
+        for (int j = 0; j < 4; j++)
+            result[i][j] = (i == j) ? 1.0 : 0.0;
+
+    for (int k = 0; k < n; k++) {
+        double ct = cos(params[k].theta);
+        double st = sin(params[k].theta);
+        double ca = cos(params[k].alpha);
+        double sa = sin(params[k].alpha);
+        // Matrix multiplication...
+    }
+}
+```
+
+The beauty of DH parameters is that any serial manipulator, regardless of complexity, can be described with just four numbers per joint.

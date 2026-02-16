@@ -1,0 +1,51 @@
+---
+title: "The Attention Mechanism"
+date: "2026-01-25"
+description: "A concise breakdown of scaled dot-product attention and why it works."
+tags: ["ml", "transformers"]
+---
+
+The attention mechanism is the core of the transformer architecture. At its heart, it's a weighted sum where the weights are determined by the similarity between queries and keys.
+
+## Scaled Dot-Product Attention
+
+$$
+\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
+$$
+
+The scaling factor $\frac{1}{\sqrt{d_k}}$ prevents the dot products from growing too large, which would push the softmax into regions with extremely small gradients.
+
+## Multi-Head Attention
+
+Instead of a single attention function, we project queries, keys, and values $h$ times:
+
+$$
+\text{MultiHead}(Q, K, V) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h)W^O
+$$
+
+where each head is:
+
+$$
+\text{head}_i = \text{Attention}(QW_i^Q, KW_i^K, VW_i^V)
+$$
+
+## Why It Works
+
+1. **Parallelization** — Unlike RNNs, all positions can attend to all other positions simultaneously
+2. **Long-range dependencies** — Direct connections between any two positions, regardless of distance
+3. **Interpretability** — Attention weights can reveal what the model "focuses on"
+
+```python
+import torch
+import torch.nn.functional as F
+
+def scaled_dot_product_attention(Q, K, V, mask=None):
+    d_k = Q.size(-1)
+    scores = torch.matmul(Q, K.transpose(-2, -1)) / d_k**0.5
+    if mask is not None:
+        scores = scores.masked_fill(mask == 0, float('-inf'))
+    weights = F.softmax(scores, dim=-1)
+    return torch.matmul(weights, V)
+```
+
+The simplicity of this formulation is what makes it so powerful.
