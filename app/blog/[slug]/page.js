@@ -1,11 +1,14 @@
 import { getBlogBySlug, getAllBlogSlugs } from "../../../lib/blogs";
-import { compile } from "@mdx-js/mdx";
+import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import BlogPostClient from "../../../components/BlogPost";
+import rehypePrettyCode from "rehype-pretty-code";
+import Link from "next/link";
+import { Home } from "lucide-react";
+import BlogInteractive from "../../../components/BlogInteractive";
 
 export async function generateStaticParams() {
     const slugs = getAllBlogSlugs();
@@ -49,6 +52,16 @@ export async function generateMetadata({ params }) {
     };
 }
 
+const mdxOptions = {
+    remarkPlugins: [remarkGfm, remarkMath],
+    rehypePlugins: [
+        rehypeKatex,
+        rehypeSlug,
+        [rehypeAutolinkHeadings, { behavior: "wrap" }],
+        [rehypePrettyCode, { theme: "github-dark-default", keepBackground: true }],
+    ],
+};
+
 export default async function BlogPage({ params }) {
     const { slug } = await params;
     const blog = getBlogBySlug(slug);
@@ -62,20 +75,46 @@ export default async function BlogPage({ params }) {
         );
     }
 
-    const compiled = await compile(blog.content, {
-        outputFormat: "function-body",
-        remarkPlugins: [remarkGfm, remarkMath],
-        rehypePlugins: [
-            rehypeKatex,
-            rehypeSlug,
-            [rehypeAutolinkHeadings, { behavior: "wrap" }],
-        ],
-    });
+    const formattedDate = blog.frontmatter.date
+        ? new Date(blog.frontmatter.date + "T00:00:00").toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+        })
+        : "";
 
     return (
-        <BlogPostClient
-            frontmatter={blog.frontmatter}
-            compiledSource={String(compiled)}
-        />
+        <div className="blog-post-layout">
+            <header className="blog-post-header">
+                <Link href="/" className="blog-home-link" aria-label="Home">
+                    <Home size={14} />
+                    <span>Home</span>
+                </Link>
+                <h1>{blog.frontmatter.title}</h1>
+                <div className="blog-post-meta">
+                    {formattedDate && <time dateTime={blog.frontmatter.date}>{formattedDate}</time>}
+                    {blog.frontmatter.tags?.length > 0 && (
+                        <div className="blog-post-tags">
+                            {blog.frontmatter.tags.map((tag) => (
+                                <span key={tag} className="blog-tag">
+                                    {tag}
+                                </span>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            </header>
+
+            <div className="blog-post-body">
+                <article className="blog-content">
+                    <MDXRemote
+                        source={blog.content}
+                        options={{ mdxOptions }}
+                    />
+                </article>
+            </div>
+
+            <BlogInteractive />
+        </div>
     );
 }

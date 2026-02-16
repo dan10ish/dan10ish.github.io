@@ -301,16 +301,15 @@ img {
 }
 
 .blog-list .list-header .tags {
-  text-align: right !important;
-  justify-content: flex-end !important;
+  text-align: center !important;
+  justify-content: center !important;
 }
 
 .blog-list .list-row .tags {
   display: flex !important;
   gap: 0.5rem !important;
-  justify-content: flex-end !important;
+  justify-content: center !important;
   align-items: center !important;
-  white-space: nowrap !important;
 }
 
 /* ─── Blog Post ─── */
@@ -703,7 +702,7 @@ img {
   gap: 2rem;
   padding: 0rem 0.5rem 0.75rem;
   color: rgba(var(--color-text-rgb), 0.5);
-  font-size: calc(var(--font-size-mobile) * 0.9);
+  font-size: calc(var(--font-size-mobile) * 0.85);
   border-bottom: 1px solid rgba(var(--color-text-rgb), 0.1);
   font-weight: 500;
   align-items: center;
@@ -732,8 +731,8 @@ img {
   border-bottom: 1px solid rgba(var(--color-text-rgb), 0.1);
   transition: background-color 0.15s ease;
   align-items: center;
-  font-size: var(--font-size-mobile);
-  height: 3rem;
+  font-size: calc(var(--font-size-mobile) * 0.92);
+  height: 2.5rem;
   transition: opacity 0.2s ease;
 }
 
@@ -823,9 +822,9 @@ img {
   align-items: center;
   justify-content: center;
   color: var(--color-text);
-  padding: 0.25rem;
-  width: 28px;
-  height: 28px;
+  padding: 0.2rem;
+  width: 24px;
+  height: 24px;
 }
 
 .action-link.globe {
@@ -838,9 +837,9 @@ img {
 }
 
 .tag {
-  font-size: calc(var(--font-size-mobile) * 0.9);
-  padding: 4px 8px;
-  border-radius: 8px;
+  font-size: calc(var(--font-size-mobile) * 0.8);
+  padding: 2px 7px;
+  border-radius: 6px;
   border: 1px solid rgba(var(--color-text-rgb), 0.1);
   color: rgba(var(--color-text-rgb), 0.8);
   white-space: nowrap;
@@ -1135,10 +1134,10 @@ img {
 }
 
 .sort-icons svg {
-  height: 12px;
-  width: 12px;
+  height: 10px;
+  width: 10px;
   opacity: 0.7;
-  margin: -4px 0;
+  margin: -3px 0;
 }
 
 .sort-icons svg.active {
@@ -2136,6 +2135,18 @@ img {
   .blog-list .list-row {
     grid-template-columns: minmax(0, 1fr) 80px 45px !important;
     gap: 0.5rem !important;
+  }
+
+  .about-header {
+    flex-direction: column;
+    align-items: center !important;
+    gap: 0.75rem;
+  }
+
+  .contact-info {
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
   .blog-content pre {
