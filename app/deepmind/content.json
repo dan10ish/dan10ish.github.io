@@ -1,0 +1,336 @@
+{
+  "site": {
+    "name": "Google DeepMind",
+    "tagline": "Build AI responsibly to benefit humanity",
+    "description": "Artificial intelligence could be one of humanity's most useful inventions. We research and build safe artificial intelligence systems."
+  },
+  "nav": {
+    "links": [
+      { "label": "Models", "href": "/deepmind/models" },
+      { "label": "Research", "href": "/deepmind/research" },
+      { "label": "Science", "href": "/deepmind/science" },
+      { "label": "About", "href": "/deepmind/about" }
+    ],
+    "cta": [
+      { "label": "Build with Gemini", "href": "https://aistudio.google.com", "variant": "outline" },
+      { "label": "Try Gemini", "href": "https://gemini.google.com", "variant": "filled", "icon": "spark" }
+    ]
+  },
+  "hero": {
+    "slides": [
+      {
+        "id": "lyria-3",
+        "title": "Lyria 3",
+        "description": "Compose music with vocals, and experiment with acoustic details",
+        "bgColor": "#d4f5d4",
+        "gradientFrom": "#a8e6a3",
+        "gradientTo": "#4ade80",
+        "learnMoreHref": "/deepmind/models",
+        "tryLabel": "Try",
+        "tryHref": "https://gemini.google.com/music",
+        "tryIcon": "spark"
+      },
+      {
+        "id": "genie-3",
+        "title": "Genie 3",
+        "description": "A new frontier for world models",
+        "bgColor": "#1a1a2e",
+        "imagePlaceholder": true,
+        "learnMoreHref": "/deepmind/models",
+        "tryLabel": "Try",
+        "tryHref": "https://labs.google/projectgenie",
+        "tryIcon": "labs"
+      },
+      {
+        "id": "gemini-3",
+        "title": "Gemini 3",
+        "description": "Our most intelligent AI model that brings any idea to life",
+        "bgColor": "#f0f4ff",
+        "imagePlaceholder": true,
+        "learnMoreHref": "/deepmind/models",
+        "tryLabel": "Try",
+        "tryHref": "https://gemini.google.com",
+        "tryIcon": "spark"
+      },
+      {
+        "id": "nano-banana",
+        "title": "Nano Banana 🍌",
+        "description": "State-of-the-art image generation and editing models, built on Gemini",
+        "bgColor": "#fff8e1",
+        "imagePlaceholder": true,
+        "learnMoreHref": "/deepmind/models",
+        "tryLabel": "Try",
+        "tryHref": "https://gemini.google.com",
+        "tryIcon": "spark"
+      },
+      {
+        "id": "veo-3",
+        "title": "Veo 3.1",
+        "description": "Video, meet audio. Our latest video generation model, designed to empower filmmakers and storytellers",
+        "bgColor": "#0f0f1a",
+        "imagePlaceholder": true,
+        "learnMoreHref": "/deepmind/models",
+        "tryLabel": "Try",
+        "tryHref": "https://gemini.google.com",
+        "tryIcon": "spark"
+      }
+    ]
+  },
+  "models": {
+    "sectionTitle": "Models",
+    "sectionSubtitle": "Build with our next generation AI systems",
+    "viewAllHref": "/deepmind/models",
+    "items": [
+      {
+        "id": "gemini",
+        "title": "Gemini",
+        "description": "Our most intelligent AI models",
+        "icon": "spark",
+        "learnMoreHref": "/deepmind/models",
+        "tryLinks": [
+          { "label": "Gemini app", "href": "https://gemini.google.com/app" },
+          { "label": "Google AI Studio", "href": "https://aistudio.google.com" },
+          { "label": "Google Antigravity", "href": "https://antigravity.google" },
+          { "label": "Vertex AI Studio", "href": "https://cloud.google.com/vertex-ai" }
+        ]
+      },
+      {
+        "id": "nano-banana",
+        "title": "Nano Banana 🍌",
+        "description": "Create and edit images with Gemini Image",
+        "icon": "photo_spark",
+        "learnMoreHref": "/deepmind/models",
+        "tryLinks": [
+          { "label": "Gemini app", "href": "https://gemini.google.com/app" },
+          { "label": "Google AI Studio", "href": "https://aistudio.google.com" },
+          { "label": "Vertex AI Studio", "href": "https://cloud.google.com/vertex-ai" }
+        ]
+      },
+      {
+        "id": "lyria",
+        "title": "Lyria",
+        "description": "Our most advanced music generation model yet",
+        "icon": "audio_spark",
+        "badge": "New",
+        "learnMoreHref": "/deepmind/models",
+        "tryLinks": [
+          { "label": "Gemini app", "href": "https://gemini.google.com/music" }
+        ]
+      },
+      {
+        "id": "gemini-audio",
+        "title": "Gemini Audio",
+        "description": "Advanced real-time audio models, built on Gemini",
+        "icon": "mic_detect_auto",
+        "learnMoreHref": "/deepmind/models",
+        "tryLinks": [
+          { "label": "Google AI Studio", "href": "https://aistudio.google.com" },
+          { "label": "Gemini API", "href": "https://ai.google.dev/gemini-api/docs/models" },
+          { "label": "Gemini Live API", "href": "https://ai.google.dev/gemini-api/docs/live" }
+        ]
+      },
+      {
+        "id": "veo",
+        "title": "Veo",
+        "description": "Our state-of-the-art video generation model",
+        "icon": "video_spark",
+        "learnMoreHref": "/deepmind/models",
+        "tryLinks": [
+          { "label": "Gemini app", "href": "https://gemini.google.com/app" },
+          { "label": "Flow", "href": "https://flow.google" },
+          { "label": "Google AI Studio", "href": "https://aistudio.google.com" },
+          { "label": "Vertex AI Studio", "href": "https://cloud.google.com/vertex-ai" }
+        ]
+      },
+      {
+        "id": "gemma",
+        "title": "Gemma",
+        "description": "Our family of state-of-the-art, open models",
+        "icon": "diamond",
+        "learnMoreHref": "/deepmind/models",
+        "buildLabel": "Build with Gemma",
+        "tryLinks": [
+          { "label": "Run Gemma", "href": "https://ai.google.dev/gemma/docs/run" },
+          { "label": "Developer docs", "href": "https://ai.google.dev/gemma/docs" }
+        ]
+      }
+    ]
+  },
+  "news": {
+    "sectionTitle": "Latest news",
+    "viewAllHref": "/deepmind/research",
+    "featured": {
+      "title": "Project Genie: Experimenting with infinite, interactive worlds",
+      "date": "January 2026",
+      "category": "Models",
+      "href": "/deepmind/research",
+      "imagePlaceholder": true,
+      "hasVideo": true
+    },
+    "items": [
+      {
+        "title": "Gemini 3.1 Pro: A smarter model for your most complex tasks",
+        "date": "February 2026",
+        "category": "Models",
+        "href": "/deepmind/research"
+      },
+      {
+        "title": "A new way to express yourself: Gemini can now create music",
+        "date": "February 2026",
+        "category": "Models",
+        "href": "/deepmind/research",
+        "imagePlaceholder": true,
+        "hasVideo": true
+      },
+      {
+        "title": "Accelerating discovery in India through AI-powered science and education",
+        "date": "February 2026",
+        "category": "Responsibility & Safety",
+        "href": "/deepmind/research",
+        "imagePlaceholder": true
+      },
+      {
+        "title": "Gemini 3 Deep Think: Advancing science, research and engineering",
+        "date": "February 2026",
+        "category": "Models",
+        "href": "/deepmind/research",
+        "imagePlaceholder": true
+      },
+      {
+        "title": "Accelerating Mathematical and Scientific Discovery with Gemini Deep Think",
+        "date": "February 2026",
+        "category": "Research",
+        "href": "/deepmind/research",
+        "imagePlaceholder": true
+      },
+      {
+        "title": "D4RT: Teaching AI to see the world in four dimensions",
+        "date": "January 2026",
+        "category": "Research",
+        "href": "/deepmind/research"
+      },
+      {
+        "title": "Veo 3.1 Ingredients to Video: More consistency, creativity and control",
+        "date": "January 2026",
+        "category": "Models",
+        "href": "/deepmind/research",
+        "imagePlaceholder": true,
+        "hasVideo": true
+      },
+      {
+        "title": "Google's year in review: 8 areas with research breakthroughs in 2025",
+        "date": "December 2025",
+        "href": "/deepmind/research"
+      }
+    ]
+  },
+  "podcast": {
+    "sectionTitle": "The Podcast",
+    "sectionSubtitle": "The frontier of intelligence, explained",
+    "learnMoreHref": "/deepmind/research",
+    "episodes": [
+      {
+        "id": "future-intelligence",
+        "title": "The future of intelligence",
+        "description": "Demis shares his vision for the path to AGI - from solving \"root node\" problems in fusion energy and material science to the rise of world models and simulations.",
+        "imagePlaceholder": true
+      },
+      {
+        "id": "arrival-agi",
+        "title": "The arrival of AGI",
+        "description": "Shane walks host Hannah Fry through his AGI framework, breaking down the levels from minimal AGI to full AGI, and his timelines for each.",
+        "imagePlaceholder": true
+      },
+      {
+        "id": "robotics-lab",
+        "title": "Google DeepMind robotics lab tour",
+        "description": "Hannah interacts with a new set of robots—those that don't just see, but think, plan, and do.",
+        "imagePlaceholder": true
+      },
+      {
+        "id": "alphafold-nobel",
+        "title": "AlphaFold: Grand challenge to Nobel Prize",
+        "description": "Five years ago, AlphaFold 2 solved the protein structure prediction problem, unlocking new avenues of biological research.",
+        "imagePlaceholder": true
+      },
+      {
+        "id": "genie-3",
+        "title": "Genie 3: An infinite world model",
+        "description": "A deep dive into Genie 3, exploring how it creates interactive, infinite virtual worlds.",
+        "imagePlaceholder": true
+      }
+    ]
+  },
+  "footer": {
+    "socialLinks": [
+      { "label": "X", "href": "https://x.com/googledeepmind", "icon": "x" },
+      { "label": "Instagram", "href": "https://www.instagram.com/googledeepmind", "icon": "instagram" },
+      { "label": "YouTube", "href": "https://www.youtube.com/@googledeepmind", "icon": "youtube" },
+      { "label": "LinkedIn", "href": "https://www.linkedin.com/company/googledeepmind/", "icon": "linkedin" },
+      { "label": "GitHub", "href": "https://github.com/google-deepmind", "icon": "github" }
+    ],
+    "newsletter": {
+      "title": "Sign up for updates on our latest innovations",
+      "disclaimer": "I accept Google's Terms and Conditions and acknowledge that my information will be used in accordance with Google's Privacy Policy.",
+      "placeholder": "Get the latest updates",
+      "buttonLabel": "Sign up"
+    },
+    "tagline": "Build AI responsibly to benefit humanity",
+    "columns": [
+      {
+        "title": "Models",
+        "links": [
+          { "label": "Gemini", "href": "/deepmind/models", "icon": "spark" },
+          { "label": "Nano Banana", "href": "/deepmind/models", "icon": "photo_spark" },
+          { "label": "Gemini Audio", "href": "/deepmind/models", "icon": "mic_detect_auto" },
+          { "label": "Gemma", "href": "/deepmind/models", "icon": "diamond" },
+          { "label": "Genie", "href": "/deepmind/models", "icon": "language" },
+          { "label": "Lyria", "href": "/deepmind/models", "icon": "audio_spark" },
+          { "label": "Veo", "href": "/deepmind/models", "icon": "video_spark" }
+        ]
+      },
+      {
+        "title": "Research",
+        "links": [
+          { "label": "Evals", "href": "/deepmind/research" },
+          { "label": "Breakthroughs", "href": "/deepmind/research" },
+          { "label": "Publications", "href": "/deepmind/research" },
+          { "label": "Responsibility", "href": "/deepmind/research" }
+        ]
+      },
+      {
+        "title": "Science",
+        "links": [
+          { "label": "AlphaFold", "href": "/deepmind/science", "icon": "genetics" },
+          { "label": "AlphaGenome", "href": "/deepmind/science", "icon": "genetics" },
+          { "label": "WeatherNext", "href": "/deepmind/science", "icon": "cyclone" },
+          { "label": "AlphaEarth", "href": "/deepmind/science", "icon": "photosphere" }
+        ]
+      },
+      {
+        "title": "Products",
+        "links": [
+          { "label": "Gemini app", "href": "https://gemini.google.com", "icon": "spark" },
+          { "label": "Google AI Studio", "href": "https://aistudio.google.com", "icon": "code" },
+          { "label": "Google Antigravity", "href": "https://antigravity.google", "icon": "star" }
+        ]
+      },
+      {
+        "title": "Learn more",
+        "links": [
+          { "label": "About", "href": "/deepmind/about" },
+          { "label": "News", "href": "/deepmind/research" },
+          { "label": "Careers", "href": "/deepmind/about" },
+          { "label": "National Partnerships for AI", "href": "/deepmind/about" },
+          { "label": "The Podcast", "href": "/deepmind/research" }
+        ]
+      }
+    ],
+    "bottomLinks": [
+      { "label": "About Google", "href": "https://about.google" },
+      { "label": "Google products", "href": "https://about.google/products" },
+      { "label": "Privacy", "href": "https://policies.google.com/privacy" },
+      { "label": "Terms", "href": "https://policies.google.com/terms" }
+    ]
+  }
+}
