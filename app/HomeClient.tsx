@@ -3,7 +3,7 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { data, SocialIcon } from "./data";
 import { Plus, User, Share2, ArrowLeft, Github, Mail, Hammer, Globe } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
 type Section = "home" | "expanded" | "about" | "links" | "projects";
@@ -170,16 +170,7 @@ export default function HomeClient() {
 
         {section === "links" && (
           <div className="island-content island-links">
-            <motion.button
-              onClick={goBack}
-              className="icon-btn icon-btn-back"
-              aria-label="Go back"
-              whileHover={isTouchDevice ? {} : { scale: 1.15 }}
-              whileTap={{ scale: 0.85 }}
-              transition={bouncy}
-            >
-              <ArrowLeft size={20} strokeWidth={2} />
-            </motion.button>
+            {/* Internal back button removed, using unified external back button */}
             {data.social.map((social) => (
               <motion.a
                 key={social.icon}
@@ -201,18 +192,6 @@ export default function HomeClient() {
 
         {section === "projects" && (
           <div className="island-projects" onClick={(e) => e.stopPropagation()}>
-            <div className="projects-header">
-              <motion.button
-                onClick={goBack}
-                className="icon-btn icon-btn-back"
-                aria-label="Go back"
-                whileHover={isTouchDevice ? {} : { scale: 1.15 }}
-                whileTap={{ scale: 0.85 }}
-                transition={bouncy}
-              >
-                <ArrowLeft size={20} strokeWidth={2} />
-              </motion.button>
-            </div>
             <div className="projects-list">
               {data.projects.map((project, i) => (
                 <div
@@ -272,6 +251,25 @@ export default function HomeClient() {
             </div>
           </div>
         )}
+        {/* Unified External Back Button for all expanded sections */}
+        <AnimatePresence mode="popLayout">
+          {(section === "about" || section === "projects" || section === "links") && (
+            <motion.button
+              key={`${section}-back`}
+              onClick={goBack}
+              className="icon-btn-back external-back-btn"
+              aria-label="Go back"
+              initial={{ opacity: 0, y: -20, scale: 0.8, x: "-50%" }}
+              animate={{ opacity: 1, y: 0, scale: 1, x: "-50%" }}
+              exit={{ opacity: 0, y: -20, scale: 0.8, x: "-50%", transition: { duration: 0.05, delay: 0 } }}
+              whileHover={isTouchDevice ? { x: "-50%" } : { scale: 1.15, x: "-50%" }}
+              whileTap={{ scale: 0.85, x: "-50%" }}
+              transition={{ ...bouncy, delay: 0 }}
+            >
+              <ArrowLeft size={24} strokeWidth={2} />
+            </motion.button>
+          )}
+        </AnimatePresence>
       </motion.div>
     </div>
   );
