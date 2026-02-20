@@ -36,6 +36,7 @@ body {
 }
 
 .island {
+  position: relative;
   background: var(--island-bg);
   padding: 6px;
   display: flex;
@@ -147,8 +148,8 @@ body {
 }
 
 .icon-btn {
-  width: 46px;
-  height: 46px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -182,6 +183,25 @@ body {
   height: 42px;
   background: #48484A;
   color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.external-back-btn {
+  position: absolute;
+  bottom: -64px;
+  left: 50%;
+  z-index: 50;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .social-icon {
@@ -205,63 +225,235 @@ body {
   margin: 0;
 }
 
+.island-projects {
+  display: flex;
+  flex-direction: column;
+  width: min(80vw, 400px);
+  max-height: 420px;
+  gap: 4px;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.projects-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.projects-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.3px;
+  margin-left: 4px;
+}
+
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 8px 10px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.projects-list::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+.project-card {
+  display: flex;
+  padding: 6px 0;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.project-card:last-child {
+  border-bottom: none;
+}
+
+.project-compact-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.project-compact-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.project-compact-title {
+  font-family: var(--font-mono), monospace;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  margin: 0;
+  letter-spacing: -0.3px;
+}
+
+.project-tag {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* Tag colors */
+.tag-algorithm {
+  background: rgba(52, 199, 89, 0.2);
+  color: #34C759;
+}
+
+.tag-ai {
+  background: rgba(0, 122, 255, 0.2);
+  color: #007AFF;
+}
+
+.tag-web {
+  background: rgba(255, 149, 0, 0.2);
+  color: #FF9500;
+}
+
+.tag-robotics {
+  background: rgba(175, 82, 222, 0.2);
+  color: #AF52DE;
+}
+
+.tag-education {
+  background: rgba(255, 45, 85, 0.2);
+  color: #FF2D55;
+}
+
+.tag-portfolio {
+  background: rgba(88, 86, 214, 0.2);
+  color: #5856D6;
+}
+
+.tag-ml {
+  background: rgba(255, 204, 0, 0.2);
+  color: #FFCC00;
+}
+
+.tag-game {
+  background: rgba(255, 59, 48, 0.2);
+  color: #FF3B30;
+}
+
+.tag-simulation {
+  background: rgba(90, 200, 250, 0.2);
+  color: #5AC8FA;
+}
+
+.project-compact-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.project-compact-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.project-link-disabled {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #444444;
+  /* Dark grey color, clearly disabled without opacity glitches */
+  cursor: not-allowed;
+}
+
+.icon-btn-purple {
+  background: #AF52DE;
+  color: white;
+}
+
 @media (max-width: 480px) {
   .island-expanded {
     min-width: min(68vw, 290px);
-    gap: 20px;
+    gap: 16px;
   }
-  
+
   .island-home {
     gap: 10px;
   }
-  
+
   .island-left {
     gap: 8px;
   }
-  
+
   .island-right {
     gap: 6px;
   }
-  
+
   .island-photo,
   .island-photo-btn {
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
   }
-  
+
   .icon-btn {
-    width: 42px;
-    height: 42px;
-  }
-  
-  .icon-btn-back {
     width: 38px;
     height: 38px;
   }
-  
+
+  .icon-btn-back {
+    width: 36px;
+    height: 36px;
+  }
+
+  .external-back-btn {
+    width: 48px;
+    height: 48px;
+    bottom: -72px;
+  }
+
   .social-icon {
     width: 38px;
     height: 38px;
   }
-  
+
+  .island-projects {
+    max-width: 94vw;
+    max-height: 400px;
+  }
+
   .island-links {
     gap: 0;
     padding: 2px 4px;
   }
-  
+
   .island-name {
     font-size: 16px;
   }
-  
+
   .island-hello {
     font-size: 13px;
   }
-  
+
   .island-about {
     padding: 16px 18px;
     max-width: 94vw;
   }
-  
+
   .about-text {
     font-size: 15px;
   }
@@ -272,23 +464,29 @@ body {
     min-width: min(70vw, 260px);
     gap: 12px;
   }
-  
+
   .icon-btn {
     width: 38px;
     height: 38px;
   }
-  
+
   .island-photo,
   .island-photo-btn {
     width: 40px;
     height: 40px;
   }
-  
+
   .icon-btn-back {
     width: 34px;
     height: 34px;
   }
-  
+
+  .external-back-btn {
+    width: 46px;
+    height: 46px;
+    bottom: -70px;
+  }
+
   .social-icon {
     width: 34px;
     height: 34px;
