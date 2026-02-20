@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect, useRef } from "react";
 import { data, SocialIcon } from "./data";
-import { Plus, User, Share2, ArrowLeft, Github, Mail, Folder, Globe } from "lucide-react";
+import { Plus, User, Share2, ArrowLeft, Github, Mail, Hammer, Globe } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
@@ -146,7 +146,7 @@ export default function HomeClient() {
                 whileTap={{ scale: 0.85 }}
                 transition={bouncy}
               >
-                <Folder size={20} strokeWidth={2} />
+                <Hammer size={20} strokeWidth={2} />
               </motion.button>
               <motion.button
                 onClick={() => setSection("links")}
@@ -212,7 +212,6 @@ export default function HomeClient() {
               >
                 <ArrowLeft size={20} strokeWidth={2} />
               </motion.button>
-              <span className="projects-title">Projects</span>
             </div>
             <div className="projects-list">
               {data.projects.map((project, i) => (
@@ -232,9 +231,17 @@ export default function HomeClient() {
                         </span>
                       )}
                       {project.source ? (
-                        <a href={project.source} target="_blank" rel="noopener noreferrer" aria-label="Source code">
+                        <motion.a
+                          href={project.source}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="Source code"
+                          whileHover={isTouchDevice ? {} : { scale: 1.2 }}
+                          whileTap={{ scale: 0.85 }}
+                          transition={bouncy}
+                        >
                           <Github size={18} />
-                        </a>
+                        </motion.a>
                       ) : (
                         <span className="project-link-disabled">
                           <Github size={18} />
@@ -242,9 +249,17 @@ export default function HomeClient() {
                       )}
 
                       {project.live ? (
-                        <a href={project.live} target="_blank" rel="noopener noreferrer" aria-label="Live site">
+                        <motion.a
+                          href={project.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="Live site"
+                          whileHover={isTouchDevice ? {} : { scale: 1.2 }}
+                          whileTap={{ scale: 0.85 }}
+                          transition={bouncy}
+                        >
                           <Globe size={18} />
-                        </a>
+                        </motion.a>
                       ) : (
                         <span className="project-link-disabled">
                           <Globe size={18} />

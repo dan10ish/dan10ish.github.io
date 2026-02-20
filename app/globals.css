@@ -208,9 +208,8 @@ body {
 .island-projects {
   display: flex;
   flex-direction: column;
-  width: min(88vw, 500px);
+  width: min(80vw, 400px);
   max-height: 420px;
-  padding: 8px 10px;
   gap: 4px;
   will-change: transform;
   backface-visibility: hidden;
@@ -220,7 +219,7 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding-bottom: 8px;
+  padding: 8px 10px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
@@ -236,8 +235,8 @@ body {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  padding-right: 6px;
   overscroll-behavior: contain;
+  padding: 8px 10px;
 }
 
 .projects-list::-webkit-scrollbar {
@@ -356,12 +355,6 @@ body {
   align-items: center;
   justify-content: center;
   color: #fff;
-  transition: opacity 0.15s ease, transform 0.1s ease;
-}
-
-.project-compact-links a:hover {
-  opacity: 0.8;
-  transform: scale(1.1);
 }
 
 .project-link-disabled {
@@ -418,7 +411,6 @@ body {
   }
 
   .island-projects {
-    padding: 8px 10px;
     max-width: 94vw;
     max-height: 400px;
   }
