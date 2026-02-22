@@ -13,30 +13,40 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://dan10ish.github.io"),
-  title: "Danish",
-  description:
-    "Danish is a mechatronics engineer exploring machine learning, robotics and finance. This is his personal website.",
-  icons: {
-    icon: "/icon.png",
+  metadataBase: new URL("https://danishansari.co"),
+  title: {
+    default: "Danish Ansari",
+    template: "%s | Danish Ansari",
   },
+  description:
+    "Mechatronics engineer integrating hardware and software to create applications in machine learning, robotics, and finance.",
+  generator: "Next.js",
+  applicationName: "Danish Ansari",
+  referrer: "origin-when-cross-origin",
   keywords: [
-    "Danish",
-    "ai",
-    "artificial intelligence",
     "Danish Ansari",
-    "Danish Mumbai",
-    "mechatronics",
-    "robotics",
-    "machine learning",
-    "developer",
-    "engineer",
+    "dan10ish",
+    "mechatronics engineer",
+    "machine learning engineer",
+    "robotics engineer",
+    "artificial intelligence",
+    "finance",
+    "software developer",
     "portfolio",
+    "projects",
+    "Mumbai",
+    "Dar es Salaam",
+    "Tanzania",
+    "Africa",
+    "India"
   ],
+  authors: [{ name: "Danish Ansari", url: "https://danishansari.co" }],
+  creator: "Danish Ansari",
+  publisher: "Danish Ansari",
   robots: {
     index: true,
     follow: true,
-    nocache: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
@@ -45,36 +55,41 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  alternates: { canonical: "https://dan10ish.github.io" },
-  twitter: {
-    card: "summary_large_image",
-    site: "@dan10ish",
-    creator: "@dan10ish",
-    title: "Danish",
-    description:
-      "Danish's personal website featuring his projects, technical writings, and insights in robotics and machine learning.",
-    images: ["https://i.ibb.co/vmBrhSd/OG.png"],
+  alternates: { canonical: "https://danishansari.co" },
+  icons: {
+    icon: "/icon.png",
   },
   openGraph: {
     type: "website",
-    siteName: "Danish",
-    title: "Danish",
+    locale: "en_US",
+    siteName: "Danish Ansari",
+    title: "Danish Ansari",
     description:
-      "Danish's personal website featuring his projects, technical writings, and insights in robotics and machine learning.",
-    url: "https://dan10ish.github.io",
+      "Mechatronics engineer integrating hardware and software to create applications in machine learning, robotics, and finance.",
+    url: "https://danishansari.co",
     images: [
       {
         url: "https://i.ibb.co/vmBrhSd/OG.png",
         width: 1200,
         height: 675,
         type: "image/png",
-        alt: "Danish's Portfolio Preview",
+        alt: "Danish Ansari Portfolio Preview",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@dan10ish",
+    creator: "@dan10ish",
+    title: "Danish Ansari",
+    description:
+      "Mechatronics engineer integrating hardware and software to create applications in machine learning, robotics, and finance.",
+    images: ["https://i.ibb.co/vmBrhSd/OG.png"],
   },
   other: {
     "profile:username": "dan10ish",
     "profile:first_name": "Danish",
+    "profile:last_name": "Ansari",
   },
 };
 

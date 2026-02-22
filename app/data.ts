@@ -134,7 +134,7 @@ export const data = {
     {
       title: "Personal Website",
       source: "https://github.com/dan10ish/dan10ish.github.io",
-      live: "https://dan10ish.github.io",
+      live: "https://danishansari.co",
       description: "Personal portfolio website showcasing projects and skills",
       tag: "Portfolio"
     }

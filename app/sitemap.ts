@@ -3,20 +3,14 @@ import { MetadataRoute } from 'next'
 export const dynamic = 'force-static'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://dan10ish.github.io'
+    const baseUrl = 'https://danishansari.co'
 
     return [
         {
-            url: `${baseUrl}/`,
+            url: baseUrl,
             lastModified: new Date(),
             changeFrequency: 'weekly',
-            priority: 1,
-        },
-        {
-            url: `${baseUrl}/finds/`,
-            lastModified: new Date(),
-            changeFrequency: 'daily',
-            priority: 0.8,
+            priority: 1.0,
         },
     ]
 }
