@@ -5,6 +5,7 @@
   --foreground: #111111;
   --island-bg: #000000;
   --island-text: #ffffff;
+  --content-font-size: 16px;
 }
 
 @theme inline {
@@ -23,6 +24,7 @@ body {
 body {
   background: var(--background);
   color: var(--foreground);
+  font-family: var(--font-geist-sans), sans-serif;
 }
 
 .home-container {
@@ -219,7 +221,7 @@ body {
 }
 
 .about-text {
-  font-size: 17px;
+  font-size: var(--content-font-size) !important;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.75);
   margin: 0;
@@ -293,8 +295,8 @@ body {
 }
 
 .project-compact-title {
-  font-family: var(--font-mono), monospace;
-  font-size: 14px;
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: var(--content-font-size) !important;
   font-weight: 500;
   color: #fff;
   margin: 0;
