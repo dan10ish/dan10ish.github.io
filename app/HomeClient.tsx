@@ -170,7 +170,6 @@ export default function HomeClient() {
 
         {section === "links" && (
           <div className="island-content island-links">
-            {/* Internal back button removed, using unified external back button */}
             {data.social.map((social) => (
               <motion.a
                 key={social.icon}
@@ -251,7 +250,6 @@ export default function HomeClient() {
             </div>
           </div>
         )}
-        {/* Unified External Back Button for all expanded sections */}
         <AnimatePresence mode="popLayout">
           {(section === "about" || section === "projects" || section === "links") && (
             <motion.button

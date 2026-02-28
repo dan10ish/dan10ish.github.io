@@ -5,7 +5,89 @@
   --foreground: #111111;
   --island-bg: #000000;
   --island-text: #ffffff;
-  --content-font-size: 16px;
+  --island-hello: rgba(255, 255, 255, 0.5);
+  --island-about: rgba(255, 255, 255, 0.8);
+  --island-shadow: rgba(0, 0, 0, 0.12);
+  --island-border-subtle: rgba(255, 255, 255, 0.15);
+  --island-card-border: rgba(255, 255, 255, 0.15);
+  --island-photo-bg: rgba(255, 255, 255, 0.1);
+  --island-photo-border: rgba(255, 255, 255, 0.25);
+  --island-tag-bg: rgba(255, 255, 255, 0.1);
+  --social-icon-color: #ffffff;
+  --project-title-color: #fff;
+  --photo-shadow: rgba(255, 255, 255, 0.12);
+  --project-link-color: #fff;
+  --project-link-disabled: #444444;
+  --back-btn-bg: #48484A;
+  --back-btn-color: #ffffff;
+  --toggle-color: #111111;
+  --font-size-lg: 15px;
+  --font-size-sm: 14px;
+  --tag-font-size-lg: 10px;
+  --tag-font-size-sm: 9px;
+  --tag-algorithm-bg: rgba(52, 199, 89, 0.2);
+  --tag-algorithm-color: #34C759;
+  --tag-ai-bg: rgba(0, 122, 255, 0.2);
+  --tag-ai-color: #007AFF;
+  --tag-web-bg: rgba(255, 149, 0, 0.2);
+  --tag-web-color: #FF9500;
+  --tag-robotics-bg: rgba(175, 82, 222, 0.2);
+  --tag-robotics-color: #AF52DE;
+  --tag-education-bg: rgba(255, 45, 85, 0.2);
+  --tag-education-color: #FF2D55;
+  --tag-portfolio-bg: rgba(88, 86, 214, 0.2);
+  --tag-portfolio-color: #5856D6;
+  --tag-ml-bg: rgba(255, 204, 0, 0.2);
+  --tag-ml-color: #FFCC00;
+  --tag-game-bg: rgba(255, 59, 48, 0.2);
+  --tag-game-color: #FF3B30;
+  --tag-simulation-bg: rgba(90, 200, 250, 0.2);
+  --tag-simulation-color: #5AC8FA;
+  --btn-green: #34C759;
+  --btn-orange: #FF9500;
+  --btn-blue: #007AFF;
+  --btn-purple: #AF52DE;
+}
+
+[data-theme="dark"] {
+  --background: #161618;
+  --foreground: #e8e8ed;
+  --island-bg: #f0f0f2;
+  --island-text: #1a1a1a;
+  --island-hello: rgba(0, 0, 0, 0.4);
+  --island-about: rgba(0, 0, 0, 0.8);
+  --island-shadow: rgba(255, 255, 255, 0.05);
+  --island-border-subtle: rgba(0, 0, 0, 0.1);
+  --island-card-border: rgba(0, 0, 0, 0.12);
+  --island-photo-bg: rgba(0, 0, 0, 0.05);
+  --island-photo-border: rgba(0, 0, 0, 0.15);
+  --island-tag-bg: rgba(0, 0, 0, 0.05);
+  --social-icon-color: #1a1a1a;
+  --project-title-color: #1a1a1a;
+  --project-link-color: #1a1a1a;
+  --project-link-disabled: #b0b0b0;
+  --back-btn-bg: #d4d4d8;
+  --back-btn-color: #1a1a1a;
+  --photo-shadow: rgba(0, 0, 0, 0.15);
+  --toggle-color: #e8e8ed;
+  --tag-algorithm-bg: rgba(52, 199, 89, 0.12);
+  --tag-algorithm-color: #28a745;
+  --tag-ai-bg: rgba(0, 122, 255, 0.12);
+  --tag-ai-color: #0066d6;
+  --tag-web-bg: rgba(255, 149, 0, 0.12);
+  --tag-web-color: #d97700;
+  --tag-robotics-bg: rgba(175, 82, 222, 0.12);
+  --tag-robotics-color: #8e3db5;
+  --tag-education-bg: rgba(255, 45, 85, 0.12);
+  --tag-education-color: #d6264a;
+  --tag-portfolio-bg: rgba(88, 86, 214, 0.12);
+  --tag-portfolio-color: #4644b0;
+  --tag-ml-bg: rgba(200, 160, 0, 0.12);
+  --tag-ml-color: #a68600;
+  --tag-game-bg: rgba(255, 59, 48, 0.12);
+  --tag-game-color: #d62b22;
+  --tag-simulation-bg: rgba(60, 170, 220, 0.12);
+  --tag-simulation-color: #2898c8;
 }
 
 @theme inline {
@@ -45,7 +127,7 @@ body {
   align-items: center;
   justify-content: center;
   max-width: calc(100vw - 32px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 32px var(--island-shadow);
 }
 
 .island-content {
@@ -84,8 +166,8 @@ body {
 }
 
 .island-about {
-  padding: 15px 20px;
-  max-width: min(88vw, 500px);
+  padding: 10px 14px;
+  max-width: min(88vw, 450px);
   will-change: transform;
   backface-visibility: hidden;
   cursor: pointer;
@@ -97,7 +179,8 @@ body {
   border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--island-photo-bg);
+  box-shadow: 0 2px 8px var(--photo-shadow);
 }
 
 .island-photo img {
@@ -112,7 +195,8 @@ body {
   border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--island-photo-bg);
+  box-shadow: 0 2px 8px var(--photo-shadow);
   border: none;
   padding: 0;
   cursor: pointer;
@@ -137,13 +221,13 @@ body {
 }
 
 .island-hello {
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.5);
+  font-size: var(--font-size-sm);
+  color: var(--island-hello);
   line-height: 1.2;
 }
 
 .island-name {
-  font-size: 18px;
+  font-size: var(--font-size-lg);
   font-weight: 600;
   color: var(--island-text);
   line-height: 1.2;
@@ -166,25 +250,30 @@ body {
 }
 
 .icon-btn-green {
-  background: #34C759;
+  background: var(--btn-green);
   color: white;
 }
 
 .icon-btn-orange {
-  background: #FF9500;
+  background: var(--btn-orange);
   color: white;
 }
 
 .icon-btn-blue {
-  background: #007AFF;
+  background: var(--btn-blue);
+  color: white;
+}
+
+.icon-btn-purple {
+  background: var(--btn-purple);
   color: white;
 }
 
 .icon-btn-back {
   width: 42px;
   height: 42px;
-  background: #48484A;
-  color: white;
+  background: var(--back-btn-bg);
+  color: var(--back-btn-color);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -213,7 +302,7 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: #ffffff;
+  color: var(--social-icon-color);
   text-decoration: none;
   will-change: transform;
   backface-visibility: hidden;
@@ -221,9 +310,9 @@ body {
 }
 
 .about-text {
-  font-size: var(--content-font-size) !important;
+  font-size: var(--font-size-lg) !important;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.75);
+  color: var(--island-about);
   margin: 0;
 }
 
@@ -242,13 +331,13 @@ body {
   align-items: center;
   gap: 8px;
   padding: 8px 10px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid var(--island-border-subtle);
 }
 
 .projects-title {
-  font-size: 20px;
+  font-size: var(--font-size-lg);
   font-weight: 700;
-  color: #fff;
+  color: var(--project-title-color);
   letter-spacing: 0.3px;
   margin-left: 4px;
 }
@@ -274,7 +363,7 @@ body {
   display: flex;
   padding: 6px 0;
   text-decoration: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid var(--island-card-border);
 }
 
 .project-card:last-child {
@@ -296,69 +385,68 @@ body {
 
 .project-compact-title {
   font-family: var(--font-geist-sans), sans-serif;
-  font-size: var(--content-font-size) !important;
+  font-size: var(--font-size-lg) !important;
   font-weight: 500;
-  color: #fff;
+  color: var(--island-about);
   margin: 0;
   letter-spacing: -0.3px;
 }
 
 .project-tag {
   font-family: var(--font-mono), monospace;
-  font-size: 10px;
+  font-size: var(--tag-font-size-lg);
   font-weight: 600;
   padding: 2px 6px;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  background: var(--island-tag-bg);
+  color: var(--project-title-color);
   letter-spacing: 0.5px;
   text-transform: uppercase;
 }
 
-/* Tag colors */
 .tag-algorithm {
-  background: rgba(52, 199, 89, 0.2);
-  color: #34C759;
+  background: var(--tag-algorithm-bg);
+  color: var(--tag-algorithm-color);
 }
 
 .tag-ai {
-  background: rgba(0, 122, 255, 0.2);
-  color: #007AFF;
+  background: var(--tag-ai-bg);
+  color: var(--tag-ai-color);
 }
 
 .tag-web {
-  background: rgba(255, 149, 0, 0.2);
-  color: #FF9500;
+  background: var(--tag-web-bg);
+  color: var(--tag-web-color);
 }
 
 .tag-robotics {
-  background: rgba(175, 82, 222, 0.2);
-  color: #AF52DE;
+  background: var(--tag-robotics-bg);
+  color: var(--tag-robotics-color);
 }
 
 .tag-education {
-  background: rgba(255, 45, 85, 0.2);
-  color: #FF2D55;
+  background: var(--tag-education-bg);
+  color: var(--tag-education-color);
 }
 
 .tag-portfolio {
-  background: rgba(88, 86, 214, 0.2);
-  color: #5856D6;
+  background: var(--tag-portfolio-bg);
+  color: var(--tag-portfolio-color);
 }
 
 .tag-ml {
-  background: rgba(255, 204, 0, 0.2);
-  color: #FFCC00;
+  background: var(--tag-ml-bg);
+  color: var(--tag-ml-color);
 }
 
 .tag-game {
-  background: rgba(255, 59, 48, 0.2);
-  color: #FF3B30;
+  background: var(--tag-game-bg);
+  color: var(--tag-game-color);
 }
 
 .tag-simulation {
-  background: rgba(90, 200, 250, 0.2);
-  color: #5AC8FA;
+  background: var(--tag-simulation-bg);
+  color: var(--tag-simulation-color);
 }
 
 .project-compact-links {
@@ -371,24 +459,75 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: var(--project-link-color);
 }
 
 .project-link-disabled {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #444444;
-  /* Dark grey color, clearly disabled without opacity glitches */
+  color: var(--project-link-disabled);
   cursor: not-allowed;
 }
 
-.icon-btn-purple {
-  background: #AF52DE;
-  color: white;
+.theme-toggle-wrapper {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 100;
+}
+
+.theme-toggle-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--toggle-color);
+  box-shadow: none;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.theme-toggle-btn:active .theme-icon {
+  transform: rotate(30deg) scale(0.85);
+}
+
+.sun-icon {
+  display: block;
+}
+
+[data-theme="dark"] .sun-icon {
+  display: none;
+}
+
+.moon-icon {
+  display: none;
+}
+
+[data-theme="dark"] .moon-icon {
+  display: block;
 }
 
 @media (max-width: 480px) {
+  :root {
+    --font-size-lg: 14px;
+    --font-size-sm: 13px;
+    --tag-font-size-lg: 9px;
+  }
+
   .island-expanded {
     min-width: min(68vw, 290px);
     gap: 16px;
@@ -443,21 +582,14 @@ body {
     padding: 2px 4px;
   }
 
-  .island-name {
-    font-size: 16px;
-  }
-
-  .island-hello {
-    font-size: 13px;
-  }
-
   .island-about {
-    padding: 16px 18px;
-    max-width: 94vw;
+    padding: 10px 14px;
+    max-width: 90vw;
   }
 
-  .about-text {
-    font-size: 15px;
+  .theme-toggle-wrapper {
+    bottom: 20px;
+    right: 20px;
   }
 }
 
