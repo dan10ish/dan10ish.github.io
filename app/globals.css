@@ -50,7 +50,7 @@
 }
 
 [data-theme="dark"] {
-  --background: #444444;
+  --background: #3d3d3d;
   --foreground: #e8e8ed;
   --island-bg: #000000;
   --island-text: #f0f0f2;
@@ -66,8 +66,8 @@
   --project-title-color: #f0f0f2;
   --project-link-color: #f0f0f2;
   --project-link-disabled: #636366;
-  --back-btn-bg: #48484A;
-  --back-btn-color: #f0f0f2;
+  --back-btn-bg: #6c6c70;
+  --back-btn-color: #ffffff;
   --photo-shadow: rgba(0, 0, 0, 0.3);
   --toggle-color: #e8e8ed;
   --tag-algorithm-bg: rgba(52, 199, 89, 0.18);
