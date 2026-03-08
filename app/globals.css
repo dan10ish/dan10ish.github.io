@@ -50,9 +50,9 @@
 }
 
 [data-theme="dark"] {
-  --background: #000000;
+  --background: #1c1c1e;
   --foreground: #e8e8ed;
-  --island-bg: #2c2c2e;
+  --island-bg: #000000;
   --island-text: #f0f0f2;
   --island-hello: rgba(255, 255, 255, 0.45);
   --island-about: rgba(255, 255, 255, 0.78);

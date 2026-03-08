@@ -63,7 +63,7 @@ export default function ThemeToggle() {
         localStorage.setItem("theme", next);
         const meta = document.querySelector('meta[name="theme-color"]');
         if (meta) {
-            meta.setAttribute("content", next === "dark" ? "#000000" : "#f5f5f7");
+            meta.setAttribute("content", next === "dark" ? "#1c1c1e" : "#f5f5f7");
         }
         const colorSchemeMeta = document.querySelector('meta[name="color-scheme"]');
         if (colorSchemeMeta) {
