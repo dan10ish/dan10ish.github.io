@@ -50,7 +50,7 @@
 }
 
 [data-theme="dark"] {
-  --background: #1c1c1e;
+  --background: #444444;
   --foreground: #e8e8ed;
   --island-bg: #000000;
   --island-text: #f0f0f2;
