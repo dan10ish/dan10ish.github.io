@@ -113,7 +113,7 @@ export default function RootLayout({
         />
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('theme');if(!t){t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'}document.documentElement.setAttribute('data-theme',t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',t==='dark'?'#3d3d3d':'#f5f5f7');var c=document.querySelector('meta[name="color-scheme"]');if(c)c.setAttribute('content',t)}catch(e){}})()`,
+            __html: `(function(){try{var t=localStorage.getItem('theme');if(!t){t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'}document.documentElement.setAttribute('data-theme',t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',t==='dark'?'#141414':'#f5f5f7');var c=document.querySelector('meta[name="color-scheme"]');if(c)c.setAttribute('content',t)}catch(e){}})()`,
           }}
         />
       </head>
