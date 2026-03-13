@@ -272,6 +272,7 @@ body {
 .about-text {
   font-size: var(--font-size-lg) !important;
   line-height: 1.6;
+  font-weight: 600;
   color: var(--island-about);
   margin: 0;
 }
@@ -439,7 +440,7 @@ body {
   }
 
   .island-expanded {
-    min-width: min(68vw, 290px);
+    min-width: min(75vw, 320px);
     gap: 16px;
   }
 
@@ -457,13 +458,13 @@ body {
 
   .island-photo,
   .island-photo-btn {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
   }
 
   .icon-btn {
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
   }
 
   .icon-btn-back {
@@ -478,8 +479,8 @@ body {
   }
 
   .social-icon {
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
   }
 
   .island-projects {
@@ -500,19 +501,19 @@ body {
 
 @media (max-width: 380px) {
   .island-expanded {
-    min-width: min(70vw, 260px);
+    min-width: min(80vw, 290px);
     gap: 12px;
   }
 
   .icon-btn {
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
   }
 
   .island-photo,
   .island-photo-btn {
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
   }
 
   .icon-btn-back {
@@ -527,7 +528,7 @@ body {
   }
 
   .social-icon {
-    width: 34px;
-    height: 34px;
+    width: 38px;
+    height: 38px;
   }
 }

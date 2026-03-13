@@ -40,7 +40,7 @@ const SnapchatIcon = ({ size = 20 }: { size?: number }) => (
 
 const getSocialIcon = (icon: SocialIcon, size: number) => {
   switch (icon) {
-    case "github": return <Github size={size} strokeWidth={1.5} />;
+    case "github": return <Github size={size} strokeWidth={2.25} />;
     case "twitter": return <XIcon size={size} />;
     case "instagram": return <InstagramIcon size={size} />;
     case "linkedin": return <LinkedInIcon size={size} />;
@@ -80,7 +80,7 @@ export default function HomeClient() {
     else if (section === "about" || section === "links" || section === "projects") setSection("expanded");
   }, [section]);
 
-  const aboutText = `${data.personal.about} Currently working at ${data.experience[0].company}. Previously worked at ${data.experience.slice(1).map(e => e.company).join(" and ")}.`;
+  const aboutText = `${data.personal.about} Currently taking companies from zero to one.`;
 
   return (
     <div className="home-container" onClick={handleOutsideClick}>
