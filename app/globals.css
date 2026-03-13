@@ -50,51 +50,6 @@
   --btn-purple: #AF52DE;
 }
 
-[data-theme="dark"] {
-  --background: #141414;
-  --foreground: #e8e8ed;
-  --island-bg: #e8e8ed;
-  --island-text: #1a1a1a;
-  --island-hello: rgba(0, 0, 0, 0.45);
-  --island-about: rgba(0, 0, 0, 0.72);
-  --island-shadow: rgba(0, 0, 0, 0.5);
-  --island-border-subtle: rgba(0, 0, 0, 0.1);
-  --island-card-border: rgba(0, 0, 0, 0.08);
-  --island-photo-bg: rgba(0, 0, 0, 0.06);
-  --island-photo-border: rgba(0, 0, 0, 0.15);
-  --island-tag-bg: rgba(0, 0, 0, 0.06);
-  --social-icon-color: #1a1a1a;
-  --project-title-color: #1a1a1a;
-  --project-link-color: #1a1a1a;
-  --project-link-disabled: #b0b0b0;
-  --back-btn-bg: #d0d0d0;
-  --back-btn-color: #1a1a1a;
-  --photo-shadow: rgba(0, 0, 0, 0.12);
-  --toggle-color: #e8e8ed;
-  --tag-algorithm-bg: rgba(52, 199, 89, 0.15);
-  --tag-algorithm-color: #1e9e42;
-  --tag-ai-bg: rgba(0, 122, 255, 0.12);
-  --tag-ai-color: #0066d6;
-  --tag-web-bg: rgba(255, 149, 0, 0.12);
-  --tag-web-color: #cc7700;
-  --tag-robotics-bg: rgba(175, 82, 222, 0.12);
-  --tag-robotics-color: #8b3dc0;
-  --tag-education-bg: rgba(255, 45, 85, 0.12);
-  --tag-education-color: #d4264a;
-  --tag-portfolio-bg: rgba(88, 86, 214, 0.12);
-  --tag-portfolio-color: #4a48b5;
-  --tag-ml-bg: rgba(255, 204, 0, 0.15);
-  --tag-ml-color: #b38f00;
-  --tag-game-bg: rgba(255, 59, 48, 0.12);
-  --tag-game-color: #d4261e;
-  --tag-simulation-bg: rgba(90, 200, 250, 0.12);
-  --tag-simulation-color: #2a8fba;
-  --btn-green: #34C759;
-  --btn-orange: #FF9500;
-  --btn-blue: #007AFF;
-  --btn-purple: #AF52DE;
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -475,57 +430,6 @@ body {
   cursor: not-allowed;
 }
 
-.theme-toggle-wrapper {
-  position: fixed;
-  bottom: 28px;
-  right: 28px;
-  z-index: 100;
-}
-
-.theme-toggle-btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  color: var(--toggle-color);
-  box-shadow: none;
-  will-change: transform;
-  backface-visibility: hidden;
-  transform: translateZ(0);
-  position: relative;
-  overflow: hidden;
-}
-
-.theme-icon {
-  width: 20px;
-  height: 20px;
-}
-
-.theme-toggle-btn:active .theme-icon {
-  transform: rotate(30deg) scale(0.85);
-}
-
-.sun-icon {
-  display: block;
-}
-
-[data-theme="dark"] .sun-icon {
-  display: none;
-}
-
-.moon-icon {
-  display: none;
-}
-
-[data-theme="dark"] .moon-icon {
-  display: block;
-}
-
 @media (max-width: 480px) {
   :root {
     --font-size-xl: 16px;
@@ -591,11 +495,6 @@ body {
   .island-about {
     padding: 10px 14px;
     max-width: 90vw;
-  }
-
-  .theme-toggle-wrapper {
-    bottom: 20px;
-    right: 20px;
   }
 }
 
