@@ -184,6 +184,7 @@ body {
   font-size: var(--font-size-sm);
   color: var(--island-hello);
   line-height: 1.2;
+  font-weight: 400;
 }
 
 .island-name {
@@ -272,7 +273,7 @@ body {
 .about-text {
   font-size: var(--font-size-lg) !important;
   line-height: 1.6;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--island-about);
   margin: 0;
 }

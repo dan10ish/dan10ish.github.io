@@ -46,7 +46,7 @@ const getSocialIcon = (icon: SocialIcon, size: number) => {
     case "linkedin": return <LinkedInIcon size={size} />;
     case "threads": return <ThreadsIcon size={size} />;
     case "snapchat": return <SnapchatIcon size={size} />;
-    case "mail": return <Mail size={size} strokeWidth={1.5} />;
+    case "mail": return <Mail size={size} strokeWidth={2} />;
     default: return null;
   }
 };
@@ -136,7 +136,7 @@ export default function HomeClient() {
                 whileTap={{ scale: 0.85 }}
                 transition={bouncy}
               >
-                <User size={20} strokeWidth={2} />
+                <User size={20} strokeWidth={2.25} />
               </motion.button>
               <motion.button
                 onClick={() => setSection("projects")}
@@ -146,7 +146,7 @@ export default function HomeClient() {
                 whileTap={{ scale: 0.85 }}
                 transition={bouncy}
               >
-                <Hammer size={20} strokeWidth={2} />
+                <Hammer size={20} strokeWidth={2.25} />
               </motion.button>
               <motion.button
                 onClick={() => setSection("links")}
@@ -156,7 +156,7 @@ export default function HomeClient() {
                 whileTap={{ scale: 0.85 }}
                 transition={bouncy}
               >
-                <Share2 size={20} strokeWidth={2} />
+                <Share2 size={20} strokeWidth={2.25} />
               </motion.button>
             </div>
           </div>
