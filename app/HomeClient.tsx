@@ -2,8 +2,11 @@
 
 import { useState, useCallback, useEffect, useRef } from "react";
 import { data, SocialIcon } from "./data";
-import { Plus, User, Share2, ArrowLeft, Github, Mail, Hammer, Globe } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { Plus, Github, Mail, Globe } from "lucide-react";
+import { AudioLines } from "@/components/animate-ui/icons/audio-lines";
+import { Hammer } from "@/components/animate-ui/icons/hammer";
+import { MessageCircleMore } from "@/components/animate-ui/icons/message-circle-more";
+import { motion } from "framer-motion";
 import Image from "next/image";
 
 type Section = "home" | "expanded" | "about" | "links" | "projects";
@@ -136,7 +139,7 @@ export default function HomeClient() {
                 whileTap={{ scale: 0.85 }}
                 transition={bouncy}
               >
-                <User size={20} strokeWidth={2.25} />
+                <AudioLines size={20} />
               </motion.button>
               <motion.button
                 onClick={() => setSection("projects")}
@@ -146,7 +149,7 @@ export default function HomeClient() {
                 whileTap={{ scale: 0.85 }}
                 transition={bouncy}
               >
-                <Hammer size={20} strokeWidth={2.25} />
+                <Hammer size={20} />
               </motion.button>
               <motion.button
                 onClick={() => setSection("links")}
@@ -156,7 +159,7 @@ export default function HomeClient() {
                 whileTap={{ scale: 0.85 }}
                 transition={bouncy}
               >
-                <Share2 size={20} strokeWidth={2.25} />
+                <MessageCircleMore size={20} />
               </motion.button>
             </div>
           </div>
@@ -250,24 +253,7 @@ export default function HomeClient() {
             </div>
           </div>
         )}
-        <AnimatePresence mode="popLayout">
-          {(section === "about" || section === "projects" || section === "links") && (
-            <motion.button
-              key={`${section}-back`}
-              onClick={goBack}
-              className="icon-btn-back external-back-btn"
-              aria-label="Go back"
-              initial={{ opacity: 0, y: -20, scale: 0.8, x: "-50%" }}
-              animate={{ opacity: 1, y: 0, scale: 1, x: "-50%" }}
-              exit={{ opacity: 0, y: -20, scale: 0.8, x: "-50%", transition: { duration: 0.05, delay: 0 } }}
-              whileHover={isTouchDevice ? { x: "-50%" } : { scale: 1.15, x: "-50%" }}
-              whileTap={{ scale: 0.85, x: "-50%" }}
-              transition={{ ...bouncy, delay: 0 }}
-            >
-              <ArrowLeft size={24} strokeWidth={2} />
-            </motion.button>
-          )}
-        </AnimatePresence>
+
       </motion.div>
     </div>
   );

@@ -22,7 +22,7 @@
   --back-btn-color: #ffffff;
   --toggle-color: #111111;
   --font-size-xl: 18px;
-  --font-size-lg: 15px;
+  --font-size-lg: 17px;
   --font-size-sm: 14px;
   --tag-font-size-lg: 10px;
   --tag-font-size-sm: 9px;
@@ -435,7 +435,7 @@ body {
 @media (max-width: 480px) {
   :root {
     --font-size-xl: 16px;
-    --font-size-lg: 14px;
+    --font-size-lg: 15px;
     --font-size-sm: 13px;
     --tag-font-size-lg: 9px;
   }
