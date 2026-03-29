@@ -17,12 +17,15 @@
   --project-title-color: #fff;
   --photo-shadow: rgba(255, 255, 255, 0.12);
   --project-link-color: #fff;
+  --project-link-hover: #007aff;
   --project-link-disabled: #444444;
   --back-btn-bg: #48484A;
   --back-btn-color: #ffffff;
   --toggle-color: #111111;
   --font-size-xl: 18px;
   --font-size-lg: 17px;
+  --font-size-about: 17px;
+  --font-size-project: 15px;
   --font-size-sm: 14px;
   --tag-font-size-lg: 10px;
   --tag-font-size-sm: 9px;
@@ -271,7 +274,7 @@ body {
 }
 
 .about-text {
-  font-size: var(--font-size-lg) !important;
+  font-size: var(--font-size-about) !important;
   line-height: 1.6;
   font-weight: 500;
   color: var(--island-about);
@@ -297,7 +300,7 @@ body {
 }
 
 .projects-title {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-project);
   font-weight: 700;
   color: var(--project-title-color);
   letter-spacing: 0.3px;
@@ -347,7 +350,7 @@ body {
 
 .project-compact-title {
   font-family: var(--font-geist-sans), sans-serif;
-  font-size: var(--font-size-lg) !important;
+  font-size: var(--font-size-project) !important;
   font-weight: 500;
   color: var(--island-about);
   margin: 0;
@@ -372,13 +375,13 @@ body {
 }
 
 .tag-ai {
-  background: var(--tag-ai-bg);
-  color: var(--tag-ai-color);
+  background: var(--tag-web-bg);
+  color: var(--tag-web-color);
 }
 
 .tag-web {
-  background: var(--tag-web-bg);
-  color: var(--tag-web-color);
+  background: var(--tag-ai-bg);
+  color: var(--tag-ai-color);
 }
 
 .tag-robotics {
@@ -402,8 +405,8 @@ body {
 }
 
 .tag-game {
-  background: var(--tag-game-bg);
-  color: var(--tag-game-color);
+  background: var(--tag-web-bg);
+  color: var(--tag-web-color);
 }
 
 .tag-simulation {
@@ -422,6 +425,11 @@ body {
   align-items: center;
   justify-content: center;
   color: var(--project-link-color);
+  transition: color 0.2s ease;
+}
+
+.project-compact-links a:hover {
+  color: var(--project-link-hover);
 }
 
 .project-link-disabled {
@@ -436,6 +444,8 @@ body {
   :root {
     --font-size-xl: 16px;
     --font-size-lg: 15px;
+    --font-size-about: 15px;
+    --font-size-project: 13px;
     --font-size-sm: 13px;
     --tag-font-size-lg: 9px;
   }
