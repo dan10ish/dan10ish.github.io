@@ -88,7 +88,7 @@
   }
 
   .dark {
-    --background: 240 10% 4%;
+    --background: 0 0% 4%;
     --foreground: 0 0% 98%;
     --card: 240 10% 3.9%;
     --card-foreground: 0 0% 98%;
@@ -139,6 +139,7 @@
   margin: 1.5rem 0 !important;
   overflow-x: auto !important;
   overflow-y: hidden !important;
+  width: 100% !important;
   max-width: 100% !important;
   padding: 0.5rem 0 !important;
   -webkit-overflow-scrolling: touch;
@@ -146,12 +147,13 @@
 
 .katex {
   font-size: 1em;
-  max-width: 100%;
 }
 
 .katex-display > .katex {
   font-size: 1.05em;
-  white-space: nowrap;
+  white-space: nowrap !important;
+  display: inline-block !important;
+  width: auto !important;
 }
 
 /* Base styles to maintain consistency while migrating */

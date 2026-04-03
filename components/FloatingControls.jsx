@@ -25,11 +25,11 @@ export default function FloatingControls() {
 
   if (!mounted) return null
 
-  const iconClasses = "w-5 h-5"
-  const buttonClasses = "group flex items-center justify-center w-11 h-11 rounded-full text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white"
+  const iconClasses = "w-6 h-6"
+  const buttonClasses = "group flex items-center justify-center w-10 h-10 rounded-full text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white"
 
   return (
-    <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-center gap-3">
+    <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-center gap-2">
       {showScrollTop && (
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'auto' })}

@@ -95,7 +95,7 @@ export default function RootLayout({ children }) {
           crossOrigin="anonymous"
         />
       </head>
-      <body className="antialiased font-mono bg-white text-[#18181b] dark:bg-[#141414] dark:text-[#fafafa] selection:bg-black/5 dark:selection:bg-white/10">
+      <body className="antialiased font-mono bg-background text-foreground selection:bg-foreground/10">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <main className="max-w-750 mx-auto px-6 py-12 min-h-screen">
             {children}

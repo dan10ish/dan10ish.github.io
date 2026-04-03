@@ -23,7 +23,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
 const LucideIcon = memo(({ icon: Icon, ...props }) => (
-  <Icon strokeWidth={1.75} {...props} />
+  <Icon strokeWidth={2} {...props} />
 ));
 LucideIcon.displayName = "LucideIcon";
 
@@ -50,7 +50,7 @@ SnapchatIcon.displayName = "SnapchatIcon";
 
 const GithubIcon = memo(({ size = 20 }) => (
   <svg width={size} height={size} viewBox="0 0 602 667" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M415.647 641.666C415.772 622.212 415.893 554.691 415.893 527.958C415.893 489.324 402.697 464.045 387.897 451.249C479.776 440.983 576.234 405.987 576.234 246.804C576.234 201.574 560.301 164.574 533.838 135.624C538.076 125.141 552.226 82.9994 529.726 25.9578C529.726 25.9578 495.159 14.8244 416.384 68.4744C383.418 59.2536 348.172 54.6911 313.118 54.5078C278.059 54.6911 242.818 59.2578 209.847 68.4744C131.072 14.8244 96.5093 25.9578 96.5093 25.9578C74.0093 82.9994 88.1593 125.141 92.3968 135.624C65.9343 164.574 50.001 201.574 50.001 246.804C50.001 405.987 146.455 440.983 238.334 451.249C223.538 464.045 210.338 489.324 210.338 527.958C210.338 554.691 210.463 622.212 210.584 641.666M25.001 474.999C66.4135 477.929 90.2926 515.562 90.2926 515.562C127.101 578.891 186.868 560.574 210.355 549.999" stroke="currentColor" strokeWidth={45} strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M415.647 641.666C415.772 622.212 415.893 554.691 415.893 527.958C415.893 489.324 402.697 464.045 387.897 451.249C479.776 440.983 576.234 405.987 576.234 246.804C576.234 201.574 560.301 164.574 533.838 135.624C538.076 125.141 552.226 82.9994 529.726 25.9578C529.726 25.9578 495.159 14.8244 416.384 68.4744C383.418 59.2536 348.172 54.6911 313.118 54.5078C278.059 54.6911 242.818 59.2578 209.847 68.4744C131.072 14.8244 96.5093 25.9578 96.5093 25.9578C74.0093 82.9994 88.1593 125.141 92.3968 135.624C65.9343 164.574 50.001 201.574 50.001 246.804C50.001 405.987 146.455 440.983 238.334 451.249C223.538 464.045 210.338 489.324 210.338 527.958C210.338 554.691 210.463 622.212 210.584 641.666M25.001 474.999C66.4135 477.929 90.2926 515.562 90.2926 515.562C127.101 578.891 186.868 560.574 210.355 549.999" stroke="currentColor" strokeWidth={60} strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 ));
 GithubIcon.displayName = "GithubIcon";
@@ -189,41 +189,6 @@ const SortIcon = memo(({ columnKey, sortConfig }) => (
 ));
 SortIcon.displayName = "SortIcon";
 
-const ScrollIndicator = memo(({ containerRef }) => {
-  const [shouldShow, setShouldShow] = useState(false);
-
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const checkScroll = () => {
-      const { scrollTop, scrollHeight, clientHeight } = container;
-      setShouldShow(scrollHeight > clientHeight && scrollHeight - scrollTop - clientHeight > 10);
-    };
-
-    checkScroll();
-    container.addEventListener("scroll", checkScroll);
-    window.addEventListener("resize", checkScroll);
-    const observer = new MutationObserver(checkScroll);
-    observer.observe(container, { childList: true, subtree: true });
-
-    return () => {
-      container.removeEventListener("scroll", checkScroll);
-      window.removeEventListener("resize", checkScroll);
-      observer.disconnect();
-    };
-  }, [containerRef]);
-
-  if (!shouldShow) return null;
-
-  return (
-    <div className="flex justify-center mt-4 text-foreground/40">
-      <ChevronDown size={20} />
-    </div>
-  );
-});
-ScrollIndicator.displayName = "ScrollIndicator";
-
 const VideoSection = memo(({ project, shouldLoadVideo }) => {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoError, setVideoError] = useState(false);
@@ -323,14 +288,13 @@ const ProjectModal = memo(({ project, isOpen, onClose }) => {
 ProjectModal.displayName = "ProjectModal";
 
 const BlogList = memo(({ blogs, handleSort, sortConfig, selectedRowIndex }) => {
-  const tableRef = useRef(null);
   return (
     <div className="mt-4">
-      <div className="grid grid-cols-[1fr_45px] sm:grid-cols-[1fr_50px] gap-2 md:gap-4 px-2 pb-3 text-foreground/40 text-[0.8rem] font-bold uppercase tracking-wider border-b border-foreground/5 items-center font-mono">
-        <span onClick={() => handleSort("title")} className="cursor-pointer flex items-center gap-1 hover:text-foreground">title <SortIcon columnKey="title" sortConfig={sortConfig} /></span>
-        <span onClick={() => handleSort("date")} className="cursor-pointer flex items-center justify-center gap-1 hover:text-foreground">year <SortIcon columnKey="date" sortConfig={sortConfig} /></span>
+      <div className="sticky top-0 bg-background z-20 grid grid-cols-[1fr_45px] sm:grid-cols-[1fr_50px] gap-2 md:gap-4 px-2 py-3 text-foreground text-[0.8rem] font-bold uppercase tracking-wider border-b border-foreground/5 items-center font-mono">
+        <span onClick={() => handleSort("title")} className="cursor-pointer flex items-center gap-1 hover:text-blue-500 transition-colors">title <SortIcon columnKey="title" sortConfig={sortConfig} /></span>
+        <span onClick={() => handleSort("date")} className="cursor-pointer flex items-center justify-center gap-1 hover:text-blue-500 transition-colors">year <SortIcon columnKey="date" sortConfig={sortConfig} /></span>
       </div>
-      <div className="overflow-y-auto no-scrollbar max-h-[60vh] sm:max-h-[70vh]" ref={tableRef}>
+      <div>
         {blogs.map((blog, index) => (
           <Link
             key={blog.slug}
@@ -345,17 +309,15 @@ const BlogList = memo(({ blogs, handleSort, sortConfig, selectedRowIndex }) => {
           </Link>
         ))}
       </div>
-      <ScrollIndicator containerRef={tableRef} />
     </div>
   );
 });
 BlogList.displayName = "BlogList";
 
 const ProjectList = memo(({ projects, handleProjectClick, selectedRowIndex }) => {
-  const tableRef = useRef(null);
   return (
     <div className="mt-4">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 overflow-y-auto no-scrollbar max-h-[60vh] sm:max-h-[70vh] p-1" ref={tableRef}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-1">
         {projects.map((project, index) => (
           <div
             key={project.title}
@@ -378,7 +340,6 @@ const ProjectList = memo(({ projects, handleProjectClick, selectedRowIndex }) =>
           </div>
         ))}
       </div>
-      <ScrollIndicator containerRef={tableRef} />
     </div>
   );
 });
@@ -391,30 +352,30 @@ const Content = memo(({ projects, blogs }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedRowIndex, setSelectedRowIndex] = useState(null);
 
-  const handleTabChange = useCallback(t => { 
-    setActiveTab(t); 
-    setSortConfig({ key: null, direction: null }); 
-    window.history.replaceState(null, "", `#${t}`); 
+  const handleTabChange = useCallback(t => {
+    setActiveTab(t);
+    setSortConfig({ key: null, direction: null });
+    window.history.replaceState(null, "", `#${t}`);
   }, []);
 
-  const handleSort = useCallback(k => { 
-    setSortConfig(c => ({ 
-      key: c.key === k && c.direction === "desc" ? null : k, 
-      direction: c.key === k ? (c.direction === "asc" ? "desc" : null) : "asc" 
-    })); 
+  const handleSort = useCallback(k => {
+    setSortConfig(c => ({
+      key: c.key === k && c.direction === "desc" ? null : k,
+      direction: c.key === k ? (c.direction === "asc" ? "desc" : null) : "asc"
+    }));
   }, []);
 
-  const handleProjectClick = useCallback(p => { 
-    setSelectedProject(p); 
-    setIsModalOpen(true); 
+  const handleProjectClick = useCallback(p => {
+    setSelectedProject(p);
+    setIsModalOpen(true);
   }, []);
 
   useEffect(() => {
     const hash = window.location.hash.replace("#", "");
     if (["projects", "microblogs"].includes(hash)) setActiveTab(hash);
-    const onHash = () => { 
-      const h = window.location.hash.replace("#", ""); 
-      if (["projects", "microblogs"].includes(h)) setActiveTab(h); 
+    const onHash = () => {
+      const h = window.location.hash.replace("#", "");
+      if (["projects", "microblogs"].includes(h)) setActiveTab(h);
     };
     window.addEventListener("hashchange", onHash);
     return () => window.removeEventListener("hashchange", onHash);
@@ -435,9 +396,9 @@ const Content = memo(({ projects, blogs }) => {
       if (isModalOpen) return;
       if (e.key === "ArrowDown") { e.preventDefault(); setSelectedRowIndex(p => p === null ? 0 : Math.min(p + 1, sortedData.length - 1)); }
       if (e.key === "ArrowUp") { e.preventDefault(); setSelectedRowIndex(p => p === null ? sortedData.length - 1 : Math.max(p - 1, 0)); }
-      if (e.key === "Enter" && selectedRowIndex !== null) { 
-        if (activeTab === "microblogs") window.location.href = `/blog/${sortedData[selectedRowIndex].slug}`; 
-        else handleProjectClick(sortedData[selectedRowIndex]); 
+      if (e.key === "Enter" && selectedRowIndex !== null) {
+        if (activeTab === "microblogs") window.location.href = `/blog/${sortedData[selectedRowIndex].slug}`;
+        else handleProjectClick(sortedData[selectedRowIndex]);
       }
       if (e.key === "Escape") setSelectedRowIndex(null);
     };
@@ -452,16 +413,16 @@ const Content = memo(({ projects, blogs }) => {
       <AboutContent />
       <div className="flex gap-2 mt-6 px-1">
         {TABS.map(t => (
-          <button 
-            key={t.id} 
-            onClick={() => handleTabChange(t.id)} 
+          <button
+            key={t.id}
+            onClick={() => handleTabChange(t.id)}
             className={`px-4 py-1.5 text-sm font-bold uppercase tracking-widest relative z-10 ${activeTab === t.id ? "text-foreground" : "text-foreground/30 hover:hover:text-foreground/60"}`}
           >
             {activeTab === t.id && (
-              <motion.div 
-                layoutId="tab-bg" 
-                className="absolute inset-0 bg-foreground/[0.05] rounded-lg -z-10" 
-                transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} 
+              <motion.div
+                layoutId="tab-bg"
+                className="absolute inset-0 bg-foreground/[0.05] rounded-lg -z-10"
+                transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
               />
             )}
             {t.label}
