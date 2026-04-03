@@ -10,6 +10,7 @@ const nextConfig = {
     unoptimized: true,
   },
   turbopack: {},
+  allowedDevOrigins: ['192.168.1.101'],
   webpack: (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
