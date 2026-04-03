@@ -1,6 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../tailwind.config.js";
 
 @font-face {
   font-family: "SF Mono";
@@ -72,18 +71,18 @@
     --input: 240 5.9% 90%;
     --ring: 240 10% 3.9%;
     --radius: 0.5rem;
-    --font-size-base: 14px;
-    --font-size-sm: 12px;
-    --font-size-lg: 16px;
-    --font-size-xl: 18px;
+    --font-size-base: 13px;
+    --font-size-sm: 11px;
+    --font-size-lg: 15px;
+    --font-size-xl: 17px;
   }
   
   @media (min-width: 768px) {
     :root {
-      --font-size-base: 15px;
-      --font-size-sm: 13px;
-      --font-size-lg: 17px;
-      --font-size-xl: 20px;
+      --font-size-base: 14px;
+      --font-size-sm: 12px;
+      --font-size-lg: 16px;
+      --font-size-xl: 18px;
     }
   }
 
@@ -110,14 +109,16 @@
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-    font-size: var(--font-size-base);
-  }
+html {
+  font-size: var(--font-size-base);
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  @apply bg-background text-foreground;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Hover effects only for mouse/keyboards */

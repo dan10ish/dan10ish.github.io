@@ -67,14 +67,14 @@ export default function BlogPostClient({ frontmatter, compiledSource }) {
         : "";
 
     return (
-        <div className="w-full max-w-[750px] mx-auto px-2 sm:px-4 py-4 overflow-x-hidden min-w-0">
-            <header className="mb-8 px-2">
-                <h1 className="text-xl sm:text-2xl font-bold text-foreground mb-4 leading-tight">
+        <div className="w-full max-w-[700px] mx-auto px-2 sm:px-4 py-4 overflow-x-hidden min-w-0">
+            <header className="mb-6 px-2">
+                <h1 className="text-lg sm:text-xl font-bold text-foreground mb-3 leading-tight tracking-tight">
                     {frontmatter.title}
                 </h1>
                 <div className="flex items-center gap-4 flex-wrap">
                     {formattedDate && (
-                        <time dateTime={frontmatter.date} className="text-foreground/40 text-[0.9rem]">
+                        <time dateTime={frontmatter.date} className="text-foreground/40 text-[0.75rem] font-mono">
                             {formattedDate}
                         </time>
                     )}
@@ -82,8 +82,8 @@ export default function BlogPostClient({ frontmatter, compiledSource }) {
             </header>
 
             <div className="relative w-full min-w-0 overflow-hidden">
-                <article className="prose prose-sm dark:prose-invert max-none text-foreground/80 selection:bg-foreground/10 w-full min-w-0" ref={contentRef}>
-                    <div className="blog-content-container w-full min-w-0 overflow-x-hidden [&>h2]:text-lg [&>h2]:font-bold [&>h2]:mt-8 [&>h2]:mb-4 [&>p]:mb-4 [&>p]:leading-relaxed [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:mb-4 [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:mb-4 [&>li]:mb-1 [&>blockquote]:border-l-2 [&>blockquote]:border-foreground/10 [&>blockquote]:pl-4 [&>blockquote]:italic [&>blockquote]:my-6 [&_pre]:!text-[0.7rem] sm:[&_pre]:!text-[0.75rem] [&_pre]:!overflow-x-auto [&_pre]:!max-w-full [&_pre]:!whitespace-pre [&_pre]:!block [&_code]:!text-[0.9em] [&_pre_code]:!bg-transparent [&_pre_code]:!p-0 [&_pre_code]:!whitespace-pre [&_pre_code]:!word-break-normal [&_.katex-display]:overflow-x-auto [&_.katex-display]:max-w-full [&_.katex-display]:py-2">
+                <article className="prose prose-sm dark:prose-invert max-none text-foreground/70 selection:bg-foreground/10 w-full min-w-0" ref={contentRef}>
+                    <div className="blog-content-container w-full min-w-0 overflow-x-hidden text-[0.8rem] sm:text-[0.85rem] leading-[1.6] [&>h2]:text-[1rem] [&>h2]:font-bold [&>h2]:mt-8 [&>h2]:mb-4 [&>p]:mb-4 [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:mb-4 [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:mb-4 [&>li]:mb-1 [&>blockquote]:border-l-2 [&>blockquote]:border-foreground/10 [&>blockquote]:pl-4 [&>blockquote]:italic [&>blockquote]:my-6 [&_pre]:!text-[0.65rem] sm:[&_pre]:!text-[0.7rem] [&_pre]:!overflow-x-auto [&_pre]:!max-w-full [&_pre]:!whitespace-pre [&_pre]:!block [&_code]:!text-[0.9em] [&_pre_code]:!bg-transparent [&_pre_code]:!p-0 [&_pre_code]:!whitespace-pre [&_pre_code]:!word-break-normal [&_.katex-display]:overflow-x-auto [&_.katex-display]:max-w-full [&_.katex-display]:py-2">
                         {Content ? <Content /> : <div className="text-foreground/40 py-4">Loading…</div>}
                     </div>
                 </article>

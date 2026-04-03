@@ -298,7 +298,7 @@ ProjectModal.displayName = "ProjectModal";
 const BlogList = memo(({ blogs, handleSort, sortConfig, selectedRowIndex }) => {
   return (
     <div className="mt-4">
-      <div className="sticky top-0 bg-background z-20 grid grid-cols-[1fr_45px] sm:grid-cols-[1fr_50px] gap-2 md:gap-4 px-2 py-3 text-foreground text-[0.8rem] font-bold uppercase tracking-wider border-b border-foreground/5 items-center font-mono">
+      <div className="sticky top-0 bg-background z-20 grid grid-cols-[1fr_45px] sm:grid-cols-[1fr_50px] gap-2 md:gap-4 px-2 py-3 text-foreground text-[0.85rem] sm:text-[0.9rem] font-bold uppercase tracking-wider border-b border-foreground/5 items-center font-mono">
         <span onClick={() => handleSort("title")} className="cursor-pointer flex items-center gap-1 hover:text-blue-500 transition-colors">title <SortIcon columnKey="title" sortConfig={sortConfig} /></span>
         <span onClick={() => handleSort("date")} className="cursor-pointer flex items-center justify-center gap-1 hover:text-blue-500 transition-colors">year <SortIcon columnKey="date" sortConfig={sortConfig} /></span>
       </div>
@@ -307,7 +307,7 @@ const BlogList = memo(({ blogs, handleSort, sortConfig, selectedRowIndex }) => {
           <Link
             key={blog.slug}
             href={`/blog/${blog.slug}`}
-            className={`grid grid-cols-[1fr_45px] sm:grid-cols-[1fr_50px] gap-2 md:gap-4 px-2 py-2 border-b border-foreground/[0.05] items-center text-[0.85rem] last:border-0 hover:hover:bg-foreground/[0.02] ${index === selectedRowIndex ? "bg-foreground/[0.02] ring-1 ring-inset ring-foreground/5" : ""}`}
+            className={`grid grid-cols-[1fr_45px] sm:grid-cols-[1fr_50px] gap-2 md:gap-4 px-2 py-2.5 border-b border-foreground/[0.05] items-center text-[0.95rem] last:border-0 hover:hover:bg-foreground/[0.02] ${index === selectedRowIndex ? "bg-foreground/[0.02] ring-1 ring-inset ring-foreground/5" : ""}`}
             prefetch={true}
           >
             <span className="font-semibold text-foreground/90">{blog.title}</span>
@@ -334,7 +334,7 @@ const ProjectList = memo(({ projects, handleProjectClick, selectedRowIndex }) =>
           >
             <div className="flex items-center justify-between mb-2">
               <span className="flex items-center gap-2 min-w-0">
-                <span className="font-semibold text-foreground/90 truncate leading-tight">{project.title}</span>
+                <span className="font-semibold text-foreground/90 text-[0.95rem] truncate leading-tight">{project.title}</span>
                 {project.highlight && <Star size={12} className="text-yellow-500 fill-current shrink-0" />}
               </span>
               <div className="flex items-center gap-1">
@@ -350,7 +350,7 @@ const ProjectList = memo(({ projects, handleProjectClick, selectedRowIndex }) =>
                 )}
               </div>
             </div>
-            <p className="text-[0.75rem] text-foreground/50 line-clamp-2 leading-relaxed">
+            <p className="text-[0.85rem] text-foreground/50 line-clamp-2 leading-relaxed">
               {project.description}
             </p>
           </div>
