@@ -51,16 +51,16 @@ SnapchatIcon.displayName = "SnapchatIcon";
 
 const GithubIcon = memo(({ size = 20 }) => (
   <svg width={size} height={size} viewBox="0 0 602 667" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M415.647 641.666C415.772 622.212 415.893 554.691 415.893 527.958C415.893 489.324 402.697 464.045 387.897 451.249C479.776 440.983 576.234 405.987 576.234 246.804C576.234 201.574 560.301 164.574 533.838 135.624C538.076 125.141 552.226 82.9994 529.726 25.9578C529.726 25.9578 495.159 14.8244 416.384 68.4744C383.418 59.2536 348.172 54.6911 313.118 54.5078C278.059 54.6911 242.818 59.2578 209.847 68.4744C131.072 14.8244 96.5093 25.9578 96.5093 25.9578C74.0093 82.9994 88.1593 125.141 92.3968 135.624C65.9343 164.574 50.001 201.574 50.001 246.804C50.001 405.987 146.455 440.983 238.334 451.249C223.538 464.045 210.338 489.324 210.338 527.958C210.338 554.691 210.463 622.212 210.584 641.666M25.001 474.999C66.4135 477.929 90.2926 515.562 90.2926 515.562C127.101 578.891 186.868 560.574 210.355 549.999" stroke="currentColor" strokeWidth={45} strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M415.647 641.666C415.772 622.212 415.893 554.691 415.893 527.958C415.893 489.324 402.697 464.045 387.897 451.249C479.776 440.983 576.234 405.987 576.234 246.804C576.234 201.574 560.301 164.574 533.838 135.624C538.076 125.141 552.226 82.9994 529.726 25.9578C529.726 25.9578 495.159 14.8244 416.384 68.4744C383.418 59.2536 348.172 54.6911 313.118 54.5078C278.059 54.6911 242.818 59.2578 209.847 68.4744C131.072 14.8244 96.5093 25.9578 96.5093 25.9578C74.0093 82.9994 88.1593 125.141 92.3968 135.624C65.9343 164.574 50.001 201.574 50.001 246.804C50.001 405.987 146.455 440.983 238.334 451.249C223.538 464.045 210.338 489.324 210.338 527.958C210.338 554.691 210.463 622.212 210.584 641.666M25.001 474.999C66.4135 477.929 90.2926 515.562 90.2926 515.562C127.101 578.891 186.868 560.574 210.355 549.999" stroke="currentColor" strokeWidth={45} strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 ));
 GithubIcon.displayName = "GithubIcon";
 
 const InstagramIcon = memo(({ size = 20 }) => (
   <svg width={size} height={size} viewBox="0 0 734 734" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path fillRule="evenodd" clipRule="evenodd" d="M366.667 566.667C477.124 566.667 566.667 477.124 566.667 366.667C566.667 256.21 477.124 166.667 366.667 166.667C256.21 166.667 166.667 256.21 166.667 366.667C166.667 477.124 256.21 566.667 366.667 566.667ZM366.667 500C440.304 500 500 440.304 500 366.667C500 293.029 440.304 233.334 366.667 233.334C293.029 233.334 233.334 293.029 233.334 366.667C233.334 440.304 293.029 500 366.667 500Z" fill="currentColor"/>
-    <path d="M566.667 133.334C548.257 133.334 533.334 148.258 533.334 166.667C533.334 185.077 548.257 200.001 566.667 200.001C585.077 200.001 600.001 185.077 600.001 166.667C600.001 148.258 585.077 133.334 566.667 133.334Z" fill="currentColor"/>
-    <path fillRule="evenodd" clipRule="evenodd" d="M21.7987 109.202C0 151.984 0 207.99 0 320V413.333C0 525.343 0 581.35 21.7987 624.13C40.9733 661.763 71.5693 692.36 109.202 711.533C151.984 733.333 207.99 733.333 320 733.333H413.333C525.343 733.333 581.35 733.333 624.13 711.533C661.763 692.36 692.36 661.763 711.533 624.13C733.333 581.35 733.333 525.343 733.333 413.333V320C733.333 207.99 733.333 151.984 711.533 109.202C692.36 71.5693 661.763 40.9733 624.13 21.7987C581.35 0 525.343 0 413.333 0H320C207.99 0 151.984 0 109.202 21.7987C71.5693 40.9733 40.9733 71.5693 21.7987 109.202ZM413.333 66.6667H320C262.895 66.6667 224.075 66.7187 194.069 69.17C164.841 71.558 149.895 75.8863 139.468 81.199C114.38 93.9823 93.9823 114.38 81.199 139.468C75.8863 149.895 71.558 164.841 69.17 194.069C66.7187 224.075 66.6667 262.895 66.6667 320V413.333C66.6667 470.44 66.7187 509.257 69.17 539.263C71.558 568.493 75.8863 583.44 81.199 593.867C93.9823 618.953 114.38 639.35 139.468 652.133C149.895 657.447 164.841 661.777 194.069 664.163C224.075 666.613 262.895 666.667 320 666.667H413.333C470.44 666.667 509.257 666.613 539.263 664.163C568.493 661.777 583.44 657.447 593.867 652.133C618.953 639.35 639.35 618.953 652.133 593.867C657.447 583.44 661.777 568.493 664.163 539.263C666.613 509.257 666.667 470.44 666.667 413.333V320C666.667 262.895 666.613 224.075 664.163 194.069C661.777 164.841 657.447 149.895 652.133 139.468C639.35 114.38 618.953 93.9823 593.867 81.199C583.44 75.8863 568.493 71.558 539.263 69.17C509.257 66.7187 470.44 66.6667 413.333 66.6667Z" fill="currentColor"/>
+    <path fillRule="evenodd" clipRule="evenodd" d="M366.667 566.667C477.124 566.667 566.667 477.124 566.667 366.667C566.667 256.21 477.124 166.667 366.667 166.667C256.21 166.667 166.667 256.21 166.667 366.667C166.667 477.124 256.21 566.667 366.667 566.667ZM366.667 500C440.304 500 500 440.304 500 366.667C500 293.029 440.304 233.334 366.667 233.334C293.029 233.334 233.334 293.029 233.334 366.667C233.334 440.304 293.029 500 366.667 500Z" fill="currentColor" />
+    <path d="M566.667 133.334C548.257 133.334 533.334 148.258 533.334 166.667C533.334 185.077 548.257 200.001 566.667 200.001C585.077 200.001 600.001 185.077 600.001 166.667C600.001 148.258 585.077 133.334 566.667 133.334Z" fill="currentColor" />
+    <path fillRule="evenodd" clipRule="evenodd" d="M21.7987 109.202C0 151.984 0 207.99 0 320V413.333C0 525.343 0 581.35 21.7987 624.13C40.9733 661.763 71.5693 692.36 109.202 711.533C151.984 733.333 207.99 733.333 320 733.333H413.333C525.343 733.333 581.35 733.333 624.13 711.533C661.763 692.36 692.36 661.763 711.533 624.13C733.333 581.35 733.333 525.343 733.333 413.333V320C733.333 207.99 733.333 151.984 711.533 109.202C692.36 71.5693 661.763 40.9733 624.13 21.7987C581.35 0 525.343 0 413.333 0H320C207.99 0 151.984 0 109.202 21.7987C71.5693 40.9733 40.9733 71.5693 21.7987 109.202ZM413.333 66.6667H320C262.895 66.6667 224.075 66.7187 194.069 69.17C164.841 71.558 149.895 75.8863 139.468 81.199C114.38 93.9823 93.9823 114.38 81.199 139.468C75.8863 149.895 71.558 164.841 69.17 194.069C66.7187 224.075 66.6667 262.895 66.6667 320V413.333C66.6667 470.44 66.7187 509.257 69.17 539.263C71.558 568.493 75.8863 583.44 81.199 593.867C93.9823 618.953 114.38 639.35 139.468 652.133C149.895 657.447 164.841 661.777 194.069 664.163C224.075 666.613 262.895 666.667 320 666.667H413.333C470.44 666.667 509.257 666.613 539.263 664.163C568.493 661.777 583.44 657.447 593.867 652.133C618.953 639.35 639.35 618.953 652.133 593.867C657.447 583.44 661.777 568.493 664.163 539.263C666.613 509.257 666.667 470.44 666.667 413.333V320C666.667 262.895 666.613 224.075 664.163 194.069C661.777 164.841 657.447 149.895 652.133 139.468C639.35 114.38 618.953 93.9823 593.867 81.199C583.44 75.8863 568.493 71.558 539.263 69.17C509.257 66.7187 470.44 66.6667 413.333 66.6667Z" fill="currentColor" />
   </svg>
 ));
 InstagramIcon.displayName = "InstagramIcon";
@@ -147,27 +147,27 @@ const AboutContent = memo(() => {
             </motion.svg>
           </span>
           <div className="flex flex-row gap-4 items-center text-foreground">
-            <a href="https://github.com/dan10ish" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500" aria-label="GitHub">
+            <a href="https://github.com/dan10ish" target="_blank" rel="noopener noreferrer" className="hover:hover:text-blue-500" aria-label="GitHub">
               <GithubIcon size={20} />
             </a>
-            <a href="https://x.com/dan10ish" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500" aria-label="X">
+            <a href="https://x.com/dan10ish" target="_blank" rel="noopener noreferrer" className="hover:hover:text-blue-500" aria-label="X">
               <XIcon size={20} />
             </a>
-            <a href="https://instagram.com/dan10ish" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500" aria-label="Instagram">
+            <a href="https://instagram.com/dan10ish" target="_blank" rel="noopener noreferrer" className="hover:hover:text-blue-500" aria-label="Instagram">
               <InstagramIcon size={20} />
             </a>
-            <a href="https://threads.net/@dan10ish" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500" aria-label="Threads">
+            <a href="https://threads.net/@dan10ish" target="_blank" rel="noopener noreferrer" className="hover:hover:text-blue-500" aria-label="Threads">
               <ThreadsIcon size={20} />
             </a>
-            <a href="https://snapchat.com/add/dan10ish" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500" aria-label="Snapchat">
+            <a href="https://snapchat.com/add/dan10ish" target="_blank" rel="noopener noreferrer" className="hover:hover:text-blue-500" aria-label="Snapchat">
               <SnapchatIcon size={20} />
             </a>
-            <a href={`mailto:${email}`} target="_blank" rel="noopener noreferrer" className="hover:text-blue-500" aria-label="Email">
+            <a href={`mailto:${email}`} target="_blank" rel="noopener noreferrer" className="hover:hover:text-blue-500" aria-label="Email">
               <LucideIcon icon={Mail} size={20} />
             </a>
           </div>
         </div>
-        <div className="text-[0.9rem] leading-relaxed text-foreground/70 text-left font-medium">
+        <div className="leading-relaxed text-foreground/70 text-left font-medium" style={{ fontSize: 'var(--font-size-base)' }}>
           Mechatronics engineer and generalist bridging code and hardware.
         </div>
       </div>
@@ -348,7 +348,7 @@ const BlogList = memo(({ blogs, handleSort, sortConfig, selectedRowIndex }) => {
           <Link
             key={blog.slug}
             href={`/blog/${blog.slug}`}
-            className={`grid grid-cols-[1fr_80px_45px] sm:grid-cols-[1fr_90px_50px] gap-2 md:gap-4 px-2 py-4 border-b border-foreground/[0.05] items-center text-[0.9rem] hover:bg-foreground/[0.02] last:border-0 ${index === selectedRowIndex ? "bg-foreground/[0.02] ring-1 ring-inset ring-foreground/5" : ""}`}
+            className={`grid grid-cols-[1fr_80px_45px] sm:grid-cols-[1fr_90px_50px] gap-2 md:gap-4 px-2 py-1 border-b border-foreground/[0.05] items-center text-[0.85rem] last:border-0 hover:hover:bg-foreground/[0.02] ${index === selectedRowIndex ? "bg-foreground/[0.02] ring-1 ring-inset ring-foreground/5" : ""}`}
             prefetch={true}
           >
             <span className="font-semibold text-foreground/90">{blog.title}</span>
@@ -385,7 +385,7 @@ const ProjectList = memo(({ projects, selectedTag, handleTagClick, handleSort, s
         {projects.map((project, index) => (
           <div
             key={project.title}
-            className={`grid grid-cols-[1fr_60px_auto_60px] sm:grid-cols-[1fr_70px_90px_110px] gap-2 md:gap-4 px-2 py-4 border-b border-foreground/[0.05] last:border-0 items-center text-[0.9rem] cursor-pointer hover:bg-foreground/[0.02] ${index === selectedRowIndex ? "bg-foreground/[0.02] ring-1 ring-inset ring-foreground/5" : ""}`}
+            className={`grid grid-cols-[1fr_60px_auto_60px] sm:grid-cols-[1fr_70px_90px_110px] gap-2 md:gap-4 px-2 py-1 border-b border-foreground/[0.05] last:border-0 items-center text-[0.85rem] cursor-pointer hover:hover:bg-foreground/[0.02] ${index === selectedRowIndex ? "bg-foreground/[0.02] ring-1 ring-inset ring-foreground/5" : ""}`}
             onClick={() => handleProjectClick(project)}
           >
             <span className="flex items-center gap-2 min-w-0">
@@ -467,8 +467,8 @@ const Content = memo(({ projects, blogs }) => {
       <AboutContent />
       <div className="flex gap-2 mt-6 px-1">
         {TABS.map(t => (
-          <button key={t.id} onClick={() => handleTabChange(t.id)} className={`px-4 py-1.5 text-sm font-bold uppercase tracking-widest relative z-10 ${activeTab === t.id ? "text-foreground" : "text-foreground/30 hover:text-foreground/60"}`}>
-            {activeTab === t.id && <motion.div layoutId="tab-bg" className="absolute inset-0 bg-foreground/[0.05] rounded-lg -z-10" transition={{ duration: 0 }} />}
+          <button key={t.id} onClick={() => handleTabChange(t.id)} className={`px-4 py-1.5 text-sm font-bold uppercase tracking-widest relative z-10 ${activeTab === t.id ? "text-foreground" : "text-foreground/30 hover:hover:text-foreground/60"}`}>
+            {activeTab === t.id && <motion.div layoutId="tab-bg" className="absolute inset-0 bg-foreground/[0.05] rounded-lg -z-10" transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />}
             {t.label}
           </button>
         ))}

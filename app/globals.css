@@ -72,6 +72,19 @@
     --input: 240 5.9% 90%;
     --ring: 240 10% 3.9%;
     --radius: 0.5rem;
+    --font-size-base: 14px;
+    --font-size-sm: 12px;
+    --font-size-lg: 16px;
+    --font-size-xl: 18px;
+  }
+  
+  @media (min-width: 768px) {
+    :root {
+      --font-size-base: 15px;
+      --font-size-sm: 13px;
+      --font-size-lg: 17px;
+      --font-size-xl: 20px;
+    }
   }
 
   .dark {
@@ -103,6 +116,17 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-size: var(--font-size-base);
+  }
+}
+
+/* Hover effects only for mouse/keyboards */
+@media (hover: hover) {
+  .hover-trigger:hover {
+    @apply bg-foreground/[0.03] text-foreground;
+  }
+  .hover-text:hover {
+    @apply text-foreground;
   }
 }
 
