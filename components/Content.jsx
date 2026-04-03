@@ -16,7 +16,6 @@ import {
   ChevronUp,
   ChevronDown,
   Mail,
-  MessageCircle,
   VideoOff,
   LoaderCircle,
 } from "lucide-react";
@@ -60,18 +59,16 @@ const InstagramIcon = memo(({ size = 20 }) => (
   <svg width={size} height={size} viewBox="0 0 734 734" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path fillRule="evenodd" clipRule="evenodd" d="M366.667 566.667C477.124 566.667 566.667 477.124 566.667 366.667C566.667 256.21 477.124 166.667 366.667 166.667C256.21 166.667 166.667 256.21 166.667 366.667C166.667 477.124 256.21 566.667 366.667 566.667ZM366.667 500C440.304 500 500 440.304 500 366.667C500 293.029 440.304 233.334 366.667 233.334C293.029 233.334 233.334 293.029 233.334 366.667C233.334 440.304 293.029 500 366.667 500Z" fill="currentColor" />
     <path d="M566.667 133.334C548.257 133.334 533.334 148.258 533.334 166.667C533.334 185.077 548.257 200.001 566.667 200.001C585.077 200.001 600.001 185.077 600.001 166.667C600.001 148.258 585.077 133.334 566.667 133.334Z" fill="currentColor" />
-    <path fillRule="evenodd" clipRule="evenodd" d="M21.7987 109.202C0 151.984 0 207.99 0 320V413.333C0 525.343 0 581.35 21.7987 624.13C40.9733 661.763 71.5693 692.36 109.202 711.533C151.984 733.333 207.99 733.333 320 733.333H413.333C525.343 733.333 581.35 733.333 624.13 711.533C661.763 692.36 692.36 661.763 711.533 624.13C733.333 581.35 733.333 525.343 733.333 413.333V320C733.333 207.99 733.333 151.984 711.533 109.202C692.36 71.5693 661.763 40.9733 624.13 21.7987C581.35 0 525.343 0 413.333 0H320C207.99 0 151.984 0 109.202 21.7987C71.5693 40.9733 40.9733 71.5693 21.7987 109.202ZM413.333 66.6667H320C262.895 66.6667 224.075 66.7187 194.069 69.17C164.841 71.558 149.895 75.8863 139.468 81.199C114.38 93.9823 93.9823 114.38 81.199 139.468C75.8863 149.895 71.558 164.841 69.17 194.069C66.7187 224.075 66.6667 262.895 66.6667 320V413.333C66.6667 470.44 66.7187 509.257 69.17 539.263C71.558 568.493 75.8863 583.44 81.199 593.867C93.9823 618.953 114.38 639.35 139.468 652.133C149.895 657.447 164.841 661.777 194.069 664.163C224.075 666.613 262.895 666.667 320 666.667H413.333C470.44 666.667 509.257 666.613 539.263 664.163C568.493 661.777 583.44 657.447 593.867 652.133C618.953 639.35 639.35 618.953 652.133 593.867C657.447 583.44 661.777 568.493 664.163 539.263C666.613 509.257 666.667 470.44 666.667 413.333V320C666.667 262.895 666.613 224.075 664.163 194.069C661.777 164.841 657.447 149.895 652.133 139.468C639.35 114.38 618.953 93.9823 593.867 81.199C583.44 75.8863 568.493 71.558 539.263 69.17C509.257 66.7187 470.44 66.6667 413.333 66.6667Z" fill="currentColor" />
+    <path fillRule="evenodd" clipRule="evenodd" d="M21.7987 109.202C0 151.984 0 207.99 0 320V413.333C0 525.343 0 581.35 21.7987 624.13C40.9733 661.763 71.5693 692.36 109.202 711.533C151.984 733.333 207.99 733.333 320 733.333H413.333C525.343 733.333 581.35 733.333 624.13 711.533C661.763 692.36 692.36 661.763 711.533 624.13C733.333 581.35 733.333 525.343 733.333 413.333V320C733.333 207.99 733.333 151.984 711.533 109.202C692.36 71.5693 661.763 40.9733 624.13 21.7987C581.35 0 525.343 0 413.333 0H320C207.99 0 151.984 0 109.202 21.7987C71.5693 40.9733 40.9733 71.5693 21.7987 109.202ZM413.333 66.6667H320C262.895 66.6667 224.075 66.7187 194.069 69.17C164.841 71.558 149.895 75.8863 139.468 81.199C114.38 93.9823 93.9823 114.38 81.199 139.468C75.8863 149.895 71.558 164.841 69.17 194.069C66.7187 224.075 66.6667 262.895 66.6667 320V413.333C66.6667 470.44 66.7187 509.257 69.17 539.263C71.558 568.493 75.8863 583.44 81.199 593.867C93.9823 618.953 114.38 639.35 139.468 652.133C149.895 657.447 164.841 661.777 194.069 664.163C224.075 666.613 262.895 666.617 320 666.617H413.333C470.44 666.617 509.257 666.613 539.263 664.163C568.493 661.777 583.44 657.447 593.867 652.133C618.953 639.35 639.35 618.953 652.133 593.867C657.447 583.44 661.777 568.493 664.163 539.263C666.613 509.257 666.667 470.44 666.667 413.333V320C666.667 262.895 666.613 224.075 664.163 194.069C661.777 164.841 657.447 149.895 652.133 139.468C639.35 114.38 618.953 93.9823 593.867 81.199C583.44 75.8863 568.493 71.558 539.263 69.17C509.257 66.7187 470.44 66.6667 413.333 66.6667Z" fill="currentColor" />
   </svg>
 ));
 InstagramIcon.displayName = "InstagramIcon";
-
-
 
 const AboutContent = memo(() => {
   const email = "aansaridan@gmail.com";
 
   return (
-    <div className="w-full mb-8">
+    <div className="w-full mb-2">
       <div className="flex flex-col gap-4">
         <div className="flex items-center justify-between">
           <span className="flex">
@@ -180,13 +177,13 @@ const SortIcon = memo(({ columnKey, sortConfig }) => (
   <span className="flex flex-col ml-1 align-middle leading-[0]">
     <LucideIcon
       icon={ChevronUp}
-      size={10}
-      className={`${sortConfig.key === columnKey && sortConfig.direction === "asc" ? "opacity-100 stroke-[3]" : "opacity-40"}`}
+      size={12}
+      className={`${sortConfig.key === columnKey && sortConfig.direction === "asc" ? "opacity-100 stroke-[3]" : "opacity-30"}`}
     />
     <LucideIcon
       icon={ChevronDown}
-      size={10}
-      className={`-mt-[6px] ${sortConfig.key === columnKey && sortConfig.direction === "desc" ? "opacity-100 stroke-[3]" : "opacity-40"}`}
+      size={12}
+      className={`-mt-[4px] ${sortConfig.key === columnKey && sortConfig.direction === "desc" ? "opacity-100 stroke-[3]" : "opacity-30"}`}
     />
   </span>
 ));
@@ -300,15 +297,6 @@ const ProjectModal = memo(({ project, isOpen, onClose }) => {
               <div>
                 <h2 className="text-xl font-bold mb-4">{project.title}</h2>
                 <p className="text-[0.95rem] leading-relaxed text-foreground/80 mb-6">{project.description}</p>
-                <div className="flex gap-2 flex-wrap mb-4">
-                  {project.tags.map(tag => (
-                    <span key={tag} className="text-[0.8rem] px-2 py-0.5 rounded-md border border-foreground/10 text-foreground/70 font-medium">{tag}</span>
-                  ))}
-                  <span className={`flex items-center gap-1.5 px-2 py-0.5 rounded-md text-[0.8rem] font-bold border ${project.status === 'live' ? 'bg-green-500/10 text-green-600 border-green-500/20' : project.status === 'archive' ? 'bg-red-500/10 text-red-600 border-red-500/20' : 'bg-yellow-500/10 text-yellow-600 border-yellow-500/20'}`}>
-                    <span className="w-1.5 h-1.5 rounded-full bg-current" />
-                    {project.status}
-                  </span>
-                </div>
               </div>
               <div className="flex gap-4">
                 {project.sourceLink && (
@@ -338,9 +326,8 @@ const BlogList = memo(({ blogs, handleSort, sortConfig, selectedRowIndex }) => {
   const tableRef = useRef(null);
   return (
     <div className="mt-4">
-      <div className="grid grid-cols-[1fr_80px_45px] sm:grid-cols-[1fr_90px_50px] gap-2 md:gap-4 px-2 pb-3 text-foreground/40 text-[0.8rem] font-bold uppercase tracking-wider border-b border-foreground/5 items-center">
+      <div className="grid grid-cols-[1fr_45px] sm:grid-cols-[1fr_50px] gap-2 md:gap-4 px-2 pb-3 text-foreground/40 text-[0.8rem] font-bold uppercase tracking-wider border-b border-foreground/5 items-center font-mono">
         <span onClick={() => handleSort("title")} className="cursor-pointer flex items-center gap-1 hover:text-foreground">title <SortIcon columnKey="title" sortConfig={sortConfig} /></span>
-        <span onClick={() => handleSort("tags")} className="cursor-pointer flex items-center justify-center gap-1 hover:text-foreground">tags <SortIcon columnKey="tags" sortConfig={sortConfig} /></span>
         <span onClick={() => handleSort("date")} className="cursor-pointer flex items-center justify-center gap-1 hover:text-foreground">year <SortIcon columnKey="date" sortConfig={sortConfig} /></span>
       </div>
       <div className="overflow-y-auto no-scrollbar max-h-[60vh] sm:max-h-[70vh]" ref={tableRef}>
@@ -348,15 +335,10 @@ const BlogList = memo(({ blogs, handleSort, sortConfig, selectedRowIndex }) => {
           <Link
             key={blog.slug}
             href={`/blog/${blog.slug}`}
-            className={`grid grid-cols-[1fr_80px_45px] sm:grid-cols-[1fr_90px_50px] gap-2 md:gap-4 px-2 py-1 border-b border-foreground/[0.05] items-center text-[0.85rem] last:border-0 hover:hover:bg-foreground/[0.02] ${index === selectedRowIndex ? "bg-foreground/[0.02] ring-1 ring-inset ring-foreground/5" : ""}`}
+            className={`grid grid-cols-[1fr_45px] sm:grid-cols-[1fr_50px] gap-2 md:gap-4 px-2 py-2 border-b border-foreground/[0.05] items-center text-[0.85rem] last:border-0 hover:hover:bg-foreground/[0.02] ${index === selectedRowIndex ? "bg-foreground/[0.02] ring-1 ring-inset ring-foreground/5" : ""}`}
             prefetch={true}
           >
             <span className="font-semibold text-foreground/90">{blog.title}</span>
-            <span className="flex justify-center items-center">
-              <span className="text-[0.75rem] px-2 py-0.5 rounded border border-foreground/10 text-foreground/60 font-bold whitespace-nowrap uppercase tracking-tighter bg-foreground/[0.02]">
-                {blog.tags[0]}
-              </span>
-            </span>
             <span className="text-[0.85rem] text-foreground/30 text-center font-mono tracking-tighter">
               {blog.date ? new Date(blog.date + "T00:00:00").getFullYear() : ""}
             </span>
@@ -369,44 +351,30 @@ const BlogList = memo(({ blogs, handleSort, sortConfig, selectedRowIndex }) => {
 });
 BlogList.displayName = "BlogList";
 
-const ProjectList = memo(({ projects, selectedTag, handleTagClick, handleSort, sortConfig, handleProjectClick, selectedRowIndex }) => {
+const ProjectList = memo(({ projects, handleProjectClick, selectedRowIndex }) => {
   const tableRef = useRef(null);
   return (
     <div className="mt-4">
-      <div className="grid grid-cols-[1fr_60px_auto_60px] sm:grid-cols-[1fr_70px_90px_110px] gap-2 md:gap-4 px-2 pb-3 text-foreground/40 text-[0.8rem] font-bold uppercase tracking-wider border-b border-foreground/5 items-center">
-        <span onClick={() => handleSort("title")} className="cursor-pointer flex items-center gap-1 hover:text-foreground">title <SortIcon columnKey="title" sortConfig={sortConfig} /></span>
-        <span className="text-center">links</span>
-        <span className="flex justify-center items-center cursor-pointer hover:text-foreground" onClick={() => !selectedTag && handleSort("tags")}>
-          {selectedTag ? <X size={16} className="text-red-500" onClick={(e) => { e.stopPropagation(); handleTagClick(null, e); }} /> : <span className="flex items-center gap-1">tags <SortIcon columnKey="tags" sortConfig={sortConfig} /></span>}
-        </span>
-        <span onClick={() => handleSort("status")} className="cursor-pointer flex items-center justify-center gap-1 hover:text-foreground"><span className="hidden sm:inline">status</span> <SortIcon columnKey="status" sortConfig={sortConfig} /></span>
-      </div>
-      <div className="overflow-y-auto no-scrollbar max-h-[60vh] sm:max-h-[70vh]" ref={tableRef}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 overflow-y-auto no-scrollbar max-h-[60vh] sm:max-h-[70vh] p-1" ref={tableRef}>
         {projects.map((project, index) => (
           <div
             key={project.title}
-            className={`grid grid-cols-[1fr_60px_auto_60px] sm:grid-cols-[1fr_70px_90px_110px] gap-2 md:gap-4 px-2 py-1 border-b border-foreground/[0.05] last:border-0 items-center text-[0.85rem] cursor-pointer hover:hover:bg-foreground/[0.02] ${index === selectedRowIndex ? "bg-foreground/[0.02] ring-1 ring-inset ring-foreground/5" : ""}`}
+            className={`flex flex-col p-3 rounded-xl border border-foreground/[0.05] bg-foreground/[0.01] hover:hover:bg-foreground/[0.03] transition-colors cursor-pointer group ${index === selectedRowIndex ? "bg-foreground/[0.03] ring-1 ring-inset ring-foreground/10" : ""}`}
             onClick={() => handleProjectClick(project)}
           >
-            <span className="flex items-center gap-2 min-w-0">
-              <span className="font-semibold text-foreground/90 truncate leading-tight">{project.title}</span>
-              {project.highlight && <Star size={12} className="text-yellow-500 fill-current shrink-0" />}
-            </span>
-            <span className="flex items-center justify-center gap-2">
-              <a href={project.sourceLink} target="_blank" className={`p-1.5 rounded-md hover:bg-foreground/5 ${!project.sourceLink ? "opacity-10 pointer-events-none" : "text-foreground/60"}`} onClick={e => e.stopPropagation()}><GithubIcon size={18} /></a>
-              <a href={project.projectLink} target="_blank" className={`p-1.5 rounded-md hover:bg-foreground/5 ${!project.projectLink ? "opacity-10 pointer-events-none" : "text-blue-500"}`} onClick={e => e.stopPropagation()}><Globe size={18} /></a>
-            </span>
-            <span className="flex justify-center items-center gap-2 overflow-hidden">
-              {project.tags.map(tag => (
-                <span key={tag} className={`text-[0.7rem] px-2 py-0.5 rounded border border-foreground/10 uppercase tracking-tighter font-bold whitespace-nowrap bg-foreground/[0.02] ${selectedTag === tag ? "border-foreground text-foreground" : "text-foreground/40"}`} onClick={e => { e.stopPropagation(); handleTagClick(tag, e); }}>{tag}</span>
-              ))}
-            </span>
-            <span className="flex justify-center items-center sm:block">
-              <span className={`hidden sm:inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-[0.75rem] font-bold border whitespace-nowrap ${project.status === 'live' ? 'bg-green-500/5 text-green-600 border-green-500/10' : project.status === 'archive' ? 'bg-red-500/5 text-red-600 border-red-500/10' : 'bg-yellow-500/5 text-yellow-600 border-yellow-500/10'}`}>
-                <span className="w-1 h-1 rounded-full bg-current" /> {project.status}
+            <div className="flex items-center justify-between mb-2">
+              <span className="flex items-center gap-2 min-w-0">
+                <span className="font-semibold text-foreground/90 truncate leading-tight">{project.title}</span>
+                {project.highlight && <Star size={12} className="text-yellow-500 fill-current shrink-0" />}
               </span>
-              <span className="sm:hidden w-2 h-2 rounded-full" style={{ backgroundColor: project.status === 'live' ? '#22c55e' : project.status === 'archive' ? '#ef4444' : '#eab308' }} />
-            </span>
+              <div className="flex items-center gap-1">
+                <a href={project.sourceLink} target="_blank" className={`p-1.5 rounded-md hover:bg-foreground/5 ${!project.sourceLink ? "hidden" : "text-foreground/40 hover:text-foreground"}`} onClick={e => e.stopPropagation()}><GithubIcon size={16} /></a>
+                <a href={project.projectLink} target="_blank" className={`p-1.5 rounded-md hover:bg-foreground/5 ${!project.projectLink ? "hidden" : "text-blue-500/70 hover:text-blue-500"}`} onClick={e => e.stopPropagation()}><Globe size={16} /></a>
+              </div>
+            </div>
+            <p className="text-[0.75rem] text-foreground/50 line-clamp-2 leading-relaxed">
+              {project.description}
+            </p>
           </div>
         ))}
       </div>
@@ -419,41 +387,58 @@ ProjectList.displayName = "ProjectList";
 const Content = memo(({ projects, blogs }) => {
   const [activeTab, setActiveTab] = useState("microblogs");
   const [sortConfig, setSortConfig] = useState({ key: null, direction: null });
-  const [selectedTag, setSelectedTag] = useState(null);
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedRowIndex, setSelectedRowIndex] = useState(null);
 
-  const handleTabChange = useCallback(t => { setActiveTab(t); setSortConfig({ key: null, direction: null }); setSelectedTag(null); window.history.replaceState(null, "", `#${t}`); }, []);
-  const handleSort = useCallback(k => { setSortConfig(c => ({ key: c.key === k && c.direction === "desc" ? null : k, direction: c.key === k ? (c.direction === "asc" ? "desc" : null) : "asc" })); }, []);
-  const handleTagClick = useCallback((tag, e) => { e.preventDefault(); setSelectedTag(c => c === tag ? null : tag); }, []);
-  const handleProjectClick = useCallback(p => { setSelectedProject(p); setIsModalOpen(true); }, []);
+  const handleTabChange = useCallback(t => { 
+    setActiveTab(t); 
+    setSortConfig({ key: null, direction: null }); 
+    window.history.replaceState(null, "", `#${t}`); 
+  }, []);
+
+  const handleSort = useCallback(k => { 
+    setSortConfig(c => ({ 
+      key: c.key === k && c.direction === "desc" ? null : k, 
+      direction: c.key === k ? (c.direction === "asc" ? "desc" : null) : "asc" 
+    })); 
+  }, []);
+
+  const handleProjectClick = useCallback(p => { 
+    setSelectedProject(p); 
+    setIsModalOpen(true); 
+  }, []);
 
   useEffect(() => {
     const hash = window.location.hash.replace("#", "");
     if (["projects", "microblogs"].includes(hash)) setActiveTab(hash);
-    const onHash = () => { const h = window.location.hash.replace("#", ""); if (["projects", "microblogs"].includes(h)) setActiveTab(h); };
+    const onHash = () => { 
+      const h = window.location.hash.replace("#", ""); 
+      if (["projects", "microblogs"].includes(h)) setActiveTab(h); 
+    };
     window.addEventListener("hashchange", onHash);
     return () => window.removeEventListener("hashchange", onHash);
   }, []);
 
   const sortedData = useMemo(() => {
-    const raw = activeTab === "microblogs" ? blogs : (selectedTag ? projects.filter(p => p.tags.includes(selectedTag)) : projects);
+    const raw = activeTab === "microblogs" ? blogs : projects;
     if (!sortConfig.key) return raw;
     return [...raw].sort((a, b) => {
       let valA = a[sortConfig.key], valB = b[sortConfig.key];
-      if (sortConfig.key === "status") { const o = { live: 1, offline: 2, archive: 3 }; valA = o[valA] || 99; valB = o[valB] || 99; }
       if (Array.isArray(valA)) { valA = valA.join(","); valB = valB.join(","); }
       return sortConfig.direction === "asc" ? (valA > valB ? 1 : -1) : (valA < valB ? 1 : -1);
     });
-  }, [activeTab, blogs, projects, selectedTag, sortConfig]);
+  }, [activeTab, blogs, projects, sortConfig]);
 
   useEffect(() => {
     const handleKeys = e => {
       if (isModalOpen) return;
       if (e.key === "ArrowDown") { e.preventDefault(); setSelectedRowIndex(p => p === null ? 0 : Math.min(p + 1, sortedData.length - 1)); }
       if (e.key === "ArrowUp") { e.preventDefault(); setSelectedRowIndex(p => p === null ? sortedData.length - 1 : Math.max(p - 1, 0)); }
-      if (e.key === "Enter" && selectedRowIndex !== null) { if (activeTab === "microblogs") window.location.href = `/blog/${sortedData[selectedRowIndex].slug}`; else handleProjectClick(sortedData[selectedRowIndex]); }
+      if (e.key === "Enter" && selectedRowIndex !== null) { 
+        if (activeTab === "microblogs") window.location.href = `/blog/${sortedData[selectedRowIndex].slug}`; 
+        else handleProjectClick(sortedData[selectedRowIndex]); 
+      }
       if (e.key === "Escape") setSelectedRowIndex(null);
     };
     window.addEventListener("keydown", handleKeys);
@@ -467,8 +452,18 @@ const Content = memo(({ projects, blogs }) => {
       <AboutContent />
       <div className="flex gap-2 mt-6 px-1">
         {TABS.map(t => (
-          <button key={t.id} onClick={() => handleTabChange(t.id)} className={`px-4 py-1.5 text-sm font-bold uppercase tracking-widest relative z-10 ${activeTab === t.id ? "text-foreground" : "text-foreground/30 hover:hover:text-foreground/60"}`}>
-            {activeTab === t.id && <motion.div layoutId="tab-bg" className="absolute inset-0 bg-foreground/[0.05] rounded-lg -z-10" transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />}
+          <button 
+            key={t.id} 
+            onClick={() => handleTabChange(t.id)} 
+            className={`px-4 py-1.5 text-sm font-bold uppercase tracking-widest relative z-10 ${activeTab === t.id ? "text-foreground" : "text-foreground/30 hover:hover:text-foreground/60"}`}
+          >
+            {activeTab === t.id && (
+              <motion.div 
+                layoutId="tab-bg" 
+                className="absolute inset-0 bg-foreground/[0.05] rounded-lg -z-10" 
+                transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} 
+              />
+            )}
             {t.label}
           </button>
         ))}
@@ -476,7 +471,7 @@ const Content = memo(({ projects, blogs }) => {
       {activeTab === "microblogs" ? (
         <BlogList blogs={sortedData} handleSort={handleSort} sortConfig={sortConfig} selectedRowIndex={selectedRowIndex} />
       ) : (
-        <ProjectList projects={sortedData} selectedTag={selectedTag} handleTagClick={handleTagClick} sortConfig={sortConfig} handleSort={handleSort} handleProjectClick={handleProjectClick} selectedRowIndex={selectedRowIndex} />
+        <ProjectList projects={sortedData} handleProjectClick={handleProjectClick} selectedRowIndex={selectedRowIndex} />
       )}
       <ProjectModal project={selectedProject} isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>

@@ -135,20 +135,23 @@
   display: none !important;
 }
 
-.blog-content .katex-display {
-  margin: 1.5rem 0;
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding: 0.25rem 0;
+.katex-display {
+  margin: 1.5rem 0 !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  max-width: 100% !important;
+  padding: 0.5rem 0 !important;
   -webkit-overflow-scrolling: touch;
 }
 
-.blog-content .katex {
+.katex {
   font-size: 1em;
+  max-width: 100%;
 }
 
-.blog-content .katex-display > .katex {
+.katex-display > .katex {
   font-size: 1.05em;
+  white-space: nowrap;
 }
 
 /* Base styles to maintain consistency while migrating */
@@ -179,4 +182,17 @@ a {
 
 img {
   @apply max-w-full h-auto;
+}
+
+/* Force horizontal scroll for code blocks */
+pre {
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  white-space: pre !important; 
+  word-wrap: normal !important;
+}
+
+pre code {
+  white-space: pre !important;
+  word-break: normal !important;
 }
