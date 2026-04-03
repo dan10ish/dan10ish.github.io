@@ -1,4 +1,6 @@
-import "./globals.css";
+import "./globals.css"
+import { ThemeProvider } from "../components/ThemeProvider"
+import FloatingControls from "../components/FloatingControls"
 
 export const metadata = {
   metadataBase: new URL("https://danish.bio"),
@@ -61,7 +63,7 @@ export const metadata = {
     "profile:username": "dan10ish",
     "profile:first_name": "Danish",
   },
-};
+}
 
 export function generateViewport() {
   return {
@@ -71,31 +73,13 @@ export function generateViewport() {
     maximumScale: 5,
     userScalable: true,
     viewportFit: "cover",
-  };
+  }
 }
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){
-          // Set theme only on initial page load - no listeners for changes
-          document.documentElement.setAttribute("data-theme", window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-        })()`,
-          }}
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){
-          const metaThemeColor = document.createElement('meta');
-          metaThemeColor.name = 'theme-color';
-          metaThemeColor.content = document.documentElement.dataset.theme === 'dark' ? '#141414' : '#ffffff';
-          document.head.appendChild(metaThemeColor);
-        })()`,
-          }}
-        />
         <link
           rel="preload"
           href="/fonts/SFMono-Regular.woff2"
@@ -111,9 +95,14 @@ export default function RootLayout({ children }) {
           crossOrigin="anonymous"
         />
       </head>
-      <body>
-        <main className="container">{children}</main>
+      <body className="antialiased font-mono bg-white text-[#18181b] dark:bg-[#141414] dark:text-[#fafafa] selection:bg-black/5 dark:selection:bg-white/10">
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <main className="max-w-750 mx-auto px-6 py-12 min-h-screen">
+            {children}
+          </main>
+          <FloatingControls />
+        </ThemeProvider>
       </body>
     </html>
-  );
+  )
 }

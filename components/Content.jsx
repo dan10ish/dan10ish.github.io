@@ -15,19 +15,18 @@ import {
   Star,
   ChevronUp,
   ChevronDown,
-  Github,
   Mail,
+  MessageCircle,
+  Keyboard,
+  VideoOff,
+  LoaderCircle,
 } from "lucide-react";
 import Link from "next/link";
-import ScrollIndicator from "./ScrollIndicator";
-import ProjectModal from "./ProjectModal";
-import KeyboardIcon from "./KeyboardIcon";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const LucideIcon = memo(({ icon: Icon, ...props }) => (
-  <Icon strokeWidth="var(--icon-stroke-width)" {...props} />
+  <Icon strokeWidth={1.75} {...props} />
 ));
-
 LucideIcon.displayName = "LucideIcon";
 
 const XIcon = memo(({ size = 20 }) => (
@@ -36,20 +35,6 @@ const XIcon = memo(({ size = 20 }) => (
   </svg>
 ));
 XIcon.displayName = "XIcon";
-
-const InstagramIcon = memo(({ size = 20 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-    <path d="M12 2.163C15.204 2.163 15.584 2.175 16.85 2.233C20.102 2.381 21.621 3.924 21.769 7.152C21.827 8.417 21.838 8.797 21.838 12.001C21.838 15.206 21.826 15.585 21.769 16.85C21.62 20.075 20.105 21.621 16.85 21.769C15.584 21.827 15.206 21.839 12 21.839C8.796 21.839 8.416 21.827 7.151 21.769C3.891 21.62 2.38 20.07 2.232 16.849C2.174 15.584 2.162 15.205 2.162 12C2.162 8.796 2.175 8.417 2.232 7.151C2.381 3.924 3.896 2.38 7.151 2.232C8.417 2.175 8.796 2.163 12 2.163ZM12 0C8.741 0 8.333 0.014 7.053 0.072C2.695 0.272 0.273 2.69 0.073 7.052C0.014 8.333 0 8.741 0 12C0 15.259 0.014 15.668 0.072 16.948C0.272 21.306 2.69 23.728 7.052 23.928C8.333 23.986 8.741 24 12 24C15.259 24 15.668 23.986 16.948 23.928C21.302 23.728 23.73 21.31 23.927 16.948C23.986 15.668 24 15.259 24 12C24 8.741 23.986 8.333 23.928 7.053C23.732 2.699 21.311 0.273 16.949 0.073C15.668 0.014 15.259 0 12 0ZM12 5.838C8.597 5.838 5.838 8.597 5.838 12C5.838 15.403 8.597 18.163 12 18.163C15.403 18.163 18.162 15.404 18.162 12C18.162 8.597 15.403 5.838 12 5.838ZM12 16C9.791 16 8 14.21 8 12C8 9.791 9.791 8 12 8C14.209 8 16 9.791 16 12C16 14.21 14.209 16 12 16ZM18.406 4.155C17.61 4.155 16.965 4.8 16.965 5.595C16.965 6.39 17.61 7.035 18.406 7.035C19.201 7.035 19.845 6.39 19.845 5.595C19.845 4.8 19.201 4.155 18.406 4.155Z" />
-  </svg>
-));
-InstagramIcon.displayName = "InstagramIcon";
-
-const LinkedInIcon = memo(({ size = 20 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-    <path d="M19 0H5C2.239 0 0 2.239 0 5V19C0 21.761 2.239 24 5 24H19C21.762 24 24 21.761 24 19V5C24 2.239 21.762 0 19 0ZM8 19H5V8H8V19ZM6.5 6.732C5.534 6.732 4.75 5.942 4.75 4.968C4.75 3.994 5.534 3.204 6.5 3.204C7.466 3.204 8.25 3.994 8.25 4.968C8.25 5.942 7.467 6.732 6.5 6.732ZM20 19H17V13.396C17 10.028 13 10.283 13 13.396V19H10V8H13V9.765C14.396 7.179 20 6.988 20 12.241V19Z" />
-  </svg>
-));
-LinkedInIcon.displayName = "LinkedInIcon";
 
 const ThreadsIcon = memo(({ size = 20 }) => (
   <svg width={size} height={size} viewBox="0 0 21 26" fill="currentColor">
@@ -65,31 +50,53 @@ const SnapchatIcon = memo(({ size = 20 }) => (
 ));
 SnapchatIcon.displayName = "SnapchatIcon";
 
+const GithubIcon = memo(({ size = 20 }) => (
+  <svg width={size} height={size} viewBox="0 0 602 667" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M415.647 641.666C415.772 622.212 415.893 554.691 415.893 527.958C415.893 489.324 402.697 464.045 387.897 451.249C479.776 440.983 576.234 405.987 576.234 246.804C576.234 201.574 560.301 164.574 533.838 135.624C538.076 125.141 552.226 82.9994 529.726 25.9578C529.726 25.9578 495.159 14.8244 416.384 68.4744C383.418 59.2536 348.172 54.6911 313.118 54.5078C278.059 54.6911 242.818 59.2578 209.847 68.4744C131.072 14.8244 96.5093 25.9578 96.5093 25.9578C74.0093 82.9994 88.1593 125.141 92.3968 135.624C65.9343 164.574 50.001 201.574 50.001 246.804C50.001 405.987 146.455 440.983 238.334 451.249C223.538 464.045 210.338 489.324 210.338 527.958C210.338 554.691 210.463 622.212 210.584 641.666M25.001 474.999C66.4135 477.929 90.2926 515.562 90.2926 515.562C127.101 578.891 186.868 560.574 210.355 549.999" stroke="currentColor" strokeWidth={45} strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+));
+GithubIcon.displayName = "GithubIcon";
+
+const InstagramIcon = memo(({ size = 20 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+  </svg>
+));
+InstagramIcon.displayName = "InstagramIcon";
+
+const LinkedInIcon = memo(({ size = 20 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect width="4" height="12" x="2" y="9" />
+    <circle cx="4" cy="4" r="2" />
+  </svg>
+));
+LinkedInIcon.displayName = "LinkedInIcon";
+
 const AboutContent = memo(() => {
   const email = "aansaridan@gmail.com";
 
   return (
-    <div className="about-container">
-      <div className="about-content">
-        <div className="about-header">
-          <span className="name">
+    <div className="w-full mb-8">
+      <div className="flex flex-col gap-4">
+        <div className="flex items-center justify-between">
+          <span className="flex">
             <motion.svg
               width="95"
               height="45"
               viewBox="0 0 111 41"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              style={{
-                overflow: "visible",
-                transform: "rotate(0deg)",
-                transformOrigin: "center",
-                margin: "0 -5px",
-              }}
+              className="overflow-visible -mx-[5px]"
+              style={{ transformOrigin: "center" }}
             >
               <motion.path
                 d="M23.6658 19.5568C24.184 18.3907 23.7076 16.8809 23.6658 18.6784C23.6143 20.8899 23.9127 23.2085 23.6383 25.4035C23.4632 26.8046 21.1091 20.9763 20.8934 20.545C19.4973 17.7527 11.743 11.8525 15.7604 9.07119C23.2034 3.91831 35.9047 3.41693 44.3624 5.5577C47.3218 6.30674 51.4936 7.83684 53.0364 10.773C55.0268 14.5612 50.8297 18.4111 48.0955 20.243C36.8401 27.7842 22.558 31.2353 10.0784 36.1635C7.07567 37.3493 4.1614 38.5262 1.02019 39.2653C0.82501 39.3112 2.1014 39.3202 2.4201 39.3202"
-                stroke="rgba(var(--color-text-rgb), 0.7)"
-                strokeWidth="1.5"
+                stroke="currentColor"
+                className="text-foreground/70"
+                strokeWidth={1.5}
                 strokeLinecap="round"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: 1 }}
@@ -97,8 +104,9 @@ const AboutContent = memo(() => {
               />
               <motion.path
                 d="M64.4263 16.6339C63.5779 13.1557 60.7209 13.3335 58.7303 16.281C56.2311 19.9818 60.731 23.8048 63.4433 20.4144C64.3358 19.2988 64.2834 14.046 64.4515 16.7347C64.6565 20.0151 67.8321 24.0413 70.6767 20.1623C71.5016 19.0374 71.7571 14.7004 71.332 16.029C71.1337 16.6487 71.8339 20.2254 71.9369 20.1371C73.0086 19.2185 74.565 13.0333 77.0783 14.29C78.3705 14.936 79.0368 19.2757 79.3971 20.7168"
-                stroke="rgba(var(--color-text-rgb), 0.7)"
-                strokeWidth="1.5"
+                stroke="currentColor"
+                className="text-foreground/70"
+                strokeWidth={1.5}
                 strokeLinecap="round"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: 1 }}
@@ -106,8 +114,9 @@ const AboutContent = memo(() => {
               />
               <motion.path
                 d="M82.5726 14.8192C82.5726 13.3223 82.7558 15.8654 82.8247 16.1801C83.1276 17.5649 83.4193 18.9774 83.9336 20.2631"
-                stroke="rgba(var(--color-text-rgb), 0.7)"
-                strokeWidth="1.5"
+                stroke="currentColor"
+                className="text-foreground/70"
+                strokeWidth={1.5}
                 strokeLinecap="round"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: 1 }}
@@ -115,8 +124,9 @@ const AboutContent = memo(() => {
               />
               <motion.path
                 d="M84.3873 7.56058C83.5393 6.71263 83.0281 6.05144 83.9336 7.56058"
-                stroke="rgba(var(--color-text-rgb), 0.7)"
-                strokeWidth="1.5"
+                stroke="currentColor"
+                className="text-foreground/70"
+                strokeWidth={1.5}
                 strokeLinecap="round"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: 1 }}
@@ -124,7 +134,8 @@ const AboutContent = memo(() => {
               />
               <motion.path
                 d="M91.9923 13.1211C91.9923 11.922 91.0266 11.6815 90.0769 12.4154C87.059 14.7474 88.1454 16.693 91.2614 18.061C93.68 19.1228 94.9167 19.8991 91.7655 21.2618C88.1505 22.825 87.0855 22.3312 88.8001 20.6166"
-                stroke="rgba(var(--color-text-rgb), 0.7)"
+                stroke="currentColor"
+                className="text-foreground/70"
                 strokeWidth="1.5"
                 strokeLinecap="round"
                 initial={{ pathLength: 0, opacity: 0 }}
@@ -133,7 +144,8 @@ const AboutContent = memo(() => {
               />
               <motion.path
                 d="M98.1349 1C97.0711 4.44473 96.6171 9.76923 97.38 13.2566C97.5036 13.8217 98.3063 21.7286 99.6349 21C100.481 20.5359 106.046 10.6826 106.68 14.0631C107.137 16.5018 106.893 20.357 109.427 21.6241"
-                stroke="rgba(var(--color-text-rgb), 0.7)"
+                stroke="currentColor"
+                className="text-foreground/70"
                 strokeWidth="1.5"
                 strokeLinecap="round"
                 initial={{ pathLength: 0, opacity: 0 }}
@@ -142,604 +154,398 @@ const AboutContent = memo(() => {
               />
             </motion.svg>
           </span>
-          <div className="contact-info">
-            <a href="https://github.com/dan10ish" target="_blank" rel="noopener noreferrer" className="contact-link" aria-label="GitHub">
-              <LucideIcon icon={Github} size={20} />
+          <div className="flex flex-row gap-4 items-center text-foreground">
+            <a href="https://github.com/dan10ish" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-all hover:scale-110" aria-label="GitHub">
+              <GithubIcon size={20} />
             </a>
-            <a href="https://x.com/dan10ish" target="_blank" rel="noopener noreferrer" className="contact-link" aria-label="X">
+            <a href="https://x.com/dan10ish" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-all hover:scale-110" aria-label="X">
               <XIcon size={20} />
             </a>
-            <a href="https://instagram.com/dan10ish" target="_blank" rel="noopener noreferrer" className="contact-link" aria-label="Instagram">
+            <a href="https://instagram.com/dan10ish" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-all hover:scale-110" aria-label="Instagram">
               <InstagramIcon size={20} />
             </a>
-            <a href="https://linkedin.com/in/dan10ish" target="_blank" rel="noopener noreferrer" className="contact-link" aria-label="LinkedIn">
+            <a href="https://linkedin.com/in/dan10ish" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-all hover:scale-110" aria-label="LinkedIn">
               <LinkedInIcon size={20} />
             </a>
-            <a href="https://threads.net/@dan10ish" target="_blank" rel="noopener noreferrer" className="contact-link" aria-label="Threads">
+            <a href="https://threads.net/@dan10ish" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-all hover:scale-110" aria-label="Threads">
               <ThreadsIcon size={20} />
             </a>
-            <a href="https://snapchat.com/add/dan10ish" target="_blank" rel="noopener noreferrer" className="contact-link" aria-label="Snapchat">
+            <a href="https://snapchat.com/add/dan10ish" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-all hover:scale-110" aria-label="Snapchat">
               <SnapchatIcon size={20} />
             </a>
-            <a href={`mailto:${email}`} target="_blank" rel="noopener noreferrer" className="contact-link" aria-label="Email">
+            <a href={`mailto:${email}`} target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-all hover:scale-110" aria-label="Email">
               <LucideIcon icon={Mail} size={20} />
             </a>
           </div>
         </div>
-        <div className="about-description">
+        <div className="text-[0.9rem] leading-relaxed text-foreground/70 text-left font-medium">
           Mechatronics engineer and generalist bridging code and hardware.
         </div>
       </div>
     </div>
   );
 });
-
 AboutContent.displayName = "AboutContent";
 
 const SortIcon = memo(({ columnKey, sortConfig }) => (
-  <span className="sort-icons">
+  <span className="flex flex-col ml-1 align-middle leading-[0]">
     <LucideIcon
       icon={ChevronUp}
-      className={
-        sortConfig.key === columnKey && sortConfig.direction === "asc"
-          ? "active"
-          : ""
-      }
+      size={10}
+      className={`transition-opacity ${sortConfig.key === columnKey && sortConfig.direction === "asc" ? "opacity-100 stroke-[3]" : "opacity-40"}`}
     />
     <LucideIcon
       icon={ChevronDown}
-      className={
-        sortConfig.key === columnKey && sortConfig.direction === "desc"
-          ? "active"
-          : ""
-      }
+      size={10}
+      className={`transition-opacity -mt-[6px] ${sortConfig.key === columnKey && sortConfig.direction === "desc" ? "opacity-100 stroke-[3]" : "opacity-40"}`}
     />
   </span>
 ));
-
 SortIcon.displayName = "SortIcon";
 
-/* ─────────────── Blog List ─────────────── */
-
-const BlogListItem = memo(({ blog, isSelected }) => (
-  <Link
-    href={`/blog/${blog.slug}`}
-    className={`list-row blog-row ${isSelected ? "selected" : ""}`}
-    prefetch={true}
-  >
-    <span className="title">
-      <div>{blog.title}</div>
-    </span>
-    <span className="tags">
-      {blog.tags.slice(0, 1).map((tag) => (
-        <span key={tag} className="tag">
-          {tag}
-        </span>
-      ))}
-    </span>
-    <span className="blog-year">
-      {blog.date ? new Date(blog.date + "T00:00:00").getFullYear() : ""}
-    </span>
-  </Link>
-));
-
-BlogListItem.displayName = "BlogListItem";
-
-const BlogList = memo(({ blogs, handleSort, sortConfig }) => {
-  const tableRef = useRef(null);
-  const [selectedRowIndex, setSelectedRowIndex] = useState(null);
+const ScrollIndicator = memo(({ containerRef }) => {
+  const [shouldShow, setShouldShow] = useState(false);
 
   useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (blogs.length === 0) return;
+    const container = containerRef.current;
+    if (!container) return;
 
-      switch (e.key) {
-        case "ArrowDown":
-          e.preventDefault();
-          setSelectedRowIndex((prev) =>
-            prev === null ? 0 : Math.min(prev + 1, blogs.length - 1),
-          );
-          break;
-        case "ArrowUp":
-          e.preventDefault();
-          setSelectedRowIndex((prev) =>
-            prev === null ? blogs.length - 1 : Math.max(prev - 1, 0),
-          );
-          break;
-        case "Enter":
-          if (selectedRowIndex !== null) {
-            window.location.href = `/blog/${blogs[selectedRowIndex].slug}`;
-          }
-          break;
-        case "Escape":
-          setSelectedRowIndex(null);
-          break;
-      }
+    const checkScroll = () => {
+      const { scrollTop, scrollHeight, clientHeight } = container;
+      setShouldShow(scrollHeight > clientHeight && scrollHeight - scrollTop - clientHeight > 10);
     };
 
-    document.addEventListener("keydown", handleKeyDown);
-    const handleMouseMove = () =>
-      selectedRowIndex !== null && setSelectedRowIndex(null);
-    document.addEventListener("mousemove", handleMouseMove);
+    checkScroll();
+    container.addEventListener("scroll", checkScroll);
+    window.addEventListener("resize", checkScroll);
+    const observer = new MutationObserver(checkScroll);
+    observer.observe(container, { childList: true, subtree: true });
 
     return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-      document.removeEventListener("mousemove", handleMouseMove);
+      container.removeEventListener("scroll", checkScroll);
+      window.removeEventListener("resize", checkScroll);
+      observer.disconnect();
     };
-  }, [selectedRowIndex, blogs]);
+  }, [containerRef]);
+
+  if (!shouldShow) return null;
 
   return (
-    <div className="mono-list blog-list">
-      <div className="list-header blog-list-header">
-        <span
-          onClick={() => handleSort("title")}
-          style={{ cursor: "pointer" }}
-        >
-          title <SortIcon columnKey="title" sortConfig={sortConfig} />
-        </span>
-        <span
-          className="tags"
-          onClick={() => handleSort("tags")}
-          style={{ cursor: "pointer" }}
-        >
-          tags <SortIcon columnKey="tags" sortConfig={sortConfig} />
-        </span>
-        <span
-          className="blog-year"
-          onClick={() => handleSort("date")}
-          style={{ cursor: "pointer" }}
-        >
-          year <SortIcon columnKey="date" sortConfig={sortConfig} />
-        </span>
+    <div className="flex justify-center mt-4 text-foreground/40 animate-bounce">
+      <ChevronDown size={20} />
+    </div>
+  );
+});
+ScrollIndicator.displayName = "ScrollIndicator";
+
+const KeyboardShortcutsModal = memo(({ isOpen, onClose }) => (
+  <AnimatePresence>
+    {isOpen && (
+      <motion.div
+        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+        className="fixed bottom-20 left-6 z-[100] w-[320px] bg-background border border-foreground/10 rounded-xl shadow-2xl p-4 overflow-hidden"
+      >
+        <div className="flex justify-between items-center mb-4 border-b border-foreground/5 pb-2">
+          <h3 className="text-sm font-bold text-foreground">Keyboard Shortcuts</h3>
+          <X size={16} className="cursor-pointer text-foreground/40 hover:text-foreground" onClick={onClose} />
+        </div>
+        <div className="space-y-4">
+          <div className="flex items-center gap-4">
+            <div className="flex flex-col items-center gap-1 min-w-[70px]">
+              <span className="w-6 h-6 flex items-center justify-center bg-foreground/5 border border-foreground/10 rounded text-[10px] font-bold">↑</span>
+              <div className="flex gap-1">
+                <span className="w-6 h-6 flex items-center justify-center bg-foreground/5 border border-foreground/10 rounded text-[10px] font-bold">←</span>
+                <span className="w-6 h-6 flex items-center justify-center bg-foreground/5 border border-foreground/10 rounded text-[10px] font-bold">↓</span>
+                <span className="w-6 h-6 flex items-center justify-center bg-foreground/5 border border-foreground/10 rounded text-[10px] font-bold">→</span>
+              </div>
+            </div>
+            <span className="text-[13px] text-foreground/70">Navigate Items</span>
+          </div>
+          <div className="flex items-center gap-4">
+            <span className="px-2 py-1 bg-foreground/5 border border-foreground/10 rounded text-[10px] font-bold min-w-[70px] text-center uppercase tracking-wider">Enter</span>
+            <span className="text-[13px] text-foreground/70">Open Item</span>
+          </div>
+          <div className="flex items-center gap-4">
+            <span className="px-2 py-1 bg-foreground/5 border border-foreground/10 rounded text-[10px] font-bold min-w-[70px] text-center uppercase tracking-wider">Esc</span>
+            <span className="text-[13px] text-foreground/70">Clear / Close</span>
+          </div>
+        </div>
+      </motion.div>
+    )}
+  </AnimatePresence>
+));
+KeyboardShortcutsModal.displayName = "KeyboardShortcutsModal";
+
+const VideoSection = memo(({ project, shouldLoadVideo }) => {
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [videoError, setVideoError] = useState(false);
+
+  if (!project.video) {
+    return (
+      <div className="aspect-square flex flex-col items-center justify-center bg-foreground/[0.03] text-foreground/40 gap-2 p-6 rounded-xl">
+        <VideoOff size={32} />
+        <p className="text-[0.85rem]">Preview not available</p>
       </div>
-      <div className="table-max" ref={tableRef}>
-        {blogs.map((blog, index) => (
-          <BlogListItem
-            key={blog.slug}
-            blog={blog}
-            isSelected={index === selectedRowIndex}
+    );
+  }
+
+  return (
+    <div className="aspect-square relative flex items-center justify-center bg-foreground/[0.03] rounded-xl overflow-hidden shadow-inner">
+      {!videoLoaded && !videoError && (
+        <LoaderCircle size={32} className="text-foreground/20 animate-spin" />
+      )}
+      {shouldLoadVideo && (
+        <video
+          className={`w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? "opacity-100" : "opacity-0"}`}
+          src={`/project-videos/${project.video}`}
+          playsInline autoPlay muted loop
+          onLoadedData={() => setVideoLoaded(true)}
+          onError={() => setVideoError(true)}
+        />
+      )}
+    </div>
+  );
+});
+VideoSection.displayName = "VideoSection";
+
+const ProjectModal = memo(({ project, isOpen, onClose }) => {
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      const timer = setTimeout(() => setShouldLoad(true), 50);
+      return () => {
+        document.body.style.overflow = "auto";
+        clearTimeout(timer);
+      };
+    }
+    setShouldLoad(false);
+  }, [isOpen]);
+
+  if (!project) return null;
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
+          <motion.div
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            onClick={onClose}
+            className="absolute inset-0 bg-background/80 backdrop-blur-sm"
           />
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            className="relative w-full max-w-[700px] bg-background border border-foreground/10 rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row"
+          >
+            <div className="md:w-1/2 p-2">
+              <VideoSection project={project} shouldLoadVideo={shouldLoad} />
+            </div>
+            <div className="md:w-1/2 p-6 flex flex-col justify-between">
+              <div>
+                <h2 className="text-xl font-bold mb-4">{project.title}</h2>
+                <p className="text-[0.95rem] leading-relaxed text-foreground/80 mb-6">{project.description}</p>
+                <div className="flex gap-2 flex-wrap mb-4">
+                  {project.tags.map(tag => (
+                    <span key={tag} className="text-[0.8rem] px-2 py-0.5 rounded-md border border-foreground/10 text-foreground/70 font-medium">{tag}</span>
+                  ))}
+                  <span className={`flex items-center gap-1.5 px-2 py-0.5 rounded-md text-[0.8rem] font-bold border ${project.status === 'live' ? 'bg-green-500/10 text-green-600 border-green-500/20' : project.status === 'archive' ? 'bg-red-500/10 text-red-600 border-red-500/20' : 'bg-yellow-500/10 text-yellow-600 border-yellow-500/20'}`}>
+                    <span className="w-1.5 h-1.5 rounded-full bg-current" />
+                    {project.status}
+                  </span>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                {project.sourceLink && (
+                  <a href={project.sourceLink} target="_blank" className="flex items-center gap-2 text-sm font-medium hover:text-blue-500 transition-colors">
+                    <GithubIcon size={18} /> Source
+                  </a>
+                )}
+                {project.projectLink && (
+                  <a href={project.projectLink} target="_blank" className="flex items-center gap-2 text-sm font-medium text-blue-500 hover:text-blue-600 transition-colors">
+                    <Globe size={18} /> Visit Live
+                  </a>
+                )}
+              </div>
+            </div>
+            <button onClick={onClose} className="absolute top-4 right-4 p-2 rounded-full hover:bg-foreground/5 text-foreground/40 hover:text-foreground">
+              <X size={20} />
+            </button>
+          </motion.div>
+        </div>
+      )}
+    </AnimatePresence>
+  );
+});
+ProjectModal.displayName = "ProjectModal";
+
+const BlogList = memo(({ blogs, handleSort, sortConfig, selectedRowIndex }) => {
+  const tableRef = useRef(null);
+  return (
+    <div className="mt-4">
+      <div className="grid grid-cols-[1fr_80px_45px] sm:grid-cols-[1fr_90px_50px] gap-2 md:gap-4 px-2 pb-3 text-foreground/40 text-[0.8rem] font-bold uppercase tracking-wider border-b border-foreground/5 items-center">
+        <span onClick={() => handleSort("title")} className="cursor-pointer flex items-center gap-1 hover:text-foreground transition-colors">title <SortIcon columnKey="title" sortConfig={sortConfig} /></span>
+        <span onClick={() => handleSort("tags")} className="cursor-pointer flex items-center justify-center gap-1 hover:text-foreground transition-colors">tags <SortIcon columnKey="tags" sortConfig={sortConfig} /></span>
+        <span onClick={() => handleSort("date")} className="cursor-pointer flex items-center justify-center gap-1 hover:text-foreground transition-colors">year <SortIcon columnKey="date" sortConfig={sortConfig} /></span>
+      </div>
+      <div className="overflow-y-auto no-scrollbar max-h-[60vh] sm:max-h-[70vh]" ref={tableRef}>
+        {blogs.map((blog, index) => (
+          <Link
+            key={blog.slug}
+            href={`/blog/${blog.slug}`}
+            className={`grid grid-cols-[1fr_80px_45px] sm:grid-cols-[1fr_90px_50px] gap-2 md:gap-4 px-2 py-4 border-b border-foreground/[0.05] items-center text-[0.9rem] transition-all hover:bg-foreground/[0.02] last:border-0 ${index === selectedRowIndex ? "bg-foreground/[0.02] ring-1 ring-inset ring-foreground/5" : ""}`}
+            prefetch={true}
+          >
+            <span className="font-semibold text-foreground/90">{blog.title}</span>
+            <span className="flex justify-center items-center">
+              <span className="text-[0.75rem] px-2 py-0.5 rounded border border-foreground/10 text-foreground/60 font-bold whitespace-nowrap uppercase tracking-tighter bg-foreground/[0.02]">
+                {blog.tags[0]}
+              </span>
+            </span>
+            <span className="text-[0.85rem] text-foreground/30 text-center font-mono tracking-tighter">
+              {blog.date ? new Date(blog.date + "T00:00:00").getFullYear() : ""}
+            </span>
+          </Link>
         ))}
       </div>
       <ScrollIndicator containerRef={tableRef} />
     </div>
   );
 });
-
 BlogList.displayName = "BlogList";
 
-/* ─────────────── Project List ─────────────── */
-
-const ProjectListItem = memo(
-  ({
-    project,
-    selectedTag,
-    handleTagClick,
-    handleProjectClick,
-    isSelected,
-  }) => (
-    <div
-      className={`list-row ${isSelected ? "selected" : ""}`}
-      onClick={() => handleProjectClick(project)}
-    >
-      <span className="title">
-        <div>{project.title}</div>
-        <div>
-          {project.highlight && (
-            <span className="highlight-star" title="Highlighted Project">
-              <LucideIcon icon={Star} size={14} fill="currentColor" />
-            </span>
-          )}
-        </div>
-      </span>
-      <span className="actions">
-        <a
-          href={project.sourceLink || "#"}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`action-link github ${!project.sourceLink ? "disabled" : ""
-            }`}
-          onClick={(e) => {
-            e.stopPropagation();
-            if (!project.sourceLink) e.preventDefault();
-          }}
-          aria-label={`View source code for ${project.title} on GitHub`}
-          title="View source code on GitHub"
-        >
-          <LucideIcon icon={Github} size={20} />
-        </a>
-        <a
-          href={project.projectLink || "#"}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`action-link globe ${!project.projectLink ? "disabled" : ""
-            }`}
-          onClick={(e) => {
-            e.stopPropagation();
-            if (!project.projectLink) e.preventDefault();
-          }}
-          aria-label={`Visit live website for ${project.title}`}
-          title="View live project"
-        >
-          <LucideIcon icon={Globe} size={20} />
-        </a>
-      </span>
-      <span className="tags">
-        {project.tags.map((tag) => (
-          <span
-            key={tag}
-            className={`tag ${selectedTag === tag ? "selected" : ""}`}
-            onClick={(e) => {
-              e.stopPropagation();
-              handleTagClick(tag, e);
-            }}
-          >
-            {tag}
-          </span>
-        ))}
-      </span>
-      <span className="status-header">
-        <span className="status-dot-container">
-          <span
-            className={`table-status-dot ${project.status}`}
-            title={project.status}
-          ></span>
-        </span>
-        <span className="status-pill-container">
-          <span className={`status-pill ${project.status}`}>
-            <span className="status-text">{project.status}</span>
-          </span>
-        </span>
-      </span>
-    </div>
-  ),
-);
-
-ProjectListItem.displayName = "ProjectListItem";
-
-const ProjectList = memo(
-  ({ projects, selectedTag, handleTagClick, handleSort, sortConfig }) => {
-    const tableRef = useRef(null);
-    const [selectedProject, setSelectedProject] = useState(null);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [selectedRowIndex, setSelectedRowIndex] = useState(null);
-    const isAutoScrolling = useRef(false);
-
-    const handleProjectClick = useCallback((project) => {
-      setSelectedProject(project);
-      setIsModalOpen(true);
-    }, []);
-
-    const handleCloseModal = useCallback(() => setIsModalOpen(false), []);
-
-    useEffect(() => {
-      const handleKeyDown = (e) => {
-        if (isModalOpen) {
-          if (e.key === "Escape") handleCloseModal();
-          return;
-        }
-
-        if (projects.length === 0) return;
-
-        switch (e.key) {
-          case "ArrowDown":
-            e.preventDefault();
-            setSelectedRowIndex((prev) =>
-              prev === null ? 0 : Math.min(prev + 1, projects.length - 1),
-            );
-            break;
-          case "ArrowUp":
-            e.preventDefault();
-            setSelectedRowIndex((prev) =>
-              prev === null ? projects.length - 1 : Math.max(prev - 1, 0),
-            );
-            break;
-          case "Enter":
-            if (selectedRowIndex !== null) {
-              handleProjectClick(projects[selectedRowIndex]);
-            }
-            break;
-          case "Escape":
-            setSelectedRowIndex(null);
-            break;
-        }
-      };
-
-      document.addEventListener("keydown", handleKeyDown);
-      const handleMouseMove = () =>
-        selectedRowIndex !== null && setSelectedRowIndex(null);
-      document.addEventListener("mousemove", handleMouseMove);
-
-      return () => {
-        document.removeEventListener("keydown", handleKeyDown);
-        document.removeEventListener("mousemove", handleMouseMove);
-      };
-    }, [
-      selectedRowIndex,
-      projects,
-      isModalOpen,
-      handleCloseModal,
-      handleProjectClick,
-    ]);
-
-    useEffect(() => {
-      if (selectedRowIndex === null) return;
-
-      const timer = setTimeout(() => {
-        const selectedElement = document.querySelector(".list-row.selected");
-        if (!selectedElement || !tableRef.current) return;
-
-        const rect = selectedElement.getBoundingClientRect();
-        const containerRect = tableRef.current.getBoundingClientRect();
-        const margin = 20;
-
-        if (
-          rect.top >= containerRect.top + margin &&
-          rect.bottom <= containerRect.bottom - margin
-        )
-          return;
-
-        isAutoScrolling.current = true;
-
-        const targetPosition =
-          rect.top < containerRect.top + margin
-            ? tableRef.current.scrollTop +
-            (rect.top - containerRect.top) -
-            margin
-            : tableRef.current.scrollTop +
-            (rect.bottom - containerRect.bottom) +
-            margin;
-
-        tableRef.current.scrollTo({
-          top: targetPosition,
-          behavior: "smooth",
-        });
-
-        setTimeout(() => (isAutoScrolling.current = false), 300);
-      }, 50);
-
-      return () => clearTimeout(timer);
-    }, [selectedRowIndex]);
-
-    return (
-      <div className="mono-list project-list">
-        <div className="list-header">
-          <span
-            onClick={() => handleSort("title")}
-            style={{ cursor: "pointer" }}
-          >
-            title <SortIcon columnKey="title" sortConfig={sortConfig} />
-          </span>
-          <span className="actions" style={{ cursor: "default" }}>
-            links
-          </span>
-          <span
-            className="sort-header tags"
-            onClick={() => !selectedTag && handleSort("tags")}
-            style={{ cursor: selectedTag ? "default" : "pointer" }}
-          >
-            {selectedTag ? (
-              <LucideIcon
-                icon={X}
-                size={16}
-                className="tag-reset"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleTagClick(null, e);
-                }}
-              />
-            ) : (
-              <>
-                tags <SortIcon columnKey="tags" sortConfig={sortConfig} />
-              </>
-            )}
-          </span>
-          <span className="status-header" onClick={() => handleSort("status")}>
-            <span className="status-label">status</span>
-            <SortIcon columnKey="status" sortConfig={sortConfig} />
-          </span>
-        </div>
-        <div className="table-max" ref={tableRef}>
-          {projects.map((project, index) => (
-            <ProjectListItem
-              key={project.title}
-              project={project}
-              selectedTag={selectedTag}
-              handleTagClick={handleTagClick}
-              handleProjectClick={handleProjectClick}
-              isSelected={index === selectedRowIndex}
-            />
-          ))}
-        </div>
-        <ScrollIndicator containerRef={tableRef} />
-        <ProjectModal
-          project={selectedProject}
-          isOpen={isModalOpen}
-          onClose={handleCloseModal}
-        />
-      </div>
-    );
-  },
-);
-
-ProjectList.displayName = "ProjectList";
-
-/* ─────────────── Tabs ─────────────── */
-
-const TABS = [
-  { id: "microblogs", label: "Microblogs" },
-  { id: "projects", label: "Projects" },
-];
-
-const TabBar = memo(({ activeTab, onTabChange }) => (
-  <div className="tab-bar">
-    {TABS.map((tab) => (
-      <button
-        key={tab.id}
-        className={`tab-item ${activeTab === tab.id ? "active" : ""}`}
-        onClick={() => onTabChange(tab.id)}
-      >
-        {activeTab === tab.id && (
-          <motion.div
-            className="tab-indicator"
-            layoutId="tab-indicator"
-            transition={{ type: "spring", stiffness: 500, damping: 35 }}
-            style={{
-              position: "absolute",
-              inset: 0,
-              borderRadius: 6,
-            }}
-          />
-        )}
-        <span style={{ position: "relative", zIndex: 1 }}>{tab.label}</span>
-      </button>
-    ))}
-  </div>
-));
-
-TabBar.displayName = "TabBar";
-
-/* ─────────────── Main Content ─────────────── */
-
-const Content = memo(({ projects, blogs }) => {
-  const [activeTab, setActiveTab] = useState(() => {
-    if (typeof window !== "undefined") {
-      const hash = window.location.hash.replace("#", "");
-      if (hash === "projects") return "projects";
-    }
-    return "microblogs";
-  });
-  const [sortConfig, setSortConfig] = useState({ key: null, direction: null });
-  const [selectedTag, setSelectedTag] = useState(null);
-
-  const handleTabChange = useCallback((tab) => {
-    setActiveTab(tab);
-    setSortConfig({ key: null, direction: null });
-    setSelectedTag(null);
-    window.history.replaceState(null, "", `#${tab}`);
-  }, []);
-
-  useEffect(() => {
-    const onHashChange = () => {
-      const hash = window.location.hash.replace("#", "");
-      if (hash === "projects" || hash === "microblogs") {
-        setActiveTab(hash);
-      }
-    };
-    window.addEventListener("hashchange", onHashChange);
-    return () => window.removeEventListener("hashchange", onHashChange);
-  }, []);
-
-  const handleSort = useCallback((key) => {
-    setSortConfig((current) => ({
-      key: current.key === key && current.direction === "desc" ? null : key,
-      direction:
-        current.key === key
-          ? current.direction === "asc"
-            ? "desc"
-            : null
-          : "asc",
-    }));
-  }, []);
-
-  const handleTagClick = useCallback((tag, event) => {
-    event.preventDefault();
-    setSelectedTag((current) => (current === tag ? null : tag));
-  }, []);
-
-  const filteredProjects = useMemo(() => {
-    let filtered = selectedTag
-      ? projects.filter((project) => project.tags.includes(selectedTag))
-      : projects;
-
-    if (!sortConfig?.key) return filtered;
-
-    return [...filtered].sort((a, b) => {
-      if (sortConfig.key === "title") {
-        return sortConfig.direction === "asc"
-          ? a.title.localeCompare(b.title)
-          : b.title.localeCompare(a.title);
-      }
-
-      if (sortConfig.key === "tags") {
-        const tagsA = a.tags.join(",");
-        const tagsB = b.tags.join(",");
-        return sortConfig.direction === "asc"
-          ? tagsA.localeCompare(tagsB)
-          : tagsB.localeCompare(tagsA);
-      }
-
-      if (sortConfig.key === "status") {
-        const statusOrder = { live: 1, offline: 2, archive: 3 };
-        const statusA = statusOrder[a.status] || 999;
-        const statusB = statusOrder[b.status] || 999;
-        return sortConfig.direction === "asc"
-          ? statusA - statusB
-          : statusB - statusA;
-      }
-
-      return 0;
-    });
-  }, [projects, selectedTag, sortConfig]);
-
-  const sortedBlogs = useMemo(() => {
-    if (!sortConfig?.key) return blogs;
-
-    return [...blogs].sort((a, b) => {
-      if (sortConfig.key === "title") {
-        return sortConfig.direction === "asc"
-          ? a.title.localeCompare(b.title)
-          : b.title.localeCompare(a.title);
-      }
-      if (sortConfig.key === "date") {
-        return sortConfig.direction === "asc"
-          ? a.date.localeCompare(b.date)
-          : b.date.localeCompare(a.date);
-      }
-      if (sortConfig.key === "tags") {
-        const tagsA = a.tags.join(",");
-        const tagsB = b.tags.join(",");
-        return sortConfig.direction === "asc"
-          ? tagsA.localeCompare(tagsB)
-          : tagsB.localeCompare(tagsA);
-      }
-      return 0;
-    });
-  }, [blogs, sortConfig]);
-
+const ProjectList = memo(({ projects, selectedTag, handleTagClick, handleSort, sortConfig, handleProjectClick, selectedRowIndex }) => {
+  const tableRef = useRef(null);
   return (
-    <div className="content-wrapper">
-      <div className="content-area">
-        <AboutContent />
-        <TabBar activeTab={activeTab} onTabChange={handleTabChange} />
-        {activeTab === "microblogs" ? (
-          <BlogList
-            blogs={sortedBlogs}
-            handleSort={handleSort}
-            sortConfig={sortConfig}
-          />
-        ) : (
-          <ProjectList
-            projects={filteredProjects}
-            selectedTag={selectedTag}
-            handleTagClick={handleTagClick}
-            sortConfig={sortConfig}
-            handleSort={handleSort}
-          />
-        )}
+    <div className="mt-4">
+      <div className="grid grid-cols-[1fr_60px_auto_60px] sm:grid-cols-[1fr_70px_90px_110px] gap-2 md:gap-4 px-2 pb-3 text-foreground/40 text-[0.8rem] font-bold uppercase tracking-wider border-b border-foreground/5 items-center">
+        <span onClick={() => handleSort("title")} className="cursor-pointer flex items-center gap-1 hover:text-foreground transition-colors">title <SortIcon columnKey="title" sortConfig={sortConfig} /></span>
+        <span className="text-center">links</span>
+        <span className="flex justify-center items-center cursor-pointer hover:text-foreground transition-colors" onClick={() => !selectedTag && handleSort("tags")}>
+          {selectedTag ? <X size={16} className="text-red-500 hover:scale-120 transition-transform" onClick={(e) => { e.stopPropagation(); handleTagClick(null, e); }} /> : <span className="flex items-center gap-1">tags <SortIcon columnKey="tags" sortConfig={sortConfig} /></span>}
+        </span>
+        <span onClick={() => handleSort("status")} className="cursor-pointer flex items-center justify-center gap-1 hover:text-foreground transition-colors"><span className="hidden sm:inline">status</span> <SortIcon columnKey="status" sortConfig={sortConfig} /></span>
       </div>
-      <KeyboardIcon />
+      <div className="overflow-y-auto no-scrollbar max-h-[60vh] sm:max-h-[70vh]" ref={tableRef}>
+        {projects.map((project, index) => (
+          <div
+            key={project.title}
+            className={`grid grid-cols-[1fr_60px_auto_60px] sm:grid-cols-[1fr_70px_90px_110px] gap-2 md:gap-4 px-2 py-4 border-b border-foreground/[0.05] last:border-0 items-center text-[0.9rem] transition-all cursor-pointer hover:bg-foreground/[0.02] ${index === selectedRowIndex ? "bg-foreground/[0.02] ring-1 ring-inset ring-foreground/5" : ""}`}
+            onClick={() => handleProjectClick(project)}
+          >
+            <span className="flex items-center gap-2 min-w-0">
+              <span className="font-semibold text-foreground/90 truncate leading-tight">{project.title}</span>
+              {project.highlight && <Star size={12} className="text-yellow-500 fill-current shrink-0 animate-pulse" />}
+            </span>
+            <span className="flex items-center justify-center gap-2">
+              <a href={project.sourceLink} target="_blank" className={`p-1.5 rounded-md hover:bg-foreground/5 transition-colors ${!project.sourceLink ? "opacity-10 pointer-events-none" : "text-foreground/60"}`} onClick={e => e.stopPropagation()}><GithubIcon size={18} /></a>
+              <a href={project.projectLink} target="_blank" className={`p-1.5 rounded-md hover:bg-foreground/5 transition-colors ${!project.projectLink ? "opacity-10 pointer-events-none" : "text-blue-500"}`} onClick={e => e.stopPropagation()}><Globe size={18} /></a>
+            </span>
+            <span className="flex justify-center items-center gap-2 overflow-hidden">
+              {project.tags.map(tag => (
+                <span key={tag} className={`text-[0.7rem] px-2 py-0.5 rounded border border-foreground/10 uppercase tracking-tighter font-bold whitespace-nowrap bg-foreground/[0.02] transition-colors ${selectedTag === tag ? "border-foreground text-foreground" : "text-foreground/40"}`} onClick={e => { e.stopPropagation(); handleTagClick(tag, e); }}>{tag}</span>
+              ))}
+            </span>
+            <span className="flex justify-center items-center sm:block">
+              <span className={`hidden sm:inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-[0.75rem] font-bold border whitespace-nowrap ${project.status === 'live' ? 'bg-green-500/5 text-green-600 border-green-500/10' : project.status === 'archive' ? 'bg-red-500/5 text-red-600 border-red-500/10' : 'bg-yellow-500/5 text-yellow-600 border-yellow-500/10'}`}>
+                <span className="w-1 h-1 rounded-full bg-current" /> {project.status}
+              </span>
+              <span className="sm:hidden w-2 h-2 rounded-full" style={{ backgroundColor: project.status === 'live' ? '#22c55e' : project.status === 'archive' ? '#ef4444' : '#eab308' }} />
+            </span>
+          </div>
+        ))}
+      </div>
+      <ScrollIndicator containerRef={tableRef} />
     </div>
   );
 });
+ProjectList.displayName = "ProjectList";
 
+const Content = memo(({ projects, blogs }) => {
+  const [activeTab, setActiveTab] = useState("microblogs");
+  const [sortConfig, setSortConfig] = useState({ key: null, direction: null });
+  const [selectedTag, setSelectedTag] = useState(null);
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
+  const [selectedRowIndex, setSelectedRowIndex] = useState(null);
+
+  const handleTabChange = useCallback(t => { setActiveTab(t); setSortConfig({ key: null, direction: null }); setSelectedTag(null); window.history.replaceState(null, "", `#${t}`); }, []);
+  const handleSort = useCallback(k => { setSortConfig(c => ({ key: c.key === k && c.direction === "desc" ? null : k, direction: c.key === k ? (c.direction === "asc" ? "desc" : null) : "asc" })); }, []);
+  const handleTagClick = useCallback((tag, e) => { e.preventDefault(); setSelectedTag(c => c === tag ? null : tag); }, []);
+  const handleProjectClick = useCallback(p => { setSelectedProject(p); setIsModalOpen(true); }, []);
+
+  useEffect(() => {
+    const hash = window.location.hash.replace("#", "");
+    if (["projects", "microblogs"].includes(hash)) setActiveTab(hash);
+    const onHash = () => { const h = window.location.hash.replace("#", ""); if (["projects", "microblogs"].includes(h)) setActiveTab(h); };
+    window.addEventListener("hashchange", onHash);
+    return () => window.removeEventListener("hashchange", onHash);
+  }, []);
+
+  const sortedData = useMemo(() => {
+    const raw = activeTab === "microblogs" ? blogs : (selectedTag ? projects.filter(p => p.tags.includes(selectedTag)) : projects);
+    if (!sortConfig.key) return raw;
+    return [...raw].sort((a, b) => {
+      let valA = a[sortConfig.key], valB = b[sortConfig.key];
+      if (sortConfig.key === "status") { const o = { live: 1, offline: 2, archive: 3 }; valA = o[valA] || 99; valB = o[valB] || 99; }
+      if (Array.isArray(valA)) { valA = valA.join(","); valB = valB.join(","); }
+      return sortConfig.direction === "asc" ? (valA > valB ? 1 : -1) : (valA < valB ? 1 : -1);
+    });
+  }, [activeTab, blogs, projects, selectedTag, sortConfig]);
+
+  useEffect(() => {
+    const handleKeys = e => {
+      if (isModalOpen) return;
+      if (e.key === "ArrowDown") { e.preventDefault(); setSelectedRowIndex(p => p === null ? 0 : Math.min(p + 1, sortedData.length - 1)); }
+      if (e.key === "ArrowUp") { e.preventDefault(); setSelectedRowIndex(p => p === null ? sortedData.length - 1 : Math.max(p - 1, 0)); }
+      if (e.key === "Enter" && selectedRowIndex !== null) { if (activeTab === "microblogs") window.location.href = `/blog/${sortedData[selectedRowIndex].slug}`; else handleProjectClick(sortedData[selectedRowIndex]); }
+      if (e.key === "Escape") setSelectedRowIndex(null);
+    };
+    window.addEventListener("keydown", handleKeys);
+    const onMove = () => { if (selectedRowIndex !== null) setSelectedRowIndex(null); };
+    window.addEventListener("mousemove", onMove);
+    return () => { window.removeEventListener("keydown", handleKeys); window.removeEventListener("mousemove", onMove); };
+  }, [sortedData, selectedRowIndex, isModalOpen, activeTab, handleProjectClick]);
+
+  return (
+    <div className="flex flex-col">
+      <AboutContent />
+      <div className="flex gap-2 mt-6 px-1">
+        {TABS.map(t => (
+          <button key={t.id} onClick={() => handleTabChange(t.id)} className={`px-4 py-1.5 text-sm font-bold uppercase tracking-widest relative z-10 transition-colors ${activeTab === t.id ? "text-foreground" : "text-foreground/30 hover:text-foreground/60"}`}>
+            {activeTab === t.id && <motion.div layoutId="tab-bg" className="absolute inset-0 bg-foreground/[0.05] rounded-lg -z-10" transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />}
+            {t.label}
+          </button>
+        ))}
+      </div>
+      {activeTab === "microblogs" ? (
+        <BlogList blogs={sortedData} handleSort={handleSort} sortConfig={sortConfig} selectedRowIndex={selectedRowIndex} />
+      ) : (
+        <ProjectList projects={sortedData} selectedTag={selectedTag} handleTagClick={handleTagClick} sortConfig={sortConfig} handleSort={handleSort} handleProjectClick={handleProjectClick} selectedRowIndex={selectedRowIndex} />
+      )}
+      <div className="mt-12 flex justify-start px-2">
+        <button 
+          onMouseEnter={() => setIsKeyboardOpen(true)} 
+          onMouseLeave={() => setIsKeyboardOpen(false)}
+          className="w-10 h-10 flex items-center justify-center rounded-full bg-foreground/[0.03] border border-foreground/5 text-foreground/30 hover:text-foreground hover:bg-foreground/[0.06] transition-all"
+        >
+          <Keyboard size={18} />
+        </button>
+      </div>
+      <KeyboardShortcutsModal isOpen={isKeyboardOpen} onClose={() => setIsKeyboardOpen(false)} />
+      <ProjectModal project={selectedProject} isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+    </div>
+  );
+});
 Content.displayName = "Content";
 
-export default function ContentWrapper({ projects, blogs }) {
-  return (
-    <Suspense fallback={null}>
-      <Content projects={projects} blogs={blogs} />
-    </Suspense>
-  );
-}
+const TABS = [{ id: "microblogs", label: "Microblogs" }, { id: "projects", label: "Projects" }];
 
+export default function ContentWrapper({ projects, blogs }) {
+  return <Suspense fallback={null}><Content projects={projects} blogs={blogs} /></Suspense>;
+}

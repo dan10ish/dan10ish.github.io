@@ -6,8 +6,6 @@ import rehypeKatex from "rehype-katex";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import Link from "next/link";
-import { Home } from "lucide-react";
-import BlogInteractive from "../../../components/BlogInteractive";
 
 export async function generateStaticParams() {
     const slugs = getAllBlogSlugs();
@@ -66,9 +64,9 @@ export default async function BlogPage({ params }) {
 
     if (!blog) {
         return (
-            <div className="blog-not-found">
-                <h1>Post not found</h1>
-                <a href="/">← Back home</a>
+            <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4">
+                <h1 className="text-2xl font-bold">Post not found</h1>
+                <Link href="/" className="text-blue-500 hover:underline">← Back home</Link>
             </div>
         );
     }
@@ -82,19 +80,21 @@ export default async function BlogPage({ params }) {
         : "";
 
     return (
-        <div className="blog-post-layout">
-            <header className="blog-post-header">
-                <Link href="/" className="blog-home-link" aria-label="Home">
-                    <Home size={14} />
-                    <span>Home</span>
-                </Link>
-                <h1>{blog.frontmatter.title}</h1>
-                <div className="blog-post-meta">
-                    {formattedDate && <time dateTime={blog.frontmatter.date}>{formattedDate}</time>}
+        <div className="max-w-750 mx-auto px-1 sm:px-2 py-4">
+            <header className="mb-8 px-2">
+                <h1 className="text-xl sm:text-2xl font-bold text-foreground mb-4 leading-tight">
+                    {blog.frontmatter.title}
+                </h1>
+                <div className="flex items-center gap-4 flex-wrap">
+                    {formattedDate && (
+                        <time dateTime={blog.frontmatter.date} className="text-foreground/40 text-[0.9rem]">
+                            {formattedDate}
+                        </time>
+                    )}
                     {blog.frontmatter.tags?.length > 0 && (
-                        <div className="blog-post-tags">
+                        <div className="flex gap-2">
                             {blog.frontmatter.tags.map((tag) => (
-                                <span key={tag} className="blog-tag">
+                                <span key={tag} className="text-[0.8rem] px-2 py-0.5 rounded border border-foreground/10 text-foreground/60 font-bold uppercase tracking-tighter bg-foreground/[0.02]">
                                     {tag}
                                 </span>
                             ))}
@@ -103,16 +103,17 @@ export default async function BlogPage({ params }) {
                 </div>
             </header>
 
-            <div className="blog-post-body">
-                <article className="blog-content">
-                    <MDXRemote
-                        source={blog.content}
-                        options={{ mdxOptions }}
-                    />
+            <div className="relative">
+                <article className="prose prose-sm dark:prose-invert max-w-none text-foreground/80 selection:bg-black/5 dark:selection:bg-white/10 no-scrollbar">
+                    <div className="[&>h2]:text-lg [&>h2]:font-bold [&>h2]:mt-10 [&>h2]:mb-4 [&>p]:mb-4 [&>p]:leading-[1.8] [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:mb-6 [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:mb-6 [&>li]:mb-1.5 [&>blockquote]:border-l-2 [&>blockquote]:border-foreground/15 [&>blockquote]:pl-4 [&>blockquote]:italic [&>blockquote]:my-8 [&>blockquote]:text-foreground/60 [&>pre]:no-scrollbar [&>pre]:bg-foreground/[0.03] [&>pre]:border [&>pre]:border-foreground/5 [&>pre]:rounded-xl [&>pre]:p-4 [&>pre]:my-8 [&>code]:bg-foreground/[0.05] [&>code]:px-1.5 [&>code]:py-0.5 [&>code]:rounded [&>code]:text-[0.9em] [&>pre>code]:bg-transparent [&>pre>code]:p-0">
+                        <MDXRemote
+                            source={blog.content}
+                            options={{ mdxOptions }}
+                        />
+                    </div>
                 </article>
             </div>
-
-            <BlogInteractive />
+            
         </div>
     );
 }
