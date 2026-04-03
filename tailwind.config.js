@@ -5,6 +5,9 @@ module.exports = {
     "./components/**/*.{js,jsx,md,mdx}",
   ],
   darkMode: "class",
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
   theme: {
     extend: {
       fontFamily: {
