@@ -260,19 +260,27 @@ const ProjectModal = memo(({ project, isOpen, onClose }) => {
             </div>
             <div className="md:w-1/2 p-6 flex flex-col justify-between">
               <div>
-                <h2 className="text-xl font-bold mb-4">{project.title}</h2>
-                <p className="text-[0.95rem] leading-relaxed text-foreground/80 mb-6">{project.description}</p>
+                <h2 className="text-lg font-bold mb-3">{project.title}</h2>
+                <p className="text-[0.8rem] leading-relaxed text-foreground/60 mb-8">{project.description}</p>
               </div>
-              <div className="flex gap-4">
-                {project.sourceLink && (
-                  <a href={project.sourceLink} target="_blank" className="flex items-center gap-2 text-sm font-medium hover:text-blue-500">
-                    <GithubIcon size={18} /> Source
+              <div className="flex flex-row gap-2">
+                {project.sourceLink ? (
+                  <a href={project.sourceLink} target="_blank" className="flex-1 flex items-center justify-center gap-2 text-[0.7rem] font-bold uppercase tracking-wider bg-foreground/5 hover:bg-foreground/10 px-3 py-2 rounded-lg transition-colors">
+                    <GithubIcon size={14} /> Code
                   </a>
+                ) : (
+                  <div className="flex-1 flex items-center justify-center gap-2 text-[0.7rem] font-bold uppercase tracking-wider bg-foreground/[0.02] text-[#333333] px-3 py-2 rounded-lg">
+                    <GithubIcon size={14} /> N/A
+                  </div>
                 )}
-                {project.projectLink && (
-                  <a href={project.projectLink} target="_blank" className="flex items-center gap-2 text-sm font-medium text-blue-500 hover:text-blue-600">
-                    <Globe size={18} /> Visit Live
+                {project.projectLink ? (
+                  <a href={project.projectLink} target="_blank" className="flex-1 flex items-center justify-center gap-2 text-[0.7rem] font-bold uppercase tracking-wider bg-blue-500/10 text-blue-500 hover:bg-blue-500/20 px-3 py-2 rounded-lg transition-colors">
+                    <Globe size={14} /> Live
                   </a>
+                ) : (
+                  <div className="flex-1 flex items-center justify-center gap-2 text-[0.7rem] font-bold uppercase tracking-wider bg-foreground/[0.02] text-[#333333] px-3 py-2 rounded-lg">
+                    <Globe size={14} /> N/A
+                  </div>
                 )}
               </div>
             </div>
@@ -330,8 +338,16 @@ const ProjectList = memo(({ projects, handleProjectClick, selectedRowIndex }) =>
                 {project.highlight && <Star size={12} className="text-yellow-500 fill-current shrink-0" />}
               </span>
               <div className="flex items-center gap-1">
-                <a href={project.sourceLink} target="_blank" className={`p-1.5 rounded-md hover:bg-foreground/5 ${!project.sourceLink ? "hidden" : "text-foreground/40 hover:text-foreground"}`} onClick={e => e.stopPropagation()}><GithubIcon size={16} /></a>
-                <a href={project.projectLink} target="_blank" className={`p-1.5 rounded-md hover:bg-foreground/5 ${!project.projectLink ? "hidden" : "text-blue-500/70 hover:text-blue-500"}`} onClick={e => e.stopPropagation()}><Globe size={16} /></a>
+                {project.sourceLink ? (
+                  <a href={project.sourceLink} target="_blank" className="p-1.5 rounded-md hover:bg-foreground/10 text-foreground/60 hover:text-foreground" onClick={e => e.stopPropagation()}><GithubIcon size={16} /></a>
+                ) : (
+                  <span className="p-1.5 text-[#333333] cursor-not-allowed"><GithubIcon size={16} /></span>
+                )}
+                {project.projectLink ? (
+                  <a href={project.projectLink} target="_blank" className="p-1.5 rounded-md hover:bg-foreground/10 text-blue-500/80 hover:text-blue-500" onClick={e => e.stopPropagation()}><Globe size={16} /></a>
+                ) : (
+                  <span className="p-1.5 text-[#333333] cursor-not-allowed"><Globe size={16} /></span>
+                )}
               </div>
             </div>
             <p className="text-[0.75rem] text-foreground/50 line-clamp-2 leading-relaxed">
