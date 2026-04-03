@@ -17,7 +17,6 @@ import {
   ChevronDown,
   Mail,
   MessageCircle,
-  Keyboard,
   VideoOff,
   LoaderCircle,
 } from "lucide-react";
@@ -58,22 +57,15 @@ const GithubIcon = memo(({ size = 20 }) => (
 GithubIcon.displayName = "GithubIcon";
 
 const InstagramIcon = memo(({ size = 20 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
-    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+  <svg width={size} height={size} viewBox="0 0 734 734" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fillRule="evenodd" clipRule="evenodd" d="M366.667 566.667C477.124 566.667 566.667 477.124 566.667 366.667C566.667 256.21 477.124 166.667 366.667 166.667C256.21 166.667 166.667 256.21 166.667 366.667C166.667 477.124 256.21 566.667 366.667 566.667ZM366.667 500C440.304 500 500 440.304 500 366.667C500 293.029 440.304 233.334 366.667 233.334C293.029 233.334 233.334 293.029 233.334 366.667C233.334 440.304 293.029 500 366.667 500Z" fill="currentColor"/>
+    <path d="M566.667 133.334C548.257 133.334 533.334 148.258 533.334 166.667C533.334 185.077 548.257 200.001 566.667 200.001C585.077 200.001 600.001 185.077 600.001 166.667C600.001 148.258 585.077 133.334 566.667 133.334Z" fill="currentColor"/>
+    <path fillRule="evenodd" clipRule="evenodd" d="M21.7987 109.202C0 151.984 0 207.99 0 320V413.333C0 525.343 0 581.35 21.7987 624.13C40.9733 661.763 71.5693 692.36 109.202 711.533C151.984 733.333 207.99 733.333 320 733.333H413.333C525.343 733.333 581.35 733.333 624.13 711.533C661.763 692.36 692.36 661.763 711.533 624.13C733.333 581.35 733.333 525.343 733.333 413.333V320C733.333 207.99 733.333 151.984 711.533 109.202C692.36 71.5693 661.763 40.9733 624.13 21.7987C581.35 0 525.343 0 413.333 0H320C207.99 0 151.984 0 109.202 21.7987C71.5693 40.9733 40.9733 71.5693 21.7987 109.202ZM413.333 66.6667H320C262.895 66.6667 224.075 66.7187 194.069 69.17C164.841 71.558 149.895 75.8863 139.468 81.199C114.38 93.9823 93.9823 114.38 81.199 139.468C75.8863 149.895 71.558 164.841 69.17 194.069C66.7187 224.075 66.6667 262.895 66.6667 320V413.333C66.6667 470.44 66.7187 509.257 69.17 539.263C71.558 568.493 75.8863 583.44 81.199 593.867C93.9823 618.953 114.38 639.35 139.468 652.133C149.895 657.447 164.841 661.777 194.069 664.163C224.075 666.613 262.895 666.667 320 666.667H413.333C470.44 666.667 509.257 666.613 539.263 664.163C568.493 661.777 583.44 657.447 593.867 652.133C618.953 639.35 639.35 618.953 652.133 593.867C657.447 583.44 661.777 568.493 664.163 539.263C666.613 509.257 666.667 470.44 666.667 413.333V320C666.667 262.895 666.613 224.075 664.163 194.069C661.777 164.841 657.447 149.895 652.133 139.468C639.35 114.38 618.953 93.9823 593.867 81.199C583.44 75.8863 568.493 71.558 539.263 69.17C509.257 66.7187 470.44 66.6667 413.333 66.6667Z" fill="currentColor"/>
   </svg>
 ));
 InstagramIcon.displayName = "InstagramIcon";
 
-const LinkedInIcon = memo(({ size = 20 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-    <rect width="4" height="12" x="2" y="9" />
-    <circle cx="4" cy="4" r="2" />
-  </svg>
-));
-LinkedInIcon.displayName = "LinkedInIcon";
+
 
 const AboutContent = memo(() => {
   const email = "aansaridan@gmail.com";
@@ -100,7 +92,7 @@ const AboutContent = memo(() => {
                 strokeLinecap="round"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: 1 }}
-                transition={{ duration: 0.8, ease: "easeInOut" }}
+                transition={{ duration: 0 }}
               />
               <motion.path
                 d="M64.4263 16.6339C63.5779 13.1557 60.7209 13.3335 58.7303 16.281C56.2311 19.9818 60.731 23.8048 63.4433 20.4144C64.3358 19.2988 64.2834 14.046 64.4515 16.7347C64.6565 20.0151 67.8321 24.0413 70.6767 20.1623C71.5016 19.0374 71.7571 14.7004 71.332 16.029C71.1337 16.6487 71.8339 20.2254 71.9369 20.1371C73.0086 19.2185 74.565 13.0333 77.0783 14.29C78.3705 14.936 79.0368 19.2757 79.3971 20.7168"
@@ -110,7 +102,7 @@ const AboutContent = memo(() => {
                 strokeLinecap="round"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: 1 }}
-                transition={{ duration: 0.8, ease: "easeInOut", delay: 0.6 }}
+                transition={{ duration: 0 }}
               />
               <motion.path
                 d="M82.5726 14.8192C82.5726 13.3223 82.7558 15.8654 82.8247 16.1801C83.1276 17.5649 83.4193 18.9774 83.9336 20.2631"
@@ -120,7 +112,7 @@ const AboutContent = memo(() => {
                 strokeLinecap="round"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: 1 }}
-                transition={{ duration: 0.4, ease: "easeInOut", delay: 1.2 }}
+                transition={{ duration: 0 }}
               />
               <motion.path
                 d="M84.3873 7.56058C83.5393 6.71263 83.0281 6.05144 83.9336 7.56058"
@@ -130,7 +122,7 @@ const AboutContent = memo(() => {
                 strokeLinecap="round"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: 1 }}
-                transition={{ duration: 0.4, ease: "easeInOut", delay: 1.4 }}
+                transition={{ duration: 0 }}
               />
               <motion.path
                 d="M91.9923 13.1211C91.9923 11.922 91.0266 11.6815 90.0769 12.4154C87.059 14.7474 88.1454 16.693 91.2614 18.061C93.68 19.1228 94.9167 19.8991 91.7655 21.2618C88.1505 22.825 87.0855 22.3312 88.8001 20.6166"
@@ -140,7 +132,7 @@ const AboutContent = memo(() => {
                 strokeLinecap="round"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: 1 }}
-                transition={{ duration: 0.6, ease: "easeInOut", delay: 1.8 }}
+                transition={{ duration: 0 }}
               />
               <motion.path
                 d="M98.1349 1C97.0711 4.44473 96.6171 9.76923 97.38 13.2566C97.5036 13.8217 98.3063 21.7286 99.6349 21C100.481 20.5359 106.046 10.6826 106.68 14.0631C107.137 16.5018 106.893 20.357 109.427 21.6241"
@@ -150,30 +142,27 @@ const AboutContent = memo(() => {
                 strokeLinecap="round"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: 1 }}
-                transition={{ duration: 0.6, ease: "easeInOut", delay: 2.2 }}
+                transition={{ duration: 0 }}
               />
             </motion.svg>
           </span>
           <div className="flex flex-row gap-4 items-center text-foreground">
-            <a href="https://github.com/dan10ish" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-all hover:scale-110" aria-label="GitHub">
+            <a href="https://github.com/dan10ish" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500" aria-label="GitHub">
               <GithubIcon size={20} />
             </a>
-            <a href="https://x.com/dan10ish" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-all hover:scale-110" aria-label="X">
+            <a href="https://x.com/dan10ish" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500" aria-label="X">
               <XIcon size={20} />
             </a>
-            <a href="https://instagram.com/dan10ish" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-all hover:scale-110" aria-label="Instagram">
+            <a href="https://instagram.com/dan10ish" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500" aria-label="Instagram">
               <InstagramIcon size={20} />
             </a>
-            <a href="https://linkedin.com/in/dan10ish" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-all hover:scale-110" aria-label="LinkedIn">
-              <LinkedInIcon size={20} />
-            </a>
-            <a href="https://threads.net/@dan10ish" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-all hover:scale-110" aria-label="Threads">
+            <a href="https://threads.net/@dan10ish" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500" aria-label="Threads">
               <ThreadsIcon size={20} />
             </a>
-            <a href="https://snapchat.com/add/dan10ish" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-all hover:scale-110" aria-label="Snapchat">
+            <a href="https://snapchat.com/add/dan10ish" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500" aria-label="Snapchat">
               <SnapchatIcon size={20} />
             </a>
-            <a href={`mailto:${email}`} target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-all hover:scale-110" aria-label="Email">
+            <a href={`mailto:${email}`} target="_blank" rel="noopener noreferrer" className="hover:text-blue-500" aria-label="Email">
               <LucideIcon icon={Mail} size={20} />
             </a>
           </div>
@@ -192,12 +181,12 @@ const SortIcon = memo(({ columnKey, sortConfig }) => (
     <LucideIcon
       icon={ChevronUp}
       size={10}
-      className={`transition-opacity ${sortConfig.key === columnKey && sortConfig.direction === "asc" ? "opacity-100 stroke-[3]" : "opacity-40"}`}
+      className={`${sortConfig.key === columnKey && sortConfig.direction === "asc" ? "opacity-100 stroke-[3]" : "opacity-40"}`}
     />
     <LucideIcon
       icon={ChevronDown}
       size={10}
-      className={`transition-opacity -mt-[6px] ${sortConfig.key === columnKey && sortConfig.direction === "desc" ? "opacity-100 stroke-[3]" : "opacity-40"}`}
+      className={`-mt-[6px] ${sortConfig.key === columnKey && sortConfig.direction === "desc" ? "opacity-100 stroke-[3]" : "opacity-40"}`}
     />
   </span>
 ));
@@ -231,52 +220,12 @@ const ScrollIndicator = memo(({ containerRef }) => {
   if (!shouldShow) return null;
 
   return (
-    <div className="flex justify-center mt-4 text-foreground/40 animate-bounce">
+    <div className="flex justify-center mt-4 text-foreground/40">
       <ChevronDown size={20} />
     </div>
   );
 });
 ScrollIndicator.displayName = "ScrollIndicator";
-
-const KeyboardShortcutsModal = memo(({ isOpen, onClose }) => (
-  <AnimatePresence>
-    {isOpen && (
-      <motion.div
-        initial={{ opacity: 0, y: 10, scale: 0.95 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        exit={{ opacity: 0, y: 10, scale: 0.95 }}
-        className="fixed bottom-20 left-6 z-[100] w-[320px] bg-background border border-foreground/10 rounded-xl shadow-2xl p-4 overflow-hidden"
-      >
-        <div className="flex justify-between items-center mb-4 border-b border-foreground/5 pb-2">
-          <h3 className="text-sm font-bold text-foreground">Keyboard Shortcuts</h3>
-          <X size={16} className="cursor-pointer text-foreground/40 hover:text-foreground" onClick={onClose} />
-        </div>
-        <div className="space-y-4">
-          <div className="flex items-center gap-4">
-            <div className="flex flex-col items-center gap-1 min-w-[70px]">
-              <span className="w-6 h-6 flex items-center justify-center bg-foreground/5 border border-foreground/10 rounded text-[10px] font-bold">↑</span>
-              <div className="flex gap-1">
-                <span className="w-6 h-6 flex items-center justify-center bg-foreground/5 border border-foreground/10 rounded text-[10px] font-bold">←</span>
-                <span className="w-6 h-6 flex items-center justify-center bg-foreground/5 border border-foreground/10 rounded text-[10px] font-bold">↓</span>
-                <span className="w-6 h-6 flex items-center justify-center bg-foreground/5 border border-foreground/10 rounded text-[10px] font-bold">→</span>
-              </div>
-            </div>
-            <span className="text-[13px] text-foreground/70">Navigate Items</span>
-          </div>
-          <div className="flex items-center gap-4">
-            <span className="px-2 py-1 bg-foreground/5 border border-foreground/10 rounded text-[10px] font-bold min-w-[70px] text-center uppercase tracking-wider">Enter</span>
-            <span className="text-[13px] text-foreground/70">Open Item</span>
-          </div>
-          <div className="flex items-center gap-4">
-            <span className="px-2 py-1 bg-foreground/5 border border-foreground/10 rounded text-[10px] font-bold min-w-[70px] text-center uppercase tracking-wider">Esc</span>
-            <span className="text-[13px] text-foreground/70">Clear / Close</span>
-          </div>
-        </div>
-      </motion.div>
-    )}
-  </AnimatePresence>
-));
-KeyboardShortcutsModal.displayName = "KeyboardShortcutsModal";
 
 const VideoSection = memo(({ project, shouldLoadVideo }) => {
   const [videoLoaded, setVideoLoaded] = useState(false);
@@ -298,7 +247,7 @@ const VideoSection = memo(({ project, shouldLoadVideo }) => {
       )}
       {shouldLoadVideo && (
         <video
-          className={`w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? "opacity-100" : "opacity-0"}`}
+          className={`w-full h-full object-cover ${videoLoaded ? "opacity-100" : "opacity-0"}`}
           src={`/project-videos/${project.video}`}
           playsInline autoPlay muted loop
           onLoadedData={() => setVideoLoaded(true)}
@@ -333,6 +282,7 @@ const ProjectModal = memo(({ project, isOpen, onClose }) => {
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
           <motion.div
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            transition={{ duration: 0 }}
             onClick={onClose}
             className="absolute inset-0 bg-background/80 backdrop-blur-sm"
           />
@@ -340,6 +290,7 @@ const ProjectModal = memo(({ project, isOpen, onClose }) => {
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            transition={{ duration: 0 }}
             className="relative w-full max-w-[700px] bg-background border border-foreground/10 rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row"
           >
             <div className="md:w-1/2 p-2">
@@ -361,12 +312,12 @@ const ProjectModal = memo(({ project, isOpen, onClose }) => {
               </div>
               <div className="flex gap-4">
                 {project.sourceLink && (
-                  <a href={project.sourceLink} target="_blank" className="flex items-center gap-2 text-sm font-medium hover:text-blue-500 transition-colors">
+                  <a href={project.sourceLink} target="_blank" className="flex items-center gap-2 text-sm font-medium hover:text-blue-500">
                     <GithubIcon size={18} /> Source
                   </a>
                 )}
                 {project.projectLink && (
-                  <a href={project.projectLink} target="_blank" className="flex items-center gap-2 text-sm font-medium text-blue-500 hover:text-blue-600 transition-colors">
+                  <a href={project.projectLink} target="_blank" className="flex items-center gap-2 text-sm font-medium text-blue-500 hover:text-blue-600">
                     <Globe size={18} /> Visit Live
                   </a>
                 )}
@@ -388,16 +339,16 @@ const BlogList = memo(({ blogs, handleSort, sortConfig, selectedRowIndex }) => {
   return (
     <div className="mt-4">
       <div className="grid grid-cols-[1fr_80px_45px] sm:grid-cols-[1fr_90px_50px] gap-2 md:gap-4 px-2 pb-3 text-foreground/40 text-[0.8rem] font-bold uppercase tracking-wider border-b border-foreground/5 items-center">
-        <span onClick={() => handleSort("title")} className="cursor-pointer flex items-center gap-1 hover:text-foreground transition-colors">title <SortIcon columnKey="title" sortConfig={sortConfig} /></span>
-        <span onClick={() => handleSort("tags")} className="cursor-pointer flex items-center justify-center gap-1 hover:text-foreground transition-colors">tags <SortIcon columnKey="tags" sortConfig={sortConfig} /></span>
-        <span onClick={() => handleSort("date")} className="cursor-pointer flex items-center justify-center gap-1 hover:text-foreground transition-colors">year <SortIcon columnKey="date" sortConfig={sortConfig} /></span>
+        <span onClick={() => handleSort("title")} className="cursor-pointer flex items-center gap-1 hover:text-foreground">title <SortIcon columnKey="title" sortConfig={sortConfig} /></span>
+        <span onClick={() => handleSort("tags")} className="cursor-pointer flex items-center justify-center gap-1 hover:text-foreground">tags <SortIcon columnKey="tags" sortConfig={sortConfig} /></span>
+        <span onClick={() => handleSort("date")} className="cursor-pointer flex items-center justify-center gap-1 hover:text-foreground">year <SortIcon columnKey="date" sortConfig={sortConfig} /></span>
       </div>
       <div className="overflow-y-auto no-scrollbar max-h-[60vh] sm:max-h-[70vh]" ref={tableRef}>
         {blogs.map((blog, index) => (
           <Link
             key={blog.slug}
             href={`/blog/${blog.slug}`}
-            className={`grid grid-cols-[1fr_80px_45px] sm:grid-cols-[1fr_90px_50px] gap-2 md:gap-4 px-2 py-4 border-b border-foreground/[0.05] items-center text-[0.9rem] transition-all hover:bg-foreground/[0.02] last:border-0 ${index === selectedRowIndex ? "bg-foreground/[0.02] ring-1 ring-inset ring-foreground/5" : ""}`}
+            className={`grid grid-cols-[1fr_80px_45px] sm:grid-cols-[1fr_90px_50px] gap-2 md:gap-4 px-2 py-4 border-b border-foreground/[0.05] items-center text-[0.9rem] hover:bg-foreground/[0.02] last:border-0 ${index === selectedRowIndex ? "bg-foreground/[0.02] ring-1 ring-inset ring-foreground/5" : ""}`}
             prefetch={true}
           >
             <span className="font-semibold text-foreground/90">{blog.title}</span>
@@ -423,31 +374,31 @@ const ProjectList = memo(({ projects, selectedTag, handleTagClick, handleSort, s
   return (
     <div className="mt-4">
       <div className="grid grid-cols-[1fr_60px_auto_60px] sm:grid-cols-[1fr_70px_90px_110px] gap-2 md:gap-4 px-2 pb-3 text-foreground/40 text-[0.8rem] font-bold uppercase tracking-wider border-b border-foreground/5 items-center">
-        <span onClick={() => handleSort("title")} className="cursor-pointer flex items-center gap-1 hover:text-foreground transition-colors">title <SortIcon columnKey="title" sortConfig={sortConfig} /></span>
+        <span onClick={() => handleSort("title")} className="cursor-pointer flex items-center gap-1 hover:text-foreground">title <SortIcon columnKey="title" sortConfig={sortConfig} /></span>
         <span className="text-center">links</span>
-        <span className="flex justify-center items-center cursor-pointer hover:text-foreground transition-colors" onClick={() => !selectedTag && handleSort("tags")}>
-          {selectedTag ? <X size={16} className="text-red-500 hover:scale-120 transition-transform" onClick={(e) => { e.stopPropagation(); handleTagClick(null, e); }} /> : <span className="flex items-center gap-1">tags <SortIcon columnKey="tags" sortConfig={sortConfig} /></span>}
+        <span className="flex justify-center items-center cursor-pointer hover:text-foreground" onClick={() => !selectedTag && handleSort("tags")}>
+          {selectedTag ? <X size={16} className="text-red-500" onClick={(e) => { e.stopPropagation(); handleTagClick(null, e); }} /> : <span className="flex items-center gap-1">tags <SortIcon columnKey="tags" sortConfig={sortConfig} /></span>}
         </span>
-        <span onClick={() => handleSort("status")} className="cursor-pointer flex items-center justify-center gap-1 hover:text-foreground transition-colors"><span className="hidden sm:inline">status</span> <SortIcon columnKey="status" sortConfig={sortConfig} /></span>
+        <span onClick={() => handleSort("status")} className="cursor-pointer flex items-center justify-center gap-1 hover:text-foreground"><span className="hidden sm:inline">status</span> <SortIcon columnKey="status" sortConfig={sortConfig} /></span>
       </div>
       <div className="overflow-y-auto no-scrollbar max-h-[60vh] sm:max-h-[70vh]" ref={tableRef}>
         {projects.map((project, index) => (
           <div
             key={project.title}
-            className={`grid grid-cols-[1fr_60px_auto_60px] sm:grid-cols-[1fr_70px_90px_110px] gap-2 md:gap-4 px-2 py-4 border-b border-foreground/[0.05] last:border-0 items-center text-[0.9rem] transition-all cursor-pointer hover:bg-foreground/[0.02] ${index === selectedRowIndex ? "bg-foreground/[0.02] ring-1 ring-inset ring-foreground/5" : ""}`}
+            className={`grid grid-cols-[1fr_60px_auto_60px] sm:grid-cols-[1fr_70px_90px_110px] gap-2 md:gap-4 px-2 py-4 border-b border-foreground/[0.05] last:border-0 items-center text-[0.9rem] cursor-pointer hover:bg-foreground/[0.02] ${index === selectedRowIndex ? "bg-foreground/[0.02] ring-1 ring-inset ring-foreground/5" : ""}`}
             onClick={() => handleProjectClick(project)}
           >
             <span className="flex items-center gap-2 min-w-0">
               <span className="font-semibold text-foreground/90 truncate leading-tight">{project.title}</span>
-              {project.highlight && <Star size={12} className="text-yellow-500 fill-current shrink-0 animate-pulse" />}
+              {project.highlight && <Star size={12} className="text-yellow-500 fill-current shrink-0" />}
             </span>
             <span className="flex items-center justify-center gap-2">
-              <a href={project.sourceLink} target="_blank" className={`p-1.5 rounded-md hover:bg-foreground/5 transition-colors ${!project.sourceLink ? "opacity-10 pointer-events-none" : "text-foreground/60"}`} onClick={e => e.stopPropagation()}><GithubIcon size={18} /></a>
-              <a href={project.projectLink} target="_blank" className={`p-1.5 rounded-md hover:bg-foreground/5 transition-colors ${!project.projectLink ? "opacity-10 pointer-events-none" : "text-blue-500"}`} onClick={e => e.stopPropagation()}><Globe size={18} /></a>
+              <a href={project.sourceLink} target="_blank" className={`p-1.5 rounded-md hover:bg-foreground/5 ${!project.sourceLink ? "opacity-10 pointer-events-none" : "text-foreground/60"}`} onClick={e => e.stopPropagation()}><GithubIcon size={18} /></a>
+              <a href={project.projectLink} target="_blank" className={`p-1.5 rounded-md hover:bg-foreground/5 ${!project.projectLink ? "opacity-10 pointer-events-none" : "text-blue-500"}`} onClick={e => e.stopPropagation()}><Globe size={18} /></a>
             </span>
             <span className="flex justify-center items-center gap-2 overflow-hidden">
               {project.tags.map(tag => (
-                <span key={tag} className={`text-[0.7rem] px-2 py-0.5 rounded border border-foreground/10 uppercase tracking-tighter font-bold whitespace-nowrap bg-foreground/[0.02] transition-colors ${selectedTag === tag ? "border-foreground text-foreground" : "text-foreground/40"}`} onClick={e => { e.stopPropagation(); handleTagClick(tag, e); }}>{tag}</span>
+                <span key={tag} className={`text-[0.7rem] px-2 py-0.5 rounded border border-foreground/10 uppercase tracking-tighter font-bold whitespace-nowrap bg-foreground/[0.02] ${selectedTag === tag ? "border-foreground text-foreground" : "text-foreground/40"}`} onClick={e => { e.stopPropagation(); handleTagClick(tag, e); }}>{tag}</span>
               ))}
             </span>
             <span className="flex justify-center items-center sm:block">
@@ -471,7 +422,6 @@ const Content = memo(({ projects, blogs }) => {
   const [selectedTag, setSelectedTag] = useState(null);
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
   const [selectedRowIndex, setSelectedRowIndex] = useState(null);
 
   const handleTabChange = useCallback(t => { setActiveTab(t); setSortConfig({ key: null, direction: null }); setSelectedTag(null); window.history.replaceState(null, "", `#${t}`); }, []);
@@ -517,8 +467,8 @@ const Content = memo(({ projects, blogs }) => {
       <AboutContent />
       <div className="flex gap-2 mt-6 px-1">
         {TABS.map(t => (
-          <button key={t.id} onClick={() => handleTabChange(t.id)} className={`px-4 py-1.5 text-sm font-bold uppercase tracking-widest relative z-10 transition-colors ${activeTab === t.id ? "text-foreground" : "text-foreground/30 hover:text-foreground/60"}`}>
-            {activeTab === t.id && <motion.div layoutId="tab-bg" className="absolute inset-0 bg-foreground/[0.05] rounded-lg -z-10" transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />}
+          <button key={t.id} onClick={() => handleTabChange(t.id)} className={`px-4 py-1.5 text-sm font-bold uppercase tracking-widest relative z-10 ${activeTab === t.id ? "text-foreground" : "text-foreground/30 hover:text-foreground/60"}`}>
+            {activeTab === t.id && <motion.div layoutId="tab-bg" className="absolute inset-0 bg-foreground/[0.05] rounded-lg -z-10" transition={{ duration: 0 }} />}
             {t.label}
           </button>
         ))}
@@ -528,16 +478,6 @@ const Content = memo(({ projects, blogs }) => {
       ) : (
         <ProjectList projects={sortedData} selectedTag={selectedTag} handleTagClick={handleTagClick} sortConfig={sortConfig} handleSort={handleSort} handleProjectClick={handleProjectClick} selectedRowIndex={selectedRowIndex} />
       )}
-      <div className="mt-12 flex justify-start px-2">
-        <button 
-          onMouseEnter={() => setIsKeyboardOpen(true)} 
-          onMouseLeave={() => setIsKeyboardOpen(false)}
-          className="w-10 h-10 flex items-center justify-center rounded-full bg-foreground/[0.03] border border-foreground/5 text-foreground/30 hover:text-foreground hover:bg-foreground/[0.06] transition-all"
-        >
-          <Keyboard size={18} />
-        </button>
-      </div>
-      <KeyboardShortcutsModal isOpen={isKeyboardOpen} onClose={() => setIsKeyboardOpen(false)} />
       <ProjectModal project={selectedProject} isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );

@@ -129,7 +129,6 @@
 
 /* Base styles to maintain consistency while migrating */
 html {
-  scroll-behavior: smooth;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -151,7 +150,7 @@ body {
 }
 
 a {
-  @apply transition-colors duration-200;
+  @apply text-foreground/80 hover:text-foreground;
 }
 
 img {
