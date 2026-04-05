@@ -1,17 +1,24 @@
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { RiInstagramFill, RiRocketFill, RiThreadsLine, RiTwitterXLine } from "@remixicon/react";
+import { TextMarquee } from "@/components/text-marquee";
 
 export default function Page() {
   return (
-    <div className="flex min-h-svh p-6">
-      <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-        <div>
-          <h1 className="font-medium">Project ready!</h1>
-          <p>You may now add components and start building.</p>
-          <p>We&apos;ve already added the button component for you.</p>
-          <Button className="mt-2">Button</Button>
+    <div className="min-h-svh p-6 flex items-center justify-center">
+      <div className="max-w-[400px]">
+        <div className="flex items-center gap-2">
+          <div className="font-semibold">Danish</div>
+          <div className="text-muted-foreground flex items-center gap-1">, Generalist <RiRocketFill color="#0000ff" size={16} /></div>
         </div>
-        <div className="font-mono text-xs text-muted-foreground">
-          (Press <kbd>d</kbd> to toggle dark mode)
+        <Separator className="my-4" />
+        <div className="">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate non nostrum dolor. Aperiam ipsa consectetur reprehenderit expedita ipsum laboriosam at?</p>
+        </div>
+        <div className="flex gap-2 my-4">
+          <Button variant="outline" size="sm"> <RiTwitterXLine /> dan10ish</Button>
+          <Button variant="outline" size="sm"> <RiInstagramFill /> dan10ish</Button>
+          <Button variant="outline" size="sm"> <RiThreadsLine /> dan10ish</Button>
         </div>
       </div>
     </div>
