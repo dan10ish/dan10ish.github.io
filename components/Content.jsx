@@ -89,7 +89,7 @@ const AboutContent = memo(() => {
                 strokeLinecap="round"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: 1 }}
-                transition={{ duration: 0 }}
+                transition={{ duration: 0.8, ease: "easeInOut" }}
               />
               <motion.path
                 d="M64.4263 16.6339C63.5779 13.1557 60.7209 13.3335 58.7303 16.281C56.2311 19.9818 60.731 23.8048 63.4433 20.4144C64.3358 19.2988 64.2834 14.046 64.4515 16.7347C64.6565 20.0151 67.8321 24.0413 70.6767 20.1623C71.5016 19.0374 71.7571 14.7004 71.332 16.029C71.1337 16.6487 71.8339 20.2254 71.9369 20.1371C73.0086 19.2185 74.565 13.0333 77.0783 14.29C78.3705 14.936 79.0368 19.2757 79.3971 20.7168"
@@ -99,7 +99,7 @@ const AboutContent = memo(() => {
                 strokeLinecap="round"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: 1 }}
-                transition={{ duration: 0 }}
+                transition={{ duration: 0.8, ease: "easeInOut", delay: 0.6 }}
               />
               <motion.path
                 d="M82.5726 14.8192C82.5726 13.3223 82.7558 15.8654 82.8247 16.1801C83.1276 17.5649 83.4193 18.9774 83.9336 20.2631"
@@ -109,7 +109,7 @@ const AboutContent = memo(() => {
                 strokeLinecap="round"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: 1 }}
-                transition={{ duration: 0 }}
+                transition={{ duration: 0.4, ease: "easeInOut", delay: 1.2 }}
               />
               <motion.path
                 d="M84.3873 7.56058C83.5393 6.71263 83.0281 6.05144 83.9336 7.56058"
@@ -119,7 +119,7 @@ const AboutContent = memo(() => {
                 strokeLinecap="round"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: 1 }}
-                transition={{ duration: 0 }}
+                transition={{ duration: 0.4, ease: "easeInOut", delay: 1.4 }}
               />
               <motion.path
                 d="M91.9923 13.1211C91.9923 11.922 91.0266 11.6815 90.0769 12.4154C87.059 14.7474 88.1454 16.693 91.2614 18.061C93.68 19.1228 94.9167 19.8991 91.7655 21.2618C88.1505 22.825 87.0855 22.3312 88.8001 20.6166"
@@ -129,7 +129,7 @@ const AboutContent = memo(() => {
                 strokeLinecap="round"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: 1 }}
-                transition={{ duration: 0 }}
+                transition={{ duration: 0.6, ease: "easeInOut", delay: 1.8 }}
               />
               <motion.path
                 d="M98.1349 1C97.0711 4.44473 96.6171 9.76923 97.38 13.2566C97.5036 13.8217 98.3063 21.7286 99.6349 21C100.481 20.5359 106.046 10.6826 106.68 14.0631C107.137 16.5018 106.893 20.357 109.427 21.6241"
@@ -139,27 +139,27 @@ const AboutContent = memo(() => {
                 strokeLinecap="round"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: 1 }}
-                transition={{ duration: 0 }}
+                transition={{ duration: 0.6, ease: "easeInOut", delay: 2.2 }}
               />
             </motion.svg>
           </span>
           <div className="flex flex-row gap-4 items-center text-foreground">
-            <a href="https://github.com/dan10ish" target="_blank" rel="noopener noreferrer" className="hover:hover:text-blue-500" aria-label="GitHub">
+            <a href="https://github.com/dan10ish" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500" aria-label="GitHub">
               <GithubIcon size={20} />
             </a>
-            <a href="https://x.com/dan10ish" target="_blank" rel="noopener noreferrer" className="hover:hover:text-blue-500" aria-label="X">
+            <a href="https://x.com/dan10ish" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500" aria-label="X">
               <XIcon size={20} />
             </a>
-            <a href="https://instagram.com/dan10ish" target="_blank" rel="noopener noreferrer" className="hover:hover:text-blue-500" aria-label="Instagram">
+            <a href="https://instagram.com/dan10ish" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500" aria-label="Instagram">
               <InstagramIcon size={20} />
             </a>
-            <a href="https://threads.net/@dan10ish" target="_blank" rel="noopener noreferrer" className="hover:hover:text-blue-500" aria-label="Threads">
+            <a href="https://threads.net/@dan10ish" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500" aria-label="Threads">
               <ThreadsIcon size={20} />
             </a>
-            <a href="https://snapchat.com/add/dan10ish" target="_blank" rel="noopener noreferrer" className="hover:hover:text-blue-500" aria-label="Snapchat">
+            <a href="https://snapchat.com/add/dan10ish" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500" aria-label="Snapchat">
               <SnapchatIcon size={20} />
             </a>
-            <a href={`mailto:${email}`} target="_blank" rel="noopener noreferrer" className="hover:hover:text-blue-500" aria-label="Email">
+            <a href={`mailto:${email}`} target="_blank" rel="noopener noreferrer" className="hover:text-blue-500" aria-label="Email">
               <LucideIcon icon={Mail} size={20} />
             </a>
           </div>
