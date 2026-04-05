@@ -1,11 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { RiInstagramFill, RiRocketFill, RiThreadsLine, RiTwitterXLine } from "@remixicon/react";
+import { RiInstagramFill, RiThreadsLine, RiTwitterXLine } from "@remixicon/react";
 import { TextMarquee } from "@/components/text-marquee";
+import HighlightedText from "@/components/highlighted-text";
 
 export default function Page() {
   return (
-    <div className="min-h-svh p-6 flex items-center justify-center">
+    <div className="min-h-svh p-8 md:p-6 flex items-center justify-center">
       <div className="max-w-[400px]">
         <TextMarquee
           height={50}
@@ -26,8 +27,8 @@ export default function Page() {
           <p className="font-medium">sleep</p>
         </TextMarquee>
         <Separator className="my-4" />
-        <div className="">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate non nostrum dolor. Aperiam ipsa consectetur reprehenderit expedita ipsum laboriosam at?</p>
+        <div>
+          <p className="text-muted-foreground font-medium">I&apos;m a <HighlightedText from="left" delay={0.4}>mechatronics</HighlightedText> engineer integrating hardware and software to create applications in machine learning, robotics, and finance.</p>
         </div>
         <div className="flex gap-2 my-4">
           <Button variant="outline" size="sm"> <RiTwitterXLine /> dan10ish</Button>
