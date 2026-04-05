@@ -11,13 +11,10 @@ import {
 } from "react";
 import {
   Globe,
-  X,
   Star,
   ChevronUp,
   ChevronDown,
   Mail,
-  VideoOff,
-  LoaderCircle,
 } from "lucide-react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -189,111 +186,7 @@ const SortIcon = memo(({ columnKey, sortConfig }) => (
 ));
 SortIcon.displayName = "SortIcon";
 
-const VideoSection = memo(({ project, shouldLoadVideo }) => {
-  const [videoLoaded, setVideoLoaded] = useState(false);
-  const [videoError, setVideoError] = useState(false);
 
-  if (!project.video) {
-    return (
-      <div className="aspect-square flex flex-col items-center justify-center bg-foreground/[0.03] text-[#9CA3AF] dark:text-[#333333] gap-2 p-6 rounded-xl">
-        <VideoOff size={32} />
-        <p className="text-[0.85rem]">Preview not available</p>
-      </div>
-    );
-  }
-
-  return (
-    <div className="aspect-square relative flex items-center justify-center bg-foreground/[0.03] rounded-xl overflow-hidden shadow-inner">
-      {!videoLoaded && !videoError && (
-        <LoaderCircle size={32} className="text-[#D1D5DB] dark:text-[#333333] animate-spin" />
-      )}
-      {shouldLoadVideo && (
-        <video
-          className={`w-full h-full object-cover ${videoLoaded ? "opacity-100" : "opacity-0"}`}
-          src={`/project-videos/${project.video}`}
-          playsInline autoPlay muted loop
-          onLoadedData={() => setVideoLoaded(true)}
-          onError={() => setVideoError(true)}
-        />
-      )}
-    </div>
-  );
-});
-VideoSection.displayName = "VideoSection";
-
-const ProjectModal = memo(({ project, isOpen, onClose }) => {
-  const [shouldLoad, setShouldLoad] = useState(false);
-
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-      const timer = setTimeout(() => setShouldLoad(true), 50);
-      return () => {
-        document.body.style.overflow = "auto";
-        clearTimeout(timer);
-      };
-    }
-    setShouldLoad(false);
-  }, [isOpen]);
-
-  if (!project) return null;
-
-  return (
-    <AnimatePresence>
-      {isOpen && (
-        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
-          <motion.div
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            transition={{ duration: 0 }}
-            onClick={onClose}
-            className="absolute inset-0 bg-background/80 backdrop-blur-sm"
-          />
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ duration: 0 }}
-            className="relative w-full max-w-[700px] bg-background border border-foreground/10 rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row"
-          >
-            <div className="md:w-1/2 p-2">
-              <VideoSection project={project} shouldLoadVideo={shouldLoad} />
-            </div>
-            <div className="md:w-1/2 p-6 flex flex-col justify-between">
-              <div>
-                <h2 className="text-lg font-bold mb-3">{project.title}</h2>
-                <p className="text-[0.8rem] leading-relaxed text-foreground/60 mb-8">{project.description}</p>
-              </div>
-              <div className="flex flex-row gap-2">
-                {project.sourceLink ? (
-                  <a href={project.sourceLink} target="_blank" className="flex-1 flex items-center justify-center gap-2 text-[0.7rem] font-bold uppercase tracking-wider bg-foreground/5 hover:bg-foreground/10 px-3 py-2 rounded-lg transition-colors">
-                    <GithubIcon size={14} /> Code
-                  </a>
-                ) : (
-                  <div className="flex-1 flex items-center justify-center gap-2 text-[0.7rem] font-bold uppercase tracking-wider bg-foreground/[0.02] text-[#333333] px-3 py-2 rounded-lg">
-                    <GithubIcon size={14} /> N/A
-                  </div>
-                )}
-                {project.projectLink ? (
-                  <a href={project.projectLink} target="_blank" className="flex-1 flex items-center justify-center gap-2 text-[0.7rem] font-bold uppercase tracking-wider bg-blue-500/10 text-blue-500 hover:bg-blue-500/20 px-3 py-2 rounded-lg transition-colors">
-                    <Globe size={14} /> Live
-                  </a>
-                ) : (
-                  <div className="flex-1 flex items-center justify-center gap-2 text-[0.7rem] font-bold uppercase tracking-wider bg-foreground/[0.02] text-[#333333] px-3 py-2 rounded-lg">
-                    <Globe size={14} /> N/A
-                  </div>
-                )}
-              </div>
-            </div>
-            <button onClick={onClose} className="absolute top-4 right-4 p-2 rounded-full hover:bg-foreground/[0.05] text-[#6B7280] dark:text-[#71717A] hover:text-[#3B82F6] hover:scale-110">
-              <X size={20} />
-            </button>
-          </motion.div>
-        </div>
-      )}
-    </AnimatePresence>
-  );
-});
-ProjectModal.displayName = "ProjectModal";
 
 const BlogList = memo(({ blogs, handleSort, sortConfig, selectedRowIndex }) => {
   return (
@@ -322,15 +215,14 @@ const BlogList = memo(({ blogs, handleSort, sortConfig, selectedRowIndex }) => {
 });
 BlogList.displayName = "BlogList";
 
-const ProjectList = memo(({ projects, handleProjectClick, selectedRowIndex }) => {
+const ProjectList = memo(({ projects, selectedRowIndex }) => {
   return (
     <div className="mt-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-1">
         {projects.map((project, index) => (
           <div
             key={project.title}
-            className={`flex flex-col p-3 rounded-xl border border-foreground/[0.05] bg-foreground/[0.01] hover:hover:bg-foreground/[0.03] transition-colors cursor-pointer group ${index === selectedRowIndex ? "bg-foreground/[0.03] ring-1 ring-inset ring-foreground/10" : ""}`}
-            onClick={() => handleProjectClick(project)}
+            className={`flex flex-col p-3 rounded-xl border border-foreground/[0.05] bg-foreground/[0.01] hover:hover:bg-foreground/[0.03] transition-colors group ${index === selectedRowIndex ? "bg-foreground/[0.03] ring-1 ring-inset ring-foreground/10" : ""}`}
           >
           <div className="flex items-center justify-between mb-2">
             <span className="flex items-center gap-2 min-w-0">
@@ -364,8 +256,6 @@ ProjectList.displayName = "ProjectList";
 const Content = memo(({ projects, blogs }) => {
   const [activeTab, setActiveTab] = useState("microblogs");
   const [sortConfig, setSortConfig] = useState({ key: null, direction: null });
-  const [selectedProject, setSelectedProject] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedRowIndex, setSelectedRowIndex] = useState(null);
 
   const handleTabChange = useCallback(t => {
@@ -381,10 +271,7 @@ const Content = memo(({ projects, blogs }) => {
     }));
   }, []);
 
-  const handleProjectClick = useCallback(p => {
-    setSelectedProject(p);
-    setIsModalOpen(true);
-  }, []);
+
 
   useEffect(() => {
     const hash = window.location.hash.replace("#", "");
@@ -409,12 +296,15 @@ const Content = memo(({ projects, blogs }) => {
 
   useEffect(() => {
     const handleKeys = e => {
-      if (isModalOpen) return;
       if (e.key === "ArrowDown") { e.preventDefault(); setSelectedRowIndex(p => p === null ? 0 : Math.min(p + 1, sortedData.length - 1)); }
       if (e.key === "ArrowUp") { e.preventDefault(); setSelectedRowIndex(p => p === null ? sortedData.length - 1 : Math.max(p - 1, 0)); }
       if (e.key === "Enter" && selectedRowIndex !== null) {
         if (activeTab === "microblogs") window.location.href = `/blog/${sortedData[selectedRowIndex].slug}`;
-        else handleProjectClick(sortedData[selectedRowIndex]);
+        else {
+          const project = sortedData[selectedRowIndex];
+          if (project.projectLink) window.open(project.projectLink, "_blank");
+          else if (project.sourceLink) window.open(project.sourceLink, "_blank");
+        }
       }
       if (e.key === "Escape") setSelectedRowIndex(null);
     };
@@ -422,7 +312,7 @@ const Content = memo(({ projects, blogs }) => {
     const onMove = () => { if (selectedRowIndex !== null) setSelectedRowIndex(null); };
     window.addEventListener("mousemove", onMove);
     return () => { window.removeEventListener("keydown", handleKeys); window.removeEventListener("mousemove", onMove); };
-  }, [sortedData, selectedRowIndex, isModalOpen, activeTab, handleProjectClick]);
+  }, [sortedData, selectedRowIndex, activeTab]);
 
   return (
     <div className="flex flex-col">
@@ -448,9 +338,8 @@ const Content = memo(({ projects, blogs }) => {
       {activeTab === "microblogs" ? (
         <BlogList blogs={sortedData} handleSort={handleSort} sortConfig={sortConfig} selectedRowIndex={selectedRowIndex} />
       ) : (
-        <ProjectList projects={sortedData} handleProjectClick={handleProjectClick} selectedRowIndex={selectedRowIndex} />
+        <ProjectList projects={sortedData} selectedRowIndex={selectedRowIndex} />
       )}
-      <ProjectModal project={selectedProject} isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );
 });
