@@ -28,7 +28,7 @@ export default function Page() {
         </TextMarquee>
         <Separator className="my-4" />
         <div>
-          <p className="text-muted-foreground font-medium">I&apos;m a <HighlightedText from="left" delay={0.4}>mechatronics</HighlightedText> engineer integrating hardware and software to create applications in machine learning, robotics, and finance.</p>
+          <p className="text-muted-foreground font-medium">I&apos;m a <HighlightedText from="left" delay={0.4}>mechatronics</HighlightedText> engineer integrating hardware and software to create applications in machine learning, robotics, and finance. Currently taking companies from <HighlightedText delay={0.8} from="top">0 to 1</HighlightedText>.</p>
         </div>
         <div className="flex gap-2 my-4">
           <Button variant="outline" size="sm"> <RiTwitterXLine /> dan10ish</Button>
