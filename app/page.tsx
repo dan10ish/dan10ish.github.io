@@ -7,10 +7,24 @@ export default function Page() {
   return (
     <div className="min-h-svh p-6 flex items-center justify-center">
       <div className="max-w-[400px]">
-        <div className="flex items-center gap-2">
-          <div className="font-semibold">Danish</div>
-          <div className="text-muted-foreground flex items-center gap-1">, Generalist <RiRocketFill color="#0000ff" size={16} /></div>
-        </div>
+        <TextMarquee
+          height={50}
+          speed={1}
+          prefix={
+            <span>
+              <span className="font-semibold">Danish</span>, I&nbsp;
+            </span>
+          }
+        >
+          <p className="font-medium">code</p>
+          <p className="font-medium">play&nbsp;football</p>
+          <p className="font-medium">travel</p>
+          <p className="font-medium">play&nbsp;piano</p>
+          <p className="font-medium">take&nbsp;videos</p>
+          <p className="font-medium">take&nbsp;companies&nbsp;from&nbsp;0&nbsp;to&nbsp;1</p>
+          <p className="font-medium">read</p>
+          <p className="font-medium">sleep</p>
+        </TextMarquee>
         <Separator className="my-4" />
         <div className="">
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate non nostrum dolor. Aperiam ipsa consectetur reprehenderit expedita ipsum laboriosam at?</p>

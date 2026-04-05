@@ -52,7 +52,7 @@ export function TextMarquee({
               {React.Children.map(children, (child, index) => (
                 <div
                   key={index}
-                  className="h-[40px] flex items-center"
+                  className="h-[22px] flex items-center"
                   style={{
                     "--index": index,
                     "--origin": `calc((var(--count) - var(--index)) * 100%)`,
