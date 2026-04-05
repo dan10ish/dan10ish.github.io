@@ -26,7 +26,7 @@ export default function FloatingControls() {
   if (!mounted) return null
 
   const iconClasses = "w-6 h-6"
-  const buttonClasses = "group flex items-center justify-center w-10 h-10 rounded-full text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white"
+  const buttonClasses = "group flex items-center justify-center w-10 h-10 rounded-full text-[#6B7280] dark:text-[#71717A] hover:text-[#3B82F6] hover:scale-110"
 
   return (
     <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-center gap-2">
