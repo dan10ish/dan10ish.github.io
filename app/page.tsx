@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { RiInstagramFill, RiThreadsLine, RiTwitterXLine } from "@remixicon/react";
-import HighlightedText from "@/components/highlighted-text";
+import { Highlighter } from "@/components/ui/highlighter";
+
 export default function Page() {
   return (
     <div className="min-h-svh p-8 md:p-6 flex items-center justify-center">
@@ -9,7 +10,9 @@ export default function Page() {
           <h1 className="font-semibold">Danish</h1>
         </div>
         <div>
-          <p className="text-muted-foreground font-medium">I&apos;m a <HighlightedText from="left" delay={0.4}>mechatronics</HighlightedText> engineer integrating hardware and software to create applications in machine learning, robotics, and finance. Currently taking companies from <HighlightedText delay={0.8} from="top">0 to 1</HighlightedText></p>
+          <p className="text-muted-foreground font-medium">
+            I&apos;m a <Highlighter action="underline" color="#6366f1" iterations={1} strokeWidth={2} padding={1}>mechatronics</Highlighter> engineer integrating hardware and software to create applications in machine learning, robotics, and finance. Currently taking companies from <Highlighter action="highlight" color="#fde047" iterations={1} padding={2}>zero to one</Highlighter>
+          </p>
         </div>
         <div className="flex gap-2">
           <Button variant="outline" size="sm"> <RiTwitterXLine /> dan10ish</Button>
