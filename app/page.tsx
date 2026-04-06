@@ -1,13 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { RiInstagramFill, RiThreadsLine, RiTwitterXLine } from "@remixicon/react";
 import { Highlighter } from "@/components/ui/highlighter";
+import { RocketIcon } from "@/components/ui/rocket";
 
 export default function Page() {
   return (
     <div className="min-h-svh p-8 md:p-6 flex items-center justify-center">
       <div className="max-w-[400px] flex flex-col gap-6 md:gap-4">
-        <div>
-          <h1 className="font-semibold">Danish</h1>
+        <div className="flex items-center gap-1.5">
+          <h1 className="font-semibold">Danish,</h1>
+          <h2 className="text-muted-foreground font-medium">Generalist</h2>
+          <RocketIcon size={18} alwaysAnimate={true} />
         </div>
         <div>
           <p className="text-muted-foreground font-medium">
