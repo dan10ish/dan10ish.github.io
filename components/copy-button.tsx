@@ -50,7 +50,7 @@ const CopyButton = React.forwardRef<HTMLButtonElement, CopyButtonProps>(
         aria-label={copied ? "Copied" : "Copy to clipboard"}
         disabled={copied}
         className={cn(
-          "relative cursor-pointer active:scale-[0.97] transition-all ease-out duration-200 inline-flex items-center justify-center rounded-md text-neutral-900 disabled:pointer-events-none disabled:opacity-100 dark:text-neutral-50",
+          "relative cursor-pointer active:scale-[0.97] hover:will-change-transform transition-all ease-out duration-200 inline-flex items-center justify-center rounded-md text-neutral-900 disabled:pointer-events-none disabled:opacity-100 dark:text-neutral-50",
           buttonSize,
           className,
         )}

@@ -123,6 +123,9 @@
   body {
     @apply bg-background text-foreground overflow-hidden select-none;
     }
+  button:hover {
+    will-change: transform;
+  }
   html {
     @apply font-sans overflow-hidden;
     }
