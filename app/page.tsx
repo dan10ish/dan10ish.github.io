@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
-import { RiInstagramFill, RiThreadsLine, RiTwitterXLine } from "@remixicon/react";
+import { RiInstagramFill, RiThreadsLine, RiTwitterXLine, RiWindowLine } from "@remixicon/react";
 import { Highlighter } from "@/components/ui/highlighter";
 import { RocketIcon } from "@/components/ui/rocket";
+import Link from "next/link";
 
 export default function Page() {
   return (
@@ -13,8 +14,8 @@ export default function Page() {
           <RocketIcon size={18} alwaysAnimate={true} />
         </div>
         <div>
-          <p className="text-muted-foreground font-medium">
-            I&apos;m a <Highlighter action="underline" color="#6366f1" iterations={1} strokeWidth={2} padding={1}>mechatronics</Highlighter> engineer integrating hardware and software to create applications in machine learning, robotics, and finance. Currently taking companies from <Highlighter action="highlight" color="#fde047" iterations={1} padding={2}>zero to one</Highlighter>
+          <p className="text-muted-foreground font-medium leading-relaxed">
+            I&apos;m a <Highlighter action="underline" color="#6366f1" iterations={1} strokeWidth={2} padding={1}>mechatronics</Highlighter> engineer integrating hardware and software to create <Link href="/applications" className="inline-flex items-center gap-1 text-foreground decoration-border hover:decoration-foreground transition-all align-baseline"><RiWindowLine className="size-[0.9em] -translate-y-[0.1em]" /><span className="underline underline-offset-4 decoration-1">applications</span></Link> in machine learning, robotics, and finance. Currently taking companies from <Highlighter action="highlight" color="#fde047" iterations={1} padding={2}>zero to one</Highlighter>
           </p>
         </div>
         <div className="flex gap-2">
