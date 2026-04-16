@@ -5,6 +5,7 @@ import Projects from "./Projects";
 import About from "./About";
 import Notes from "./Notes";
 import BusinessCard from "./BusinessCard";
+import GitHubActivity from "./GitHubActivity";
 
 export default function HomeClient() {
   return (
@@ -25,6 +26,10 @@ export default function HomeClient() {
       <section>
         <h2 className="text-base font-bold mb-4">Projects</h2>
         <Projects projects={projects} />
+      </section>
+
+      <section>
+        <GitHubActivity />
       </section>
     </main>
   );

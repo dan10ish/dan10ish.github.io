@@ -106,7 +106,11 @@ export default function Projects({ projects }: ProjectsProps) {
         <Carousel
           setApi={setApi}
           orientation="vertical"
-          opts={{ align: 'start', containScroll: 'trimSnaps' }}
+          opts={{
+            align: 'start',
+            containScroll: 'trimSnaps',
+            watchDrag: false,
+          }}
           className="w-full"
         >
           <CarouselContent className="-mt-0 h-[18rem]">

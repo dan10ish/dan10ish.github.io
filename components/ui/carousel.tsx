@@ -154,14 +154,19 @@ const CarouselContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => {
-  const { carouselRef, orientation } = useCarousel()
+  const { carouselRef, orientation, opts } = useCarousel()
+  const dragDisabled = opts?.watchDrag === false
 
   return (
     <div
       ref={carouselRef}
       className="overflow-hidden"
       style={{
-        touchAction: orientation === "horizontal" ? "pan-y" : "pan-x",
+        touchAction: dragDisabled
+          ? "auto"
+          : orientation === "horizontal"
+            ? "pan-y"
+            : "pan-x",
       }}
     >
       <div
