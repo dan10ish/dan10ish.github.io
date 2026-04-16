@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { Video, Github, Globe, X } from 'lucide-react';
+import { Video, Globe, X } from 'lucide-react';
+import { GithubIcon } from './BrandIcons';
 import { AnimatePresence } from 'framer-motion';
 import VideoShowcase from './VideoShowcase';
 
@@ -180,8 +181,8 @@ export default function Projects({ projects }: ProjectsProps) {
                         }
                       }}
                     >
-                      <Github 
-                        size={18} 
+                      <GithubIcon
+                        size={18}
                         style={{ color: 'var(--secondary)' }}
                       />
                     </button>

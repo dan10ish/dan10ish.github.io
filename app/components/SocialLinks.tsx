@@ -1,8 +1,9 @@
 'use client';
 
-import { Github, Mail, Instagram } from 'lucide-react';
+import { Mail } from 'lucide-react';
 import Link from 'next/link';
 import { memo } from 'react';
+import { GithubIcon, InstagramIcon, ThreadsIcon } from './BrandIcons';
 
 const XIcon = memo((props) => (
   <svg
@@ -68,14 +69,15 @@ interface SocialLinksProps {
   instagram?: string;
   linkedin?: string;
   snapchat?: string;
+  threads?: string;
 }
 
-export default function SocialLinks({ github, email, x, instagram, linkedin, snapchat }: SocialLinksProps) {
+export default function SocialLinks({ github, email, x, instagram, linkedin, snapchat, threads }: SocialLinksProps) {
   return (
     <div className="flex items-center gap-2">
       {github && (
         <Link href={`https://github.com/${github}`} target="_blank" className="flex items-center justify-center" aria-label={`GitHub profile of ${github}`}>
-          <Github size={20} />
+          <GithubIcon size={20} />
         </Link>
       )}
       {email && (
@@ -95,7 +97,12 @@ export default function SocialLinks({ github, email, x, instagram, linkedin, sna
       )}
       {instagram && (
         <Link href={`https://instagram.com/${instagram}`} target="_blank" className="flex items-center justify-center" aria-label={`Instagram profile of ${instagram}`}>
-          <Instagram size={20} />
+          <InstagramIcon />
+        </Link>
+      )}
+      {threads && (
+        <Link href={`https://www.threads.net/@${threads}`} target="_blank" className="flex items-center justify-center" aria-label={`Threads profile of ${threads}`}>
+          <ThreadsIcon />
         </Link>
       )}
       {snapchat && (

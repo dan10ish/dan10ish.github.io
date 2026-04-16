@@ -220,7 +220,7 @@ export default function GitHubContributions({ githubData }: Props) {
                 day.date ? (
                   <div
                     key={`${weekIndex}-${dayIndex}`}
-                    className="w-[10px]! h-[10px]! rounded-[2px]! transition-all! duration-200! hover:scale-110! cursor-pointer!"
+                    className="w-[10px]! h-[10px]! rounded-[2px]! hover:scale-110! cursor-pointer!"
                     style={{ 
                       backgroundColor: getColorForLevel(day.level),
                       border: 'none'
@@ -272,7 +272,7 @@ export default function GitHubContributions({ githubData }: Props) {
           href="https://github.com/dan10ish"
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-(--link-blue)! transition-opacity!"
+          className="hover:text-(--link-blue)!"
         >
           @dan10ish
         </a>

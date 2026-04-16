@@ -27,6 +27,7 @@ export default function NotFound() {
             instagram={personalInfo.socials.instagram}
             linkedin={personalInfo.socials.linkedin}
             snapchat={personalInfo.socials.snapchat}
+            threads={personalInfo.socials.threads}
           />
         </div>
       </div>
