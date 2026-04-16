@@ -132,7 +132,7 @@ export default function VideoShowcase({
       <Drawer onOpenChange={(open) => !open && onClose()} open={isOpen}>
         <DrawerPopup showBar>
           <DrawerHeader>
-            <DrawerTitle className="text-sm font-medium">{title}</DrawerTitle>
+            <DrawerTitle className="text-md font-medium">{title}</DrawerTitle>
             <DrawerDescription className="text-xs">
               {description}
             </DrawerDescription>
@@ -155,7 +155,7 @@ export default function VideoShowcase({
     <Dialog onOpenChange={(open) => !open && onClose()} open={isOpen}>
       <DialogPopup className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-sm font-medium">{title}</DialogTitle>
+          <DialogTitle className="text-md font-medium">{title}</DialogTitle>
           <DialogDescription className="text-xs">
             {description}
           </DialogDescription>

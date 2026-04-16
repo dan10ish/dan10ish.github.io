@@ -4,12 +4,17 @@ import { projects } from "../data";
 import Projects from "./Projects";
 import About from "./About";
 import Notes from "./Notes";
+import BusinessCard from "./BusinessCard";
 
 export default function HomeClient() {
   return (
     <main className="space-y-10 pb-16 sm:pb-0">
       <section>
         <About />
+      </section>
+
+      <section>
+        <BusinessCard />
       </section>
 
       <section>
