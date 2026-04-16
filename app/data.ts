@@ -110,3 +110,24 @@ export const projects = [
     video: "web.mp4"
   }
 ];
+
+export interface Note {
+  file: string;
+  title: string;
+  semester: number;
+  cover: string;
+}
+
+export const notes: Note[] = [
+  { file: "/notes/semester5/DME.pdf",  title: "Design of Machine Elements",         semester: 5, cover: "bg-amber-600 text-white" },
+  { file: "/notes/semester5/DSM.pdf",  title: "Dynamics of Machines",               semester: 5, cover: "bg-red-700 text-white" },
+  { file: "/notes/semester5/SAS.pdf",  title: "Sensors and Actuators",              semester: 5, cover: "bg-orange-700 text-white" },
+  { file: "/notes/semester5/Rough.pdf", title: "Rough Work",                        semester: 5, cover: "bg-stone-700 text-white" },
+  { file: "/notes/semester6/AIML.pdf", title: "AI and Machine Learning",            semester: 6, cover: "bg-indigo-700 text-white" },
+  { file: "/notes/semester6/GTA.pdf",  title: "Graph Theory and Applications",      semester: 6, cover: "bg-blue-700 text-white" },
+  { file: "/notes/semester6/MCS.pdf",  title: "Microcontroller Systems",            semester: 6, cover: "bg-sky-700 text-white" },
+  { file: "/notes/semester6/PLC.pdf",  title: "Programmable Logic Controllers",     semester: 6, cover: "bg-cyan-800 text-white" },
+  { file: "/notes/semester7/IRMC.pdf", title: "Industrial Robotics & Machine Control", semester: 7, cover: "bg-emerald-700 text-white" },
+  { file: "/notes/semester7/MSD.pdf",  title: "Mechatronic System Design",          semester: 7, cover: "bg-teal-700 text-white" },
+  { file: "/notes/semester7/RSD.pdf",  title: "Robotic System Design",              semester: 7, cover: "bg-green-700 text-white" }
+];
