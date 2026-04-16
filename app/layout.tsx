@@ -78,7 +78,7 @@ export const metadata: Metadata = {
     creator: "@dan10ish",
     title: "Danish",
     description:
-      "Danish's personal website featuring his projects, technical writings, and insights in robotics and machine learning.",
+      "Danish's personal website featuring his projects and insights in robotics and machine learning.",
     images: ["https://i.ibb.co/vmBrhSd/OG.png"],
   },
   openGraph: {
@@ -86,7 +86,7 @@ export const metadata: Metadata = {
     siteName: "Danish",
     title: "Danish",
     description:
-      "Danish's personal website featuring his projects, technical writings, and insights in robotics and machine learning.",
+      "Danish's personal website featuring his projects and insights in robotics and machine learning.",
     url: "https://danish.bio",
     images: [
       {

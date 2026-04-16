@@ -1,32 +1,40 @@
 'use client';
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import NameSvg from './NameSvg';
 import SocialLinks from './SocialLinks';
 import { personalInfo } from '../data';
 
 export default function SiteHeader() {
+  const router = useRouter();
   const pathname = usePathname();
   const isHome = pathname === '/';
 
-  return (
-    <header className="site-header">
-      <div className="site-header-inner">
-        {isHome ? (
-          <span className="site-header-name" aria-label={personalInfo.name}>
-            <NameSvg />
-          </span>
-        ) : (
-          <Link
-            href="/"
-            className="site-header-name"
-            aria-label={`${personalInfo.name} — Home`}
-          >
-            <NameSvg />
-          </Link>
-        )}
+  const handleNameClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (isHome) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      router.push('/');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
+  return (
+    <>
+      <div className="site-header-name-frame" aria-hidden={false}>
+        <a
+          href="/"
+          onClick={handleNameClick}
+          className="site-header-name"
+          aria-label={isHome ? `${personalInfo.name} — Scroll to top` : `${personalInfo.name} — Home`}
+        >
+          <NameSvg />
+        </a>
+      </div>
+
+      <header className="site-header">
+        <span className="site-header-name-spacer" aria-hidden="true" />
         {isHome && (
           <SocialLinks
             github={personalInfo.socials.github}
@@ -38,7 +46,7 @@ export default function SiteHeader() {
             threads={personalInfo.socials.threads}
           />
         )}
-      </div>
-    </header>
+      </header>
+    </>
   );
 }
