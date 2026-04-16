@@ -60,11 +60,11 @@ export default function VideoShowcase({
   const videoBlock = (
     <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-muted">
       {!videoSrc ? (
-        <div className="absolute inset-0 flex items-center justify-center text-muted-foreground text-sm">
+        <div className="absolute inset-0 flex items-center justify-center text-muted-foreground text-xs">
           No video available
         </div>
       ) : hasError ? (
-        <div className="absolute inset-0 flex items-center justify-center text-muted-foreground text-sm">
+        <div className="absolute inset-0 flex items-center justify-center text-muted-foreground text-xs">
           Video failed to load
         </div>
       ) : (
@@ -103,22 +103,24 @@ export default function VideoShowcase({
     <>
       {sourceCode && (
         <Button
+          size="sm"
           variant="outline"
           onClick={() =>
             window.open(sourceCode, '_blank', 'noopener,noreferrer')
           }
         >
-          <GithubIcon size={14} />
+          <GithubIcon size={12} />
           Source
         </Button>
       )}
       {liveDemo && (
         <Button
+          size="sm"
           onClick={() =>
             window.open(liveDemo, '_blank', 'noopener,noreferrer')
           }
         >
-          <Globe size={14} />
+          <Globe size={12} />
           Live
         </Button>
       )}
@@ -130,14 +132,18 @@ export default function VideoShowcase({
       <Drawer onOpenChange={(open) => !open && onClose()} open={isOpen}>
         <DrawerPopup showBar>
           <DrawerHeader>
-            <DrawerTitle>{title}</DrawerTitle>
-            <DrawerDescription>{description}</DrawerDescription>
+            <DrawerTitle className="text-sm font-medium">{title}</DrawerTitle>
+            <DrawerDescription className="text-xs">
+              {description}
+            </DrawerDescription>
           </DrawerHeader>
           <DrawerPanel className="grid gap-4" scrollable={false}>
             {videoBlock}
           </DrawerPanel>
           <DrawerFooter>
-            <DrawerClose render={<Button variant="ghost" />}>Close</DrawerClose>
+            <DrawerClose render={<Button size="sm" variant="ghost" />}>
+              Close
+            </DrawerClose>
             {actions}
           </DrawerFooter>
         </DrawerPopup>
@@ -149,12 +155,16 @@ export default function VideoShowcase({
     <Dialog onOpenChange={(open) => !open && onClose()} open={isOpen}>
       <DialogPopup className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>{title}</DialogTitle>
-          <DialogDescription>{description}</DialogDescription>
+          <DialogTitle className="text-sm font-medium">{title}</DialogTitle>
+          <DialogDescription className="text-xs">
+            {description}
+          </DialogDescription>
         </DialogHeader>
         <DialogPanel className="grid gap-4">{videoBlock}</DialogPanel>
         <DialogFooter>
-          <DialogClose render={<Button variant="ghost" />}>Close</DialogClose>
+          <DialogClose render={<Button size="sm" variant="ghost" />}>
+            Close
+          </DialogClose>
           {actions}
         </DialogFooter>
       </DialogPopup>

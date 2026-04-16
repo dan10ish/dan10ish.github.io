@@ -1,10 +1,15 @@
 'use client';
 
-import { useState } from 'react';
-import { Video, Globe, X } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Video, Globe, X, ChevronUp, ChevronDown } from 'lucide-react';
 import { GithubIcon } from './BrandIcons';
 import VideoShowcase from './VideoShowcase';
-import { ScrollArea } from '@/components/ui/scroll-area';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi,
+} from '@/components/ui/carousel';
 import { cn } from '@/lib/utils';
 
 interface Project {
@@ -22,6 +27,9 @@ interface ProjectsProps {
 export default function Projects({ projects }: ProjectsProps) {
   const [activeTag, setActiveTag] = useState<string | null>(null);
   const [openVideoProject, setOpenVideoProject] = useState<Project | null>(null);
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const [count, setCount] = useState(0);
 
   const sortedProjects = activeTag
     ? [
@@ -31,6 +39,27 @@ export default function Projects({ projects }: ProjectsProps) {
     : projects;
 
   const allTags = Array.from(new Set(projects.map((p) => p.tag)));
+
+  useEffect(() => {
+    if (!api) return;
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap() + 1);
+    const onSelect = () => setCurrent(api.selectedScrollSnap() + 1);
+    const onReInit = () => {
+      setCount(api.scrollSnapList().length);
+      setCurrent(api.selectedScrollSnap() + 1);
+    };
+    api.on('select', onSelect);
+    api.on('reInit', onReInit);
+    return () => {
+      api.off('select', onSelect);
+      api.off('reInit', onReInit);
+    };
+  }, [api]);
+
+  useEffect(() => {
+    if (api) api.scrollTo(0);
+  }, [activeTag, api]);
 
   const handleTagClick = (tag: string) => {
     setActiveTag((prev) => (prev === tag ? null : tag));
@@ -47,6 +76,8 @@ export default function Projects({ projects }: ProjectsProps) {
       window.open(url, '_blank', 'noopener,noreferrer');
     }
   };
+
+  const progress = count > 0 ? (current / count) * 100 : 0;
 
   return (
     <>
@@ -72,53 +103,98 @@ export default function Projects({ projects }: ProjectsProps) {
           })}
         </div>
 
-        <ScrollArea scrollbarGutter className="h-80 rounded-md border">
-          <ul className="divide-y px-2">
+        <Carousel
+          setApi={setApi}
+          orientation="vertical"
+          opts={{ align: 'start', containScroll: 'trimSnaps' }}
+          className="w-full"
+        >
+          <CarouselContent className="-mt-0 h-[18rem]">
             {sortedProjects.map((project) => {
-              const isFiltered = activeTag !== null && project.tag !== activeTag;
+              const isFiltered =
+                activeTag !== null && project.tag !== activeTag;
               return (
-                <li
+                <CarouselItem
                   key={project.name}
                   className={cn(
-                    'flex items-center justify-between gap-3 py-2',
+                    'pt-0 basis-1/8',
                     isFiltered && 'pointer-events-none opacity-40'
                   )}
                 >
-                  <span className="truncate text-sm">{project.name.toLowerCase()}</span>
-
-                  <div className="flex items-center gap-3 shrink-0">
-                    <button
-                      onClick={() => handleVideoClick(project)}
-                      disabled={!project.video || isFiltered}
-                      aria-label={`Play ${project.name} demo`}
-                      className="inline-flex size-[18px] items-center justify-center text-muted-foreground transition-colors hover:text-foreground disabled:pointer-events-none disabled:opacity-30"
-                    >
-                      <Video size={18} />
-                    </button>
-
-                    <button
-                      onClick={() => handleLinkClick(project.sourceCode, project)}
-                      disabled={!project.sourceCode || isFiltered}
-                      aria-label={`Source code for ${project.name}`}
-                      className="inline-flex size-[18px] items-center justify-center text-muted-foreground transition-colors hover:text-foreground disabled:pointer-events-none disabled:opacity-30"
-                    >
-                      <GithubIcon size={18} />
-                    </button>
-
-                    <button
-                      onClick={() => handleLinkClick(project.liveDemo, project)}
-                      disabled={!project.liveDemo || isFiltered}
-                      aria-label={`Live demo for ${project.name}`}
-                      className="inline-flex size-[18px] items-center justify-center text-muted-foreground transition-colors hover:text-foreground disabled:pointer-events-none disabled:opacity-30"
-                    >
-                      <Globe size={18} />
-                    </button>
+                  <div className="flex h-full items-center justify-between gap-3 border-b px-1">
+                    <span className="truncate text-sm">
+                      {project.name.toLowerCase()}
+                    </span>
+                    <div className="flex items-center gap-3 shrink-0">
+                      <button
+                        onClick={() => handleVideoClick(project)}
+                        disabled={!project.video || isFiltered}
+                        aria-label={`Play ${project.name} demo`}
+                        className="inline-flex size-[18px] items-center justify-center text-muted-foreground transition-colors hover:text-foreground disabled:pointer-events-none disabled:opacity-30"
+                      >
+                        <Video size={18} />
+                      </button>
+                      <button
+                        onClick={() =>
+                          handleLinkClick(project.sourceCode, project)
+                        }
+                        disabled={!project.sourceCode || isFiltered}
+                        aria-label={`Source code for ${project.name}`}
+                        className="inline-flex size-[18px] items-center justify-center text-muted-foreground transition-colors hover:text-foreground disabled:pointer-events-none disabled:opacity-30"
+                      >
+                        <GithubIcon size={18} />
+                      </button>
+                      <button
+                        onClick={() =>
+                          handleLinkClick(project.liveDemo, project)
+                        }
+                        disabled={!project.liveDemo || isFiltered}
+                        aria-label={`Live demo for ${project.name}`}
+                        className="inline-flex size-[18px] items-center justify-center text-muted-foreground transition-colors hover:text-foreground disabled:pointer-events-none disabled:opacity-30"
+                      >
+                        <Globe size={18} />
+                      </button>
+                    </div>
                   </div>
-                </li>
+                </CarouselItem>
               );
             })}
-          </ul>
-        </ScrollArea>
+          </CarouselContent>
+        </Carousel>
+
+        <div className="flex items-center gap-3 text-xs text-muted-foreground">
+          <div className="flex items-center gap-1.5">
+            <button
+              type="button"
+              onClick={() => api?.scrollPrev()}
+              disabled={!api?.canScrollPrev()}
+              aria-label="Previous projects"
+              className="inline-flex size-9 items-center justify-center rounded-md border transition-colors hover:bg-accent disabled:pointer-events-none disabled:opacity-40"
+            >
+              <ChevronUp size={18} />
+            </button>
+            <button
+              type="button"
+              onClick={() => api?.scrollNext()}
+              disabled={!api?.canScrollNext()}
+              aria-label="Next projects"
+              className="inline-flex size-9 items-center justify-center rounded-md border transition-colors hover:bg-accent disabled:pointer-events-none disabled:opacity-40"
+            >
+              <ChevronDown size={18} />
+            </button>
+          </div>
+          <div className="flex-1">
+            <div className="relative h-[2px] w-full overflow-hidden rounded-full bg-muted">
+              <div
+                className="absolute inset-y-0 left-0 bg-foreground transition-[width] duration-300"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
+          </div>
+          <span className="tabular-nums">
+            {String(current).padStart(2, '0')} / {String(count).padStart(2, '0')}
+          </span>
+        </div>
       </section>
 
       <VideoShowcase
