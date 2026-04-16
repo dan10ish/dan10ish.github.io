@@ -10,8 +10,8 @@ export default function NameSvg() {
       viewBox="0 0 111 41"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="overflow-visible -mx-[5px]"
-      style={{ transformOrigin: 'center', color: 'var(--foreground)' }}
+      className="overflow-visible -mx-[5px] text-foreground"
+      style={{ transformOrigin: 'center' }}
       aria-label="Danish"
     >
       <motion.path

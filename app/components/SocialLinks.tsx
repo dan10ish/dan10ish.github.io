@@ -73,40 +73,41 @@ interface SocialLinksProps {
 }
 
 export default function SocialLinks({ github, email, x, instagram, linkedin, snapchat, threads }: SocialLinksProps) {
+  const linkClass = "inline-flex items-center justify-center text-muted-foreground transition-colors hover:text-foreground";
   return (
     <div className="flex items-center gap-2">
       {github && (
-        <Link href={`https://github.com/${github}`} target="_blank" className="flex items-center justify-center" aria-label={`GitHub profile of ${github}`}>
+        <Link href={`https://github.com/${github}`} target="_blank" className={linkClass} aria-label={`GitHub profile of ${github}`}>
           <GithubIcon size={20} />
         </Link>
       )}
       {email && (
-        <Link href={`mailto:${email}`} className="flex items-center justify-center" aria-label={`Send email to ${email}`}>
+        <Link href={`mailto:${email}`} className={linkClass} aria-label={`Send email to ${email}`}>
           <Mail size={20} />
         </Link>
       )}
       {linkedin && (
-        <Link href={`https://www.linkedin.com/in/${linkedin}`} target="_blank" className="flex items-center justify-center" aria-label={`LinkedIn profile of ${linkedin}`}>
+        <Link href={`https://www.linkedin.com/in/${linkedin}`} target="_blank" className={linkClass} aria-label={`LinkedIn profile of ${linkedin}`}>
           <LinkedInIcon />
         </Link>
       )}
       {x && (
-        <Link href={`https://x.com/${x}`} target="_blank" className="flex items-center justify-center" aria-label={`X (Twitter) profile of ${x}`}>
+        <Link href={`https://x.com/${x}`} target="_blank" className={linkClass} aria-label={`X (Twitter) profile of ${x}`}>
           <XIcon />
         </Link>
       )}
       {instagram && (
-        <Link href={`https://instagram.com/${instagram}`} target="_blank" className="flex items-center justify-center" aria-label={`Instagram profile of ${instagram}`}>
+        <Link href={`https://instagram.com/${instagram}`} target="_blank" className={linkClass} aria-label={`Instagram profile of ${instagram}`}>
           <InstagramIcon />
         </Link>
       )}
       {threads && (
-        <Link href={`https://www.threads.net/@${threads}`} target="_blank" className="flex items-center justify-center" aria-label={`Threads profile of ${threads}`}>
+        <Link href={`https://www.threads.net/@${threads}`} target="_blank" className={linkClass} aria-label={`Threads profile of ${threads}`}>
           <ThreadsIcon />
         </Link>
       )}
       {snapchat && (
-        <Link href={`https://www.snapchat.com/add/${snapchat}`} target="_blank" className="flex items-center justify-center" aria-label={`Snapchat profile of ${snapchat}`}>
+        <Link href={`https://www.snapchat.com/add/${snapchat}`} target="_blank" className={linkClass} aria-label={`Snapchat profile of ${snapchat}`}>
           <SnapchatIcon />
         </Link>
       )}

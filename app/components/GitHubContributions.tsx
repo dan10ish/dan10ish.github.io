@@ -38,62 +38,49 @@ export default function GitHubContributions({ githubData }: Props) {
   useEffect(() => {
     const updateVisibleWeeks = () => {
       if (!containerRef.current || contributions.length === 0) return
-      
+
       const containerWidth = containerRef.current.offsetWidth
       const squareSize = 10
       const gap = 2
       const maxWeeks = Math.floor((containerWidth + gap) / (squareSize + gap))
-      
-      const weeksToShow = contributions.slice(-maxWeeks)
-      setVisibleWeeks(weeksToShow)
+
+      setVisibleWeeks(contributions.slice(-maxWeeks))
     }
 
     updateVisibleWeeks()
     window.addEventListener('resize', updateVisibleWeeks)
-    
+
     return () => window.removeEventListener('resize', updateVisibleWeeks)
   }, [contributions])
 
   const processContributions = (allContribs: any[]) => {
     const firstDate = new Date(allContribs[0].date)
     const startDay = firstDate.getDay()
-    
+
     const weeks: ContributionWeek[] = []
     let currentWeek: ContributionDay[] = []
-    
+
     for (let i = 0; i < startDay; i++) {
-      currentWeek.push({
-        date: '',
-        count: 0,
-        level: 0
-      })
+      currentWeek.push({ date: '', count: 0, level: 0 })
     }
-    
+
     allContribs.forEach((contrib: any) => {
       const level = getLevelFromCount(contrib.count)
-      currentWeek.push({
-        date: contrib.date,
-        count: contrib.count,
-        level
-      })
-      
+      currentWeek.push({ date: contrib.date, count: contrib.count, level })
+
       if (currentWeek.length === 7) {
         weeks.push({ days: [...currentWeek] })
         currentWeek = []
       }
     })
-    
+
     if (currentWeek.length > 0) {
       while (currentWeek.length < 7) {
-        currentWeek.push({
-          date: '',
-          count: 0,
-          level: 0
-        })
+        currentWeek.push({ date: '', count: 0, level: 0 })
       }
       weeks.push({ days: currentWeek })
     }
-    
+
     setContributions(weeks)
   }
 
@@ -106,14 +93,14 @@ export default function GitHubContributions({ githubData }: Props) {
   }
 
   const getColorForLevel = (level: number): string => {
-    const colors = {
+    const colors: Record<number, string> = {
       0: 'var(--github-level-0)',
       1: 'var(--github-level-1)',
       2: 'var(--github-level-2)',
       3: 'var(--github-level-3)',
       4: 'var(--github-level-4)',
     }
-    return colors[level as keyof typeof colors] || colors[0]
+    return colors[level] || colors[0]
   }
 
   const formatDateCustom = (dateString: string): string => {
@@ -133,7 +120,7 @@ export default function GitHubContributions({ githubData }: Props) {
     const tooltipHeight = 28
     let x = rect.left - containerRect.left + rect.width / 2
     const y = rect.top - containerRect.top
-    
+
     if (x - tooltipWidth / 2 < 0) {
       x = tooltipWidth / 2
     } else if (x + tooltipWidth / 2 > containerRect.width) {
@@ -142,20 +129,12 @@ export default function GitHubContributions({ githubData }: Props) {
 
     const showBelow = y < tooltipHeight + 5
 
-    return {
-      date,
-      x,
-      y,
-      showBelow
-    }
+    return { date, x, y, showBelow }
   }
 
   const handleMouseEnter = (date: string, event: React.MouseEvent<HTMLDivElement>) => {
     if (isTouchActiveRef.current) return
-    
-    if (tooltipTimeoutRef.current) {
-      clearTimeout(tooltipTimeoutRef.current)
-    }
+    if (tooltipTimeoutRef.current) clearTimeout(tooltipTimeoutRef.current)
     const rect = event.currentTarget.getBoundingClientRect()
     const position = calculateTooltipPosition(date, rect)
     if (position) setTooltip(position)
@@ -169,11 +148,8 @@ export default function GitHubContributions({ githubData }: Props) {
   const handleTouch = (date: string, event: React.TouchEvent<HTMLDivElement>) => {
     event.preventDefault()
     isTouchActiveRef.current = true
-    
-    if (tooltipTimeoutRef.current) {
-      clearTimeout(tooltipTimeoutRef.current)
-    }
-    
+    if (tooltipTimeoutRef.current) clearTimeout(tooltipTimeoutRef.current)
+
     const rect = event.currentTarget.getBoundingClientRect()
     const position = calculateTooltipPosition(date, rect)
     if (position) {
@@ -187,44 +163,36 @@ export default function GitHubContributions({ githubData }: Props) {
 
   useEffect(() => {
     return () => {
-      if (tooltipTimeoutRef.current) {
-        clearTimeout(tooltipTimeoutRef.current)
-      }
+      if (tooltipTimeoutRef.current) clearTimeout(tooltipTimeoutRef.current)
     }
   }, [])
 
   if (!githubData) {
     return (
-      <div className="w-full! h-32! flex! items-center! justify-center! select-none!">
-        <div 
-          className="w-4! h-4! border-2! border-t-transparent! rounded-full! animate-spin!" 
-          style={{ borderColor: 'var(--secondary)' }}
-        />
+      <div className="w-full flex items-center justify-center py-8 select-none">
+        <div className="size-4 rounded-full border-2 border-muted-foreground border-t-transparent animate-spin" />
       </div>
     )
   }
 
   return (
-    <div className="w-full! mt-8! select-none!">
-      <div className="flex! items-baseline! justify-between! mb-3!">
-        <span className="text-[0.82rem]!">GitHub Activity</span>
-        <span className="text-[0.75rem]!" style={{ color: 'var(--secondary)' }}>
+    <div className="w-full select-none space-y-3">
+      <div className="flex items-baseline justify-between">
+        <span className="text-sm">GitHub Activity</span>
+        <span className="text-xs text-muted-foreground">
           {githubData.totalContributions} contributions
         </span>
       </div>
-      <div ref={containerRef} className="w-full! overflow-hidden! relative!">
-        <div className="flex! gap-[2px]! justify-start!">
+      <div ref={containerRef} className="w-full overflow-hidden relative">
+        <div className="flex gap-[2px] justify-start">
           {visibleWeeks.map((week, weekIndex) => (
-            <div key={weekIndex} className="flex! flex-col! gap-[2px]!">
-              {week.days.map((day, dayIndex) => (
+            <div key={weekIndex} className="flex flex-col gap-[2px]">
+              {week.days.map((day, dayIndex) =>
                 day.date ? (
                   <div
                     key={`${weekIndex}-${dayIndex}`}
-                    className="w-[10px]! h-[10px]! rounded-[2px]! hover:scale-110! cursor-pointer!"
-                    style={{ 
-                      backgroundColor: getColorForLevel(day.level),
-                      border: 'none'
-                    }}
+                    className="size-[10px] rounded-[2px] hover:scale-110 cursor-pointer"
+                    style={{ backgroundColor: getColorForLevel(day.level) }}
                     onMouseEnter={(e) => handleMouseEnter(day.date, e)}
                     onMouseLeave={handleMouseLeave}
                     onTouchStart={(e) => handleTouch(day.date, e)}
@@ -232,47 +200,45 @@ export default function GitHubContributions({ githubData }: Props) {
                 ) : (
                   <div
                     key={`${weekIndex}-${dayIndex}`}
-                    className="w-[10px]! h-[10px]!"
+                    className="size-[10px]"
                   />
                 )
-              ))}
+              )}
             </div>
           ))}
         </div>
         {tooltip && (
           <div
-            className="absolute! text-[0.75rem]! px-2! py-1! rounded! pointer-events-none! whitespace-nowrap! z-10! shadow-sm!"
+            className="absolute text-xs px-2 py-1 rounded bg-muted text-foreground shadow-sm pointer-events-none whitespace-nowrap z-10"
             style={{
               left: `${tooltip.x}px`,
               top: tooltip.showBelow ? `${tooltip.y + 18}px` : `${tooltip.y - 28}px`,
               transform: 'translateX(-50%)',
-              backgroundColor: 'var(--code-bg)',
-              color: 'var(--foreground)'
             }}
           >
             {formatDateCustom(tooltip.date)}
           </div>
         )}
       </div>
-      <div className="flex! items-center! justify-between! mt-3! text-[0.75rem]!" style={{ color: 'var(--secondary)' }}>
-        <div className="flex! items-center! gap-2!">
-          <span className="text-[0.75rem]!">Less</span>
-          <div className="flex! gap-[2px]!">
+      <div className="flex items-center justify-between text-xs text-muted-foreground">
+        <div className="flex items-center gap-2">
+          <span>Less</span>
+          <div className="flex gap-[2px]">
             {[0, 1, 2, 3, 4].map((level) => (
               <div
                 key={level}
-                className="w-[10px]! h-[10px]! rounded-[2px]!"
+                className="size-[10px] rounded-[2px]"
                 style={{ backgroundColor: getColorForLevel(level) }}
               />
             ))}
           </div>
-          <span className="text-[0.75rem]!">More</span>
+          <span>More</span>
         </div>
         <a
           href="https://github.com/dan10ish"
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-(--link-blue)!"
+          className="hover:text-foreground transition-colors"
         >
           @dan10ish
         </a>
@@ -280,4 +246,3 @@ export default function GitHubContributions({ githubData }: Props) {
     </div>
   )
 }
-

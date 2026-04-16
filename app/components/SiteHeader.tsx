@@ -33,8 +33,8 @@ export default function SiteHeader() {
         </a>
       </div>
 
-      <header className="site-header">
-        <span className="site-header-name-spacer" aria-hidden="true" />
+      <header className="flex items-center justify-between gap-4 w-full mb-6 min-h-[45px]">
+        <span className="w-[95px] h-[45px] shrink-0" aria-hidden="true" />
         {isHome && (
           <SocialLinks
             github={personalInfo.socials.github}

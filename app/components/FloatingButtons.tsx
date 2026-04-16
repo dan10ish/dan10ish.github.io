@@ -14,105 +14,81 @@ export default function FloatingButtons() {
   const { theme, setTheme, resolvedTheme, systemTheme } = useTheme();
 
   const toggleVisibility = () => {
-    if (window.scrollY > 300) {
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
-    }
+    setIsVisible(window.scrollY > 300);
   };
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const getCurrentTheme = () => {
+    let currentTheme = resolvedTheme;
+    if (!currentTheme && theme === 'system') {
+      currentTheme = systemTheme;
+    }
+    return currentTheme;
   };
 
   const cycleTheme = () => {
-    let currentTheme = resolvedTheme;
-    if (!currentTheme && theme === 'system') {
-      currentTheme = systemTheme;
-    }
-    
-    if (currentTheme === 'light') {
-      setTheme('dark');
-    } else if (currentTheme === 'dark') {
-      setTheme('solarized');
-    } else {
-      setTheme('light');
-    }
+    const current = getCurrentTheme();
+    if (current === 'light') setTheme('dark');
+    else if (current === 'dark') setTheme('solarized');
+    else setTheme('light');
   };
 
   const getThemeIcon = () => {
-    let currentTheme = resolvedTheme;
-    if (!currentTheme && theme === 'system') {
-      currentTheme = systemTheme;
-    }
-    
-    if (currentTheme === 'light') {
-      return <Moon size={20} />;
-    } else if (currentTheme === 'dark') {
-      return <Palette size={20} />;
-    } else if (currentTheme === 'solarized') {
-      return <Sun size={20} />;
-    } else {
-      return <Moon size={20} />;
-    }
+    const current = getCurrentTheme();
+    if (current === 'light') return <Moon size={20} />;
+    if (current === 'dark') return <Palette size={20} />;
+    if (current === 'solarized') return <Sun size={20} />;
+    return <Moon size={20} />;
   };
 
   useEffect(() => {
     const checkIfNotFound = () => {
-      const isNotFound = pathname === '/404' || 
-                        (document.querySelector('main')?.classList.contains('fixed') && 
-                         document.querySelector('h1')?.textContent === '404');
+      const isNotFound =
+        pathname === '/404' ||
+        (document.querySelector('main')?.classList.contains('fixed') &&
+          document.querySelector('h1')?.textContent === '404');
       setIsNotFoundPage(isNotFound || false);
     };
-
     checkIfNotFound();
   }, [pathname]);
 
   useEffect(() => {
     setMounted(true);
     window.addEventListener('scroll', toggleVisibility);
-    return () => {
-      window.removeEventListener('scroll', toggleVisibility);
-    };
+    return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
 
   const isHomepage = pathname === '/';
 
   return (
-    <div className="fixed md:bottom-6 bottom-3 md:right-5 right-3 flex flex-col items-center !space-y-3 z-50">
+    <div className="fixed bottom-3 right-3 md:bottom-6 md:right-5 flex flex-col items-center gap-3 z-50">
       {isVisible && !isNotFoundPage && (
         <button
           onClick={scrollToTop}
-          className="flex items-center justify-center !p-2 !duration-200 animate-fade-in hover:!scale-110 active:!scale-95"
+          className="flex items-center justify-center p-2 text-muted-foreground transition-colors hover:text-foreground"
           aria-label="Scroll to top"
         >
-          <ChevronUp size={20} className="hover:!text-[var(--link-blue)] !transition-colors" />
+          <ChevronUp size={20} />
         </button>
       )}
       {!isHomepage && !isNotFoundPage && (
         <Link
           href="/"
-          className="flex items-center justify-center !p-2 !duration-200 hover:!scale-110 active:!scale-95"
+          className="flex items-center justify-center p-2 text-muted-foreground transition-colors hover:text-foreground"
           aria-label="Go to homepage"
         >
-          <Home size={20} className="hover:!text-[var(--link-blue)] !transition-colors" />
+          <Home size={20} />
         </Link>
       )}
       <button
         onClick={cycleTheme}
-        className="flex items-center justify-center !p-2 !duration-200 hover:!scale-110 active:!scale-95"
+        className="flex items-center justify-center p-2 text-muted-foreground transition-colors hover:text-foreground"
         aria-label="Toggle theme"
       >
-        {mounted ? (
-          <span className="hover:!text-[var(--link-blue)] !transition-colors">
-            {getThemeIcon()}
-          </span>
-        ) : (
-          <div className="w-5 h-5" />
-        )}
+        {mounted ? getThemeIcon() : <div className="size-5" />}
       </button>
     </div>
   );

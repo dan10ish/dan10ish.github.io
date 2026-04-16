@@ -48,13 +48,13 @@ export default function About() {
   }, [])
 
   return (
-    <div>
-      <p className="text-base">
+    <div className="space-y-8">
+      <p className="text-sm leading-relaxed">
         {personalInfo.about} Currently taking companies from zero to one.
       </p>
       {loading ? (
-        <div className="mt-6! w-full! flex! justify-center! py-8!">
-          <Loader2 className="w-6! h-6! animate-spin!" style={{ color: 'var(--secondary)' }} />
+        <div className="w-full flex justify-center py-8">
+          <Loader2 className="size-6 animate-spin text-muted-foreground" />
         </div>
       ) : (
         <GitHubContributions githubData={githubData} />
