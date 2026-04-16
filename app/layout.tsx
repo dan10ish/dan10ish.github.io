@@ -4,6 +4,11 @@ import "./globals.css";
 import { PageWrapper } from "./components/PageWrapper";
 import { ThemeProvider } from "./components/ThemeProvider";
 import FloatingButtons from "./components/FloatingButtons";
+import SiteHeader from "./components/SiteHeader";
+import { Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const sfMono = localFont({
   src: [
@@ -108,9 +113,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={cn("font-sans", geist.variable)}>
       <body className={`${sfMono.variable}`}>
         <ThemeProvider>
+          <SiteHeader />
           <PageWrapper>{children}</PageWrapper>
           <FloatingButtons />
         </ThemeProvider>
