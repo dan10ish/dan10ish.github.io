@@ -48,9 +48,21 @@ export default function GitHubContributions({ githubData }: Props) {
     }
 
     updateVisibleWeeks()
-    window.addEventListener('resize', updateVisibleWeeks)
 
-    return () => window.removeEventListener('resize', updateVisibleWeeks)
+    let rafId: number | null = null
+    const onResize = () => {
+      if (rafId !== null) return
+      rafId = requestAnimationFrame(() => {
+        rafId = null
+        updateVisibleWeeks()
+      })
+    }
+
+    window.addEventListener('resize', onResize, { passive: true })
+    return () => {
+      window.removeEventListener('resize', onResize)
+      if (rafId !== null) cancelAnimationFrame(rafId)
+    }
   }, [contributions])
 
   const processContributions = (allContribs: any[]) => {

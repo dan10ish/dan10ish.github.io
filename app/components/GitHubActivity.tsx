@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Loader2 } from 'lucide-react'
 import GitHubContributions from './GitHubContributions'
 
@@ -12,13 +12,43 @@ interface GitHubData {
 export default function GitHubActivity() {
   const [githubData, setGithubData] = useState<GitHubData | null>(null)
   const [loading, setLoading] = useState(true)
+  const [shouldFetch, setShouldFetch] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    if (shouldFetch) return
+    const el = containerRef.current
+    if (!el) return
+
+    if (typeof IntersectionObserver === 'undefined') {
+      setShouldFetch(true)
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setShouldFetch(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: '200px' }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [shouldFetch])
+
+  useEffect(() => {
+    if (!shouldFetch) return
+    let cancelled = false
+
     const fetchGitHubData = async () => {
       try {
-        setLoading(true)
-        const response = await fetch('https://github-contributions-api.jogruber.de/v4/dan10ish?y=last')
+        const response = await fetch(
+          'https://github-contributions-api.jogruber.de/v4/dan10ish?y=last'
+        )
         const data = await response.json()
+        if (cancelled) return
 
         if (data?.contributions) {
           let totalContributions = 0
@@ -33,26 +63,31 @@ export default function GitHubActivity() {
 
           setGithubData({
             contributions: data.contributions,
-            totalContributions: totalContributions,
+            totalContributions,
           })
         }
       } catch (error) {
         console.error('Error fetching GitHub contributions:', error)
       } finally {
-        setLoading(false)
+        if (!cancelled) setLoading(false)
       }
     }
 
     fetchGitHubData()
-  }, [])
+    return () => {
+      cancelled = true
+    }
+  }, [shouldFetch])
 
-  if (loading) {
-    return (
-      <div className="w-full flex justify-center py-8">
-        <Loader2 className="size-6 animate-spin text-muted-foreground" />
-      </div>
-    )
-  }
-
-  return <GitHubContributions githubData={githubData} />
+  return (
+    <div ref={containerRef}>
+      {loading ? (
+        <div className="w-full flex justify-center py-8">
+          <Loader2 className="size-6 animate-spin text-muted-foreground" />
+        </div>
+      ) : (
+        <GitHubContributions githubData={githubData} />
+      )}
+    </div>
+  )
 }

@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import dynamic from 'next/dynamic';
 import { Video, Globe, X, ChevronUp, ChevronDown } from 'lucide-react';
 import { GithubIcon } from './BrandIcons';
-import VideoShowcase from './VideoShowcase';
 import {
   Carousel,
   CarouselContent,
@@ -11,6 +11,10 @@ import {
   type CarouselApi,
 } from '@/components/ui/carousel';
 import { cn } from '@/lib/utils';
+
+const VideoShowcase = dynamic(() => import('./VideoShowcase'), {
+  ssr: false,
+});
 
 interface Project {
   name: string;
@@ -31,14 +35,21 @@ export default function Projects({ projects }: ProjectsProps) {
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
 
-  const sortedProjects = activeTag
-    ? [
-        ...projects.filter((p) => p.tag === activeTag),
-        ...projects.filter((p) => p.tag !== activeTag),
-      ]
-    : projects;
+  const sortedProjects = useMemo(
+    () =>
+      activeTag
+        ? [
+            ...projects.filter((p) => p.tag === activeTag),
+            ...projects.filter((p) => p.tag !== activeTag),
+          ]
+        : projects,
+    [projects, activeTag]
+  );
 
-  const allTags = Array.from(new Set(projects.map((p) => p.tag)));
+  const allTags = useMemo(
+    () => Array.from(new Set(projects.map((p) => p.tag))),
+    [projects]
+  );
 
   useEffect(() => {
     if (!api) return;
@@ -201,14 +212,16 @@ export default function Projects({ projects }: ProjectsProps) {
         </div>
       </section>
 
-      <VideoShowcase
-        isOpen={!!openVideoProject}
-        onClose={() => setOpenVideoProject(null)}
-        videoSrc={openVideoProject?.video ? `/videos/${openVideoProject.video}` : null}
-        projectName={openVideoProject?.name ?? ''}
-        sourceCode={openVideoProject?.sourceCode}
-        liveDemo={openVideoProject?.liveDemo}
-      />
+      {openVideoProject && (
+        <VideoShowcase
+          isOpen={!!openVideoProject}
+          onClose={() => setOpenVideoProject(null)}
+          videoSrc={openVideoProject?.video ? `/videos/${openVideoProject.video}` : null}
+          projectName={openVideoProject?.name ?? ''}
+          sourceCode={openVideoProject?.sourceCode}
+          liveDemo={openVideoProject?.liveDemo}
+        />
+      )}
     </>
   );
 }

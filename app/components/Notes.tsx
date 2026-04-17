@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import {
   PerspectiveBook,
@@ -23,14 +23,21 @@ export default function Notes() {
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
 
-  const allSemesters = Array.from(new Set(notes.map((n) => n.semester))).sort();
+  const allSemesters = useMemo(
+    () => Array.from(new Set(notes.map((n) => n.semester))).sort(),
+    []
+  );
 
-  const sortedNotes = activeSemester
-    ? [
-        ...notes.filter((n) => n.semester === activeSemester),
-        ...notes.filter((n) => n.semester !== activeSemester),
-      ]
-    : notes;
+  const sortedNotes = useMemo(
+    () =>
+      activeSemester
+        ? [
+            ...notes.filter((n) => n.semester === activeSemester),
+            ...notes.filter((n) => n.semester !== activeSemester),
+          ]
+        : notes,
+    [activeSemester]
+  );
 
   useEffect(() => {
     if (!api) return;

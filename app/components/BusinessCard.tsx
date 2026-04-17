@@ -17,6 +17,8 @@ export default function BusinessCard() {
             alt="Danish's business card"
             className="h-full w-full object-cover select-none pointer-events-none"
             draggable={false}
+            decoding="async"
+            fetchPriority="low"
           />
         </div>
       </TiltCard>

@@ -110,6 +110,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link
+          rel="preconnect"
+          href="https://github-contributions-api.jogruber.de"
+          crossOrigin=""
+        />
+      </head>
       <body className={`${sfMono.variable} font-sans bg-background text-foreground min-h-dvh antialiased`}>
         <ThemeProvider>
           <div className="mx-auto max-w-[700px] px-6 py-10 sm:px-10">

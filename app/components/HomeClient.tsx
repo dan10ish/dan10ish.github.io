@@ -1,5 +1,3 @@
-'use client'
-
 import { projects } from "../data";
 import Projects from "./Projects";
 import About from "./About";
