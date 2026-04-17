@@ -8,7 +8,6 @@ import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogClose,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogPanel,
@@ -18,7 +17,6 @@ import {
 import {
   Drawer,
   DrawerClose,
-  DrawerDescription,
   DrawerFooter,
   DrawerHeader,
   DrawerPanel,
@@ -55,7 +53,6 @@ export default function VideoShowcase({
   }, [isOpen, videoSrc]);
 
   const title = projectName || 'Project';
-  const description = 'Project preview';
 
   const videoBlock = (
     <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-muted">
@@ -133,9 +130,6 @@ export default function VideoShowcase({
         <DrawerPopup showBar>
           <DrawerHeader>
             <DrawerTitle className="text-md font-medium">{title}</DrawerTitle>
-            <DrawerDescription className="text-xs">
-              {description}
-            </DrawerDescription>
           </DrawerHeader>
           <DrawerPanel className="grid gap-4" scrollable={false}>
             {videoBlock}
@@ -153,12 +147,9 @@ export default function VideoShowcase({
 
   return (
     <Dialog onOpenChange={(open) => !open && onClose()} open={isOpen}>
-      <DialogPopup className="sm:max-w-md">
+      <DialogPopup className="sm:max-w-md" showCloseButton={false}>
         <DialogHeader>
           <DialogTitle className="text-md font-medium">{title}</DialogTitle>
-          <DialogDescription className="text-xs">
-            {description}
-          </DialogDescription>
         </DialogHeader>
         <DialogPanel className="grid gap-4">{videoBlock}</DialogPanel>
         <DialogFooter>

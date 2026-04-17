@@ -11,7 +11,7 @@ export default function BusinessCard() {
         perspective={1200}
         className="rounded-2xl"
       >
-        <div className="aspect-[1075/720] w-full max-w-sm overflow-hidden rounded-2xl border bg-background shadow-sm">
+        <div className="aspect-[1075/720] w-full max-w-sm overflow-hidden rounded-2xl border border-black/10 bg-white shadow-sm">
           <img
             src="/assets/business-card.svg"
             alt="Danish's business card"
