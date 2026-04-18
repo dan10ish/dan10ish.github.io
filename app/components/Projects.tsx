@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/carousel';
 import { cn } from '@/lib/utils';
 
-const VideoShowcase = dynamic(() => import('./VideoShowcase'), {
+const ProjectVideoDialog = dynamic(() => import('./ProjectVideoDialog'), {
   ssr: false,
 });
 
@@ -213,13 +213,19 @@ export default function Projects({ projects }: ProjectsProps) {
       </section>
 
       {openVideoProject && (
-        <VideoShowcase
-          isOpen={!!openVideoProject}
-          onClose={() => setOpenVideoProject(null)}
-          videoSrc={openVideoProject?.video ? `/videos/${openVideoProject.video}` : null}
-          projectName={openVideoProject?.name ?? ''}
-          sourceCode={openVideoProject?.sourceCode}
-          liveDemo={openVideoProject?.liveDemo}
+        <ProjectVideoDialog
+          open={!!openVideoProject}
+          onOpenChange={(next) => {
+            if (!next) setOpenVideoProject(null);
+          }}
+          videoSrc={
+            openVideoProject.video
+              ? `/videos/${openVideoProject.video}`
+              : null
+          }
+          projectName={openVideoProject.name}
+          sourceCode={openVideoProject.sourceCode}
+          liveDemo={openVideoProject.liveDemo}
         />
       )}
     </>
