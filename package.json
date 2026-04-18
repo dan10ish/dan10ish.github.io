@@ -12,10 +12,12 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@base-ui/react": "^1.4.0",
     "@remixicon/react": "^4.9.0",
+    "@tanstack/react-table": "^8.21.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "lucide-react": "^1.7.0",
+    "lucide-react": "^1.8.0",
     "motion": "^12.38.0",
     "next": "16.1.7",
     "next-themes": "^0.4.6",
