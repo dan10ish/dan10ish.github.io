@@ -2,7 +2,7 @@
 
 import { useRouter, usePathname } from 'next/navigation';
 import NameSvg from './NameSvg';
-import SocialLinks from './SocialLinks';
+import ThemeToggle from './ThemeToggle';
 import { personalInfo } from '../data';
 
 export default function SiteHeader() {
@@ -35,17 +35,7 @@ export default function SiteHeader() {
 
       <header className="flex items-center justify-between gap-4 w-full mb-6 min-h-[45px]">
         <span className="w-[95px] h-[45px] shrink-0" aria-hidden="true" />
-        {isHome && (
-          <SocialLinks
-            github={personalInfo.socials.github}
-            email={personalInfo.socials.email}
-            x={personalInfo.socials.x}
-            instagram={personalInfo.socials.instagram}
-            linkedin={personalInfo.socials.linkedin}
-            snapchat={personalInfo.socials.snapchat}
-            threads={personalInfo.socials.threads}
-          />
-        )}
+        <ThemeToggle />
       </header>
     </>
   );

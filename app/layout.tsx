@@ -3,7 +3,6 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { PageWrapper } from "./components/PageWrapper";
 import { ThemeProvider } from "./components/ThemeProvider";
-import FloatingButtons from "./components/FloatingButtons";
 import SiteHeader from "./components/SiteHeader";
 
 const sfMono = localFont({
@@ -122,7 +121,6 @@ export default function RootLayout({
           <div className="mx-auto max-w-[700px] px-6 py-10 sm:px-10">
             <SiteHeader />
             <PageWrapper>{children}</PageWrapper>
-            <FloatingButtons />
           </div>
         </ThemeProvider>
       </body>
