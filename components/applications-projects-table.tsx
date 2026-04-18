@@ -140,7 +140,7 @@ const columns: ColumnDef<Project>[] = [
       }
       return (
         <a
-          className="text-muted-foreground leading-snug hover:underline"
+          className="truncate font-mono font-medium text-xs leading-snug text-muted-foreground hover:text-foreground hover:underline"
           href={href}
           rel="noreferrer"
           target="_blank"
@@ -308,7 +308,7 @@ export function ApplicationsProjectsTable() {
         </Table>
       </div>
       <CardFrameFooter className="shrink-0 border-t px-3 py-2 sm:px-4 sm:py-2.5">
-        <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-3">
+        <div className="flex items-center justify-between gap-2 sm:gap-3">
           <div className="flex items-center gap-2 whitespace-nowrap">
             <p className="text-muted-foreground text-xs font-medium sm:text-sm">
               Viewing
@@ -352,8 +352,7 @@ export function ApplicationsProjectsTable() {
               </SelectPopup>
             </Select>
             <p className="text-muted-foreground text-xs font-medium sm:text-sm">
-              of <span className="text-foreground">{table.getRowCount()}</span>{" "}
-              results
+              of <span className="text-foreground">{table.getRowCount()}</span>
             </p>
           </div>
 
