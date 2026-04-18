@@ -18,6 +18,38 @@ const sizeMap: Record<SizeVariant, { button: string; icon: number }> = {
   lg: { button: "h-12 w-12", icon: 20 },
 };
 
+/** Clipboard API when available; textarea + execCommand fallback for older iOS / edge cases. */
+async function copyToClipboard(text: string): Promise<boolean> {
+  if (typeof window === "undefined") return false;
+
+  if (navigator.clipboard?.writeText) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch {
+      /* fall through */
+    }
+  }
+
+  try {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.left = "-9999px";
+    ta.style.top = "0";
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    ta.setSelectionRange(0, text.length);
+    const ok = document.execCommand("copy");
+    document.body.removeChild(ta);
+    return ok;
+  } catch {
+    return false;
+  }
+}
+
 const CopyButton = React.forwardRef<HTMLButtonElement, CopyButtonProps>(
   (
     {
@@ -31,12 +63,14 @@ const CopyButton = React.forwardRef<HTMLButtonElement, CopyButtonProps>(
   ) => {
     const [copied, setCopied] = React.useState<boolean>(false);
 
-    const handleCopy = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const handleCopy = async (event: React.MouseEvent<HTMLButtonElement>) => {
       if (value) {
-        navigator.clipboard.writeText(value).catch(() => {});
+        const ok = await copyToClipboard(value);
+        if (ok) {
+          setCopied(true);
+          window.setTimeout(() => setCopied(false), 1500);
+        }
       }
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1500);
       onClick?.(event);
     };
 
@@ -50,7 +84,7 @@ const CopyButton = React.forwardRef<HTMLButtonElement, CopyButtonProps>(
         aria-label={copied ? "Copied" : "Copy to clipboard"}
         disabled={copied}
         className={cn(
-          "relative cursor-pointer active:scale-[0.97] hover:will-change-transform transition-all ease-out duration-200 inline-flex items-center justify-center rounded-md text-neutral-900 disabled:pointer-events-none disabled:opacity-100 dark:text-neutral-50",
+          "relative inline-flex cursor-pointer touch-manipulation items-center justify-center rounded-md text-foreground transition-all duration-200 ease-out hover:will-change-transform active:scale-[0.97] disabled:pointer-events-none disabled:opacity-100",
           buttonSize,
           className,
         )}
@@ -58,7 +92,7 @@ const CopyButton = React.forwardRef<HTMLButtonElement, CopyButtonProps>(
       >
         <div
           className={cn(
-            "transition-all duration-200",
+            "pointer-events-none transition-all duration-200",
             copied
               ? "scale-100 opacity-100 blur-none"
               : "scale-70 opacity-0 blur-[2px]",
@@ -72,7 +106,7 @@ const CopyButton = React.forwardRef<HTMLButtonElement, CopyButtonProps>(
         </div>
         <div
           className={cn(
-            "absolute transition-all duration-200",
+            "pointer-events-none absolute transition-all duration-200",
             copied
               ? "scale-0 opacity-0 blur-[2px]"
               : "scale-100 opacity-100 blur-none",

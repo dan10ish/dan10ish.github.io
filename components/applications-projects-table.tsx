@@ -117,7 +117,7 @@ const columns: ColumnDef<Project>[] = [
       return (
         <div className="min-w-0">
           <a
-            className="truncate font-mono font-medium text-xs leading-snug text-muted-foreground hover:text-foreground hover:underline"
+            className="truncate font-mono font-medium text-sm leading-snug text-muted-foreground hover:text-foreground hover:underline"
             href={href}
             rel="noreferrer"
             target="_blank"
@@ -135,12 +135,12 @@ const columns: ColumnDef<Project>[] = [
       const href = row.original.liveDemo;
       if (!href) {
         return (
-          <span className="font-medium tabular-nums text-muted-foreground">—</span>
+          <span className="truncate font-mono font-medium text-sm leading-snug text-muted-foreground">N/A</span>
         );
       }
       return (
         <a
-          className="truncate font-mono font-medium text-xs leading-snug text-muted-foreground hover:text-foreground hover:underline"
+          className="truncate font-mono font-medium text-sm leading-snug hover:text-foreground hover:underline"
           href={href}
           rel="noreferrer"
           target="_blank"
@@ -158,7 +158,7 @@ const columns: ColumnDef<Project>[] = [
     cell: ({ row }) => {
       const tag = row.getValue("tag") as ProjectTag;
       return (
-        <span className="ms-auto inline-flex max-w-full items-center rounded-md border border-border bg-muted px-2 py-1 text-xs font-medium capitalize leading-none text-foreground/90">
+        <span className="ms-auto inline-flex max-w-full items-center rounded-md border border-border bg-muted px-2 py-1 truncate text-xs font-medium capitalize leading-none text-foreground/90">
           {tag}
         </span>
       );
@@ -227,14 +227,14 @@ export function ApplicationsProjectsTable() {
                     className={cn(
                       cellPad,
                       columnLayoutClass(id),
-                      "text-sm font-medium text-muted-foreground",
+                      "h-9 text-sm font-medium text-muted-foreground",
                     )}
                   >
                     {header.isPlaceholder ? null : header.column.getCanSort() ? (
                       <div
                         className={cn(
-                          "flex h-full min-h-9 cursor-pointer select-none items-center gap-2",
-                          id === "tag" ? "justify-end" : "justify-between",
+                          "flex h-full min-h-8 cursor-pointer select-none items-center gap-2",
+                          id === "tag" ? "justify-end" : "justify-start",
                         )}
                         onClick={header.column.getToggleSortingHandler()}
                         onKeyDown={(e) => {
@@ -246,10 +246,6 @@ export function ApplicationsProjectsTable() {
                         role="button"
                         tabIndex={0}
                       >
-                        {flexRender(
-                          header.column.columnDef.header,
-                          header.getContext(),
-                        )}
                         <SortChevrons
                           state={
                             sorted === "asc" || sorted === "desc"
@@ -257,6 +253,10 @@ export function ApplicationsProjectsTable() {
                               : false
                           }
                         />
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
                       </div>
                     ) : (
                       flexRender(
@@ -310,7 +310,7 @@ export function ApplicationsProjectsTable() {
       <CardFrameFooter className="shrink-0 border-t px-3 py-2 sm:px-4 sm:py-2.5">
         <div className="flex items-center justify-between gap-2 sm:gap-3">
           <div className="flex items-center gap-2 whitespace-nowrap">
-            <p className="text-muted-foreground text-xs font-medium sm:text-sm">
+            <p className="text-muted-foreground text-sm font-medium sm:text-sm">
               Viewing
             </p>
             <Select
@@ -351,7 +351,7 @@ export function ApplicationsProjectsTable() {
                 })}
               </SelectPopup>
             </Select>
-            <p className="text-muted-foreground text-xs font-medium sm:text-sm">
+            <p className="text-muted-foreground text-sm font-medium sm:text-sm">
               of <span className="text-foreground">{table.getRowCount()}</span>
             </p>
           </div>
