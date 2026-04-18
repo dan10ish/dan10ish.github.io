@@ -118,7 +118,7 @@ export default function RootLayout({
       </head>
       <body className={`${sfMono.variable} font-sans bg-background text-foreground min-h-dvh antialiased`}>
         <ThemeProvider>
-          <div className="mx-auto max-w-[700px] px-6 py-10 sm:px-10">
+          <div className="mx-auto flex min-h-dvh max-w-[700px] flex-col px-6 py-10 sm:px-10">
             <SiteHeader />
             <PageWrapper>{children}</PageWrapper>
           </div>
