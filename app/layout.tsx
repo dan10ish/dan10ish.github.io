@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { PageWrapper } from "./components/PageWrapper";
 import { ThemeProvider } from "./components/ThemeProvider";
 import SiteHeader from "./components/SiteHeader";
@@ -118,10 +119,12 @@ export default function RootLayout({
       </head>
       <body className={`${sfMono.variable} font-sans bg-background text-foreground min-h-dvh antialiased`}>
         <ThemeProvider>
-          <div className="mx-auto flex min-h-dvh max-w-[700px] flex-col px-6 py-10 sm:px-10">
-            <SiteHeader />
-            <PageWrapper>{children}</PageWrapper>
-          </div>
+          <TooltipProvider>
+            <div className="mx-auto flex min-h-dvh max-w-[700px] flex-col px-6 py-10 sm:px-10">
+              <SiteHeader />
+              <PageWrapper>{children}</PageWrapper>
+            </div>
+          </TooltipProvider>
         </ThemeProvider>
       </body>
     </html>

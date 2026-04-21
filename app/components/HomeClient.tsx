@@ -2,7 +2,7 @@ import { projects } from "../data";
 import Projects from "./Projects";
 import About from "./About";
 import Notes from "./Notes";
-import GitHubActivity from "./GitHubActivity";
+import GitHubActivitySection from "./GitHubActivitySection";
 import { GitHubProfileBadge } from "./ProfileSocialBadges";
 
 export default function HomeClient() {
@@ -26,7 +26,7 @@ export default function HomeClient() {
       </section>
 
       <section>
-        <GitHubActivity />
+        <GitHubActivitySection />
       </section>
     </main>
   );
