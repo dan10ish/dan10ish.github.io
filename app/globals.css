@@ -133,7 +133,6 @@ body {
   max-width: min(88vw, 450px);
   will-change: transform;
   backface-visibility: hidden;
-  cursor: pointer;
 }
 
 .island-photo {
@@ -233,30 +232,61 @@ body {
   color: white;
 }
 
-.icon-btn-back {
-  width: 42px;
-  height: 42px;
-  background: var(--back-btn-bg);
-  color: var(--back-btn-color);
+@keyframes chevron-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.back-chevron-anchor {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: calc(50dvh - 280px);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.back-chevron {
+  pointer-events: auto;
+  background: transparent;
+  border: none;
+  color: var(--foreground);
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: none;
-  cursor: pointer;
-  will-change: transform;
-  backface-visibility: hidden;
-  transform: translateZ(0);
+  animation: chevron-in 0.3s ease 0.3s both;
+  transition: background 0.2s ease;
 }
 
-.external-back-btn {
-  position: absolute;
-  bottom: -64px;
-  left: 50%;
-  z-index: 50;
-  will-change: transform;
-  backface-visibility: hidden;
-  transform: translateZ(0);
+.back-chevron svg {
+  transition: transform 0.2s ease;
+}
+
+.back-chevron:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.back-chevron:hover svg {
+  transform: scale(1.2);
+}
+
+.back-chevron:active {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.back-chevron:active svg {
+  transform: scale(0.9);
+}
+
+.social-back-btn {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
 }
 
 .social-icon {
@@ -478,16 +508,6 @@ body {
     height: 40px;
   }
 
-  .icon-btn-back {
-    width: 36px;
-    height: 36px;
-  }
-
-  .external-back-btn {
-    width: 48px;
-    height: 48px;
-    bottom: -72px;
-  }
 
   .social-icon {
     width: 40px;
@@ -527,16 +547,6 @@ body {
     height: 42px;
   }
 
-  .icon-btn-back {
-    width: 34px;
-    height: 34px;
-  }
-
-  .external-back-btn {
-    width: 46px;
-    height: 46px;
-    bottom: -70px;
-  }
 
   .social-icon {
     width: 38px;
