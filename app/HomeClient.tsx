@@ -43,7 +43,7 @@ const SnapchatIcon = ({ size = 20 }: { size?: number }) => (
 
 const getSocialIcon = (icon: SocialIcon, size: number) => {
   switch (icon) {
-    case "github": return <GithubIcon size={size} />;
+    case "github": return <GithubIcon size={size + 4} />;
     case "twitter": return <XIcon size={size} />;
     case "instagram": return <InstagramIcon size={size} />;
     case "linkedin": return <LinkedInIcon size={size} />;
@@ -234,11 +234,11 @@ export default function HomeClient() {
                           whileTap={{ scale: 0.85 }}
                           transition={bouncy}
                         >
-                          <GithubIcon size={18} />
+                          <GithubIcon size={20} />
                         </motion.a>
                       ) : (
                         <span className="project-link-disabled">
-                          <GithubIcon size={18} />
+                          <GithubIcon size={20} />
                         </span>
                       )}
 

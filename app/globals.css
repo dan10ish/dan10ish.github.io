@@ -138,11 +138,9 @@ body {
 .island-photo {
   width: 48px;
   height: 48px;
-  border-radius: 50%;
-  overflow: hidden;
+  clip-path: circle(50%);
   flex-shrink: 0;
   background: var(--island-photo-bg);
-  box-shadow: 0 2px 8px var(--photo-shadow);
 }
 
 .island-photo img {
@@ -154,11 +152,9 @@ body {
 .island-photo-btn {
   width: 48px;
   height: 48px;
-  border-radius: 50%;
-  overflow: hidden;
+  clip-path: circle(50%);
   flex-shrink: 0;
   background: var(--island-photo-bg);
-  box-shadow: 0 2px 8px var(--photo-shadow);
   border: none;
   padding: 0;
   cursor: pointer;
@@ -232,10 +228,7 @@ body {
   color: white;
 }
 
-@keyframes chevron-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
+
 
 .back-chevron-anchor {
   position: fixed;
@@ -260,7 +253,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: chevron-in 0.3s ease 0.3s both;
+  animation: none;
   transition: background 0.2s ease;
 }
 
@@ -283,6 +276,7 @@ body {
 .back-chevron:active svg {
   transform: scale(0.9);
 }
+
 
 .social-back-btn {
   border: 1px solid rgba(255, 255, 255, 0.2);

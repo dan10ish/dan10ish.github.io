@@ -7,7 +7,8 @@
     "build": "next build --turbopack",
     "export": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "cc": "clear && npm cache clean --force && rm -rf .next && npm run dev"
   },
   "dependencies": {
     "framer-motion": "^12.38.0",
