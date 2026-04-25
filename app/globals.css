@@ -125,7 +125,16 @@ body {
 
 .island-links {
   gap: 2px;
-  padding: 4px 6px;
+  padding: 3px 5px;
+  max-width: min(92vw, 290px);
+  flex-wrap: nowrap;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.island-links .social-icon {
+  width: 44px;
+  height: 44px;
 }
 
 .island-about {
@@ -277,11 +286,6 @@ body {
   transform: scale(0.9);
 }
 
-
-.social-back-btn {
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-}
 
 .social-icon {
   width: 42px;
@@ -545,5 +549,18 @@ body {
   .social-icon {
     width: 38px;
     height: 38px;
+  }
+}
+
+@media (max-width: 360px) {
+  .island-links {
+    gap: 0;
+    padding: 2px 3px;
+    max-width: min(calc(100vw - 32px), 280px);
+  }
+
+  .island-links .social-icon {
+    width: 40px;
+    height: 40px;
   }
 }

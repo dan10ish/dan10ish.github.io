@@ -174,18 +174,6 @@ export default function HomeClient() {
 
         {section === "links" && (
           <div className="island-content island-links">
-            <motion.button
-              onClick={goBack}
-              className="social-icon social-back-btn"
-              aria-label="Go back"
-              whileHover={isTouchDevice ? {} : { scale: 1.2 }}
-              whileTap={{ scale: 0.85 }}
-              transition={bouncy}
-            >
-              <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
-                <path d="M15 18l-6-6 6-6" />
-              </svg>
-            </motion.button>
             {data.social.map((social) => (
               <motion.a
                 key={social.icon}
@@ -269,7 +257,7 @@ export default function HomeClient() {
 
       </motion.div>
 
-      {(section === "about" || section === "projects") && (
+      {(section === "about" || section === "projects" || section === "links") && (
         <div className="back-chevron-anchor">
           <button
             className="back-chevron"
