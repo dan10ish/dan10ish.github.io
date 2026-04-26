@@ -139,6 +139,115 @@
   }
 }
 
+@layer components {
+  @keyframes surface-backdrop-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes surface-backdrop-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes surface-popup-in {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 0.75rem, 0) scale(0.97);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+  }
+
+  @keyframes surface-popup-in-sheet {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 100%, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes surface-popup-out {
+    from {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: translate3d(0, 0.5rem, 0) scale(0.98);
+    }
+  }
+
+  @keyframes surface-popup-out-sheet {
+    from {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      opacity: 0;
+      transform: translate3d(0, 100%, 0);
+    }
+  }
+
+  [data-slot="dialog-backdrop"]:not([data-ending-style]),
+  [data-slot="drawer-backdrop"]:not([data-ending-style]) {
+    animation: surface-backdrop-in 0.32s ease-out both;
+  }
+
+  [data-slot="dialog-backdrop"][data-ending-style],
+  [data-slot="drawer-backdrop"][data-ending-style] {
+    animation: surface-backdrop-out 0.24s ease-in forwards;
+  }
+
+  [data-slot="dialog-popup"]:not([data-ending-style]) {
+    animation: surface-popup-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  [data-slot="dialog-popup"][data-ending-style] {
+    animation: surface-popup-out 0.28s cubic-bezier(0.4, 0, 1, 1) forwards;
+  }
+
+  @media (max-width: 639.98px) {
+    [data-slot="dialog-popup"]:not([data-ending-style]) {
+      animation: surface-popup-in-sheet 0.42s cubic-bezier(0.32, 0.72, 0, 1) both;
+    }
+
+    [data-slot="dialog-popup"][data-ending-style] {
+      animation: surface-popup-out-sheet 0.3s cubic-bezier(0.4, 0, 1, 0.9) forwards;
+    }
+  }
+
+  [data-slot="drawer-popup"]:not([data-ending-style]) {
+    animation: surface-popup-in-sheet 0.42s cubic-bezier(0.32, 0.72, 0, 1) both;
+  }
+
+  [data-slot="drawer-popup"][data-ending-style] {
+    animation: surface-popup-out-sheet 0.3s cubic-bezier(0.4, 0, 1, 0.9) forwards;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-slot="dialog-backdrop"],
+    [data-slot="drawer-backdrop"],
+    [data-slot="dialog-popup"],
+    [data-slot="drawer-popup"] {
+      animation-duration: 0.01ms !important;
+    }
+  }
+}
+
 .site-header-name-frame {
   position: fixed;
   inset-inline: 0;
