@@ -19,7 +19,6 @@ import { GithubIcon } from './BrandIcons';
 const DESCRIPTION =
   'Screen recording preview. Use the links below to open the repo or live demo.';
 
-/** Slightly longer than `DialogPopup` `duration-200` so enter animation can run before video decode/layout. */
 const DIALOG_ENTER_MS = 220;
 
 interface ProjectVideoDialogProps {

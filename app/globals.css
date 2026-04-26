@@ -139,9 +139,6 @@
   }
 }
 
-/* Name SVG: fixed above the page so it stays in place on scroll.
-   Kept as plain CSS (not Tailwind utilities) so the fixed container
-   positions correctly relative to the viewport-centered page column. */
 .site-header-name-frame {
   position: fixed;
   inset-inline: 0;

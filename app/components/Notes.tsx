@@ -16,8 +16,10 @@ import {
 } from '@/components/ui/carousel';
 import { notes } from '../data';
 import { cn } from '@/lib/utils';
+import { useMediaQuery } from '@/hooks/use-media-query';
 
 export default function Notes() {
+  const isLgUp = useMediaQuery('lg');
   const [activeSemester, setActiveSemester] = useState<number | null>(null);
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
@@ -99,7 +101,7 @@ export default function Notes() {
             return (
               <CarouselItem
                 key={note.file}
-                className="pl-4 basis-1/2 md:basis-1/3"
+                className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4"
               >
                 <a
                   href={note.file}
@@ -111,7 +113,11 @@ export default function Notes() {
                     isFiltered && 'pointer-events-none opacity-40'
                   )}
                 >
-                  <PerspectiveBook size="sm" textured className={note.cover}>
+                  <PerspectiveBook
+                    size={isLgUp ? 'xs' : 'sm'}
+                    textured
+                    className={note.cover}
+                  >
                     <div className="flex h-full flex-col">
                       <BookHeader>
                         <span className="text-[10px] font-medium tracking-wider opacity-70">

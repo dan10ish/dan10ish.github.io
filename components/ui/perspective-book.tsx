@@ -4,13 +4,14 @@ import React from "react";
 import { cn } from "@/lib/utils";
 
 const sizeMap = {
+  xs: { width: "135px", spineTranslation: "110px" },
   sm: { width: "150px", spineTranslation: "122px" },
   default: { width: "196px", spineTranslation: "168px" },
   lg: { width: "300px", spineTranslation: "272px" },
-};
+} as const;
 
 interface PerspectiveBookProps {
-  size?: "sm" | "default" | "lg";
+  size?: keyof typeof sizeMap;
   className?: string;
   children: React.ReactNode;
   textured?: boolean;
@@ -36,7 +37,6 @@ export function PerspectiveBook({
         }}
         className={`transition-transform duration-300 ease-out relative [transform-style:preserve-3d] [transform:rotateY(0deg)] group-hover:[transform:rotateY(-20deg)] group-hover:scale-[1.066] group-hover:-translate-x-1 aspect-[49/60]`}
       >
-        {/* Front Side */}
         <div
           className={cn(
             `absolute inset-y-0 overflow-hidden size-full left-0 flex flex-col p-[12%] after:content-[''] after:absolute after:inset-0 after:shadow-[0_1.8px_3.6px_#0000000d,_0_10.8px_21.6px_#00000014,_inset_0_-.9px_#0000001a,_inset_0_1.8px_1.8px_#ffffff1a,_inset_3.6px_0_3.6px_#0000001a] after:pointer-events-none after:rounded-[inherit] after:border-[#00000014] after:border after:border-solid`,
@@ -71,7 +71,6 @@ export function PerspectiveBook({
           )}
         </div>
 
-        {/* Spine */}
         <div
           className="absolute left-0 bg-[linear-gradient(90deg,#eaeaea_0%,#0000_80%),linear-gradient(#fff,#fafafa)]"
           style={{
@@ -85,7 +84,6 @@ export function PerspectiveBook({
         >
         </div>
 
-        {/* Back Side */}
         <div
           className={cn(
             `absolute inset-y-0 overflow-hidden size-full left-0 flex flex-col justify-end p-[12%]`,

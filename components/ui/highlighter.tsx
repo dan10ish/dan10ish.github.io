@@ -25,7 +25,6 @@ interface HighlighterProps {
   padding?: number
   multiline?: boolean
   isView?: boolean
-  /** Delay before the annotation starts drawing, in ms. */
   delay?: number
 }
 

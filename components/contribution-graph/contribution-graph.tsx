@@ -72,7 +72,6 @@ const DEFAULT_LABELS: Labels = {
   },
 }
 
-/** Matches `--github-level-*` in `app/globals.css` (light / dark / solarized). */
 const THEME = cn(
   'data-[level="0"]:fill-[var(--github-level-0)]',
   'data-[level="1"]:fill-[var(--github-level-1)]',
@@ -118,7 +117,6 @@ const fillHoles = (activities: Activity[]): Activity[] => {
     return []
   }
 
-  // Sort activities by date to ensure correct date range
   const sortedActivities = [...activities].sort((a, b) =>
     a.date.localeCompare(b.date)
   )
