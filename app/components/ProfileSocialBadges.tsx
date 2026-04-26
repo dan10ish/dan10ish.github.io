@@ -10,9 +10,15 @@ import {
   XIcon,
 } from './BrandIcons';
 import { personalInfo } from '../data';
+import { cn } from '@/lib/utils';
 
 const badgeClass =
   'group inline-flex shrink-0 items-center gap-1.5 rounded-md border px-3 py-1 text-xs transition-colors bg-background text-foreground hover:bg-accent';
+
+const socialBadgeClass = cn(
+  badgeClass,
+  'flex w-full min-w-0 max-w-full justify-center px-2.5 sm:px-3'
+);
 
 const iconClass =
   'shrink-0 text-muted-foreground transition-colors group-hover:text-foreground';
@@ -59,18 +65,18 @@ export function ProfileSocialBadges() {
   ] as const;
 
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="grid w-full min-w-0 grid-cols-3 gap-2 md:grid-cols-5">
       {items.map(({ key, href, label, icon, handle }) => (
         <Link
           key={key}
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className={badgeClass}
+          className={socialBadgeClass}
           aria-label={label}
         >
           {icon}
-          <span>{handle}</span>
+          <span className="min-w-0 truncate">{handle}</span>
         </Link>
       ))}
     </div>
