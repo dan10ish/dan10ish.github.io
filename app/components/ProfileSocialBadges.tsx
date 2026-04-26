@@ -4,6 +4,7 @@ import Link from 'next/link';
 import {
   GithubIcon,
   InstagramIcon,
+  LinkedinIcon,
   SnapchatIcon,
   ThreadsIcon,
   XIcon,
@@ -17,7 +18,7 @@ const iconClass =
   'shrink-0 text-muted-foreground transition-colors group-hover:text-foreground';
 
 export function ProfileSocialBadges() {
-  const { x, instagram, threads, snapchat } = personalInfo.socials;
+  const { x, linkedin, instagram, threads, snapchat } = personalInfo.socials;
 
   const items = [
     {
@@ -26,6 +27,13 @@ export function ProfileSocialBadges() {
       label: `X profile of ${x}`,
       icon: <XIcon size={20} className={iconClass} />,
       handle: x,
+    },
+    {
+      key: 'linkedin',
+      href: `https://www.linkedin.com/in/${linkedin}`,
+      label: `LinkedIn profile of ${linkedin}`,
+      icon: <LinkedinIcon size={20} className={iconClass} />,
+      handle: linkedin,
     },
     {
       key: 'instagram',

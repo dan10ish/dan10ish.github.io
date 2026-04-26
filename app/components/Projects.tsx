@@ -69,7 +69,7 @@ export default function Projects({ projects }: ProjectsProps) {
   }, [api]);
 
   useEffect(() => {
-    if (api) api.scrollTo(0);
+    if (api) api.scrollTo(0, false);
   }, [activeTag, api]);
 
   const handleTagClick = (tag: string) => {
@@ -121,6 +121,7 @@ export default function Projects({ projects }: ProjectsProps) {
             align: 'start',
             containScroll: 'trimSnaps',
             watchDrag: false,
+            duration: 10,
           }}
           className="w-full"
         >
