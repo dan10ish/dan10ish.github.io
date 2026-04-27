@@ -23,6 +23,7 @@
   },
   "registries": {
     "@coss": "https://coss.com/ui/r/{name}.json",
-    "@ncdai": "https://chanhdai.com/r/{name}.json"
+    "@ncdai": "https://chanhdai.com/r/{name}.json",
+    "@loading-ui": "https://loading-ui.com/r/{name}.json"
   }
 }
