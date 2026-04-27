@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { ChevronLeft, ChevronRight, Globe } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Globe, X } from 'lucide-react';
 import { GithubIcon } from './BrandIcons';
 import {
   Carousel,
@@ -9,7 +9,6 @@ import {
   CarouselItem,
   type CarouselApi,
 } from '@/components/ui/carousel';
-import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/ui/spinner';
 import { cn } from '@/lib/utils';
 
@@ -219,7 +218,7 @@ export default function Projects({ projects }: ProjectsProps) {
   }, [api]);
 
   useEffect(() => {
-    if (api) api.scrollTo(0, false);
+    if (api) api.scrollTo(0);
   }, [activeTag, api]);
 
   const handleTagClick = (tag: string) => {
@@ -229,7 +228,7 @@ export default function Projects({ projects }: ProjectsProps) {
   const progress = count > 0 ? (current / count) * 100 : 0;
 
   return (
-    <section className="space-y-5">
+    <div className="space-y-5">
       <div className="flex flex-wrap gap-2">
         {allTags.map((tag) => {
           const isActive = activeTag === tag;
@@ -239,16 +238,19 @@ export default function Projects({ projects }: ProjectsProps) {
               type="button"
               onClick={() => handleTagClick(tag)}
               className={cn(
-                'inline-flex items-center gap-1.5 rounded-md border px-3 py-1 text-xs transition-colors',
+                'relative inline-flex max-w-full min-w-0 items-center rounded-md border py-1 pl-3 text-xs leading-none transition-colors',
                 isActive
-                  ? 'border-foreground/20 bg-muted text-foreground'
-                  : 'border-border bg-background text-foreground hover:bg-accent',
+                  ? 'bg-muted pr-8 text-foreground'
+                  : 'bg-background pr-3 text-foreground hover:bg-accent',
               )}
             >
-              {tag}
+              <span className="min-w-0 truncate">{tag}</span>
               {isActive && (
-                <span className="text-muted-foreground" aria-hidden>
-                  ×
+                <span
+                  className="absolute right-1.5 top-1/2 grid size-4 -translate-y-1/2 place-items-center text-destructive"
+                  aria-hidden
+                >
+                  <X size={14} className="block" />
                 </span>
               )}
             </button>
@@ -258,18 +260,14 @@ export default function Projects({ projects }: ProjectsProps) {
 
       <Carousel
         setApi={setApi}
-        opts={{
-          align: 'start',
-          containScroll: 'trimSnaps',
-          duration: 20,
-        }}
+        opts={{ align: 'start', containScroll: 'trimSnaps' }}
         className="w-full"
       >
-        <CarouselContent className="-ml-3 sm:-ml-4">
+        <CarouselContent className="-ml-4 py-2">
           {pages.map((page) => (
             <CarouselItem
               key={page.map((p) => p.name).join('|')}
-              className="basis-full pl-3 sm:pl-4"
+              className="basis-full pl-4"
             >
               <div className="grid w-full grid-cols-2 gap-2.5 max-sm:mx-auto max-sm:max-w-[min(100%,20.5rem)] sm:max-w-none sm:gap-3 md:gap-4">
                 {page.map((project) => {
@@ -290,43 +288,39 @@ export default function Projects({ projects }: ProjectsProps) {
         </CarouselContent>
       </Carousel>
 
-      <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
+      <div className="flex items-center gap-3 text-xs text-muted-foreground">
         <div className="flex items-center gap-1.5">
-          <Button
+          <button
             type="button"
-            size="icon-sm"
-            variant="outline"
             onClick={() => api?.scrollPrev()}
             disabled={!api?.canScrollPrev()}
-            aria-label="Previous project page"
-            className="shrink-0 rounded-md"
+            aria-label="Previous projects"
+            className="inline-flex size-9 items-center justify-center rounded-md border transition-colors hover:bg-accent disabled:pointer-events-none disabled:opacity-40"
           >
-            <ChevronLeft className="size-4" />
-          </Button>
-          <Button
+            <ChevronLeft size={18} />
+          </button>
+          <button
             type="button"
-            size="icon-sm"
-            variant="outline"
             onClick={() => api?.scrollNext()}
             disabled={!api?.canScrollNext()}
-            aria-label="Next project page"
-            className="shrink-0 rounded-md"
+            aria-label="Next projects"
+            className="inline-flex size-9 items-center justify-center rounded-md border transition-colors hover:bg-accent disabled:pointer-events-none disabled:opacity-40"
           >
-            <ChevronRight className="size-4" />
-          </Button>
+            <ChevronRight size={18} />
+          </button>
         </div>
-        <div className="min-w-0 flex-1">
-          <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-muted">
+        <div className="flex-1">
+          <div className="relative h-[2px] w-full overflow-hidden rounded-full bg-muted">
             <div
-              className="absolute inset-y-0 left-0 rounded-full bg-foreground/80 transition-[width] duration-300 ease-out"
+              className="absolute inset-y-0 left-0 bg-foreground transition-[width] duration-300"
               style={{ width: `${progress}%` }}
             />
           </div>
         </div>
-        <span className="tabular-nums shrink-0">
+        <span className="tabular-nums">
           {String(current).padStart(2, '0')} / {String(count).padStart(2, '0')}
         </span>
       </div>
-    </section>
+    </div>
   );
 }

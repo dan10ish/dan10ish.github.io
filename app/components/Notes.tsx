@@ -74,16 +74,24 @@ export default function Notes() {
           return (
             <button
               key={sem}
+              type="button"
               onClick={() => handleSemesterClick(sem)}
               className={cn(
-                'inline-flex items-center gap-1.5 rounded-md border px-3 py-1 text-xs transition-colors',
+                'relative inline-flex max-w-full min-w-0 items-center rounded-md border py-1 pl-3 text-xs leading-none transition-colors',
                 isActive
-                  ? 'bg-muted text-foreground'
-                  : 'bg-background text-foreground hover:bg-accent'
+                  ? 'bg-muted pr-8 text-foreground'
+                  : 'bg-background pr-3 text-foreground hover:bg-accent',
               )}
             >
-              semester {sem}
-              {isActive && <X size={14} className="text-destructive" />}
+              <span className="min-w-0 truncate">semester {sem}</span>
+              {isActive && (
+                <span
+                  className="absolute right-1.5 top-1/2 grid size-4 -translate-y-1/2 place-items-center text-destructive"
+                  aria-hidden
+                >
+                  <X size={14} className="block" />
+                </span>
+              )}
             </button>
           );
         })}
