@@ -1,10 +1,12 @@
 "use client";
 
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
+import type { InteractionType } from "@base-ui/utils/useEnhancedClickHandler";
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
 import { XIcon } from "lucide-react";
 import type React from "react";
+import { useCallback, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -68,6 +70,7 @@ export function DialogPopup({
   bottomStickOnMobile = true,
   closeProps,
   portalProps,
+  initialFocus: initialFocusProp,
   ...props
 }: DialogPrimitive.Popup.Props & {
   showCloseButton?: boolean;
@@ -75,6 +78,25 @@ export function DialogPopup({
   closeProps?: DialogPrimitive.Close.Props;
   portalProps?: DialogPrimitive.Portal.Props;
 }): React.ReactElement {
+  const popupRef = useRef<HTMLDivElement | null>(null);
+  const initialFocus = useCallback(
+    (
+      openType: InteractionType,
+    ): boolean | HTMLElement | null | void => {
+      if (initialFocusProp !== undefined) {
+        if (typeof initialFocusProp === "function") {
+          return initialFocusProp(openType);
+        }
+        if (typeof initialFocusProp === "object" && initialFocusProp !== null) {
+          return initialFocusProp.current;
+        }
+        return initialFocusProp;
+      }
+      return popupRef.current;
+    },
+    [initialFocusProp],
+  );
+
   return (
     <DialogPortal {...portalProps}>
       <DialogBackdrop />
@@ -85,6 +107,8 @@ export function DialogPopup({
         )}
       >
         <DialogPrimitive.Popup
+          ref={popupRef}
+          initialFocus={initialFocus}
           className={cn(
             "relative row-start-2 flex max-h-full min-h-0 w-full min-w-0 max-w-lg origin-center flex-col rounded-2xl border bg-popover not-dark:bg-clip-padding text-popover-foreground opacity-[calc(1-var(--nested-dialogs))] shadow-lg/5 outline-none will-change-transform before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(--radius-2xl)-1px)] before:shadow-[0_1px_--theme(--color-black/4%)] sm:scale-[calc(1-0.1*var(--nested-dialogs))] dark:before:shadow-[0_-1px_--theme(--color-white/6%)]",
             bottomStickOnMobile &&
