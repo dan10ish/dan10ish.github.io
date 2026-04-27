@@ -1,6 +1,13 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { ChevronLeft, ChevronRight, Globe, X } from 'lucide-react';
 import { GithubIcon } from './BrandIcons';
 import {
@@ -9,8 +16,9 @@ import {
   CarouselItem,
   type CarouselApi,
 } from '@/components/ui/carousel';
-import { Spinner } from '@/components/ui/spinner';
 import { cn } from '@/lib/utils';
+
+const VIDEO_DECODE_CACHE = new Set<string>();
 
 interface Project {
   name: string;
@@ -59,9 +67,28 @@ function ProjectTile({
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [videoReady, setVideoReady] = useState(false);
   const videoSrc = project.video ? `/videos/${project.video}` : null;
+  const [videoReady, setVideoReady] = useState(
+    () => !!(videoSrc && VIDEO_DECODE_CACHE.has(videoSrc)),
+  );
   const canAutoplay = Boolean(videoSrc && !isFiltered && !reducedMotion);
+
+  const markDecoded = useCallback(() => {
+    if (videoSrc) VIDEO_DECODE_CACHE.add(videoSrc);
+    setVideoReady(true);
+  }, [videoSrc]);
+
+  useLayoutEffect(() => {
+    if (!videoSrc) return;
+    if (VIDEO_DECODE_CACHE.has(videoSrc)) {
+      setVideoReady(true);
+      return;
+    }
+    const el = videoRef.current;
+    if (el && el.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+      markDecoded();
+    }
+  }, [videoSrc, markDecoded]);
 
   useEffect(() => {
     if (isFiltered && videoRef.current) {
@@ -118,14 +145,18 @@ function ProjectTile({
         ) : (
           <>
             {!videoReady && (
-              <div className="absolute inset-0 z-10 flex items-center justify-center bg-muted">
-                <Spinner className="size-7 text-muted-foreground" />
-              </div>
+              <div
+                className="absolute inset-0 z-10 bg-muted"
+                aria-hidden
+              />
             )}
             <video
               ref={videoRef}
               src={videoSrc}
-              className="h-full w-full object-cover"
+              className={cn(
+                'h-full w-full object-cover transition-opacity duration-150',
+                videoReady ? 'opacity-100' : 'opacity-0',
+              )}
               muted
               loop
               playsInline
@@ -134,7 +165,8 @@ function ProjectTile({
               controlsList="nodownload nofullscreen noremoteplayback"
               disablePictureInPicture
               aria-label={`${project.name} screen recording preview`}
-              onLoadedData={() => setVideoReady(true)}
+              onLoadedData={markDecoded}
+              onCanPlay={markDecoded}
               onError={() => setVideoReady(true)}
               onContextMenu={(e) => e.preventDefault()}
             />
