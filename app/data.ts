@@ -14,23 +14,11 @@ export const personalInfo = {
 
 export const projects = [
   {
-    name: "AlgoSim",
-    sourceCode: "https://github.com/dan10ish/AlgoSim",
+    name: "Pathfinder",
+    sourceCode: "https://github.com/dan10ish/pathfinding-visualizer",
+    liveDemo: "https://dan10ish.github.io/pathfinding-visualizer/",
     tag: "algorithm",
-    video: "algosim.mp4"
-  },
-  {
-    name: "CogniCart",
-    sourceCode: "https://github.com/dan10ish/cogni-cart",
-    tag: "machine learning",
-    video: "cognicart.mp4"
-  },
-  {
-    name: "Code",
-    sourceCode: "https://github.com/dan10ish/code",
-    liveDemo: "http://dan10ish.github.io/code",
-    tag: "web",
-    video: "code.mp4"
+    video: "path.mp4"
   },
   {
     name: "3DOF Robotic Arm",
@@ -39,18 +27,10 @@ export const projects = [
     video: "3dof.mp4"
   },
   {
-    name: "Pathfinder",
-    sourceCode: "https://github.com/dan10ish/pathfinding-visualizer",
-    liveDemo: "https://dan10ish.github.io/pathfinding-visualizer/",
+    name: "AlgoSim",
+    sourceCode: "https://github.com/dan10ish/AlgoSim",
     tag: "algorithm",
-    video: "path.mp4"
-  },
-  {
-    name: "macOS Portfolio",
-    sourceCode: "https://github.com/dan10ish/os",
-    liveDemo: "https://os-danishs-projects-31d8c677.vercel.app/",
-    tag: "web",
-    video: "mac.mp4"
+    video: "algosim.mp4"
   },
   {
     name: "Arm Visualizer",
@@ -60,22 +40,25 @@ export const projects = [
     video: "rob-visual.mp4"
   },
   {
-    name: "College Notes",
-    sourceCode: "https://github.com/dan10ish/college",
-    liveDemo: "https://dan10ish.github.io/college/",
-    tag: "college",
-    video: "notes.mp4"
+    name: "Galaxy",
+    sourceCode: "https://github.com/dan10ish/Galaxy",
+    liveDemo: "https://dan10ish.github.io/Galaxy/",
+    tag: "web",
+    video: "galaxy.mp4"
   },
   {
-    name: "Comment Toxicity",
-    sourceCode: "https://github.com/dan10ish/CommentToxicity",
-    tag: "machine learning"
+    name: "macOS Portfolio",
+    sourceCode: "https://github.com/dan10ish/os",
+    liveDemo: "https://os-danishs-projects-31d8c677.vercel.app/",
+    tag: "web",
+    video: "mac.mp4"
   },
   {
-    name: "Terminal Hacker",
-    sourceCode: "https://github.com/dan10ish/Unity-Terminal_Hacker",
-    tag: "game",
-    video: "terminal.mp4"
+    name: "Code Editor",
+    sourceCode: "https://github.com/dan10ish/code",
+    liveDemo: "http://dan10ish.github.io/code",
+    tag: "web",
+    video: "code.mp4"
   },
   {
     name: "Office",
@@ -91,11 +74,28 @@ export const projects = [
     video: "cube.mp4"
   },
   {
-    name: "Galaxy",
-    sourceCode: "https://github.com/dan10ish/Galaxy",
-    liveDemo: "https://dan10ish.github.io/Galaxy/",
-    tag: "web",
-    video: "galaxy.mp4"
+    name: "Terminal Hacker",
+    sourceCode: "https://github.com/dan10ish/Unity-Terminal_Hacker",
+    tag: "game",
+    video: "terminal.mp4"
+  },
+  {
+    name: "CogniCart",
+    sourceCode: "https://github.com/dan10ish/cogni-cart",
+    tag: "machine learning",
+    video: "cognicart.mp4"
+  },
+  {
+    name: "College Notes",
+    sourceCode: "https://github.com/dan10ish/college",
+    liveDemo: "https://dan10ish.github.io/college/",
+    tag: "college",
+    video: "notes.mp4"
+  },
+  {
+    name: "Comment Toxicity",
+    sourceCode: "https://github.com/dan10ish/CommentToxicity",
+    tag: "machine learning"
   },
   {
     name: "Personal Website",

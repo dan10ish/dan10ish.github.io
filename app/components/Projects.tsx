@@ -107,11 +107,11 @@ function ProjectTile({
     <article
       ref={containerRef}
       className={cn(
-        'flex min-h-0 flex-col overflow-hidden rounded-xl border border-border bg-card text-card-foreground shadow-sm transition-opacity duration-200',
+        'flex min-h-0 flex-col gap-1.5 transition-opacity duration-200',
         isFiltered && 'pointer-events-none opacity-40',
       )}
     >
-      <div className="relative aspect-square w-full shrink-0 bg-muted">
+      <div className="relative aspect-square w-full shrink-0 overflow-hidden rounded-md border border-border bg-muted shadow-sm">
         {!videoSrc ? (
           <div className="flex h-full items-center justify-center px-3 text-center text-xs text-muted-foreground">
             No preview
@@ -141,40 +141,35 @@ function ProjectTile({
             />
           </>
         )}
-      </div>
 
-      <div className="flex min-h-0 flex-1 flex-col gap-2 p-3 sm:p-3.5">
-        <div className="min-h-0 space-y-1.5">
-          <h3 className="truncate text-sm font-semibold leading-tight text-foreground">
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 px-2.5 pb-2">
+          <h3 className="truncate text-xs font-semibold text-white [text-shadow:0_1px_4px_rgba(0,0,0,0.95),0_0_20px_rgba(0,0,0,0.65)]">
             {project.name}
           </h3>
-          <span className="inline-flex w-fit max-w-full rounded-md border border-border bg-muted/80 px-2 py-0.5 text-[0.65rem] font-medium uppercase tracking-wide text-muted-foreground">
-            {project.tag}
-          </span>
         </div>
+      </div>
 
-        <div className="mt-auto flex flex-wrap gap-1.5 border-t border-border/80 pt-2.5">
-          <Button
-            type="button"
-            size="icon-sm"
-            variant="outline"
-            disabled={!project.sourceCode || isFiltered}
-            aria-label={`Source code for ${project.name}`}
-            onClick={() => openLink(project.sourceCode)}
-          >
-            <GithubIcon size={14} />
-          </Button>
-          <Button
-            type="button"
-            size="icon-sm"
-            variant="outline"
-            disabled={!project.liveDemo || isFiltered}
-            aria-label={`Live demo for ${project.name}`}
-            onClick={() => openLink(project.liveDemo)}
-          >
-            <Globe className="size-3.5" aria-hidden />
-          </Button>
-        </div>
+      <div className="grid min-h-0 flex-1 grid-cols-2 gap-1.5">
+        <button
+          type="button"
+          disabled={!project.sourceCode || isFiltered}
+          onClick={() => openLink(project.sourceCode)}
+          className="flex items-center justify-center gap-1 rounded-md bg-neutral-950 py-1.5 text-[0.6875rem] font-medium leading-none text-white shadow-sm transition-[filter] hover:brightness-110 disabled:pointer-events-none disabled:opacity-40 dark:bg-white dark:text-neutral-950 dark:hover:brightness-95"
+          aria-label={`Source code for ${project.name}`}
+        >
+          <GithubIcon size={12} className="shrink-0" />
+          GitHub
+        </button>
+        <button
+          type="button"
+          disabled={!project.liveDemo || isFiltered}
+          onClick={() => openLink(project.liveDemo)}
+          className="flex items-center justify-center gap-1 rounded-md bg-[#0969da] py-1.5 text-[0.6875rem] font-medium leading-none text-white shadow-sm transition-colors hover:bg-[#0550ae] disabled:pointer-events-none disabled:opacity-40 dark:bg-[#4493f8] dark:hover:bg-[#6cb6ff]"
+          aria-label={`Live demo for ${project.name}`}
+        >
+          <Globe className="size-3 shrink-0" aria-hidden />
+          Live
+        </button>
       </div>
     </article>
   );
@@ -276,7 +271,7 @@ export default function Projects({ projects }: ProjectsProps) {
               key={page.map((p) => p.name).join('|')}
               className="basis-full pl-3 sm:pl-4"
             >
-              <div className="grid grid-cols-2 gap-3 sm:gap-4">
+              <div className="grid w-full grid-cols-2 gap-2.5 max-sm:mx-auto max-sm:max-w-[min(100%,20.5rem)] sm:max-w-none sm:gap-3 md:gap-4">
                 {page.map((project) => {
                   const isFiltered =
                     activeTag !== null && project.tag !== activeTag;
