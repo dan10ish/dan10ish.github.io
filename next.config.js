@@ -9,8 +9,10 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  turbopack: {},
-  allowedDevOrigins: ['192.168.1.103'],
+  turbopack: {
+    root: path.resolve(__dirname),
+  },
+  allowedDevOrigins: ['192.168.1.111'],
   webpack: (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
