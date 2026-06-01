@@ -27,6 +27,10 @@ export const data: Data = {
   },
   "experience": [
     {
+      "company": "Velarko",
+      "year": "2026"
+    },
+    {
       "company": "Innovatio Labs",
       "year": "2025"
     },
@@ -75,7 +79,7 @@ export const data: Data = {
 
 export const personalInfo = {
   name: "Danish Ansari",
-  about: "Mechatronics engineer integrating hardware and software to create applications in machine learning, robotics, and finance.",
+  about: "Mechatronics engineer integrating hardware and software to create applications in machine learning, robotics, and finance. Currently taking companies from zero to one.",
   socials: {
     github: "dan10ish",
     x: "dan10ish",

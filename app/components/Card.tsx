@@ -156,11 +156,9 @@ export default function Card({ onClose }: CardProps) {
                             <div className={cx('card__contact')}>
                                 <a href="tel:+255786654790" className={cx('card__phone', 'card__inline', 'engraved-tight', 'link-reset')}>+255786654790</a>
                             </div>
-                            <a href="https://innovatiolabs.com" target="_blank" rel="noopener noreferrer" className={cx('card__company', 'link-reset')}>
+                            <a href="https://velarko.com" target="_blank" rel="noopener noreferrer" className={cx('card__company', 'link-reset')}>
                                 <div className={cx('card__company-line')}>
-                                    <span className={cx('card__company-word', 'engraved-text')}>Innovatio</span>
-                                    <span className={cx('card__company-ampersand', 'engraved-text')}></span>
-                                    <span className={cx('card__company-word', 'engraved-text')}>Labs</span>
+                                    <span className={cx('card__company-word', 'engraved-text')}>Velarko</span>
                                 </div>
                                 <span className={cx('card__company-tagline', 'engraved-text')}></span>
                             </a>
@@ -170,17 +168,17 @@ export default function Card({ onClose }: CardProps) {
                                 <span className={cx('card__person-first', 'engraved-text')}>Danish</span>
                                 <span className={cx('card__person-last', 'engraved-text')}>ansari</span>
                             </div>
-                            <span className={cx('card__title', 'engraved-text')}>Project Manager</span>
+                            <span className={cx('card__title', 'engraved-text')}>Business Head</span>
                         </div>
                         <div className={cx('card__bottom')}>
                             <span className={cx('card__inline', 'engraved-text', 'card__bottom-line')}>
                                 <a
-                                    href="https://maps.app.goo.gl/3Wt2qNQBghkxgn4h8"
+                                    href="https://maps.app.goo.gl/6y8w7YsXnkWUXftD9"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className={cx('card__bottom-address', 'engraved-text', 'link-reset')}
                                 >
-                                    303 Holland House, Samora Avenue, Dar es Salaam, 11102, Tanzania
+                                    1854/2 Chole Road, Masaki, Dar es Salaam, 11102, Tanzania
                                 </a>
                             </span>
                         </div>
