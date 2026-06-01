@@ -53,6 +53,52 @@
   --btn-purple: #AF52DE;
 }
 
+[data-theme="dark"] {
+  --background: #141416;
+  --foreground: #e4e4e7;
+  --island-bg: #2c2c30;
+  --island-text: #f0f0f3;
+  --island-hello: rgba(255, 255, 255, 0.45);
+  --island-about: rgba(255, 255, 255, 0.75);
+  --island-shadow: rgba(0, 0, 0, 0.4);
+  --island-border-subtle: rgba(255, 255, 255, 0.1);
+  --island-card-border: rgba(255, 255, 255, 0.1);
+  --island-photo-bg: rgba(255, 255, 255, 0.08);
+  --island-photo-border: rgba(255, 255, 255, 0.18);
+  --island-tag-bg: rgba(255, 255, 255, 0.08);
+  --social-icon-color: #e4e4e7;
+  --project-title-color: #f0f0f3;
+  --photo-shadow: rgba(0, 0, 0, 0.3);
+  --project-link-color: #e4e4e7;
+  --project-link-hover: #409cff;
+  --project-link-disabled: #555558;
+  --back-btn-bg: #3a3a3c;
+  --back-btn-color: #e4e4e7;
+  --toggle-color: #e4e4e7;
+  --tag-algorithm-bg: rgba(52, 199, 89, 0.18);
+  --tag-algorithm-color: #4cd964;
+  --tag-ai-bg: rgba(0, 122, 255, 0.18);
+  --tag-ai-color: #409cff;
+  --tag-web-bg: rgba(255, 149, 0, 0.18);
+  --tag-web-color: #ffb340;
+  --tag-robotics-bg: rgba(175, 82, 222, 0.18);
+  --tag-robotics-color: #c77dff;
+  --tag-education-bg: rgba(255, 45, 85, 0.18);
+  --tag-education-color: #ff6482;
+  --tag-portfolio-bg: rgba(88, 86, 214, 0.18);
+  --tag-portfolio-color: #7a78e8;
+  --tag-ml-bg: rgba(255, 204, 0, 0.18);
+  --tag-ml-color: #ffd426;
+  --tag-game-bg: rgba(255, 59, 48, 0.18);
+  --tag-game-color: #ff6961;
+  --tag-simulation-bg: rgba(90, 200, 250, 0.18);
+  --tag-simulation-color: #70d7fc;
+  --btn-green: #30d158;
+  --btn-orange: #ff9f0a;
+  --btn-blue: #0a84ff;
+  --btn-purple: #bf5af2;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -70,6 +116,35 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), sans-serif;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.theme-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--foreground);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  opacity: 0.45;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+  opacity: 0.8;
+  transform: scale(1.1);
+}
+
+.theme-toggle:active {
+  transform: scale(0.9);
 }
 
 .home-container {
@@ -91,6 +166,7 @@ body {
   justify-content: center;
   max-width: calc(100vw - 32px);
   box-shadow: 0 8px 32px var(--island-shadow);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
 .island-content {
@@ -271,7 +347,7 @@ body {
 }
 
 .back-chevron:hover {
-  background: rgba(0, 0, 0, 0.06);
+  background: color-mix(in srgb, var(--foreground) 6%, transparent);
 }
 
 .back-chevron:hover svg {
@@ -279,7 +355,7 @@ body {
 }
 
 .back-chevron:active {
-  background: rgba(0, 0, 0, 0.1);
+  background: color-mix(in srgb, var(--foreground) 10%, transparent);
 }
 
 .back-chevron:active svg {

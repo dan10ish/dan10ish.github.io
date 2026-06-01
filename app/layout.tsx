@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import ThemeProvider from "@/components/ThemeProvider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -101,8 +102,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <meta name="color-scheme" content="light" />
-        <meta name="theme-color" content="#f5f5f7" />
+        <meta name="color-scheme" content="light dark" />
+        <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#141416" media="(prefers-color-scheme: dark)" />
         <link
           rel="preload"
           href="/fonts/Garamond.woff2"
@@ -110,11 +112,17 @@ export default function RootLayout({
           type="font/woff2"
           crossOrigin="anonymous"
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t)}else if(window.matchMedia('(prefers-color-scheme:dark)').matches){document.documentElement.setAttribute('data-theme','dark')}}catch(e){}})()`,
+          }}
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <main>{children}</main>
+        <ThemeProvider />
       </body>
     </html>
   );

@@ -11,11 +11,11 @@
     "cc": "clear && npm cache clean --force && rm -rf .next && npm run dev"
   },
   "dependencies": {
-    "framer-motion": "^12.38.0",
-    "lucide-react": "^1.8.0",
-    "next": "16.2.4",
-    "react": "19.2.5",
-    "react-dom": "19.2.5"
+    "framer-motion": "^12.40.0",
+    "lucide-react": "^1.17.0",
+    "next": "16.2.6",
+    "react": "19.2.6",
+    "react-dom": "19.2.6"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -24,7 +24,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^10",
-    "eslint-config-next": "16.2.4",
+    "eslint-config-next": "16.2.6",
     "tailwindcss": "^4",
     "typescript": "6.0.3"
   }
