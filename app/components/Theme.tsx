@@ -1,83 +1,39 @@
 'use client'
 
-import { ThemeProvider as NextThemesProvider } from 'next-themes'
-import { useTheme } from 'next-themes'
-import { useEffect, useState, ReactNode } from 'react'
-import { Sun, Moon } from 'lucide-react'
+import { useEffect, useState, useCallback } from 'react'
 
-const LIGHT_THEME_COLOR = '#f8f8f8'
-const DARK_THEME_COLOR = '#111111'
-
-interface ThemeProviderProps {
-  children: ReactNode
-  attribute?: 'class' | 'data-theme'
-  defaultTheme?: string
-  enableSystem?: boolean
-  disableTransitionOnChange?: boolean
+function getInitialTheme(): string {
+  if (typeof window === 'undefined') return 'light'
+  return document.documentElement.classList.contains('dark') ? 'dark' : 'light'
 }
 
-export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
-  return <NextThemesProvider {...props}>{children}</NextThemesProvider>
-}
+export function useTheme() {
+  const [theme, setThemeState] = useState(getInitialTheme)
 
-export function ThemeColorUpdater() {
-  const { theme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
+  const setTheme = useCallback((t: string) => {
+    document.documentElement.classList.toggle('dark', t === 'dark')
+    localStorage.setItem('theme', t)
+    setThemeState(t)
   }, [])
 
   useEffect(() => {
-    if (!mounted) return
-
-    const updateThemeColor = () => {
-      let metaThemeColor = document.querySelector('meta[name="theme-color"]')
-
-      if (!metaThemeColor) {
-        metaThemeColor = document.createElement('meta')
-        metaThemeColor.setAttribute('name', 'theme-color')
-        document.head.appendChild(metaThemeColor)
-      }
-
-      const isDark = document.documentElement.classList.contains('dark')
-      const themeColor = isDark ? DARK_THEME_COLOR : LIGHT_THEME_COLOR
-      metaThemeColor.setAttribute('content', themeColor)
-    }
-
-    updateThemeColor()
-
-    const observer = new MutationObserver(updateThemeColor)
-
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['class']
-    })
-
-    return () => observer.disconnect()
-  }, [theme, mounted])
-
-  return null
-}
-
-export function ThemeToggle() {
-  const { theme, setTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
+    setThemeState(getInitialTheme())
   }, [])
 
-  if (!mounted) return null
+  const toggle = useCallback(() => {
+    setTheme(theme === 'dark' ? 'light' : 'dark')
+  }, [theme, setTheme])
 
-  return (
-    <button
-      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      className="flex items-center justify-center p-2 rounded-full bg-background duration-200"
-      aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-    >
-      {theme === 'dark' ? <Sun size={22} /> : <Moon size={22} />}
-    </button>
-  )
+  return { theme, toggle }
 }
 
+/** Inline script to inject in <head> — prevents flash of wrong theme */
+export const themeScript = `
+(function(){
+  try {
+    var t = localStorage.getItem('theme');
+    if (!t) t = matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+    if (t === 'dark') document.documentElement.classList.add('dark');
+  } catch(e) {}
+})();
+`
