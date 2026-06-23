@@ -1,10 +1,9 @@
-import Menu from "./components/menu";
+import VelarkoLogo from "./components/velarko-logo";
 import { data } from "./data";
 
 export default function Home() {
   return (
     <div className="px-6 pt-6 pb-12 md:px-8 md:pt-8 md:pb-12">
-      <Menu />
       <div className="space-y-8">
         <div className="block w-full text-left text-[22px] md:text-[24px] leading-[1.1] font-semibold tracking-tight">
           {data.personal.name}
@@ -14,18 +13,17 @@ export default function Home() {
           {data.personal.title.join(" | ")}
         </div>
 
-        <div className="space-y-2">
-          <div className="text-[16px] md:text-[20px] leading-[1.1] font-medium text-secondary tracking-tight">Experience</div>
-          <div className="space-y-2">
-            {data.experience.map((item, index) => (
-              <div
-                key={index}
-                className="block w-full text-left text-[22px] md:text-[24px] leading-[1.1] font-semibold tracking-tight"
-              >
-                {item.company} ({item.year})
-              </div>
-            ))}
-          </div>
+        <div className="flex items-center gap-2 text-[22px] md:text-[24px] leading-[1.1] font-semibold tracking-tight">
+          <span>Currently @</span>
+          <a
+            href="https://velarko.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center transition-transform duration-200 ease-out hover:scale-110"
+            aria-label="Velarko"
+          >
+            <VelarkoLogo size={42} />
+          </a>
         </div>
 
         <div className="space-y-2">
