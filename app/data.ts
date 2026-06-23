@@ -3,11 +3,6 @@ export interface Personal {
   title: string[];
 }
 
-export interface Experience {
-  company: string;
-  year: string;
-}
-
 export interface Social {
   name: string;
   username: string;
@@ -16,29 +11,14 @@ export interface Social {
 
 export interface Data {
   personal: Personal;
-  experience: Experience[];
   social: Social[];
 }
 
 export const data: Data = {
   personal: {
     name: "Danish Ansari",
-    title: ["ML", "Robotics", "Finance"],
+    title: ["AI", "Robotics", "Finance"],
   },
-  experience: [
-    {
-      company: "Innovatio Labs",
-      year: "2025",
-    },
-    {
-      company: "Cridaa",
-      year: "2024",
-    },
-    {
-      company: "Accelus Robotics",
-      year: "2023",
-    },
-  ],
   social: [
     {
       name: "GitHub",
