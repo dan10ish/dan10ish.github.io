@@ -27,7 +27,6 @@ export function useTheme() {
   return { theme, toggle }
 }
 
-/** Inline script to inject in <head> — prevents flash of wrong theme */
 export const themeScript = `
 (function(){
   try {

@@ -1,0 +1,43 @@
+export default function Velarko({ size = 26 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 350 350"
+      xmlns="http://www.w3.org/2000/svg"
+      style={{ display: "block" }}
+    >
+      <defs>
+        <radialGradient id="vk-bgGrad" cx="50%" cy="50%" r="80%">
+          <stop offset="0%" stopColor="#ffd215" />
+          <stop offset="100%" stopColor="#fff172" />
+        </radialGradient>
+        <filter id="vk-blur28" x="-80%" y="-80%" width="260%" height="260%" colorInterpolationFilters="linearRGB"><feGaussianBlur stdDeviation="28" /></filter>
+        <filter id="vk-blur42" x="-80%" y="-80%" width="260%" height="260%" colorInterpolationFilters="linearRGB"><feGaussianBlur stdDeviation="42" /></filter>
+        <filter id="vk-blur49" x="-80%" y="-80%" width="260%" height="260%" colorInterpolationFilters="linearRGB"><feGaussianBlur stdDeviation="49" /></filter>
+        <filter id="vk-blur56" x="-80%" y="-80%" width="260%" height="260%" colorInterpolationFilters="linearRGB"><feGaussianBlur stdDeviation="56" /></filter>
+        <clipPath id="vk-clip">
+          <path d="M28.4607 119.836L28.4607 81.3358L28.4607 46.1848C28.4607 41.3672 29.7049 36.6313 32.0727 32.4357C41.664 15.4411 65.2698 13.2412 77.8362 28.1708L157.623 122.962C162.175 128.37 164.671 135.212 164.671 142.281L164.671 206.964C164.671 225.656 147.763 239.797 129.365 236.491L109.524 232.925C105.523 232.207 101.711 230.682 98.3176 228.445L35.9607 187.336C31.2751 184.212 28.4607 178.953 28.4607 173.322L28.4607 172.836L28.4607 153.336V119.836Z" />
+          <path d="M70.9043 288.588C59.1886 276.872 59.1886 257.877 70.9043 246.162L92.3358 224.73L93.3547 223.681C99.0036 217.867 106.765 214.586 114.872 214.586L123.191 214.586L132.739 214.586C137.711 214.586 142.05 211.213 143.278 206.395C146.436 193.995 164.691 196.284 164.691 209.08L164.691 229.586L164.691 267.375L164.691 301.874C164.691 308.187 162.699 314.339 158.999 319.455L155.61 324.141C144.788 339.104 123.146 340.83 110.089 327.773L70.9043 288.588Z" />
+          <path d="M321.539 119.836L321.539 81.3358L321.539 46.1848C321.539 41.3672 320.295 36.6313 317.927 32.4357C308.336 15.4411 284.73 13.2412 272.164 28.1708L192.377 122.962C187.825 128.37 185.329 135.212 185.329 142.281L185.329 206.964C185.329 225.656 202.237 239.797 220.635 236.491L240.476 232.925C244.477 232.207 248.289 230.682 251.682 228.445L314.039 187.336C318.725 184.212 321.539 178.953 321.539 173.322L321.539 172.836L321.539 153.336V119.836Z" />
+          <path d="M279.096 288.588C290.811 276.872 290.811 257.877 279.096 246.162L257.664 224.73L256.645 223.681C250.996 217.867 243.235 214.586 235.128 214.586L226.809 214.586L217.261 214.586C212.289 214.586 207.95 211.213 206.722 206.395C203.564 193.995 185.309 196.284 185.309 209.08L185.309 229.586L185.309 267.375L185.309 301.874C185.309 308.187 187.301 314.339 191.001 319.455L194.39 324.141C205.212 339.104 226.854 340.83 239.911 327.773L279.096 288.588Z" />
+        </clipPath>
+      </defs>
+      <g clipPath="url(#vk-clip)">
+        <rect width="100%" height="100%" fill="url(#vk-bgGrad)" />
+        <circle cx="70" cy="70" r="70" fill="rgba(255,232,26,0.7)" filter="url(#vk-blur28)" transform="translate(0,-127)" />
+        <circle cx="70" cy="70" r="70" fill="rgba(255,163,26,0.7)" filter="url(#vk-blur42)" transform="translate(236,25)" />
+        <circle cx="70" cy="70" r="70" fill="#1a23ff"              filter="url(#vk-blur49)" transform="translate(-31,-38)" />
+        <circle cx="70" cy="70" r="70" fill="#1a23ff"              filter="url(#vk-blur49)" transform="translate(205,-38)" />
+        <circle cx="70" cy="70" r="70" fill="#e21bda"              filter="url(#vk-blur56)" transform="translate(31,-13)" />
+        <circle cx="70" cy="70" r="70" fill="#e21bda"              filter="url(#vk-blur56)" transform="translate(144,51)" />
+        <circle cx="70" cy="70" r="70" fill="rgba(255,163,26,0.7)" filter="url(#vk-blur42)" transform="translate(21,89)" />
+        <circle cx="70" cy="70" r="70" fill="rgba(255,163,26,0.7)" filter="url(#vk-blur42)" transform="translate(72,-13)" />
+        <circle cx="70" cy="70" r="70" fill="rgba(255,232,26,0.7)" filter="url(#vk-blur28)" transform="translate(51,-38)" />
+        <circle cx="70" cy="70" r="70" fill="rgba(255,232,26,0.7)" filter="url(#vk-blur28)" transform="translate(164,51)" />
+        <circle cx="70" cy="70" r="70" fill="rgba(255,163,26,0.7)" filter="url(#vk-blur42)" transform="translate(10,13)" />
+        <circle cx="70" cy="70" r="70" fill="rgba(255,163,26,0.7)" filter="url(#vk-blur49)" transform="translate(134,13)" />
+      </g>
+    </svg>
+  );
+}
