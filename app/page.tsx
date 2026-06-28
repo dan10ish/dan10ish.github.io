@@ -31,7 +31,7 @@ export default function Home() {
         </div>
 
         <div>
-          <div className="space-y-1">
+          <div className="space-y-2">
             {data.social.map((item, index) => (
               <div key={index}>
                 <a
