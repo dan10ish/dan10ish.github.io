@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://danishansari.co"),
   title: {
-    default: "Danish Ansari",
-    template: "%s | Danish Ansari",
+    default: "Danish",
+    template: "%s | Danish",
   },
   description:
     "Mechatronics engineer integrating hardware and software to create applications in machine learning, robotics, and finance.",

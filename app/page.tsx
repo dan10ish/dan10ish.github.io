@@ -31,9 +31,6 @@ export default function Home() {
         </div>
 
         <div>
-          <div className="text-[11px] font-medium uppercase tracking-widest text-secondary mb-2">
-            Socials
-          </div>
           <div className="space-y-1">
             {data.social.map((item, index) => (
               <div key={index}>

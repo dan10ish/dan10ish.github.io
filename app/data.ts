@@ -36,7 +36,7 @@ export const data: Data = {
       url: "https://linkedin.com/in/dan10ish",
     },
     {
-      name: "X (Twitter)",
+      name: "X",
       username: "dan10ish",
       url: "https://x.com/dan10ish",
     },
