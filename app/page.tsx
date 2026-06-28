@@ -6,16 +6,16 @@ export default function Home() {
   return (
     <PageTransition>
       <div className="px-6 pt-6 pb-12 md:px-8 md:pt-8 md:pb-12">
-        <div className="text-[16px] font-medium leading-snug mb-6">
+        <div className="text-[16px] font-medium leading-snug mb-8">
           {data.personal.name}
         </div>
 
-        <div className="space-y-2 mb-7">
-          <div className="text-[14px] font-normal leading-snug text-secondary">
+        <div className="space-y-2 mb-10">
+          <div className="text-[16px] font-normal leading-snug text-secondary">
             {data.personal.title.join(" · ")}
           </div>
 
-          <div className="flex items-center gap-1.5 text-[14px] font-normal leading-snug text-secondary">
+          <div className="flex items-center gap-1.5 text-[16px] font-normal leading-snug text-secondary">
             <span>Currently @</span>
             <a
               href="https://velarko.com"
@@ -38,7 +38,7 @@ export default function Home() {
                   href={item.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-0.5 text-[14px] font-normal leading-snug hover:opacity-50 transition-opacity"
+                  className="inline-flex items-center gap-0.5 text-[16px] font-normal leading-snug hover:opacity-50 transition-opacity"
                 >
                   {item.name}
                   <svg
