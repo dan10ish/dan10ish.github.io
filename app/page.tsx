@@ -39,7 +39,7 @@ export default function Home() {
                     href={item.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="social-link inline-flex items-center gap-0.5 text-[15px] font-normal leading-snug px-2.5 py-1 rounded-md"
+                    className="social-link inline-flex items-center gap-1.5 text-[15px] font-normal leading-snug px-2.5 py-1 rounded-md"
                   >
                     {item.name}
                     <svg
