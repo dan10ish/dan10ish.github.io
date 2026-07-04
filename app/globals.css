@@ -8,9 +8,14 @@
   --chevron: #b0b0b0;
   --social-hover-bg: rgba(0, 0, 0, 0.05);
   --social-hover-chevron: #2563eb;
-  --tag-color: #999999;
-  --link-color: #b0b0b0;
+  --tag-bg: rgba(0, 0, 0, 0.05);
+  --tag-color: #777777;
+  --link-color: #999999;
   --link-hover: #111111;
+  --code-bg: rgba(37, 99, 235, 0.08);
+  --code-color: #2563eb;
+  --live-bg: rgba(16, 185, 129, 0.08);
+  --live-color: #059669;
   color-scheme: light;
 }
 
@@ -22,9 +27,14 @@
   --chevron: #555555;
   --social-hover-bg: rgba(255, 255, 255, 0.14);
   --social-hover-chevron: #60a5fa;
-  --tag-color: #666666;
-  --link-color: #555555;
+  --tag-bg: rgba(255, 255, 255, 0.08);
+  --tag-color: #777777;
+  --link-color: #666666;
   --link-hover: #e8e8ed;
+  --code-bg: rgba(96, 165, 250, 0.12);
+  --code-color: #60a5fa;
+  --live-bg: rgba(52, 211, 153, 0.12);
+  --live-color: #34d399;
   color-scheme: dark;
 }
 
@@ -39,19 +49,20 @@
 body {
   background: var(--background);
   color: var(--foreground);
+  font-size: 15px;
 }
 
 /* ── Layout ── */
 
 .page-main {
-  padding: 24px;
+  padding: 24px 24px 64px;
   max-width: 600px;
 }
 
 @media (min-width: 768px) {
   .page-main {
     display: grid;
-    grid-template-columns: 280px 1fr;
+    grid-template-columns: 260px 1fr;
     gap: 64px;
     max-width: 100%;
     padding: 40px;
@@ -60,10 +71,16 @@ body {
 
 @media (min-width: 1100px) {
   .page-main {
-    grid-template-columns: 320px 1fr;
+    grid-template-columns: 300px 1fr;
     gap: 80px;
     padding: 48px;
   }
+}
+
+/* ── Intro ── */
+
+.intro-block {
+  margin-bottom: 36px;
 }
 
 /* ── Section Labels ── */
@@ -74,7 +91,7 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--secondary);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 /* ── Social ── */
@@ -105,49 +122,81 @@ body {
 
 @media (max-width: 767px) {
   .col-projects {
-    margin-top: 40px;
+    margin-top: 16px;
   }
 }
 
 .project-row {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 5px 0;
+  justify-content: space-between;
+  max-width: 450px;
+  padding: 6px 0;
 }
 
 .project-title {
   font-size: 15px;
   color: var(--foreground);
+  white-space: nowrap;
+}
+
+.project-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
 }
 
 .project-tag {
-  font-size: 12px;
+  font-size: 10px;
+  font-weight: 500;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
   color: var(--tag-color);
-  flex-shrink: 0;
+  background: var(--tag-bg);
+  padding: 2px 8px;
+  border-radius: 99px;
+  white-space: nowrap;
+  line-height: 1.5;
 }
 
 .project-links {
   display: inline-flex;
   align-items: center;
-  gap: 2px;
-  margin-left: auto;
+  gap: 6px;
   flex-shrink: 0;
 }
 
-.project-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 26px;
-  height: 26px;
+.project-text-link {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--foreground);
+  text-decoration: none;
+  padding: 2px 10px;
   border-radius: 6px;
-  color: var(--link-color);
-  transition: color 0.15s ease-out;
+  background: var(--tag-bg);
+  transition: background 0.15s ease-out, color 0.15s ease-out;
+}
+
+.project-text-link-code {
+  background: var(--code-bg);
+  color: var(--code-color);
+}
+
+.project-text-link-live {
+  background: var(--live-bg);
+  color: var(--live-color);
+}
+
+.project-text-link-disabled {
+  opacity: 0.3;
+  pointer-events: none;
+  cursor: default;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .project-link:hover {
+  .project-text-link:not(.project-text-link-disabled):hover {
     color: var(--link-hover);
   }
 }
