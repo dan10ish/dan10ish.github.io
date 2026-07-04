@@ -15,19 +15,21 @@
   color-scheme: light;
 }
 
-.dark {
-  --background: #000000;
-  --foreground: #e8e8ed;
-  --secondary: #888888;
-  --border: #2a2a2a;
-  --chevron: #555555;
-  --social-hover-bg: rgba(255, 255, 255, 0.14);
-  --social-hover-chevron: #60a5fa;
-  --code-bg: rgba(96, 165, 250, 0.12);
-  --code-color: #60a5fa;
-  --live-bg: rgba(52, 211, 153, 0.12);
-  --live-color: #34d399;
-  color-scheme: dark;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #000000;
+    --foreground: #e8e8ed;
+    --secondary: #888888;
+    --border: #2a2a2a;
+    --chevron: #555555;
+    --social-hover-bg: rgba(255, 255, 255, 0.14);
+    --social-hover-chevron: #60a5fa;
+    --code-bg: rgba(96, 165, 250, 0.12);
+    --code-color: #60a5fa;
+    --live-bg: rgba(52, 211, 153, 0.12);
+    --live-color: #34d399;
+    color-scheme: dark;
+  }
 }
 
 @theme inline {
