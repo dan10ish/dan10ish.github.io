@@ -1,7 +1,6 @@
 export interface Personal {
   name: string;
   title: string[];
-  about: string;
 }
 
 export interface Social {
@@ -26,8 +25,6 @@ export const data: Data = {
   personal: {
     name: "Danish Ansari",
     title: ["AI", "Robotics", "Finance"],
-    about:
-      "Mechatronics engineer integrating hardware and software to create applications in machine learning, robotics, and finance.",
   },
   social: [
     {

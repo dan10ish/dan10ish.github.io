@@ -22,7 +22,7 @@ export default function Menu() {
       {showScrollTop && (
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="p-2 text-secondary hover:text-foreground transition-colors"
+          className="p-2 text-secondary hover:text-foreground transition-all duration-100 ease-out hover:scale-110"
           aria-label="Scroll to top"
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m18 15-6-6-6 6"/></svg>
@@ -31,7 +31,7 @@ export default function Menu() {
 
       <button
         onClick={toggle}
-        className="p-2 text-secondary hover:text-foreground transition-colors"
+        className="p-2 text-secondary hover:text-foreground transition-all duration-100 ease-out hover:scale-110"
         aria-label="Toggle theme"
       >
         {theme === 'dark' ? (

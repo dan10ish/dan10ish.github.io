@@ -23,16 +23,12 @@ export default function Home() {
               href="https://velarko.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center w-[26px] h-[26px] transition-transform duration-200 ease-out hover:scale-110"
+              className="inline-flex items-center justify-center w-[26px] h-[26px] transition-transform duration-100 ease-out hover:scale-110"
               style={{ willChange: "transform" }}
               aria-label="Velarko"
             >
               <Velarko size={26} />
             </a>
-          </p>
-
-          <p className="intro-block text-[15px] leading-relaxed text-secondary">
-            {data.personal.about}
           </p>
 
           <nav aria-label="Social links">
