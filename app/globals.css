@@ -8,6 +8,9 @@
   --chevron: #b0b0b0;
   --social-hover-bg: rgba(0, 0, 0, 0.05);
   --social-hover-chevron: #2563eb;
+  --tag-color: #999999;
+  --link-color: #b0b0b0;
+  --link-hover: #111111;
   color-scheme: light;
 }
 
@@ -19,6 +22,9 @@
   --chevron: #555555;
   --social-hover-bg: rgba(255, 255, 255, 0.14);
   --social-hover-chevron: #60a5fa;
+  --tag-color: #666666;
+  --link-color: #555555;
+  --link-hover: #e8e8ed;
   color-scheme: dark;
 }
 
@@ -35,6 +41,44 @@ body {
   color: var(--foreground);
 }
 
+/* ── Layout ── */
+
+.page-main {
+  padding: 24px;
+  max-width: 600px;
+}
+
+@media (min-width: 768px) {
+  .page-main {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 64px;
+    max-width: 100%;
+    padding: 40px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .page-main {
+    grid-template-columns: 320px 1fr;
+    gap: 80px;
+    padding: 48px;
+  }
+}
+
+/* ── Section Labels ── */
+
+.section-label {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--secondary);
+  margin-bottom: 10px;
+}
+
+/* ── Social ── */
+
 .social-chevron {
   color: var(--chevron);
   transform: translateZ(0);
@@ -50,5 +94,60 @@ body {
   }
   .social-link:hover .social-chevron {
     color: var(--social-hover-chevron);
+  }
+}
+
+/* ── Projects ── */
+
+.col-projects {
+  padding-top: 4px;
+}
+
+@media (max-width: 767px) {
+  .col-projects {
+    margin-top: 40px;
+  }
+}
+
+.project-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 0;
+}
+
+.project-title {
+  font-size: 15px;
+  color: var(--foreground);
+}
+
+.project-tag {
+  font-size: 12px;
+  color: var(--tag-color);
+  flex-shrink: 0;
+}
+
+.project-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  color: var(--link-color);
+  transition: color 0.15s ease-out;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .project-link:hover {
+    color: var(--link-hover);
   }
 }
