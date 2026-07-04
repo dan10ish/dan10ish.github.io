@@ -75,32 +75,29 @@ export default function Home() {
               {data.projects.map((project, i) => (
                 <li key={i} className="project-row">
                   <span className="project-title">{project.title}</span>
-                  <span className="project-right">
-                    <span className="project-tag">{project.tag}</span>
-                    <span className="project-links">
+                  <span className="project-links">
+                    <a
+                      href={project.source}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="project-text-link project-text-link-code"
+                    >
+                      Code
+                    </a>
+                    {project.live ? (
                       <a
-                        href={project.source}
+                        href={project.live}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="project-text-link project-text-link-code"
+                        className="project-text-link project-text-link-live"
                       >
-                        Code
+                        Link
                       </a>
-                      {project.live ? (
-                        <a
-                          href={project.live}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="project-text-link project-text-link-live"
-                        >
-                          Link
-                        </a>
-                      ) : (
-                        <span className="project-text-link project-text-link-live project-text-link-disabled">
-                          Link
-                        </span>
-                      )}
-                    </span>
+                    ) : (
+                      <span className="project-text-link project-text-link-live project-text-link-disabled">
+                        Link
+                      </span>
+                    )}
                   </span>
                 </li>
               ))}
