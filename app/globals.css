@@ -5,6 +5,9 @@
   --foreground: #111111;
   --secondary: #666666;
   --border: #d0d0d0;
+  --chevron: #b0b0b0;
+  --social-hover-bg: rgba(0, 0, 0, 0.05);
+  --social-hover-chevron: #2563eb;
   color-scheme: light;
 }
 
@@ -13,6 +16,9 @@
   --foreground: #e8e8ed;
   --secondary: #888888;
   --border: #2a2a2a;
+  --chevron: #555555;
+  --social-hover-bg: rgba(255, 255, 255, 0.14);
+  --social-hover-chevron: #60a5fa;
   color-scheme: dark;
 }
 
@@ -27,4 +33,22 @@
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+.social-chevron {
+  color: var(--chevron);
+  transform: translateZ(0);
+  transition: color 0.15s ease-out;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .social-link {
+    transition: background-color 0.15s ease-out;
+  }
+  .social-link:hover {
+    background-color: var(--social-hover-bg);
+  }
+  .social-link:hover .social-chevron {
+    color: var(--social-hover-chevron);
+  }
 }

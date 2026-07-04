@@ -100,12 +100,44 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Danish Ansari",
+    alternateName: "dan10ish",
+    url: "https://danishansari.co",
+    image: "https://i.ibb.co/vmBrhSd/OG.png",
+    jobTitle: "Mechatronics Engineer",
+    description:
+      "Mechatronics engineer integrating hardware and software to create applications in machine learning, robotics, and finance.",
+    knowsAbout: [
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Robotics",
+      "Mechatronics",
+      "Finance",
+      "Software Development",
+    ],
+    sameAs: [
+      "https://github.com/dan10ish",
+      "https://linkedin.com/in/dan10ish",
+      "https://x.com/dan10ish",
+      "https://instagram.com/dan10ish",
+      "https://snapchat.com/add/dan10ish",
+    ],
+  };
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
         <meta name="color-scheme" content="light dark" />
         <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
         <meta name="theme-color" content="#161617" media="(prefers-color-scheme: dark)" />
+        <link rel="alternate" href="/llms.txt" type="text/markdown" title="LLM-optimized content" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body
