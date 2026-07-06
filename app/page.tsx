@@ -1,4 +1,5 @@
 import Velarko from "./components/velarko";
+import EmailCopyButton from "./components/EmailCopyButton";
 import PageTransition from "./components/PageTransition";
 import { data } from "./data";
 
@@ -33,74 +34,46 @@ export default function Home() {
 
           <nav aria-label="Social links">
             <ul className="space-y-0.5 list-none p-0 m-0 -ml-2.5">
-              {data.social.map((item, index) => (
-                <li key={index}>
-                  <a
-                    href={item.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="social-link inline-flex items-center gap-1.5 text-[15px] font-normal leading-snug px-2.5 py-1 rounded-md"
-                  >
-                    {item.name}
-                    <svg
-                      width="11"
-                      height="11"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="social-chevron shrink-0"
-                      aria-hidden="true"
+              {data.social.map((item, index) => {
+                const isEmail = item.name === "Email";
+                const email = isEmail
+                  ? item.url.replace("mailto:", "")
+                  : "";
+
+                return (
+                  <li key={index} className="flex items-center">
+                    <a
+                      href={item.url}
+                      target={isEmail ? undefined : "_blank"}
+                      rel={isEmail ? undefined : "noopener noreferrer"}
+                      className="social-link inline-flex items-center gap-1.5 text-[15px] font-normal leading-snug px-2.5 py-1 rounded-md"
                     >
-                      <path d="M7 17L17 7" />
-                      <path d="M7 7h10v10" />
-                    </svg>
-                  </a>
-                </li>
-              ))}
+                      {item.name}
+                      <svg
+                        width="11"
+                        height="11"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="social-chevron shrink-0"
+                        aria-hidden="true"
+                      >
+                        <path d="M7 17L17 7" />
+                        <path d="M7 7h10v10" />
+                      </svg>
+                    </a>
+                    {isEmail && <EmailCopyButton email={email} />}
+                  </li>
+                );
+              })}
             </ul>
           </nav>
-        </div>
-
-        <div className="col-projects">
-          <section aria-label="Projects">
-            <h2 className="section-label">Projects</h2>
-            <ul className="list-none p-0 m-0">
-              {data.projects.map((project, i) => (
-                <li key={i} className="project-row">
-                  <span className="project-title">{project.title}</span>
-                  <span className="project-links">
-                    <a
-                      href={project.source}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="project-text-link project-text-link-code"
-                    >
-                      Code
-                    </a>
-                    {project.live ? (
-                      <a
-                        href={project.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="project-text-link project-text-link-live"
-                      >
-                        Link
-                      </a>
-                    ) : (
-                      <span className="project-text-link project-text-link-live project-text-link-disabled">
-                        Link
-                      </span>
-                    )}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </section>
         </div>
       </main>
     </PageTransition>
   );
 }
+
