@@ -17,7 +17,7 @@ export default function NotFound() {
           <nav>
             <Link
               href="/"
-              className="project-text-link project-text-link-code inline-flex items-center gap-1.5 text-[13px] font-medium no-underline"
+              className="notfound-btn inline-flex items-center gap-1.5 text-[13px] font-medium no-underline"
             >
               <svg
                 width="14"

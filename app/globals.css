@@ -64,6 +64,20 @@ body {
   margin-bottom: 36px;
 }
 
+.velarko-logo {
+  animation: velarko-pulse 2.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes velarko-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
 .social-chevron {
   color: var(--chevron);
   transform: translateZ(0);
@@ -126,4 +140,32 @@ body {
 .email-copy-icon-hidden {
   opacity: 0;
   transform: scale(0.6);
+}
+
+/* 404 page button */
+.notfound-btn {
+  padding: 3px 12px;
+  border-radius: 6px;
+  background: rgba(37, 99, 235, 0.08);
+  color: #2563eb;
+  transition: background 0.1s ease-out, transform 0.1s ease-out;
+}
+
+@media (prefers-color-scheme: dark) {
+  .notfound-btn {
+    background: rgba(96, 165, 250, 0.12);
+    color: #60a5fa;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .notfound-btn:hover {
+    transform: translateY(-1px);
+    background: rgba(37, 99, 235, 0.18);
+  }
+  @media (prefers-color-scheme: dark) {
+    .notfound-btn:hover {
+      background: rgba(96, 165, 250, 0.22);
+    }
+  }
 }
