@@ -67,6 +67,12 @@ body {
 .velarko-logo {
   animation: velarko-pulse 2.5s ease-in-out infinite;
   will-change: transform;
+  transition: transform 0.2s ease-out;
+}
+
+.velarko-logo:hover {
+  animation: none;
+  transform: scale(1.15);
 }
 
 @keyframes velarko-pulse {
