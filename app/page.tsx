@@ -45,9 +45,18 @@ export default function Home() {
                       href={item.url}
                       target={isEmail ? undefined : "_blank"}
                       rel={isEmail ? undefined : "noopener noreferrer"}
-                      className="social-link inline-flex items-center gap-1.5 text-[15px] font-normal leading-snug px-2.5 py-1 rounded-md"
+                      className={`social-link inline-flex items-center gap-1.5 text-[15px] font-normal leading-snug px-2.5 py-1 rounded-md ${
+                        isEmail ? "email-social-link" : ""
+                      }`}
                     >
-                      {item.name}
+                      {isEmail ? (
+                        item.name
+                      ) : (
+                        <span className="social-text">
+                          <span className="social-name">{item.name}</span>
+                          <span className="social-username">@{item.username}</span>
+                        </span>
+                      )}
                       <svg
                         width="11"
                         height="11"

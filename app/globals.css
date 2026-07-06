@@ -90,6 +90,32 @@ body {
   transition: color 0.1s ease-out;
 }
 
+.social-text {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  clip-path: inset(0 -100vw);
+}
+
+.social-name,
+.social-username {
+  white-space: nowrap;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.social-name {
+  position: relative;
+  transform: translateY(0);
+}
+
+.social-username {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--secondary);
+  transform: translateY(100%);
+}
+
 @media (hover: hover) and (pointer: fine) {
   .social-link {
     transition: background-color 0.1s ease-out;
@@ -97,12 +123,25 @@ body {
   .social-link:hover {
     background-color: var(--social-hover-bg);
   }
-  .social-link:hover .social-chevron {
+  .social-link:not(.email-social-link):hover .social-chevron {
+    display: none;
+  }
+  .email-social-link:hover .social-chevron {
+    color: var(--social-hover-chevron);
+  }
+  .social-link:hover .social-name {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(-100%);
+  }
+  .social-link:hover .social-username {
+    position: relative;
+    transform: translateY(0);
     color: var(--social-hover-chevron);
   }
 }
 
-/* Email copy button */
 .email-copy-btn {
   position: relative;
   display: inline-flex;
@@ -148,7 +187,6 @@ body {
   transform: scale(0.6);
 }
 
-/* 404 page button */
 .notfound-btn {
   padding: 3px 12px;
   border-radius: 6px;
