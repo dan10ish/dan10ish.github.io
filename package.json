@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "motion": "^12.42.2",
-    "next": "16.2.10",
+    "next": "^16.2.10",
     "react": "19.2.7",
     "react-dom": "19.2.7"
   },
@@ -24,6 +24,6 @@
     "eslint": "^10",
     "eslint-config-next": "16.2.10",
     "tailwindcss": "^4",
-    "typescript": "^6"
+    "typescript": "7.0.2"
   }
 }
