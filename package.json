@@ -21,10 +21,10 @@
     "@types/node": "^26",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^10.6.0",
+    "eslint": "^9.0.0",
     "eslint-config-next": "^16.2.10",
     "postcss": "^8.5.16",
     "tailwindcss": "^4",
-    "typescript": "7.0.2"
+    "typescript": "^6.0.3"
   }
 }
