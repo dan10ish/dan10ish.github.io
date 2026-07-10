@@ -116,7 +116,7 @@ body {
   transform: translateY(100%);
 }
 
-@media (hover: hover) {
+@media (hover: hover), (any-hover: hover) {
   .social-link {
     transition: background-color 0.1s ease-out;
   }
@@ -165,7 +165,7 @@ body {
   cursor: default;
 }
 
-@media (hover: hover) {
+@media (hover: hover), (any-hover: hover) {
   .email-copy-btn:not(:disabled):hover {
     color: var(--foreground);
     background-color: var(--social-hover-bg);
@@ -202,7 +202,7 @@ body {
   }
 }
 
-@media (hover: hover) {
+@media (hover: hover), (any-hover: hover) {
   .notfound-btn:hover {
     transform: translateY(-1px);
     background: rgba(37, 99, 235, 0.18);
