@@ -1,4 +1,4 @@
-import Velarko from "./components/velarko";
+import VelarkoLogo from "./components/velarko.svg";
 import EmailCopyButton from "./components/EmailCopyButton";
 import PageTransition from "./components/PageTransition";
 import { data } from "./data";
@@ -27,7 +27,7 @@ export default function Home() {
               className="velarko-logo inline-flex items-center justify-center w-[26px] h-[26px]"
               aria-label="Velarko"
             >
-              <Velarko size={26} />
+              <VelarkoLogo width={26} height={26} />
             </a>
           </p>
 
@@ -84,4 +84,3 @@ export default function Home() {
     </PageTransition>
   );
 }
-

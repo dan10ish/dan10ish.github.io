@@ -67,20 +67,23 @@ body {
 .velarko-logo {
   animation: velarko-pulse 2.5s ease-in-out infinite;
   will-change: transform;
-  transition: transform 0.2s ease-out;
+  transition: transform 0.2s ease-out, filter 0.2s ease-out;
 }
 
 .velarko-logo:hover {
   animation: none;
-  transform: scale(1.15);
+  transform: scale(1.25) rotate(8deg);
+  filter: drop-shadow(0 0 6px rgba(255, 210, 21, 0.7));
 }
 
 @keyframes velarko-pulse {
   0%, 100% {
-    transform: scale(1);
+    transform: scale(1) rotate(0deg);
+    filter: drop-shadow(0 0 0px rgba(255, 210, 21, 0));
   }
   50% {
-    transform: scale(1.08);
+    transform: scale(1.2) rotate(-4deg);
+    filter: drop-shadow(0 0 5px rgba(255, 210, 21, 0.6));
   }
 }
 
