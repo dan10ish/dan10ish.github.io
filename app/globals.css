@@ -70,10 +70,12 @@ body {
   transition: transform 0.2s ease-out, filter 0.2s ease-out;
 }
 
-.velarko-logo:hover {
-  animation: none;
-  transform: scale(1.25) rotate(8deg);
-  filter: drop-shadow(0 0 6px rgba(255, 210, 21, 0.7));
+@media (hover: hover), ((any-hover: hover) and (any-pointer: fine)) {
+  .velarko-logo:hover {
+    animation: none;
+    transform: scale(1.25) rotate(8deg);
+    filter: drop-shadow(0 0 6px rgba(255, 210, 21, 0.7));
+  }
 }
 
 @keyframes velarko-pulse {
