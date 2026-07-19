@@ -128,7 +128,6 @@ body {
   border-radius: 50%;
   border: none;
   background: transparent;
-  color: var(--foreground);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -145,6 +144,14 @@ body {
 
 .theme-toggle:active {
   transform: scale(0.9);
+}
+
+.theme-toggle-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--foreground);
+  transition: background 0.3s ease;
 }
 
 .home-container {
@@ -313,7 +320,19 @@ body {
   color: white;
 }
 
+@keyframes spin360 {
+  0% { transform: rotate(0deg); }
+  40% { transform: rotate(360deg); }
+  100% { transform: rotate(360deg); }
+}
 
+.plus-spin {
+  animation: spin360 2.5s ease-in-out infinite;
+}
+
+.icon-btn-green:hover .plus-spin {
+  animation-play-state: paused;
+}
 
 .back-chevron-anchor {
   position: fixed;
