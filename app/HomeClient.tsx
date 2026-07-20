@@ -8,6 +8,7 @@ import { Hammer } from "@/components/animate-ui/icons/hammer";
 import { MessageCircleMore } from "@/components/animate-ui/icons/message-circle-more";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { ArrowLeftIcon } from "@/components/animate-ui/icons/arrow-left";
 
 type Section = "home" | "expanded" | "about" | "links" | "projects";
 
@@ -169,6 +170,17 @@ export default function HomeClient() {
 
         {section === "links" && (
           <div className="island-content island-links">
+            <motion.button
+              onClick={goBack}
+              className="back-btn-circle mx-1"
+              style={{ flexShrink: 0 }}
+              aria-label="Go back"
+              whileHover={isTouchDevice ? {} : { scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              transition={bouncy}
+            >
+              <ArrowLeftIcon size={20} className="w-full h-full" />
+            </motion.button>
             {data.social.map((social) => (
               <motion.a
                 key={social.icon}
@@ -250,21 +262,21 @@ export default function HomeClient() {
           </div>
         )}
 
+        {(section === "about" || section === "projects") && (
+          <div className="absolute -bottom-[60px] left-1/2 -translate-x-1/2 z-10">
+            <motion.button
+              onClick={goBack}
+              className="back-btn-circle"
+              aria-label="Go back"
+              whileHover={isTouchDevice ? {} : { scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              transition={bouncy}
+            >
+              <ArrowLeftIcon size={20} className="w-full h-full" />
+            </motion.button>
+          </div>
+        )}
       </motion.div>
-
-      {(section === "about" || section === "projects" || section === "links") && (
-        <div className="back-chevron-anchor">
-          <button
-            className="back-chevron"
-            onClick={goBack}
-            aria-label="Go back"
-          >
-            <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
-          </button>
-        </div>
-      )}
     </div>
   );
 }

@@ -311,51 +311,30 @@ body {
   animation-play-state: paused;
 }
 
-.back-chevron-anchor {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding-bottom: calc(50dvh - 280px);
-  pointer-events: none;
-  z-index: 10;
-}
 
-.back-chevron {
-  pointer-events: auto;
-  background: transparent;
-  border: none;
-  color: var(--foreground);
-  cursor: pointer;
+.back-btn-circle {
   width: 36px;
   height: 36px;
   border-radius: 50%;
+  background: var(--back-btn-bg);
+  color: var(--back-btn-color);
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: none;
-  transition: background 0.2s ease;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  pointer-events: auto;
 }
 
-.back-chevron svg {
-  transition: transform 0.2s ease;
-}
-
-.back-chevron:hover {
-  background: color-mix(in srgb, var(--foreground) 6%, transparent);
-}
-
-.back-chevron:hover svg {
-  transform: scale(1.2);
-}
-
-.back-chevron:active {
-  background: color-mix(in srgb, var(--foreground) 10%, transparent);
-}
-
-.back-chevron:active svg {
-  transform: scale(0.9);
+.back-btn-top-right {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
 }
 
 
