@@ -94,7 +94,7 @@ export default function HomeClient() {
         {section === "home" && (
           <div className="island-content island-home">
             <div className="island-photo">
-              <Image src="/icon.svg" alt="Profile" width={48} height={48} priority />
+              <Image src="/danish.jpeg" alt="Profile" width={48} height={48} priority />
             </div>
             <motion.button
               onClick={() => setSection("expanded")}
@@ -120,7 +120,7 @@ export default function HomeClient() {
                 whileTap={{ scale: 0.9 }}
                 transition={bouncy}
               >
-                <Image src="/icon.svg" alt="" width={48} height={48} priority aria-hidden />
+                <Image src="/danish.jpeg" alt="" width={48} height={48} priority aria-hidden />
               </motion.button>
               <div className="island-intro">
                 <span className="island-hello">Hello, I&apos;m</span>
