@@ -24,7 +24,7 @@
   --toggle-color: #111111;
   --font-size-xl: 18px;
   --font-size-lg: 17px;
-  --font-size-about: 17px;
+  --font-size-about: 15px;
   --font-size-project: 15px;
   --font-size-sm: 14px;
   --tag-font-size-lg: 10px;
@@ -523,7 +523,7 @@ body {
   :root {
     --font-size-xl: 16px;
     --font-size-lg: 15px;
-    --font-size-about: 15px;
+    --font-size-about: 13px;
     --font-size-project: 13px;
     --font-size-sm: 13px;
     --tag-font-size-lg: 9px;

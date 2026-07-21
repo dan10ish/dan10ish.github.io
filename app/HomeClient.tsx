@@ -80,7 +80,7 @@ export default function HomeClient() {
     else if (section === "about" || section === "links" || section === "projects") setSection("expanded");
   }, [section]);
 
-  const aboutText = `${data.personal.about} Currently taking companies from zero to one.`;
+  const aboutText = `${data.personal.about}`;
 
   return (
     <div className="home-container" onClick={handleOutsideClick}>
@@ -164,7 +164,7 @@ export default function HomeClient() {
 
         {section === "about" && (
           <div className="island-about">
-            <p className="about-text">{aboutText}</p>
+            <h3 className="about-text">{aboutText}</h3>
           </div>
         )}
 
