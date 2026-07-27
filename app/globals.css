@@ -53,53 +53,51 @@
   --btn-purple: #AF52DE;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #141416;
-    --foreground: #e4e4e7;
-    --island-bg: #2c2c30;
-    --island-text: #f0f0f3;
-    --island-hello: rgba(255, 255, 255, 0.45);
-    --island-about: #ffffff;
-    --island-shadow: rgba(0, 0, 0, 0.4);
-    --island-border-subtle: rgba(255, 255, 255, 0.1);
-    --island-card-border: rgba(255, 255, 255, 0.1);
-    --island-photo-bg: rgba(255, 255, 255, 0.08);
-    --island-photo-border: rgba(255, 255, 255, 0.18);
-    --island-tag-bg: rgba(255, 255, 255, 0.08);
-    --social-icon-color: #e4e4e7;
-    --project-title-color: #f0f0f3;
-    --photo-shadow: rgba(0, 0, 0, 0.3);
-    --project-link-color: #e4e4e7;
-    --project-link-hover: #409cff;
-    --project-link-disabled: #555558;
-    --back-btn-bg: #3a3a3c;
-    --back-btn-color: #e4e4e7;
-    --toggle-color: #e4e4e7;
-    --tag-algorithm-bg: rgba(52, 199, 89, 0.18);
-    --tag-algorithm-color: #4cd964;
-    --tag-ai-bg: rgba(0, 122, 255, 0.18);
-    --tag-ai-color: #409cff;
-    --tag-web-bg: rgba(255, 149, 0, 0.18);
-    --tag-web-color: #ffb340;
-    --tag-robotics-bg: rgba(175, 82, 222, 0.18);
-    --tag-robotics-color: #c77dff;
-    --tag-education-bg: rgba(255, 45, 85, 0.18);
-    --tag-education-color: #ff6482;
-    --tag-portfolio-bg: rgba(88, 86, 214, 0.18);
-    --tag-portfolio-color: #7a78e8;
-    --tag-ml-bg: rgba(255, 204, 0, 0.18);
-    --tag-ml-color: #ffd426;
-    --tag-game-bg: rgba(255, 59, 48, 0.18);
-    --tag-game-color: #ff6961;
-    --tag-simulation-bg: rgba(90, 200, 250, 0.18);
-    --tag-simulation-color: #70d7fc;
-    --btn-green: #30d158;
-    --btn-orange: #ff9f0a;
-    --btn-blue: #0a84ff;
-    --btn-purple: #bf5af2;
+.dark {
+    --background: #000000;
+    --foreground: #ffffff;
+    --island-bg: #ffffff;
+    --island-text: #000000;
+    --island-hello: rgba(0, 0, 0, 0.5);
+    --island-about: #000000;
+    --island-shadow: rgba(255, 255, 255, 0.15);
+    --island-border-subtle: rgba(0, 0, 0, 0.15);
+    --island-card-border: rgba(0, 0, 0, 0.15);
+    --island-photo-bg: rgba(0, 0, 0, 0.1);
+    --island-photo-border: rgba(0, 0, 0, 0.25);
+    --island-tag-bg: rgba(0, 0, 0, 0.1);
+    --social-icon-color: #000000;
+    --project-title-color: #000000;
+    --photo-shadow: rgba(0, 0, 0, 0.12);
+    --project-link-color: #000000;
+    --project-link-hover: #007aff;
+    --project-link-disabled: #c7c7cc;
+    --back-btn-bg: #e5e5ea;
+    --back-btn-color: #000000;
+    --toggle-color: #ffffff;
+    --tag-algorithm-bg: rgba(52, 199, 89, 0.2);
+    --tag-algorithm-color: #34C759;
+    --tag-ai-bg: rgba(0, 122, 255, 0.2);
+    --tag-ai-color: #007AFF;
+    --tag-web-bg: rgba(255, 149, 0, 0.2);
+    --tag-web-color: #FF9500;
+    --tag-robotics-bg: rgba(175, 82, 222, 0.2);
+    --tag-robotics-color: #AF52DE;
+    --tag-education-bg: rgba(255, 45, 85, 0.2);
+    --tag-education-color: #FF2D55;
+    --tag-portfolio-bg: rgba(88, 86, 214, 0.2);
+    --tag-portfolio-color: #5856D6;
+    --tag-ml-bg: rgba(255, 204, 0, 0.2);
+    --tag-ml-color: #FFCC00;
+    --tag-game-bg: rgba(255, 59, 48, 0.2);
+    --tag-game-color: #FF3B30;
+    --tag-simulation-bg: rgba(90, 200, 250, 0.2);
+    --tag-simulation-color: #5AC8FA;
+    --btn-green: #34C759;
+    --btn-orange: #FF9500;
+    --btn-blue: #007AFF;
+    --btn-purple: #AF52DE;
   }
-}
 
 @theme inline {
   --color-background: var(--background);

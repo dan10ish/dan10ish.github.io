@@ -9,6 +9,8 @@ import { MessageCircleMore } from "@/components/animate-ui/icons/message-circle-
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { ArrowLeftIcon } from "@/components/animate-ui/icons/arrow-left";
+import { SunIcon } from "@/components/animate-ui/icons/sun";
+import { MoonIcon } from "@/components/animate-ui/icons/moon";
 
 type Section = "home" | "expanded" | "about" | "links" | "projects";
 
@@ -56,6 +58,7 @@ const aboutTransition = { type: "spring" as const, stiffness: 600, damping: 35 }
 export default function HomeClient() {
   const [section, setSection] = useState<Section>("home");
   const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const [isDark, setIsDark] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -64,6 +67,26 @@ export default function HomeClient() {
     const handler = () => setIsTouchDevice(!window.matchMedia("(any-hover: hover)").matches);
     mq.addEventListener("change", handler);
     return () => mq.removeEventListener("change", handler);
+  }, []);
+
+  useEffect(() => {
+    const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if (isDarkMode) {
+      setIsDark(true);
+      document.documentElement.classList.add("dark");
+    }
+  }, []);
+
+  const toggleTheme = useCallback(() => {
+    setIsDark((prev) => {
+      const next = !prev;
+      if (next) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+      return next;
+    });
   }, []);
 
 
@@ -282,6 +305,13 @@ export default function HomeClient() {
           </div>
         )}
       </motion.div>
+      <button
+        onClick={toggleTheme}
+        className="fixed bottom-6 right-6 p-2.5 rounded-full text-[var(--foreground)] opacity-60 hover:opacity-100 border border-[var(--foreground)]/20 hover:scale-110 active:scale-95 transition-all z-50 flex items-center justify-center"
+        aria-label="Toggle theme"
+      >
+        {isDark ? <SunIcon size={20} /> : <MoonIcon size={20} />}
+      </button>
     </div>
   );
 }
