@@ -190,7 +190,7 @@ export default function HomeClient() {
               {aboutText}
               <br />
               <br />
-              Currently @ <a href="https://velarko.com" target="_blank" rel="noopener noreferrer" style={{ color: "var(--project-link-hover)", textDecoration: "none" }} className="transition-opacity hover:opacity-80">Velarko</a>
+              Currently @ <a href="https://velarko.com" target="_blank" rel="noopener noreferrer" style={{ color: "var(--project-link-hover)" }} className="no-underline transition-opacity [@media(hover:hover)_and_(pointer:fine)]:hover:underline">Velarko</a>
             </h3>
           </div>
         )}
@@ -305,7 +305,7 @@ export default function HomeClient() {
         )}
       </motion.div>
       <button
-        onClick={toggleTheme}
+        onClick={(e) => { e.stopPropagation(); toggleTheme(); }}
         className="fixed bottom-6 right-6 p-2.5 rounded-full text-[var(--foreground)] opacity-60 hover:opacity-100 hover:scale-110 active:scale-95 transition-all z-50 flex items-center justify-center"
         aria-label="Toggle theme"
       >
