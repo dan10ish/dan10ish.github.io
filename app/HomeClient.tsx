@@ -164,7 +164,12 @@ export default function HomeClient() {
 
         {section === "about" && (
           <div className="island-about">
-            <h3 className="about-text">{aboutText}</h3>
+            <h3 className="about-text">
+              {aboutText}
+              <br />
+              <br />
+              Currently @ <a href="https://velarko.com" target="_blank" rel="noopener noreferrer" style={{ color: "var(--project-link-hover)", textDecoration: "none" }} className="transition-opacity hover:opacity-80">Velarko</a>
+            </h3>
           </div>
         )}
 
