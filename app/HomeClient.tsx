@@ -9,8 +9,7 @@ import { MessageCircleMore } from "@/components/animate-ui/icons/message-circle-
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { ArrowLeftIcon } from "@/components/animate-ui/icons/arrow-left";
-import { SunIcon } from "@/components/animate-ui/icons/sun";
-import { MoonIcon } from "@/components/animate-ui/icons/moon";
+import { ContrastIcon } from "@/components/animate-ui/icons/contrast";
 
 type Section = "home" | "expanded" | "about" | "links" | "projects";
 
@@ -307,10 +306,10 @@ export default function HomeClient() {
       </motion.div>
       <button
         onClick={toggleTheme}
-        className="fixed bottom-6 right-6 p-2.5 rounded-full text-[var(--foreground)] opacity-60 hover:opacity-100 border border-[var(--foreground)]/20 hover:scale-110 active:scale-95 transition-all z-50 flex items-center justify-center"
+        className="fixed bottom-6 right-6 p-2.5 rounded-full text-[var(--foreground)] opacity-60 hover:opacity-100 hover:scale-110 active:scale-95 transition-all z-50 flex items-center justify-center"
         aria-label="Toggle theme"
       >
-        {isDark ? <SunIcon size={20} /> : <MoonIcon size={20} />}
+        <ContrastIcon size={24} isDark={isDark} />
       </button>
     </div>
   );
