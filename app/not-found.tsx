@@ -1,13 +1,22 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Home } from "lucide-react";
+import { HomeIcon, type HomeIconHandle } from "@/components/animate-ui/icons/home";
 
 const bouncy = { type: "spring" as const, stiffness: 500, damping: 25 };
 const contentBounce = { type: "spring" as const, stiffness: 400, damping: 28 };
 
 export default function NotFound() {
+  const homeRef = useRef<HomeIconHandle>(null);
+
+  useEffect(() => {
+    homeRef.current?.startAnimation();
+    const id = setInterval(() => homeRef.current?.startAnimation(), 2000);
+    return () => clearInterval(id);
+  }, []);
+
   return (
     <div className="home-container">
       <motion.div
@@ -33,7 +42,7 @@ export default function NotFound() {
               style={{ textDecoration: "none" }}
               aria-label="Go to home page"
             >
-              <Home size={20} strokeWidth={2} aria-hidden />
+              <HomeIcon ref={homeRef} size={20} />
             </Link>
           </motion.div>
         </div>

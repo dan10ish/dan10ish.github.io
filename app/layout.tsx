@@ -57,7 +57,7 @@ export const metadata: Metadata = {
   },
   alternates: { canonical: "https://danishansari.co" },
   icons: {
-    icon: "/icon.png",
+    icon: "/danish.jpeg",
   },
   openGraph: {
     type: "website",
