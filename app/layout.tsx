@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import "./globals.css";
+import { ThemeProvider } from "./components/ThemeProvider";
 
 const geistSans = { variable: "--font-geist-sans" }; /* 
   variable: "--font-geist-sans",
@@ -126,11 +127,8 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
-        <meta name="color-scheme" content="light dark" />
-        <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-        <meta name="theme-color" content="#161617" media="(prefers-color-scheme: dark)" />
         <link rel="alternate" href="/llms.txt" type="text/markdown" title="LLM-optimized content" />
         <script
           type="application/ld+json"
@@ -140,7 +138,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <ThemeProvider attribute="data-theme" defaultTheme="gray" themes={["gray", "green", "onyx", "solarized"]}>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

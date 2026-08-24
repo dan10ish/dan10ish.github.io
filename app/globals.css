@@ -1,45 +1,83 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #111111;
-  --secondary: #666666;
-  --border: #d0d0d0;
-  --chevron: #b0b0b0;
+  --background: #E5E7EB; /* Base light gray */
+  --foreground: #111827; 
+  --secondary: #4B5563;
+  --border: #D1D5DB;
+  --chevron: #9CA3AF;
   --social-hover-bg: rgba(0, 0, 0, 0.05);
-  --social-hover-chevron: #2563eb;
+  --social-hover-chevron: #3B82F6;
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #000000;
-    --foreground: #e8e8ed;
-    --secondary: #888888;
-    --border: #2a2a2a;
-    --chevron: #555555;
-    --social-hover-bg: rgba(255, 255, 255, 0.14);
-    --social-hover-chevron: #60a5fa;
-    color-scheme: dark;
-  }
+[data-theme="gray"] {
+  --background: #E5E7EB; /* A true light gray / slate gray */
+  --foreground: #111827; 
+  --secondary: #4B5563;
+  --border: #D1D5DB;
+  --chevron: #9CA3AF;
+  --social-hover-bg: rgba(0, 0, 0, 0.05);
+  --social-hover-chevron: #3B82F6;
+  color-scheme: light;
+}
+
+[data-theme="green"] {
+  --background: #181C13; /* Very Dark Matte Marshall Green */
+  --foreground: #D3D8C6; 
+  --secondary: #8B927B;
+  --border: #2D3322;
+  --chevron: #69705B;
+  --social-hover-bg: rgba(255, 255, 255, 0.08);
+  --social-hover-chevron: #EAF0DD;
+  color-scheme: dark;
+}
+
+[data-theme="onyx"] {
+  --background: #111111; /* Pure deep #111 black */
+  --foreground: #EDEDED;
+  --secondary: #8E8E93;
+  --border: #2C2C2E;
+  --chevron: #666666;
+  --social-hover-bg: rgba(255, 255, 255, 0.1);
+  --social-hover-chevron: #38BDF8;
+  color-scheme: dark;
+}
+
+[data-theme="solarized"] {
+  --background: #002B36; /* Solarized Dark background */
+  --foreground: #EEE8D5; /* Solarized base2 high contrast text */
+  --secondary: #93A1A1;  /* Solarized base1 secondary text */
+  --border: #073642;     /* Solarized base02 border */
+  --chevron: #586E75;    /* Solarized base01 chevron */
+  --social-hover-bg: rgba(255, 255, 255, 0.06);
+  --social-hover-chevron: #FDF6E3; /* Solarized base3 hover */
+  color-scheme: dark;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-secondary: var(--secondary);
+  --color-border: var(--border);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+}
+
+html, body * {
+  /* Enforce instant color/bg changes but whitelist transform/opacity for animations */
+  transition-property: transform, opacity, width, height, margin, padding;
 }
 
 html,
 body {
   overflow: hidden;
+  background-color: var(--background);
+  color: var(--foreground);
+  transition: none !important;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
   font-size: 15px;
 }
 
@@ -100,7 +138,6 @@ body {
 .social-chevron {
   color: var(--chevron);
   transform: translateZ(0);
-  transition: color 0.1s ease-out;
 }
 
 .social-text {
@@ -130,9 +167,6 @@ body {
 }
 
 @media (hover: hover), (any-hover: hover) {
-  .social-link {
-    transition: background-color 0.1s ease-out;
-  }
   .social-link:hover {
     background-color: var(--social-hover-bg);
   }
@@ -169,7 +203,6 @@ body {
   color: var(--chevron);
   cursor: pointer;
   border-radius: 6px;
-  transition: color 0.15s ease-out, background-color 0.15s ease-out;
   -webkit-tap-highlight-color: transparent;
   flex-shrink: 0;
 }
