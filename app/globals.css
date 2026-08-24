@@ -64,28 +64,36 @@ body {
   margin-bottom: 36px;
 }
 
+@keyframes velarko-flutter {
+  0%, 100% { transform: scaleX(1) translateY(0); }
+  15%       { transform: scaleX(0.4) translateY(-2px) rotate(-2deg); }
+  30%       { transform: scaleX(1) translateY(0); }
+  45%       { transform: scaleX(0.4) translateY(2px) rotate(2deg); }
+  60%       { transform: scaleX(1) translateY(0); }
+  78%       { transform: scaleX(0.6) translateY(-1px); }
+  90%       { transform: scaleX(1) translateY(0); }
+}
+
 .velarko-logo {
-  animation: velarko-pulse 2.5s ease-in-out infinite;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: transform 0.2s ease;
   will-change: transform;
-  transition: transform 0.2s ease-out, filter 0.2s ease-out;
+}
+
+.velarko-logo svg {
+  animation: velarko-flutter 2.4s ease-in-out infinite;
+  will-change: transform;
+  transform-origin: center;
 }
 
 @media (hover: hover), ((any-hover: hover) and (any-pointer: fine)) {
   .velarko-logo:hover {
-    animation: none;
-    transform: scale(1.25) rotate(8deg);
-    filter: drop-shadow(0 0 6px rgba(255, 210, 21, 0.7));
+    transform: scale(1.2);
   }
-}
 
-@keyframes velarko-pulse {
-  0%, 100% {
-    transform: scale(1) rotate(0deg);
-    filter: drop-shadow(0 0 0px rgba(255, 210, 21, 0));
-  }
-  50% {
-    transform: scale(1.2) rotate(-4deg);
-    filter: drop-shadow(0 0 5px rgba(255, 210, 21, 0.6));
+  .velarko-logo:hover svg {
+    animation-play-state: paused;
   }
 }
 
