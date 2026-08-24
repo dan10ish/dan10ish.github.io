@@ -7,7 +7,7 @@
   --border: #D1D5DB;
   --chevron: #9CA3AF;
   --social-hover-bg: rgba(0, 0, 0, 0.05);
-  --social-hover-chevron: #3B82F6;
+  --link-blue: #2563EB;
   color-scheme: light;
 }
 
@@ -18,18 +18,18 @@
   --border: #D1D5DB;
   --chevron: #9CA3AF;
   --social-hover-bg: rgba(0, 0, 0, 0.05);
-  --social-hover-chevron: #3B82F6;
+  --link-blue: #2563EB;
   color-scheme: light;
 }
 
 [data-theme="green"] {
-  --background: #181C13; /* Very Dark Matte Marshall Green */
-  --foreground: #D3D8C6; 
-  --secondary: #8B927B;
-  --border: #2D3322;
-  --chevron: #69705B;
+  --background: #444E36; /* Lighter Matte Marshall Green */
+  --foreground: #F0F4E8; 
+  --secondary: #A9B397;
+  --border: #5C674A;
+  --chevron: #808B6B;
   --social-hover-bg: rgba(255, 255, 255, 0.08);
-  --social-hover-chevron: #EAF0DD;
+  --link-blue: #7BC9F8; /* Bright clear sky blue contrasting beautifully against olive */
   color-scheme: dark;
 }
 
@@ -40,7 +40,7 @@
   --border: #2C2C2E;
   --chevron: #666666;
   --social-hover-bg: rgba(255, 255, 255, 0.1);
-  --social-hover-chevron: #38BDF8;
+  --link-blue: #38BDF8; /* Electric Sky Blue */
   color-scheme: dark;
 }
 
@@ -51,7 +51,7 @@
   --border: #073642;     /* Solarized base02 border */
   --chevron: #586E75;    /* Solarized base01 chevron */
   --social-hover-bg: rgba(255, 255, 255, 0.06);
-  --social-hover-chevron: #FDF6E3; /* Solarized base3 hover */
+  --link-blue: #4FA3DE; /* Brightened legible Solarized Blue */
   color-scheme: dark;
 }
 
@@ -174,7 +174,7 @@ body {
     display: none;
   }
   .email-social-link:hover .social-chevron {
-    color: var(--social-hover-chevron);
+    color: var(--link-blue);
   }
   .social-link:hover .social-name {
     position: absolute;
@@ -185,7 +185,7 @@ body {
   .social-link:hover .social-username {
     position: relative;
     transform: translateY(0);
-    color: var(--social-hover-chevron);
+    color: var(--link-blue);
   }
 }
 
@@ -236,26 +236,15 @@ body {
 .notfound-btn {
   padding: 3px 12px;
   border-radius: 6px;
-  background: rgba(37, 99, 235, 0.08);
-  color: #2563eb;
-  transition: background 0.1s ease-out, transform 0.1s ease-out;
-}
-
-@media (prefers-color-scheme: dark) {
-  .notfound-btn {
-    background: rgba(96, 165, 250, 0.12);
-    color: #60a5fa;
-  }
+  background: color-mix(in srgb, var(--link-blue) 12%, transparent);
+  color: var(--link-blue);
+  transition: transform 0.1s ease-out;
 }
 
 @media (hover: hover), (any-hover: hover) {
   .notfound-btn:hover {
     transform: translateY(-1px);
-    background: rgba(37, 99, 235, 0.18);
-  }
-  @media (prefers-color-scheme: dark) {
-    .notfound-btn:hover {
-      background: rgba(96, 165, 250, 0.22);
-    }
+    background: color-mix(in srgb, var(--link-blue) 22%, transparent);
   }
 }
+
