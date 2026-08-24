@@ -18,6 +18,12 @@ export default function Home() {
             {data.personal.title.join(" · ")}
           </p>
 
+          {data.personal.about && (
+            <p className="intro-block text-[15px] font-normal leading-snug text-secondary">
+              {data.personal.about}
+            </p>
+          )}
+
           <p className="intro-block flex items-center gap-1.5 text-[15px] font-normal leading-snug text-secondary">
             <span>Currently @</span>
             <a
