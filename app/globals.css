@@ -144,8 +144,7 @@
   --color-foreground: var(--foreground);
   --color-secondary: var(--secondary);
   --color-border: var(--border);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-manrope);
 }
 html, body * {
   transition-property: transform, opacity, width, height, margin, padding;
@@ -157,7 +156,7 @@ body {
   transition: none !important;
 }
 body {
-  font-size: 15px;
+  font-size: 14px;
 }
 
 @keyframes velarko-flutter {

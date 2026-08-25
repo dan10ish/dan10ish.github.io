@@ -12,23 +12,23 @@ export default function Home() {
 
           <div className="flex flex-col gap-6">
             <header>
-              <h1 className="text-[15px] font-medium leading-snug">
+              <h1 className="text-[14px] font-medium leading-snug">
                 {data.personal.name}
               </h1>
             </header>
 
             <div className="flex flex-col gap-6">
-              <p className="text-[15px] font-normal leading-snug text-secondary">
+              <p className="text-[14px] font-normal leading-snug text-secondary">
                 {data.personal.title.join(" · ")}
               </p>
               {data.personal.about && (
-                <p className="text-[15px] font-normal leading-snug text-secondary">
+                <p className="text-[14px] font-normal leading-snug text-secondary">
                   {data.personal.about}
                 </p>
               )}
             </div>
 
-            <p className="flex items-center gap-1.5 text-[15px] font-normal leading-snug text-secondary">
+            <p className="flex items-center gap-1.5 text-[14px] font-normal leading-snug text-secondary">
               <span>Currently @</span>
               <a
                 href="https://velarko.com"
@@ -56,7 +56,7 @@ export default function Home() {
                       href={item.url}
                       target={isEmail ? undefined : "_blank"}
                       rel={isEmail ? undefined : "noopener noreferrer"}
-                      className={`social-link inline-flex items-center gap-1.5 text-[15px] font-normal leading-snug px-2.5 py-1 rounded-md ${
+                      className={`social-link inline-flex items-center gap-1.5 text-[14px] font-normal leading-snug px-2.5 py-1 rounded-md ${
                         isEmail ? "email-social-link" : ""
                       }`}
                     >

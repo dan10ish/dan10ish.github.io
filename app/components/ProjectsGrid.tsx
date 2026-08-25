@@ -114,7 +114,7 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
                   <td className="sticky left-0 z-10 p-0 border-r border-border bg-background">
                     <div className="w-full h-full flex items-center gap-3 px-4 py-2.5 min-h-[38px] relative">
                       <div className="absolute inset-0 bg-foreground/[0.04] opacity-0 group-hover/row:opacity-100 transition-opacity pointer-events-none" />
-                      <span className="text-[12px] font-mono text-secondary/60 w-[14px] shrink-0 text-right z-10 relative">
+                      <span className="text-[12px] text-secondary/60 w-[14px] shrink-0 text-right z-10 relative">
                         {idx + 1}
                       </span>
                       <span className="font-medium text-foreground/90 truncate max-w-[150px] z-10 relative">{project.title}</span>
@@ -136,7 +136,7 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
                         Live
                       </a>
                     ) : (
-                      <span className="text-secondary/40 font-mono text-[11px] ml-1">N/A</span>
+                      <span className="text-secondary/40 text-[11px] ml-1">N/A</span>
                     )}
                   </td>
                   <td className="px-4 py-2 whitespace-nowrap border-r border-border">
@@ -145,7 +145,7 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
                         GitHub
                       </a>
                     ) : (
-                      <span className="text-secondary/40 font-mono text-[11px] ml-1">N/A</span>
+                      <span className="text-secondary/40 text-[11px] ml-1">N/A</span>
                     )}
                   </td>
                   <td className="px-4 py-2 text-secondary whitespace-nowrap overflow-hidden text-ellipsis max-w-[300px]">

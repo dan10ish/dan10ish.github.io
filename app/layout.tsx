@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
+import { Manrope } from "next/font/google";
 
 import "./globals.css";
 import { ThemeProvider } from "./components/ThemeProvider";
 import { ThemeToggleButton } from "./components/ThemeToggleButton";
 
-const geistSans = { variable: "--font-geist-sans" }; 
+const manrope = Manrope({ variable: "--font-manrope", subsets: ["latin"] }); 
 
-const geistMono = { variable: "--font-geist-mono" }; 
+ 
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://danishansari.co"),
@@ -131,7 +132,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${manrope.variable} font-sans antialiased min-h-screen relative`}
       >
         <ThemeProvider attribute="data-theme" defaultTheme="gray" themes={["gray", "green", "onyx", "solarized"]}>
           {children}
