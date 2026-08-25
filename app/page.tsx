@@ -40,7 +40,9 @@ export default function Home() {
             </a>
           </p>
 
-          <nav aria-label="Social links">
+          <ProjectsGrid projects={data.projects} />
+
+          <nav aria-label="Social links" className="mt-12">
             <ul className="space-y-0.5 list-none p-0 m-0 -ml-2.5">
               {data.social.map((item, index) => {
                 const isEmail = item.name === "Email";
@@ -89,7 +91,6 @@ export default function Home() {
             </ul>
           </nav>
 
-          <ProjectsGrid projects={data.projects} />
         </div>
       </main>
     </PageTransition>
