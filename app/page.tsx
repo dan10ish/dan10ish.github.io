@@ -1,6 +1,7 @@
 import VelarkoLogo from "./components/velarko.svg";
 import EmailCopyButton from "./components/EmailCopyButton";
 import PageTransition from "./components/PageTransition";
+import ProjectsGrid from "./components/ProjectsGrid";
 import { data } from "./data";
 
 export default function Home() {
@@ -14,15 +15,17 @@ export default function Home() {
             </h1>
           </header>
 
-          <p className="intro-block text-[15px] font-normal leading-snug text-secondary">
-            {data.personal.title.join(" · ")}
-          </p>
-
-          {data.personal.about && (
-            <p className="intro-block text-[15px] font-normal leading-snug text-secondary">
-              {data.personal.about}
+          <div className="intro-block flex flex-col gap-2">
+            <p className="text-[15px] font-normal leading-snug text-secondary">
+              {data.personal.title.join(" · ")}
             </p>
-          )}
+
+            {data.personal.about && (
+              <p className="text-[15px] font-normal leading-snug text-secondary">
+                {data.personal.about}
+              </p>
+            )}
+          </div>
 
           <p className="intro-block flex items-center gap-1.5 text-[15px] font-normal leading-snug text-secondary">
             <span>Currently @</span>
@@ -85,6 +88,8 @@ export default function Home() {
               })}
             </ul>
           </nav>
+
+          <ProjectsGrid projects={data.projects} />
         </div>
       </main>
     </PageTransition>

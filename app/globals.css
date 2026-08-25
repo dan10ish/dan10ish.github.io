@@ -71,7 +71,7 @@ html, body * {
 
 html,
 body {
-  overflow: hidden;
+  
   background-color: var(--background);
   color: var(--foreground);
   transition: none !important;
@@ -114,7 +114,7 @@ body {
 
 .velarko-logo {
   border-radius: 6px;
-  overflow: hidden;
+  
   transition: transform 0.2s ease;
   will-change: transform;
 }
@@ -248,3 +248,38 @@ body {
   }
 }
 
+
+/* Custom Scrollbar for CRM Grid */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent; 
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--border); 
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--chevron); 
+}
+
+/* Badge Colors for CRM Grid */
+.badge-robotics { @apply bg-purple-500/15 text-purple-700; }
+.badge-algorithm { @apply bg-orange-500/15 text-orange-700; }
+.badge-web { @apply bg-blue-500/15 text-blue-700; }
+.badge-simulation { @apply bg-pink-500/15 text-pink-700; }
+.badge-education { @apply bg-emerald-500/15 text-emerald-700; }
+.badge-ml { @apply bg-yellow-500/15 text-yellow-700; }
+.badge-game { @apply bg-red-500/15 text-red-700; }
+.badge-default { @apply bg-gray-500/15 text-gray-700; }
+
+[data-theme="green"] .badge-robotics, [data-theme="onyx"] .badge-robotics, [data-theme="solarized"] .badge-robotics { @apply text-purple-300 bg-purple-400/15; }
+[data-theme="green"] .badge-algorithm, [data-theme="onyx"] .badge-algorithm, [data-theme="solarized"] .badge-algorithm { @apply text-orange-300 bg-orange-400/15; }
+[data-theme="green"] .badge-web, [data-theme="onyx"] .badge-web, [data-theme="solarized"] .badge-web { @apply text-blue-300 bg-blue-400/15; }
+[data-theme="green"] .badge-simulation, [data-theme="onyx"] .badge-simulation, [data-theme="solarized"] .badge-simulation { @apply text-pink-300 bg-pink-400/15; }
+[data-theme="green"] .badge-education, [data-theme="onyx"] .badge-education, [data-theme="solarized"] .badge-education { @apply text-emerald-300 bg-emerald-400/15; }
+[data-theme="green"] .badge-ml, [data-theme="onyx"] .badge-ml, [data-theme="solarized"] .badge-ml { @apply text-yellow-300 bg-yellow-400/15; }
+[data-theme="green"] .badge-game, [data-theme="onyx"] .badge-game, [data-theme="solarized"] .badge-game { @apply text-red-300 bg-red-400/15; }
+[data-theme="green"] .badge-default, [data-theme="onyx"] .badge-default, [data-theme="solarized"] .badge-default { @apply text-gray-300 bg-gray-400/15; }

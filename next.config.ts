@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  allowedDevOrigins: ['192.168.100.31'],
+  allowedDevOrigins: ['192.168.1.108'],
   turbopack: {
     rules: {
       "*.svg": {
