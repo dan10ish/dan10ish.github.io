@@ -76,7 +76,7 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
   };
 
   return (
-    <div className="overflow-hidden rounded-xl border border-border flex flex-col max-h-[340px] shadow-sm">
+    <div className="overflow-hidden rounded-xl border border-border flex flex-col max-h-[240px] shadow-sm">
       <div className="overflow-auto overscroll-none custom-scrollbar relative flex-1 bg-background">
         <table className="w-full text-left border-collapse min-w-[650px] relative">
           <thead className="sticky top-0 z-20 bg-background/95 backdrop-blur-md border-b border-border shadow-none text-[13px] text-secondary">
@@ -156,11 +156,6 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
             })}
           </tbody>
         </table>
-      </div>
-      <div className="border-t border-border bg-background p-2.5 px-4 flex items-center justify-between text-[12px] text-secondary shrink-0">
-        <div>
-          <span className="font-medium text-foreground mr-1">{projects.length}</span>count
-        </div>
       </div>
     </div>
   );

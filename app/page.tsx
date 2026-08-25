@@ -10,7 +10,7 @@ export default function Home() {
       <main className="page-main">
         {/* Use a single flex column with strict, constant gap-8 (32px) for spacing */}
         <div className="flex flex-col gap-10">
-          
+
           <div className="flex flex-col gap-6">
             <header>
               <h1 className="text-[15px] font-medium leading-snug">
@@ -18,7 +18,7 @@ export default function Home() {
               </h1>
             </header>
 
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-6">
               <p className="text-[15px] font-normal leading-snug text-secondary">
                 {data.personal.title.join(" · ")}
               </p>
