@@ -15,7 +15,7 @@ export default function Home() {
             </h1>
           </header>
 
-          <div className="intro-block flex flex-col gap-10">
+          <div className="intro-block flex flex-col gap-4">
             <p className="text-[15px] font-normal leading-snug text-secondary">
               {data.personal.title.join(" · ")}
             </p>
@@ -25,20 +25,20 @@ export default function Home() {
                 {data.personal.about}
               </p>
             )}
-          </div>
 
-          <p className="intro-block flex items-center gap-1.5 text-[15px] font-normal leading-snug text-secondary">
-            <span>Currently @</span>
-            <a
-              href="https://velarko.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="velarko-logo inline-flex items-center justify-center w-[26px] h-[26px]"
-              aria-label="Velarko"
-            >
-              <VelarkoLogo width={26} height={26} />
-            </a>
-          </p>
+            <p className="intro-block flex items-center gap-1.5 text-[15px] font-normal leading-snug text-secondary">
+              <span>Currently @</span>
+              <a
+                href="https://velarko.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="velarko-logo inline-flex items-center justify-center w-[26px] h-[26px]"
+                aria-label="Velarko"
+              >
+                <VelarkoLogo width={26} height={26} />
+              </a>
+            </p>
+          </div>
 
           <ProjectsGrid projects={data.projects} />
 

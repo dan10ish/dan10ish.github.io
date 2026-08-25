@@ -53,7 +53,7 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
     const isDesc = isActive && sortConfig.direction === "desc";
 
     return (
-      <div className="flex flex-col items-center justify-center w-[12px] ml-1.5 shrink-0 opacity-60 group-hover:opacity-100 transition-opacity">
+      <div className="flex flex-col items-center justify-center w-[12px] ml-1.5 shrink-0 opacity-60 group-hover:opacity-100 transition-opacity transform-gpu will-change-[opacity]">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="text-foreground">
           <path d="M7 9L12 4L17 9" className={`transition-opacity duration-150 ${isAsc ? "opacity-100" : "opacity-30"}`} />
           <path d="M7 15L12 20L17 15" className={`transition-opacity duration-150 ${isDesc ? "opacity-100" : "opacity-30"}`} />
