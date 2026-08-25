@@ -250,20 +250,6 @@ body {
 
 
 /* Custom Scrollbar for CRM Grid */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent; 
-}
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: var(--border); 
-  border-radius: 10px;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: var(--chevron); 
-}
 
 /* Badge Colors for CRM Grid */
 .badge-robotics { @apply bg-purple-500/15 text-purple-700; }
@@ -283,3 +269,20 @@ body {
 [data-theme="green"] .badge-ml, [data-theme="onyx"] .badge-ml, [data-theme="solarized"] .badge-ml { @apply text-yellow-300 bg-yellow-400/15; }
 [data-theme="green"] .badge-game, [data-theme="onyx"] .badge-game, [data-theme="solarized"] .badge-game { @apply text-red-300 bg-red-400/15; }
 [data-theme="green"] .badge-default, [data-theme="onyx"] .badge-default, [data-theme="solarized"] .badge-default { @apply text-gray-300 bg-gray-400/15; }
+
+/* Completely hide the custom scrollbar for CRM Grid but allow scroll */
+.custom-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Completely hide the custom scrollbar for CRM Grid but allow scroll */
+.custom-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.custom-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+  width: 0;
+  height: 0;
+}
