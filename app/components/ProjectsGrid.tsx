@@ -76,7 +76,7 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
   };
 
   return (
-    <div className="overflow-hidden rounded-xl border border-border flex flex-col max-h-[340px] shadow-sm mt-1 mb-8">
+    <div className="overflow-hidden rounded-xl border border-border flex flex-col max-h-[340px] shadow-sm">
       <div className="overflow-auto overscroll-none custom-scrollbar relative flex-1 bg-background">
         <table className="w-full text-left border-collapse min-w-[650px] relative">
           <thead className="sticky top-0 z-20 bg-background/95 backdrop-blur-md border-b border-border shadow-none text-[13px] text-secondary">

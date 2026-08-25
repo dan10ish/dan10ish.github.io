@@ -15,8 +15,8 @@ export function ThemeToggleButton() {
     setMounted(true);
   }, []);
 
-  // We use "gray" as a safe fallback during SSR to match the default theme,
-  // preventing any layout shifts from swapping placeholder DOM elements to buttons.
+  
+  
   const currentTheme = mounted ? (theme === "system" ? resolvedTheme : theme) : "gray";
   
   const cycleTheme = () => {

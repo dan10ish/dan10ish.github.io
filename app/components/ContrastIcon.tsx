@@ -48,7 +48,7 @@ const ContrastIcon = forwardRef<ContrastIconHandle, ContrastIconProps>(
     useImperativeHandle(ref, () => ({
       startAnimation: () => {
         isHoveredRef.current = true;
-        // Optional hover wiggle? Actually lets just keep it strict to the theme orientations
+        
       },
       stopAnimation: () => {
         isHoveredRef.current = false;

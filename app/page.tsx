@@ -8,25 +8,28 @@ export default function Home() {
   return (
     <PageTransition>
       <main className="page-main">
-        <div className="col-intro">
-          <header className="intro-block">
-            <h1 className="text-[15px] font-medium leading-snug">
-              {data.personal.name}
-            </h1>
-          </header>
+        {/* Use a single flex column with strict, constant gap-8 (32px) for spacing */}
+        <div className="flex flex-col gap-10">
+          
+          <div className="flex flex-col gap-6">
+            <header>
+              <h1 className="text-[15px] font-medium leading-snug">
+                {data.personal.name}
+              </h1>
+            </header>
 
-          <div className="intro-block flex flex-col gap-4">
-            <p className="text-[15px] font-normal leading-snug text-secondary">
-              {data.personal.title.join(" · ")}
-            </p>
-
-            {data.personal.about && (
+            <div className="flex flex-col gap-2">
               <p className="text-[15px] font-normal leading-snug text-secondary">
-                {data.personal.about}
+                {data.personal.title.join(" · ")}
               </p>
-            )}
+              {data.personal.about && (
+                <p className="text-[15px] font-normal leading-snug text-secondary">
+                  {data.personal.about}
+                </p>
+              )}
+            </div>
 
-            <p className="intro-block flex items-center gap-1.5 text-[15px] font-normal leading-snug text-secondary">
+            <p className="flex items-center gap-1.5 text-[15px] font-normal leading-snug text-secondary">
               <span>Currently @</span>
               <a
                 href="https://velarko.com"
@@ -42,13 +45,11 @@ export default function Home() {
 
           <ProjectsGrid projects={data.projects} />
 
-          <nav aria-label="Social links" className="mt-12">
-            <ul className="space-y-0.5 list-none p-0 m-0 -ml-2.5">
+          <nav aria-label="Social links">
+            <ul className="flex flex-col gap-1.5 list-none p-0 m-0 -ml-2.5">
               {data.social.map((item, index) => {
                 const isEmail = item.name === "Email";
-                const email = isEmail
-                  ? item.url.replace("mailto:", "")
-                  : "";
+                const email = isEmail ? item.url.replace("mailto:", "") : "";
 
                 return (
                   <li key={index} className="flex items-center">

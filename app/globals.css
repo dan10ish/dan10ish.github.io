@@ -1,7 +1,5 @@
 @import "tailwindcss";
-
 :root {
-
   --live-bg: rgba(16, 185, 129, 0.15);
   --live-text: rgb(5, 150, 105);
   --source-bg: rgba(37, 99, 235, 0.15);
@@ -20,8 +18,7 @@
   --tag-ml-text: rgb(202, 138, 4);
   --tag-game-bg: rgba(239, 68, 68, 0.15);
   --tag-game-text: rgb(220, 38, 38);
-
-  --background: #E5E7EB; /* Base light gray */
+  --background: #E5E7EB; 
   --foreground: #111827; 
   --secondary: #4B5563;
   --border: #D1D5DB;
@@ -30,9 +27,7 @@
   --link-blue: #2563EB;
   color-scheme: light;
 }
-
 [data-theme="gray"] {
-
   --live-bg: rgba(16, 185, 129, 0.15);
   --live-text: rgb(5, 150, 105);
   --source-bg: rgba(37, 99, 235, 0.15);
@@ -51,8 +46,7 @@
   --tag-ml-text: rgb(202, 138, 4);
   --tag-game-bg: rgba(239, 68, 68, 0.15);
   --tag-game-text: rgb(220, 38, 38);
-
-  --background: #E5E7EB; /* A true light gray / slate gray */
+  --background: #E5E7EB; 
   --foreground: #111827; 
   --secondary: #4B5563;
   --border: #D1D5DB;
@@ -61,9 +55,7 @@
   --link-blue: #2563EB;
   color-scheme: light;
 }
-
 [data-theme="green"] {
-
   --live-bg: rgba(163, 230, 53, 0.2);
   --live-text: rgb(217, 249, 157);
   --source-bg: rgba(123, 201, 248, 0.2);
@@ -82,19 +74,16 @@
   --tag-ml-text: rgb(254, 240, 138);
   --tag-game-bg: rgba(248, 113, 113, 0.2);
   --tag-game-text: rgb(254, 202, 202);
-
-  --background: #444E36; /* Lighter Matte Marshall Green */
+  --background: #444E36; 
   --foreground: #F0F4E8; 
   --secondary: #A9B397;
   --border: #5C674A;
   --chevron: #808B6B;
   --social-hover-bg: rgba(255, 255, 255, 0.08);
-  --link-blue: #7BC9F8; /* Bright clear sky blue contrasting beautifully against olive */
+  --link-blue: #7BC9F8; 
   color-scheme: dark;
 }
-
 [data-theme="onyx"] {
-
   --live-bg: rgba(16, 185, 129, 0.2); 
   --live-text: rgb(52, 211, 153);
   --source-bg: rgba(56, 189, 248, 0.2); 
@@ -113,19 +102,16 @@
   --tag-ml-text: rgb(253, 224, 71);
   --tag-game-bg: rgba(248, 113, 113, 0.15);
   --tag-game-text: rgb(252, 165, 165);
-
-  --background: #111111; /* Pure deep #111 black */
+  --background: #111111; 
   --foreground: #EDEDED;
   --secondary: #8E8E93;
   --border: #2C2C2E;
   --chevron: #666666;
   --social-hover-bg: rgba(255, 255, 255, 0.1);
-  --link-blue: #38BDF8; /* Electric Sky Blue */
+  --link-blue: #38BDF8; 
   color-scheme: dark;
 }
-
 [data-theme="solarized"] {
-
   --live-bg: rgba(133, 153, 0, 0.25);
   --live-text: rgb(133, 153, 0);
   --source-bg: rgba(38, 139, 210, 0.25);
@@ -144,17 +130,15 @@
   --tag-ml-text: rgb(181, 137, 0);
   --tag-game-bg: rgba(220, 50, 47, 0.25);
   --tag-game-text: rgb(220, 50, 47);
-
-  --background: #002B36; /* Solarized Dark background */
-  --foreground: #EEE8D5; /* Solarized base2 high contrast text */
-  --secondary: #93A1A1;  /* Solarized base1 secondary text */
-  --border: #073642;     /* Solarized base02 border */
-  --chevron: #586E75;    /* Solarized base01 chevron */
+  --background: #002B36; 
+  --foreground: #EEE8D5; 
+  --secondary: #93A1A1;  
+  --border: #073642;     
+  --chevron: #586E75;    
   --social-hover-bg: rgba(255, 255, 255, 0.06);
-  --link-blue: #4FA3DE; /* Brightened legible Solarized Blue */
+  --link-blue: #4FA3DE; 
   color-scheme: dark;
 }
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -163,45 +147,32 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
-
 html, body * {
-  /* Enforce instant color/bg changes but whitelist transform/opacity for animations */
   transition-property: transform, opacity, width, height, margin, padding;
 }
-
 html,
 body {
-  
   background-color: var(--background);
   color: var(--foreground);
   transition: none !important;
 }
-
 body {
   font-size: 15px;
 }
-
 .page-main {
   padding: 24px;
   max-width: 600px;
 }
-
 @media (min-width: 768px) {
   .page-main {
     padding: 40px;
   }
 }
-
 @media (min-width: 1100px) {
   .page-main {
     padding: 48px;
   }
 }
-
-.intro-block {
-  margin-bottom: 36px;
-}
-
 @keyframes velarko-flutter {
   0%, 100% { transform: scaleX(1) translateY(0); }
   15%       { transform: scaleX(0.4) translateY(-2px) rotate(-2deg); }
@@ -211,53 +182,43 @@ body {
   78%       { transform: scaleX(0.6) translateY(-1px); }
   90%       { transform: scaleX(1) translateY(0); }
 }
-
 .velarko-logo {
   border-radius: 6px;
-  
   transition: transform 0.2s ease;
   will-change: transform;
 }
-
 .velarko-logo svg {
   animation: velarko-flutter 2.4s ease-in-out infinite;
   will-change: transform;
   transform-origin: center;
 }
-
 @media (hover: hover), ((any-hover: hover) and (any-pointer: fine)) {
   .velarko-logo:hover {
     transform: scale(1.2);
   }
-
   .velarko-logo:hover svg {
     animation-play-state: paused;
   }
 }
-
 .social-chevron {
   color: var(--chevron);
   transform: translateZ(0);
 }
-
 .social-text {
   position: relative;
   display: inline-flex;
   flex-direction: column;
   clip-path: inset(0 -100vw);
 }
-
 .social-name,
 .social-username {
   white-space: nowrap;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
-
 .social-name {
   position: relative;
   transform: translateY(0);
 }
-
 .social-username {
   position: absolute;
   top: 0;
@@ -265,7 +226,6 @@ body {
   color: var(--secondary);
   transform: translateY(100%);
 }
-
 @media (hover: hover), (any-hover: hover) {
   .social-link:hover {
     background-color: var(--social-hover-bg);
@@ -288,7 +248,6 @@ body {
     color: var(--link-blue);
   }
 }
-
 .email-copy-btn {
   position: relative;
   display: inline-flex;
@@ -306,33 +265,27 @@ body {
   -webkit-tap-highlight-color: transparent;
   flex-shrink: 0;
 }
-
 .email-copy-btn:disabled {
   cursor: default;
 }
-
 @media (hover: hover), (any-hover: hover) {
   .email-copy-btn:not(:disabled):hover {
     color: var(--foreground);
     background-color: var(--social-hover-bg);
   }
 }
-
 .email-copy-icon {
   position: absolute;
   transition: opacity 0.15s ease-out, transform 0.15s ease-out;
 }
-
 .email-copy-icon-visible {
   opacity: 1;
   transform: scale(1);
 }
-
 .email-copy-icon-hidden {
   opacity: 0;
   transform: scale(0.6);
 }
-
 .notfound-btn {
   padding: 3px 12px;
   border-radius: 6px;
@@ -340,49 +293,14 @@ body {
   color: var(--link-blue);
   transition: transform 0.1s ease-out;
 }
-
 @media (hover: hover), (any-hover: hover) {
   .notfound-btn:hover {
     transform: translateY(-1px);
     background: color-mix(in srgb, var(--link-blue) 22%, transparent);
   }
 }
-
-
-/* Custom Scrollbar for CRM Grid */
-
-/* Badge Colors for CRM Grid */
-.badge-robotics { @apply bg-purple-500/15 text-purple-700; }
-.badge-algorithm { @apply bg-orange-500/15 text-orange-700; }
-.badge-web { @apply bg-blue-500/15 text-blue-700; }
-.badge-simulation { @apply bg-pink-500/15 text-pink-700; }
-.badge-education { @apply bg-emerald-500/15 text-emerald-700; }
-.badge-ml { @apply bg-yellow-500/15 text-yellow-700; }
-.badge-game { @apply bg-red-500/15 text-red-700; }
-.badge-default { @apply bg-gray-500/15 text-gray-700; }
-
-[data-theme="green"] .badge-robotics, [data-theme="onyx"] .badge-robotics, [data-theme="solarized"] .badge-robotics { @apply text-purple-300 bg-purple-400/15; }
-[data-theme="green"] .badge-algorithm, [data-theme="onyx"] .badge-algorithm, [data-theme="solarized"] .badge-algorithm { @apply text-orange-300 bg-orange-400/15; }
-[data-theme="green"] .badge-web, [data-theme="onyx"] .badge-web, [data-theme="solarized"] .badge-web { @apply text-blue-300 bg-blue-400/15; }
-[data-theme="green"] .badge-simulation, [data-theme="onyx"] .badge-simulation, [data-theme="solarized"] .badge-simulation { @apply text-pink-300 bg-pink-400/15; }
-[data-theme="green"] .badge-education, [data-theme="onyx"] .badge-education, [data-theme="solarized"] .badge-education { @apply text-emerald-300 bg-emerald-400/15; }
-[data-theme="green"] .badge-ml, [data-theme="onyx"] .badge-ml, [data-theme="solarized"] .badge-ml { @apply text-yellow-300 bg-yellow-400/15; }
-[data-theme="green"] .badge-game, [data-theme="onyx"] .badge-game, [data-theme="solarized"] .badge-game { @apply text-red-300 bg-red-400/15; }
-[data-theme="green"] .badge-default, [data-theme="onyx"] .badge-default, [data-theme="solarized"] .badge-default { @apply text-gray-300 bg-gray-400/15; }
-
-/* Completely hide the custom scrollbar for CRM Grid but allow scroll */
-.custom-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
-}
-
-/* Completely hide the custom scrollbar for CRM Grid but allow scroll */
-.custom-scrollbar {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
 .custom-scrollbar::-webkit-scrollbar {
-  display: none; /* Chrome, Safari and Opera */
+  display: none; 
   width: 0;
   height: 0;
 }

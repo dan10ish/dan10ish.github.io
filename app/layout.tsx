@@ -4,15 +4,9 @@ import "./globals.css";
 import { ThemeProvider } from "./components/ThemeProvider";
 import { ThemeToggleButton } from "./components/ThemeToggleButton";
 
-const geistSans = { variable: "--font-geist-sans" }; /* 
-  variable: "--font-geist-sans",
-   
- */
+const geistSans = { variable: "--font-geist-sans" }; 
 
-const geistMono = { variable: "--font-geist-mono" }; /* 
-  variable: "--font-geist-mono",
-   
- */
+const geistMono = { variable: "--font-geist-mono" }; 
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://danishansari.co"),
