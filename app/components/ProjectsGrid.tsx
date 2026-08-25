@@ -52,38 +52,26 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
     );
   };
 
-  const getTagStyle = (tag: string) => {
-    switch (tag.toLowerCase()) {
-      case "robotics": return { bg: "rgba(139, 92, 246, 0.2)", text: "rgb(167, 139, 250)" };
-      case "algorithm": return { bg: "rgba(245, 158, 11, 0.2)", text: "rgb(251, 191, 36)" };
-      case "web": return { bg: "rgba(59, 130, 246, 0.2)", text: "rgb(96, 165, 250)" };
-      case "simulation": return { bg: "rgba(236, 72, 153, 0.2)", text: "rgb(244, 114, 182)" };
-      case "education": return { bg: "rgba(16, 185, 129, 0.2)", text: "rgb(52, 211, 153)" };
-      case "ml": return { bg: "rgba(234, 179, 8, 0.2)", text: "rgb(250, 204, 21)" };
-      case "game": return { bg: "rgba(239, 68, 68, 0.2)", text: "rgb(248, 113, 113)" };
-      default: return { bg: "rgba(156, 163, 175, 0.2)", text: "rgb(156, 163, 175)" };
-    }
-  };
-
   return (
     <div className="mt-12 overflow-hidden rounded-xl border border-border flex flex-col max-h-[340px] shadow-sm">
       <div className="overflow-auto custom-scrollbar relative flex-1 bg-background">
         <table className="w-full text-left border-collapse min-w-[650px] relative">
           <thead className="sticky top-0 z-20 bg-background/95 backdrop-blur-md border-b border-border shadow-none text-[13px] text-secondary">
             <tr>
-              <th
-                className="sticky left-0 z-30 bg-background/95 backdrop-blur-md px-4 py-2.5 border-b border-r border-border font-medium cursor-pointer hover:bg-foreground/5 transition-colors select-none group w-[180px]"
+              <th 
+                className="sticky left-0 z-30 bg-background/95 backdrop-blur-md px-4 py-2.5 border-b border-r border-border font-medium cursor-pointer hover:bg-foreground/5 transition-colors select-none group w-[200px]"
                 onClick={() => requestSort("title")}
               >
                 <div className="flex items-center">
                   Project {getSortIcon("title")}
                 </div>
               </th>
-              <th
+              <th 
                 className="px-4 py-2.5 border-b border-r border-border font-medium cursor-pointer hover:bg-foreground/5 transition-colors select-none w-[140px]"
                 onClick={() => requestSort("tag")}
               >
                 <div className="flex items-center gap-2">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-70"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
                   <span className="flex items-center">Categories {getSortIcon("tag")}</span>
                 </div>
               </th>
@@ -91,7 +79,7 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
                 Live
               </th>
               <th className="px-4 py-2.5 border-b border-r border-border font-medium select-none w-[100px]">
-                Code
+                Source Code
               </th>
               <th className="px-4 py-2.5 border-b border-border font-medium select-none">
                 Description
@@ -100,7 +88,7 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
           </thead>
           <tbody className="text-[13px]">
             {sortedProjects.map((project, idx) => {
-              const tagStyle = getTagStyle(project.tag);
+              const tagVar = project.tag.toLowerCase();
               return (
                 <tr key={idx} className="group border-b border-border last:border-none hover:bg-foreground/[0.04] transition-colors relative tracking-tight">
                   <td className="sticky left-0 z-10 p-0 border-r border-border bg-background">
@@ -114,9 +102,9 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
                   </td>
                   <td className="px-4 py-2 border-r border-border min-h-[38px]">
                     <div className="flex flex-wrap gap-1.5 items-center">
-                      <span
+                      <span 
                         className="inline-flex items-center px-1.5 py-[2px] rounded-[4px] text-[12px] font-medium leading-tight saturate-150 drop-shadow-sm mix-blend-normal"
-                        style={{ backgroundColor: tagStyle.bg, color: tagStyle.text }}
+                        style={{ backgroundColor: `var(--tag-${tagVar}-bg, var(--background))`, color: `var(--tag-${tagVar}-text, var(--foreground))` }}
                       >
                         {project.tag}
                       </span>
@@ -124,7 +112,7 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
                   </td>
                   <td className="px-4 py-2 whitespace-nowrap border-r border-border">
                     {project.live ? (
-                      <a href={project.live} target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-1.5 py-[2px] rounded-[4px] text-[12px] font-medium bg-[#10B981]/15 text-[#10B981] hover:bg-[#10B981]/30 transition-colors">
+                      <a href={project.live} target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-1.5 py-[2px] rounded-[4px] text-[12px] font-medium hover:brightness-125 transition-all" style={{ backgroundColor: 'var(--live-bg)', color: 'var(--live-text)' }}>
                         Live
                       </a>
                     ) : (
@@ -133,7 +121,7 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
                   </td>
                   <td className="px-4 py-2 whitespace-nowrap border-r border-border">
                     {project.source ? (
-                      <a href={project.source} target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-1.5 py-[2px] rounded-[4px] text-[12px] font-medium bg-[var(--link-blue)]/10 text-[var(--link-blue)] hover:bg-[var(--link-blue)]/20 transition-colors">
+                      <a href={project.source} target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-1.5 py-[2px] rounded-[4px] text-[12px] font-medium hover:brightness-125 transition-all" style={{ backgroundColor: 'var(--source-bg)', color: 'var(--source-text)' }}>
                         GitHub
                       </a>
                     ) : (
@@ -149,7 +137,7 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
           </tbody>
         </table>
       </div>
-      <div className="border-t border-border bg-background p-2 px-4 flex items-center justify-between text-[12px] text-secondary shrink-0">
+      <div className="border-t border-border bg-background p-2.5 px-4 flex items-center justify-between text-[12px] text-secondary shrink-0">
         <div>
           <span className="font-medium text-foreground mr-1">{projects.length}</span>count
         </div>

@@ -15,7 +15,7 @@ export default function Home() {
             </h1>
           </header>
 
-          <div className="intro-block flex flex-col gap-2">
+          <div className="intro-block flex flex-col gap-10">
             <p className="text-[15px] font-normal leading-snug text-secondary">
               {data.personal.title.join(" · ")}
             </p>

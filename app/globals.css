@@ -1,6 +1,26 @@
 @import "tailwindcss";
 
 :root {
+
+  --live-bg: rgba(16, 185, 129, 0.15);
+  --live-text: rgb(5, 150, 105);
+  --source-bg: rgba(37, 99, 235, 0.15);
+  --source-text: rgb(37, 99, 235);
+  --tag-robotics-bg: rgba(139, 92, 246, 0.15);
+  --tag-robotics-text: rgb(109, 40, 217);
+  --tag-algorithm-bg: rgba(245, 158, 11, 0.15);
+  --tag-algorithm-text: rgb(217, 119, 6);
+  --tag-web-bg: rgba(59, 130, 246, 0.15);
+  --tag-web-text: rgb(37, 99, 235);
+  --tag-simulation-bg: rgba(236, 72, 153, 0.15);
+  --tag-simulation-text: rgb(219, 39, 119);
+  --tag-education-bg: rgba(16, 185, 129, 0.15);
+  --tag-education-text: rgb(5, 150, 105);
+  --tag-ml-bg: rgba(234, 179, 8, 0.2);
+  --tag-ml-text: rgb(202, 138, 4);
+  --tag-game-bg: rgba(239, 68, 68, 0.15);
+  --tag-game-text: rgb(220, 38, 38);
+
   --background: #E5E7EB; /* Base light gray */
   --foreground: #111827; 
   --secondary: #4B5563;
@@ -12,6 +32,26 @@
 }
 
 [data-theme="gray"] {
+
+  --live-bg: rgba(16, 185, 129, 0.15);
+  --live-text: rgb(5, 150, 105);
+  --source-bg: rgba(37, 99, 235, 0.15);
+  --source-text: rgb(37, 99, 235);
+  --tag-robotics-bg: rgba(139, 92, 246, 0.15);
+  --tag-robotics-text: rgb(109, 40, 217);
+  --tag-algorithm-bg: rgba(245, 158, 11, 0.15);
+  --tag-algorithm-text: rgb(217, 119, 6);
+  --tag-web-bg: rgba(59, 130, 246, 0.15);
+  --tag-web-text: rgb(37, 99, 235);
+  --tag-simulation-bg: rgba(236, 72, 153, 0.15);
+  --tag-simulation-text: rgb(219, 39, 119);
+  --tag-education-bg: rgba(16, 185, 129, 0.15);
+  --tag-education-text: rgb(5, 150, 105);
+  --tag-ml-bg: rgba(234, 179, 8, 0.2);
+  --tag-ml-text: rgb(202, 138, 4);
+  --tag-game-bg: rgba(239, 68, 68, 0.15);
+  --tag-game-text: rgb(220, 38, 38);
+
   --background: #E5E7EB; /* A true light gray / slate gray */
   --foreground: #111827; 
   --secondary: #4B5563;
@@ -23,6 +63,26 @@
 }
 
 [data-theme="green"] {
+
+  --live-bg: rgba(163, 230, 53, 0.2);
+  --live-text: rgb(217, 249, 157);
+  --source-bg: rgba(123, 201, 248, 0.2);
+  --source-text: rgb(123, 201, 248);
+  --tag-robotics-bg: rgba(192, 132, 252, 0.2);
+  --tag-robotics-text: rgb(233, 213, 255);
+  --tag-algorithm-bg: rgba(251, 146, 60, 0.2);
+  --tag-algorithm-text: rgb(253, 186, 116);
+  --tag-web-bg: rgba(96, 165, 250, 0.2);
+  --tag-web-text: rgb(191, 219, 254);
+  --tag-simulation-bg: rgba(244, 114, 182, 0.2);
+  --tag-simulation-text: rgb(251, 207, 232);
+  --tag-education-bg: rgba(74, 222, 128, 0.2);
+  --tag-education-text: rgb(187, 247, 208);
+  --tag-ml-bg: rgba(250, 204, 21, 0.2);
+  --tag-ml-text: rgb(254, 240, 138);
+  --tag-game-bg: rgba(248, 113, 113, 0.2);
+  --tag-game-text: rgb(254, 202, 202);
+
   --background: #444E36; /* Lighter Matte Marshall Green */
   --foreground: #F0F4E8; 
   --secondary: #A9B397;
@@ -34,6 +94,26 @@
 }
 
 [data-theme="onyx"] {
+
+  --live-bg: rgba(16, 185, 129, 0.2); 
+  --live-text: rgb(52, 211, 153);
+  --source-bg: rgba(56, 189, 248, 0.2); 
+  --source-text: rgb(56, 189, 248);
+  --tag-robotics-bg: rgba(167, 139, 250, 0.15);
+  --tag-robotics-text: rgb(196, 181, 253);
+  --tag-algorithm-bg: rgba(251, 146, 60, 0.15);
+  --tag-algorithm-text: rgb(253, 186, 116);
+  --tag-web-bg: rgba(96, 165, 250, 0.15);
+  --tag-web-text: rgb(147, 197, 253);
+  --tag-simulation-bg: rgba(244, 114, 182, 0.15);
+  --tag-simulation-text: rgb(249, 168, 212);
+  --tag-education-bg: rgba(52, 211, 153, 0.15);
+  --tag-education-text: rgb(110, 231, 183);
+  --tag-ml-bg: rgba(250, 204, 21, 0.15);
+  --tag-ml-text: rgb(253, 224, 71);
+  --tag-game-bg: rgba(248, 113, 113, 0.15);
+  --tag-game-text: rgb(252, 165, 165);
+
   --background: #111111; /* Pure deep #111 black */
   --foreground: #EDEDED;
   --secondary: #8E8E93;
@@ -45,6 +125,26 @@
 }
 
 [data-theme="solarized"] {
+
+  --live-bg: rgba(133, 153, 0, 0.25);
+  --live-text: rgb(133, 153, 0);
+  --source-bg: rgba(38, 139, 210, 0.25);
+  --source-text: rgb(38, 139, 210);
+  --tag-robotics-bg: rgba(108, 113, 196, 0.25);
+  --tag-robotics-text: rgb(108, 113, 196);
+  --tag-algorithm-bg: rgba(203, 75, 22, 0.25);
+  --tag-algorithm-text: rgb(203, 75, 22);
+  --tag-web-bg: rgba(42, 161, 152, 0.25);
+  --tag-web-text: rgb(42, 161, 152);
+  --tag-simulation-bg: rgba(211, 54, 130, 0.25);
+  --tag-simulation-text: rgb(211, 54, 130);
+  --tag-education-bg: rgba(133, 153, 0, 0.25);
+  --tag-education-text: rgb(133, 153, 0);
+  --tag-ml-bg: rgba(181, 137, 0, 0.25);
+  --tag-ml-text: rgb(181, 137, 0);
+  --tag-game-bg: rgba(220, 50, 47, 0.25);
+  --tag-game-text: rgb(220, 50, 47);
+
   --background: #002B36; /* Solarized Dark background */
   --foreground: #EEE8D5; /* Solarized base2 high contrast text */
   --secondary: #93A1A1;  /* Solarized base1 secondary text */
