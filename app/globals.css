@@ -18,8 +18,8 @@
   --tag-ml-text: rgb(202, 138, 4);
   --tag-game-bg: rgba(239, 68, 68, 0.15);
   --tag-game-text: rgb(220, 38, 38);
-  --background: #E5E7EB; 
-  --foreground: #111827; 
+  --background: #E5E7EB;
+  --foreground: #111827;
   --secondary: #4B5563;
   --border: #D1D5DB;
   --chevron: #9CA3AF;
@@ -46,8 +46,8 @@
   --tag-ml-text: rgb(202, 138, 4);
   --tag-game-bg: rgba(239, 68, 68, 0.15);
   --tag-game-text: rgb(220, 38, 38);
-  --background: #E5E7EB; 
-  --foreground: #111827; 
+  --background: #E5E7EB;
+  --foreground: #111827;
   --secondary: #4B5563;
   --border: #D1D5DB;
   --chevron: #9CA3AF;
@@ -74,19 +74,19 @@
   --tag-ml-text: rgb(254, 240, 138);
   --tag-game-bg: rgba(248, 113, 113, 0.2);
   --tag-game-text: rgb(254, 202, 202);
-  --background: #444E36; 
-  --foreground: #F0F4E8; 
+  --background: #444E36;
+  --foreground: #F0F4E8;
   --secondary: #A9B397;
   --border: #5C674A;
   --chevron: #808B6B;
   --social-hover-bg: rgba(255, 255, 255, 0.08);
-  --link-blue: #7BC9F8; 
+  --link-blue: #7BC9F8;
   color-scheme: dark;
 }
 [data-theme="onyx"] {
-  --live-bg: rgba(16, 185, 129, 0.2); 
+  --live-bg: rgba(16, 185, 129, 0.2);
   --live-text: rgb(52, 211, 153);
-  --source-bg: rgba(56, 189, 248, 0.2); 
+  --source-bg: rgba(56, 189, 248, 0.2);
   --source-text: rgb(56, 189, 248);
   --tag-robotics-bg: rgba(167, 139, 250, 0.15);
   --tag-robotics-text: rgb(196, 181, 253);
@@ -102,13 +102,13 @@
   --tag-ml-text: rgb(253, 224, 71);
   --tag-game-bg: rgba(248, 113, 113, 0.15);
   --tag-game-text: rgb(252, 165, 165);
-  --background: #111111; 
+  --background: #111111;
   --foreground: #EDEDED;
   --secondary: #8E8E93;
   --border: #2C2C2E;
   --chevron: #666666;
   --social-hover-bg: rgba(255, 255, 255, 0.1);
-  --link-blue: #38BDF8; 
+  --link-blue: #38BDF8;
   color-scheme: dark;
 }
 [data-theme="solarized"] {
@@ -130,13 +130,13 @@
   --tag-ml-text: rgb(181, 137, 0);
   --tag-game-bg: rgba(220, 50, 47, 0.25);
   --tag-game-text: rgb(220, 50, 47);
-  --background: #002B36; 
-  --foreground: #EEE8D5; 
-  --secondary: #93A1A1;  
-  --border: #073642;     
-  --chevron: #586E75;    
+  --background: #002B36;
+  --foreground: #EEE8D5;
+  --secondary: #93A1A1;
+  --border: #073642;
+  --chevron: #586E75;
   --social-hover-bg: rgba(255, 255, 255, 0.06);
-  --link-blue: #4FA3DE; 
+  --link-blue: #4FA3DE;
   color-scheme: dark;
 }
 @theme inline {
@@ -161,7 +161,7 @@ body {
 }
 .page-main {
   padding: 24px;
-  max-width: 600px;
+  max-width: 800px;
 }
 @media (min-width: 768px) {
   .page-main {
@@ -300,7 +300,7 @@ body {
   }
 }
 .custom-scrollbar::-webkit-scrollbar {
-  display: none; 
+  display: none;
   width: 0;
   height: 0;
 }

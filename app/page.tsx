@@ -8,7 +8,6 @@ export default function Home() {
   return (
     <PageTransition>
       <main className="page-main">
-        {/* Use a single flex column with strict, constant gap-8 (32px) for spacing */}
         <div className="flex flex-col gap-10">
 
           <div className="flex flex-col gap-6">
