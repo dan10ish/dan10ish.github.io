@@ -1,7 +1,6 @@
 import VelarkoLogo from "./components/velarko.svg";
 import EmailCopyButton from "./components/EmailCopyButton";
 import PageTransition from "./components/PageTransition";
-import { ThemeToggleButton } from "./components/ThemeToggleButton";
 import { data } from "./data";
 
 export default function Home() {
@@ -88,7 +87,6 @@ export default function Home() {
           </nav>
         </div>
       </main>
-      <ThemeToggleButton />
     </PageTransition>
   );
 }

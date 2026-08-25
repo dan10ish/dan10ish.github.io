@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import { ThemeProvider } from "./components/ThemeProvider";
+import { ThemeToggleButton } from "./components/ThemeToggleButton";
 
 const geistSans = { variable: "--font-geist-sans" }; /* 
   variable: "--font-geist-sans",
@@ -140,6 +141,7 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="data-theme" defaultTheme="gray" themes={["gray", "green", "onyx", "solarized"]}>
           {children}
+          <ThemeToggleButton />
         </ThemeProvider>
       </body>
     </html>

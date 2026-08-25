@@ -15,13 +15,9 @@ export function ThemeToggleButton() {
     setMounted(true);
   }, []);
 
-  if (!mounted) {
-    return (
-      <div className="fixed bottom-6 right-6 p-2 rounded-full w-[40px] h-[40px] z-50 pointer-events-none" />
-    );
-  }
-
-  const currentTheme = theme === "system" ? resolvedTheme : theme;
+  // We use "gray" as a safe fallback during SSR to match the default theme,
+  // preventing any layout shifts from swapping placeholder DOM elements to buttons.
+  const currentTheme = mounted ? (theme === "system" ? resolvedTheme : theme) : "gray";
   
   const cycleTheme = () => {
     const currentIndex = THEMES.indexOf(currentTheme as string);
@@ -37,8 +33,13 @@ export function ThemeToggleButton() {
       onMouseEnter={() => iconRef.current?.startAnimation()}
       onMouseLeave={() => iconRef.current?.stopAnimation()}
       aria-label="Toggle theme"
+      suppressHydrationWarning
     >
-      <ContrastIcon ref={iconRef} size={24} currentTheme={currentTheme as string} />
+      <ContrastIcon 
+        ref={iconRef} 
+        size={24} 
+        currentTheme={currentTheme as string} 
+      />
     </button>
   );
 }
