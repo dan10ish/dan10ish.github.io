@@ -144,7 +144,7 @@
   --color-foreground: var(--foreground);
   --color-secondary: var(--secondary);
   --color-border: var(--border);
-  --font-sans: var(--font-manrope);
+  --font-sans: var(--font-geist-sans);
 }
 html, body * {
   transition-property: transform, opacity, width, height, margin, padding;
