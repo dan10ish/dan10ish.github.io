@@ -1,4 +1,52 @@
 @import "tailwindcss";
+
+@font-face {
+  font-family: 'SF Mono';
+  src: url('/fonts/SFMono-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Mono';
+  src: url('/fonts/SFMono-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Mono';
+  src: url('/fonts/SFMono-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Mono';
+  src: url('/fonts/SFMono-Semibold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Mono';
+  src: url('/fonts/SFMono-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Mono';
+  src: url('/fonts/SFMono-Heavy.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
 :root {
   --live-bg: rgba(16, 185, 129, 0.15);
   --live-text: rgb(5, 150, 105);
@@ -144,7 +192,7 @@
   --color-foreground: var(--foreground);
   --color-secondary: var(--secondary);
   --color-border: var(--border);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: 'SF Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 html, body * {
   transition-property: transform, opacity, width, height, margin, padding;

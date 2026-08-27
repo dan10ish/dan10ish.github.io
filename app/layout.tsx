@@ -1,14 +1,8 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
 
 import "./globals.css";
 import { ThemeProvider } from "./components/ThemeProvider";
 import { ThemeToggleButton } from "./components/ThemeToggleButton";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
 const BASE_URL = "https://danishansari.co";
 const OG_IMAGE = `${BASE_URL}/ogimage.png`;
@@ -146,6 +140,10 @@ export default function RootLayout({
         <meta name="twitter:image" content={OG_IMAGE} />
         <meta name="twitter:card" content="summary_large_image" />
 
+        {/* Preload SF Mono for instant rendering */}
+        <link rel="preload" href="/fonts/SFMono-Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/SFMono-Medium.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+
         <link rel="alternate" href="/llms.txt" type="text/markdown" title="LLM-optimized content" />
         <script
           type="application/ld+json"
@@ -153,7 +151,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} font-sans antialiased min-h-screen relative`}
+        className={`font-sans antialiased min-h-screen relative`}
       >
         <ThemeProvider attribute="data-theme" defaultTheme="gray" themes={["gray", "green", "onyx", "solarized"]}>
           {children}
