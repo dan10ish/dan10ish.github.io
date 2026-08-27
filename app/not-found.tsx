@@ -4,13 +4,13 @@ import PageTransition from "./components/PageTransition";
 export default function NotFound() {
   return (
     <PageTransition>
-      <main className="page-main">
-        <div className="col-intro">
+      <main className="max-w-[800px] px-6 md:px-10 lg:px-12 py-12 min-h-svh" style={{ minHeight: "100dvh" }}>
+        <div className="flex flex-col gap-6">
           <header>
-            <h1 className="text-[15px] font-medium leading-snug mb-2">404</h1>
+            <h1 className="text-[14px] font-medium leading-snug">404</h1>
           </header>
 
-          <p className="text-[15px] font-normal leading-snug text-secondary mb-8">
+          <p className="text-[14px] font-normal leading-snug text-secondary">
             Page Not Found
           </p>
 

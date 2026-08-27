@@ -42,14 +42,14 @@ export const data: Data = {
       url: "https://x.com/dan10ish",
     },
     {
-      name: "Email",
-      username: "dan10ish",
-      url: "mailto:aansaridan@gmail.com",
-    },
-    {
       name: "Snapchat",
       username: "dan10ish",
       url: "https://snapchat.com/add/dan10ish",
+    },
+    {
+      name: "Email",
+      username: "dan10ish",
+      url: "mailto:aansaridan@gmail.com",
     },
   ],
   projects: [

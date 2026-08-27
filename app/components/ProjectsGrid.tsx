@@ -101,8 +101,8 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
             <div className="pt-4 transform-gpu">
               <div className="overflow-hidden rounded-xl border border-border flex flex-col max-h-[240px] shadow-sm transform-gpu">
                 <div className="overflow-auto overscroll-none custom-scrollbar relative flex-1 bg-background">
-                  <table className="w-full text-left border-collapse min-w-[640px] relative transform-gpu">
-                    <thead className="sticky top-0 z-20 bg-background/95 backdrop-blur-md border-b border-border shadow-none text-[13px] text-secondary transform-gpu">
+                  <table className="w-full text-left border-separate border-spacing-0 min-w-[640px] relative transform-gpu">
+                    <thead className="sticky top-0 z-20 bg-background/95 backdrop-blur-md text-[13px] text-secondary transform-gpu">
                       <tr>
                         <th
                           className="sticky left-0 z-30 bg-background/95 backdrop-blur-md px-4 py-2.5 border-b border-r border-border font-medium cursor-pointer hover:bg-foreground/5 transition-colors select-none group w-[200px]"
@@ -116,7 +116,7 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
                           className="px-4 py-2.5 border-b border-r border-border font-medium cursor-pointer hover:bg-foreground/5 transition-colors select-none group w-[140px]"
                           onClick={() => requestSort("tag")}
                         >
-                            <span className="flex items-center">Categories {getSortIcon("tag")}</span>
+                          <span className="flex items-center">Categories {getSortIcon("tag")}</span>
                         </th>
                         <th className="px-4 py-2.5 border-b border-r border-border font-medium select-none w-[80px]">
                           Live
@@ -133,8 +133,8 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
                       {sortedProjects.map((project, idx) => {
                         const tagVar = project.tag.toLowerCase();
                         return (
-                          <tr key={idx} className="group/row border-b border-border last:border-none hover:bg-foreground/[0.04] transition-colors relative tracking-tight">
-                            <td className="sticky left-0 z-10 p-0 border-r border-border bg-background">
+                          <tr key={idx} className="group/row hover:bg-foreground/[0.04] transition-colors relative tracking-tight">
+                            <td className="sticky left-0 z-10 p-0 border-b border-r border-border group-last/row:border-b-0 bg-background">
                               <div className="w-full h-full flex items-center gap-3 px-2 py-2.5 min-h-[38px] relative">
                                 <div className="absolute inset-0 bg-foreground/[0.04] opacity-0 group-hover/row:opacity-100 transition-opacity pointer-events-none" />
                                 <span className="text-[12px] text-secondary/60 w-[14px] shrink-0 text-right z-10 relative">
@@ -143,7 +143,7 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
                                 <span className="font-medium text-foreground/90 truncate max-w-[150px] z-10 relative">{project.title}</span>
                               </div>
                             </td>
-                            <td className="px-4 py-2 border-r border-border min-h-[38px]">
+                            <td className="px-4 py-2 border-b border-r border-border group-last/row:border-b-0 min-h-[38px]">
                               <div className="flex flex-wrap gap-1.5 items-center">
                                 <span
                                   className="inline-flex items-center px-1.5 py-[2px] rounded-[4px] text-[12px] font-medium leading-tight saturate-150 drop-shadow-sm mix-blend-normal"
@@ -153,7 +153,7 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
                                 </span>
                               </div>
                             </td>
-                            <td className="px-4 py-2 whitespace-nowrap border-r border-border">
+                            <td className="px-4 py-2 whitespace-nowrap border-b border-r border-border group-last/row:border-b-0">
                               {project.live ? (
                                 <a href={project.live} target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-1.5 py-[2px] rounded-[4px] text-[12px] font-medium hover:brightness-125 transition-all" style={{ backgroundColor: 'var(--live-bg)', color: 'var(--live-text)' }}>
                                   Live
@@ -162,7 +162,7 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
                                 <span className="text-secondary/40 text-[11px] ml-1">N/A</span>
                               )}
                             </td>
-                            <td className="px-4 py-2 whitespace-nowrap border-r border-border">
+                            <td className="px-4 py-2 whitespace-nowrap border-b border-r border-border group-last/row:border-b-0">
                               {project.source ? (
                                 <a href={project.source} target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-1.5 py-[2px] rounded-[4px] text-[12px] font-medium hover:brightness-125 transition-all" style={{ backgroundColor: 'var(--source-bg)', color: 'var(--source-text)' }}>
                                   GitHub
@@ -171,7 +171,7 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
                                 <span className="text-secondary/40 text-[11px] ml-1">N/A</span>
                               )}
                             </td>
-                            <td className="px-4 py-2 text-secondary whitespace-nowrap overflow-hidden text-ellipsis max-w-[300px]">
+                            <td className="px-4 py-2 text-secondary whitespace-nowrap overflow-hidden text-ellipsis max-w-[300px] border-b border-border group-last/row:border-b-0">
                               {project.description}
                             </td>
                           </tr>

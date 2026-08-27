@@ -151,7 +151,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`font-sans antialiased min-h-screen relative`}
+        className={`font-sans antialiased min-h-svh relative`}
       >
         <ThemeProvider attribute="data-theme" defaultTheme="gray" themes={["gray", "green", "onyx", "solarized"]}>
           {children}
