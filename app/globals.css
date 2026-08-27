@@ -164,7 +164,28 @@ h1, h2, h3 {
   }
 }
 
-/* Velarko Logo & Flutter Animation */
+/* Theme Toggle */
+.theme-toggle-btn {
+  -webkit-tap-highlight-color: transparent;
+  border-radius: 6px;
+}
+
+.theme-toggle-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+  transform: scale(1) translateZ(0);
+  transform-origin: center center;
+  transition: transform 0.2s ease-out;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .theme-toggle-btn:hover .theme-toggle-icon {
+    transform: scale(1.25) translateZ(0);
+  }
+}
+
 @keyframes velarko-flutter {
   0%, 100% { transform: scaleX(1) translateY(0); }
   15%       { transform: scaleX(0.4) translateY(-2px) rotate(-2deg); }
@@ -181,7 +202,7 @@ h1, h2, h3 {
   will-change: transform;
 }
 
-.velarko-logo svg {
+.velarko-logo img {
   animation: velarko-flutter 2.4s ease-in-out infinite;
   will-change: transform;
   transform-origin: center;
@@ -191,7 +212,7 @@ h1, h2, h3 {
   .velarko-logo:hover {
     transform: scale(1.2);
   }
-  .velarko-logo:hover svg {
+  .velarko-logo:hover img {
     animation-play-state: paused;
   }
 }
@@ -208,8 +229,7 @@ h1, h2, h3 {
 
 .social-text {
   position: relative;
-  display: inline-flex;
-  flex-direction: column;
+  display: inline-grid;
   overflow: hidden;
   height: 1.5em;
   line-height: 1.5em;
@@ -221,6 +241,7 @@ h1, h2, h3 {
   display: inline-block;
   line-height: 1.5em;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  grid-area: 1 / 1;
 }
 
 .social-name {
@@ -229,11 +250,10 @@ h1, h2, h3 {
 }
 
 .social-username {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative;
   color: rgb(var(--secondary));
   transform: translateY(100%);
+  visibility: hidden;
 }
 
 @media (hover: hover), (any-hover: hover) {
@@ -252,6 +272,7 @@ h1, h2, h3 {
   .social-link:hover .social-username {
     transform: translateY(0);
     color: var(--link-hover);
+    visibility: visible;
   }
 }
 

@@ -2,7 +2,6 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import { ThemeToggle } from './components/ThemeToggle';
 import EmailCopyButton from './components/EmailCopyButton';
-import VelarkoLogo from './components/velarko.svg';
 
 interface Data {
   name: string;
@@ -46,7 +45,13 @@ export default async function Home() {
             className="velarko-logo inline-flex items-center justify-center w-[26px] h-[26px]"
             aria-label="Velarko"
           >
-            <VelarkoLogo width={26} height={26} />
+            <img
+              src="/velarko.svg"
+              alt=""
+              width={26}
+              height={26}
+              style={{ imageRendering: 'auto' }}
+            />
           </a>
         </p>
 

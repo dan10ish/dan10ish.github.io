@@ -10,22 +10,10 @@ export function ThemeToggle() {
 
   useEffect(() => {
     setMounted(true);
-    
-    if (typeof window !== 'undefined') {
-      const updateThemeColor = (currentTheme: string) => {
-        const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-        if (metaThemeColor) {
-          metaThemeColor.setAttribute('content', currentTheme === 'dark' ? '#111111' : '#f8f8f8');
-        }
-      };
-
-      const currentTheme = resolvedTheme || theme || 'light';
-      updateThemeColor(currentTheme);
-    }
-  }, [theme, resolvedTheme]);
+  }, []);
 
   if (!mounted) {
-    return null;
+    return <div className="w-9 h-9" aria-hidden="true" />;
   }
 
   const currentTheme = resolvedTheme || theme || 'light';
@@ -33,11 +21,14 @@ export function ThemeToggle() {
 
   return (
     <button
+      type="button"
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
-      className="p-2 rounded-full text-foreground hover-shadow hover-scale hover-bg transition-all duration-200"
+      className="w-9 h-9 flex items-center justify-center text-foreground cursor-pointer p-1.5 m-0 bg-transparent border-0 outline-none theme-toggle-btn"
       aria-label={`Switch to ${isDark ? 'light' : 'dark'} theme`}
     >
-      {isDark ? <Sun size={18} /> : <Moon size={18} />}
+      <span className="theme-toggle-icon">
+        {isDark ? <Sun size={19} /> : <Moon size={19} />}
+      </span>
     </button>
   );
-} 
+}

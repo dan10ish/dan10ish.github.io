@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { ScrollToTop } from './components/ScrollToTop';
 import { ThemeProvider } from "./components/ThemeProvider";
 import "./globals.css";
 
@@ -155,7 +154,6 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
-          <ScrollToTop />
         </ThemeProvider>
       </body>
     </html>
