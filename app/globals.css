@@ -163,3 +163,90 @@ h1, h2, h3 {
     opacity: 1;
   }
 }
+
+.social-chevron {
+  color: rgb(var(--tertiary));
+  transform: translateZ(0);
+}
+.social-text {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  clip-path: inset(0 -100vw);
+}
+.social-name,
+.social-username {
+  white-space: nowrap;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.social-name {
+  position: relative;
+  transform: translateY(0);
+}
+.social-username {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: rgb(var(--secondary));
+  transform: translateY(100%);
+}
+@media (hover: hover), (any-hover: hover) {
+  .social-link:hover {
+    background-color: rgb(var(--surface));
+  }
+  .social-link:not(.email-social-link):hover .social-chevron {
+    display: none;
+  }
+  .email-social-link:hover .social-chevron {
+    color: var(--link-hover);
+  }
+  .social-link:hover .social-name {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(-100%);
+  }
+  .social-link:hover .social-username {
+    position: relative;
+    transform: translateY(0);
+    color: var(--link-hover);
+  }
+}
+.email-copy-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  color: rgb(var(--tertiary));
+  cursor: pointer;
+  border-radius: 6px;
+  -webkit-tap-highlight-color: transparent;
+  flex-shrink: 0;
+}
+.email-copy-btn:disabled {
+  cursor: default;
+}
+@media (hover: hover), (any-hover: hover) {
+  .email-copy-btn:not(:disabled):hover {
+    color: rgb(var(--foreground));
+    background-color: rgb(var(--surface));
+  }
+}
+.email-copy-icon {
+  position: absolute;
+  transition: opacity 0.15s ease-out, transform 0.15s ease-out;
+}
+.email-copy-icon-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+.email-copy-icon-hidden {
+  opacity: 0;
+  transform: scale(0.6);
+}

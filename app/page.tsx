@@ -1,16 +1,15 @@
 import { promises as fs } from 'fs';
-import { Github, Link, ArrowUpRight } from 'lucide-react';
 import path from 'path';
 import { memo } from 'react';
-import Image from 'next/image';
 import { ThemeToggle } from './components/ThemeToggle';
+import EmailCopyButton from './components/EmailCopyButton';
+
 
 interface Data {
   name: string;
   bio: string;
   website: string;
   experience: { year: string; title: string; location: string }[];
-  projects: { title: string; tag: string; live?: string; source?: string }[];
   education: { year: string; institution: string; degree: string }[];
   contact: { platform: string; handle: string; url: string }[];
 }
@@ -57,53 +56,6 @@ const WorkItem = memo<{ year: string; title: string; location?: string }>(({ yea
   </div>
 ));
 
-const ProjectItem = memo<{ title: string; tag: string; live?: string; source?: string }>(({ title, tag, live, source }) => (
-  <div className="flex flex-row gap-3 md:gap-9 items-center">
-    <div className="flex-1">
-      <h3 className="font-normal text-foreground leading-relaxed" style={{ fontSize: 'var(--font-sm)' }}>{title}</h3>
-    </div>
-    <div className="flex items-center gap-4 md:gap-5 flex-shrink-0">
-      <div className="w-20 flex justify-end">
-        <span className="inline-block px-2 py-1 bg-[rgb(var(--surface))] text-secondary rounded-lg" style={{ fontSize: 'var(--font-xs)' }}>
-          {tag}
-        </span>
-      </div>
-      {live ? (
-        <a
-          href={live}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center text-secondary hover-pointer hover:scale-110"
-          style={{ fontSize: 'var(--font-xs)' }}
-          aria-label="View live demo"
-        >
-          <Link size={17} />
-        </a>
-      ) : (
-        <span className="flex items-center text-secondary opacity-40 select-none cursor-default" style={{ fontSize: 'var(--font-xs)' }}>
-          <Link size={17} />
-        </span>
-      )}
-      {source ? (
-        <a
-          href={source}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center text-secondary hover-pointer hover:scale-110"
-          style={{ fontSize: 'var(--font-xs)' }}
-          aria-label="View source code"
-        >
-          <Github size={17} />
-        </a>
-      ) : (
-        <span className="flex items-center text-secondary opacity-40 select-none cursor-default" style={{ fontSize: 'var(--font-xs)' }}>
-          <Github size={17} />
-        </span>
-      )}
-    </div>
-  </div>
-));
-
 const EducationItem = memo<{ year: string; institution: string; degree: string }>(({ year, institution, degree }) => (
   <div className="flex flex-row gap-3 md:gap-9">
     <div className="w-28 flex-shrink-0">
@@ -116,32 +68,10 @@ const EducationItem = memo<{ year: string; institution: string; degree: string }
   </div>
 ));
 
-const ContactItem = memo<{ platform: string; handle: string; url: string }>(({ platform, handle, url }) => (
-  <div className="flex flex-row gap-3 md:gap-9">
-    <div className="w-28 flex-shrink-0">
-      <p className="text-tertiary" style={{ fontSize: 'var(--font-sm)' }}>{platform}</p>
-    </div>
-    <div className="flex-1">
-      <a
-        href={url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="font-normal text-foreground hover-pointer group inline-flex items-center gap-1"
-        style={{ fontSize: 'var(--font-sm)' }}
-      >
-        {handle}
-        <ArrowUpRight size={12} className="opacity-0 group-hover-show" />
-      </a>
-    </div>
-  </div>
-));
-
 ProfileHeader.displayName = 'ProfileHeader';
 Section.displayName = 'Section';
 WorkItem.displayName = 'WorkItem';
-ProjectItem.displayName = 'ProjectItem';
 EducationItem.displayName = 'EducationItem';
-ContactItem.displayName = 'ContactItem';
 
 export default async function Home() {
   const file = await fs.readFile(path.join(process.cwd(), 'app/data.json'), 'utf8');
@@ -165,23 +95,57 @@ export default async function Home() {
           ))}
         </Section>
 
-        <Section title="Contact" >
-          {data.contact.map((item, index) => (
-            <ContactItem key={index} platform={item.platform} handle={item.handle} url={item.url} />
-          ))}
+        <Section title="Contact" isLast={true}>
+          <nav aria-label="Social links">
+            <ul className="flex flex-col gap-1.5 list-none p-0 m-0 -ml-2.5">
+              {data.contact.map((item, index) => {
+                const isEmail = item.platform === "Email";
+                const email = isEmail ? item.url.replace("mailto:", "") : "";
+
+                return (
+                  <li key={index} className="flex items-center">
+                    <a
+                      href={item.url}
+                      target={isEmail ? undefined : "_blank"}
+                      rel={isEmail ? undefined : "noopener noreferrer"}
+                      className={`social-link inline-flex items-center gap-1.5 font-normal leading-snug px-2.5 py-1 rounded-md ${
+                        isEmail ? "email-social-link" : ""
+                      }`}
+                      style={{ fontSize: 'var(--font-sm)' }}
+                    >
+                      {isEmail ? (
+                        item.platform
+                      ) : (
+                        <span className="social-text">
+                          <span className="social-name">{item.platform}</span>
+                          <span className="social-username">@{item.handle}</span>
+                        </span>
+                      )}
+                      <svg
+                        width="11"
+                        height="11"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="social-chevron shrink-0"
+                        aria-hidden="true"
+                      >
+                        <path d="M7 17L17 7" />
+                        <path d="M7 7h10v10" />
+                      </svg>
+                    </a>
+                    {isEmail && <EmailCopyButton email={email} />}
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
         </Section>
 
-        <Section title="Projects" gap="1.1rem" isLast={true}>
-          {data.projects.map((project, index) => (
-            <ProjectItem
-              key={index}
-              title={project.title}
-              tag={project.tag}
-              live={project.live}
-              source={project.source}
-            />
-          ))}
-        </Section>
+        
       </div>
     </main>
   );
