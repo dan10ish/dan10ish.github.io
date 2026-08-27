@@ -2,6 +2,7 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import { ThemeToggle } from './components/ThemeToggle';
 import EmailCopyButton from './components/EmailCopyButton';
+import VelarkoLogo from './components/velarko.svg';
 
 interface Data {
   name: string;
@@ -42,16 +43,12 @@ export default async function Home() {
             href="https://velarko.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="velarko-logo inline-flex items-center justify-center w-[26px] h-[26px]"
+            className="velarko-logo"
             aria-label="Velarko"
           >
-            <img
-              src="/velarko.svg"
-              alt=""
-              width={26}
-              height={26}
-              style={{ imageRendering: 'auto' }}
-            />
+            <span className="velarko-logo-inner">
+              <VelarkoLogo width={104} height={104} />
+            </span>
           </a>
         </p>
 

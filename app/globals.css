@@ -186,6 +186,7 @@ h1, h2, h3 {
   }
 }
 
+/* Velarko Logo & Flutter Animation */
 @keyframes velarko-flutter {
   0%, 100% { transform: scaleX(1) translateY(0); }
   15%       { transform: scaleX(0.4) translateY(-2px) rotate(-2deg); }
@@ -197,12 +198,27 @@ h1, h2, h3 {
 }
 
 .velarko-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  overflow: hidden;
   border-radius: 6px;
   transition: transform 0.2s ease;
   will-change: transform;
 }
 
-.velarko-logo img {
+.velarko-logo-inner {
+  display: block;
+  width: 104px;
+  height: 104px;
+  flex-shrink: 0;
+  transform: scale(0.25);
+  transform-origin: top left;
+}
+
+.velarko-logo-inner svg {
   animation: velarko-flutter 2.4s ease-in-out infinite;
   will-change: transform;
   transform-origin: center;
@@ -212,7 +228,7 @@ h1, h2, h3 {
   .velarko-logo:hover {
     transform: scale(1.2);
   }
-  .velarko-logo:hover img {
+  .velarko-logo:hover svg {
     animation-play-state: paused;
   }
 }

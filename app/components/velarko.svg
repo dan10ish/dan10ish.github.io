@@ -5,10 +5,10 @@
       <stop offset="100%" stop-color="#fff172" />
     </radialGradient>
 
-    <filter id="blur28" x="-80%" y="-80%" width="260%" height="260%" color-interpolation-filters="linearRGB"><feGaussianBlur stdDeviation="11"/></filter>
-    <filter id="blur42" x="-80%" y="-80%" width="260%" height="260%" color-interpolation-filters="linearRGB"><feGaussianBlur stdDeviation="16"/></filter>
-    <filter id="blur49" x="-80%" y="-80%" width="260%" height="260%" color-interpolation-filters="linearRGB"><feGaussianBlur stdDeviation="19"/></filter>
-    <filter id="blur56" x="-80%" y="-80%" width="260%" height="260%" color-interpolation-filters="linearRGB"><feGaussianBlur stdDeviation="22"/></filter>
+    <filter id="blur28" x="-80%" y="-80%" width="260%" height="260%" color-interpolation-filters="linearRGB"><feGaussianBlur stdDeviation="28"/></filter>
+    <filter id="blur42" x="-80%" y="-80%" width="260%" height="260%" color-interpolation-filters="linearRGB"><feGaussianBlur stdDeviation="42"/></filter>
+    <filter id="blur49" x="-80%" y="-80%" width="260%" height="260%" color-interpolation-filters="linearRGB"><feGaussianBlur stdDeviation="49"/></filter>
+    <filter id="blur56" x="-80%" y="-80%" width="260%" height="260%" color-interpolation-filters="linearRGB"><feGaussianBlur stdDeviation="56"/></filter>
 
     <clipPath id="v-clip">
       <path d="M28.4607 119.836L28.4607 81.3358L28.4607 46.1848C28.4607 41.3672 29.7049 36.6313 32.0727 32.4357C41.664 15.4411 65.2698 13.2412 77.8362 28.1708L157.623 122.962C162.175 128.37 164.671 135.212 164.671 142.281L164.671 206.964C164.671 225.656 147.763 239.797 129.365 236.491L109.524 232.925C105.523 232.207 101.711 230.682 98.3176 228.445L35.9607 187.336C31.2751 184.212 28.4607 178.953 28.4607 173.322L28.4607 172.836L28.4607 153.336V119.836Z" />
