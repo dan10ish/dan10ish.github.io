@@ -57,10 +57,10 @@
   --heading: 51 51 51;
   --link-hover: #2563eb;
   
-  --section-gap: 3rem;
+  --section-gap: 2.5rem;
   --heading-gap: 1rem;
   --item-gap: 1rem;
-  --profile-gap: 3rem;
+  --profile-gap: 2.5rem;
   
   --font-xs: 0.75rem;
   --font-sm: 0.85rem;
@@ -81,10 +81,10 @@
 
 @media (min-width: 768px) {
   :root {
-    --section-gap: 3rem;
+    --section-gap: 2.5rem;
     --heading-gap: 1.5rem;
     --item-gap: 1.5rem;
-    --profile-gap: 3rem;
+    --profile-gap: 2.5rem;
     
     --font-lg: 1rem;
   }
@@ -164,25 +164,70 @@ h1, h2, h3 {
   }
 }
 
+/* Velarko Logo & Flutter Animation */
+@keyframes velarko-flutter {
+  0%, 100% { transform: scaleX(1) translateY(0); }
+  15%       { transform: scaleX(0.4) translateY(-2px) rotate(-2deg); }
+  30%       { transform: scaleX(1) translateY(0); }
+  45%       { transform: scaleX(0.4) translateY(2px) rotate(2deg); }
+  60%       { transform: scaleX(1) translateY(0); }
+  78%       { transform: scaleX(0.6) translateY(-1px); }
+  90%       { transform: scaleX(1) translateY(0); }
+}
+
+.velarko-logo {
+  border-radius: 6px;
+  transition: transform 0.2s ease;
+  will-change: transform;
+}
+
+.velarko-logo svg {
+  animation: velarko-flutter 2.4s ease-in-out infinite;
+  will-change: transform;
+  transform-origin: center;
+}
+
+@media (hover: hover), ((any-hover: hover) and (any-pointer: fine)) {
+  .velarko-logo:hover {
+    transform: scale(1.2);
+  }
+  .velarko-logo:hover svg {
+    animation-play-state: paused;
+  }
+}
+
+/* Social Links & Hover Animation */
+.social-link {
+  transition: background-color 0.15s ease-out;
+}
+
 .social-chevron {
   color: rgb(var(--tertiary));
   transform: translateZ(0);
 }
+
 .social-text {
   position: relative;
   display: inline-flex;
   flex-direction: column;
-  clip-path: inset(0 -100vw);
+  overflow: hidden;
+  height: 1.5em;
+  line-height: 1.5em;
 }
+
 .social-name,
 .social-username {
   white-space: nowrap;
+  display: inline-block;
+  line-height: 1.5em;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
 .social-name {
   position: relative;
   transform: translateY(0);
 }
+
 .social-username {
   position: absolute;
   top: 0;
@@ -190,6 +235,7 @@ h1, h2, h3 {
   color: rgb(var(--secondary));
   transform: translateY(100%);
 }
+
 @media (hover: hover), (any-hover: hover) {
   .social-link:hover {
     background-color: rgb(var(--surface));
@@ -201,17 +247,15 @@ h1, h2, h3 {
     color: var(--link-hover);
   }
   .social-link:hover .social-name {
-    position: absolute;
-    top: 0;
-    left: 0;
     transform: translateY(-100%);
   }
   .social-link:hover .social-username {
-    position: relative;
     transform: translateY(0);
     color: var(--link-hover);
   }
 }
+
+/* Email Copy Button */
 .email-copy-btn {
   position: relative;
   display: inline-flex;
@@ -229,23 +273,28 @@ h1, h2, h3 {
   -webkit-tap-highlight-color: transparent;
   flex-shrink: 0;
 }
+
 .email-copy-btn:disabled {
   cursor: default;
 }
+
 @media (hover: hover), (any-hover: hover) {
   .email-copy-btn:not(:disabled):hover {
     color: rgb(var(--foreground));
     background-color: rgb(var(--surface));
   }
 }
+
 .email-copy-icon {
   position: absolute;
   transition: opacity 0.15s ease-out, transform 0.15s ease-out;
 }
+
 .email-copy-icon-visible {
   opacity: 1;
   transform: scale(1);
 }
+
 .email-copy-icon-hidden {
   opacity: 0;
   transform: scale(0.6);

@@ -1,31 +1,8 @@
 {
-  "name": "Danish Ansari",
-  "bio": "I'm building innovative solutions at the intersection of hardware and software with interest in machine learning, robotics and finance",
+  "name": "Danish",
+  "title": ["AI", "Robotics", "Finance"],
+  "about": "Mechatronics engineer and generalist bridging code and hardware.",
   "website": "dan10ish.github.io",
-  "experience": [
-    {
-      "year": "2024 \u2014 Now",
-      "title": "SWE @ Cridaa",
-      "location": "Mumbai, India"
-    },
-    {
-      "year": "2023 \u2014 2024",
-      "title": "SWE @ Innovatio Labs",
-      "location": "Mumbai, India"
-    },
-    {
-      "year": "2023",
-      "title": "SWE @ Accelus Robotics",
-      "location": "Mumbai, India"
-    }
-  ],
-  "education": [
-    {
-      "year": "2020 \u2014 2024",
-      "institution": "NMIMS, Mumbai",
-      "degree": "B.Tech Mechatronics Engineering"
-    }
-  ],
   "contact": [
     {
       "platform": "Email",

@@ -5,7 +5,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://dan10ish.github.io"),
-  title: "Danish Ansari",
+  title: "Danish",
   description:
     "Danish is a mechatronics engineer exploring machine learning, robotics and finance. This is his personal website.",
   icons: {
@@ -77,7 +77,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        
+
       </head>
       <body
         className="antialiased bg-[rgb(var(--background))] text-[rgb(var(--foreground))] font-sans"
