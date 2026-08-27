@@ -4,18 +4,18 @@
   "website": "dan10ish.github.io",
   "experience": [
     {
-      "year": "2024 — Now",
+      "year": "2024 \u2014 Now",
       "title": "SWE @ Cridaa",
       "location": "Mumbai, India"
     },
     {
-      "year": "2023 — 2024", 
+      "year": "2023 \u2014 2024",
       "title": "SWE @ Innovatio Labs",
       "location": "Mumbai, India"
     },
     {
       "year": "2023",
-      "title": "SWE @ Accelus Robotics", 
+      "title": "SWE @ Accelus Robotics",
       "location": "Mumbai, India"
     }
   ],
@@ -58,11 +58,44 @@
       "tag": "Education",
       "source": "https://github.com/dan10ish/college",
       "live": "https://dan10ish.github.io/college/"
+    },
+    {
+      "title": "Office",
+      "tag": "Web",
+      "source": "https://github.com/dan10ish/Office",
+      "live": "https://dan10ish.github.io/Office/"
+    },
+    {
+      "title": "Galaxy",
+      "tag": "Simulation",
+      "source": "https://github.com/dan10ish/Galaxy",
+      "live": "https://dan10ish.github.io/Galaxy/"
+    },
+    {
+      "title": "macOS",
+      "tag": "Web",
+      "source": "https://github.com/dan10ish/os",
+      "live": "https://os-danishs-projects-31d8c677.vercel.app/"
+    },
+    {
+      "title": "Comment Toxicity",
+      "tag": "ML",
+      "source": "https://github.com/dan10ish/CommentToxicity"
+    },
+    {
+      "title": "Terminal",
+      "tag": "Game",
+      "source": "https://github.com/dan10ish/Unity-Terminal_Hacker"
+    },
+    {
+      "title": "Cube",
+      "tag": "Game",
+      "source": "https://github.com/dan10ish/Unity-ProjectRun"
     }
   ],
   "education": [
     {
-      "year": "2020 — 2024",
+      "year": "2020 \u2014 2024",
       "institution": "NMIMS, Mumbai",
       "degree": "B.Tech Mechatronics Engineering"
     }
@@ -74,13 +107,13 @@
       "url": "mailto:aansaridan@gmail.com"
     },
     {
-      "platform": "GitHub", 
+      "platform": "GitHub",
       "handle": "dan10ish",
       "url": "https://github.com/dan10ish"
     },
     {
       "platform": "LinkedIn",
-      "handle": "dan10ish", 
+      "handle": "dan10ish",
       "url": "https://linkedin.com/in/dan10ish"
     },
     {
@@ -94,4 +127,4 @@
       "url": "https://instagram.com/dan10ish"
     }
   ]
-} 
+}

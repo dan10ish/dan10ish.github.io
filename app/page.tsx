@@ -63,7 +63,7 @@ const ProjectItem = memo<{ title: string; tag: string; live?: string; source?: s
       <h3 className="font-normal text-foreground leading-relaxed" style={{ fontSize: 'var(--font-sm)' }}>{title}</h3>
     </div>
     <div className="flex items-center gap-4 md:gap-5 flex-shrink-0">
-      <div className="w-20 flex justify-center">
+      <div className="w-20 flex justify-end">
         <span className="inline-block px-2 py-1 bg-[rgb(var(--surface))] text-secondary rounded-lg" style={{ fontSize: 'var(--font-xs)' }}>
           {tag}
         </span>
@@ -158,7 +158,20 @@ export default async function Home() {
           ))}
         </Section>
 
-        <Section title="Projects" gap="1.1rem">
+
+        <Section title="Education">
+          {data.education.map((item, index) => (
+            <EducationItem key={index} year={item.year} institution={item.institution} degree={item.degree} />
+          ))}
+        </Section>
+
+        <Section title="Contact" >
+          {data.contact.map((item, index) => (
+            <ContactItem key={index} platform={item.platform} handle={item.handle} url={item.url} />
+          ))}
+        </Section>
+
+        <Section title="Projects" gap="1.1rem" isLast={true}>
           {data.projects.map((project, index) => (
             <ProjectItem
               key={index}
@@ -167,18 +180,6 @@ export default async function Home() {
               live={project.live}
               source={project.source}
             />
-          ))}
-        </Section>
-
-        <Section title="Education">
-          {data.education.map((item, index) => (
-            <EducationItem key={index} year={item.year} institution={item.institution} degree={item.degree} />
-          ))}
-        </Section>
-
-        <Section title="Contact" isLast={true}>
-          {data.contact.map((item, index) => (
-            <ContactItem key={index} platform={item.platform} handle={item.handle} url={item.url} />
           ))}
         </Section>
       </div>
