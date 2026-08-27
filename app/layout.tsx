@@ -3,31 +3,51 @@ import { ScrollToTop } from './components/ScrollToTop';
 import { ThemeProvider } from "./components/ThemeProvider";
 import "./globals.css";
 
+const BASE_URL = "https://danishansari.co";
+const OG_IMAGE = `${BASE_URL}/ogimage.png`;
+const ICON = `${BASE_URL}/icon.png`;
+const DESCRIPTION =
+  "Mechatronics engineer integrating hardware and software to create applications in machine learning, robotics, and finance.";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://dan10ish.github.io"),
-  title: "Danish",
-  description:
-    "Danish is a mechatronics engineer exploring machine learning, robotics and finance. This is his personal website.",
-  icons: {
-    icon: '/icon.png',
+  metadataBase: new URL(BASE_URL),
+  title: {
+    default: "Danish",
+    template: "%s | Danish",
   },
+  description: DESCRIPTION,
+  generator: "Next.js",
+  applicationName: "Danish Ansari",
+  referrer: "origin-when-cross-origin",
   keywords: [
-    "Danish",
-    "ai",
-    "artificial intelligence",
     "Danish Ansari",
-    "Danish Mumbai",
-    "mechatronics",
-    "robotics",
-    "machine learning",
-    "developer",
-    "engineer",
+    "dan10ish",
+    "mechatronics engineer",
+    "machine learning engineer",
+    "robotics engineer",
+    "artificial intelligence",
+    "finance",
+    "software developer",
     "portfolio",
+    "projects",
+    "Mumbai",
+    "Dar es Salaam",
+    "Tanzania",
+    "Africa",
+    "India",
   ],
+  authors: [{ name: "Danish Ansari", url: BASE_URL }],
+  creator: "Danish Ansari",
+  publisher: "Danish Ansari",
+  icons: {
+    icon: [{ url: ICON, type: "image/png" }],
+    apple: [{ url: ICON, type: "image/png" }],
+    shortcut: ICON,
+  },
   robots: {
     index: true,
     follow: true,
-    nocache: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
@@ -36,36 +56,36 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  alternates: { canonical: "https://dan10ish.github.io" },
+  alternates: { canonical: BASE_URL },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: "Danish Ansari",
+    title: "Danish Ansari",
+    description: DESCRIPTION,
+    url: BASE_URL,
+    images: [
+      {
+        url: OG_IMAGE,
+        width: 1200,
+        height: 630,
+        type: "image/png",
+        alt: "Danish Ansari Portfolio Preview",
+      },
+    ],
+  },
   twitter: {
     card: "summary_large_image",
     site: "@dan10ish",
     creator: "@dan10ish",
-    title: "Danish",
-    description:
-      "Danish's personal website featuring his projects and insights in robotics and machine learning.",
-    images: ["https://i.ibb.co/vmBrhSd/OG.png"],
-  },
-  openGraph: {
-    type: "website",
-    siteName: "Danish",
-    title: "Danish",
-    description:
-      "Danish's personal website featuring his projects and insights in robotics and machine learning.",
-    url: "https://dan10ish.github.io",
-    images: [
-      {
-        url: "https://i.ibb.co/vmBrhSd/OG.png",
-        width: 1200,
-        height: 675,
-        type: "image/png",
-        alt: "Danish's Portfolio Preview",
-      },
-    ],
+    title: "Danish Ansari",
+    description: DESCRIPTION,
+    images: [OG_IMAGE],
   },
   other: {
     "profile:username": "dan10ish",
     "profile:first_name": "Danish",
+    "profile:last_name": "Ansari",
   },
 };
 
@@ -74,10 +94,56 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Danish Ansari",
+    alternateName: "dan10ish",
+    url: BASE_URL,
+    image: OG_IMAGE,
+    jobTitle: "Mechatronics Engineer",
+    description: DESCRIPTION,
+    knowsAbout: [
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Robotics",
+      "Mechatronics",
+      "Finance",
+      "Software Development",
+    ],
+    sameAs: [
+      "https://github.com/dan10ish",
+      "https://linkedin.com/in/dan10ish",
+      "https://x.com/dan10ish",
+      "https://instagram.com/dan10ish",
+      "https://snapchat.com/add/dan10ish",
+    ],
+  };
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Favicon & app icons — explicit tags for static export compatibility */}
+        <link rel="icon" href="/icon.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/icon.png" />
+        <link rel="shortcut icon" href="/icon.png" type="image/png" />
 
+        {/* Open Graph — explicit meta tags guarantee correct rendering in static export */}
+        <meta property="og:image" content={OG_IMAGE} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:alt" content="Danish Ansari Portfolio Preview" />
+
+        {/* Twitter Card image */}
+        <meta name="twitter:image" content={OG_IMAGE} />
+        <meta name="twitter:card" content="summary_large_image" />
+
+        <link rel="alternate" href="/llms.txt" type="text/markdown" title="LLM-optimized content" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body
         className="antialiased bg-[rgb(var(--background))] text-[rgb(var(--foreground))] font-sans"

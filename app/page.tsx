@@ -2,7 +2,7 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import { ThemeToggle } from './components/ThemeToggle';
 import EmailCopyButton from './components/EmailCopyButton';
-import VelarkoLogo from './components/VelarkoLogo';
+import VelarkoLogo from './components/velarko.svg';
 
 interface Data {
   name: string;
