@@ -7,22 +7,6 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   allowedDevOrigins: ['192.168.1.101'],
-  turbopack: {
-    rules: {
-      "*.svg": {
-        loaders: [
-          {
-            loader: "@svgr/webpack",
-            options: {
-              svgo: false,
-              titleProp: true,
-            },
-          },
-        ],
-        as: "*.tsx",
-      },
-    },
-  },
 };
 
 export default nextConfig;

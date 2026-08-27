@@ -1,4 +1,4 @@
-import VelarkoLogo from "./components/velarko.svg";
+import VelarkoLogo from "./components/VelarkoLogo";
 import EmailCopyButton from "./components/EmailCopyButton";
 import PageTransition from "./components/PageTransition";
 import { data } from "./data";

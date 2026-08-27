@@ -1,8 +1,22 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 
 import "./globals.css";
 import { ThemeProvider } from "./components/ThemeProvider";
 import { ThemeToggleButton } from "./components/ThemeToggleButton";
+
+const sfMono = localFont({
+  src: [
+    { path: "../public/fonts/SFMono-Light.woff2", weight: "300", style: "normal" },
+    { path: "../public/fonts/SFMono-Regular.woff2", weight: "400", style: "normal" },
+    { path: "../public/fonts/SFMono-Medium.woff2", weight: "500", style: "normal" },
+    { path: "../public/fonts/SFMono-Semibold.woff2", weight: "600", style: "normal" },
+    { path: "../public/fonts/SFMono-Bold.woff2", weight: "700", style: "normal" },
+    { path: "../public/fonts/SFMono-Heavy.woff2", weight: "800", style: "normal" },
+  ],
+  variable: "--font-sans",
+  display: "swap",
+});
 
 const BASE_URL = "https://danishansari.co";
 const OG_IMAGE = `${BASE_URL}/ogimage.png`;
@@ -124,25 +138,18 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Favicon & app icons — explicit tags for static export compatibility */}
         <link rel="icon" href="/icon.png" type="image/png" />
         <link rel="apple-touch-icon" href="/icon.png" />
         <link rel="shortcut icon" href="/icon.png" type="image/png" />
 
-        {/* Open Graph — explicit meta tags guarantee correct rendering in static export */}
         <meta property="og:image" content={OG_IMAGE} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:alt" content="Danish Ansari Portfolio Preview" />
 
-        {/* Twitter Card image */}
         <meta name="twitter:image" content={OG_IMAGE} />
         <meta name="twitter:card" content="summary_large_image" />
-
-        {/* Preload SF Mono for instant rendering */}
-        <link rel="preload" href="/fonts/SFMono-Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="preload" href="/fonts/SFMono-Medium.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
 
         <link rel="alternate" href="/llms.txt" type="text/markdown" title="LLM-optimized content" />
         <script
@@ -151,7 +158,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`font-sans antialiased min-h-svh relative`}
+        className={`${sfMono.variable} font-sans antialiased min-h-svh relative`}
       >
         <ThemeProvider attribute="data-theme" defaultTheme="gray" themes={["gray", "green", "onyx", "solarized"]}>
           {children}

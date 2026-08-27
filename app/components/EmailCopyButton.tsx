@@ -34,7 +34,6 @@ export default function EmailCopyButton({ email }: EmailCopyButtonProps) {
         setCopied(false);
       }, 5000);
     } catch {
-      /* silently fail */
     }
   }, [copied, email]);
 

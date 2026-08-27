@@ -8,17 +8,10 @@ const THEMES = ["gray", "green", "onyx", "solarized"];
 
 export function ThemeToggleButton() {
   const { theme, setTheme, resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
   const iconRef = useRef<ContrastIconHandle>(null);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   
-  
-  const currentTheme = mounted ? (theme === "system" ? resolvedTheme : theme) : "gray";
-  
+  const currentTheme = theme === "system" ? resolvedTheme : (theme || "gray");
   const cycleTheme = () => {
     const currentIndex = THEMES.indexOf(currentTheme as string);
     const nextIndex = (currentIndex + 1) % THEMES.length;
