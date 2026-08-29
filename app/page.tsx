@@ -16,17 +16,17 @@ export default function Home() {
           </header>
 
           <div className="flex flex-col gap-6">
-            <p className="text-[14px] font-normal leading-snug text-secondary">
+            <p className="text-[14px] font-normal leading-snug">
               {data.personal.title.join(" · ")}
             </p>
             {data.personal.about && (
-              <p className="text-[14px] font-normal leading-relaxed text-secondary">
+              <p className="text-[14px] font-normal leading-relaxed">
                 {data.personal.about}
               </p>
             )}
           </div>
 
-          <p className="flex items-center gap-1.5 text-[14px] font-normal leading-snug text-secondary">
+          <p className="flex items-center gap-1.5 text-[14px] font-normal leading-snug">
             <span>Currently @</span>
             <a
               href="https://velarko.com"

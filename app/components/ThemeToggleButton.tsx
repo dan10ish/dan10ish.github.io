@@ -21,7 +21,7 @@ export function ThemeToggleButton() {
 
   return (
     <button
-      className="fixed bottom-6 right-6 p-2 rounded-full text-secondary hover:text-foreground z-50 cursor-pointer focus:outline-none"
+      className="fixed bottom-6 right-6 p-2 rounded-full text-foreground z-50 cursor-pointer focus:outline-none"
       onClick={cycleTheme}
       onMouseEnter={() => iconRef.current?.startAnimation()}
       onMouseLeave={() => iconRef.current?.stopAnimation()}

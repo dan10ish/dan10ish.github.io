@@ -20,7 +20,7 @@
   --tag-game-text: rgb(220, 38, 38);
   --background: #FFFFFF;
   --foreground: #111827;
-  --secondary: #4B5563;
+  --secondary: #111827;
   --border: #D1D5DB;
   --chevron: #9CA3AF;
   --social-hover-bg: rgba(0, 0, 0, 0.05);
@@ -48,7 +48,7 @@
   --tag-game-text: rgb(220, 38, 38);
   --background: #FFFFFF;
   --foreground: #111827;
-  --secondary: #4B5563;
+  --secondary: #111827;
   --border: #D1D5DB;
   --chevron: #9CA3AF;
   --social-hover-bg: rgba(0, 0, 0, 0.05);
@@ -74,11 +74,11 @@
   --tag-ml-text: rgb(254, 240, 138);
   --tag-game-bg: rgba(248, 113, 113, 0.2);
   --tag-game-text: rgb(254, 202, 202);
-  --background: #444E36;
-  --foreground: #F0F4E8;
-  --secondary: #A9B397;
-  --border: #5C674A;
-  --chevron: #808B6B;
+  --background: #0f2015;
+  --foreground: #80e3c2;
+  --secondary: #80e3c2;
+  --border: #1a3826;
+  --chevron: #529e85;
   --social-hover-bg: rgba(255, 255, 255, 0.08);
   --link-blue: #7BC9F8;
   color-scheme: dark;
@@ -104,7 +104,7 @@
   --tag-game-text: rgb(252, 165, 165);
   --background: #111111;
   --foreground: #EDEDED;
-  --secondary: #8E8E93;
+  --secondary: #EDEDED;
   --border: #2C2C2E;
   --chevron: #666666;
   --social-hover-bg: rgba(255, 255, 255, 0.1);
@@ -132,7 +132,7 @@
   --tag-game-text: rgb(220, 50, 47);
   --background: #002B36;
   --foreground: #EEE8D5;
-  --secondary: #93A1A1;
+  --secondary: #EEE8D5;
   --border: #073642;
   --chevron: #586E75;
   --social-hover-bg: rgba(255, 255, 255, 0.06);
@@ -209,7 +209,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  color: var(--secondary);
+  color: var(--foreground);
   transform: translateY(100%);
 }
 @media (hover: hover), (any-hover: hover) {

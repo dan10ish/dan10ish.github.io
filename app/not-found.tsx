@@ -10,7 +10,7 @@ export default function NotFound() {
             <h1 className="text-[14px] font-medium leading-snug">404</h1>
           </header>
 
-          <p className="text-[14px] font-normal leading-snug text-secondary">
+          <p className="text-[14px] font-normal leading-snug">
             Page Not Found
           </p>
 
