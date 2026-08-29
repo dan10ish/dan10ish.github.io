@@ -19,7 +19,7 @@ export const data: Data = {
   personal: {
     name: "Danish Ansari",
     title: ["AI", "Robotics", "Finance"],
-    about: "Mechatronics engineer and generalist bridging code and hardware.",
+    about: "Mechatronics engineer bridging code and hardware.",
   },
   social: [
     {
