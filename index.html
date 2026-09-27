@@ -92,7 +92,7 @@
       font-size:14px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
       min-height:100dvh
     }
-    html *,body *{transition-property:transform,opacity,width,height,margin,padding;transition-duration:0s}
+    html *,body *{transition-property:transform,opacity,width,height,margin,padding}
     a{text-decoration:none;color:inherit}
     ul{list-style:none}
     button{font-family:inherit}
@@ -155,42 +155,42 @@
     }
 
     .email-copy-btn{
-      position:relative;display:inline-flex;align-items:center;justify-content:center;
+      display:inline-flex;align-items:center;justify-content:center;
       width:28px;height:28px;border:none;background:transparent;
       color:var(--chevron);cursor:pointer;border-radius:6px;
       -webkit-tap-highlight-color:transparent;flex-shrink:0
     }
-    .email-copy-btn:disabled{cursor:default}
     @media(hover:hover),(any-hover:hover){
-      .email-copy-btn:not(:disabled):hover{color:var(--foreground);background-color:var(--social-hover-bg)}
+      .email-copy-btn:hover{color:var(--foreground);background-color:var(--social-hover-bg)}
     }
-    .email-copy-icon{position:absolute;transition:opacity 0.15s ease-out,transform 0.15s ease-out}
-    .email-copy-icon-visible{opacity:1;transform:scale(1)}
-    .email-copy-icon-hidden{opacity:0;transform:scale(0.6)}
+    .icon-copy, .icon-check{
+      display:flex;
+      transition:opacity 0.15s ease, transform 0.15s ease;
+    }
+    .icon-check{ display:none; }
+    .email-copy-btn.copied .icon-copy{ display:none; }
+    .email-copy-btn.copied .icon-check{ display:flex; }
 
     #theme-btn{
       position:fixed;bottom:24px;right:24px;
-      width:32px;height:32px;
-      padding:0;
-      border:1.5px solid var(--border);
-      background:transparent;
-      border-radius:50%;cursor:pointer;z-index:50;
+      padding:8px;
+      border:none;background:transparent;
+      color:var(--foreground);
+      border-radius:9999px;cursor:pointer;z-index:50;
       display:flex;align-items:center;justify-content:center;
-      transition:border-color 0.2s ease
+      -webkit-tap-highlight-color:transparent
     }
     #theme-btn:focus{outline:none}
 
-    #theme-dot{
-      width:9px;height:9px;
-      border-radius:50%;
-      flex-shrink:0;
-      transition:background-color 0.2s ease
+    #contrast-path{
+      transform-box:view-box;
+      transform-origin:center;
+      transition:transform 0.5s cubic-bezier(0.34,1.56,0.64,1)
     }
-    /* dot = next theme's signature color */
-    [data-theme="gray"] #theme-dot    {background:#80e3c2}
-    [data-theme="green"] #theme-dot   {background:#EDEDED}
-    [data-theme="onyx"] #theme-dot    {background:#EEE8D5}
-    [data-theme="solarized"] #theme-dot{background:#111827}
+    [data-theme="gray"]      #contrast-path{transform:rotate(0deg)}
+    [data-theme="green"]     #contrast-path{transform:rotate(90deg)}
+    [data-theme="onyx"]      #contrast-path{transform:rotate(180deg)}
+    [data-theme="solarized"] #contrast-path{transform:rotate(270deg)}
   </style>
 </head>
 <body>
@@ -282,13 +282,17 @@
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="social-chevron" aria-hidden="true"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
               </a>
               <button type="button" id="email-copy-btn" class="email-copy-btn" aria-label="Copy email address">
-                <svg id="copy-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="email-copy-icon email-copy-icon-visible" aria-hidden="true">
-                  <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
-                  <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
-                </svg>
-                <svg id="check-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="email-copy-icon email-copy-icon-hidden" aria-hidden="true">
-                  <path d="M20 6 9 17l-5-5"/>
-                </svg>
+                <span class="icon-copy">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
+                    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+                  </svg>
+                </span>
+                <span class="icon-check">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M20 6 9 17l-5-5"/>
+                  </svg>
+                </span>
               </button>
             </li>
           </ul>
@@ -299,7 +303,12 @@
   </div>
 
   <button id="theme-btn" aria-label="Toggle theme">
-    <span id="theme-dot"></span>
+    <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
+         stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
+         xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="10"/>
+      <path id="contrast-path" d="M12 18a6 6 0 0 0 0-12v12z"/>
+    </svg>
   </button>
 
   <script>
@@ -315,35 +324,38 @@
         var next=THEMES[(THEMES.indexOf(cur)+1)%THEMES.length];
         html.setAttribute('data-theme',next);save(next);
       });
-      var copyBtn=document.getElementById('email-copy-btn');
-      var copyIcon=document.getElementById('copy-icon');
-      var checkIcon=document.getElementById('check-icon');
-      var EMAIL='aansaridan@gmail.com';
-      var copied=false;
-      function showCopied(){
-        copied=true;copyBtn.disabled=true;
+      var copyBtn = document.getElementById('email-copy-btn');
+      var EMAIL   = 'aansaridan@gmail.com';
+      var timer   = null;
+
+      copyBtn.addEventListener('click', function(){
+        if(copyBtn.classList.contains('copied')) return;
+
+        // Show tick immediately
+        copyBtn.classList.add('copied');
         copyBtn.setAttribute('aria-label','Copied');
-        copyIcon.className='email-copy-icon email-copy-icon-hidden';
-        checkIcon.className='email-copy-icon email-copy-icon-visible';
-        setTimeout(function(){
-          copied=false;copyBtn.disabled=false;
+        timer = setTimeout(function(){
+          copyBtn.classList.remove('copied');
           copyBtn.setAttribute('aria-label','Copy email address');
-          copyIcon.className='email-copy-icon email-copy-icon-visible';
-          checkIcon.className='email-copy-icon email-copy-icon-hidden';
-        },5000);
-      }
-      copyBtn.addEventListener('click',function(){
-        if(copied)return;
-        if(navigator.clipboard&&navigator.clipboard.writeText){
-          navigator.clipboard.writeText(EMAIL).then(showCopied).catch(function(){});
-        }else{
-          var ta=document.createElement('textarea');
-          ta.value=EMAIL;ta.style.cssText='position:fixed;left:-9999px;top:-9999px';
-          document.body.appendChild(ta);ta.focus();ta.select();
-          try{document.execCommand('copy');showCopied()}catch(e){}
-          document.body.removeChild(ta);
+        }, 5000);
+
+        // Copy to clipboard
+        if(navigator.clipboard && navigator.clipboard.writeText){
+          navigator.clipboard.writeText(EMAIL).catch(function(){ fallback(); });
+        } else {
+          fallback();
         }
       });
+
+      function fallback(){
+        var ta = document.createElement('textarea');
+        ta.value = EMAIL;
+        ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0';
+        document.body.appendChild(ta);
+        ta.focus(); ta.select();
+        try{ document.execCommand('copy'); }catch(e){}
+        document.body.removeChild(ta);
+      }
     })();
   </script>
 </body>
