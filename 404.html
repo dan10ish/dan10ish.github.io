@@ -2,7 +2,7 @@
 <html lang="en" data-theme="gray">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
   <title>404 | Danish</title>
   <meta name="robots" content="noindex"/>
   <link rel="icon" href="/icon.png" type="image/png"/>
@@ -15,8 +15,8 @@
     [data-theme="green"]{--background:#0f2015;--foreground:#80e3c2;--border:#1a3826;--chevron:#529e85;--social-hover-bg:rgba(255,255,255,0.08);--link-blue:#7BC9F8;color-scheme:dark}
     [data-theme="onyx"]{--background:#111111;--foreground:#EDEDED;--border:#2C2C2E;--chevron:#666666;--social-hover-bg:rgba(255,255,255,0.1);--link-blue:#38BDF8;color-scheme:dark}
     [data-theme="solarized"]{--background:#002B36;--foreground:#EEE8D5;--border:#073642;--chevron:#586E75;--social-hover-bg:rgba(255,255,255,0.06);--link-blue:#4FA3DE;color-scheme:dark}
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html,body{background-color:var(--background);color:var(--foreground);font-family:'SF Mono',ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:14px;-webkit-font-smoothing:antialiased;min-height:100dvh}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;user-select:none;-webkit-user-select:none}
+    html,body{background-color:var(--background);color:var(--foreground);font-family:'SF Mono',ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:14px;-webkit-font-smoothing:antialiased;min-height:100dvh;touch-action:manipulation}
     a{text-decoration:none;color:inherit}
     button{font-family:inherit}
     @keyframes page-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}

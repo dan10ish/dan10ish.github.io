@@ -2,7 +2,7 @@
 <html lang="en" data-theme="gray">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <title>Danish</title>
 
   <!-- SEO -->
@@ -85,12 +85,12 @@
       --link-blue:#4FA3DE;color-scheme:dark
     }
 
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;user-select:none;-webkit-user-select:none}
     html,body{
       background-color:var(--background);color:var(--foreground);
       font-family:'SF Mono',ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
       font-size:14px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
-      min-height:100dvh
+      min-height:100dvh;touch-action:manipulation
     }
     html *,body *{transition-property:transform,opacity,width,height,margin,padding}
     a{text-decoration:none;color:inherit}
