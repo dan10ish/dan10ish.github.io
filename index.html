@@ -169,21 +169,28 @@
     .email-copy-icon-hidden{opacity:0;transform:scale(0.6)}
 
     #theme-btn{
-      position:fixed;bottom:24px;right:24px;padding:8px;
-      border:none;background:transparent;color:var(--foreground);
+      position:fixed;bottom:24px;right:24px;
+      width:32px;height:32px;
+      padding:0;
+      border:1.5px solid var(--border);
+      background:transparent;
       border-radius:50%;cursor:pointer;z-index:50;
-      display:flex;align-items:center;justify-content:center
+      display:flex;align-items:center;justify-content:center;
+      transition:border-color 0.2s ease
     }
     #theme-btn:focus{outline:none}
 
-    #contrast-path{
-      transform-origin:left center;
-      transition:transform 0.35s cubic-bezier(0.34,1.56,0.64,1)
+    #theme-dot{
+      width:9px;height:9px;
+      border-radius:50%;
+      flex-shrink:0;
+      transition:background-color 0.2s ease
     }
-    [data-theme="gray"] #contrast-path{transform:rotate(0deg)}
-    [data-theme="green"] #contrast-path{transform:rotate(90deg)}
-    [data-theme="onyx"] #contrast-path{transform:rotate(180deg)}
-    [data-theme="solarized"] #contrast-path{transform:rotate(270deg)}
+    /* dot = next theme's signature color */
+    [data-theme="gray"] #theme-dot    {background:#80e3c2}
+    [data-theme="green"] #theme-dot   {background:#EDEDED}
+    [data-theme="onyx"] #theme-dot    {background:#EEE8D5}
+    [data-theme="solarized"] #theme-dot{background:#111827}
   </style>
 </head>
 <body>
@@ -292,10 +299,7 @@
   </div>
 
   <button id="theme-btn" aria-label="Toggle theme">
-    <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="12" cy="12" r="10"/>
-      <path id="contrast-path" d="M12 18a6 6 0 0 0 0-12v12z"/>
-    </svg>
+    <span id="theme-dot"></span>
   </button>
 
   <script>
