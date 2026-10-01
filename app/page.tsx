@@ -6,7 +6,7 @@ import { data } from "./data";
 export default function Home() {
   return (
     <PageTransition>
-      <main className="max-w-[800px] px-6 md:px-10 lg:px-12 py-12 min-h-svh" style={{ minHeight: '100dvh' }}>
+      <main className="max-w-[800px] mx-auto px-6 md:px-10 lg:px-12 py-12 min-h-svh" style={{ minHeight: '100dvh' }}>
         <div className="flex flex-col gap-6">
 
           <header>
