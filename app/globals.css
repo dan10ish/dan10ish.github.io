@@ -580,13 +580,21 @@ body {
   overflow: hidden;
 }
 
-.car-action-row {
+.car-title-row {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
+  gap: 16px;
   z-index: 5;
+}
+
+.car-title-wrap {
+  width: min(240px, 60vw);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-shrink: 0;
 }
 
 .car-chevron {
@@ -620,12 +628,18 @@ body {
   font-weight: 700;
   color: var(--foreground);
   letter-spacing: -0.3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
 }
 
 .car-links {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   align-items: center;
+  justify-content: center;
+  z-index: 5;
 }
 
 .car-link-btn {
@@ -770,7 +784,7 @@ body {
     transform: scale(0.85);
     transform-origin: center center;
   }
-  .car-action-row {
+  .car-title-row {
     gap: 8px;
   }
   .car-chevron {
