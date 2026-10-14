@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { data } from "@/app/data";
+import { ArrowLeftIcon } from "@/components/animate-ui/icons/arrow-left";
 
 const springOf = (tune: number) => ({
   k: 0.08 + (tune / 100) * 0.16,
@@ -393,9 +394,7 @@ export function Carousel({
           onClick={onBack}
           aria-label="Go back"
         >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M19 12H5M12 19l-7-7 7-7"/>
-          </svg>
+          <ArrowLeftIcon size={20} className="w-full h-full" />
         </button>
       )}
     </div>

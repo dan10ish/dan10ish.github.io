@@ -1,4 +1,4 @@
-export type SocialIcon = "github" | "instagram" | "twitter" | "mail" | "snapchat";
+export type SocialIcon = "github" | "instagram" | "twitter" | "snapchat";
 
 export interface Social {
   name: string;
@@ -34,7 +34,6 @@ export const data = {
     { name: "GitHub", icon: "github" as SocialIcon, url: "https://github.com/dan10ish" },
     { name: "X", icon: "twitter" as SocialIcon, url: "https://x.com/dan10ish" },
     { name: "Instagram", icon: "instagram" as SocialIcon, url: "https://instagram.com/dan10ish" },
-    { name: "Email", icon: "mail" as SocialIcon, url: "mailto:aansaridan@gmail.com" },
     { name: "Snapchat", icon: "snapchat" as SocialIcon, url: "https://snapchat.com/add/dan10ish" },
   ],
   projects: [

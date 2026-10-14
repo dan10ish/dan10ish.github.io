@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect, useRef } from "react";
 import { data, SocialIcon } from "./data";
-import { Plus, Mail } from "lucide-react";
+import { Plus } from "lucide-react";
 import { AudioLines } from "@/components/animate-ui/icons/audio-lines";
 import { Hammer } from "@/components/animate-ui/icons/hammer";
 import { MessageCircleMore } from "@/components/animate-ui/icons/message-circle-more";
@@ -21,10 +21,10 @@ const VelarkoLogo = () => (
         <stop offset="0%" stopColor="#ffd215" />
         <stop offset="100%" stopColor="#fff172" />
       </radialGradient>
-      <filter id="blur28" x="-80%" y="-80%" width="260%" height="260%" colorInterpolationFilters="linearRGB"><feGaussianBlur stdDeviation="28"/></filter>
-      <filter id="blur42" x="-80%" y="-80%" width="260%" height="260%" colorInterpolationFilters="linearRGB"><feGaussianBlur stdDeviation="42"/></filter>
-      <filter id="blur49" x="-80%" y="-80%" width="260%" height="260%" colorInterpolationFilters="linearRGB"><feGaussianBlur stdDeviation="49"/></filter>
-      <filter id="blur56" x="-80%" y="-80%" width="260%" height="260%" colorInterpolationFilters="linearRGB"><feGaussianBlur stdDeviation="56"/></filter>
+      <filter id="blur28" x="-80%" y="-80%" width="260%" height="260%" colorInterpolationFilters="linearRGB"><feGaussianBlur stdDeviation="28" /></filter>
+      <filter id="blur42" x="-80%" y="-80%" width="260%" height="260%" colorInterpolationFilters="linearRGB"><feGaussianBlur stdDeviation="42" /></filter>
+      <filter id="blur49" x="-80%" y="-80%" width="260%" height="260%" colorInterpolationFilters="linearRGB"><feGaussianBlur stdDeviation="49" /></filter>
+      <filter id="blur56" x="-80%" y="-80%" width="260%" height="260%" colorInterpolationFilters="linearRGB"><feGaussianBlur stdDeviation="56" /></filter>
       <clipPath id="v-clip">
         <path d="M28.4607 119.836L28.4607 81.3358L28.4607 46.1848C28.4607 41.3672 29.7049 36.6313 32.0727 32.4357C41.664 15.4411 65.2698 13.2412 77.8362 28.1708L157.623 122.962C162.175 128.37 164.671 135.212 164.671 142.281L164.671 206.964C164.671 225.656 147.763 239.797 129.365 236.491L109.524 232.925C105.523 232.207 101.711 230.682 98.3176 228.445L35.9607 187.336C31.2751 184.212 28.4607 178.953 28.4607 173.322L28.4607 172.836L28.4607 153.336V119.836Z" />
         <path d="M70.9043 288.588C59.1886 276.872 59.1886 257.877 70.9043 246.162L92.3358 224.73L93.3547 223.681C99.0036 217.867 106.765 214.586 114.872 214.586L123.191 214.586L132.739 214.586C137.711 214.586 142.05 211.213 143.278 206.395C146.436 193.995 164.691 196.284 164.691 209.08L164.691 229.586L164.691 267.375L164.691 301.874C164.691 308.187 162.699 314.339 158.999 319.455L155.61 324.141C144.788 339.104 123.146 340.83 110.089 327.773L70.9043 288.588Z" />
@@ -45,7 +45,7 @@ const VelarkoLogo = () => (
       <circle cx="70" cy="70" r="70" fill="rgba(255,232,26,0.7)" filter="url(#blur28)" transform="translate(51,-38)" />
       <circle cx="70" cy="70" r="70" fill="rgba(255,232,26,0.7)" filter="url(#blur28)" transform="translate(164,51)" />
       <circle cx="70" cy="70" r="70" fill="rgba(255,163,26,0.7)" filter="url(#blur42)" transform="translate(10,13)" />
-      <circle cx="70" cy="70" r="70" fill="rgba(255,163,26,0.7)" filter="url(#blur49)" transform="translate(134,13)" />
+      <circle cx="70" cy="70" r="70" fill="rgba(255,49,26,0.7)" filter="url(#blur49)" transform="translate(134,13)" />
     </g>
   </svg>
 );
@@ -76,11 +76,10 @@ const SnapchatIcon = ({ size = 20 }: { size?: number }) => (
 
 const getSocialIcon = (icon: SocialIcon, size: number) => {
   switch (icon) {
-    case "github": return <GithubIcon size={size + 4} />;
+    case "github": return <GithubIcon size={size + 6} />;
     case "twitter": return <XIcon size={size} />;
     case "instagram": return <InstagramIcon size={size} />;
-    case "snapchat": return <SnapchatIcon size={size} />;
-    case "mail": return <Mail size={size} strokeWidth={2} />;
+    case "snapchat": return <SnapchatIcon size={size + 2} />;
     default: return null;
   }
 };
@@ -182,125 +181,128 @@ export default function HomeClient() {
 
   return (
     <div className="home-container" onClick={handleOutsideClick}>
-      {section !== "projects" && (
-        <motion.div
-          ref={containerRef}
-          className="island"
-          layout
-          style={{ borderRadius: section === "about" ? 24 : 100 }}
-          transition={section === "about" ? aboutTransition : layoutBounce}
-        >
-          {section === "home" && (
-            <div className="island-content island-home">
-              <div className="island-photo">
-                <Image src="/danish.jpeg" alt="Profile" width={48} height={48} priority />
-              </div>
-              <motion.button
-                onClick={() => setSection("expanded")}
-                className="icon-btn icon-btn-green"
-                aria-label="Expand menu"
-                whileHover={isTouchDevice ? {} : { scale: 1.15, rotate: 90 }}
-                whileTap={{ scale: 0.85 }}
-                transition={bouncy}
-              >
-                <Plus size={22} strokeWidth={2.5} className="plus-spin" />
-              </motion.button>
-            </div>
-          )}
-
-          {section === "expanded" && (
-            <div className="island-content island-expanded">
-              <div className="island-left">
+      <AnimatePresence initial={false}>
+        {section !== "projects" ? (
+          <motion.div
+            key="island"
+            ref={containerRef}
+            className="island"
+            layout
+            style={{ borderRadius: section === "about" ? 24 : 100 }}
+            initial={{ opacity: 0, scale: 0.88, filter: "blur(6px)" }}
+            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+            exit={{ opacity: 0, scale: 0.88, filter: "blur(6px)" }}
+            transition={section === "about" ? aboutTransition : layoutBounce}
+          >
+            {section === "home" && (
+              <div className="island-content island-home">
+                <div className="island-photo">
+                  <Image src="/danish.jpeg" alt="Profile" width={48} height={48} priority />
+                </div>
                 <motion.button
-                  onClick={goBack}
-                  className="island-photo-btn"
-                  aria-label="Go back"
-                  whileHover={isTouchDevice ? {} : { scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
+                  onClick={() => setSection("expanded")}
+                  className="icon-btn icon-btn-green"
+                  aria-label="Expand menu"
+                  whileHover={isTouchDevice ? {} : { scale: 1.15, rotate: 90 }}
+                  whileTap={{ scale: 0.85 }}
                   transition={bouncy}
                 >
-                  <Image src="/danish.jpeg" alt="" width={48} height={48} priority aria-hidden />
+                  <Plus size={22} strokeWidth={2.5} className="plus-spin" />
                 </motion.button>
-                <div className="island-intro">
-                  <span className="island-hello">Hello, I&apos;m</span>
-                  <span className="island-name">{data.personal.name.split(" ")[0]}</span>
+              </div>
+            )}
+
+            {section === "expanded" && (
+              <div className="island-content island-expanded">
+                <div className="island-left">
+                  <motion.button
+                    onClick={goBack}
+                    className="island-photo-btn"
+                    aria-label="Go back"
+                    whileHover={isTouchDevice ? {} : { scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    transition={bouncy}
+                  >
+                    <Image src="/danish.jpeg" alt="" width={48} height={48} priority aria-hidden />
+                  </motion.button>
+                  <div className="island-intro">
+                    <span className="island-hello">Hello, I&apos;m</span>
+                    <span className="island-name">{data.personal.name.split(" ")[0]}</span>
+                  </div>
+                </div>
+                <div className="island-right">
+                  <motion.button onClick={() => setSection("about")} className="icon-btn icon-btn-orange"
+                    aria-label="About" whileHover={isTouchDevice ? {} : { scale: 1.15 }}
+                    whileTap={{ scale: 0.85 }} transition={bouncy}>
+                    <AudioLines size={20} />
+                  </motion.button>
+                  <motion.button onClick={() => setSection("projects")} className="icon-btn icon-btn-purple"
+                    aria-label="Projects" whileHover={isTouchDevice ? {} : { scale: 1.15 }}
+                    whileTap={{ scale: 0.85 }} transition={bouncy}>
+                    <Hammer size={20} />
+                  </motion.button>
+                  <motion.button onClick={() => setSection("links")} className="icon-btn icon-btn-blue"
+                    aria-label="Links" whileHover={isTouchDevice ? {} : { scale: 1.15 }}
+                    whileTap={{ scale: 0.85 }} transition={bouncy}>
+                    <MessageCircleMore size={20} />
+                  </motion.button>
                 </div>
               </div>
-              <div className="island-right">
-                <motion.button onClick={() => setSection("about")} className="icon-btn icon-btn-orange"
-                  aria-label="About" whileHover={isTouchDevice ? {} : { scale: 1.15 }}
-                  whileTap={{ scale: 0.85 }} transition={bouncy}>
-                  <AudioLines size={20} />
+            )}
+
+            {section === "about" && (
+              <div className="island-about">
+                <h3 className="about-text">
+                  {aboutText}
+                  <br /><br />
+                  Currently @{" "}
+                  <a href="https://velarko.com" target="_blank" rel="noopener noreferrer"
+                    aria-label="Velarko" className="velarko-logo-link">
+                    <VelarkoLogo />
+                  </a>
+                </h3>
+              </div>
+            )}
+
+            {section === "links" && (
+              <div className="island-content island-links">
+                <motion.button onClick={goBack} className="back-btn-circle mx-1"
+                  style={{ flexShrink: 0 }} aria-label="Go back"
+                  whileHover={isTouchDevice ? {} : { scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }} transition={bouncy}>
+                  <ArrowLeftIcon size={20} className="w-full h-full" />
                 </motion.button>
-                <motion.button onClick={() => setSection("projects")} className="icon-btn icon-btn-purple"
-                  aria-label="Projects" whileHover={isTouchDevice ? {} : { scale: 1.15 }}
-                  whileTap={{ scale: 0.85 }} transition={bouncy}>
-                  <Hammer size={20} />
-                </motion.button>
-                <motion.button onClick={() => setSection("links")} className="icon-btn icon-btn-blue"
-                  aria-label="Links" whileHover={isTouchDevice ? {} : { scale: 1.15 }}
-                  whileTap={{ scale: 0.85 }} transition={bouncy}>
-                  <MessageCircleMore size={20} />
+                {data.social.map((social) => (
+                  <motion.a key={social.icon} href={social.url} target="_blank" rel="noopener noreferrer"
+                    className="social-icon" aria-label={social.name}
+                    whileHover={isTouchDevice ? {} : { scale: 1.2 }}
+                    whileTap={{ scale: 0.85 }} transition={bouncy}
+                    onClick={(e) => e.stopPropagation()}>
+                    {getSocialIcon(social.icon, 24)}
+                  </motion.a>
+                ))}
+              </div>
+            )}
+
+            {section === "about" && (
+              <div className="absolute -bottom-[60px] left-1/2 -translate-x-1/2 z-10">
+                <motion.button onClick={goBack} className="back-btn-circle"
+                  aria-label="Go back"
+                  whileHover={isTouchDevice ? {} : { scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }} transition={bouncy}>
+                  <ArrowLeftIcon size={20} className="w-full h-full" />
                 </motion.button>
               </div>
-            </div>
-          )}
-
-          {section === "about" && (
-            <div className="island-about">
-              <h3 className="about-text">
-                {aboutText}
-                <br /><br />
-                Currently @{" "}
-                <a href="https://velarko.com" target="_blank" rel="noopener noreferrer"
-                  aria-label="Velarko" className="velarko-logo-link">
-                  <VelarkoLogo />
-                </a>
-              </h3>
-            </div>
-          )}
-
-          {section === "links" && (
-            <div className="island-content island-links">
-              <motion.button onClick={goBack} className="back-btn-circle mx-1"
-                style={{ flexShrink: 0 }} aria-label="Go back"
-                whileHover={isTouchDevice ? {} : { scale: 1.1 }}
-                whileTap={{ scale: 0.9 }} transition={bouncy}>
-                <ArrowLeftIcon size={20} className="w-full h-full" />
-              </motion.button>
-              {data.social.map((social) => (
-                <motion.a key={social.icon} href={social.url} target="_blank" rel="noopener noreferrer"
-                  className="social-icon" aria-label={social.name}
-                  whileHover={isTouchDevice ? {} : { scale: 1.2 }}
-                  whileTap={{ scale: 0.85 }} transition={bouncy}
-                  onClick={(e) => e.stopPropagation()}>
-                  {getSocialIcon(social.icon, 24)}
-                </motion.a>
-              ))}
-            </div>
-          )}
-
-          {section === "about" && (
-            <div className="absolute -bottom-[60px] left-1/2 -translate-x-1/2 z-10">
-              <motion.button onClick={goBack} className="back-btn-circle"
-                aria-label="Go back"
-                whileHover={isTouchDevice ? {} : { scale: 1.1 }}
-                whileTap={{ scale: 0.9 }} transition={bouncy}>
-                <ArrowLeftIcon size={20} className="w-full h-full" />
-              </motion.button>
-            </div>
-          )}
-        </motion.div>
-      )}
-
-      <AnimatePresence>
-        {section === "projects" && (
+            )}
+          </motion.div>
+        ) : (
           <motion.div
+            key="projects"
             style={{ position: "fixed", inset: 0, zIndex: 20 }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
+            initial={{ opacity: 0, scale: 0.9, y: 18, filter: "blur(8px)" }}
+            animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
+            exit={{ opacity: 0, scale: 0.9, y: 16, filter: "blur(8px)" }}
+            transition={layoutBounce}
           >
             <Carousel onBack={goBack} />
           </motion.div>
