@@ -109,13 +109,6 @@ export const data = {
       video: "cognicart.mp4"
     },
     {
-      title: "Comment Toxicity",
-      source: "https://github.com/dan10ish/CommentToxicity",
-      live: null,
-      description: "Machine learning model to detect toxic comments using NLP",
-      video: "web.mp4"
-    },
-    {
       title: "Terminal",
       source: "https://github.com/dan10ish/Unity-Terminal_Hacker",
       live: null,

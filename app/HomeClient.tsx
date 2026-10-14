@@ -94,7 +94,6 @@ function applyThemeColor(dark: boolean) {
   if (typeof document === "undefined") return;
   const color = dark ? "#000000" : "#f5f5f7";
 
-  // Update all theme-color meta tags without media constraint so browsers unconditionally respect it
   const metas = document.querySelectorAll('meta[name="theme-color"]');
   if (metas.length > 0) {
     metas.forEach((meta) => {
@@ -108,7 +107,6 @@ function applyThemeColor(dark: boolean) {
     document.head.appendChild(meta);
   }
 
-  // Also update color-scheme meta if present
   const colorSchemeMeta = document.querySelector('meta[name="color-scheme"]');
   if (colorSchemeMeta) {
     colorSchemeMeta.setAttribute("content", dark ? "dark" : "light");
@@ -116,8 +114,6 @@ function applyThemeColor(dark: boolean) {
 
   document.documentElement.style.colorScheme = dark ? "dark" : "light";
 }
-
-// ── Main ─────────────────────────────────────────────────────────────────────
 
 export default function HomeClient() {
   const [section, setSection] = useState<Section>("home");
@@ -144,12 +140,10 @@ export default function HomeClient() {
     applyThemeColor(isDarkMode);
   }, []);
 
-  // Sync meta theme-color whenever isDark changes
   useEffect(() => {
     applyThemeColor(isDark);
   }, [isDark]);
 
-  // Keep in sync if OS theme changes while app is open
   useEffect(() => {
     const mq = window.matchMedia("(prefers-color-scheme: dark)");
     const handler = (e: MediaQueryListEvent) => {
@@ -188,7 +182,6 @@ export default function HomeClient() {
 
   return (
     <div className="home-container" onClick={handleOutsideClick}>
-      {/* Island — hidden when projects is active */}
       {section !== "projects" && (
         <motion.div
           ref={containerRef}
@@ -300,7 +293,6 @@ export default function HomeClient() {
         </motion.div>
       )}
 
-      {/* Stacked Deck — no island container */}
       <AnimatePresence>
         {section === "projects" && (
           <motion.div
@@ -315,7 +307,6 @@ export default function HomeClient() {
         )}
       </AnimatePresence>
 
-      {/* Theme toggle */}
       <button
         onClick={(e) => { e.stopPropagation(); toggleTheme(); }}
         className="fixed bottom-6 right-6 p-2.5 rounded-full text-[var(--foreground)] opacity-60 hover:opacity-100 hover:scale-110 active:scale-95 transition-all z-50 flex items-center justify-center cursor-pointer"

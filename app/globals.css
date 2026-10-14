@@ -33,31 +33,31 @@
 }
 
 .dark {
-    --background: #000000;
-    --foreground: #ffffff;
-    --island-bg: #ffffff;
-    --island-text: #000000;
-    --island-hello: rgba(0, 0, 0, 0.5);
-    --island-about: #000000;
-    --island-shadow: rgba(255, 255, 255, 0.15);
-    --island-border-subtle: rgba(0, 0, 0, 0.15);
-    --island-card-border: rgba(0, 0, 0, 0.15);
-    --island-photo-bg: rgba(0, 0, 0, 0.1);
-    --island-photo-border: rgba(0, 0, 0, 0.25);
-    --social-icon-color: #000000;
-    --project-title-color: #000000;
-    --photo-shadow: rgba(0, 0, 0, 0.12);
-    --project-link-color: #000000;
-    --project-link-hover: #007aff;
-    --project-link-disabled: #c7c7cc;
-    --back-btn-bg: #e5e5ea;
-    --back-btn-color: #000000;
-    --toggle-color: #ffffff;
-    --btn-green: #34C759;
-    --btn-orange: #FF9500;
-    --btn-blue: #007AFF;
-    --btn-purple: #AF52DE;
-  }
+  --background: #000000;
+  --foreground: #ffffff;
+  --island-bg: #ffffff;
+  --island-text: #000000;
+  --island-hello: rgba(0, 0, 0, 0.5);
+  --island-about: #000000;
+  --island-shadow: rgba(255, 255, 255, 0.15);
+  --island-border-subtle: rgba(0, 0, 0, 0.15);
+  --island-card-border: rgba(0, 0, 0, 0.15);
+  --island-photo-bg: rgba(0, 0, 0, 0.1);
+  --island-photo-border: rgba(0, 0, 0, 0.25);
+  --social-icon-color: #000000;
+  --project-title-color: #000000;
+  --photo-shadow: rgba(0, 0, 0, 0.12);
+  --project-link-color: #000000;
+  --project-link-hover: #007aff;
+  --project-link-disabled: #c7c7cc;
+  --back-btn-bg: #e5e5ea;
+  --back-btn-color: #000000;
+  --toggle-color: #ffffff;
+  --btn-green: #34C759;
+  --btn-orange: #FF9500;
+  --btn-blue: #007AFF;
+  --btn-purple: #AF52DE;
+}
 
 @theme inline {
   --color-background: var(--background);
@@ -83,7 +83,6 @@ body {
   font-family: var(--font-geist-sans), sans-serif;
   transition: background 0.3s ease, color 0.3s ease;
 }
-
 
 .home-container {
   height: 100dvh;
@@ -197,7 +196,6 @@ body {
   animation-play-state: paused;
 }
 
-
 .island-photo {
   width: 48px;
   height: 48px;
@@ -292,17 +290,9 @@ body {
 }
 
 @keyframes spin360 {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  40% {
-    transform: rotate(360deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
+  0% { transform: rotate(0deg); }
+  40% { transform: rotate(360deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .plus-spin {
@@ -312,7 +302,6 @@ body {
 .icon-btn-green:hover .plus-spin {
   animation-play-state: paused;
 }
-
 
 .back-btn-circle {
   width: 36px;
@@ -339,7 +328,6 @@ body {
   z-index: 10;
 }
 
-
 .social-icon {
   width: 42px;
   height: 42px;
@@ -360,343 +348,6 @@ body {
   font-weight: 500;
   color: var(--island-about);
   margin: 0;
-}
-
-.island-projects {
-  display: flex;
-  flex-direction: column;
-  width: min(80vw, 400px);
-  max-height: 420px;
-  gap: 4px;
-  will-change: transform;
-  backface-visibility: hidden;
-}
-
-/* ── iMessage Carousel ─────────────────────────── */
-.imsg-carousel {
-  display: flex;
-  flex-direction: column;
-  width: min(82vw, 340px);
-  border-radius: 22px;
-  overflow: hidden;
-  will-change: transform;
-  backface-visibility: hidden;
-  user-select: none;
-}
-
-/* Video area */
-.imsg-video-wrap {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  background: #000;
-  overflow: hidden;
-}
-
-.imsg-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  pointer-events: none;
-}
-
-.imsg-video-hidden {
-  opacity: 0;
-  filter: blur(0px);
-  transition: none;
-}
-
-.imsg-video-active {
-  opacity: 1;
-  filter: blur(0px);
-  transition: opacity 0.35s ease, filter 0.35s ease;
-  z-index: 2;
-}
-
-.imsg-video-prev {
-  opacity: 0;
-  filter: blur(8px);
-  transition: opacity 0.35s ease, filter 0.35s ease;
-  z-index: 1;
-}
-
-/* Bottom gradient */
-.imsg-gradient {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 50%;
-  background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 100%);
-  z-index: 3;
-  pointer-events: none;
-}
-
-/* Dot row */
-.imsg-dots {
-  position: absolute;
-  bottom: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 5px;
-  align-items: center;
-  z-index: 4;
-}
-
-.imsg-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.45);
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease, width 0.2s ease;
-  flex-shrink: 0;
-}
-
-.imsg-dot-active {
-  background: rgba(255,255,255,0.95);
-  width: 14px;
-  border-radius: 3px;
-}
-
-/* Bubble row below video */
-.imsg-bubble-row {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  background: var(--island-bg);
-  padding: 8px 6px 8px 6px;
-}
-
-.imsg-bubble {
-  flex: 1;
-  min-width: 0;
-  background: rgba(255,255,255,0.08);
-  border-radius: 16px;
-  padding: 8px 11px;
-  overflow: hidden;
-}
-
-.dark .imsg-bubble {
-  background: rgba(0,0,0,0.08);
-}
-
-.imsg-bubble-inner {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.imsg-bubble-top {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  flex-wrap: nowrap;
-  overflow: hidden;
-}
-
-.imsg-title {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--island-text);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  flex-shrink: 1;
-}
-
-/* Actions row */
-.imsg-actions {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-}
-
-.imsg-action-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 4px 9px;
-  border-radius: 20px;
-  text-decoration: none;
-  cursor: pointer;
-  border: none;
-  transition: opacity 0.15s ease, transform 0.15s ease;
-  white-space: nowrap;
-  letter-spacing: 0.1px;
-}
-
-.imsg-action-src {
-  background: #3a3a3c;
-  color: #fff;
-}
-
-.imsg-action-src:hover {
-  opacity: 0.85;
-  transform: scale(1.04);
-}
-
-.dark .imsg-action-src {
-  background: #e5e5ea;
-  color: #000;
-}
-
-.imsg-action-live {
-  background: #007aff;
-  color: #fff;
-}
-
-.imsg-action-live:hover {
-  opacity: 0.85;
-  transform: scale(1.04);
-}
-
-.imsg-action-disabled {
-  background: rgba(255,255,255,0.07);
-  color: rgba(255,255,255,0.3);
-  cursor: default;
-}
-
-.dark .imsg-action-disabled {
-  background: rgba(0,0,0,0.07);
-  color: rgba(0,0,0,0.3);
-}
-
-/* Nav arrow buttons */
-.imsg-nav {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.1);
-  color: var(--island-text);
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  flex-shrink: 0;
-  transition: background 0.15s ease, transform 0.15s ease;
-}
-
-.imsg-nav:hover {
-  background: rgba(255,255,255,0.18);
-  transform: scale(1.1);
-}
-
-.dark .imsg-nav {
-  background: rgba(0,0,0,0.1);
-}
-
-.dark .imsg-nav:hover {
-  background: rgba(0,0,0,0.2);
-}
-
-/* ── responsive ── */
-@media (max-width: 480px) {
-  .imsg-carousel {
-    width: min(92vw, 340px);
-  }
-}
-
-
-.projects-header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 10px;
-  border-bottom: 1px solid var(--island-border-subtle);
-}
-
-.projects-title {
-  font-size: var(--font-size-project);
-  font-weight: 700;
-  color: var(--project-title-color);
-  letter-spacing: 0.3px;
-  margin-left: 4px;
-}
-
-.projects-list {
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  padding: 8px 10px;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.projects-list::-webkit-scrollbar {
-  display: none !important;
-  width: 0 !important;
-  height: 0 !important;
-  background: transparent !important;
-}
-
-.project-card {
-  display: flex;
-  padding: 6px 0;
-  text-decoration: none;
-  border-bottom: 1px solid var(--island-card-border);
-}
-
-.project-card:last-child {
-  border-bottom: none;
-}
-
-.project-compact-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.project-compact-left {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.project-compact-title {
-  font-family: var(--font-geist-sans), sans-serif;
-  font-size: var(--font-size-project) !important;
-  font-weight: 500;
-  color: var(--island-about);
-  margin: 0;
-  letter-spacing: -0.3px;
-}
-
-
-.project-compact-links {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.project-compact-links a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--project-link-color);
-  transition: color 0.2s ease;
-}
-
-.project-compact-links a:hover {
-  color: var(--project-link-hover);
-}
-
-.project-link-disabled {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--project-link-disabled);
-  cursor: not-allowed;
 }
 
 @media (max-width: 480px) {
@@ -736,15 +387,9 @@ body {
     height: 40px;
   }
 
-
   .social-icon {
     width: 40px;
     height: 40px;
-  }
-
-  .island-projects {
-    max-width: 94vw;
-    max-height: 400px;
   }
 
   .island-links {
@@ -775,7 +420,6 @@ body {
     height: 42px;
   }
 
-
   .social-icon {
     width: 38px;
     height: 38px;
@@ -795,11 +439,6 @@ body {
   }
 }
 
-/* ══ Carousel ═══════════════════════════════════════════════
-   A row of cards that drift at rest, give under the pointer,
-   and can be thrown. Three motions on three nested elements,
-   one transform each — see the note in Carousel.tsx for why
-   they cannot share a node. */
 .car {
   --bg: var(--background);
   --font-ui: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -816,18 +455,6 @@ body {
   --shadow-rgb: 0, 0, 0;
 }
 
-/* ── the frame is only a frame ─────────────────────────────
-   No background, no clip, no mask. This was a box that cut
-   the cards at its edges, and before that a mask that faded
-   them out there, and both were answers to the question of
-   what happens to a card when it runs out of block. The cards
-   are on a ring now and never reach an edge, so the question
-   is gone and so is everything that was answering it.
-
-   Which also means nothing here forces `transform-style:
-   flat` any more — overflow and mask both did, and both were
-   safe only because the perspective sits two levels down on
-   `.car-float`. It no longer has to be. */
 .car-track {
   position: absolute;
   inset: 0;
@@ -844,51 +471,60 @@ body {
   box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px rgba(var(--ink-rgb), 0.4);
 }
 
-/* the slot holds WHERE on the ring and the card's own resting
-   ANGLE, written per frame by the component — so it carries no
-   transition of its own, or the easing and the drag would
-   re-interpolate against each other and what you would see is
-   the transition rather than the finger */
 .car-slot {
   position: absolute;
   left: 50%;
   top: 50%;
   transform-origin: center;
   cursor: pointer;
+  will-change: transform;
 }
 
-/* ── the drift ──────────────────────────────────────────────
-   Keyframes rather than a loop: a rAF per card would be a
-   permanent loop for motion nobody is watching, and a wall
-   holding several of these blocks would run a dozen. This
-   runs on the compositor and pauses itself when the tab
-   hides. The period is set per card and deliberately does not
-   divide into its neighbours' — that is what stops the row
-   breathing in unison.
-
-   The perspective lives HERE, not on the track: on the track
-   a card at the edge of the row would tilt toward the middle
-   of the stage rather than toward the finger on it. Each card
-   is its own object being touched and wants its own vanishing
-   point. */
 .car-float {
   width: 100%;
   height: 100%;
   perspective: 760px;
   animation: car-bob 5s ease-in-out infinite;
+  transform-style: preserve-3d;
 }
 
 .car-card {
   position: relative;
   width: 100%;
   height: 100%;
-  background-size: cover;
-  background-position: center;
-  overflow: hidden;
-  background: #111;
-  /* no transition: the tilt is sprung in the component, and a
-     transition on top would be a second opinion about how this
-     card settles */
+  background: #141416;
+  border-radius: inherit;
+  border: none;
+  outline: none;
+  box-shadow:
+    0 16px 36px -8px rgba(0, 0, 0, 0.75),
+    0 4px 14px rgba(0, 0, 0, 0.45);
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  mask-image: radial-gradient(white, black);
+  isolation: isolate;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+:root:not(.dark) .car-card {
+  background: #f0f0f3;
+  border: none;
+  outline: none;
+  box-shadow:
+    0 16px 36px -8px rgba(0, 0, 0, 0.16),
+    0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.car-poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+  border-radius: inherit;
 }
 
 .car-video {
@@ -899,6 +535,7 @@ body {
   object-fit: cover;
   display: block;
   pointer-events: none;
+  border-radius: inherit;
 }
 
 .car-sheen {
@@ -906,6 +543,14 @@ body {
   inset: 0;
   display: block;
   pointer-events: none;
+  border-radius: inherit;
+  border: none;
+  outline: none;
+}
+
+:root:not(.dark) .car-sheen {
+  border: none;
+  outline: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -921,7 +566,6 @@ body {
   }
 }
 
-/* ── Carousel Wrapper & Controls ─────────────────────────── */
 .car-wrapper {
   position: absolute;
   inset: 0;
@@ -936,13 +580,13 @@ body {
   overflow: hidden;
 }
 
-.car-stage-row {
+.car-action-row {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
-  width: 100%;
-  max-width: 100vw;
+  flex-wrap: wrap;
+  z-index: 5;
 }
 
 .car-chevron {
@@ -961,21 +605,14 @@ body {
   -webkit-tap-highlight-color: transparent;
   z-index: 10;
 }
+
 .car-chevron:hover {
   background: rgba(128, 128, 128, 0.28);
   transform: scale(1.12);
 }
+
 .car-chevron:active {
   transform: scale(0.9);
-}
-
-.car-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  flex-shrink: 0;
-  z-index: 5;
 }
 
 .car-title {
@@ -996,10 +633,10 @@ body {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   line-height: 1;
-  padding: 6px 14px;
+  padding: 8px 18px;
   border-radius: 20px;
   text-decoration: none;
   border: none;
@@ -1034,6 +671,7 @@ body {
   color: var(--background);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
+
 @media (hover: hover) {
   .car-link-src:hover {
     opacity: 0.88;
@@ -1041,6 +679,7 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
   }
 }
+
 .car-link-src:active {
   opacity: 0.75;
   transform: translateY(0.5px) translateZ(0);
@@ -1051,6 +690,7 @@ body {
   color: #fff;
   box-shadow: 0 1px 3px rgba(0, 122, 255, 0.2);
 }
+
 @media (hover: hover) {
   .car-link-live:hover {
     filter: brightness(1.08);
@@ -1058,6 +698,7 @@ body {
     box-shadow: 0 4px 12px rgba(0, 122, 255, 0.38);
   }
 }
+
 .car-link-live:active {
   filter: brightness(0.95);
   transform: translateY(0.5px) translateZ(0);
@@ -1073,10 +714,11 @@ body {
 
 .car-dots {
   display: flex;
-  gap: 5px;
+  gap: 6px;
   align-items: center;
   flex-shrink: 0;
   z-index: 5;
+  margin-top: 12px;
 }
 
 .car-dot {
@@ -1114,21 +756,22 @@ body {
   -webkit-tap-highlight-color: transparent;
   z-index: 5;
 }
+
 .car-back-btn:hover {
   transform: scale(1.1);
 }
+
 .car-back-btn:active {
   transform: scale(0.9);
 }
 
-/* Responsive scaling for mobile */
 @media (max-width: 540px) {
   .car {
     transform: scale(0.85);
     transform-origin: center center;
   }
-  .car-stage-row {
-    gap: 2px;
+  .car-action-row {
+    gap: 8px;
   }
   .car-chevron {
     width: 28px;
