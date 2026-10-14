@@ -103,7 +103,7 @@ export default function RootLayout({
       <head>
         <meta name="color-scheme" content="light dark" />
         <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)" />
-        <meta name="theme-color" content="#141416" media="(prefers-color-scheme: dark)" />
+        <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
         <link
           rel="preload"
           href="/fonts/Garamond.woff2"

@@ -6,7 +6,7 @@ import { Plus, Mail, Globe } from "lucide-react";
 import { AudioLines } from "@/components/animate-ui/icons/audio-lines";
 import { Hammer } from "@/components/animate-ui/icons/hammer";
 import { MessageCircleMore } from "@/components/animate-ui/icons/message-circle-more";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { ArrowLeftIcon } from "@/components/animate-ui/icons/arrow-left";
 import { ContrastIcon } from "@/components/animate-ui/icons/contrast";
@@ -67,7 +67,6 @@ const InstagramIcon = ({ size = 20 }: { size?: number }) => (
   </svg>
 );
 
-
 const SnapchatIcon = ({ size = 20 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 23" fill="currentColor">
     <path d="M5.82877 3.833C5.22877 5.177 5.46577 7.585 5.56177 9.269C4.91377 9.628 4.08177 8.998 3.61077 8.998C3.12077 8.998 2.53577 9.32 2.44377 9.8C2.37777 10.146 2.53277 10.65 3.64477 11.089C4.07477 11.259 5.09777 11.459 5.33477 12.017C5.66777 12.801 3.62477 16.42 0.416768 16.948C0.165768 16.989 -0.0132325 17.213 0.000767532 17.467C0.0567675 18.442 2.24277 18.824 3.21177 18.974C3.31077 19.108 3.39077 19.674 3.51777 20.105C3.57477 20.298 3.72177 20.529 4.09977 20.529C4.59277 20.529 5.41177 20.149 6.83777 20.385C8.23577 20.618 9.54977 22.6 12.0728 22.6C14.4178 22.6 15.8168 20.609 17.1628 20.385C17.9418 20.256 18.6108 20.297 19.3588 20.443C19.8738 20.544 20.3358 20.6 20.4828 20.094C20.6118 19.657 20.6908 19.102 20.7878 18.971C21.7478 18.822 23.9438 18.441 23.9988 17.466C24.0128 17.212 23.8338 16.989 23.5828 16.947C20.4288 16.427 18.3238 12.819 18.6648 12.016C18.9008 11.459 19.9168 11.261 20.3548 11.088C21.1688 10.767 21.5768 10.372 21.5678 9.915C21.5568 9.33 20.8528 8.981 20.3348 8.981C19.8078 8.981 19.0508 9.605 18.4378 9.267C18.5338 7.569 18.7698 5.172 18.1708 3.829C17.0358 1.286 14.5108 0 11.9868 0C9.47877 0 6.97277 1.268 5.82877 3.833Z" />
@@ -79,7 +78,6 @@ const getSocialIcon = (icon: SocialIcon, size: number) => {
     case "github": return <GithubIcon size={size + 4} />;
     case "twitter": return <XIcon size={size} />;
     case "instagram": return <InstagramIcon size={size} />;
-
     case "snapchat": return <SnapchatIcon size={size} />;
     case "mail": return <Mail size={size} strokeWidth={2} />;
     default: return null;
@@ -89,6 +87,378 @@ const getSocialIcon = (icon: SocialIcon, size: number) => {
 const bouncy = { type: "spring" as const, stiffness: 500, damping: 25 };
 const layoutBounce = { type: "spring" as const, stiffness: 400, damping: 28 };
 const aboutTransition = { type: "spring" as const, stiffness: 600, damping: 35 };
+
+const projects = data.projects as unknown as Array<{
+  title: string;
+  source: string;
+  live: string | null;
+  description: string;
+  video: string;
+}>;
+
+// ── Stacked Deck Carousel ────────────────────────────────────────────────────
+
+function DeckCarousel({ onBack }: { onBack: () => void }) {
+  const [idx, setIdx] = useState(0);
+  const [dir, setDir] = useState<1 | -1>(1);
+  const [drag, setDrag] = useState(0);
+  const [pressing, setPressing] = useState(false);
+  const pointerStartX = useRef(0);
+  const pointerStartY = useRef(0);
+  const pointerTargetCard = useRef<"left" | "right" | "front" | null>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
+  const lastNavTime = useRef(0);
+  const n = projects.length;
+  const prevI = (idx - 1 + n) % n;
+  const nextI = (idx + 1) % n;
+
+  const go = useCallback((to: number, d: 1 | -1) => {
+    const now = Date.now();
+    if (now - lastNavTime.current < 250) return;
+    if (to === idx) return;
+    lastNavTime.current = now;
+    setDir(d);
+    setIdx(to);
+    setDrag(0);
+    setPressing(false);
+  }, [idx]);
+
+  // ── Callback ref: fires each time the element mounts/unmounts ────────────
+  // Center video: auto-play as soon as enough data is available
+  const onCenterMount = useCallback((el: HTMLVideoElement | null) => {
+    if (!el) return;
+    const tryPlay = () => {
+      el.currentTime = 0;
+      el.play().catch(() => {});
+    };
+    // readyState >= 2 = HAVE_CURRENT_DATA (enough to render first frame)
+    if (el.readyState >= 2) {
+      tryPlay();
+    } else {
+      el.addEventListener("canplay", tryPlay, { once: true });
+    }
+  }, []);
+
+  // Side videos: load metadata then seek to 0.001 to decode first frame
+  const onSideMount = useCallback((el: HTMLVideoElement | null) => {
+    if (!el) return;
+    const seekToFrame = () => {
+      el.currentTime = 0.001;
+    };
+    // readyState >= 1 = HAVE_METADATA
+    if (el.readyState >= 1) {
+      seekToFrame();
+    } else {
+      el.addEventListener("loadedmetadata", seekToFrame, { once: true });
+    }
+  }, []);
+
+  // ── Pointer events — unified across mouse / touch / pen / iPad ───────────
+  const onPointerDown = useCallback((e: React.PointerEvent) => {
+    const target = e.target as HTMLElement;
+    if (target.closest(".deck-card-left")) {
+      pointerTargetCard.current = "left";
+    } else if (target.closest(".deck-card-right")) {
+      pointerTargetCard.current = "right";
+    } else {
+      pointerTargetCard.current = "front";
+    }
+
+    try {
+      stageRef.current?.setPointerCapture(e.pointerId);
+    } catch {
+      // ignore
+    }
+    pointerStartX.current = e.clientX;
+    pointerStartY.current = e.clientY;
+    setPressing(true);
+  }, []);
+
+  const onPointerMove = useCallback((e: React.PointerEvent) => {
+    if (!pressing) return;
+    setDrag(e.clientX - pointerStartX.current);
+  }, [pressing]);
+
+  const onPointerUp = useCallback((e: React.PointerEvent) => {
+    if (!pressing) return;
+    const dx = e.clientX - pointerStartX.current;
+    const dy = e.clientY - pointerStartY.current;
+    const dist = Math.hypot(dx, dy);
+    const target = pointerTargetCard.current;
+
+    try {
+      if (stageRef.current?.hasPointerCapture(e.pointerId)) {
+        stageRef.current.releasePointerCapture(e.pointerId);
+      }
+    } catch {
+      // ignore
+    }
+
+    setPressing(false);
+    setDrag(0);
+    pointerTargetCard.current = null;
+
+    const THRESH = 44; // px before triggering swipe navigation
+    if (dx < -THRESH) {
+      go(nextI, 1);
+    } else if (dx > THRESH) {
+      go(prevI, -1);
+    } else if (dist < 12) {
+      // Short tap / click
+      if (target === "left") {
+        go(prevI, -1);
+      } else if (target === "right") {
+        go(nextI, 1);
+      }
+    }
+  }, [pressing, go, nextI, prevI]);
+
+  const project = projects[idx];
+  // Subtle tilt while dragging (max ±5 deg)
+  const dragRotate = Math.max(-5, Math.min(5, drag * 0.022));
+
+  return (
+    <div className="deck-overlay">
+
+      {/* ── Card Stack + Chevrons ─────────────────────────── */}
+      <div className="deck-stage-wrap">
+
+        {/* Left chevron */}
+        <button
+          className="deck-chevron"
+          onClick={() => go(prevI, -1)}
+          aria-label="Previous project"
+        >
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+            <path d="M8.5 2L3.5 6.5l5 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </button>
+
+        {/* Stage — pointer events live here */}
+        <div
+          ref={stageRef}
+          className="deck-stage"
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={onPointerUp}
+          onPointerCancel={onPointerUp}
+          style={{ touchAction: "none", cursor: pressing ? "grabbing" : "grab" }}
+        >
+
+          {/* Left peeking card — preload="metadata" + first-frame seek + click */}
+          <div
+            className="deck-card deck-card-left"
+            role="button"
+            tabIndex={0}
+            aria-label={`Previous project: ${projects[prevI].title}`}
+            onClick={(e) => {
+              e.stopPropagation();
+              go(prevI, -1);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                go(prevI, -1);
+              }
+            }}
+          >
+            <video
+              key={`lv-${prevI}`}
+              ref={onSideMount}
+              src={`/videos/${projects[prevI].video}`}
+              className="deck-video"
+              muted
+              playsInline
+              preload="metadata"
+            />
+          </div>
+
+          {/* Right peeking card */}
+          <div
+            className="deck-card deck-card-right"
+            role="button"
+            tabIndex={0}
+            aria-label={`Next project: ${projects[nextI].title}`}
+            onClick={(e) => {
+              e.stopPropagation();
+              go(nextI, 1);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                go(nextI, 1);
+              }
+            }}
+          >
+            <video
+              key={`rv-${nextI}`}
+              ref={onSideMount}
+              src={`/videos/${projects[nextI].video}`}
+              className="deck-video"
+              muted
+              playsInline
+              preload="metadata"
+            />
+          </div>
+
+          {/* Front card — spring-animated in/out, live drag feedback */}
+          <AnimatePresence mode="popLayout" custom={dir}>
+            <motion.div
+              key={idx}
+              className="deck-card deck-card-front"
+              custom={dir}
+              initial={(d: number) => ({
+                x: d * 95,
+                rotate: d * 8,
+                scale: 0.88,
+                opacity: 0,
+              })}
+              animate={{
+                x: drag,
+                rotate: dragRotate,
+                scale: 1,
+                opacity: 1,
+              }}
+              exit={(d: number) => ({
+                x: d * -130,
+                rotate: d * -11,
+                scale: 0.85,
+                opacity: 0,
+              })}
+              // Instant during drag, spring when snapping/navigating
+              transition={
+                pressing
+                  ? { type: "tween", duration: 0 }
+                  : { type: "spring", stiffness: 380, damping: 32, mass: 1 }
+              }
+            >
+              <video
+                key={`cv-${idx}`}
+                ref={onCenterMount}
+                src={`/videos/${project.video}`}
+                className="deck-video"
+                muted
+                playsInline
+                preload="auto"
+                loop
+              />
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Right chevron */}
+        <button
+          className="deck-chevron"
+          onClick={() => go(nextI, 1)}
+          aria-label="Next project"
+        >
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+            <path d="M4.5 2l5 4.5-5 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </button>
+      </div>
+
+      {/* ── Project info ─────────────────────────────────── */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={idx}
+          className="deck-info"
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.2 }}
+        >
+          <span className="deck-title">{project.title}</span>
+          <div className="deck-links">
+            {project.source ? (
+              <a
+                href={project.source}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="deck-link-btn deck-link-src"
+                onClick={e => e.stopPropagation()}
+              >
+                <GithubIcon size={13} /><span>Source</span>
+              </a>
+            ) : (
+              <span className="deck-link-btn deck-link-disabled">
+                <GithubIcon size={13} /><span>Source</span>
+              </span>
+            )}
+            {project.live ? (
+              <a
+                href={project.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="deck-link-btn deck-link-live"
+                onClick={e => e.stopPropagation()}
+              >
+                <Globe size={13} strokeWidth={2} /><span>Live</span>
+              </a>
+            ) : (
+              <span className="deck-link-btn deck-link-disabled">
+                <Globe size={13} strokeWidth={2} /><span>Live</span>
+              </span>
+            )}
+          </div>
+        </motion.div>
+      </AnimatePresence>
+
+      {/* ── Dot strip ────────────────────────────────────── */}
+      <div className="deck-dots">
+        {projects.map((_, i) => (
+          <button
+            key={i}
+            className={`deck-dot ${i === idx ? "deck-dot-active" : ""}`}
+            onClick={() => go(i, i > idx ? 1 : -1)}
+            aria-label={`Project ${i + 1}`}
+          />
+        ))}
+      </div>
+
+      {/* ── Back button ──────────────────────────────────── */}
+      <motion.button
+        className="deck-back-btn"
+        onClick={onBack}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        transition={bouncy}
+        aria-label="Go back"
+      >
+        <ArrowLeftIcon size={20} className="w-full h-full" />
+      </motion.button>
+    </div>
+  );
+}
+
+function applyThemeColor(dark: boolean) {
+  if (typeof document === "undefined") return;
+  const color = dark ? "#000000" : "#f5f5f7";
+
+  // Update all theme-color meta tags without media constraint so browsers unconditionally respect it
+  const metas = document.querySelectorAll('meta[name="theme-color"]');
+  if (metas.length > 0) {
+    metas.forEach((meta) => {
+      meta.removeAttribute("media");
+      meta.setAttribute("content", color);
+    });
+  } else {
+    const meta = document.createElement("meta");
+    meta.setAttribute("name", "theme-color");
+    meta.setAttribute("content", color);
+    document.head.appendChild(meta);
+  }
+
+  // Also update color-scheme meta if present
+  const colorSchemeMeta = document.querySelector('meta[name="color-scheme"]');
+  if (colorSchemeMeta) {
+    colorSchemeMeta.setAttribute("content", dark ? "dark" : "light");
+  }
+
+  document.documentElement.style.colorScheme = dark ? "dark" : "light";
+}
+
+// ── Main ─────────────────────────────────────────────────────────────────────
 
 export default function HomeClient() {
   const [section, setSection] = useState<Section>("home");
@@ -106,30 +476,47 @@ export default function HomeClient() {
 
   useEffect(() => {
     const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    setIsDark(isDarkMode);
     if (isDarkMode) {
-      setIsDark(true);
       document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
     }
+    applyThemeColor(isDarkMode);
+  }, []);
+
+  // Sync meta theme-color whenever isDark changes
+  useEffect(() => {
+    applyThemeColor(isDark);
+  }, [isDark]);
+
+  // Keep in sync if OS theme changes while app is open
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-color-scheme: dark)");
+    const handler = (e: MediaQueryListEvent) => {
+      setIsDark(e.matches);
+      if (e.matches) document.documentElement.classList.add("dark");
+      else document.documentElement.classList.remove("dark");
+      applyThemeColor(e.matches);
+    };
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
   }, []);
 
   const toggleTheme = useCallback(() => {
     setIsDark((prev) => {
       const next = !prev;
-      if (next) {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
+      if (next) document.documentElement.classList.add("dark");
+      else document.documentElement.classList.remove("dark");
+      applyThemeColor(next);
       return next;
     });
   }, []);
 
-
-
   const handleOutsideClick = useCallback((e: React.MouseEvent) => {
     if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
       if (section === "expanded") setSection("home");
-      else if (section === "about" || section === "links" || section === "projects") setSection("expanded");
+      else if (section === "about" || section === "links") setSection("expanded");
     }
   }, [section]);
 
@@ -142,207 +529,134 @@ export default function HomeClient() {
 
   return (
     <div className="home-container" onClick={handleOutsideClick}>
-      <motion.div
-        ref={containerRef}
-        className="island"
-        layout
-        style={{ borderRadius: section === "about" ? 24 : section === "projects" ? 32 : 100 }}
-        transition={section === "about" ? aboutTransition : layoutBounce}
-      >
-        {section === "home" && (
-          <div className="island-content island-home">
-            <div className="island-photo">
-              <Image src="/danish.jpeg" alt="Profile" width={48} height={48} priority />
-            </div>
-            <motion.button
-              onClick={() => setSection("expanded")}
-              className="icon-btn icon-btn-green"
-              aria-label="Expand menu"
-              whileHover={isTouchDevice ? {} : { scale: 1.15, rotate: 90 }}
-              whileTap={{ scale: 0.85 }}
-              transition={bouncy}
-            >
-              <Plus size={22} strokeWidth={2.5} className="plus-spin" />
-            </motion.button>
-          </div>
-        )}
-
-        {section === "expanded" && (
-          <div className="island-content island-expanded">
-            <div className="island-left">
+      {/* Island — hidden when projects is active */}
+      {section !== "projects" && (
+        <motion.div
+          ref={containerRef}
+          className="island"
+          layout
+          style={{ borderRadius: section === "about" ? 24 : 100 }}
+          transition={section === "about" ? aboutTransition : layoutBounce}
+        >
+          {section === "home" && (
+            <div className="island-content island-home">
+              <div className="island-photo">
+                <Image src="/danish.jpeg" alt="Profile" width={48} height={48} priority />
+              </div>
               <motion.button
-                onClick={goBack}
-                className="island-photo-btn"
-                aria-label="Go back"
-                whileHover={isTouchDevice ? {} : { scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
+                onClick={() => setSection("expanded")}
+                className="icon-btn icon-btn-green"
+                aria-label="Expand menu"
+                whileHover={isTouchDevice ? {} : { scale: 1.15, rotate: 90 }}
+                whileTap={{ scale: 0.85 }}
                 transition={bouncy}
               >
-                <Image src="/danish.jpeg" alt="" width={48} height={48} priority aria-hidden />
+                <Plus size={22} strokeWidth={2.5} className="plus-spin" />
               </motion.button>
-              <div className="island-intro">
-                <span className="island-hello">Hello, I&apos;m</span>
-                <span className="island-name">{data.personal.name.split(" ")[0]}</span>
+            </div>
+          )}
+
+          {section === "expanded" && (
+            <div className="island-content island-expanded">
+              <div className="island-left">
+                <motion.button
+                  onClick={goBack}
+                  className="island-photo-btn"
+                  aria-label="Go back"
+                  whileHover={isTouchDevice ? {} : { scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={bouncy}
+                >
+                  <Image src="/danish.jpeg" alt="" width={48} height={48} priority aria-hidden />
+                </motion.button>
+                <div className="island-intro">
+                  <span className="island-hello">Hello, I&apos;m</span>
+                  <span className="island-name">{data.personal.name.split(" ")[0]}</span>
+                </div>
+              </div>
+              <div className="island-right">
+                <motion.button onClick={() => setSection("about")} className="icon-btn icon-btn-orange"
+                  aria-label="About" whileHover={isTouchDevice ? {} : { scale: 1.15 }}
+                  whileTap={{ scale: 0.85 }} transition={bouncy}>
+                  <AudioLines size={20} />
+                </motion.button>
+                <motion.button onClick={() => setSection("projects")} className="icon-btn icon-btn-purple"
+                  aria-label="Projects" whileHover={isTouchDevice ? {} : { scale: 1.15 }}
+                  whileTap={{ scale: 0.85 }} transition={bouncy}>
+                  <Hammer size={20} />
+                </motion.button>
+                <motion.button onClick={() => setSection("links")} className="icon-btn icon-btn-blue"
+                  aria-label="Links" whileHover={isTouchDevice ? {} : { scale: 1.15 }}
+                  whileTap={{ scale: 0.85 }} transition={bouncy}>
+                  <MessageCircleMore size={20} />
+                </motion.button>
               </div>
             </div>
-            <div className="island-right">
-              <motion.button
-                onClick={() => setSection("about")}
-                className="icon-btn icon-btn-orange"
-                aria-label="About"
-                whileHover={isTouchDevice ? {} : { scale: 1.15 }}
-                whileTap={{ scale: 0.85 }}
-                transition={bouncy}
-              >
-                <AudioLines size={20} />
-              </motion.button>
-              <motion.button
-                onClick={() => setSection("projects")}
-                className="icon-btn icon-btn-purple"
-                aria-label="Projects"
-                whileHover={isTouchDevice ? {} : { scale: 1.15 }}
-                whileTap={{ scale: 0.85 }}
-                transition={bouncy}
-              >
-                <Hammer size={20} />
-              </motion.button>
-              <motion.button
-                onClick={() => setSection("links")}
-                className="icon-btn icon-btn-blue"
-                aria-label="Links"
-                whileHover={isTouchDevice ? {} : { scale: 1.15 }}
-                whileTap={{ scale: 0.85 }}
-                transition={bouncy}
-              >
-                <MessageCircleMore size={20} />
-              </motion.button>
+          )}
+
+          {section === "about" && (
+            <div className="island-about">
+              <h3 className="about-text">
+                {aboutText}
+                <br /><br />
+                Currently @{" "}
+                <a href="https://velarko.com" target="_blank" rel="noopener noreferrer"
+                  aria-label="Velarko" className="velarko-logo-link">
+                  <VelarkoLogo />
+                </a>
+              </h3>
             </div>
-          </div>
-        )}
+          )}
 
-        {section === "about" && (
-          <div className="island-about">
-            <h3 className="about-text">
-              {aboutText}
-              <br />
-              <br />
-              Currently @{" "}
-              <a href="https://velarko.com" target="_blank" rel="noopener noreferrer" aria-label="Velarko" className="velarko-logo-link">
-                <VelarkoLogo />
-              </a>
-            </h3>
-          </div>
-        )}
-
-        {section === "links" && (
-          <div className="island-content island-links">
-            <motion.button
-              onClick={goBack}
-              className="back-btn-circle mx-1"
-              style={{ flexShrink: 0 }}
-              aria-label="Go back"
-              whileHover={isTouchDevice ? {} : { scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              transition={bouncy}
-            >
-              <ArrowLeftIcon size={20} className="w-full h-full" />
-            </motion.button>
-            {data.social.map((social) => (
-              <motion.a
-                key={social.icon}
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-icon"
-                aria-label={social.name}
-                whileHover={isTouchDevice ? {} : { scale: 1.2 }}
-                whileTap={{ scale: 0.85 }}
-                transition={bouncy}
-                onClick={(e) => e.stopPropagation()}
-              >
-                {getSocialIcon(social.icon, 24)}
-              </motion.a>
-            ))}
-          </div>
-        )}
-
-        {section === "projects" && (
-          <div className="island-projects" onClick={(e) => e.stopPropagation()}>
-            <div className="projects-list">
-              {data.projects.map((project) => (
-                <div
-                  key={project.title}
-                  className="project-card"
-                >
-                  <div className="project-compact-row">
-                    <div className="project-compact-left">
-                      <h3 className="project-compact-title">{project.title}</h3>
-                    </div>
-
-                    <div className="project-compact-links">
-                      {project.tag && (
-                        <span className={`project-tag tag-${project.tag.toLowerCase()}`}>
-                          {project.tag}
-                        </span>
-                      )}
-                      {project.source ? (
-                        <motion.a
-                          href={project.source}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label="Source code"
-                          whileHover={isTouchDevice ? {} : { scale: 1.2 }}
-                          whileTap={{ scale: 0.85 }}
-                          transition={bouncy}
-                        >
-                          <GithubIcon size={20} />
-                        </motion.a>
-                      ) : (
-                        <span className="project-link-disabled">
-                          <GithubIcon size={20} />
-                        </span>
-                      )}
-
-                      {project.live ? (
-                        <motion.a
-                          href={project.live}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label="Live site"
-                          whileHover={isTouchDevice ? {} : { scale: 1.2 }}
-                          whileTap={{ scale: 0.85 }}
-                          transition={bouncy}
-                        >
-                          <Globe size={18} />
-                        </motion.a>
-                      ) : (
-                        <span className="project-link-disabled">
-                          <Globe size={18} />
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                </div>
+          {section === "links" && (
+            <div className="island-content island-links">
+              <motion.button onClick={goBack} className="back-btn-circle mx-1"
+                style={{ flexShrink: 0 }} aria-label="Go back"
+                whileHover={isTouchDevice ? {} : { scale: 1.1 }}
+                whileTap={{ scale: 0.9 }} transition={bouncy}>
+                <ArrowLeftIcon size={20} className="w-full h-full" />
+              </motion.button>
+              {data.social.map((social) => (
+                <motion.a key={social.icon} href={social.url} target="_blank" rel="noopener noreferrer"
+                  className="social-icon" aria-label={social.name}
+                  whileHover={isTouchDevice ? {} : { scale: 1.2 }}
+                  whileTap={{ scale: 0.85 }} transition={bouncy}
+                  onClick={(e) => e.stopPropagation()}>
+                  {getSocialIcon(social.icon, 24)}
+                </motion.a>
               ))}
             </div>
-          </div>
-        )}
+          )}
 
-        {(section === "about" || section === "projects") && (
-          <div className="absolute -bottom-[60px] left-1/2 -translate-x-1/2 z-10">
-            <motion.button
-              onClick={goBack}
-              className="back-btn-circle"
-              aria-label="Go back"
-              whileHover={isTouchDevice ? {} : { scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              transition={bouncy}
-            >
-              <ArrowLeftIcon size={20} className="w-full h-full" />
-            </motion.button>
-          </div>
+          {section === "about" && (
+            <div className="absolute -bottom-[60px] left-1/2 -translate-x-1/2 z-10">
+              <motion.button onClick={goBack} className="back-btn-circle"
+                aria-label="Go back"
+                whileHover={isTouchDevice ? {} : { scale: 1.1 }}
+                whileTap={{ scale: 0.9 }} transition={bouncy}>
+                <ArrowLeftIcon size={20} className="w-full h-full" />
+              </motion.button>
+            </div>
+          )}
+        </motion.div>
+      )}
+
+      {/* Stacked Deck — no island container */}
+      <AnimatePresence>
+        {section === "projects" && (
+          <motion.div
+            style={{ position: "fixed", inset: 0, zIndex: 20 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+          >
+            <DeckCarousel onBack={goBack} />
+          </motion.div>
         )}
-      </motion.div>
+      </AnimatePresence>
+
+      {/* Theme toggle */}
       <button
         onClick={(e) => { e.stopPropagation(); toggleTheme(); }}
         className="fixed bottom-6 right-6 p-2.5 rounded-full text-[var(--foreground)] opacity-60 hover:opacity-100 hover:scale-110 active:scale-95 transition-all z-50 flex items-center justify-center cursor-pointer"
