@@ -412,31 +412,9 @@ export function Carousel({
         </div>
       </div>
 
-      {/* Project Title Row */}
-      <div className="car-title-row">
-        <button
-          className="car-chevron car-chevron-left"
-          onClick={() => go(-1)}
-          aria-label="Previous project"
-        >
-          <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
-            <path d="M8.5 2L3.5 6.5l5 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </button>
-
-        <div className="car-title-wrap">
-          <span className="car-title">{activeProject.title}</span>
-        </div>
-
-        <button
-          className="car-chevron car-chevron-right"
-          onClick={() => go(1)}
-          aria-label="Next project"
-        >
-          <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
-            <path d="M4.5 2l5 4.5-5 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </button>
+      {/* Project Title */}
+      <div className="car-title-wrap">
+        <span className="car-title">{activeProject.title}</span>
       </div>
 
       {/* Project Links (Source & Live) */}

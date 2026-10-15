@@ -556,47 +556,14 @@ body {
   overflow: hidden;
 }
 
-.car-title-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  z-index: 5;
-}
-
 .car-title-wrap {
-  width: min(260px, 64vw);
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   flex-shrink: 0;
-}
-
-.car-chevron {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: rgba(128, 128, 128, 0.16);
-  color: var(--foreground);
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  flex-shrink: 0;
-  transition: background 0.15s ease, transform 0.15s ease;
-  -webkit-tap-highlight-color: transparent;
-  z-index: 10;
-}
-
-.car-chevron:hover {
-  background: rgba(128, 128, 128, 0.28);
-  transform: scale(1.12);
-}
-
-.car-chevron:active {
-  transform: scale(0.9);
+  max-width: min(320px, 80vw);
+  z-index: 5;
 }
 
 .car-title {
@@ -764,13 +731,6 @@ body {
   .car-wrapper {
     gap: 12px;
     padding: 14px 10px;
-  }
-  .car-title-row {
-    gap: 10px;
-  }
-  .car-chevron {
-    width: 28px;
-    height: 28px;
   }
 }
 
