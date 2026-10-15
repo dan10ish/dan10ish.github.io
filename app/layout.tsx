@@ -7,14 +7,19 @@ const manrope = Manrope({
   variable: "--font-manrope",
 });
 
+const BASE_URL = "https://danishansari.co";
+const OG_IMAGE = `${BASE_URL}/ogimage.png`;
+const ICON = `${BASE_URL}/icon.png`;
+const DESCRIPTION =
+  "Mechatronics engineer integrating hardware and software to create applications in machine learning, robotics, and finance.";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://danishansari.co"),
+  metadataBase: new URL(BASE_URL),
   title: {
-    default: "Danish Ansari",
-    template: "%s | Danish Ansari",
+    default: "Danish",
+    template: "%s | Danish",
   },
-  description:
-    "Mechatronics engineer integrating hardware and software to create applications in machine learning, robotics, and finance.",
+  description: DESCRIPTION,
   generator: "Next.js",
   applicationName: "Danish Ansari",
   referrer: "origin-when-cross-origin",
@@ -33,11 +38,16 @@ export const metadata: Metadata = {
     "Dar es Salaam",
     "Tanzania",
     "Africa",
-    "India"
+    "India",
   ],
-  authors: [{ name: "Danish Ansari", url: "https://danishansari.co" }],
+  authors: [{ name: "Danish Ansari", url: BASE_URL }],
   creator: "Danish Ansari",
   publisher: "Danish Ansari",
+  icons: {
+    icon: [{ url: ICON, type: "image/png" }],
+    apple: [{ url: ICON, type: "image/png" }],
+    shortcut: ICON,
+  },
   robots: {
     index: true,
     follow: true,
@@ -50,23 +60,19 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  alternates: { canonical: "https://danishansari.co" },
-  icons: {
-    icon: "/danish.jpeg",
-  },
+  alternates: { canonical: BASE_URL },
   openGraph: {
     type: "website",
     locale: "en_US",
     siteName: "Danish Ansari",
     title: "Danish Ansari",
-    description:
-      "Mechatronics engineer integrating hardware and software to create applications in machine learning, robotics, and finance.",
-    url: "https://danishansari.co",
+    description: DESCRIPTION,
+    url: BASE_URL,
     images: [
       {
-        url: "https://i.ibb.co/vmBrhSd/OG.png",
+        url: OG_IMAGE,
         width: 1200,
-        height: 675,
+        height: 630,
         type: "image/png",
         alt: "Danish Ansari Portfolio Preview",
       },
@@ -77,9 +83,8 @@ export const metadata: Metadata = {
     site: "@dan10ish",
     creator: "@dan10ish",
     title: "Danish Ansari",
-    description:
-      "Mechatronics engineer integrating hardware and software to create applications in machine learning, robotics, and finance.",
-    images: ["https://i.ibb.co/vmBrhSd/OG.png"],
+    description: DESCRIPTION,
+    images: [OG_IMAGE],
   },
   other: {
     "profile:username": "dan10ish",
@@ -93,9 +98,53 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Danish Ansari",
+    alternateName: "dan10ish",
+    url: BASE_URL,
+    image: OG_IMAGE,
+    jobTitle: "Mechatronics Engineer",
+    description: DESCRIPTION,
+    knowsAbout: [
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Robotics",
+      "Mechatronics",
+      "Finance",
+      "Software Development",
+    ],
+    sameAs: [
+      "https://github.com/dan10ish",
+      "https://linkedin.com/in/dan10ish",
+      "https://x.com/dan10ish",
+      "https://instagram.com/dan10ish",
+      "https://snapchat.com/add/dan10ish",
+    ],
+  };
+
   return (
     <html lang="en">
       <head>
+        <link rel="icon" href="/icon.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/icon.png" />
+        <link rel="shortcut icon" href="/icon.png" type="image/png" />
+
+        <meta property="og:image" content={OG_IMAGE} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:alt" content="Danish Ansari Portfolio Preview" />
+
+        <meta name="twitter:image" content={OG_IMAGE} />
+        <meta name="twitter:card" content="summary_large_image" />
+
+        <link rel="alternate" href="/llms.txt" type="text/markdown" title="LLM-optimized content" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <meta name="color-scheme" content="light" />
         <meta name="theme-color" content="#f5f5f7" />
       </head>
