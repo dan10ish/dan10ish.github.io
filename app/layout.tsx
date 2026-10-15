@@ -94,11 +94,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <head>
-        <meta name="color-scheme" content="light dark" />
-        <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)" />
-        <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+        <meta name="color-scheme" content="light" />
+        <meta name="theme-color" content="#f5f5f7" />
       </head>
       <body
         className={`${manrope.variable} ${manrope.className} antialiased`}

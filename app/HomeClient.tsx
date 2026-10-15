@@ -9,7 +9,6 @@ import { MessageCircleMore } from "@/components/animate-ui/icons/message-circle-
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { ArrowLeftIcon } from "@/components/animate-ui/icons/arrow-left";
-import { ContrastIcon } from "@/components/animate-ui/icons/contrast";
 import { Carousel } from "@/components/Carousel";
 
 type Section = "home" | "expanded" | "about" | "links" | "projects";
@@ -95,35 +94,9 @@ const layoutBounce = { type: "spring" as const, stiffness: 400, damping: 28 };
 const aboutTransition = { type: "spring" as const, stiffness: 600, damping: 35 };
 
 
-function applyThemeColor(dark: boolean) {
-  if (typeof document === "undefined") return;
-  const color = dark ? "#000000" : "#f5f5f7";
-
-  const metas = document.querySelectorAll('meta[name="theme-color"]');
-  if (metas.length > 0) {
-    metas.forEach((meta) => {
-      meta.removeAttribute("media");
-      meta.setAttribute("content", color);
-    });
-  } else {
-    const meta = document.createElement("meta");
-    meta.setAttribute("name", "theme-color");
-    meta.setAttribute("content", color);
-    document.head.appendChild(meta);
-  }
-
-  const colorSchemeMeta = document.querySelector('meta[name="color-scheme"]');
-  if (colorSchemeMeta) {
-    colorSchemeMeta.setAttribute("content", dark ? "dark" : "light");
-  }
-
-  document.documentElement.style.colorScheme = dark ? "dark" : "light";
-}
-
 export default function HomeClient() {
   const [section, setSection] = useState<Section>("home");
   const [isTouchDevice, setIsTouchDevice] = useState(false);
-  const [isDark, setIsDark] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const hasMounted = useRef(false);
 
@@ -136,40 +109,26 @@ export default function HomeClient() {
   }, []);
 
   useEffect(() => {
-    const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    setIsDark(isDarkMode);
-    if (isDarkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-    applyThemeColor(isDarkMode);
-  }, []);
-
-  useEffect(() => {
-    applyThemeColor(isDark);
-  }, [isDark]);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-color-scheme: dark)");
-    const handler = (e: MediaQueryListEvent) => {
-      setIsDark(e.matches);
-      if (e.matches) document.documentElement.classList.add("dark");
-      else document.documentElement.classList.remove("dark");
-      applyThemeColor(e.matches);
+    // Preload project posters and warm initial video during idle time for instant opening
+    const preload = () => {
+      data.projects.forEach((p) => {
+        const img = new window.Image();
+        img.src = `/videos/${p.video.replace(".mp4", "-poster.jpg")}`;
+      });
+      const v = document.createElement("video");
+      v.src = `/videos/${data.projects[0].video}`;
+      v.preload = "auto";
     };
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, []);
 
-  const toggleTheme = useCallback(() => {
-    setIsDark((prev) => {
-      const next = !prev;
-      if (next) document.documentElement.classList.add("dark");
-      else document.documentElement.classList.remove("dark");
-      applyThemeColor(next);
-      return next;
-    });
+    if (typeof window !== "undefined") {
+      if ("requestIdleCallback" in window) {
+        const id = (window as unknown as { requestIdleCallback: (cb: () => void, opt?: { timeout: number }) => number }).requestIdleCallback(preload, { timeout: 1200 });
+        return () => (window as unknown as { cancelIdleCallback: (id: number) => void }).cancelIdleCallback(id);
+      } else {
+        const timer = setTimeout(preload, 800);
+        return () => clearTimeout(timer);
+      }
+    }
   }, []);
 
   const handleOutsideClick = useCallback((e: React.MouseEvent) => {
@@ -306,24 +265,34 @@ export default function HomeClient() {
         ) : (
           <motion.div
             key="projects"
-            style={{ position: "fixed", inset: 0, zIndex: 20 }}
+            style={{
+              position: "fixed",
+              inset: 0,
+              zIndex: 20,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
             initial={{ opacity: 0, scale: 0.9, y: 18, filter: "blur(8px)" }}
             animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
             exit={{ opacity: 0, scale: 0.9, y: 16, filter: "blur(8px)" }}
             transition={layoutBounce}
           >
             <Carousel onBack={goBack} />
+            <motion.button
+              onClick={goBack}
+              className="back-btn-circle fixed bottom-8 left-1/2 -translate-x-1/2 z-30"
+              aria-label="Go back"
+              whileHover={isTouchDevice ? {} : { scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              transition={bouncy}
+            >
+              <ArrowLeftIcon size={20} className="w-full h-full" />
+            </motion.button>
           </motion.div>
         )}
       </AnimatePresence>
-
-      <button
-        onClick={(e) => { e.stopPropagation(); toggleTheme(); }}
-        className="fixed bottom-6 right-6 p-2.5 rounded-full text-[var(--foreground)] opacity-60 hover:opacity-100 hover:scale-110 active:scale-95 transition-all z-50 flex items-center justify-center cursor-pointer"
-        aria-label="Toggle theme"
-      >
-        <ContrastIcon size={24} isDark={isDark} />
-      </button>
     </div>
   );
 }
