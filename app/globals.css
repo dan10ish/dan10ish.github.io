@@ -8,22 +8,12 @@
   --island-hello: rgba(255, 255, 255, 0.5);
   --island-about: #ffffff;
   --island-shadow: rgba(0, 0, 0, 0.12);
-  --island-border-subtle: rgba(255, 255, 255, 0.15);
-  --island-card-border: rgba(255, 255, 255, 0.15);
   --island-photo-bg: rgba(255, 255, 255, 0.1);
-  --island-photo-border: rgba(255, 255, 255, 0.25);
   --social-icon-color: #ffffff;
-  --project-title-color: #fff;
-  --photo-shadow: rgba(255, 255, 255, 0.12);
-  --project-link-color: #fff;
-  --project-link-hover: #007aff;
-  --project-link-disabled: #444444;
   --back-btn-bg: #48484A;
   --back-btn-color: #ffffff;
   --font-size-xl: 18px;
-  --font-size-lg: 17px;
   --font-size-about: 16px;
-  --font-size-project: 15px;
   --font-size-sm: 14px;
   --btn-green: #34C759;
   --btn-orange: #FF9500;
@@ -290,13 +280,6 @@ body {
   pointer-events: auto;
 }
 
-.back-btn-top-right {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  z-index: 10;
-}
-
 .social-icon {
   width: 42px;
   height: 42px;
@@ -322,9 +305,7 @@ body {
 @media (max-width: 480px) {
   :root {
     --font-size-xl: 16px;
-    --font-size-lg: 15px;
     --font-size-about: 14px;
-    --font-size-project: 13px;
     --font-size-sm: 13px;
   }
 
@@ -408,11 +389,6 @@ body {
   }
 }
 
-/* ══ Carousel ═══════════════════════════════════════════════
-   A row of cards that drift at rest, give under the pointer,
-   and can be thrown. Three motions on three nested elements,
-   one transform each — see the note in Carousel.tsx for why
-   they cannot share a node. */
 .car {
   --bg: var(--background);
   --font-ui: var(--font-manrope), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -426,18 +402,6 @@ body {
   -webkit-user-select: none;
 }
 
-/* ── the frame is only a frame ─────────────────────────────
-   No background, no clip, no mask. This was a box that cut
-   the cards at its edges, and before that a mask that faded
-   them out there, and both were answers to the question of
-   what happens to a card when it runs out of block. The cards
-   are on a ring now and never reach an edge, so the question
-   is gone and so is everything that was answering it.
-
-   Which also means nothing here forces `transform-style:
-   flat` any more — overflow and mask both did, and both were
-   safe only because the perspective sits two levels down on
-   `.car-float`. It no longer has to be. */
 .car-track {
   position: absolute;
   inset: 0;
@@ -454,11 +418,6 @@ body {
   box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px rgba(var(--ink-rgb), 0.4);
 }
 
-/* the slot holds WHERE on the ring and the card's own resting
-   ANGLE, written per frame by the component — so it carries no
-   transition of its own, or the easing and the drag would
-   re-interpolate against each other and what you would see is
-   the transition rather than the finger */
 .car-slot {
   position: absolute;
   left: 50%;
@@ -468,20 +427,6 @@ body {
   will-change: transform;
 }
 
-/* ── the drift ──────────────────────────────────────────────
-   Keyframes rather than a loop: a rAF per card would be a
-   permanent loop for motion nobody is watching, and a wall
-   holding several of these blocks would run a dozen. This
-   runs on the compositor and pauses itself when the tab
-   hides. The period is set per card and deliberately does not
-   divide into its neighbours' — that is what stops the row
-   breathing in unison.
-
-   The perspective lives HERE, not on the track: on the track
-   a card at the edge of the row would tilt toward the middle
-   of the stage rather than toward the finger on it. Each card
-   is its own object being touched and wants its own vanishing
-   point. */
 .car-float {
   width: 100%;
   height: 100%;
@@ -541,7 +486,6 @@ body {
   }
 }
 
-/* ── Carousel Wrapper & Controls (Titles, Links, Dots, Back) ── */
 .car-wrapper {
   position: absolute;
   inset: 0;

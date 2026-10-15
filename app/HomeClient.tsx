@@ -2,7 +2,6 @@
 
 import { useState, useCallback, useEffect, useRef } from "react";
 import { data, SocialIcon } from "./data";
-import { Plus } from "lucide-react";
 import { AudioLines } from "@/components/animate-ui/icons/audio-lines";
 import { Hammer } from "@/components/animate-ui/icons/hammer";
 import { MessageCircleMore } from "@/components/animate-ui/icons/message-circle-more";
@@ -12,6 +11,23 @@ import { ArrowLeftIcon } from "@/components/animate-ui/icons/arrow-left";
 import { Carousel } from "@/components/Carousel";
 
 type Section = "home" | "expanded" | "about" | "links" | "projects";
+
+const PlusIcon = ({ size = 22, className }: { size?: number; className?: string }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={2.5}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <path d="M5 12h14" />
+    <path d="M12 5v14" />
+  </svg>
+);
 
 const VelarkoLogo = () => (
   <svg width="28" height="28" viewBox="0 0 350 350" xmlns="http://www.w3.org/2000/svg" aria-label="Velarko">
@@ -109,7 +125,6 @@ export default function HomeClient() {
   }, []);
 
   useEffect(() => {
-    // Preload project posters and warm initial video during idle time for instant opening
     const preload = () => {
       data.projects.forEach((p) => {
         const img = new window.Image();
@@ -143,7 +158,7 @@ export default function HomeClient() {
     else if (section === "about" || section === "links" || section === "projects") setSection("expanded");
   }, [section]);
 
-  const aboutText = `${data.personal.about}`;
+  const aboutText = data.personal.about;
 
   return (
     <div className="home-container" onClick={handleOutsideClick}>
@@ -174,7 +189,7 @@ export default function HomeClient() {
                   whileTap={{ scale: 0.85 }}
                   transition={bouncy}
                 >
-                  <Plus size={22} strokeWidth={2.5} className="plus-spin" />
+                  <PlusIcon size={22} className="plus-spin" />
                 </motion.button>
               </div>
             )}
