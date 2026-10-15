@@ -464,6 +464,8 @@ body {
   left: 50%;
   top: 50%;
   transform-origin: center;
+  cursor: pointer;
+  will-change: transform;
 }
 
 /* ── the drift ──────────────────────────────────────────────
@@ -491,11 +493,31 @@ body {
   position: relative;
   width: 100%;
   height: 100%;
-  background-size: cover;
-  background-position: center;
-  /* no transition: the tilt is sprung in the component, and a
-     transition on top would be a second opinion about how this
-     card settles */
+  aspect-ratio: 1 / 1;
+  border-radius: inherit;
+  overflow: hidden;
+  background-color: #1a1a1a;
+  box-shadow:
+    0 16px 36px -8px rgba(0, 0, 0, 0.16),
+    0 4px 14px rgba(0, 0, 0, 0.08);
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  mask-image: radial-gradient(white, black);
+  isolation: isolate;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.car-poster,
+.car-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+  border-radius: inherit;
 }
 
 .car-sheen {
@@ -503,6 +525,7 @@ body {
   inset: 0;
   display: block;
   pointer-events: none;
+  border-radius: inherit;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -518,24 +541,265 @@ body {
   }
 }
 
-@media (max-width: 520px) {
-  .car {
-    transform: scale(0.8);
-    transform-origin: center center;
+/* ── Carousel Wrapper & Controls (Titles, Links, Dots, Back) ── */
+.car-wrapper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  overflow: hidden;
+}
+
+.car-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  z-index: 5;
+}
+
+.car-title-wrap {
+  width: min(260px, 64vw);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.car-chevron {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(128, 128, 128, 0.16);
+  color: var(--foreground);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s ease, transform 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+  z-index: 10;
+}
+
+.car-chevron:hover {
+  background: rgba(128, 128, 128, 0.28);
+  transform: scale(1.12);
+}
+
+.car-chevron:active {
+  transform: scale(0.9);
+}
+
+.car-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--foreground);
+  letter-spacing: -0.3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.car-links {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.car-link-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  padding: 8px 18px;
+  border-radius: 20px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transform: translateZ(0);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  backface-visibility: hidden;
+  will-change: transform, opacity, box-shadow;
+  transition: opacity 0.18s cubic-bezier(0.2, 0, 0, 1),
+              transform 0.18s cubic-bezier(0.2, 0, 0, 1),
+              box-shadow 0.18s cubic-bezier(0.2, 0, 0, 1),
+              filter 0.18s cubic-bezier(0.2, 0, 0, 1);
+  letter-spacing: 0.1px;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.car-link-btn svg {
+  flex-shrink: 0;
+  display: block;
+}
+
+.car-link-btn span {
+  flex-shrink: 0;
+  display: inline-block;
+  line-height: 1;
+}
+
+.car-link-src {
+  background: var(--foreground);
+  color: var(--background);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+@media (hover: hover) {
+  .car-link-src:hover {
+    opacity: 0.88;
+    transform: translateY(-1.5px) translateZ(0);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
   }
 }
 
-@media (max-width: 380px) {
-  .car {
-    transform: scale(0.68);
-    transform-origin: center center;
+.car-link-src:active {
+  opacity: 0.75;
+  transform: translateY(0.5px) translateZ(0);
+}
+
+.car-link-live {
+  background: #007aff;
+  color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 122, 255, 0.25);
+}
+
+@media (hover: hover) {
+  .car-link-live:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1.5px) translateZ(0);
+    box-shadow: 0 4px 12px rgba(0, 122, 255, 0.38);
   }
 }
 
-@media (max-height: 600px) {
+.car-link-live:active {
+  filter: brightness(0.95);
+  transform: translateY(0.5px) translateZ(0);
+}
+
+.car-link-disabled {
+  background: rgba(128, 128, 128, 0.12);
+  color: rgba(128, 128, 128, 0.45);
+  cursor: default;
+  pointer-events: none;
+  transform: translateZ(0);
+}
+
+.car-dots {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-shrink: 0;
+  z-index: 5;
+  margin-top: 2px;
+}
+
+.car-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(128, 128, 128, 0.32);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.2s ease, width 0.2s ease, border-radius 0.2s ease;
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.car-dot-active {
+  background: var(--foreground);
+  width: 16px;
+  border-radius: 3px;
+}
+
+.car-back-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--back-btn-bg);
+  color: var(--back-btn-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+  z-index: 5;
+  margin-top: 4px;
+}
+
+.car-back-btn:hover {
+  transform: scale(1.1);
+}
+
+.car-back-btn:active {
+  transform: scale(0.9);
+}
+
+@media (max-width: 540px) {
   .car {
-    transform: scale(0.75);
+    transform: scale(0.85);
     transform-origin: center center;
+  }
+  .car-wrapper {
+    gap: 12px;
+    padding: 14px 10px;
+  }
+  .car-title-row {
+    gap: 10px;
+  }
+  .car-chevron {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 400px) {
+  .car {
+    transform: scale(0.72);
+    transform-origin: center center;
+  }
+  .car-wrapper {
+    gap: 10px;
+    padding: 10px 8px;
+  }
+  .car-title {
+    font-size: 15px;
+  }
+  .car-link-btn {
+    padding: 7px 14px;
+    font-size: 12px;
+  }
+}
+
+@media (max-height: 640px) {
+  .car {
+    transform: scale(0.72);
+    transform-origin: center center;
+  }
+  .car-wrapper {
+    gap: 8px;
+    padding: 10px 8px;
   }
 }
 

@@ -265,31 +265,13 @@ export default function HomeClient() {
         ) : (
           <motion.div
             key="projects"
-            style={{
-              position: "fixed",
-              inset: 0,
-              zIndex: 20,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
+            style={{ position: "fixed", inset: 0, zIndex: 20 }}
             initial={{ opacity: 0, scale: 0.9, y: 18, filter: "blur(8px)" }}
             animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
             exit={{ opacity: 0, scale: 0.9, y: 16, filter: "blur(8px)" }}
             transition={layoutBounce}
           >
             <Carousel onBack={goBack} />
-            <motion.button
-              onClick={goBack}
-              className="back-btn-circle fixed bottom-8 left-1/2 -translate-x-1/2 z-30"
-              aria-label="Go back"
-              whileHover={isTouchDevice ? {} : { scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              transition={bouncy}
-            >
-              <ArrowLeftIcon size={20} className="w-full h-full" />
-            </motion.button>
           </motion.div>
         )}
       </AnimatePresence>
