@@ -125,6 +125,7 @@ export default function HomeClient() {
   const [isTouchDevice, setIsTouchDevice] = useState(false);
   const [isDark, setIsDark] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const hasMounted = useRef(false);
 
   useEffect(() => {
     const mq = window.matchMedia("(any-hover: hover)");
@@ -187,7 +188,7 @@ export default function HomeClient() {
 
   return (
     <div className="home-container" onClick={handleOutsideClick}>
-      <AnimatePresence initial={false}>
+      <AnimatePresence>
         {section !== "projects" ? (
           <motion.div
             key="island"
@@ -195,10 +196,11 @@ export default function HomeClient() {
             className="island"
             layout
             style={{ borderRadius: section === "about" ? 24 : 100 }}
-            initial={{ opacity: 0, scale: 0.88, filter: "blur(6px)" }}
+            initial={hasMounted.current ? false : { opacity: 0, scale: 0.88, filter: "blur(6px)" }}
             animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
             exit={{ opacity: 0, scale: 0.88, filter: "blur(6px)" }}
             transition={section === "about" ? aboutTransition : layoutBounce}
+            onAnimationComplete={() => { hasMounted.current = true; }}
           >
             {section === "home" && (
               <div className="island-content island-home">
